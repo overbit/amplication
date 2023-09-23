@@ -8,7 +8,7 @@ function get(name: string): string | undefined {
   // @ts-ignore
   return window[name] || environment[name] || process.env[name];
 }
-
+export const fakeChange = 1;
 export const NODE_ENV = get("NODE_ENV");
 export const REACT_APP_GITHUB_AUTH_ENABLED = get(
   "NX_REACT_APP_GITHUB_AUTH_ENABLED"
