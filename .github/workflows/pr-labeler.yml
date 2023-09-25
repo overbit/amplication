@@ -31,10 +31,13 @@ jobs:
         id: labeler-config
         run: |
           APP_NAME=$(echo ${{ matrix.project }} | sed -e "s/^amplication-//")
-          FILENAME=$APP_NAME-labeler.yml
-          echo "app:$APP_NAME: '**'" >> $FILENAME
+          FILENAME=${APP_NAME}-labeler.yml
+          echo "app:${APP_NAME}:
+                  pattern:
+                    - '**'
+                  color: '#5319E7'" > $FILENAME
           echo "config-file=$FILENAME" >> $GITHUB_OUTPUT
-      - uses: actions/labeler@v4
+      - uses: overbit/labeler@feat/support-label-color
         with:
           configuration-path: ${{ steps.labeler-config.outputs.config-file }}
           dot: true
@@ -55,9 +58,12 @@ jobs:
         id: labeler-config
         run: |
           FILENAME=${{ matrix.project }}-labeler.yml
-          echo "lib:${{ matrix.project }}: '**'" > $FILENAME
+          echo "lib:${{ matrix.project }}:
+                  pattern:
+                    - '**'
+                  color: '#E99695'" > $FILENAME
           echo "config-file=$FILENAME" >> $GITHUB_OUTPUT
-      - uses: actions/labeler@v4
+      - uses: overbit/labeler@feat/support-label-color
         with:
           configuration-path: ${{ steps.labeler-config.outputs.config-file }}
           dot: true
@@ -74,9 +80,13 @@ jobs:
         id: labeler-config
         run: |
           FILENAME=branch-sync-labeler.yml
+          echo "ignore-from-release-notes:
+                  pattern:
+                    - '**'
+                  color: '#000000'" > $FILENAME
           echo "ignore-for-release: '**'" >> $FILENAME
           echo "config-file=$FILENAME" >> $GITHUB_OUTPUT
-      - uses: actions/labeler@v4
+      - uses: overbit/labeler@feat/support-label-color
         with:
           configuration-path: ${{ steps.labeler-config.outputs.config-file }}
           dot: true
