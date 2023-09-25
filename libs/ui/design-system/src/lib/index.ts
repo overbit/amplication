@@ -145,7 +145,7 @@ export { SkeletonWrapper } from "./components/SkeletonWrapper/SkeletonWrapper";
 export { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export { TreeView, TreeItem } from "./components/TreeView/TreeView";
-
+export const fake=1;
 export type {
   TreeViewProps,
   TreeItemProps,
