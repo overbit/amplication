@@ -15,11 +15,39 @@ jobs:
       nx-head: ${{ github.head_ref || github.ref_name }}
       nx-base: ${{ github.base_ref || github.event.repository.default_branch }}
 
+  triage-libs:
+    name: Triage libs changes
+    needs: nx
+    if: ${{ needs.nx.outputs.affected-lib != '[]' && needs.nx.outputs.affected-lib != ''}}
+    strategy:
+      max-parallel: 1
+      matrix:
+        project: ${{ fromJson(needs.nx.outputs.affected-lib) }}
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate label configuration
+        id: labeler-config
+        run: |
+          FILENAME=${{ matrix.project }}-labeler.yml
+          echo "lib:${{ matrix.project }}:
+                  pattern:
+                    - '**'
+                  color: '#E99695'" > $FILENAME
+          echo "config-file=$FILENAME" >> $GITHUB_OUTPUT
+      - uses: overbit/labeler@feat/support-label-color
+        with:
+          configuration-path: ${{ steps.labeler-config.outputs.config-file }}
+          dot: true
+
   triage-apps:
     name: Triage app changes
-    needs: nx
+    needs: [nx,triage-libs]
     if: ${{ needs.nx.outputs.affected-apps != '[]' && needs.nx.outputs.affected-apps != ''}}
     strategy:
+      max-parallel: 1
       matrix:
         project: ${{ fromJson(needs.nx.outputs.affected-apps) }}
     permissions:
@@ -36,32 +64,6 @@ jobs:
                   pattern:
                     - '**'
                   color: '#5319E7'" > $FILENAME
-          echo "config-file=$FILENAME" >> $GITHUB_OUTPUT
-      - uses: overbit/labeler@feat/support-label-color
-        with:
-          configuration-path: ${{ steps.labeler-config.outputs.config-file }}
-          dot: true
-
-  triage-libs:
-    name: Triage libs changes
-    needs: nx
-    if: ${{ needs.nx.outputs.affected-lib != '[]' && needs.nx.outputs.affected-lib != ''}}
-    strategy:
-      matrix:
-        project: ${{ fromJson(needs.nx.outputs.affected-lib) }}
-    permissions:
-      contents: read
-      pull-requests: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate label configuration
-        id: labeler-config
-        run: |
-          FILENAME=${{ matrix.project }}-labeler.yml
-          echo "lib:${{ matrix.project }}:
-                  pattern:
-                    - '**'
-                  color: '#E99695'" > $FILENAME
           echo "config-file=$FILENAME" >> $GITHUB_OUTPUT
       - uses: overbit/labeler@feat/support-label-color
         with:
