@@ -84,7 +84,6 @@ jobs:
                   pattern:
                     - '**'
                   color: '#000000'" > $FILENAME
-          echo "ignore-for-release: '**'" >> $FILENAME
           echo "config-file=$FILENAME" >> $GITHUB_OUTPUT
       - uses: overbit/labeler@feat/support-label-color
         with:
