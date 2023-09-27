@@ -77,10 +77,20 @@ jobs:
           cache-dependency-path: "**/package-lock.json"
 
       - name: Setup Bun Runtime
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         uses: oven-sh/setup-bun@v1
 
+      - name: Cache
+        id: cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache
+        with:
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+          path: |
+            ~/.bun/install/cache
+
       - name: Install Dependencies
-        if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' || steps.cache-other-node-modules.outputs.cache-hit != 'true' }}
         run: bun i --lockfile package-lock.json
 
       - name: Evaluate affected projects
