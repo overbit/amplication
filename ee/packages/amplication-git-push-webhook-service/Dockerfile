@@ -4,7 +4,8 @@ WORKDIR /app
 
 COPY ./dist/ee/packages/amplication-git-push-webhook-service/package.json .
 
-RUN npm i --omit=dev
+RUN curl -fsSL https://bun.sh/install | bash
+RUN bun i --production
 
 COPY ./dist/ee/packages/amplication-git-push-webhook-service .
 

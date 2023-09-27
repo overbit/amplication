@@ -4,7 +4,8 @@ WORKDIR /app
 
 COPY ./dist/packages/notification-service/package.json .
 
-RUN npm i --omit=dev
+RUN curl -fsSL https://bun.sh/install | bash
+RUN bun i --production
 
 COPY ./dist/packages/notification-service .
 

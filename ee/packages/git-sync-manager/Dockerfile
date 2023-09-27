@@ -8,7 +8,8 @@ RUN apk update \
 
 COPY ./dist/ee/packages/git-sync-manager/package.json .
 
-RUN npm i --omit=dev
+RUN curl -fsSL https://bun.sh/install | bash
+RUN bun i --production
 
 COPY ./dist/ee/packages/git-sync-manager .
 
