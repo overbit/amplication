@@ -66,29 +66,12 @@ jobs:
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
 
-      - name: Cache global node modules
-        id: cache-node-modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
-
-      - name: Cache other node modules
-        id: cache-other-node-modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-other-node-modules
-        with:
-          path: |
-            libs/util/code-gen-utils/node_modules
-            packages/amplication-cli/node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./**/package-lock.json') }}
+      - name: Setup Bun Runtime
+        uses: oven-sh/setup-bun@v1
 
       - name: Install Dependencies
         if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' || steps.cache-other-node-modules.outputs.cache-hit != 'true' }}
-        run: npm ci
+        run: bun i --lockfile package-lock.json
 
       - name: e2e
         run: npx nx e2e ${{ matrix.project }} --prod

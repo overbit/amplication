@@ -84,7 +84,6 @@ jobs:
   nx:
     name: Nx
     needs: ci
-    if: ${{ github.ref_name == 'master' || github.ref_name == 'next' }}
     uses: ./.github/workflows/nx.template.yml
     with:
       nx-head: ${{ github.head_ref || github.ref_name }}
@@ -96,7 +95,6 @@ jobs:
     name: Release
     needs: nx
     uses: ./.github/workflows/release.template.yml
-    if: ${{ github.ref_name == 'master' || github.ref_name == 'next' }}
     with:
       branch: ${{ github.ref_name }}
       affected-apps: ${{ needs.nx.outputs.affected-apps }}
