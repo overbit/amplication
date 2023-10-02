@@ -64,7 +64,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ inputs.nx-head }}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
+          # repository: ${{github.event.pull_request.head.repo.full_name}}
 
       - uses: nrwl/nx-set-shas@v3
         if: inputs.nx-force-all == false
