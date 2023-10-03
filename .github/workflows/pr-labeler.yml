@@ -48,7 +48,7 @@ jobs:
           EOF
           }
 
-          LIBS=($(echo "${{ needs.nx.outputs.affected-lib }}" | jq -r '.[]'))
+          LIBS=($(echo '${{ needs.nx.outputs.affected-lib }}' | jq -r '.[]'))
           # run the loop only if LIBS is not empty
           if [ -n "$LIBS" ]; then
             for entry in "${LIBS[@]}"; do
@@ -56,7 +56,7 @@ jobs:
             done
           fi
 
-          APPS=($(echo "${{ needs.nx.outputs.affected-apps }}" | jq -r '.[]'))
+          APPS=($(echo '${{ needs.nx.outputs.affected-apps }}' | jq -r '.[]'))
           if [ -n "$APPS" ]; then
             for entry in "${APPS[@]}"; do
               generate_yaml_block "$entry" "app" >> ${LABELER_CONFIG}
