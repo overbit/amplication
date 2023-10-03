@@ -12,7 +12,7 @@ jobs:
     name: Nx
     uses: ./.github/workflows/nx.template.yml
     with:
-      nx-head: ${{ format('{{refs/pull/{0}/merge}}',github.event.number) }}
+      nx-head: ${{ format('{refs/pull/{0}/merge}',github.event.number) }}
       nx-base: ${{ github.sha }}
 
   triage-libs:
