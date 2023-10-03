@@ -33,7 +33,7 @@ setTokenFromCookie();
 if (!REACT_APP_DATA_SOURCE) {
   throw new Error("Missing ֿREACT_APP_DATA_SOURCE env variable");
 }
-
+const a=1;
 const httpLink = createHttpLink({
   uri: REACT_APP_DATA_SOURCE,
 });
