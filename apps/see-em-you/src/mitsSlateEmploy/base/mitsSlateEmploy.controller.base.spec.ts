@@ -6,7 +6,6 @@ import {
   CallHandler,
 } from "@nestjs/common";
 import request from "supertest";
-import { MorganModule } from "nest-morgan";
 import { ACGuard } from "nest-access-control";
 import { DefaultAuthGuard } from "../../auth/defaultAuth.guard";
 import { ACLModule } from "../../auth/acl.module";
@@ -156,7 +155,7 @@ describe("MitsSlateEmploy", () => {
         },
       ],
       controllers: [MitsSlateEmployController],
-      imports: [MorganModule.forRoot(), ACLModule],
+      imports: [ACLModule],
     })
       .overrideGuard(DefaultAuthGuard)
       .useValue(basicAuthGuard)
