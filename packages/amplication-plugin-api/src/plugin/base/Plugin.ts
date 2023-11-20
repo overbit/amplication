@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsOptional } from "class-validator";
+import { IsString, IsDate, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
@@ -21,6 +21,14 @@ import { JsonValue } from "type-fest";
 class Plugin {
   @ApiProperty({
     required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
+
+  @ApiProperty({
+    required: true,
   })
   @IsDate()
   @Type(() => Date)
@@ -28,45 +36,23 @@ class Plugin {
   createdAt!: Date;
 
   @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  github!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  icon!: string | null;
-
-  @ApiProperty({
     required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updatedAt!: Date;
+
+  @ApiProperty({
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  id!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  pluginId!: string | null;
 
   @ApiProperty({
     required: false,
@@ -88,6 +74,17 @@ class Plugin {
   @Field(() => String, {
     nullable: true,
   })
+  description!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   npm!: string | null;
 
   @ApiProperty({
@@ -99,25 +96,18 @@ class Plugin {
   @Field(() => String, {
     nullable: true,
   })
-  pluginId!: string | null;
+  icon!: string | null;
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsJSONValue()
+  @IsString()
   @IsOptional()
-  @Field(() => GraphQLJSON, {
+  @Field(() => String, {
     nullable: true,
   })
-  taggedVersions!: JsonValue;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  updatedAt!: Date;
+  github!: string | null;
 
   @ApiProperty({
     required: false,
@@ -129,6 +119,16 @@ class Plugin {
     nullable: true,
   })
   website!: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSONValue()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  taggedVersions!: JsonValue;
 }
 
 export { Plugin as Plugin };
