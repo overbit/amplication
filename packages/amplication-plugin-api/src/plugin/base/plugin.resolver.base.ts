@@ -13,6 +13,7 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
+import { Public } from "../../decorators/public.decorator";
 import { CreatePluginArgs } from "./CreatePluginArgs";
 import { UpdatePluginArgs } from "./UpdatePluginArgs";
 import { DeletePluginArgs } from "./DeletePluginArgs";
@@ -34,11 +35,13 @@ export class PluginResolverBase {
     };
   }
 
+  @Public()
   @graphql.Query(() => [Plugin])
   async plugins(@graphql.Args() args: PluginFindManyArgs): Promise<Plugin[]> {
     return this.service.findMany(args);
   }
 
+  @Public()
   @graphql.Query(() => Plugin, { nullable: true })
   async plugin(
     @graphql.Args() args: PluginFindUniqueArgs

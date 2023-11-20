@@ -4,38 +4,34 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  output        = "./generated-prisma-client"
+  binaryTargets = ["native", "debian-openssl-1.1.x", "linux-arm64-openssl-1.1.x"]
 }
 
 model Plugin {
-  id             String   @id @default(cuid())
   createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  pluginId       String?
-  name           String?
   description    String?
-  npm            String?
-  icon           String?
   github         String?
-  website        String?
+  icon           String?
+  id             String   @id @default(cuid())
+  name           String?
+  npm            String?
+  pluginId       String?  @unique
   taggedVersions Json?
+  updatedAt      DateTime @updatedAt
+  website        String?
 }
 
 model PluginVersion {
-  id              String   @id @default(cuid())
   createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  pluginId        String?
-  version         String?
-  settings        Json?
-  pluginIdVersion String?
   deprecated      String?
+  id              String   @id @default(cuid())
   isLatest        Boolean?
+  pluginId        String?
+  pluginIdVersion String   @unique
+  settings        Json?
   configurations  Json?
-}
-
-model Test {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt       DateTime @updatedAt
+  version         String?
 }

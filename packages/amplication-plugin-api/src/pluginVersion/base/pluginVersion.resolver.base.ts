@@ -13,6 +13,7 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
+import { Public } from "../../decorators/public.decorator";
 import { CreatePluginVersionArgs } from "./CreatePluginVersionArgs";
 import { UpdatePluginVersionArgs } from "./UpdatePluginVersionArgs";
 import { DeletePluginVersionArgs } from "./DeletePluginVersionArgs";
@@ -34,6 +35,7 @@ export class PluginVersionResolverBase {
     };
   }
 
+  @Public()
   @graphql.Query(() => [PluginVersion])
   async pluginVersions(
     @graphql.Args() args: PluginVersionFindManyArgs
@@ -41,6 +43,7 @@ export class PluginVersionResolverBase {
     return this.service.findMany(args);
   }
 
+  @Public()
   @graphql.Query(() => PluginVersion, { nullable: true })
   async pluginVersion(
     @graphql.Args() args: PluginVersionFindUniqueArgs
