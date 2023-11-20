@@ -11,47 +11,15 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional } from "class-validator";
-import { StringFilter } from "../../util/StringFilter";
+import { DateTimeFilter } from "../../util/DateTimeFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { JsonFilter } from "../../util/JsonFilter";
 
 @InputType()
 class PluginWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  description?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  github?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  icon?: StringNullableFilter;
-
   @ApiProperty({
     required: false,
     type: StringFilter,
@@ -62,6 +30,39 @@ class PluginWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: DateTimeFilter,
+  })
+  @Type(() => DateTimeFilter)
+  @IsOptional()
+  @Field(() => DateTimeFilter, {
+    nullable: true,
+  })
+  createdAt?: DateTimeFilter;
+
+  @ApiProperty({
+    required: false,
+    type: DateTimeFilter,
+  })
+  @Type(() => DateTimeFilter)
+  @IsOptional()
+  @Field(() => DateTimeFilter, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  pluginId?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -83,6 +84,17 @@ class PluginWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
+  description?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
   npm?: StringNullableFilter;
 
   @ApiProperty({
@@ -94,18 +106,18 @@ class PluginWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  pluginId?: StringNullableFilter;
+  icon?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: JsonFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => JsonFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => JsonFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  taggedVersions?: JsonFilter;
+  github?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -117,6 +129,17 @@ class PluginWhereInput {
     nullable: true,
   })
   website?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: JsonFilter,
+  })
+  @Type(() => JsonFilter)
+  @IsOptional()
+  @Field(() => JsonFilter, {
+    nullable: true,
+  })
+  taggedVersions?: JsonFilter;
 }
 
 export { PluginWhereInput as PluginWhereInput };
