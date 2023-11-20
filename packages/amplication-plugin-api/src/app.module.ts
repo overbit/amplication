@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { PluginModule } from "./plugin/plugin.module";
 import { PluginVersionModule } from "./pluginVersion/pluginVersion.module";
+import { TestModule } from "./test/test.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -15,6 +16,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
   imports: [
     PluginModule,
     PluginVersionModule,
+    TestModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
