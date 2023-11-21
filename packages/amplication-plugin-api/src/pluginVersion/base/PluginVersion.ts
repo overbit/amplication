@@ -13,20 +13,12 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsDate, IsOptional, IsBoolean } from "class-validator";
 import { Type } from "class-transformer";
-import { IsJSONValue } from "@app/custom-validators";
+import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
-import { JsonValue } from "type-fest";
+import type { JsonValue } from "type-fest";
 
 @ObjectType()
 class PluginVersion {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
   @ApiProperty({
     required: true,
   })
@@ -106,8 +98,6 @@ class PluginVersion {
   @Field(() => Boolean, {
     nullable: true,
   })
-  isLatest!: boolean | null;
-
   @ApiProperty({
     required: false,
   })
