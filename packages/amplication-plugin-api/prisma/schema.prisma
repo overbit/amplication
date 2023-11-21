@@ -8,28 +8,34 @@ generator client {
 }
 
 model Plugin {
-  createdAt      DateTime @default(now())
-  description    String?
-  github         String?
-  icon           String?
   id             String   @id @default(cuid())
-  name           String?
-  npm            String?
-  pluginId       String?  @unique
-  taggedVersions Json?
+  createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  pluginId       String?
+  name           String?
+  description    String?
+  npm            String?
+  icon           String?
+  github         String?
   website        String?
+  taggedVersions Json?
 }
 
 model PluginVersion {
-  configurations  Json?
-  createdAt       DateTime @default(now())
-  deprecated      String?
   id              String   @id @default(cuid())
-  isLatest        Boolean?
-  pluginId        String?
-  pluginIdVersion String   @unique
-  settings        Json?
+  createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+  pluginId        String?
   version         String?
+  settings        Json?
+  pluginIdVersion String?
+  deprecated      String?
+  isLatest        Boolean?
+  configurations  Json?
+}
+
+model Test {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

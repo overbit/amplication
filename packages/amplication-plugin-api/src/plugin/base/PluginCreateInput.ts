@@ -27,29 +27,7 @@ class PluginCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  description?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  github?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  icon?: string | null;
+  pluginId?: string | null;
 
   @ApiProperty({
     required: false,
@@ -71,6 +49,17 @@ class PluginCreateInput {
   @Field(() => String, {
     nullable: true,
   })
+  description?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   npm?: string | null;
 
   @ApiProperty({
@@ -82,17 +71,18 @@ class PluginCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  pluginId?: string | null;
+  icon?: string | null;
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsJSONValue()
+  @IsString()
   @IsOptional()
-  @Field(() => GraphQLJSON, {
+  @Field(() => String, {
     nullable: true,
   })
-  taggedVersions?: InputJsonValue;
+  github?: string | null;
 
   @ApiProperty({
     required: false,
@@ -104,6 +94,16 @@ class PluginCreateInput {
     nullable: true,
   })
   website?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSONValue()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  taggedVersions?: InputJsonValue;
 }
 
 export { PluginCreateInput as PluginCreateInput };
