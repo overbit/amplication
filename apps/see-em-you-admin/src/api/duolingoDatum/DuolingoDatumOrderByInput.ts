@@ -1,0 +1,36 @@
+import { SortOrder } from "../../util/SortOrder";
+
+export type DuolingoDatumOrderByInput = {
+  applicantId?: SortOrder;
+  applicationId?: SortOrder;
+  birthdate?: SortOrder;
+  certificateUrl?: SortOrder;
+  certified?: SortOrder;
+  comprehensionSubscore?: SortOrder;
+  conversationSubscore?: SortOrder;
+  country?: SortOrder;
+  couponId?: SortOrder;
+  domain?: SortOrder;
+  email?: SortOrder;
+  embedUrl?: SortOrder;
+  firstName?: SortOrder;
+  fullName?: SortOrder;
+  givenNames?: SortOrder;
+  id?: SortOrder;
+  insertDate?: SortOrder;
+  interviewUrl?: SortOrder;
+  language?: SortOrder;
+  lastName?: SortOrder;
+  literacySubscore?: SortOrder;
+  middleNames?: SortOrder;
+  overallScore?: SortOrder;
+  percentScore?: SortOrder;
+  productionSubscore?: SortOrder;
+  scale?: SortOrder;
+  school?: SortOrder;
+  sessionId?: SortOrder;
+  surnames?: SortOrder;
+  testDate?: SortOrder;
+  userId?: SortOrder;
+  verificationDate?: SortOrder;
+};

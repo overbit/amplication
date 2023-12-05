@@ -1,0 +1,21 @@
+export type ReviewIniUpdateInput = {
+  academicComments?: string;
+  academicProgramComments?: string;
+  academicRating?: number;
+  additionalComments?: string | null;
+  alternativeProgram?: number | null;
+  applicationId?: number;
+  departmentId?: number;
+  leadershipComments?: string | null;
+  leadershipRating?: number | null;
+  overallRating?: number;
+  researchComments?: string | null;
+  researchRating?: number | null;
+  reviewerId?: number;
+  round?: number | null;
+  technicalComments?: string;
+  technicalRating?: number;
+  ugProgramComments?: string | null;
+  workExperienceComments?: string | null;
+  workExperienceRating?: number | null;
+};

@@ -1,0 +1,14 @@
+export type ApplicationDecision = {
+  admissionProgramId: number;
+  admissionStatus: string | null;
+  applicationId: number;
+  attendOtherUniversity: number | null;
+  comments: string | null;
+  id: string;
+  otherChoiceLocation: string | null;
+  periodId: number;
+  programId: number;
+  visitCampus: number | null;
+  visitComments: number | null;
+  visitHelpful: number | null;
+};
