@@ -18,38 +18,38 @@ import { InstituteService } from "../institute.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  hide: "true",
-  id: 42,
   name: "exampleName",
   usersId: 42,
+  hide: "true",
+  id: 42,
 };
 const CREATE_RESULT = {
-  hide: "true",
-  id: 42,
   name: "exampleName",
   usersId: 42,
+  hide: "true",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    hide: "true",
-    id: 42,
     name: "exampleName",
     usersId: 42,
+    hide: "true",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  hide: "true",
-  id: 42,
   name: "exampleName",
   usersId: 42,
+  hide: "true",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createInstitute() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  institutes: () => FIND_MANY_RESULT,
+  institute: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

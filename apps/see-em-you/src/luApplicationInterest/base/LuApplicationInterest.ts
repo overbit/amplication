@@ -24,6 +24,14 @@ class LuApplicationInterest {
   appProgramId!: number;
 
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  interestId!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -41,14 +49,6 @@ class LuApplicationInterest {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  interestId!: number;
 }
 
 export { LuApplicationInterest as LuApplicationInterest };

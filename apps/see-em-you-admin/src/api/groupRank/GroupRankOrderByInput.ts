@@ -1,12 +1,12 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type GroupRankOrderByInput = {
-  comment?: SortOrder;
   groupId?: SortOrder;
-  id?: SortOrder;
-  luUsersUsertypesId?: SortOrder;
-  periodId?: SortOrder;
-  ranking?: SortOrder;
   round?: SortOrder;
+  periodId?: SortOrder;
   timestamp?: SortOrder;
+  luUsersUsertypesId?: SortOrder;
+  comment?: SortOrder;
+  ranking?: SortOrder;
+  id?: SortOrder;
 };

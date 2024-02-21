@@ -1,8 +1,8 @@
 export type JiraIssue = {
-  created: Date;
-  id: string;
-  jiraId: bigint;
   jiraIssueId: number;
   jiraProject: string;
+  jiraId: bigint;
+  created: Date;
   updatedAt: Date;
+  id: string;
 };

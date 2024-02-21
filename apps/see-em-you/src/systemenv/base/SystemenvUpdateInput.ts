@@ -11,9 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsOptional, IsInt, IsDate, IsString } from "class-validator";
-import { Decimal } from "decimal.js";
+import { IsInt, IsOptional, IsDate, IsNumber, IsString } from "class-validator";
 import { Type } from "class-transformer";
+import { Decimal } from "decimal.js";
 
 @InputType()
 class SystemenvUpdateInput {
@@ -21,12 +21,12 @@ class SystemenvUpdateInput {
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
-  @Field(() => Float, {
+  @Field(() => Number, {
     nullable: true,
   })
-  appbaseprice?: Decimal;
+  domainId?: number;
 
   @ApiProperty({
     required: false,
@@ -38,17 +38,6 @@ class SystemenvUpdateInput {
     nullable: true,
   })
   coorduserId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  domainId?: number;
 
   @ApiProperty({
     required: false,
@@ -71,6 +60,17 @@ class SystemenvUpdateInput {
     nullable: true,
   })
   expdate2?: Date;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  appbaseprice?: Decimal;
 
   @ApiProperty({
     required: false,

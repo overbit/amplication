@@ -18,24 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AdmissionService } from "../admission.service";
 import { AdmissionCreateInput } from "./AdmissionCreateInput";
-import { AdmissionWhereInput } from "./AdmissionWhereInput";
-import { AdmissionWhereUniqueInput } from "./AdmissionWhereUniqueInput";
-import { AdmissionFindManyArgs } from "./AdmissionFindManyArgs";
-import { AdmissionUpdateInput } from "./AdmissionUpdateInput";
 import { Admission } from "./Admission";
+import { AdmissionFindManyArgs } from "./AdmissionFindManyArgs";
+import { AdmissionWhereUniqueInput } from "./AdmissionWhereUniqueInput";
+import { AdmissionUpdateInput } from "./AdmissionUpdateInput";
 
 export class AdmissionControllerBase {
   constructor(protected readonly service: AdmissionService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Admission })
-  async create(@common.Body() data: AdmissionCreateInput): Promise<Admission> {
-    return await this.service.create({
+  async createAdmission(
+    @common.Body() data: AdmissionCreateInput
+  ): Promise<Admission> {
+    return await this.service.createAdmission({
       data: data,
       select: {
         applicationId: true,
+        programId: true,
         code: true,
         id: true,
-        programId: true,
       },
     });
   }
@@ -43,15 +44,15 @@ export class AdmissionControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Admission] })
   @ApiNestedQuery(AdmissionFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Admission[]> {
+  async admissions(@common.Req() request: Request): Promise<Admission[]> {
     const args = plainToClass(AdmissionFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.admissions({
       ...args,
       select: {
         applicationId: true,
+        programId: true,
         code: true,
         id: true,
-        programId: true,
       },
     });
   }
@@ -59,16 +60,16 @@ export class AdmissionControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Admission })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async admission(
     @common.Param() params: AdmissionWhereUniqueInput
   ): Promise<Admission | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.admission({
       where: params,
       select: {
         applicationId: true,
+        programId: true,
         code: true,
         id: true,
-        programId: true,
       },
     });
     if (result === null) {
@@ -82,19 +83,19 @@ export class AdmissionControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Admission })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAdmission(
     @common.Param() params: AdmissionWhereUniqueInput,
     @common.Body() data: AdmissionUpdateInput
   ): Promise<Admission | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAdmission({
         where: params,
         data: data,
         select: {
           applicationId: true,
+          programId: true,
           code: true,
           id: true,
-          programId: true,
         },
       });
     } catch (error) {
@@ -110,17 +111,17 @@ export class AdmissionControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Admission })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAdmission(
     @common.Param() params: AdmissionWhereUniqueInput
   ): Promise<Admission | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAdmission({
         where: params,
         select: {
           applicationId: true,
+          programId: true,
           code: true,
           id: true,
-          programId: true,
         },
       });
     } catch (error) {

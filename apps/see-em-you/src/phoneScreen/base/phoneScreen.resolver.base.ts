@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePhoneScreenArgs } from "./CreatePhoneScreenArgs";
-import { UpdatePhoneScreenArgs } from "./UpdatePhoneScreenArgs";
-import { DeletePhoneScreenArgs } from "./DeletePhoneScreenArgs";
+import { PhoneScreen } from "./PhoneScreen";
 import { PhoneScreenCountArgs } from "./PhoneScreenCountArgs";
 import { PhoneScreenFindManyArgs } from "./PhoneScreenFindManyArgs";
 import { PhoneScreenFindUniqueArgs } from "./PhoneScreenFindUniqueArgs";
-import { PhoneScreen } from "./PhoneScreen";
+import { CreatePhoneScreenArgs } from "./CreatePhoneScreenArgs";
+import { UpdatePhoneScreenArgs } from "./UpdatePhoneScreenArgs";
+import { DeletePhoneScreenArgs } from "./DeletePhoneScreenArgs";
 import { PhoneScreenService } from "../phoneScreen.service";
 @graphql.Resolver(() => PhoneScreen)
 export class PhoneScreenResolverBase {
@@ -38,14 +38,14 @@ export class PhoneScreenResolverBase {
   async phoneScreens(
     @graphql.Args() args: PhoneScreenFindManyArgs
   ): Promise<PhoneScreen[]> {
-    return this.service.findMany(args);
+    return this.service.phoneScreens(args);
   }
 
   @graphql.Query(() => PhoneScreen, { nullable: true })
   async phoneScreen(
     @graphql.Args() args: PhoneScreenFindUniqueArgs
   ): Promise<PhoneScreen | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.phoneScreen(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PhoneScreenResolverBase {
   async createPhoneScreen(
     @graphql.Args() args: CreatePhoneScreenArgs
   ): Promise<PhoneScreen> {
-    return await this.service.create({
+    return await this.service.createPhoneScreen({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PhoneScreenResolverBase {
     @graphql.Args() args: UpdatePhoneScreenArgs
   ): Promise<PhoneScreen | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePhoneScreen({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PhoneScreenResolverBase {
     @graphql.Args() args: DeletePhoneScreenArgs
   ): Promise<PhoneScreen | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePhoneScreen(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

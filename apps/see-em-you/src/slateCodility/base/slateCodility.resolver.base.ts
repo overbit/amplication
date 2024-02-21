@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateCodilityArgs } from "./CreateSlateCodilityArgs";
-import { UpdateSlateCodilityArgs } from "./UpdateSlateCodilityArgs";
-import { DeleteSlateCodilityArgs } from "./DeleteSlateCodilityArgs";
+import { SlateCodility } from "./SlateCodility";
 import { SlateCodilityCountArgs } from "./SlateCodilityCountArgs";
 import { SlateCodilityFindManyArgs } from "./SlateCodilityFindManyArgs";
 import { SlateCodilityFindUniqueArgs } from "./SlateCodilityFindUniqueArgs";
-import { SlateCodility } from "./SlateCodility";
+import { CreateSlateCodilityArgs } from "./CreateSlateCodilityArgs";
+import { UpdateSlateCodilityArgs } from "./UpdateSlateCodilityArgs";
+import { DeleteSlateCodilityArgs } from "./DeleteSlateCodilityArgs";
 import { SlateCodilityService } from "../slateCodility.service";
 @graphql.Resolver(() => SlateCodility)
 export class SlateCodilityResolverBase {
@@ -38,14 +38,14 @@ export class SlateCodilityResolverBase {
   async slateCodilities(
     @graphql.Args() args: SlateCodilityFindManyArgs
   ): Promise<SlateCodility[]> {
-    return this.service.findMany(args);
+    return this.service.slateCodilities(args);
   }
 
   @graphql.Query(() => SlateCodility, { nullable: true })
   async slateCodility(
     @graphql.Args() args: SlateCodilityFindUniqueArgs
   ): Promise<SlateCodility | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateCodility(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateCodilityResolverBase {
   async createSlateCodility(
     @graphql.Args() args: CreateSlateCodilityArgs
   ): Promise<SlateCodility> {
-    return await this.service.create({
+    return await this.service.createSlateCodility({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateCodilityResolverBase {
     @graphql.Args() args: UpdateSlateCodilityArgs
   ): Promise<SlateCodility | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateCodility({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateCodilityResolverBase {
     @graphql.Args() args: DeleteSlateCodilityArgs
   ): Promise<SlateCodility | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateCodility(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

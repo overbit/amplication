@@ -18,30 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateIeltService } from "../slateIelt.service";
 import { SlateIeltCreateInput } from "./SlateIeltCreateInput";
-import { SlateIeltWhereInput } from "./SlateIeltWhereInput";
-import { SlateIeltWhereUniqueInput } from "./SlateIeltWhereUniqueInput";
-import { SlateIeltFindManyArgs } from "./SlateIeltFindManyArgs";
-import { SlateIeltUpdateInput } from "./SlateIeltUpdateInput";
 import { SlateIelt } from "./SlateIelt";
+import { SlateIeltFindManyArgs } from "./SlateIeltFindManyArgs";
+import { SlateIeltWhereUniqueInput } from "./SlateIeltWhereUniqueInput";
+import { SlateIeltUpdateInput } from "./SlateIeltUpdateInput";
 
 export class SlateIeltControllerBase {
   constructor(protected readonly service: SlateIeltService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateIelt })
-  async create(@common.Body() data: SlateIeltCreateInput): Promise<SlateIelt> {
-    return await this.service.create({
+  async createSlateIelt(
+    @common.Body() data: SlateIeltCreateInput
+  ): Promise<SlateIelt> {
+    return await this.service.createSlateIelt({
       data: data,
       select: {
-        first: true,
         id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
       },
     });
   }
@@ -49,21 +50,21 @@ export class SlateIeltControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateIelt] })
   @ApiNestedQuery(SlateIeltFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateIelt[]> {
+  async slateIelts(@common.Req() request: Request): Promise<SlateIelt[]> {
     const args = plainToClass(SlateIeltFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateIelts({
       ...args,
       select: {
-        first: true,
         id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
       },
     });
   }
@@ -71,22 +72,22 @@ export class SlateIeltControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateIelt(
     @common.Param() params: SlateIeltWhereUniqueInput
   ): Promise<SlateIelt | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateIelt({
       where: params,
       select: {
-        first: true,
         id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
       },
     });
     if (result === null) {
@@ -100,25 +101,25 @@ export class SlateIeltControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateIelt(
     @common.Param() params: SlateIeltWhereUniqueInput,
     @common.Body() data: SlateIeltUpdateInput
   ): Promise<SlateIelt | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateIelt({
         where: params,
         data: data,
         select: {
-          first: true,
           id: true,
-          ieltsListening: true,
-          ieltsOverallBandScore: true,
-          ieltsReading: true,
-          ieltsSpeaking: true,
-          ieltsWriting: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          ieltsOverallBandScore: true,
+          ieltsListening: true,
+          ieltsReading: true,
+          ieltsWriting: true,
+          ieltsSpeaking: true,
         },
       });
     } catch (error) {
@@ -134,23 +135,23 @@ export class SlateIeltControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateIelt(
     @common.Param() params: SlateIeltWhereUniqueInput
   ): Promise<SlateIelt | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateIelt({
         where: params,
         select: {
-          first: true,
           id: true,
-          ieltsListening: true,
-          ieltsOverallBandScore: true,
-          ieltsReading: true,
-          ieltsSpeaking: true,
-          ieltsWriting: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          ieltsOverallBandScore: true,
+          ieltsListening: true,
+          ieltsReading: true,
+          ieltsWriting: true,
+          ieltsSpeaking: true,
         },
       });
     } catch (error) {

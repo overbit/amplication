@@ -24,7 +24,7 @@ class LuReviewInterestUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  code?: number;
+  reviewId?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class LuReviewInterestUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  reviewId?: number;
+  code?: number;
 }
 
 export { LuReviewInterestUpdateInput as LuReviewInterestUpdateInput };

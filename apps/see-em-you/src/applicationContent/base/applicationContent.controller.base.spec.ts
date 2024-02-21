@@ -18,42 +18,42 @@ import { ApplicationContentService } from "../applicationContent.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  desired: "true",
   id: 42242424,
-  programId: 42,
-  required: "true",
   sectionIdentifier: "exampleSectionIdentifier",
+  programId: 42,
+  desired: "true",
+  required: "true",
 };
 const CREATE_RESULT = {
-  desired: "true",
   id: 42242424,
-  programId: 42,
-  required: "true",
   sectionIdentifier: "exampleSectionIdentifier",
+  programId: 42,
+  desired: "true",
+  required: "true",
 };
 const FIND_MANY_RESULT = [
   {
-    desired: "true",
     id: 42242424,
-    programId: 42,
-    required: "true",
     sectionIdentifier: "exampleSectionIdentifier",
+    programId: 42,
+    desired: "true",
+    required: "true",
   },
 ];
 const FIND_ONE_RESULT = {
-  desired: "true",
   id: 42242424,
-  programId: 42,
-  required: "true",
   sectionIdentifier: "exampleSectionIdentifier",
+  programId: 42,
+  desired: "true",
+  required: "true",
 };
 
 const service = {
-  create() {
+  createApplicationContent() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  applicationContents: () => FIND_MANY_RESULT,
+  applicationContent: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

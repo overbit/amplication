@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RiskFactorService } from "../riskFactor.service";
 import { RiskFactorCreateInput } from "./RiskFactorCreateInput";
-import { RiskFactorWhereInput } from "./RiskFactorWhereInput";
-import { RiskFactorWhereUniqueInput } from "./RiskFactorWhereUniqueInput";
-import { RiskFactorFindManyArgs } from "./RiskFactorFindManyArgs";
-import { RiskFactorUpdateInput } from "./RiskFactorUpdateInput";
 import { RiskFactor } from "./RiskFactor";
+import { RiskFactorFindManyArgs } from "./RiskFactorFindManyArgs";
+import { RiskFactorWhereUniqueInput } from "./RiskFactorWhereUniqueInput";
+import { RiskFactorUpdateInput } from "./RiskFactorUpdateInput";
 
 export class RiskFactorControllerBase {
   constructor(protected readonly service: RiskFactorService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RiskFactor })
-  async create(
+  async createRiskFactor(
     @common.Body() data: RiskFactorCreateInput
   ): Promise<RiskFactor> {
-    return await this.service.create({
+    return await this.service.createRiskFactor({
       data: data,
       select: {
+        riskFactor: true,
         arrayIndex: true,
         departmentId: true,
         id: true,
-        riskFactor: true,
       },
     });
   }
@@ -45,15 +44,15 @@ export class RiskFactorControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RiskFactor] })
   @ApiNestedQuery(RiskFactorFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<RiskFactor[]> {
+  async riskFactors(@common.Req() request: Request): Promise<RiskFactor[]> {
     const args = plainToClass(RiskFactorFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.riskFactors({
       ...args,
       select: {
+        riskFactor: true,
         arrayIndex: true,
         departmentId: true,
         id: true,
-        riskFactor: true,
       },
     });
   }
@@ -61,16 +60,16 @@ export class RiskFactorControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RiskFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async riskFactor(
     @common.Param() params: RiskFactorWhereUniqueInput
   ): Promise<RiskFactor | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.riskFactor({
       where: params,
       select: {
+        riskFactor: true,
         arrayIndex: true,
         departmentId: true,
         id: true,
-        riskFactor: true,
       },
     });
     if (result === null) {
@@ -84,19 +83,19 @@ export class RiskFactorControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RiskFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRiskFactor(
     @common.Param() params: RiskFactorWhereUniqueInput,
     @common.Body() data: RiskFactorUpdateInput
   ): Promise<RiskFactor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRiskFactor({
         where: params,
         data: data,
         select: {
+          riskFactor: true,
           arrayIndex: true,
           departmentId: true,
           id: true,
-          riskFactor: true,
         },
       });
     } catch (error) {
@@ -112,17 +111,17 @@ export class RiskFactorControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RiskFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRiskFactor(
     @common.Param() params: RiskFactorWhereUniqueInput
   ): Promise<RiskFactor | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRiskFactor({
         where: params,
         select: {
+          riskFactor: true,
           arrayIndex: true,
           departmentId: true,
           id: true,
-          riskFactor: true,
         },
       });
     } catch (error) {

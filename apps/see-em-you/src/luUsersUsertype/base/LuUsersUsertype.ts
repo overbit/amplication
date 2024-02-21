@@ -12,16 +12,24 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsOptional, ValidateNested } from "class-validator";
-import { MhciPrereqsConversationComment } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationComment";
+import { User } from "../../user/base/User";
 import { Type } from "class-transformer";
+import { MhciPrereqsConversationComment } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationComment";
 import { MhciPrereqsCourse } from "../../mhciPrereqsCourse/base/MhciPrereqsCourse";
 import { MhciPrereqsDesignPortfolio } from "../../mhciPrereqsDesignPortfolio/base/MhciPrereqsDesignPortfolio";
 import { MhciPrereqsProgrammingSample } from "../../mhciPrereqsProgrammingSample/base/MhciPrereqsProgrammingSample";
 import { MhciPrereqsProgrammingTest } from "../../mhciPrereqsProgrammingTest/base/MhciPrereqsProgrammingTest";
-import { User } from "../../user/base/User";
 
 @ObjectType()
 class LuUsersUsertype {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  usertypeId!: number;
+
   @ApiProperty({
     required: false,
     type: Number,
@@ -35,11 +43,11 @@ class LuUsersUsertype {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: () => User,
   })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @ValidateNested()
+  @Type(() => User)
+  users?: User;
 
   @ApiProperty({
     required: false,
@@ -88,19 +96,11 @@ class LuUsersUsertype {
 
   @ApiProperty({
     required: true,
-    type: () => User,
-  })
-  @ValidateNested()
-  @Type(() => User)
-  users?: User;
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  usertypeId!: number;
+  id!: number;
 }
 
 export { LuUsersUsertype as LuUsersUsertype };

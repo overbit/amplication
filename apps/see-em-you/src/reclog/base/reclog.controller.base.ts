@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReclogService } from "../reclog.service";
 import { ReclogCreateInput } from "./ReclogCreateInput";
-import { ReclogWhereInput } from "./ReclogWhereInput";
-import { ReclogWhereUniqueInput } from "./ReclogWhereUniqueInput";
-import { ReclogFindManyArgs } from "./ReclogFindManyArgs";
-import { ReclogUpdateInput } from "./ReclogUpdateInput";
 import { Reclog } from "./Reclog";
+import { ReclogFindManyArgs } from "./ReclogFindManyArgs";
+import { ReclogWhereUniqueInput } from "./ReclogWhereUniqueInput";
+import { ReclogUpdateInput } from "./ReclogUpdateInput";
 
 export class ReclogControllerBase {
   constructor(protected readonly service: ReclogService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Reclog })
-  async create(@common.Body() data: ReclogCreateInput): Promise<Reclog> {
-    return await this.service.create({
+  async createReclog(@common.Body() data: ReclogCreateInput): Promise<Reclog> {
+    return await this.service.createReclog({
       data: data,
       select: {
-        created: true,
-        id: true,
         ip: true,
         message: true,
+        created: true,
+        id: true,
       },
     });
   }
@@ -43,15 +42,15 @@ export class ReclogControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Reclog] })
   @ApiNestedQuery(ReclogFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Reclog[]> {
+  async reclogs(@common.Req() request: Request): Promise<Reclog[]> {
     const args = plainToClass(ReclogFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.reclogs({
       ...args,
       select: {
-        created: true,
-        id: true,
         ip: true,
         message: true,
+        created: true,
+        id: true,
       },
     });
   }
@@ -59,16 +58,16 @@ export class ReclogControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Reclog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reclog(
     @common.Param() params: ReclogWhereUniqueInput
   ): Promise<Reclog | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reclog({
       where: params,
       select: {
-        created: true,
-        id: true,
         ip: true,
         message: true,
+        created: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -82,19 +81,19 @@ export class ReclogControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Reclog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReclog(
     @common.Param() params: ReclogWhereUniqueInput,
     @common.Body() data: ReclogUpdateInput
   ): Promise<Reclog | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReclog({
         where: params,
         data: data,
         select: {
-          created: true,
-          id: true,
           ip: true,
           message: true,
+          created: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -110,17 +109,17 @@ export class ReclogControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Reclog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReclog(
     @common.Param() params: ReclogWhereUniqueInput
   ): Promise<Reclog | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReclog({
         where: params,
         select: {
-          created: true,
-          id: true,
           ip: true,
           message: true,
+          created: true,
+          id: true,
         },
       });
     } catch (error) {

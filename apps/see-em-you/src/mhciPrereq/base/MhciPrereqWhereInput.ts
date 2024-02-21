@@ -16,6 +16,7 @@ import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { MhciPrereqsConversationCommentListRelationFilter } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentListRelationFilter";
 import { MhciPrereqsStatusWhereUniqueInput } from "../../mhciPrereqsStatus/base/MhciPrereqsStatusWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class MhciPrereqWhereInput {
@@ -54,6 +55,17 @@ class MhciPrereqWhereInput {
     nullable: true,
   })
   mhciPrereqsStatus?: MhciPrereqsStatusWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { MhciPrereqWhereInput as MhciPrereqWhereInput };

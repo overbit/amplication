@@ -18,34 +18,34 @@ import { IpedsRaceService } from "../ipedsRace.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   ipedsRace: "exampleIpedsRace",
   sortOrder: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   ipedsRace: "exampleIpedsRace",
   sortOrder: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     ipedsRace: "exampleIpedsRace",
     sortOrder: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   ipedsRace: "exampleIpedsRace",
   sortOrder: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createIpedsRace() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ipedsRaces: () => FIND_MANY_RESULT,
+  ipedsRace: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

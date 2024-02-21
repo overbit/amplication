@@ -12,10 +12,10 @@ export const PositiveFactorList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
         <TextField label="Positive Factor" source="positiveFactor" />
+        <TextField label="Department Id" source="departmentId" />
         <TextField label="Positive Factor Id" source="positiveFactorId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

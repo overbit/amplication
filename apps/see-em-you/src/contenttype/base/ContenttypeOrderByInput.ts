@@ -28,7 +28,7 @@ class ContenttypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  name?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class ContenttypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  name?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ContenttypeOrderByInput as ContenttypeOrderByInput };

@@ -5,9 +5,9 @@ import {
   SimpleForm,
   EditProps,
   NumberInput,
+  TextInput,
   ReferenceInput,
   SelectInput,
-  TextInput,
 } from "react-admin";
 
 import { ApplicationTitle } from "../application/ApplicationTitle";
@@ -18,8 +18,11 @@ export const LuApplicationAdvisorEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Advisor Type" source="advisorType" />
         <NumberInput step={1} label="Advisor User Id" source="advisorUserId" />
+        <NumberInput step={1} label="Advisor Type" source="advisorType" />
+        <TextInput label="Name" source="name" />
+        <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Choice" source="choice" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -27,9 +30,6 @@ export const LuApplicationAdvisorEdit = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Choice" source="choice" />
-        <TextInput label="Name" source="name" />
-        <NumberInput step={1} label="Program Id" source="programId" />
       </SimpleForm>
     </Edit>
   );

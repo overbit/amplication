@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMitsSlateAppsMseReviewedArgs } from "./CreateMitsSlateAppsMseReviewedArgs";
-import { UpdateMitsSlateAppsMseReviewedArgs } from "./UpdateMitsSlateAppsMseReviewedArgs";
-import { DeleteMitsSlateAppsMseReviewedArgs } from "./DeleteMitsSlateAppsMseReviewedArgs";
+import { MitsSlateAppsMseReviewed } from "./MitsSlateAppsMseReviewed";
 import { MitsSlateAppsMseReviewedCountArgs } from "./MitsSlateAppsMseReviewedCountArgs";
 import { MitsSlateAppsMseReviewedFindManyArgs } from "./MitsSlateAppsMseReviewedFindManyArgs";
 import { MitsSlateAppsMseReviewedFindUniqueArgs } from "./MitsSlateAppsMseReviewedFindUniqueArgs";
-import { MitsSlateAppsMseReviewed } from "./MitsSlateAppsMseReviewed";
+import { CreateMitsSlateAppsMseReviewedArgs } from "./CreateMitsSlateAppsMseReviewedArgs";
+import { UpdateMitsSlateAppsMseReviewedArgs } from "./UpdateMitsSlateAppsMseReviewedArgs";
+import { DeleteMitsSlateAppsMseReviewedArgs } from "./DeleteMitsSlateAppsMseReviewedArgs";
 import { MitsSlateAppsMseReviewedService } from "../mitsSlateAppsMseReviewed.service";
 @graphql.Resolver(() => MitsSlateAppsMseReviewed)
 export class MitsSlateAppsMseReviewedResolverBase {
@@ -38,14 +38,14 @@ export class MitsSlateAppsMseReviewedResolverBase {
   async mitsSlateAppsMseRevieweds(
     @graphql.Args() args: MitsSlateAppsMseReviewedFindManyArgs
   ): Promise<MitsSlateAppsMseReviewed[]> {
-    return this.service.findMany(args);
+    return this.service.mitsSlateAppsMseRevieweds(args);
   }
 
   @graphql.Query(() => MitsSlateAppsMseReviewed, { nullable: true })
   async mitsSlateAppsMseReviewed(
     @graphql.Args() args: MitsSlateAppsMseReviewedFindUniqueArgs
   ): Promise<MitsSlateAppsMseReviewed | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mitsSlateAppsMseReviewed(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MitsSlateAppsMseReviewedResolverBase {
   async createMitsSlateAppsMseReviewed(
     @graphql.Args() args: CreateMitsSlateAppsMseReviewedArgs
   ): Promise<MitsSlateAppsMseReviewed> {
-    return await this.service.create({
+    return await this.service.createMitsSlateAppsMseReviewed({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MitsSlateAppsMseReviewedResolverBase {
     @graphql.Args() args: UpdateMitsSlateAppsMseReviewedArgs
   ): Promise<MitsSlateAppsMseReviewed | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateAppsMseReviewed({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MitsSlateAppsMseReviewedResolverBase {
     @graphql.Args() args: DeleteMitsSlateAppsMseReviewedArgs
   ): Promise<MitsSlateAppsMseReviewed | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMitsSlateAppsMseReviewed(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

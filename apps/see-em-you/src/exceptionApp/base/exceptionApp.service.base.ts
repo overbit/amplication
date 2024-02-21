@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ExceptionApp } from "@prisma/client";
+import { Prisma, ExceptionApp as PrismaExceptionApp } from "@prisma/client";
 
 export class ExceptionAppServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ExceptionAppServiceBase {
     return this.prisma.exceptionApp.count(args);
   }
 
-  async findMany<T extends Prisma.ExceptionAppFindManyArgs>(
+  async exceptionApps<T extends Prisma.ExceptionAppFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExceptionAppFindManyArgs>
-  ): Promise<ExceptionApp[]> {
+  ): Promise<PrismaExceptionApp[]> {
     return this.prisma.exceptionApp.findMany(args);
   }
-  async findOne<T extends Prisma.ExceptionAppFindUniqueArgs>(
+  async exceptionApp<T extends Prisma.ExceptionAppFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExceptionAppFindUniqueArgs>
-  ): Promise<ExceptionApp | null> {
+  ): Promise<PrismaExceptionApp | null> {
     return this.prisma.exceptionApp.findUnique(args);
   }
-  async create<T extends Prisma.ExceptionAppCreateArgs>(
+  async createExceptionApp<T extends Prisma.ExceptionAppCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExceptionAppCreateArgs>
-  ): Promise<ExceptionApp> {
+  ): Promise<PrismaExceptionApp> {
     return this.prisma.exceptionApp.create<T>(args);
   }
-  async update<T extends Prisma.ExceptionAppUpdateArgs>(
+  async updateExceptionApp<T extends Prisma.ExceptionAppUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExceptionAppUpdateArgs>
-  ): Promise<ExceptionApp> {
+  ): Promise<PrismaExceptionApp> {
     return this.prisma.exceptionApp.update<T>(args);
   }
-  async delete<T extends Prisma.ExceptionAppDeleteArgs>(
+  async deleteExceptionApp<T extends Prisma.ExceptionAppDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExceptionAppDeleteArgs>
-  ): Promise<ExceptionApp> {
+  ): Promise<PrismaExceptionApp> {
     return this.prisma.exceptionApp.delete(args);
   }
 }

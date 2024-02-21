@@ -1,12 +1,12 @@
 export type CcTransactionDetailUpdateInput = {
   ccId?: number;
   date?: Date;
-  itemGlString?: string;
-  itemName?: string;
-  itemPriceEach?: number;
-  itemQty?: number;
-  paymentId?: number;
-  reportDate?: Date;
   time?: Date;
+  reportDate?: Date;
+  paymentId?: number;
   transactionType?: string;
+  itemName?: string;
+  itemQty?: number;
+  itemPriceEach?: number;
+  itemGlString?: string;
 };

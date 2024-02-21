@@ -1,6 +1,6 @@
 export type PositiveFactor = {
-  departmentId: number;
-  id: number;
   positiveFactor: string;
+  departmentId: number;
   positiveFactorId: number;
+  id: number;
 };

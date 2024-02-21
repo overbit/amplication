@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCcPaymentStatusArgs } from "./CreateCcPaymentStatusArgs";
-import { UpdateCcPaymentStatusArgs } from "./UpdateCcPaymentStatusArgs";
-import { DeleteCcPaymentStatusArgs } from "./DeleteCcPaymentStatusArgs";
+import { CcPaymentStatus } from "./CcPaymentStatus";
 import { CcPaymentStatusCountArgs } from "./CcPaymentStatusCountArgs";
 import { CcPaymentStatusFindManyArgs } from "./CcPaymentStatusFindManyArgs";
 import { CcPaymentStatusFindUniqueArgs } from "./CcPaymentStatusFindUniqueArgs";
-import { CcPaymentStatus } from "./CcPaymentStatus";
+import { CreateCcPaymentStatusArgs } from "./CreateCcPaymentStatusArgs";
+import { UpdateCcPaymentStatusArgs } from "./UpdateCcPaymentStatusArgs";
+import { DeleteCcPaymentStatusArgs } from "./DeleteCcPaymentStatusArgs";
 import { CcPaymentStatusService } from "../ccPaymentStatus.service";
 @graphql.Resolver(() => CcPaymentStatus)
 export class CcPaymentStatusResolverBase {
@@ -38,14 +38,14 @@ export class CcPaymentStatusResolverBase {
   async ccPaymentStatuses(
     @graphql.Args() args: CcPaymentStatusFindManyArgs
   ): Promise<CcPaymentStatus[]> {
-    return this.service.findMany(args);
+    return this.service.ccPaymentStatuses(args);
   }
 
   @graphql.Query(() => CcPaymentStatus, { nullable: true })
   async ccPaymentStatus(
     @graphql.Args() args: CcPaymentStatusFindUniqueArgs
   ): Promise<CcPaymentStatus | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.ccPaymentStatus(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class CcPaymentStatusResolverBase {
   async createCcPaymentStatus(
     @graphql.Args() args: CreateCcPaymentStatusArgs
   ): Promise<CcPaymentStatus> {
-    return await this.service.create({
+    return await this.service.createCcPaymentStatus({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class CcPaymentStatusResolverBase {
     @graphql.Args() args: UpdateCcPaymentStatusArgs
   ): Promise<CcPaymentStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcPaymentStatus({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class CcPaymentStatusResolverBase {
     @graphql.Args() args: DeleteCcPaymentStatusArgs
   ): Promise<CcPaymentStatus | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCcPaymentStatus(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

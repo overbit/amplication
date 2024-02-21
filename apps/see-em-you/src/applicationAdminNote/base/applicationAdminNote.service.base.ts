@@ -10,11 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  ApplicationAdminNote,
-  Application,
-  User,
+  ApplicationAdminNote as PrismaApplicationAdminNote,
+  Application as PrismaApplication,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class ApplicationAdminNoteServiceBase {
@@ -26,33 +27,43 @@ export class ApplicationAdminNoteServiceBase {
     return this.prisma.applicationAdminNote.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicationAdminNoteFindManyArgs>(
+  async applicationAdminNotes<
+    T extends Prisma.ApplicationAdminNoteFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationAdminNoteFindManyArgs>
-  ): Promise<ApplicationAdminNote[]> {
+  ): Promise<PrismaApplicationAdminNote[]> {
     return this.prisma.applicationAdminNote.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicationAdminNoteFindUniqueArgs>(
+  async applicationAdminNote<
+    T extends Prisma.ApplicationAdminNoteFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationAdminNoteFindUniqueArgs>
-  ): Promise<ApplicationAdminNote | null> {
+  ): Promise<PrismaApplicationAdminNote | null> {
     return this.prisma.applicationAdminNote.findUnique(args);
   }
-  async create<T extends Prisma.ApplicationAdminNoteCreateArgs>(
+  async createApplicationAdminNote<
+    T extends Prisma.ApplicationAdminNoteCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationAdminNoteCreateArgs>
-  ): Promise<ApplicationAdminNote> {
+  ): Promise<PrismaApplicationAdminNote> {
     return this.prisma.applicationAdminNote.create<T>(args);
   }
-  async update<T extends Prisma.ApplicationAdminNoteUpdateArgs>(
+  async updateApplicationAdminNote<
+    T extends Prisma.ApplicationAdminNoteUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationAdminNoteUpdateArgs>
-  ): Promise<ApplicationAdminNote> {
+  ): Promise<PrismaApplicationAdminNote> {
     return this.prisma.applicationAdminNote.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicationAdminNoteDeleteArgs>(
+  async deleteApplicationAdminNote<
+    T extends Prisma.ApplicationAdminNoteDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationAdminNoteDeleteArgs>
-  ): Promise<ApplicationAdminNote> {
+  ): Promise<PrismaApplicationAdminNote> {
     return this.prisma.applicationAdminNote.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.applicationAdminNote
       .findUnique({
         where: { id: parentId },
@@ -60,7 +71,7 @@ export class ApplicationAdminNoteServiceBase {
       .application();
   }
 
-  async getUsers(parentId: number): Promise<User | null> {
+  async getUsers(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.applicationAdminNote
       .findUnique({
         where: { id: parentId },

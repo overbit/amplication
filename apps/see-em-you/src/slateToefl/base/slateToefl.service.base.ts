@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateToefl } from "@prisma/client";
+import { Prisma, SlateToefl as PrismaSlateToefl } from "@prisma/client";
 
 export class SlateToeflServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateToeflServiceBase {
     return this.prisma.slateToefl.count(args);
   }
 
-  async findMany<T extends Prisma.SlateToeflFindManyArgs>(
+  async slateToefls<T extends Prisma.SlateToeflFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateToeflFindManyArgs>
-  ): Promise<SlateToefl[]> {
+  ): Promise<PrismaSlateToefl[]> {
     return this.prisma.slateToefl.findMany(args);
   }
-  async findOne<T extends Prisma.SlateToeflFindUniqueArgs>(
+  async slateToefl<T extends Prisma.SlateToeflFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateToeflFindUniqueArgs>
-  ): Promise<SlateToefl | null> {
+  ): Promise<PrismaSlateToefl | null> {
     return this.prisma.slateToefl.findUnique(args);
   }
-  async create<T extends Prisma.SlateToeflCreateArgs>(
+  async createSlateToefl<T extends Prisma.SlateToeflCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateToeflCreateArgs>
-  ): Promise<SlateToefl> {
+  ): Promise<PrismaSlateToefl> {
     return this.prisma.slateToefl.create<T>(args);
   }
-  async update<T extends Prisma.SlateToeflUpdateArgs>(
+  async updateSlateToefl<T extends Prisma.SlateToeflUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateToeflUpdateArgs>
-  ): Promise<SlateToefl> {
+  ): Promise<PrismaSlateToefl> {
     return this.prisma.slateToefl.update<T>(args);
   }
-  async delete<T extends Prisma.SlateToeflDeleteArgs>(
+  async deleteSlateToefl<T extends Prisma.SlateToeflDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateToeflDeleteArgs>
-  ): Promise<SlateToefl> {
+  ): Promise<PrismaSlateToefl> {
     return this.prisma.slateToefl.delete(args);
   }
 }

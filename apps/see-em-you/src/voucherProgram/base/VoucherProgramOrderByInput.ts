@@ -28,7 +28,7 @@ class VoucherProgramOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  voucherId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class VoucherProgramOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  voucherId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { VoucherProgramOrderByInput as VoucherProgramOrderByInput };

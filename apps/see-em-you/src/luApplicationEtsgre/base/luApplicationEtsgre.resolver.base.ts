@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuApplicationEtsgreArgs } from "./CreateLuApplicationEtsgreArgs";
-import { UpdateLuApplicationEtsgreArgs } from "./UpdateLuApplicationEtsgreArgs";
-import { DeleteLuApplicationEtsgreArgs } from "./DeleteLuApplicationEtsgreArgs";
+import { LuApplicationEtsgre } from "./LuApplicationEtsgre";
 import { LuApplicationEtsgreCountArgs } from "./LuApplicationEtsgreCountArgs";
 import { LuApplicationEtsgreFindManyArgs } from "./LuApplicationEtsgreFindManyArgs";
 import { LuApplicationEtsgreFindUniqueArgs } from "./LuApplicationEtsgreFindUniqueArgs";
-import { LuApplicationEtsgre } from "./LuApplicationEtsgre";
+import { CreateLuApplicationEtsgreArgs } from "./CreateLuApplicationEtsgreArgs";
+import { UpdateLuApplicationEtsgreArgs } from "./UpdateLuApplicationEtsgreArgs";
+import { DeleteLuApplicationEtsgreArgs } from "./DeleteLuApplicationEtsgreArgs";
 import { LuApplicationEtsgreService } from "../luApplicationEtsgre.service";
 @graphql.Resolver(() => LuApplicationEtsgre)
 export class LuApplicationEtsgreResolverBase {
@@ -38,14 +38,14 @@ export class LuApplicationEtsgreResolverBase {
   async luApplicationEtsgres(
     @graphql.Args() args: LuApplicationEtsgreFindManyArgs
   ): Promise<LuApplicationEtsgre[]> {
-    return this.service.findMany(args);
+    return this.service.luApplicationEtsgres(args);
   }
 
   @graphql.Query(() => LuApplicationEtsgre, { nullable: true })
   async luApplicationEtsgre(
     @graphql.Args() args: LuApplicationEtsgreFindUniqueArgs
   ): Promise<LuApplicationEtsgre | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luApplicationEtsgre(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LuApplicationEtsgreResolverBase {
   async createLuApplicationEtsgre(
     @graphql.Args() args: CreateLuApplicationEtsgreArgs
   ): Promise<LuApplicationEtsgre> {
-    return await this.service.create({
+    return await this.service.createLuApplicationEtsgre({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LuApplicationEtsgreResolverBase {
     @graphql.Args() args: UpdateLuApplicationEtsgreArgs
   ): Promise<LuApplicationEtsgre | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationEtsgre({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LuApplicationEtsgreResolverBase {
     @graphql.Args() args: DeleteLuApplicationEtsgreArgs
   ): Promise<LuApplicationEtsgre | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuApplicationEtsgre(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

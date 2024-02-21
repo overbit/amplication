@@ -39,18 +39,7 @@ class MseInterviewOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  interviewComments?: SortOrder;
+  reviewerId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -94,7 +83,18 @@ class MseInterviewOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  reviewerId?: SortOrder;
+  interviewComments?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MseInterviewOrderByInput as MseInterviewOrderByInput };

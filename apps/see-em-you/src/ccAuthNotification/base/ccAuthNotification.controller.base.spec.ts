@@ -18,34 +18,34 @@ import { CcAuthNotificationService } from "../ccAuthNotification.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  paymentId: 42,
   authNotificationTime: new Date(),
   id: "exampleId",
-  paymentId: 42,
 };
 const CREATE_RESULT = {
+  paymentId: 42,
   authNotificationTime: new Date(),
   id: "exampleId",
-  paymentId: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    paymentId: 42,
     authNotificationTime: new Date(),
     id: "exampleId",
-    paymentId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  paymentId: 42,
   authNotificationTime: new Date(),
   id: "exampleId",
-  paymentId: 42,
 };
 
 const service = {
-  create() {
+  createCcAuthNotification() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ccAuthNotifications: () => FIND_MANY_RESULT,
+  ccAuthNotification: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -18,38 +18,38 @@ import { PositiveFactorService } from "../positiveFactor.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  departmentId: 42,
-  id: 42,
   positiveFactor: "examplePositiveFactor",
+  departmentId: 42,
   positiveFactorId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  departmentId: 42,
-  id: 42,
   positiveFactor: "examplePositiveFactor",
+  departmentId: 42,
   positiveFactorId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    departmentId: 42,
-    id: 42,
     positiveFactor: "examplePositiveFactor",
+    departmentId: 42,
     positiveFactorId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  departmentId: 42,
-  id: 42,
   positiveFactor: "examplePositiveFactor",
+  departmentId: 42,
   positiveFactorId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createPositiveFactor() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  positiveFactors: () => FIND_MANY_RESULT,
+  positiveFactor: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

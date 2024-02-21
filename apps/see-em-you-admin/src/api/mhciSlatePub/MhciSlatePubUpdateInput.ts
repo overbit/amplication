@@ -1,4 +1,9 @@
 export type MhciSlatePubUpdateInput = {
+  destinationPub2?: string | null;
+  prefix?: string | null;
+  first?: string | null;
+  middle?: string | null;
+  last?: string | null;
   authorsPub1?: string | null;
   authorsPub2?: string | null;
   authorsPub3?: string | null;
@@ -12,22 +17,17 @@ export type MhciSlatePubUpdateInput = {
   citationPub5?: string | null;
   citationPub6?: string | null;
   destinationPub1?: string | null;
-  destinationPub2?: string | null;
   destinationPub3?: string | null;
   destinationPub4?: string | null;
   destinationPub5?: string | null;
   destinationPub6?: string | null;
-  first?: string | null;
   hasPublications?: string | null;
-  last?: string | null;
-  middle?: string | null;
   otherTypeOfPublication1?: string | null;
   otherTypeOfPublication2?: string | null;
   otherTypeOfPublication3?: string | null;
   otherTypeOfPublication4?: string | null;
   otherTypeOfPublication5?: string | null;
   otherTypeOfPublication6?: string | null;
-  prefix?: string | null;
   statusOfPublication1?: string | null;
   statusOfPublication2?: string | null;
   statusOfPublication3?: string | null;

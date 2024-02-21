@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAssistantshipArgs } from "./CreateAssistantshipArgs";
-import { UpdateAssistantshipArgs } from "./UpdateAssistantshipArgs";
-import { DeleteAssistantshipArgs } from "./DeleteAssistantshipArgs";
+import { Assistantship } from "./Assistantship";
 import { AssistantshipCountArgs } from "./AssistantshipCountArgs";
 import { AssistantshipFindManyArgs } from "./AssistantshipFindManyArgs";
 import { AssistantshipFindUniqueArgs } from "./AssistantshipFindUniqueArgs";
-import { Assistantship } from "./Assistantship";
+import { CreateAssistantshipArgs } from "./CreateAssistantshipArgs";
+import { UpdateAssistantshipArgs } from "./UpdateAssistantshipArgs";
+import { DeleteAssistantshipArgs } from "./DeleteAssistantshipArgs";
 import { AssistantshipService } from "../assistantship.service";
 @graphql.Resolver(() => Assistantship)
 export class AssistantshipResolverBase {
@@ -38,14 +38,14 @@ export class AssistantshipResolverBase {
   async assistantships(
     @graphql.Args() args: AssistantshipFindManyArgs
   ): Promise<Assistantship[]> {
-    return this.service.findMany(args);
+    return this.service.assistantships(args);
   }
 
   @graphql.Query(() => Assistantship, { nullable: true })
   async assistantship(
     @graphql.Args() args: AssistantshipFindUniqueArgs
   ): Promise<Assistantship | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.assistantship(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class AssistantshipResolverBase {
   async createAssistantship(
     @graphql.Args() args: CreateAssistantshipArgs
   ): Promise<Assistantship> {
-    return await this.service.create({
+    return await this.service.createAssistantship({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class AssistantshipResolverBase {
     @graphql.Args() args: UpdateAssistantshipArgs
   ): Promise<Assistantship | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAssistantship({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class AssistantshipResolverBase {
     @graphql.Args() args: DeleteAssistantshipArgs
   ): Promise<Assistantship | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAssistantship(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

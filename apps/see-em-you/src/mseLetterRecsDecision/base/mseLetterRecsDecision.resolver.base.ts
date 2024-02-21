@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMseLetterRecsDecisionArgs } from "./CreateMseLetterRecsDecisionArgs";
-import { UpdateMseLetterRecsDecisionArgs } from "./UpdateMseLetterRecsDecisionArgs";
-import { DeleteMseLetterRecsDecisionArgs } from "./DeleteMseLetterRecsDecisionArgs";
+import { MseLetterRecsDecision } from "./MseLetterRecsDecision";
 import { MseLetterRecsDecisionCountArgs } from "./MseLetterRecsDecisionCountArgs";
 import { MseLetterRecsDecisionFindManyArgs } from "./MseLetterRecsDecisionFindManyArgs";
 import { MseLetterRecsDecisionFindUniqueArgs } from "./MseLetterRecsDecisionFindUniqueArgs";
-import { MseLetterRecsDecision } from "./MseLetterRecsDecision";
+import { CreateMseLetterRecsDecisionArgs } from "./CreateMseLetterRecsDecisionArgs";
+import { UpdateMseLetterRecsDecisionArgs } from "./UpdateMseLetterRecsDecisionArgs";
+import { DeleteMseLetterRecsDecisionArgs } from "./DeleteMseLetterRecsDecisionArgs";
 import { MseLetterRecsDecisionService } from "../mseLetterRecsDecision.service";
 @graphql.Resolver(() => MseLetterRecsDecision)
 export class MseLetterRecsDecisionResolverBase {
@@ -38,14 +38,14 @@ export class MseLetterRecsDecisionResolverBase {
   async mseLetterRecsDecisions(
     @graphql.Args() args: MseLetterRecsDecisionFindManyArgs
   ): Promise<MseLetterRecsDecision[]> {
-    return this.service.findMany(args);
+    return this.service.mseLetterRecsDecisions(args);
   }
 
   @graphql.Query(() => MseLetterRecsDecision, { nullable: true })
   async mseLetterRecsDecision(
     @graphql.Args() args: MseLetterRecsDecisionFindUniqueArgs
   ): Promise<MseLetterRecsDecision | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mseLetterRecsDecision(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MseLetterRecsDecisionResolverBase {
   async createMseLetterRecsDecision(
     @graphql.Args() args: CreateMseLetterRecsDecisionArgs
   ): Promise<MseLetterRecsDecision> {
-    return await this.service.create({
+    return await this.service.createMseLetterRecsDecision({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MseLetterRecsDecisionResolverBase {
     @graphql.Args() args: UpdateMseLetterRecsDecisionArgs
   ): Promise<MseLetterRecsDecision | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseLetterRecsDecision({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MseLetterRecsDecisionResolverBase {
     @graphql.Args() args: DeleteMseLetterRecsDecisionArgs
   ): Promise<MseLetterRecsDecision | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMseLetterRecsDecision(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

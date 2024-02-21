@@ -18,39 +18,38 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MseSupportingCourseworkService } from "../mseSupportingCoursework.service";
 import { MseSupportingCourseworkCreateInput } from "./MseSupportingCourseworkCreateInput";
-import { MseSupportingCourseworkWhereInput } from "./MseSupportingCourseworkWhereInput";
-import { MseSupportingCourseworkWhereUniqueInput } from "./MseSupportingCourseworkWhereUniqueInput";
-import { MseSupportingCourseworkFindManyArgs } from "./MseSupportingCourseworkFindManyArgs";
-import { MseSupportingCourseworkUpdateInput } from "./MseSupportingCourseworkUpdateInput";
 import { MseSupportingCoursework } from "./MseSupportingCoursework";
+import { MseSupportingCourseworkFindManyArgs } from "./MseSupportingCourseworkFindManyArgs";
+import { MseSupportingCourseworkWhereUniqueInput } from "./MseSupportingCourseworkWhereUniqueInput";
+import { MseSupportingCourseworkUpdateInput } from "./MseSupportingCourseworkUpdateInput";
 
 export class MseSupportingCourseworkControllerBase {
   constructor(protected readonly service: MseSupportingCourseworkService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MseSupportingCoursework })
-  async create(
+  async createMseSupportingCoursework(
     @common.Body() data: MseSupportingCourseworkCreateInput
   ): Promise<MseSupportingCoursework> {
-    return await this.service.create({
+    return await this.service.createMseSupportingCoursework({
       data: data,
       select: {
-        algCourseGrade: true,
-        algCourseName: true,
-        algCourseNum: true,
         appId: true,
-        dmCourseGrade: true,
-        dmCourseName: true,
         dmCourseNum: true,
-        dsCourseGrade: true,
-        dsCourseName: true,
+        dmCourseName: true,
+        dmCourseGrade: true,
         dsCourseNum: true,
-        id: true,
-        prog1CourseGrade: true,
-        prog1CourseName: true,
+        dsCourseName: true,
+        dsCourseGrade: true,
+        algCourseNum: true,
+        algCourseName: true,
+        algCourseGrade: true,
         prog1CourseNum: true,
-        prog2CourseGrade: true,
-        prog2CourseName: true,
+        prog1CourseName: true,
+        prog1CourseGrade: true,
         prog2CourseNum: true,
+        prog2CourseName: true,
+        prog2CourseGrade: true,
+        id: true,
       },
     });
   }
@@ -58,33 +57,33 @@ export class MseSupportingCourseworkControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MseSupportingCoursework] })
   @ApiNestedQuery(MseSupportingCourseworkFindManyArgs)
-  async findMany(
+  async mseSupportingCourseworks(
     @common.Req() request: Request
   ): Promise<MseSupportingCoursework[]> {
     const args = plainToClass(
       MseSupportingCourseworkFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.mseSupportingCourseworks({
       ...args,
       select: {
-        algCourseGrade: true,
-        algCourseName: true,
-        algCourseNum: true,
         appId: true,
-        dmCourseGrade: true,
-        dmCourseName: true,
         dmCourseNum: true,
-        dsCourseGrade: true,
-        dsCourseName: true,
+        dmCourseName: true,
+        dmCourseGrade: true,
         dsCourseNum: true,
-        id: true,
-        prog1CourseGrade: true,
-        prog1CourseName: true,
+        dsCourseName: true,
+        dsCourseGrade: true,
+        algCourseNum: true,
+        algCourseName: true,
+        algCourseGrade: true,
         prog1CourseNum: true,
-        prog2CourseGrade: true,
-        prog2CourseName: true,
+        prog1CourseName: true,
+        prog1CourseGrade: true,
         prog2CourseNum: true,
+        prog2CourseName: true,
+        prog2CourseGrade: true,
+        id: true,
       },
     });
   }
@@ -92,29 +91,29 @@ export class MseSupportingCourseworkControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MseSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mseSupportingCoursework(
     @common.Param() params: MseSupportingCourseworkWhereUniqueInput
   ): Promise<MseSupportingCoursework | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mseSupportingCoursework({
       where: params,
       select: {
-        algCourseGrade: true,
-        algCourseName: true,
-        algCourseNum: true,
         appId: true,
-        dmCourseGrade: true,
-        dmCourseName: true,
         dmCourseNum: true,
-        dsCourseGrade: true,
-        dsCourseName: true,
+        dmCourseName: true,
+        dmCourseGrade: true,
         dsCourseNum: true,
-        id: true,
-        prog1CourseGrade: true,
-        prog1CourseName: true,
+        dsCourseName: true,
+        dsCourseGrade: true,
+        algCourseNum: true,
+        algCourseName: true,
+        algCourseGrade: true,
         prog1CourseNum: true,
-        prog2CourseGrade: true,
-        prog2CourseName: true,
+        prog1CourseName: true,
+        prog1CourseGrade: true,
         prog2CourseNum: true,
+        prog2CourseName: true,
+        prog2CourseGrade: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -128,32 +127,32 @@ export class MseSupportingCourseworkControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MseSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMseSupportingCoursework(
     @common.Param() params: MseSupportingCourseworkWhereUniqueInput,
     @common.Body() data: MseSupportingCourseworkUpdateInput
   ): Promise<MseSupportingCoursework | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseSupportingCoursework({
         where: params,
         data: data,
         select: {
-          algCourseGrade: true,
-          algCourseName: true,
-          algCourseNum: true,
           appId: true,
-          dmCourseGrade: true,
-          dmCourseName: true,
           dmCourseNum: true,
-          dsCourseGrade: true,
-          dsCourseName: true,
+          dmCourseName: true,
+          dmCourseGrade: true,
           dsCourseNum: true,
-          id: true,
-          prog1CourseGrade: true,
-          prog1CourseName: true,
+          dsCourseName: true,
+          dsCourseGrade: true,
+          algCourseNum: true,
+          algCourseName: true,
+          algCourseGrade: true,
           prog1CourseNum: true,
-          prog2CourseGrade: true,
-          prog2CourseName: true,
+          prog1CourseName: true,
+          prog1CourseGrade: true,
           prog2CourseNum: true,
+          prog2CourseName: true,
+          prog2CourseGrade: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -169,30 +168,30 @@ export class MseSupportingCourseworkControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MseSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMseSupportingCoursework(
     @common.Param() params: MseSupportingCourseworkWhereUniqueInput
   ): Promise<MseSupportingCoursework | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMseSupportingCoursework({
         where: params,
         select: {
-          algCourseGrade: true,
-          algCourseName: true,
-          algCourseNum: true,
           appId: true,
-          dmCourseGrade: true,
-          dmCourseName: true,
           dmCourseNum: true,
-          dsCourseGrade: true,
-          dsCourseName: true,
+          dmCourseName: true,
+          dmCourseGrade: true,
           dsCourseNum: true,
-          id: true,
-          prog1CourseGrade: true,
-          prog1CourseName: true,
+          dsCourseName: true,
+          dsCourseGrade: true,
+          algCourseNum: true,
+          algCourseName: true,
+          algCourseGrade: true,
           prog1CourseNum: true,
-          prog2CourseGrade: true,
-          prog2CourseName: true,
+          prog1CourseName: true,
+          prog1CourseGrade: true,
           prog2CourseNum: true,
+          prog2CourseName: true,
+          prog2CourseGrade: true,
+          id: true,
         },
       });
     } catch (error) {

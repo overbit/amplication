@@ -10,10 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  LuApplicationStartSemester,
-  Application,
+  LuApplicationStartSemester as PrismaLuApplicationStartSemester,
+  Application as PrismaApplication,
 } from "@prisma/client";
 
 export class LuApplicationStartSemesterServiceBase {
@@ -25,36 +26,46 @@ export class LuApplicationStartSemesterServiceBase {
     return this.prisma.luApplicationStartSemester.count(args);
   }
 
-  async findMany<T extends Prisma.LuApplicationStartSemesterFindManyArgs>(
+  async luApplicationStartSemesters<
+    T extends Prisma.LuApplicationStartSemesterFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationStartSemesterFindManyArgs>
-  ): Promise<LuApplicationStartSemester[]> {
+  ): Promise<PrismaLuApplicationStartSemester[]> {
     return this.prisma.luApplicationStartSemester.findMany(args);
   }
-  async findOne<T extends Prisma.LuApplicationStartSemesterFindUniqueArgs>(
+  async luApplicationStartSemester<
+    T extends Prisma.LuApplicationStartSemesterFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.LuApplicationStartSemesterFindUniqueArgs
     >
-  ): Promise<LuApplicationStartSemester | null> {
+  ): Promise<PrismaLuApplicationStartSemester | null> {
     return this.prisma.luApplicationStartSemester.findUnique(args);
   }
-  async create<T extends Prisma.LuApplicationStartSemesterCreateArgs>(
+  async createLuApplicationStartSemester<
+    T extends Prisma.LuApplicationStartSemesterCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationStartSemesterCreateArgs>
-  ): Promise<LuApplicationStartSemester> {
+  ): Promise<PrismaLuApplicationStartSemester> {
     return this.prisma.luApplicationStartSemester.create<T>(args);
   }
-  async update<T extends Prisma.LuApplicationStartSemesterUpdateArgs>(
+  async updateLuApplicationStartSemester<
+    T extends Prisma.LuApplicationStartSemesterUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationStartSemesterUpdateArgs>
-  ): Promise<LuApplicationStartSemester> {
+  ): Promise<PrismaLuApplicationStartSemester> {
     return this.prisma.luApplicationStartSemester.update<T>(args);
   }
-  async delete<T extends Prisma.LuApplicationStartSemesterDeleteArgs>(
+  async deleteLuApplicationStartSemester<
+    T extends Prisma.LuApplicationStartSemesterDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationStartSemesterDeleteArgs>
-  ): Promise<LuApplicationStartSemester> {
+  ): Promise<PrismaLuApplicationStartSemester> {
     return this.prisma.luApplicationStartSemester.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.luApplicationStartSemester
       .findUnique({
         where: { id: parentId },

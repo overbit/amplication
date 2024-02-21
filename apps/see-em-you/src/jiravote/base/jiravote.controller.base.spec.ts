@@ -19,41 +19,41 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   created: new Date(),
-  id: 42,
-  jiraName: "exampleJiraName",
   updatedAt: new Date(),
+  jiraName: "exampleJiraName",
   user: "exampleUser",
+  id: 42,
 };
 const CREATE_RESULT = {
   created: new Date(),
-  id: 42,
-  jiraName: "exampleJiraName",
   updatedAt: new Date(),
+  jiraName: "exampleJiraName",
   user: "exampleUser",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     created: new Date(),
-    id: 42,
-    jiraName: "exampleJiraName",
     updatedAt: new Date(),
+    jiraName: "exampleJiraName",
     user: "exampleUser",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   created: new Date(),
-  id: 42,
-  jiraName: "exampleJiraName",
   updatedAt: new Date(),
+  jiraName: "exampleJiraName",
   user: "exampleUser",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createJiravote() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  jiravotes: () => FIND_MANY_RESULT,
+  jiravote: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

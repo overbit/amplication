@@ -18,6 +18,10 @@ import { MitsSlateCodilityService } from "../mitsSlateCodility.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   codilityCloseDate: "exampleCodilityCloseDate",
   codilityCreateDate: "exampleCodilityCreateDate",
   codilityIpAddresses: "exampleCodilityIpAddresses",
@@ -54,13 +58,13 @@ const CREATE_INPUT = {
   codilityTask4Score: "exampleCodilityTask4Score",
   codilityTestName: "exampleCodilityTestName",
   codilityTestSession: "exampleCodilityTestSession",
-  first: "exampleFirst",
   id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
-  prefix: "examplePrefix",
 };
 const CREATE_RESULT = {
+  prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   codilityCloseDate: "exampleCodilityCloseDate",
   codilityCreateDate: "exampleCodilityCreateDate",
   codilityIpAddresses: "exampleCodilityIpAddresses",
@@ -97,14 +101,14 @@ const CREATE_RESULT = {
   codilityTask4Score: "exampleCodilityTask4Score",
   codilityTestName: "exampleCodilityTestName",
   codilityTestSession: "exampleCodilityTestSession",
-  first: "exampleFirst",
   id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
-  prefix: "examplePrefix",
 };
 const FIND_MANY_RESULT = [
   {
+    prefix: "examplePrefix",
+    first: "exampleFirst",
+    middle: "exampleMiddle",
+    last: "exampleLast",
     codilityCloseDate: "exampleCodilityCloseDate",
     codilityCreateDate: "exampleCodilityCreateDate",
     codilityIpAddresses: "exampleCodilityIpAddresses",
@@ -141,14 +145,14 @@ const FIND_MANY_RESULT = [
     codilityTask4Score: "exampleCodilityTask4Score",
     codilityTestName: "exampleCodilityTestName",
     codilityTestSession: "exampleCodilityTestSession",
-    first: "exampleFirst",
     id: "exampleId",
-    last: "exampleLast",
-    middle: "exampleMiddle",
-    prefix: "examplePrefix",
   },
 ];
 const FIND_ONE_RESULT = {
+  prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   codilityCloseDate: "exampleCodilityCloseDate",
   codilityCreateDate: "exampleCodilityCreateDate",
   codilityIpAddresses: "exampleCodilityIpAddresses",
@@ -185,19 +189,15 @@ const FIND_ONE_RESULT = {
   codilityTask4Score: "exampleCodilityTask4Score",
   codilityTestName: "exampleCodilityTestName",
   codilityTestSession: "exampleCodilityTestSession",
-  first: "exampleFirst",
   id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
-  prefix: "examplePrefix",
 };
 
 const service = {
-  create() {
+  createMitsSlateCodility() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mitsSlateCodilities: () => FIND_MANY_RESULT,
+  mitsSlateCodility: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

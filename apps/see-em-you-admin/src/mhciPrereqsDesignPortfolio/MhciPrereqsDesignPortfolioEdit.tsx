@@ -4,8 +4,8 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  NumberInput,
   TextInput,
+  NumberInput,
   ReferenceInput,
   SelectInput,
 } from "react-admin";
@@ -18,8 +18,11 @@ export const MhciPrereqsDesignPortfolioEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Application Id" source="applicationId" />
+        <TextInput label="Url" source="url" />
         <TextInput label="Description" source="description" />
+        <NumberInput step={1} label="Application Id" source="applicationId" />
+        <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Period Id" source="periodId" />
         <ReferenceInput
           source="luUsersUsertypes.id"
           reference="LuUsersUsertype"
@@ -27,9 +30,6 @@ export const MhciPrereqsDesignPortfolioEdit = (
         >
           <SelectInput optionText={LuUsersUsertypeTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Period Id" source="periodId" />
-        <NumberInput step={1} label="Program Id" source="programId" />
-        <TextInput label="Url" source="url" />
       </SimpleForm>
     </Edit>
   );

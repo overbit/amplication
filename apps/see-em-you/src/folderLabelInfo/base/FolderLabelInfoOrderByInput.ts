@@ -28,7 +28,18 @@ class FolderLabelInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  periodId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  lastRanTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,18 +72,7 @@ class FolderLabelInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  lastRanTime?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  periodId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { FolderLabelInfoOrderByInput as FolderLabelInfoOrderByInput };

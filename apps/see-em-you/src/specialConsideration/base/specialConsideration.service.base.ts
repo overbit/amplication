@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SpecialConsideration, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  SpecialConsideration as PrismaSpecialConsideration,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class SpecialConsiderationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,43 @@ export class SpecialConsiderationServiceBase {
     return this.prisma.specialConsideration.count(args);
   }
 
-  async findMany<T extends Prisma.SpecialConsiderationFindManyArgs>(
+  async specialConsiderations<
+    T extends Prisma.SpecialConsiderationFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SpecialConsiderationFindManyArgs>
-  ): Promise<SpecialConsideration[]> {
+  ): Promise<PrismaSpecialConsideration[]> {
     return this.prisma.specialConsideration.findMany(args);
   }
-  async findOne<T extends Prisma.SpecialConsiderationFindUniqueArgs>(
+  async specialConsideration<
+    T extends Prisma.SpecialConsiderationFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SpecialConsiderationFindUniqueArgs>
-  ): Promise<SpecialConsideration | null> {
+  ): Promise<PrismaSpecialConsideration | null> {
     return this.prisma.specialConsideration.findUnique(args);
   }
-  async create<T extends Prisma.SpecialConsiderationCreateArgs>(
+  async createSpecialConsideration<
+    T extends Prisma.SpecialConsiderationCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SpecialConsiderationCreateArgs>
-  ): Promise<SpecialConsideration> {
+  ): Promise<PrismaSpecialConsideration> {
     return this.prisma.specialConsideration.create<T>(args);
   }
-  async update<T extends Prisma.SpecialConsiderationUpdateArgs>(
+  async updateSpecialConsideration<
+    T extends Prisma.SpecialConsiderationUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SpecialConsiderationUpdateArgs>
-  ): Promise<SpecialConsideration> {
+  ): Promise<PrismaSpecialConsideration> {
     return this.prisma.specialConsideration.update<T>(args);
   }
-  async delete<T extends Prisma.SpecialConsiderationDeleteArgs>(
+  async deleteSpecialConsideration<
+    T extends Prisma.SpecialConsiderationDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SpecialConsiderationDeleteArgs>
-  ): Promise<SpecialConsideration> {
+  ): Promise<PrismaSpecialConsideration> {
     return this.prisma.specialConsideration.delete(args);
   }
 
-  async getApplication(parentId: string): Promise<Application | null> {
+  async getApplication(parentId: string): Promise<PrismaApplication | null> {
     return this.prisma.specialConsideration
       .findUnique({
         where: { id: parentId },

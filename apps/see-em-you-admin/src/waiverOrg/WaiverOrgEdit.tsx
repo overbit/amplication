@@ -3,16 +3,16 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  NumberInput,
   TextInput,
+  NumberInput,
 } from "react-admin";
 
 export const WaiverOrgEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Active" source="active" />
         <TextInput label="Name" source="name" />
+        <NumberInput step={1} label="Active" source="active" />
       </SimpleForm>
     </Edit>
   );

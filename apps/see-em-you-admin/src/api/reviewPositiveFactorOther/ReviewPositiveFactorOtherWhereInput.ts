@@ -1,1 +1,5 @@
-export type ReviewPositiveFactorOtherWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type ReviewPositiveFactorOtherWhereInput = {
+  id?: IntFilter;
+};

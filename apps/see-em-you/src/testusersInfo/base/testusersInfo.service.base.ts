@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, TestusersInfo } from "@prisma/client";
+import { Prisma, TestusersInfo as PrismaTestusersInfo } from "@prisma/client";
 
 export class TestusersInfoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class TestusersInfoServiceBase {
     return this.prisma.testusersInfo.count(args);
   }
 
-  async findMany<T extends Prisma.TestusersInfoFindManyArgs>(
+  async testusersInfos<T extends Prisma.TestusersInfoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestusersInfoFindManyArgs>
-  ): Promise<TestusersInfo[]> {
+  ): Promise<PrismaTestusersInfo[]> {
     return this.prisma.testusersInfo.findMany(args);
   }
-  async findOne<T extends Prisma.TestusersInfoFindUniqueArgs>(
+  async testusersInfo<T extends Prisma.TestusersInfoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestusersInfoFindUniqueArgs>
-  ): Promise<TestusersInfo | null> {
+  ): Promise<PrismaTestusersInfo | null> {
     return this.prisma.testusersInfo.findUnique(args);
   }
-  async create<T extends Prisma.TestusersInfoCreateArgs>(
+  async createTestusersInfo<T extends Prisma.TestusersInfoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestusersInfoCreateArgs>
-  ): Promise<TestusersInfo> {
+  ): Promise<PrismaTestusersInfo> {
     return this.prisma.testusersInfo.create<T>(args);
   }
-  async update<T extends Prisma.TestusersInfoUpdateArgs>(
+  async updateTestusersInfo<T extends Prisma.TestusersInfoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestusersInfoUpdateArgs>
-  ): Promise<TestusersInfo> {
+  ): Promise<PrismaTestusersInfo> {
     return this.prisma.testusersInfo.update<T>(args);
   }
-  async delete<T extends Prisma.TestusersInfoDeleteArgs>(
+  async deleteTestusersInfo<T extends Prisma.TestusersInfoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.TestusersInfoDeleteArgs>
-  ): Promise<TestusersInfo> {
+  ): Promise<PrismaTestusersInfo> {
     return this.prisma.testusersInfo.delete(args);
   }
 }

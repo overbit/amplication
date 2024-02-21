@@ -19,45 +19,45 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  duolingodataId: 42,
-  id: 42,
-  matchDate: new Date(),
   testdate: new Date(),
   testemail: "exampleTestemail",
+  duolingodataId: 42,
+  matchDate: new Date(),
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  duolingodataId: 42,
-  id: 42,
-  matchDate: new Date(),
   testdate: new Date(),
   testemail: "exampleTestemail",
+  duolingodataId: 42,
+  matchDate: new Date(),
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    duolingodataId: 42,
-    id: 42,
-    matchDate: new Date(),
     testdate: new Date(),
     testemail: "exampleTestemail",
+    duolingodataId: 42,
+    matchDate: new Date(),
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  duolingodataId: 42,
-  id: 42,
-  matchDate: new Date(),
   testdate: new Date(),
   testemail: "exampleTestemail",
+  duolingodataId: 42,
+  matchDate: new Date(),
+  id: 42,
 };
 
 const service = {
-  create() {
+  createDuolingoscore() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  duolingoscores: () => FIND_MANY_RESULT,
+  duolingoscore: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -134,8 +134,8 @@ describe("Duolingoscore", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        matchDate: CREATE_RESULT.matchDate.toISOString(),
         testdate: CREATE_RESULT.testdate.toISOString(),
+        matchDate: CREATE_RESULT.matchDate.toISOString(),
       });
   });
 
@@ -146,8 +146,8 @@ describe("Duolingoscore", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          matchDate: FIND_MANY_RESULT[0].matchDate.toISOString(),
           testdate: FIND_MANY_RESULT[0].testdate.toISOString(),
+          matchDate: FIND_MANY_RESULT[0].matchDate.toISOString(),
         },
       ]);
   });
@@ -169,8 +169,8 @@ describe("Duolingoscore", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        matchDate: FIND_ONE_RESULT.matchDate.toISOString(),
         testdate: FIND_ONE_RESULT.testdate.toISOString(),
+        matchDate: FIND_ONE_RESULT.matchDate.toISOString(),
       });
   });
 
@@ -182,8 +182,8 @@ describe("Duolingoscore", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        matchDate: CREATE_RESULT.matchDate.toISOString(),
         testdate: CREATE_RESULT.testdate.toISOString(),
+        matchDate: CREATE_RESULT.matchDate.toISOString(),
       })
       .then(function () {
         agent

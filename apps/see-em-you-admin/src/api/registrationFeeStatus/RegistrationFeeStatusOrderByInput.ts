@@ -1,10 +1,10 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type RegistrationFeeStatusOrderByInput = {
-  amount?: SortOrder;
-  application_id?: SortOrder;
   departmentId?: SortOrder;
-  id?: SortOrder;
+  amount?: SortOrder;
   paid?: SortOrder;
   waived?: SortOrder;
+  application_id?: SortOrder;
+  id?: SortOrder;
 };

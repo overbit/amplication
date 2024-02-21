@@ -3,8 +3,8 @@ import {
   List,
   Datagrid,
   ListProps,
-  BooleanField,
   TextField,
+  BooleanField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 
@@ -20,11 +20,11 @@ export const ApplicationContentList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <BooleanField label="Desired" source="desired" />
         <TextField label="Id" source="id" />
-        <TextField label="Program Id" source="programId" />
-        <BooleanField label="Required" source="required" />
         <TextField label="Section Identifier" source="sectionIdentifier" />
+        <TextField label="Program Id" source="programId" />
+        <BooleanField label="Desired" source="desired" />
+        <BooleanField label="Required" source="required" />
       </Datagrid>
     </List>
   );

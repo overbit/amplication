@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIeltsscoreArgs } from "./CreateIeltsscoreArgs";
-import { UpdateIeltsscoreArgs } from "./UpdateIeltsscoreArgs";
-import { DeleteIeltsscoreArgs } from "./DeleteIeltsscoreArgs";
+import { Ieltsscore } from "./Ieltsscore";
 import { IeltsscoreCountArgs } from "./IeltsscoreCountArgs";
 import { IeltsscoreFindManyArgs } from "./IeltsscoreFindManyArgs";
 import { IeltsscoreFindUniqueArgs } from "./IeltsscoreFindUniqueArgs";
-import { Ieltsscore } from "./Ieltsscore";
+import { CreateIeltsscoreArgs } from "./CreateIeltsscoreArgs";
+import { UpdateIeltsscoreArgs } from "./UpdateIeltsscoreArgs";
+import { DeleteIeltsscoreArgs } from "./DeleteIeltsscoreArgs";
 import { Application } from "../../application/base/Application";
 import { IeltsscoreService } from "../ieltsscore.service";
 @graphql.Resolver(() => Ieltsscore)
@@ -39,14 +39,14 @@ export class IeltsscoreResolverBase {
   async ieltsscores(
     @graphql.Args() args: IeltsscoreFindManyArgs
   ): Promise<Ieltsscore[]> {
-    return this.service.findMany(args);
+    return this.service.ieltsscores(args);
   }
 
   @graphql.Query(() => Ieltsscore, { nullable: true })
   async ieltsscore(
     @graphql.Args() args: IeltsscoreFindUniqueArgs
   ): Promise<Ieltsscore | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.ieltsscore(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class IeltsscoreResolverBase {
   async createIeltsscore(
     @graphql.Args() args: CreateIeltsscoreArgs
   ): Promise<Ieltsscore> {
-    return await this.service.create({
+    return await this.service.createIeltsscore({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class IeltsscoreResolverBase {
     @graphql.Args() args: UpdateIeltsscoreArgs
   ): Promise<Ieltsscore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIeltsscore({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class IeltsscoreResolverBase {
     @graphql.Args() args: DeleteIeltsscoreArgs
   ): Promise<Ieltsscore | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIeltsscore(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class IeltsscoreResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: Ieltsscore
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

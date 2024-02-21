@@ -21,7 +21,7 @@ class ReviewPositiveFactorCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  positiveFactorId!: number;
+  reviewId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class ReviewPositiveFactorCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  reviewId!: number;
+  positiveFactorId!: number;
 }
 
 export { ReviewPositiveFactorCreateInput as ReviewPositiveFactorCreateInput };

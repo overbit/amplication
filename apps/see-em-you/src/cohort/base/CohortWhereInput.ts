@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class CohortWhereInput {
@@ -28,6 +29,17 @@ class CohortWhereInput {
     nullable: true,
   })
   period?: PeriodWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { CohortWhereInput as CohortWhereInput };

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MhciSlateIelt } from "@prisma/client";
+import { Prisma, MhciSlateIelt as PrismaMhciSlateIelt } from "@prisma/client";
 
 export class MhciSlateIeltServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MhciSlateIeltServiceBase {
     return this.prisma.mhciSlateIelt.count(args);
   }
 
-  async findMany<T extends Prisma.MhciSlateIeltFindManyArgs>(
+  async mhciSlateIelts<T extends Prisma.MhciSlateIeltFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateIeltFindManyArgs>
-  ): Promise<MhciSlateIelt[]> {
+  ): Promise<PrismaMhciSlateIelt[]> {
     return this.prisma.mhciSlateIelt.findMany(args);
   }
-  async findOne<T extends Prisma.MhciSlateIeltFindUniqueArgs>(
+  async mhciSlateIelt<T extends Prisma.MhciSlateIeltFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateIeltFindUniqueArgs>
-  ): Promise<MhciSlateIelt | null> {
+  ): Promise<PrismaMhciSlateIelt | null> {
     return this.prisma.mhciSlateIelt.findUnique(args);
   }
-  async create<T extends Prisma.MhciSlateIeltCreateArgs>(
+  async createMhciSlateIelt<T extends Prisma.MhciSlateIeltCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateIeltCreateArgs>
-  ): Promise<MhciSlateIelt> {
+  ): Promise<PrismaMhciSlateIelt> {
     return this.prisma.mhciSlateIelt.create<T>(args);
   }
-  async update<T extends Prisma.MhciSlateIeltUpdateArgs>(
+  async updateMhciSlateIelt<T extends Prisma.MhciSlateIeltUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateIeltUpdateArgs>
-  ): Promise<MhciSlateIelt> {
+  ): Promise<PrismaMhciSlateIelt> {
     return this.prisma.mhciSlateIelt.update<T>(args);
   }
-  async delete<T extends Prisma.MhciSlateIeltDeleteArgs>(
+  async deleteMhciSlateIelt<T extends Prisma.MhciSlateIeltDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateIeltDeleteArgs>
-  ): Promise<MhciSlateIelt> {
+  ): Promise<PrismaMhciSlateIelt> {
     return this.prisma.mhciSlateIelt.delete(args);
   }
 }

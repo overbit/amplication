@@ -1,5 +1,5 @@
 export type IpedsEthnicityCreateInput = {
-  ethnicityId: number;
   ipedsEthnicity: string;
   sortOrder: number;
+  ethnicityId: number;
 };

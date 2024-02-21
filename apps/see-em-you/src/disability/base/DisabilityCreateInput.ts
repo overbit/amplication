@@ -24,6 +24,14 @@ class DisabilityCreateInput {
   applicationId!: number;
 
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  hasDisability!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -33,14 +41,6 @@ class DisabilityCreateInput {
     nullable: true,
   })
   disabilityType?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  hasDisability!: number;
 }
 
 export { DisabilityCreateInput as DisabilityCreateInput };

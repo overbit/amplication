@@ -1,6 +1,6 @@
 export type LuProgramsApplicationreq = {
-  appreqId: number | null;
   degreeId: number | null;
-  id: number;
+  appreqId: number | null;
   programId: number | null;
+  id: number;
 };

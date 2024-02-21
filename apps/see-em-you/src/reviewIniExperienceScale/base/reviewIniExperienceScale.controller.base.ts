@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewIniExperienceScaleService } from "../reviewIniExperienceScale.service";
 import { ReviewIniExperienceScaleCreateInput } from "./ReviewIniExperienceScaleCreateInput";
-import { ReviewIniExperienceScaleWhereInput } from "./ReviewIniExperienceScaleWhereInput";
-import { ReviewIniExperienceScaleWhereUniqueInput } from "./ReviewIniExperienceScaleWhereUniqueInput";
-import { ReviewIniExperienceScaleFindManyArgs } from "./ReviewIniExperienceScaleFindManyArgs";
-import { ReviewIniExperienceScaleUpdateInput } from "./ReviewIniExperienceScaleUpdateInput";
 import { ReviewIniExperienceScale } from "./ReviewIniExperienceScale";
+import { ReviewIniExperienceScaleFindManyArgs } from "./ReviewIniExperienceScaleFindManyArgs";
+import { ReviewIniExperienceScaleWhereUniqueInput } from "./ReviewIniExperienceScaleWhereUniqueInput";
+import { ReviewIniExperienceScaleUpdateInput } from "./ReviewIniExperienceScaleUpdateInput";
 
 export class ReviewIniExperienceScaleControllerBase {
   constructor(protected readonly service: ReviewIniExperienceScaleService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewIniExperienceScale })
-  async create(
+  async createReviewIniExperienceScale(
     @common.Body() data: ReviewIniExperienceScaleCreateInput
   ): Promise<ReviewIniExperienceScale> {
-    return await this.service.create({
+    return await this.service.createReviewIniExperienceScale({
       data: data,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -43,18 +42,18 @@ export class ReviewIniExperienceScaleControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewIniExperienceScale] })
   @ApiNestedQuery(ReviewIniExperienceScaleFindManyArgs)
-  async findMany(
+  async reviewIniExperienceScales(
     @common.Req() request: Request
   ): Promise<ReviewIniExperienceScale[]> {
     const args = plainToClass(
       ReviewIniExperienceScaleFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.reviewIniExperienceScales({
       ...args,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -62,14 +61,14 @@ export class ReviewIniExperienceScaleControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniExperienceScale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewIniExperienceScale(
     @common.Param() params: ReviewIniExperienceScaleWhereUniqueInput
   ): Promise<ReviewIniExperienceScale | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewIniExperienceScale({
       where: params,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -83,17 +82,17 @@ export class ReviewIniExperienceScaleControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniExperienceScale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewIniExperienceScale(
     @common.Param() params: ReviewIniExperienceScaleWhereUniqueInput,
     @common.Body() data: ReviewIniExperienceScaleUpdateInput
   ): Promise<ReviewIniExperienceScale | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIniExperienceScale({
         where: params,
         data: data,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -109,15 +108,15 @@ export class ReviewIniExperienceScaleControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniExperienceScale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewIniExperienceScale(
     @common.Param() params: ReviewIniExperienceScaleWhereUniqueInput
   ): Promise<ReviewIniExperienceScale | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewIniExperienceScale({
         where: params,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {

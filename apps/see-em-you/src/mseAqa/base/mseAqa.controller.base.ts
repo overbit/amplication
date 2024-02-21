@@ -18,18 +18,17 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MseAqaService } from "../mseAqa.service";
 import { MseAqaCreateInput } from "./MseAqaCreateInput";
-import { MseAqaWhereInput } from "./MseAqaWhereInput";
-import { MseAqaWhereUniqueInput } from "./MseAqaWhereUniqueInput";
-import { MseAqaFindManyArgs } from "./MseAqaFindManyArgs";
-import { MseAqaUpdateInput } from "./MseAqaUpdateInput";
 import { MseAqa } from "./MseAqa";
+import { MseAqaFindManyArgs } from "./MseAqaFindManyArgs";
+import { MseAqaWhereUniqueInput } from "./MseAqaWhereUniqueInput";
+import { MseAqaUpdateInput } from "./MseAqaUpdateInput";
 
 export class MseAqaControllerBase {
   constructor(protected readonly service: MseAqaService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MseAqa })
-  async create(@common.Body() data: MseAqaCreateInput): Promise<MseAqa> {
-    return await this.service.create({
+  async createMseAqa(@common.Body() data: MseAqaCreateInput): Promise<MseAqa> {
+    return await this.service.createMseAqa({
       data: {
         ...data,
 
@@ -38,26 +37,27 @@ export class MseAqaControllerBase {
         },
       },
       select: {
+        reviewerId: true,
+        englishComments: true,
+        programmingComments: true,
+        foundationalComments: true,
+        maturityComments: true,
+        understandingComments: true,
+        experienceComments: true,
+        englishRating: true,
+        programmingRating: true,
+        foundationalRating: true,
+        maturityRating: true,
+        understandingRating: true,
+        experienceRating: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        englishComments: true,
-        englishRating: true,
-        experienceComments: true,
-        experienceRating: true,
-        foundationalComments: true,
-        foundationalRating: true,
         id: true,
-        maturityComments: true,
-        maturityRating: true,
-        programmingComments: true,
-        programmingRating: true,
-        reviewerId: true,
-        understandingComments: true,
-        understandingRating: true,
       },
     });
   }
@@ -65,31 +65,32 @@ export class MseAqaControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MseAqa] })
   @ApiNestedQuery(MseAqaFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MseAqa[]> {
+  async mseAqas(@common.Req() request: Request): Promise<MseAqa[]> {
     const args = plainToClass(MseAqaFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mseAqas({
       ...args,
       select: {
+        reviewerId: true,
+        englishComments: true,
+        programmingComments: true,
+        foundationalComments: true,
+        maturityComments: true,
+        understandingComments: true,
+        experienceComments: true,
+        englishRating: true,
+        programmingRating: true,
+        foundationalRating: true,
+        maturityRating: true,
+        understandingRating: true,
+        experienceRating: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        englishComments: true,
-        englishRating: true,
-        experienceComments: true,
-        experienceRating: true,
-        foundationalComments: true,
-        foundationalRating: true,
         id: true,
-        maturityComments: true,
-        maturityRating: true,
-        programmingComments: true,
-        programmingRating: true,
-        reviewerId: true,
-        understandingComments: true,
-        understandingRating: true,
       },
     });
   }
@@ -97,32 +98,33 @@ export class MseAqaControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MseAqa })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mseAqa(
     @common.Param() params: MseAqaWhereUniqueInput
   ): Promise<MseAqa | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mseAqa({
       where: params,
       select: {
+        reviewerId: true,
+        englishComments: true,
+        programmingComments: true,
+        foundationalComments: true,
+        maturityComments: true,
+        understandingComments: true,
+        experienceComments: true,
+        englishRating: true,
+        programmingRating: true,
+        foundationalRating: true,
+        maturityRating: true,
+        understandingRating: true,
+        experienceRating: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        englishComments: true,
-        englishRating: true,
-        experienceComments: true,
-        experienceRating: true,
-        foundationalComments: true,
-        foundationalRating: true,
         id: true,
-        maturityComments: true,
-        maturityRating: true,
-        programmingComments: true,
-        programmingRating: true,
-        reviewerId: true,
-        understandingComments: true,
-        understandingRating: true,
       },
     });
     if (result === null) {
@@ -136,12 +138,12 @@ export class MseAqaControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MseAqa })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMseAqa(
     @common.Param() params: MseAqaWhereUniqueInput,
     @common.Body() data: MseAqaUpdateInput
   ): Promise<MseAqa | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseAqa({
         where: params,
         data: {
           ...data,
@@ -151,26 +153,27 @@ export class MseAqaControllerBase {
           },
         },
         select: {
+          reviewerId: true,
+          englishComments: true,
+          programmingComments: true,
+          foundationalComments: true,
+          maturityComments: true,
+          understandingComments: true,
+          experienceComments: true,
+          englishRating: true,
+          programmingRating: true,
+          foundationalRating: true,
+          maturityRating: true,
+          understandingRating: true,
+          experienceRating: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          englishComments: true,
-          englishRating: true,
-          experienceComments: true,
-          experienceRating: true,
-          foundationalComments: true,
-          foundationalRating: true,
           id: true,
-          maturityComments: true,
-          maturityRating: true,
-          programmingComments: true,
-          programmingRating: true,
-          reviewerId: true,
-          understandingComments: true,
-          understandingRating: true,
         },
       });
     } catch (error) {
@@ -186,33 +189,34 @@ export class MseAqaControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MseAqa })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMseAqa(
     @common.Param() params: MseAqaWhereUniqueInput
   ): Promise<MseAqa | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMseAqa({
         where: params,
         select: {
+          reviewerId: true,
+          englishComments: true,
+          programmingComments: true,
+          foundationalComments: true,
+          maturityComments: true,
+          understandingComments: true,
+          experienceComments: true,
+          englishRating: true,
+          programmingRating: true,
+          foundationalRating: true,
+          maturityRating: true,
+          understandingRating: true,
+          experienceRating: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          englishComments: true,
-          englishRating: true,
-          experienceComments: true,
-          experienceRating: true,
-          foundationalComments: true,
-          foundationalRating: true,
           id: true,
-          maturityComments: true,
-          maturityRating: true,
-          programmingComments: true,
-          programmingRating: true,
-          reviewerId: true,
-          understandingComments: true,
-          understandingRating: true,
         },
       });
     } catch (error) {

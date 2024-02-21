@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAccesslogApplicationArgs } from "./CreateAccesslogApplicationArgs";
-import { UpdateAccesslogApplicationArgs } from "./UpdateAccesslogApplicationArgs";
-import { DeleteAccesslogApplicationArgs } from "./DeleteAccesslogApplicationArgs";
+import { AccesslogApplication } from "./AccesslogApplication";
 import { AccesslogApplicationCountArgs } from "./AccesslogApplicationCountArgs";
 import { AccesslogApplicationFindManyArgs } from "./AccesslogApplicationFindManyArgs";
 import { AccesslogApplicationFindUniqueArgs } from "./AccesslogApplicationFindUniqueArgs";
-import { AccesslogApplication } from "./AccesslogApplication";
+import { CreateAccesslogApplicationArgs } from "./CreateAccesslogApplicationArgs";
+import { UpdateAccesslogApplicationArgs } from "./UpdateAccesslogApplicationArgs";
+import { DeleteAccesslogApplicationArgs } from "./DeleteAccesslogApplicationArgs";
 import { AccesslogApplicationService } from "../accesslogApplication.service";
 @graphql.Resolver(() => AccesslogApplication)
 export class AccesslogApplicationResolverBase {
@@ -38,14 +38,14 @@ export class AccesslogApplicationResolverBase {
   async accesslogApplications(
     @graphql.Args() args: AccesslogApplicationFindManyArgs
   ): Promise<AccesslogApplication[]> {
-    return this.service.findMany(args);
+    return this.service.accesslogApplications(args);
   }
 
   @graphql.Query(() => AccesslogApplication, { nullable: true })
   async accesslogApplication(
     @graphql.Args() args: AccesslogApplicationFindUniqueArgs
   ): Promise<AccesslogApplication | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.accesslogApplication(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class AccesslogApplicationResolverBase {
   async createAccesslogApplication(
     @graphql.Args() args: CreateAccesslogApplicationArgs
   ): Promise<AccesslogApplication> {
-    return await this.service.create({
+    return await this.service.createAccesslogApplication({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class AccesslogApplicationResolverBase {
     @graphql.Args() args: UpdateAccesslogApplicationArgs
   ): Promise<AccesslogApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAccesslogApplication({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class AccesslogApplicationResolverBase {
     @graphql.Args() args: DeleteAccesslogApplicationArgs
   ): Promise<AccesslogApplication | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAccesslogApplication(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

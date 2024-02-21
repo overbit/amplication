@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewRiskFactorOtherService } from "../reviewRiskFactorOther.service";
 import { ReviewRiskFactorOtherCreateInput } from "./ReviewRiskFactorOtherCreateInput";
-import { ReviewRiskFactorOtherWhereInput } from "./ReviewRiskFactorOtherWhereInput";
-import { ReviewRiskFactorOtherWhereUniqueInput } from "./ReviewRiskFactorOtherWhereUniqueInput";
-import { ReviewRiskFactorOtherFindManyArgs } from "./ReviewRiskFactorOtherFindManyArgs";
-import { ReviewRiskFactorOtherUpdateInput } from "./ReviewRiskFactorOtherUpdateInput";
 import { ReviewRiskFactorOther } from "./ReviewRiskFactorOther";
+import { ReviewRiskFactorOtherFindManyArgs } from "./ReviewRiskFactorOtherFindManyArgs";
+import { ReviewRiskFactorOtherWhereUniqueInput } from "./ReviewRiskFactorOtherWhereUniqueInput";
+import { ReviewRiskFactorOtherUpdateInput } from "./ReviewRiskFactorOtherUpdateInput";
 
 export class ReviewRiskFactorOtherControllerBase {
   constructor(protected readonly service: ReviewRiskFactorOtherService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewRiskFactorOther })
-  async create(
+  async createReviewRiskFactorOther(
     @common.Body() data: ReviewRiskFactorOtherCreateInput
   ): Promise<ReviewRiskFactorOther> {
-    return await this.service.create({
+    return await this.service.createReviewRiskFactorOther({
       data: data,
       select: {
-        id: true,
         riskFactorOther: true,
+        id: true,
       },
     });
   }
@@ -43,15 +42,15 @@ export class ReviewRiskFactorOtherControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewRiskFactorOther] })
   @ApiNestedQuery(ReviewRiskFactorOtherFindManyArgs)
-  async findMany(
+  async reviewRiskFactorOthers(
     @common.Req() request: Request
   ): Promise<ReviewRiskFactorOther[]> {
     const args = plainToClass(ReviewRiskFactorOtherFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.reviewRiskFactorOthers({
       ...args,
       select: {
-        id: true,
         riskFactorOther: true,
+        id: true,
       },
     });
   }
@@ -59,14 +58,14 @@ export class ReviewRiskFactorOtherControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewRiskFactorOther })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewRiskFactorOther(
     @common.Param() params: ReviewRiskFactorOtherWhereUniqueInput
   ): Promise<ReviewRiskFactorOther | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewRiskFactorOther({
       where: params,
       select: {
-        id: true,
         riskFactorOther: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -80,17 +79,17 @@ export class ReviewRiskFactorOtherControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewRiskFactorOther })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewRiskFactorOther(
     @common.Param() params: ReviewRiskFactorOtherWhereUniqueInput,
     @common.Body() data: ReviewRiskFactorOtherUpdateInput
   ): Promise<ReviewRiskFactorOther | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewRiskFactorOther({
         where: params,
         data: data,
         select: {
-          id: true,
           riskFactorOther: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -106,15 +105,15 @@ export class ReviewRiskFactorOtherControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewRiskFactorOther })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewRiskFactorOther(
     @common.Param() params: ReviewRiskFactorOtherWhereUniqueInput
   ): Promise<ReviewRiskFactorOther | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewRiskFactorOther({
         where: params,
         select: {
-          id: true,
           riskFactorOther: true,
+          id: true,
         },
       });
     } catch (error) {

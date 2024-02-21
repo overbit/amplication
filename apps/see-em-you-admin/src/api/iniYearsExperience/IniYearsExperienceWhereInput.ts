@@ -1,1 +1,5 @@
-export type IniYearsExperienceWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type IniYearsExperienceWhereInput = {
+  id?: IntFilter;
+};

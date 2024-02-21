@@ -3,8 +3,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  NumberInput,
   TextInput,
+  NumberInput,
 } from "react-admin";
 
 export const PositiveFactorCreate = (
@@ -13,8 +13,8 @@ export const PositiveFactorCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Department Id" source="departmentId" />
         <TextInput label="Positive Factor" source="positiveFactor" />
+        <NumberInput step={1} label="Department Id" source="departmentId" />
         <NumberInput
           step={1}
           label="Positive Factor Id"

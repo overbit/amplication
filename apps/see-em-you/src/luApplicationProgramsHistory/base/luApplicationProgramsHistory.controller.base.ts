@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuApplicationProgramsHistoryService } from "../luApplicationProgramsHistory.service";
 import { LuApplicationProgramsHistoryCreateInput } from "./LuApplicationProgramsHistoryCreateInput";
-import { LuApplicationProgramsHistoryWhereInput } from "./LuApplicationProgramsHistoryWhereInput";
-import { LuApplicationProgramsHistoryWhereUniqueInput } from "./LuApplicationProgramsHistoryWhereUniqueInput";
-import { LuApplicationProgramsHistoryFindManyArgs } from "./LuApplicationProgramsHistoryFindManyArgs";
-import { LuApplicationProgramsHistoryUpdateInput } from "./LuApplicationProgramsHistoryUpdateInput";
 import { LuApplicationProgramsHistory } from "./LuApplicationProgramsHistory";
+import { LuApplicationProgramsHistoryFindManyArgs } from "./LuApplicationProgramsHistoryFindManyArgs";
+import { LuApplicationProgramsHistoryWhereUniqueInput } from "./LuApplicationProgramsHistoryWhereUniqueInput";
+import { LuApplicationProgramsHistoryUpdateInput } from "./LuApplicationProgramsHistoryUpdateInput";
 
 export class LuApplicationProgramsHistoryControllerBase {
   constructor(
@@ -30,19 +29,19 @@ export class LuApplicationProgramsHistoryControllerBase {
   ) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuApplicationProgramsHistory })
-  async create(
+  async createLuApplicationProgramsHistory(
     @common.Body() data: LuApplicationProgramsHistoryCreateInput
   ): Promise<LuApplicationProgramsHistory> {
-    return await this.service.create({
+    return await this.service.createLuApplicationProgramsHistory({
       data: data,
       select: {
-        applicationId: true,
-        choice: true,
-        createdDate: true,
-        deletedBy: true,
-        id: true,
         lapId: true,
+        applicationId: true,
         programId: true,
+        choice: true,
+        deletedBy: true,
+        createdDate: true,
+        id: true,
       },
     });
   }
@@ -50,23 +49,23 @@ export class LuApplicationProgramsHistoryControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuApplicationProgramsHistory] })
   @ApiNestedQuery(LuApplicationProgramsHistoryFindManyArgs)
-  async findMany(
+  async luApplicationProgramsHistories(
     @common.Req() request: Request
   ): Promise<LuApplicationProgramsHistory[]> {
     const args = plainToClass(
       LuApplicationProgramsHistoryFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.luApplicationProgramsHistories({
       ...args,
       select: {
-        applicationId: true,
-        choice: true,
-        createdDate: true,
-        deletedBy: true,
-        id: true,
         lapId: true,
+        applicationId: true,
         programId: true,
+        choice: true,
+        deletedBy: true,
+        createdDate: true,
+        id: true,
       },
     });
   }
@@ -74,19 +73,19 @@ export class LuApplicationProgramsHistoryControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationProgramsHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luApplicationProgramsHistory(
     @common.Param() params: LuApplicationProgramsHistoryWhereUniqueInput
   ): Promise<LuApplicationProgramsHistory | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luApplicationProgramsHistory({
       where: params,
       select: {
-        applicationId: true,
-        choice: true,
-        createdDate: true,
-        deletedBy: true,
-        id: true,
         lapId: true,
+        applicationId: true,
         programId: true,
+        choice: true,
+        deletedBy: true,
+        createdDate: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -100,22 +99,22 @@ export class LuApplicationProgramsHistoryControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationProgramsHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuApplicationProgramsHistory(
     @common.Param() params: LuApplicationProgramsHistoryWhereUniqueInput,
     @common.Body() data: LuApplicationProgramsHistoryUpdateInput
   ): Promise<LuApplicationProgramsHistory | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationProgramsHistory({
         where: params,
         data: data,
         select: {
-          applicationId: true,
-          choice: true,
-          createdDate: true,
-          deletedBy: true,
-          id: true,
           lapId: true,
+          applicationId: true,
           programId: true,
+          choice: true,
+          deletedBy: true,
+          createdDate: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -131,20 +130,20 @@ export class LuApplicationProgramsHistoryControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationProgramsHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuApplicationProgramsHistory(
     @common.Param() params: LuApplicationProgramsHistoryWhereUniqueInput
   ): Promise<LuApplicationProgramsHistory | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuApplicationProgramsHistory({
         where: params,
         select: {
-          applicationId: true,
-          choice: true,
-          createdDate: true,
-          deletedBy: true,
-          id: true,
           lapId: true,
+          applicationId: true,
           programId: true,
+          choice: true,
+          deletedBy: true,
+          createdDate: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -35,17 +35,6 @@ class IniSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  dataStructuresNumber?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   dataStructuresTitle?: string;
 
   @ApiProperty({
@@ -57,7 +46,18 @@ class IniSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  msitExperience?: string | null;
+  dataStructuresNumber?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  probabilityTitle?: string;
 
   @ApiProperty({
     required: false,
@@ -79,7 +79,29 @@ class IniSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  probabilityTitle?: string;
+  statisticsTitle?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  statisticsNumber?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  msitExperience?: string | null;
 
   @ApiProperty({
     required: false,
@@ -102,28 +124,6 @@ class IniSupportingCourseworkUpdateInput {
     nullable: true,
   })
   programmingDescription2?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  statisticsNumber?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  statisticsTitle?: string;
 }
 
 export { IniSupportingCourseworkUpdateInput as IniSupportingCourseworkUpdateInput };

@@ -1,14 +1,14 @@
 import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 
 export type PublicationCreateInput = {
-  application: ApplicationWhereUniqueInput;
-  author?: string | null;
-  citation?: string | null;
-  datafileId?: number | null;
-  forum?: string | null;
-  status?: string | null;
   title?: string | null;
+  author?: string | null;
+  forum?: string | null;
+  citation?: string | null;
+  url?: string | null;
+  status?: string | null;
   typeField?: string | null;
   typeOther?: string | null;
-  url?: string | null;
+  datafileId?: number | null;
+  application: ApplicationWhereUniqueInput;
 };

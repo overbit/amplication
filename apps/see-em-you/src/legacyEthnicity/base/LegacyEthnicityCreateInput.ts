@@ -11,18 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString } from "class-validator";
+import { IsString, IsInt } from "class-validator";
 
 @InputType()
 class LegacyEthnicityCreateInput {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  ethnicityId!: number;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -38,6 +30,14 @@ class LegacyEthnicityCreateInput {
   @IsInt()
   @Field(() => Number)
   sortorder!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  ethnicityId!: number;
 }
 
 export { LegacyEthnicityCreateInput as LegacyEthnicityCreateInput };

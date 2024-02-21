@@ -1,6 +1,6 @@
 export type Assistantship = {
-  applicationId: number;
-  granted: number;
   id: number;
+  applicationId: number;
   requested: number;
+  granted: number;
 };

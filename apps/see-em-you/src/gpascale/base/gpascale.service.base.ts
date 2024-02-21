@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Gpascale } from "@prisma/client";
+import { Prisma, Gpascale as PrismaGpascale } from "@prisma/client";
 
 export class GpascaleServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class GpascaleServiceBase {
     return this.prisma.gpascale.count(args);
   }
 
-  async findMany<T extends Prisma.GpascaleFindManyArgs>(
+  async gpascales<T extends Prisma.GpascaleFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.GpascaleFindManyArgs>
-  ): Promise<Gpascale[]> {
+  ): Promise<PrismaGpascale[]> {
     return this.prisma.gpascale.findMany(args);
   }
-  async findOne<T extends Prisma.GpascaleFindUniqueArgs>(
+  async gpascale<T extends Prisma.GpascaleFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.GpascaleFindUniqueArgs>
-  ): Promise<Gpascale | null> {
+  ): Promise<PrismaGpascale | null> {
     return this.prisma.gpascale.findUnique(args);
   }
-  async create<T extends Prisma.GpascaleCreateArgs>(
+  async createGpascale<T extends Prisma.GpascaleCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GpascaleCreateArgs>
-  ): Promise<Gpascale> {
+  ): Promise<PrismaGpascale> {
     return this.prisma.gpascale.create<T>(args);
   }
-  async update<T extends Prisma.GpascaleUpdateArgs>(
+  async updateGpascale<T extends Prisma.GpascaleUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GpascaleUpdateArgs>
-  ): Promise<Gpascale> {
+  ): Promise<PrismaGpascale> {
     return this.prisma.gpascale.update<T>(args);
   }
-  async delete<T extends Prisma.GpascaleDeleteArgs>(
+  async deleteGpascale<T extends Prisma.GpascaleDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.GpascaleDeleteArgs>
-  ): Promise<Gpascale> {
+  ): Promise<PrismaGpascale> {
     return this.prisma.gpascale.delete(args);
   }
 }

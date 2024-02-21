@@ -18,32 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciSlateToeflService } from "../mhciSlateToefl.service";
 import { MhciSlateToeflCreateInput } from "./MhciSlateToeflCreateInput";
-import { MhciSlateToeflWhereInput } from "./MhciSlateToeflWhereInput";
-import { MhciSlateToeflWhereUniqueInput } from "./MhciSlateToeflWhereUniqueInput";
-import { MhciSlateToeflFindManyArgs } from "./MhciSlateToeflFindManyArgs";
-import { MhciSlateToeflUpdateInput } from "./MhciSlateToeflUpdateInput";
 import { MhciSlateToefl } from "./MhciSlateToefl";
+import { MhciSlateToeflFindManyArgs } from "./MhciSlateToeflFindManyArgs";
+import { MhciSlateToeflWhereUniqueInput } from "./MhciSlateToeflWhereUniqueInput";
+import { MhciSlateToeflUpdateInput } from "./MhciSlateToeflUpdateInput";
 
 export class MhciSlateToeflControllerBase {
   constructor(protected readonly service: MhciSlateToeflService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciSlateToefl })
-  async create(
+  async createMhciSlateToefl(
     @common.Body() data: MhciSlateToeflCreateInput
   ): Promise<MhciSlateToefl> {
-    return await this.service.create({
+    return await this.service.createMhciSlateToefl({
       data: data,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
   }
@@ -51,21 +50,23 @@ export class MhciSlateToeflControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciSlateToefl] })
   @ApiNestedQuery(MhciSlateToeflFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MhciSlateToefl[]> {
+  async mhciSlateToefls(
+    @common.Req() request: Request
+  ): Promise<MhciSlateToefl[]> {
     const args = plainToClass(MhciSlateToeflFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciSlateToefls({
       ...args,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
   }
@@ -73,22 +74,22 @@ export class MhciSlateToeflControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciSlateToefl(
     @common.Param() params: MhciSlateToeflWhereUniqueInput
   ): Promise<MhciSlateToefl | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciSlateToefl({
       where: params,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -102,25 +103,25 @@ export class MhciSlateToeflControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciSlateToefl(
     @common.Param() params: MhciSlateToeflWhereUniqueInput,
     @common.Body() data: MhciSlateToeflUpdateInput
   ): Promise<MhciSlateToefl | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciSlateToefl({
         where: params,
         data: data,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          toeflTotal: true,
           toeflListening: true,
           toeflReading: true,
-          toeflSpeaking: true,
           toeflStructureWrittenExpression: true,
-          toeflTotal: true,
+          toeflSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -136,23 +137,23 @@ export class MhciSlateToeflControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciSlateToefl(
     @common.Param() params: MhciSlateToeflWhereUniqueInput
   ): Promise<MhciSlateToefl | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciSlateToefl({
         where: params,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          toeflTotal: true,
           toeflListening: true,
           toeflReading: true,
-          toeflSpeaking: true,
           toeflStructureWrittenExpression: true,
-          toeflTotal: true,
+          toeflSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {

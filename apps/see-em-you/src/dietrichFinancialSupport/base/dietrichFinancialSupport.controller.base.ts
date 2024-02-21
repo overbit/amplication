@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DietrichFinancialSupportService } from "../dietrichFinancialSupport.service";
 import { DietrichFinancialSupportCreateInput } from "./DietrichFinancialSupportCreateInput";
-import { DietrichFinancialSupportWhereInput } from "./DietrichFinancialSupportWhereInput";
-import { DietrichFinancialSupportWhereUniqueInput } from "./DietrichFinancialSupportWhereUniqueInput";
-import { DietrichFinancialSupportFindManyArgs } from "./DietrichFinancialSupportFindManyArgs";
-import { DietrichFinancialSupportUpdateInput } from "./DietrichFinancialSupportUpdateInput";
 import { DietrichFinancialSupport } from "./DietrichFinancialSupport";
+import { DietrichFinancialSupportFindManyArgs } from "./DietrichFinancialSupportFindManyArgs";
+import { DietrichFinancialSupportWhereUniqueInput } from "./DietrichFinancialSupportWhereUniqueInput";
+import { DietrichFinancialSupportUpdateInput } from "./DietrichFinancialSupportUpdateInput";
 
 export class DietrichFinancialSupportControllerBase {
   constructor(protected readonly service: DietrichFinancialSupportService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DietrichFinancialSupport })
-  async create(
+  async createDietrichFinancialSupport(
     @common.Body() data: DietrichFinancialSupportCreateInput
   ): Promise<DietrichFinancialSupport> {
-    return await this.service.create({
+    return await this.service.createDietrichFinancialSupport({
       data: data,
       select: {
         applicationId: true,
-        id: true,
-        interestedB2Training: true,
         qualifiedAssistance: true,
         receivedLoans: true,
         receivedScholarships: true,
         supportSources: true,
+        interestedB2Training: true,
+        id: true,
       },
     });
   }
@@ -48,23 +47,23 @@ export class DietrichFinancialSupportControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DietrichFinancialSupport] })
   @ApiNestedQuery(DietrichFinancialSupportFindManyArgs)
-  async findMany(
+  async dietrichFinancialSupports(
     @common.Req() request: Request
   ): Promise<DietrichFinancialSupport[]> {
     const args = plainToClass(
       DietrichFinancialSupportFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.dietrichFinancialSupports({
       ...args,
       select: {
         applicationId: true,
-        id: true,
-        interestedB2Training: true,
         qualifiedAssistance: true,
         receivedLoans: true,
         receivedScholarships: true,
         supportSources: true,
+        interestedB2Training: true,
+        id: true,
       },
     });
   }
@@ -72,19 +71,19 @@ export class DietrichFinancialSupportControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DietrichFinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async dietrichFinancialSupport(
     @common.Param() params: DietrichFinancialSupportWhereUniqueInput
   ): Promise<DietrichFinancialSupport | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.dietrichFinancialSupport({
       where: params,
       select: {
         applicationId: true,
-        id: true,
-        interestedB2Training: true,
         qualifiedAssistance: true,
         receivedLoans: true,
         receivedScholarships: true,
         supportSources: true,
+        interestedB2Training: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -98,22 +97,22 @@ export class DietrichFinancialSupportControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DietrichFinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDietrichFinancialSupport(
     @common.Param() params: DietrichFinancialSupportWhereUniqueInput,
     @common.Body() data: DietrichFinancialSupportUpdateInput
   ): Promise<DietrichFinancialSupport | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDietrichFinancialSupport({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          id: true,
-          interestedB2Training: true,
           qualifiedAssistance: true,
           receivedLoans: true,
           receivedScholarships: true,
           supportSources: true,
+          interestedB2Training: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -129,20 +128,20 @@ export class DietrichFinancialSupportControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DietrichFinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDietrichFinancialSupport(
     @common.Param() params: DietrichFinancialSupportWhereUniqueInput
   ): Promise<DietrichFinancialSupport | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDietrichFinancialSupport({
         where: params,
         select: {
           applicationId: true,
-          id: true,
-          interestedB2Training: true,
           qualifiedAssistance: true,
           receivedLoans: true,
           receivedScholarships: true,
           supportSources: true,
+          interestedB2Training: true,
+          id: true,
         },
       });
     } catch (error) {

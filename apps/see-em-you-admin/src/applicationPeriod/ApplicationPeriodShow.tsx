@@ -6,9 +6,9 @@ export const ApplicationPeriodShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Department Id" source="departmentId" />
+        <TextField label="Start Date" source="startDate" />
         <TextField label="End Date" source="endDate" />
         <TextField label="Id" source="id" />
-        <TextField label="Start Date" source="startDate" />
       </SimpleShowLayout>
     </Show>
   );

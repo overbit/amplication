@@ -39,17 +39,6 @@ class DietrichSharingOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   sds?: SortOrder;
 
   @ApiProperty({
@@ -62,6 +51,17 @@ class DietrichSharingOrderByInput {
     nullable: true,
   })
   tepper?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { DietrichSharingOrderByInput as DietrichSharingOrderByInput };

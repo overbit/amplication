@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { AaDepartmentListRelationFilter } from "../../aaDepartment/base/AaDepartmentListRelationFilter";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class DepartmentWhereInput {
@@ -28,6 +29,17 @@ class DepartmentWhereInput {
     nullable: true,
   })
   aaDepartment?: AaDepartmentListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { DepartmentWhereInput as DepartmentWhereInput };

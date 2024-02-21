@@ -18,46 +18,46 @@ import { RissFundingService } from "../rissFunding.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  directFunding: "true",
-  externalAmount: "exampleExternalAmount",
   externalFunding: "true",
   externalSource: "exampleExternalSource",
-  id: 42,
+  externalAmount: "exampleExternalAmount",
   reuScholarship: "true",
+  directFunding: "true",
+  id: 42,
 };
 const CREATE_RESULT = {
-  directFunding: "true",
-  externalAmount: "exampleExternalAmount",
   externalFunding: "true",
   externalSource: "exampleExternalSource",
-  id: 42,
+  externalAmount: "exampleExternalAmount",
   reuScholarship: "true",
+  directFunding: "true",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    directFunding: "true",
-    externalAmount: "exampleExternalAmount",
     externalFunding: "true",
     externalSource: "exampleExternalSource",
-    id: 42,
+    externalAmount: "exampleExternalAmount",
     reuScholarship: "true",
+    directFunding: "true",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  directFunding: "true",
-  externalAmount: "exampleExternalAmount",
   externalFunding: "true",
   externalSource: "exampleExternalSource",
-  id: 42,
+  externalAmount: "exampleExternalAmount",
   reuScholarship: "true",
+  directFunding: "true",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createRissFunding() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  rissFundings: () => FIND_MANY_RESULT,
+  rissFunding: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

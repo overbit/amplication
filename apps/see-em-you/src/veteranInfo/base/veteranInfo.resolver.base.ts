@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateVeteranInfoArgs } from "./CreateVeteranInfoArgs";
-import { UpdateVeteranInfoArgs } from "./UpdateVeteranInfoArgs";
-import { DeleteVeteranInfoArgs } from "./DeleteVeteranInfoArgs";
+import { VeteranInfo } from "./VeteranInfo";
 import { VeteranInfoCountArgs } from "./VeteranInfoCountArgs";
 import { VeteranInfoFindManyArgs } from "./VeteranInfoFindManyArgs";
 import { VeteranInfoFindUniqueArgs } from "./VeteranInfoFindUniqueArgs";
-import { VeteranInfo } from "./VeteranInfo";
+import { CreateVeteranInfoArgs } from "./CreateVeteranInfoArgs";
+import { UpdateVeteranInfoArgs } from "./UpdateVeteranInfoArgs";
+import { DeleteVeteranInfoArgs } from "./DeleteVeteranInfoArgs";
 import { VeteranInfoService } from "../veteranInfo.service";
 @graphql.Resolver(() => VeteranInfo)
 export class VeteranInfoResolverBase {
@@ -38,14 +38,14 @@ export class VeteranInfoResolverBase {
   async veteranInfos(
     @graphql.Args() args: VeteranInfoFindManyArgs
   ): Promise<VeteranInfo[]> {
-    return this.service.findMany(args);
+    return this.service.veteranInfos(args);
   }
 
   @graphql.Query(() => VeteranInfo, { nullable: true })
   async veteranInfo(
     @graphql.Args() args: VeteranInfoFindUniqueArgs
   ): Promise<VeteranInfo | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.veteranInfo(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class VeteranInfoResolverBase {
   async createVeteranInfo(
     @graphql.Args() args: CreateVeteranInfoArgs
   ): Promise<VeteranInfo> {
-    return await this.service.create({
+    return await this.service.createVeteranInfo({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class VeteranInfoResolverBase {
     @graphql.Args() args: UpdateVeteranInfoArgs
   ): Promise<VeteranInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVeteranInfo({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class VeteranInfoResolverBase {
     @graphql.Args() args: DeleteVeteranInfoArgs
   ): Promise<VeteranInfo | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteVeteranInfo(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

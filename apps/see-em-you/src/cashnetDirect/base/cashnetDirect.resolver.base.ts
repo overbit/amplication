@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCashnetDirectArgs } from "./CreateCashnetDirectArgs";
-import { UpdateCashnetDirectArgs } from "./UpdateCashnetDirectArgs";
-import { DeleteCashnetDirectArgs } from "./DeleteCashnetDirectArgs";
+import { CashnetDirect } from "./CashnetDirect";
 import { CashnetDirectCountArgs } from "./CashnetDirectCountArgs";
 import { CashnetDirectFindManyArgs } from "./CashnetDirectFindManyArgs";
 import { CashnetDirectFindUniqueArgs } from "./CashnetDirectFindUniqueArgs";
-import { CashnetDirect } from "./CashnetDirect";
+import { CreateCashnetDirectArgs } from "./CreateCashnetDirectArgs";
+import { UpdateCashnetDirectArgs } from "./UpdateCashnetDirectArgs";
+import { DeleteCashnetDirectArgs } from "./DeleteCashnetDirectArgs";
 import { CashnetDirectService } from "../cashnetDirect.service";
 @graphql.Resolver(() => CashnetDirect)
 export class CashnetDirectResolverBase {
@@ -38,14 +38,14 @@ export class CashnetDirectResolverBase {
   async cashnetDirects(
     @graphql.Args() args: CashnetDirectFindManyArgs
   ): Promise<CashnetDirect[]> {
-    return this.service.findMany(args);
+    return this.service.cashnetDirects(args);
   }
 
   @graphql.Query(() => CashnetDirect, { nullable: true })
   async cashnetDirect(
     @graphql.Args() args: CashnetDirectFindUniqueArgs
   ): Promise<CashnetDirect | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.cashnetDirect(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class CashnetDirectResolverBase {
   async createCashnetDirect(
     @graphql.Args() args: CreateCashnetDirectArgs
   ): Promise<CashnetDirect> {
-    return await this.service.create({
+    return await this.service.createCashnetDirect({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class CashnetDirectResolverBase {
     @graphql.Args() args: UpdateCashnetDirectArgs
   ): Promise<CashnetDirect | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCashnetDirect({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class CashnetDirectResolverBase {
     @graphql.Args() args: DeleteCashnetDirectArgs
   ): Promise<CashnetDirect | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCashnetDirect(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

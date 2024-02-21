@@ -33,6 +33,7 @@ import { SpecialConsiderationListRelationFilter } from "../specialConsideration/
 import { StudentDecisionListRelationFilter } from "../studentDecision/StudentDecisionListRelationFilter";
 import { StudentDecisionHistoryListRelationFilter } from "../studentDecisionHistory/StudentDecisionHistoryListRelationFilter";
 import { TagMemberListRelationFilter } from "../tagMember/TagMemberListRelationFilter";
+import { IntFilter } from "../../util/IntFilter";
 
 export type ApplicationWhereInput = {
   acoPal?: AcoPalWhereUniqueInput;
@@ -70,4 +71,5 @@ export type ApplicationWhereInput = {
   studentDecision?: StudentDecisionListRelationFilter;
   studentDecisionHistory?: StudentDecisionHistoryListRelationFilter;
   tagMembers?: TagMemberListRelationFilter;
+  id?: IntFilter;
 };

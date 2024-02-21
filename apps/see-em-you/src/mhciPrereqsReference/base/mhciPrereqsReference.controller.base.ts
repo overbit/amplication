@@ -18,36 +18,35 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqsReferenceService } from "../mhciPrereqsReference.service";
 import { MhciPrereqsReferenceCreateInput } from "./MhciPrereqsReferenceCreateInput";
-import { MhciPrereqsReferenceWhereInput } from "./MhciPrereqsReferenceWhereInput";
-import { MhciPrereqsReferenceWhereUniqueInput } from "./MhciPrereqsReferenceWhereUniqueInput";
-import { MhciPrereqsReferenceFindManyArgs } from "./MhciPrereqsReferenceFindManyArgs";
-import { MhciPrereqsReferenceUpdateInput } from "./MhciPrereqsReferenceUpdateInput";
 import { MhciPrereqsReference } from "./MhciPrereqsReference";
+import { MhciPrereqsReferenceFindManyArgs } from "./MhciPrereqsReferenceFindManyArgs";
+import { MhciPrereqsReferenceWhereUniqueInput } from "./MhciPrereqsReferenceWhereUniqueInput";
+import { MhciPrereqsReferenceUpdateInput } from "./MhciPrereqsReferenceUpdateInput";
 
 export class MhciPrereqsReferenceControllerBase {
   constructor(protected readonly service: MhciPrereqsReferenceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereqsReference })
-  async create(
+  async createMhciPrereqsReference(
     @common.Body() data: MhciPrereqsReferenceCreateInput
   ): Promise<MhciPrereqsReference> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsReference({
       data: data,
       select: {
-        anovaComment: true,
-        anova_knowledge: true,
         applicationId: true,
+        refUserId: true,
         content: true,
         datafileId: true,
-        id: true,
+        submitted: true,
+        reminderSentCount: true,
         lastReminderSent: true,
+        anova_knowledge: true,
+        anovaComment: true,
+        regression_knowledge: true,
+        regressionComment: true,
         periodId: true,
         programId: true,
-        refUserId: true,
-        regressionComment: true,
-        regression_knowledge: true,
-        reminderSentCount: true,
-        submitted: true,
+        id: true,
       },
     });
   }
@@ -55,27 +54,27 @@ export class MhciPrereqsReferenceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereqsReference] })
   @ApiNestedQuery(MhciPrereqsReferenceFindManyArgs)
-  async findMany(
+  async mhciPrereqsReferences(
     @common.Req() request: Request
   ): Promise<MhciPrereqsReference[]> {
     const args = plainToClass(MhciPrereqsReferenceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciPrereqsReferences({
       ...args,
       select: {
-        anovaComment: true,
-        anova_knowledge: true,
         applicationId: true,
+        refUserId: true,
         content: true,
         datafileId: true,
-        id: true,
+        submitted: true,
+        reminderSentCount: true,
         lastReminderSent: true,
+        anova_knowledge: true,
+        anovaComment: true,
+        regression_knowledge: true,
+        regressionComment: true,
         periodId: true,
         programId: true,
-        refUserId: true,
-        regressionComment: true,
-        regression_knowledge: true,
-        reminderSentCount: true,
-        submitted: true,
+        id: true,
       },
     });
   }
@@ -83,26 +82,26 @@ export class MhciPrereqsReferenceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsReference })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereqsReference(
     @common.Param() params: MhciPrereqsReferenceWhereUniqueInput
   ): Promise<MhciPrereqsReference | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereqsReference({
       where: params,
       select: {
-        anovaComment: true,
-        anova_knowledge: true,
         applicationId: true,
+        refUserId: true,
         content: true,
         datafileId: true,
-        id: true,
+        submitted: true,
+        reminderSentCount: true,
         lastReminderSent: true,
+        anova_knowledge: true,
+        anovaComment: true,
+        regression_knowledge: true,
+        regressionComment: true,
         periodId: true,
         programId: true,
-        refUserId: true,
-        regressionComment: true,
-        regression_knowledge: true,
-        reminderSentCount: true,
-        submitted: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -116,29 +115,29 @@ export class MhciPrereqsReferenceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsReference })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereqsReference(
     @common.Param() params: MhciPrereqsReferenceWhereUniqueInput,
     @common.Body() data: MhciPrereqsReferenceUpdateInput
   ): Promise<MhciPrereqsReference | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsReference({
         where: params,
         data: data,
         select: {
-          anovaComment: true,
-          anova_knowledge: true,
           applicationId: true,
+          refUserId: true,
           content: true,
           datafileId: true,
-          id: true,
+          submitted: true,
+          reminderSentCount: true,
           lastReminderSent: true,
+          anova_knowledge: true,
+          anovaComment: true,
+          regression_knowledge: true,
+          regressionComment: true,
           periodId: true,
           programId: true,
-          refUserId: true,
-          regressionComment: true,
-          regression_knowledge: true,
-          reminderSentCount: true,
-          submitted: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -154,27 +153,27 @@ export class MhciPrereqsReferenceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsReference })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereqsReference(
     @common.Param() params: MhciPrereqsReferenceWhereUniqueInput
   ): Promise<MhciPrereqsReference | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereqsReference({
         where: params,
         select: {
-          anovaComment: true,
-          anova_knowledge: true,
           applicationId: true,
+          refUserId: true,
           content: true,
           datafileId: true,
-          id: true,
+          submitted: true,
+          reminderSentCount: true,
           lastReminderSent: true,
+          anova_knowledge: true,
+          anovaComment: true,
+          regression_knowledge: true,
+          regressionComment: true,
           periodId: true,
           programId: true,
-          refUserId: true,
-          regressionComment: true,
-          regression_knowledge: true,
-          reminderSentCount: true,
-          submitted: true,
+          id: true,
         },
       });
     } catch (error) {

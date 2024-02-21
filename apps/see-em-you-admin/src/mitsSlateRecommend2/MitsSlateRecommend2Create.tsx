@@ -7,22 +7,22 @@ export const MitsSlateRecommend2Create = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="First" source="first" />
-        <TextInput label="Last" source="last" />
-        <TextInput label="Middle" source="middle" />
         <TextInput label="Prefix" source="prefix" />
-        <TextInput label="Reference2 Email" source="reference2Email" />
+        <TextInput label="First" source="first" />
+        <TextInput label="Middle" source="middle" />
+        <TextInput label="Last" source="last" />
+        <TextInput label="Reference2 Type" source="reference2Type" />
+        <TextInput label="Reference2 Submitted" source="reference2Submitted" />
         <TextInput label="Reference2 First" source="reference2First" />
-        <TextInput label="Reference2 Industry" source="reference2Industry" />
         <TextInput label="Reference2 Last" source="reference2Last" />
+        <TextInput label="Reference2 Industry" source="reference2Industry" />
         <TextInput
           label="Reference2 Organization"
           source="reference2Organization"
         />
-        <TextInput label="Reference2 Phone" source="reference2Phone" />
-        <TextInput label="Reference2 Submitted" source="reference2Submitted" />
         <TextInput label="Reference2 Title" source="reference2Title" />
-        <TextInput label="Reference2 Type" source="reference2Type" />
+        <TextInput label="Reference2 Email" source="reference2Email" />
+        <TextInput label="Reference2 Phone" source="reference2Phone" />
         <TextInput
           label="Reference Num2 Isrms Recommender Score1"
           source="referenceNum2IsrmsRecommenderScore1"

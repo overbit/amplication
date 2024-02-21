@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateReview } from "@prisma/client";
+import { Prisma, SlateReview as PrismaSlateReview } from "@prisma/client";
 
 export class SlateReviewServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateReviewServiceBase {
     return this.prisma.slateReview.count(args);
   }
 
-  async findMany<T extends Prisma.SlateReviewFindManyArgs>(
+  async slateReviews<T extends Prisma.SlateReviewFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateReviewFindManyArgs>
-  ): Promise<SlateReview[]> {
+  ): Promise<PrismaSlateReview[]> {
     return this.prisma.slateReview.findMany(args);
   }
-  async findOne<T extends Prisma.SlateReviewFindUniqueArgs>(
+  async slateReview<T extends Prisma.SlateReviewFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateReviewFindUniqueArgs>
-  ): Promise<SlateReview | null> {
+  ): Promise<PrismaSlateReview | null> {
     return this.prisma.slateReview.findUnique(args);
   }
-  async create<T extends Prisma.SlateReviewCreateArgs>(
+  async createSlateReview<T extends Prisma.SlateReviewCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateReviewCreateArgs>
-  ): Promise<SlateReview> {
+  ): Promise<PrismaSlateReview> {
     return this.prisma.slateReview.create<T>(args);
   }
-  async update<T extends Prisma.SlateReviewUpdateArgs>(
+  async updateSlateReview<T extends Prisma.SlateReviewUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateReviewUpdateArgs>
-  ): Promise<SlateReview> {
+  ): Promise<PrismaSlateReview> {
     return this.prisma.slateReview.update<T>(args);
   }
-  async delete<T extends Prisma.SlateReviewDeleteArgs>(
+  async deleteSlateReview<T extends Prisma.SlateReviewDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateReviewDeleteArgs>
-  ): Promise<SlateReview> {
+  ): Promise<PrismaSlateReview> {
     return this.prisma.slateReview.delete(args);
   }
 }

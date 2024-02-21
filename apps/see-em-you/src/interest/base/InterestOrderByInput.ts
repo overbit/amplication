@@ -28,7 +28,7 @@ class InterestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  name?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class InterestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  name?: SortOrder;
+  id?: SortOrder;
 }
 
 export { InterestOrderByInput as InterestOrderByInput };

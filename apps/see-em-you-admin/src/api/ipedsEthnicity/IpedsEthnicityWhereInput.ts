@@ -1,1 +1,5 @@
-export type IpedsEthnicityWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type IpedsEthnicityWhereInput = {
+  id?: IntFilter;
+};

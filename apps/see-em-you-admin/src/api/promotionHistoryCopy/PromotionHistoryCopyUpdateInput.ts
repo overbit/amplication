@@ -1,7 +1,7 @@
 export type PromotionHistoryCopyUpdateInput = {
   applicationId?: number;
   programId?: number;
-  promotion_method?: "default" | "voting" | "promotion" | "demotion";
   round?: number;
+  promotion_method?: "default" | "voting" | "promotion" | "demotion";
   usersId?: number | null;
 };

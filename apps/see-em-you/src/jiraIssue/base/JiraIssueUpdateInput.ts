@@ -22,17 +22,6 @@ class JiraIssueUpdateInput {
   })
   @IsInt()
   @IsOptional()
-  @Field(() => GraphQLBigInt, {
-    nullable: true,
-  })
-  jiraId?: bigint;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
   @Field(() => Number, {
     nullable: true,
   })
@@ -48,6 +37,17 @@ class JiraIssueUpdateInput {
     nullable: true,
   })
   jiraProject?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => GraphQLBigInt, {
+    nullable: true,
+  })
+  jiraId?: bigint;
 }
 
 export { JiraIssueUpdateInput as JiraIssueUpdateInput };

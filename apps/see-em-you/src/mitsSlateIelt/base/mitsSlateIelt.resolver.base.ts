@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMitsSlateIeltArgs } from "./CreateMitsSlateIeltArgs";
-import { UpdateMitsSlateIeltArgs } from "./UpdateMitsSlateIeltArgs";
-import { DeleteMitsSlateIeltArgs } from "./DeleteMitsSlateIeltArgs";
+import { MitsSlateIelt } from "./MitsSlateIelt";
 import { MitsSlateIeltCountArgs } from "./MitsSlateIeltCountArgs";
 import { MitsSlateIeltFindManyArgs } from "./MitsSlateIeltFindManyArgs";
 import { MitsSlateIeltFindUniqueArgs } from "./MitsSlateIeltFindUniqueArgs";
-import { MitsSlateIelt } from "./MitsSlateIelt";
+import { CreateMitsSlateIeltArgs } from "./CreateMitsSlateIeltArgs";
+import { UpdateMitsSlateIeltArgs } from "./UpdateMitsSlateIeltArgs";
+import { DeleteMitsSlateIeltArgs } from "./DeleteMitsSlateIeltArgs";
 import { MitsSlateIeltService } from "../mitsSlateIelt.service";
 @graphql.Resolver(() => MitsSlateIelt)
 export class MitsSlateIeltResolverBase {
@@ -38,14 +38,14 @@ export class MitsSlateIeltResolverBase {
   async mitsSlateIelts(
     @graphql.Args() args: MitsSlateIeltFindManyArgs
   ): Promise<MitsSlateIelt[]> {
-    return this.service.findMany(args);
+    return this.service.mitsSlateIelts(args);
   }
 
   @graphql.Query(() => MitsSlateIelt, { nullable: true })
   async mitsSlateIelt(
     @graphql.Args() args: MitsSlateIeltFindUniqueArgs
   ): Promise<MitsSlateIelt | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mitsSlateIelt(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MitsSlateIeltResolverBase {
   async createMitsSlateIelt(
     @graphql.Args() args: CreateMitsSlateIeltArgs
   ): Promise<MitsSlateIelt> {
-    return await this.service.create({
+    return await this.service.createMitsSlateIelt({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MitsSlateIeltResolverBase {
     @graphql.Args() args: UpdateMitsSlateIeltArgs
   ): Promise<MitsSlateIelt | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateIelt({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MitsSlateIeltResolverBase {
     @graphql.Args() args: DeleteMitsSlateIeltArgs
   ): Promise<MitsSlateIelt | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMitsSlateIelt(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

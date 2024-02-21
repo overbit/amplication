@@ -22,7 +22,7 @@ class VoucherApplication {
   })
   @IsInt()
   @Field(() => Number)
-  appId!: number;
+  voucherId!: number;
 
   @ApiProperty({
     required: true,
@@ -38,7 +38,7 @@ class VoucherApplication {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  appId!: number;
 
   @ApiProperty({
     required: true,
@@ -46,7 +46,7 @@ class VoucherApplication {
   })
   @IsInt()
   @Field(() => Number)
-  voucherId!: number;
+  id!: number;
 }
 
 export { VoucherApplication as VoucherApplication };

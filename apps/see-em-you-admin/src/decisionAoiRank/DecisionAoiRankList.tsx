@@ -12,14 +12,14 @@ export const DecisionAoiRankList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Decision" source="decision" />
         <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Interest Id" source="interestId" />
-        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
         <TextField label="Period Id" source="periodId" />
-        <TextField label="Ranking" source="ranking" />
+        <TextField label="Interest Id" source="interestId" />
+        <TextField label="Decision" source="decision" />
         <DateField source="timestamp" label="Timestamp" />
+        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Ranking" source="ranking" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

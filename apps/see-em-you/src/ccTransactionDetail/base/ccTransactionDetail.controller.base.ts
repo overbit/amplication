@@ -18,33 +18,32 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CcTransactionDetailService } from "../ccTransactionDetail.service";
 import { CcTransactionDetailCreateInput } from "./CcTransactionDetailCreateInput";
-import { CcTransactionDetailWhereInput } from "./CcTransactionDetailWhereInput";
-import { CcTransactionDetailWhereUniqueInput } from "./CcTransactionDetailWhereUniqueInput";
-import { CcTransactionDetailFindManyArgs } from "./CcTransactionDetailFindManyArgs";
-import { CcTransactionDetailUpdateInput } from "./CcTransactionDetailUpdateInput";
 import { CcTransactionDetail } from "./CcTransactionDetail";
+import { CcTransactionDetailFindManyArgs } from "./CcTransactionDetailFindManyArgs";
+import { CcTransactionDetailWhereUniqueInput } from "./CcTransactionDetailWhereUniqueInput";
+import { CcTransactionDetailUpdateInput } from "./CcTransactionDetailUpdateInput";
 
 export class CcTransactionDetailControllerBase {
   constructor(protected readonly service: CcTransactionDetailService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CcTransactionDetail })
-  async create(
+  async createCcTransactionDetail(
     @common.Body() data: CcTransactionDetailCreateInput
   ): Promise<CcTransactionDetail> {
-    return await this.service.create({
+    return await this.service.createCcTransactionDetail({
       data: data,
       select: {
         ccId: true,
         date: true,
-        id: true,
-        itemGlString: true,
-        itemName: true,
-        itemPriceEach: true,
-        itemQty: true,
-        paymentId: true,
-        reportDate: true,
         time: true,
+        reportDate: true,
+        paymentId: true,
         transactionType: true,
+        itemName: true,
+        itemQty: true,
+        itemPriceEach: true,
+        itemGlString: true,
+        id: true,
       },
     });
   }
@@ -52,24 +51,24 @@ export class CcTransactionDetailControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CcTransactionDetail] })
   @ApiNestedQuery(CcTransactionDetailFindManyArgs)
-  async findMany(
+  async ccTransactionDetails(
     @common.Req() request: Request
   ): Promise<CcTransactionDetail[]> {
     const args = plainToClass(CcTransactionDetailFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ccTransactionDetails({
       ...args,
       select: {
         ccId: true,
         date: true,
-        id: true,
-        itemGlString: true,
-        itemName: true,
-        itemPriceEach: true,
-        itemQty: true,
-        paymentId: true,
-        reportDate: true,
         time: true,
+        reportDate: true,
+        paymentId: true,
         transactionType: true,
+        itemName: true,
+        itemQty: true,
+        itemPriceEach: true,
+        itemGlString: true,
+        id: true,
       },
     });
   }
@@ -77,23 +76,23 @@ export class CcTransactionDetailControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionDetail })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ccTransactionDetail(
     @common.Param() params: CcTransactionDetailWhereUniqueInput
   ): Promise<CcTransactionDetail | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ccTransactionDetail({
       where: params,
       select: {
         ccId: true,
         date: true,
-        id: true,
-        itemGlString: true,
-        itemName: true,
-        itemPriceEach: true,
-        itemQty: true,
-        paymentId: true,
-        reportDate: true,
         time: true,
+        reportDate: true,
+        paymentId: true,
         transactionType: true,
+        itemName: true,
+        itemQty: true,
+        itemPriceEach: true,
+        itemGlString: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -107,26 +106,26 @@ export class CcTransactionDetailControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionDetail })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCcTransactionDetail(
     @common.Param() params: CcTransactionDetailWhereUniqueInput,
     @common.Body() data: CcTransactionDetailUpdateInput
   ): Promise<CcTransactionDetail | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcTransactionDetail({
         where: params,
         data: data,
         select: {
           ccId: true,
           date: true,
-          id: true,
-          itemGlString: true,
-          itemName: true,
-          itemPriceEach: true,
-          itemQty: true,
-          paymentId: true,
-          reportDate: true,
           time: true,
+          reportDate: true,
+          paymentId: true,
           transactionType: true,
+          itemName: true,
+          itemQty: true,
+          itemPriceEach: true,
+          itemGlString: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -142,24 +141,24 @@ export class CcTransactionDetailControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionDetail })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCcTransactionDetail(
     @common.Param() params: CcTransactionDetailWhereUniqueInput
   ): Promise<CcTransactionDetail | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCcTransactionDetail({
         where: params,
         select: {
           ccId: true,
           date: true,
-          id: true,
-          itemGlString: true,
-          itemName: true,
-          itemPriceEach: true,
-          itemQty: true,
-          paymentId: true,
-          reportDate: true,
           time: true,
+          reportDate: true,
+          paymentId: true,
           transactionType: true,
+          itemName: true,
+          itemQty: true,
+          itemPriceEach: true,
+          itemGlString: true,
+          id: true,
         },
       });
     } catch (error) {

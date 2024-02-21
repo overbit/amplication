@@ -1,9 +1,9 @@
 export type IniSopUpdateInput = {
-  additionalInfo?: string | null;
   applicationId?: number;
-  background?: string;
-  leadershipExperience?: string;
   objective?: string;
+  background?: string;
   researchExperience?: string;
+  leadershipExperience?: string;
   sfsInterest?: string | null;
+  additionalInfo?: string | null;
 };

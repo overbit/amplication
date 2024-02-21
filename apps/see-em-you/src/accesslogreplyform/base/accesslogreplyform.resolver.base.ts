@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAccesslogreplyformArgs } from "./CreateAccesslogreplyformArgs";
-import { UpdateAccesslogreplyformArgs } from "./UpdateAccesslogreplyformArgs";
-import { DeleteAccesslogreplyformArgs } from "./DeleteAccesslogreplyformArgs";
+import { Accesslogreplyform } from "./Accesslogreplyform";
 import { AccesslogreplyformCountArgs } from "./AccesslogreplyformCountArgs";
 import { AccesslogreplyformFindManyArgs } from "./AccesslogreplyformFindManyArgs";
 import { AccesslogreplyformFindUniqueArgs } from "./AccesslogreplyformFindUniqueArgs";
-import { Accesslogreplyform } from "./Accesslogreplyform";
+import { CreateAccesslogreplyformArgs } from "./CreateAccesslogreplyformArgs";
+import { UpdateAccesslogreplyformArgs } from "./UpdateAccesslogreplyformArgs";
+import { DeleteAccesslogreplyformArgs } from "./DeleteAccesslogreplyformArgs";
 import { AccesslogreplyformService } from "../accesslogreplyform.service";
 @graphql.Resolver(() => Accesslogreplyform)
 export class AccesslogreplyformResolverBase {
@@ -38,14 +38,14 @@ export class AccesslogreplyformResolverBase {
   async accesslogreplyforms(
     @graphql.Args() args: AccesslogreplyformFindManyArgs
   ): Promise<Accesslogreplyform[]> {
-    return this.service.findMany(args);
+    return this.service.accesslogreplyforms(args);
   }
 
   @graphql.Query(() => Accesslogreplyform, { nullable: true })
   async accesslogreplyform(
     @graphql.Args() args: AccesslogreplyformFindUniqueArgs
   ): Promise<Accesslogreplyform | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.accesslogreplyform(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class AccesslogreplyformResolverBase {
   async createAccesslogreplyform(
     @graphql.Args() args: CreateAccesslogreplyformArgs
   ): Promise<Accesslogreplyform> {
-    return await this.service.create({
+    return await this.service.createAccesslogreplyform({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class AccesslogreplyformResolverBase {
     @graphql.Args() args: UpdateAccesslogreplyformArgs
   ): Promise<Accesslogreplyform | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAccesslogreplyform({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class AccesslogreplyformResolverBase {
     @graphql.Args() args: DeleteAccesslogreplyformArgs
   ): Promise<Accesslogreplyform | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAccesslogreplyform(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

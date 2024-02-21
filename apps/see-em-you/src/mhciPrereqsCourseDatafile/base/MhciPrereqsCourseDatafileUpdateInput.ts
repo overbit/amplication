@@ -14,9 +14,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
   IsOptional,
-  ValidateNested,
-  IsBoolean,
   IsString,
+  IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { MhciPrereqsCourseWhereUniqueInput } from "../../mhciPrereqsCourse/base/MhciPrereqsCourseWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -33,29 +33,6 @@ class MhciPrereqsCourseDatafileUpdateInput {
     nullable: true,
   })
   datafileinfoId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => MhciPrereqsCourseWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereqsCourseWhereUniqueInput)
-  @IsOptional()
-  @Field(() => MhciPrereqsCourseWhereUniqueInput, {
-    nullable: true,
-  })
-  mhciPrereqsCourses?: MhciPrereqsCourseWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  newFileUploaded?: boolean;
 
   @ApiProperty({
     required: false,
@@ -78,6 +55,29 @@ class MhciPrereqsCourseDatafileUpdateInput {
     nullable: true,
   })
   submittedToReviewer?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  newFileUploaded?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: () => MhciPrereqsCourseWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => MhciPrereqsCourseWhereUniqueInput)
+  @IsOptional()
+  @Field(() => MhciPrereqsCourseWhereUniqueInput, {
+    nullable: true,
+  })
+  mhciPrereqsCourses?: MhciPrereqsCourseWhereUniqueInput;
 }
 
 export { MhciPrereqsCourseDatafileUpdateInput as MhciPrereqsCourseDatafileUpdateInput };

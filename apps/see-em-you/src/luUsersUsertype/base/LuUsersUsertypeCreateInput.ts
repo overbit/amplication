@@ -12,16 +12,24 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsOptional, ValidateNested } from "class-validator";
-import { MhciPrereqsConversationCommentCreateNestedManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsConversationCommentCreateNestedManyWithoutLuUsersUsertypesInput";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { Type } from "class-transformer";
+import { MhciPrereqsConversationCommentCreateNestedManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsConversationCommentCreateNestedManyWithoutLuUsersUsertypesInput";
 import { MhciPrereqsCourseCreateNestedManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsCourseCreateNestedManyWithoutLuUsersUsertypesInput";
 import { MhciPrereqsDesignPortfolioCreateNestedManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsDesignPortfolioCreateNestedManyWithoutLuUsersUsertypesInput";
 import { MhciPrereqsProgrammingSampleWhereUniqueInput } from "../../mhciPrereqsProgrammingSample/base/MhciPrereqsProgrammingSampleWhereUniqueInput";
 import { MhciPrereqsProgrammingTestCreateNestedManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsProgrammingTestCreateNestedManyWithoutLuUsersUsertypesInput";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
 class LuUsersUsertypeCreateInput {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  usertypeId!: number;
+
   @ApiProperty({
     required: false,
     type: Number,
@@ -32,6 +40,15 @@ class LuUsersUsertypeCreateInput {
     nullable: true,
   })
   domain?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => UserWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
+  @Field(() => UserWhereUniqueInput)
+  users!: UserWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -114,23 +131,6 @@ class LuUsersUsertypeCreateInput {
     }
   )
   mhciPrereqsProgrammingTests?: MhciPrereqsProgrammingTestCreateNestedManyWithoutLuUsersUsertypesInput;
-
-  @ApiProperty({
-    required: true,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput)
-  users!: UserWhereUniqueInput;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  usertypeId!: number;
 }
 
 export { LuUsersUsertypeCreateInput as LuUsersUsertypeCreateInput };

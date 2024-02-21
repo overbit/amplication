@@ -32,7 +32,7 @@ class SlateMaterial {
   @Field(() => String, {
     nullable: true,
   })
-  email!: string | null;
+  materialExport1!: string | null;
 
   @ApiProperty({
     required: false,
@@ -44,25 +44,6 @@ class SlateMaterial {
     nullable: true,
   })
   fileName!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  materialExport1!: string | null;
 
   @ApiProperty({
     required: false,
@@ -85,6 +66,25 @@ class SlateMaterial {
     nullable: true,
   })
   name!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  email!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { SlateMaterial as SlateMaterial };

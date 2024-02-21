@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  file: "exampleFile",
   guid: "exampleGuid",
+  file: "exampleFile",
   id: "exampleId",
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  file: "exampleFile",
   guid: "exampleGuid",
+  file: "exampleFile",
   id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    file: "exampleFile",
     guid: "exampleGuid",
+    file: "exampleFile",
     id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  file: "exampleFile",
   guid: "exampleGuid",
+  file: "exampleFile",
   id: "exampleId",
 };
 
 const service = {
-  create() {
+  createFailedMerge() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  failedMerges: () => FIND_MANY_RESULT,
+  failedMerge: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

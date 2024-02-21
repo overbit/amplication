@@ -33,11 +33,11 @@ const FIND_ONE_RESULT = {
 };
 
 const service = {
-  create() {
+  createAaDepartment() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  aaDepartments: () => FIND_MANY_RESULT,
+  aaDepartment: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, EtsToeflScore } from "@prisma/client";
+import { Prisma, EtsToeflScore as PrismaEtsToeflScore } from "@prisma/client";
 
 export class EtsToeflScoreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class EtsToeflScoreServiceBase {
     return this.prisma.etsToeflScore.count(args);
   }
 
-  async findMany<T extends Prisma.EtsToeflScoreFindManyArgs>(
+  async etsToeflScores<T extends Prisma.EtsToeflScoreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsToeflScoreFindManyArgs>
-  ): Promise<EtsToeflScore[]> {
+  ): Promise<PrismaEtsToeflScore[]> {
     return this.prisma.etsToeflScore.findMany(args);
   }
-  async findOne<T extends Prisma.EtsToeflScoreFindUniqueArgs>(
+  async etsToeflScore<T extends Prisma.EtsToeflScoreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsToeflScoreFindUniqueArgs>
-  ): Promise<EtsToeflScore | null> {
+  ): Promise<PrismaEtsToeflScore | null> {
     return this.prisma.etsToeflScore.findUnique(args);
   }
-  async create<T extends Prisma.EtsToeflScoreCreateArgs>(
+  async createEtsToeflScore<T extends Prisma.EtsToeflScoreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsToeflScoreCreateArgs>
-  ): Promise<EtsToeflScore> {
+  ): Promise<PrismaEtsToeflScore> {
     return this.prisma.etsToeflScore.create<T>(args);
   }
-  async update<T extends Prisma.EtsToeflScoreUpdateArgs>(
+  async updateEtsToeflScore<T extends Prisma.EtsToeflScoreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsToeflScoreUpdateArgs>
-  ): Promise<EtsToeflScore> {
+  ): Promise<PrismaEtsToeflScore> {
     return this.prisma.etsToeflScore.update<T>(args);
   }
-  async delete<T extends Prisma.EtsToeflScoreDeleteArgs>(
+  async deleteEtsToeflScore<T extends Prisma.EtsToeflScoreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsToeflScoreDeleteArgs>
-  ): Promise<EtsToeflScore> {
+  ): Promise<PrismaEtsToeflScore> {
     return this.prisma.etsToeflScore.delete(args);
   }
 }

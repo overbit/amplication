@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PeriodProgram } from "@prisma/client";
+import { Prisma, PeriodProgram as PrismaPeriodProgram } from "@prisma/client";
 
 export class PeriodProgramServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class PeriodProgramServiceBase {
     return this.prisma.periodProgram.count(args);
   }
 
-  async findMany<T extends Prisma.PeriodProgramFindManyArgs>(
+  async periodPrograms<T extends Prisma.PeriodProgramFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodProgramFindManyArgs>
-  ): Promise<PeriodProgram[]> {
+  ): Promise<PrismaPeriodProgram[]> {
     return this.prisma.periodProgram.findMany(args);
   }
-  async findOne<T extends Prisma.PeriodProgramFindUniqueArgs>(
+  async periodProgram<T extends Prisma.PeriodProgramFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodProgramFindUniqueArgs>
-  ): Promise<PeriodProgram | null> {
+  ): Promise<PrismaPeriodProgram | null> {
     return this.prisma.periodProgram.findUnique(args);
   }
-  async create<T extends Prisma.PeriodProgramCreateArgs>(
+  async createPeriodProgram<T extends Prisma.PeriodProgramCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodProgramCreateArgs>
-  ): Promise<PeriodProgram> {
+  ): Promise<PrismaPeriodProgram> {
     return this.prisma.periodProgram.create<T>(args);
   }
-  async update<T extends Prisma.PeriodProgramUpdateArgs>(
+  async updatePeriodProgram<T extends Prisma.PeriodProgramUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodProgramUpdateArgs>
-  ): Promise<PeriodProgram> {
+  ): Promise<PrismaPeriodProgram> {
     return this.prisma.periodProgram.update<T>(args);
   }
-  async delete<T extends Prisma.PeriodProgramDeleteArgs>(
+  async deletePeriodProgram<T extends Prisma.PeriodProgramDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodProgramDeleteArgs>
-  ): Promise<PeriodProgram> {
+  ): Promise<PrismaPeriodProgram> {
     return this.prisma.periodProgram.delete(args);
   }
 }

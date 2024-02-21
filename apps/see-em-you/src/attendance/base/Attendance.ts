@@ -11,12 +11,20 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, ValidateNested } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class Attendance {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  status!: number;
+
   @ApiProperty({
     required: true,
     type: () => Application,
@@ -32,14 +40,6 @@ class Attendance {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  status!: number;
 }
 
 export { Attendance as Attendance };

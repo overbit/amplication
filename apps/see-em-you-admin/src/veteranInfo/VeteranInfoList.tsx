@@ -12,14 +12,14 @@ export const VeteranInfoList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Branch" source="branch" />
-        <TextField label="Discharge" source="discharge" />
-        <TextField label="Enddate" source="enddate" />
-        <TextField label="Id" source="id" />
-        <TextField label="Startdate" source="startdate" />
+        <TextField label="User Id" source="userId" />
         <TextField label="Status" source="status" />
         <TextField label="Status Enroll" source="statusEnroll" />
-        <TextField label="User Id" source="userId" />
+        <TextField label="Branch" source="branch" />
+        <TextField label="Startdate" source="startdate" />
+        <TextField label="Enddate" source="enddate" />
+        <TextField label="Discharge" source="discharge" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

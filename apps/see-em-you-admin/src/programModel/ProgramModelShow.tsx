@@ -20,13 +20,24 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Id" source="id" />
+        <TextField label="Linkword" source="linkword" />
+        <TextField label="Programprice" source="programprice" />
+        <TextField label="Programprice Late" source="programpriceLate" />
+        <TextField label="Description" source="description" />
+        <TextField label="Url" source="url" />
+        <TextField label="Oraclestring" source="oraclestring" />
+        <TextField
+          label="Registrationoraclestring"
+          source="registrationoraclestring"
+        />
         <TextField label="Baseprice" source="baseprice" />
         <TextField label="Baseprice Late" source="basepriceLate" />
+        <TextField label="Prank" source="prank" />
+        <TextField label="Enabled" source="enabled" />
         <ReferenceField label="Degree" source="degree.id" reference="Degree">
           <TextField source={DEGREE_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Description" source="description" />
-        <TextField label="Enabled" source="enabled" />
         <ReferenceField
           label="Fieldsofstudy"
           source="fieldsofstudy.id"
@@ -34,26 +45,27 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={FIELDSOFSTUDY_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Id" source="id" />
-        <TextField label="Linkword" source="linkword" />
-        <TextField label="Oraclestring" source="oraclestring" />
-        <TextField label="Prank" source="prank" />
-        <TextField label="Programprice" source="programprice" />
-        <TextField label="Programprice Late" source="programpriceLate" />
-        <TextField
-          label="Registrationoraclestring"
-          source="registrationoraclestring"
-        />
-        <TextField label="Url" source="url" />
         <ReferenceManyField
           reference="LuApplicationProgram"
           target="program_id"
           label="LuApplicationPrograms"
         >
           <Datagrid rowClick="show">
+            <TextField label="Choice" source="choice" />
+            <TextField label="Round2" source="round2" />
+            <TextField label="Decision" source="decision" />
             <TextField label="Admission Status" source="admissionStatus" />
             <TextField label="Admit" source="admit" />
             <TextField label="Admit Comments" source="admitComments" />
+            <TextField label="Faccontact" source="faccontact" />
+            <TextField label="Stucontact" source="stucontact" />
+            <TextField label="Scholarship Amt" source="scholarshipAmt" />
+            <TextField
+              label="Scholarship Comments"
+              source="scholarshipComments"
+            />
+            <TextField label="Ltichoice" source="ltichoice" />
+            <TextField label="Msecertchoice" source="msecertchoice" />
             <ReferenceField
               label="Application"
               source="application.id"
@@ -61,12 +73,6 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={APPLICATION_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Choice" source="choice" />
-            <TextField label="Decision" source="decision" />
-            <TextField label="Faccontact" source="faccontact" />
-            <TextField label="Id" source="id" />
-            <TextField label="Ltichoice" source="ltichoice" />
-            <TextField label="Msecertchoice" source="msecertchoice" />
             <ReferenceField
               label="Programs"
               source="programmodel.id"
@@ -74,13 +80,7 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={PROGRAMMODEL_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Round2" source="round2" />
-            <TextField label="Scholarship Amt" source="scholarshipAmt" />
-            <TextField
-              label="Scholarship Comments"
-              source="scholarshipComments"
-            />
-            <TextField label="Stucontact" source="stucontact" />
+            <TextField label="Id" source="id" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -89,6 +89,7 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
           label="MlAreas"
         >
           <Datagrid rowClick="show">
+            <TextField label="Area" source="area" />
             <ReferenceField
               label="Application"
               source="application.id"
@@ -96,8 +97,6 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={APPLICATION_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Area" source="area" />
-            <TextField label="Id" source="id" />
             <ReferenceField
               label="Programs"
               source="programmodel.id"
@@ -105,6 +104,7 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={PROGRAMMODEL_TITLE_FIELD} />
             </ReferenceField>
+            <TextField label="Id" source="id" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -113,10 +113,9 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
           label="PaymentItems"
         >
           <Datagrid rowClick="show">
-            <TextField label="Id" source="id" />
+            <TextField label="Payment Item Id" source="paymentItemId" />
             <TextField label="Payment Id" source="paymentId" />
             <TextField label="Payment Item Amount" source="paymentItemAmount" />
-            <TextField label="Payment Item Id" source="paymentItemId" />
             <ReferenceField
               label="Programs"
               source="programmodel.id"
@@ -124,6 +123,7 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={PROGRAMMODEL_TITLE_FIELD} />
             </ReferenceField>
+            <TextField label="Id" source="id" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -133,6 +133,13 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
         >
           <Datagrid rowClick="show">
             <ReferenceField
+              label="Programs"
+              source="programmodel.id"
+              reference="ProgramModel"
+            >
+              <TextField source={PROGRAMMODEL_TITLE_FIELD} />
+            </ReferenceField>
+            <ReferenceField
               label="Applicationreqs"
               source="applicationreq.id"
               reference="Applicationreq"
@@ -140,13 +147,6 @@ export const ProgramModelShow = (props: ShowProps): React.ReactElement => {
               <TextField source={APPLICATIONREQ_TITLE_FIELD} />
             </ReferenceField>
             <TextField label="Id" source="id" />
-            <ReferenceField
-              label="Programs"
-              source="programmodel.id"
-              reference="ProgramModel"
-            >
-              <TextField source={PROGRAMMODEL_TITLE_FIELD} />
-            </ReferenceField>
           </Datagrid>
         </ReferenceManyField>
       </SimpleShowLayout>

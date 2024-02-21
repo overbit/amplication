@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DietrichSharing } from "@prisma/client";
+import {
+  Prisma,
+  DietrichSharing as PrismaDietrichSharing,
+} from "@prisma/client";
 
 export class DietrichSharingServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class DietrichSharingServiceBase {
     return this.prisma.dietrichSharing.count(args);
   }
 
-  async findMany<T extends Prisma.DietrichSharingFindManyArgs>(
+  async dietrichSharings<T extends Prisma.DietrichSharingFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichSharingFindManyArgs>
-  ): Promise<DietrichSharing[]> {
+  ): Promise<PrismaDietrichSharing[]> {
     return this.prisma.dietrichSharing.findMany(args);
   }
-  async findOne<T extends Prisma.DietrichSharingFindUniqueArgs>(
+  async dietrichSharing<T extends Prisma.DietrichSharingFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichSharingFindUniqueArgs>
-  ): Promise<DietrichSharing | null> {
+  ): Promise<PrismaDietrichSharing | null> {
     return this.prisma.dietrichSharing.findUnique(args);
   }
-  async create<T extends Prisma.DietrichSharingCreateArgs>(
+  async createDietrichSharing<T extends Prisma.DietrichSharingCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichSharingCreateArgs>
-  ): Promise<DietrichSharing> {
+  ): Promise<PrismaDietrichSharing> {
     return this.prisma.dietrichSharing.create<T>(args);
   }
-  async update<T extends Prisma.DietrichSharingUpdateArgs>(
+  async updateDietrichSharing<T extends Prisma.DietrichSharingUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichSharingUpdateArgs>
-  ): Promise<DietrichSharing> {
+  ): Promise<PrismaDietrichSharing> {
     return this.prisma.dietrichSharing.update<T>(args);
   }
-  async delete<T extends Prisma.DietrichSharingDeleteArgs>(
+  async deleteDietrichSharing<T extends Prisma.DietrichSharingDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichSharingDeleteArgs>
-  ): Promise<DietrichSharing> {
+  ): Promise<PrismaDietrichSharing> {
     return this.prisma.dietrichSharing.delete(args);
   }
 }

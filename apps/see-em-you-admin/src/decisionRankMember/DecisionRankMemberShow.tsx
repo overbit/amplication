@@ -7,12 +7,12 @@ export const DecisionRankMemberShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Application Id" source="applicationId" />
-        <TextField label="Decision" source="decision" />
         <TextField label="Department Id" source="departmentId" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Decision" source="decision" />
+        <TextField label="Application Id" source="applicationId" />
         <TextField label="Drank" source="drank" />
         <TextField label="Id" source="id" />
-        <TextField label="Period Id" source="periodId" />
       </SimpleShowLayout>
     </Show>
   );

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMseAqaArgs } from "./CreateMseAqaArgs";
-import { UpdateMseAqaArgs } from "./UpdateMseAqaArgs";
-import { DeleteMseAqaArgs } from "./DeleteMseAqaArgs";
+import { MseAqa } from "./MseAqa";
 import { MseAqaCountArgs } from "./MseAqaCountArgs";
 import { MseAqaFindManyArgs } from "./MseAqaFindManyArgs";
 import { MseAqaFindUniqueArgs } from "./MseAqaFindUniqueArgs";
-import { MseAqa } from "./MseAqa";
+import { CreateMseAqaArgs } from "./CreateMseAqaArgs";
+import { UpdateMseAqaArgs } from "./UpdateMseAqaArgs";
+import { DeleteMseAqaArgs } from "./DeleteMseAqaArgs";
 import { Application } from "../../application/base/Application";
 import { MseAqaService } from "../mseAqa.service";
 @graphql.Resolver(() => MseAqa)
@@ -37,14 +37,14 @@ export class MseAqaResolverBase {
 
   @graphql.Query(() => [MseAqa])
   async mseAqas(@graphql.Args() args: MseAqaFindManyArgs): Promise<MseAqa[]> {
-    return this.service.findMany(args);
+    return this.service.mseAqas(args);
   }
 
   @graphql.Query(() => MseAqa, { nullable: true })
   async mseAqa(
     @graphql.Args() args: MseAqaFindUniqueArgs
   ): Promise<MseAqa | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mseAqa(args);
     if (result === null) {
       return null;
     }
@@ -53,7 +53,7 @@ export class MseAqaResolverBase {
 
   @graphql.Mutation(() => MseAqa)
   async createMseAqa(@graphql.Args() args: CreateMseAqaArgs): Promise<MseAqa> {
-    return await this.service.create({
+    return await this.service.createMseAqa({
       ...args,
       data: {
         ...args.data,
@@ -70,7 +70,7 @@ export class MseAqaResolverBase {
     @graphql.Args() args: UpdateMseAqaArgs
   ): Promise<MseAqa | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseAqa({
         ...args,
         data: {
           ...args.data,
@@ -95,7 +95,7 @@ export class MseAqaResolverBase {
     @graphql.Args() args: DeleteMseAqaArgs
   ): Promise<MseAqa | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMseAqa(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -110,7 +110,7 @@ export class MseAqaResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: MseAqa
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

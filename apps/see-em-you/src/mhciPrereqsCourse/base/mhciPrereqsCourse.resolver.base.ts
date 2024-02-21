@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsCourseArgs } from "./CreateMhciPrereqsCourseArgs";
-import { UpdateMhciPrereqsCourseArgs } from "./UpdateMhciPrereqsCourseArgs";
-import { DeleteMhciPrereqsCourseArgs } from "./DeleteMhciPrereqsCourseArgs";
+import { MhciPrereqsCourse } from "./MhciPrereqsCourse";
 import { MhciPrereqsCourseCountArgs } from "./MhciPrereqsCourseCountArgs";
 import { MhciPrereqsCourseFindManyArgs } from "./MhciPrereqsCourseFindManyArgs";
 import { MhciPrereqsCourseFindUniqueArgs } from "./MhciPrereqsCourseFindUniqueArgs";
-import { MhciPrereqsCourse } from "./MhciPrereqsCourse";
+import { CreateMhciPrereqsCourseArgs } from "./CreateMhciPrereqsCourseArgs";
+import { UpdateMhciPrereqsCourseArgs } from "./UpdateMhciPrereqsCourseArgs";
+import { DeleteMhciPrereqsCourseArgs } from "./DeleteMhciPrereqsCourseArgs";
 import { MhciPrereqsCourseDatafileFindManyArgs } from "../../mhciPrereqsCourseDatafile/base/MhciPrereqsCourseDatafileFindManyArgs";
 import { MhciPrereqsCourseDatafile } from "../../mhciPrereqsCourseDatafile/base/MhciPrereqsCourseDatafile";
 import { Application } from "../../application/base/Application";
@@ -42,14 +42,14 @@ export class MhciPrereqsCourseResolverBase {
   async mhciPrereqsCourses(
     @graphql.Args() args: MhciPrereqsCourseFindManyArgs
   ): Promise<MhciPrereqsCourse[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsCourses(args);
   }
 
   @graphql.Query(() => MhciPrereqsCourse, { nullable: true })
   async mhciPrereqsCourse(
     @graphql.Args() args: MhciPrereqsCourseFindUniqueArgs
   ): Promise<MhciPrereqsCourse | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsCourse(args);
     if (result === null) {
       return null;
     }
@@ -60,7 +60,7 @@ export class MhciPrereqsCourseResolverBase {
   async createMhciPrereqsCourse(
     @graphql.Args() args: CreateMhciPrereqsCourseArgs
   ): Promise<MhciPrereqsCourse> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsCourse({
       ...args,
       data: {
         ...args.data,
@@ -81,7 +81,7 @@ export class MhciPrereqsCourseResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsCourseArgs
   ): Promise<MhciPrereqsCourse | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsCourse({
         ...args,
         data: {
           ...args.data,
@@ -110,7 +110,7 @@ export class MhciPrereqsCourseResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsCourseArgs
   ): Promise<MhciPrereqsCourse | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsCourse(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -124,7 +124,7 @@ export class MhciPrereqsCourseResolverBase {
   @graphql.ResolveField(() => [MhciPrereqsCourseDatafile], {
     name: "mhciPrereqsCourseDatafiles",
   })
-  async resolveFieldMhciPrereqsCourseDatafiles(
+  async findMhciPrereqsCourseDatafiles(
     @graphql.Parent() parent: MhciPrereqsCourse,
     @graphql.Args() args: MhciPrereqsCourseDatafileFindManyArgs
   ): Promise<MhciPrereqsCourseDatafile[]> {
@@ -144,7 +144,7 @@ export class MhciPrereqsCourseResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: MhciPrereqsCourse
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);
@@ -159,7 +159,7 @@ export class MhciPrereqsCourseResolverBase {
     nullable: true,
     name: "luUsersUsertypes",
   })
-  async resolveFieldLuUsersUsertypes(
+  async getLuUsersUsertypes(
     @graphql.Parent() parent: MhciPrereqsCourse
   ): Promise<LuUsersUsertype | null> {
     const result = await this.service.getLuUsersUsertypes(parent.id);

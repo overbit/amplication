@@ -13,14 +13,14 @@ import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
+  IsDate,
   IsOptional,
   IsNumber,
   IsBoolean,
-  IsDate,
   IsString,
 } from "class-validator";
-import { Decimal } from "decimal.js";
 import { Type } from "class-transformer";
+import { Decimal } from "decimal.js";
 
 @InputType()
 class ToeflCreateInput {
@@ -34,47 +34,14 @@ class ToeflCreateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
   })
-  @IsInt()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => Date, {
     nullable: true,
   })
-  datafileId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  essay?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  essaymb?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  scorereceived?: boolean | null;
+  testdate?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -96,7 +63,7 @@ class ToeflCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  section1mb?: number | null;
+  section2?: number | null;
 
   @ApiProperty({
     required: false,
@@ -107,7 +74,73 @@ class ToeflCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  section2?: number | null;
+  section3?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  essay?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  total?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  scorereceived?: boolean | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  typeField?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  datafileId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  section1mb?: number | null;
 
   @ApiProperty({
     required: false,
@@ -129,7 +162,7 @@ class ToeflCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  section3?: number | null;
+  section3mb?: number | null;
 
   @ApiProperty({
     required: false,
@@ -140,18 +173,18 @@ class ToeflCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  section3mb?: number | null;
+  essaymb?: number | null;
 
   @ApiProperty({
     required: false,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsInt()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => Number, {
     nullable: true,
   })
-  testdate?: Date | null;
+  totalmb?: number | null;
 
   @ApiProperty({
     required: false,
@@ -174,39 +207,6 @@ class ToeflCreateInput {
     nullable: true,
   })
   toeflPaperEmail?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  total?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  totalmb?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  typeField?: string | null;
 }
 
 export { ToeflCreateInput as ToeflCreateInput };

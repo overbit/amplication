@@ -3,8 +3,8 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  DateTimeInput,
   NumberInput,
+  DateTimeInput,
 } from "react-admin";
 
 export const CcTransactionReportEdit = (
@@ -13,8 +13,8 @@ export const CcTransactionReportEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <DateTimeInput label="Last Mod Date" source="lastModDate" />
         <NumberInput step={1} label="Size" source="size" />
+        <DateTimeInput label="Last Mod Date" source="lastModDate" />
       </SimpleForm>
     </Edit>
   );

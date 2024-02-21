@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MlSupportingCoursework, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  MlSupportingCoursework as PrismaMlSupportingCoursework,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class MlSupportingCourseworkServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,43 @@ export class MlSupportingCourseworkServiceBase {
     return this.prisma.mlSupportingCoursework.count(args);
   }
 
-  async findMany<T extends Prisma.MlSupportingCourseworkFindManyArgs>(
+  async mlSupportingCourseworks<
+    T extends Prisma.MlSupportingCourseworkFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MlSupportingCourseworkFindManyArgs>
-  ): Promise<MlSupportingCoursework[]> {
+  ): Promise<PrismaMlSupportingCoursework[]> {
     return this.prisma.mlSupportingCoursework.findMany(args);
   }
-  async findOne<T extends Prisma.MlSupportingCourseworkFindUniqueArgs>(
+  async mlSupportingCoursework<
+    T extends Prisma.MlSupportingCourseworkFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MlSupportingCourseworkFindUniqueArgs>
-  ): Promise<MlSupportingCoursework | null> {
+  ): Promise<PrismaMlSupportingCoursework | null> {
     return this.prisma.mlSupportingCoursework.findUnique(args);
   }
-  async create<T extends Prisma.MlSupportingCourseworkCreateArgs>(
+  async createMlSupportingCoursework<
+    T extends Prisma.MlSupportingCourseworkCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MlSupportingCourseworkCreateArgs>
-  ): Promise<MlSupportingCoursework> {
+  ): Promise<PrismaMlSupportingCoursework> {
     return this.prisma.mlSupportingCoursework.create<T>(args);
   }
-  async update<T extends Prisma.MlSupportingCourseworkUpdateArgs>(
+  async updateMlSupportingCoursework<
+    T extends Prisma.MlSupportingCourseworkUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MlSupportingCourseworkUpdateArgs>
-  ): Promise<MlSupportingCoursework> {
+  ): Promise<PrismaMlSupportingCoursework> {
     return this.prisma.mlSupportingCoursework.update<T>(args);
   }
-  async delete<T extends Prisma.MlSupportingCourseworkDeleteArgs>(
+  async deleteMlSupportingCoursework<
+    T extends Prisma.MlSupportingCourseworkDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MlSupportingCourseworkDeleteArgs>
-  ): Promise<MlSupportingCoursework> {
+  ): Promise<PrismaMlSupportingCoursework> {
     return this.prisma.mlSupportingCoursework.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.mlSupportingCoursework
       .findUnique({
         where: { id: parentId },

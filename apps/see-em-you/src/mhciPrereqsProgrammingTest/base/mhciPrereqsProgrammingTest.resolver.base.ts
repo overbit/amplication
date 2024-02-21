@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsProgrammingTestArgs } from "./CreateMhciPrereqsProgrammingTestArgs";
-import { UpdateMhciPrereqsProgrammingTestArgs } from "./UpdateMhciPrereqsProgrammingTestArgs";
-import { DeleteMhciPrereqsProgrammingTestArgs } from "./DeleteMhciPrereqsProgrammingTestArgs";
+import { MhciPrereqsProgrammingTest } from "./MhciPrereqsProgrammingTest";
 import { MhciPrereqsProgrammingTestCountArgs } from "./MhciPrereqsProgrammingTestCountArgs";
 import { MhciPrereqsProgrammingTestFindManyArgs } from "./MhciPrereqsProgrammingTestFindManyArgs";
 import { MhciPrereqsProgrammingTestFindUniqueArgs } from "./MhciPrereqsProgrammingTestFindUniqueArgs";
-import { MhciPrereqsProgrammingTest } from "./MhciPrereqsProgrammingTest";
+import { CreateMhciPrereqsProgrammingTestArgs } from "./CreateMhciPrereqsProgrammingTestArgs";
+import { UpdateMhciPrereqsProgrammingTestArgs } from "./UpdateMhciPrereqsProgrammingTestArgs";
+import { DeleteMhciPrereqsProgrammingTestArgs } from "./DeleteMhciPrereqsProgrammingTestArgs";
 import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 import { MhciPrereqsProgrammingTestService } from "../mhciPrereqsProgrammingTest.service";
 @graphql.Resolver(() => MhciPrereqsProgrammingTest)
@@ -39,14 +39,14 @@ export class MhciPrereqsProgrammingTestResolverBase {
   async mhciPrereqsProgrammingTests(
     @graphql.Args() args: MhciPrereqsProgrammingTestFindManyArgs
   ): Promise<MhciPrereqsProgrammingTest[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsProgrammingTests(args);
   }
 
   @graphql.Query(() => MhciPrereqsProgrammingTest, { nullable: true })
   async mhciPrereqsProgrammingTest(
     @graphql.Args() args: MhciPrereqsProgrammingTestFindUniqueArgs
   ): Promise<MhciPrereqsProgrammingTest | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsProgrammingTest(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class MhciPrereqsProgrammingTestResolverBase {
   async createMhciPrereqsProgrammingTest(
     @graphql.Args() args: CreateMhciPrereqsProgrammingTestArgs
   ): Promise<MhciPrereqsProgrammingTest> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsProgrammingTest({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class MhciPrereqsProgrammingTestResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsProgrammingTestArgs
   ): Promise<MhciPrereqsProgrammingTest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsProgrammingTest({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class MhciPrereqsProgrammingTestResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsProgrammingTestArgs
   ): Promise<MhciPrereqsProgrammingTest | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsProgrammingTest(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class MhciPrereqsProgrammingTestResolverBase {
     nullable: true,
     name: "luUsersUsertypes",
   })
-  async resolveFieldLuUsersUsertypes(
+  async getLuUsersUsertypes(
     @graphql.Parent() parent: MhciPrereqsProgrammingTest
   ): Promise<LuUsersUsertype | null> {
     const result = await this.service.getLuUsersUsertypes(parent.id);

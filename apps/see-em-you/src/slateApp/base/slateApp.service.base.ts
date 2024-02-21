@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateApp } from "@prisma/client";
+import { Prisma, SlateApp as PrismaSlateApp } from "@prisma/client";
 
 export class SlateAppServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateAppServiceBase {
     return this.prisma.slateApp.count(args);
   }
 
-  async findMany<T extends Prisma.SlateAppFindManyArgs>(
+  async slateApps<T extends Prisma.SlateAppFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppFindManyArgs>
-  ): Promise<SlateApp[]> {
+  ): Promise<PrismaSlateApp[]> {
     return this.prisma.slateApp.findMany(args);
   }
-  async findOne<T extends Prisma.SlateAppFindUniqueArgs>(
+  async slateApp<T extends Prisma.SlateAppFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppFindUniqueArgs>
-  ): Promise<SlateApp | null> {
+  ): Promise<PrismaSlateApp | null> {
     return this.prisma.slateApp.findUnique(args);
   }
-  async create<T extends Prisma.SlateAppCreateArgs>(
+  async createSlateApp<T extends Prisma.SlateAppCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppCreateArgs>
-  ): Promise<SlateApp> {
+  ): Promise<PrismaSlateApp> {
     return this.prisma.slateApp.create<T>(args);
   }
-  async update<T extends Prisma.SlateAppUpdateArgs>(
+  async updateSlateApp<T extends Prisma.SlateAppUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppUpdateArgs>
-  ): Promise<SlateApp> {
+  ): Promise<PrismaSlateApp> {
     return this.prisma.slateApp.update<T>(args);
   }
-  async delete<T extends Prisma.SlateAppDeleteArgs>(
+  async deleteSlateApp<T extends Prisma.SlateAppDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppDeleteArgs>
-  ): Promise<SlateApp> {
+  ): Promise<PrismaSlateApp> {
     return this.prisma.slateApp.delete(args);
   }
 }

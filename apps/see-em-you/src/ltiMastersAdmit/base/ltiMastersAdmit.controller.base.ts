@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LtiMastersAdmitService } from "../ltiMastersAdmit.service";
 import { LtiMastersAdmitCreateInput } from "./LtiMastersAdmitCreateInput";
-import { LtiMastersAdmitWhereInput } from "./LtiMastersAdmitWhereInput";
-import { LtiMastersAdmitWhereUniqueInput } from "./LtiMastersAdmitWhereUniqueInput";
-import { LtiMastersAdmitFindManyArgs } from "./LtiMastersAdmitFindManyArgs";
-import { LtiMastersAdmitUpdateInput } from "./LtiMastersAdmitUpdateInput";
 import { LtiMastersAdmit } from "./LtiMastersAdmit";
+import { LtiMastersAdmitFindManyArgs } from "./LtiMastersAdmitFindManyArgs";
+import { LtiMastersAdmitWhereUniqueInput } from "./LtiMastersAdmitWhereUniqueInput";
+import { LtiMastersAdmitUpdateInput } from "./LtiMastersAdmitUpdateInput";
 
 export class LtiMastersAdmitControllerBase {
   constructor(protected readonly service: LtiMastersAdmitService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LtiMastersAdmit })
-  async create(
+  async createLtiMastersAdmit(
     @common.Body() data: LtiMastersAdmitCreateInput
   ): Promise<LtiMastersAdmit> {
-    return await this.service.create({
+    return await this.service.createLtiMastersAdmit({
       data: data,
       select: {
         id: true,
@@ -42,9 +41,11 @@ export class LtiMastersAdmitControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LtiMastersAdmit] })
   @ApiNestedQuery(LtiMastersAdmitFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<LtiMastersAdmit[]> {
+  async ltiMastersAdmits(
+    @common.Req() request: Request
+  ): Promise<LtiMastersAdmit[]> {
     const args = plainToClass(LtiMastersAdmitFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ltiMastersAdmits({
       ...args,
       select: {
         id: true,
@@ -55,10 +56,10 @@ export class LtiMastersAdmitControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LtiMastersAdmit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ltiMastersAdmit(
     @common.Param() params: LtiMastersAdmitWhereUniqueInput
   ): Promise<LtiMastersAdmit | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ltiMastersAdmit({
       where: params,
       select: {
         id: true,
@@ -75,12 +76,12 @@ export class LtiMastersAdmitControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LtiMastersAdmit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLtiMastersAdmit(
     @common.Param() params: LtiMastersAdmitWhereUniqueInput,
     @common.Body() data: LtiMastersAdmitUpdateInput
   ): Promise<LtiMastersAdmit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLtiMastersAdmit({
         where: params,
         data: data,
         select: {
@@ -100,11 +101,11 @@ export class LtiMastersAdmitControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LtiMastersAdmit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLtiMastersAdmit(
     @common.Param() params: LtiMastersAdmitWhereUniqueInput
   ): Promise<LtiMastersAdmit | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLtiMastersAdmit({
         where: params,
         select: {
           id: true,

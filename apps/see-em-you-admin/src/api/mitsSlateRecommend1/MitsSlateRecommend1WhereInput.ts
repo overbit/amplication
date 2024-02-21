@@ -1,1 +1,5 @@
-export type MitsSlateRecommend1WhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type MitsSlateRecommend1WhereInput = {
+  id?: StringFilter;
+};

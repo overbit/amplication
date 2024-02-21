@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DuolingoscoreService } from "../duolingoscore.service";
 import { DuolingoscoreCreateInput } from "./DuolingoscoreCreateInput";
-import { DuolingoscoreWhereInput } from "./DuolingoscoreWhereInput";
-import { DuolingoscoreWhereUniqueInput } from "./DuolingoscoreWhereUniqueInput";
-import { DuolingoscoreFindManyArgs } from "./DuolingoscoreFindManyArgs";
-import { DuolingoscoreUpdateInput } from "./DuolingoscoreUpdateInput";
 import { Duolingoscore } from "./Duolingoscore";
+import { DuolingoscoreFindManyArgs } from "./DuolingoscoreFindManyArgs";
+import { DuolingoscoreWhereUniqueInput } from "./DuolingoscoreWhereUniqueInput";
+import { DuolingoscoreUpdateInput } from "./DuolingoscoreUpdateInput";
 
 export class DuolingoscoreControllerBase {
   constructor(protected readonly service: DuolingoscoreService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Duolingoscore })
-  async create(
+  async createDuolingoscore(
     @common.Body() data: DuolingoscoreCreateInput
   ): Promise<Duolingoscore> {
-    return await this.service.create({
+    return await this.service.createDuolingoscore({
       data: data,
       select: {
         applicationId: true,
-        duolingodataId: true,
-        id: true,
-        matchDate: true,
         testdate: true,
         testemail: true,
+        duolingodataId: true,
+        matchDate: true,
+        id: true,
       },
     });
   }
@@ -47,17 +46,19 @@ export class DuolingoscoreControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Duolingoscore] })
   @ApiNestedQuery(DuolingoscoreFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Duolingoscore[]> {
+  async duolingoscores(
+    @common.Req() request: Request
+  ): Promise<Duolingoscore[]> {
     const args = plainToClass(DuolingoscoreFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.duolingoscores({
       ...args,
       select: {
         applicationId: true,
-        duolingodataId: true,
-        id: true,
-        matchDate: true,
         testdate: true,
         testemail: true,
+        duolingodataId: true,
+        matchDate: true,
+        id: true,
       },
     });
   }
@@ -65,18 +66,18 @@ export class DuolingoscoreControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Duolingoscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async duolingoscore(
     @common.Param() params: DuolingoscoreWhereUniqueInput
   ): Promise<Duolingoscore | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.duolingoscore({
       where: params,
       select: {
         applicationId: true,
-        duolingodataId: true,
-        id: true,
-        matchDate: true,
         testdate: true,
         testemail: true,
+        duolingodataId: true,
+        matchDate: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -90,21 +91,21 @@ export class DuolingoscoreControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Duolingoscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDuolingoscore(
     @common.Param() params: DuolingoscoreWhereUniqueInput,
     @common.Body() data: DuolingoscoreUpdateInput
   ): Promise<Duolingoscore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDuolingoscore({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          duolingodataId: true,
-          id: true,
-          matchDate: true,
           testdate: true,
           testemail: true,
+          duolingodataId: true,
+          matchDate: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -120,19 +121,19 @@ export class DuolingoscoreControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Duolingoscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDuolingoscore(
     @common.Param() params: DuolingoscoreWhereUniqueInput
   ): Promise<Duolingoscore | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDuolingoscore({
         where: params,
         select: {
           applicationId: true,
-          duolingodataId: true,
-          id: true,
-          matchDate: true,
           testdate: true,
           testemail: true,
+          duolingodataId: true,
+          matchDate: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -14,10 +14,10 @@ export const CcTransactionReportList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
-        <TextField label="Last Mod Date" source="lastModDate" />
         <TextField label="Size" source="size" />
+        <TextField label="Last Mod Date" source="lastModDate" />
         <DateField source="statusTime" label="Status Time" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

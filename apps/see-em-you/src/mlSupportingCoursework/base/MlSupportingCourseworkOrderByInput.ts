@@ -28,7 +28,7 @@ class MlSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  app_id?: SortOrder;
+  introCourseNum?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class MlSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  introCourseSemester?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class MlSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  introCourse2Grade?: SortOrder;
+  introCourseGrade?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,40 +83,7 @@ class MlSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  introCourseGrade?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  introCourseNum?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  introCourseSemester?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  ml1CourseGrade?: SortOrder;
+  introCourse2Grade?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -149,7 +116,7 @@ class MlSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  ml2CourseGrade?: SortOrder;
+  ml1CourseGrade?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -172,6 +139,39 @@ class MlSupportingCourseworkOrderByInput {
     nullable: true,
   })
   ml2CourseSemester?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  ml2CourseGrade?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  app_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MlSupportingCourseworkOrderByInput as MlSupportingCourseworkOrderByInput };

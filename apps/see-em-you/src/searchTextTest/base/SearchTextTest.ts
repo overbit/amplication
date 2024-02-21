@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsString, IsInt, IsOptional } from "class-validator";
 
 @ObjectType()
 class SearchTextTest {
@@ -24,6 +24,14 @@ class SearchTextTest {
   applicationId!: string;
 
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  guid!: number;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -33,14 +41,6 @@ class SearchTextTest {
     nullable: true,
   })
   applicationText!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  guid!: number;
 
   @ApiProperty({
     required: true,

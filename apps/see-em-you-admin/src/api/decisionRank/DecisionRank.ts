@@ -1,9 +1,9 @@
 export type DecisionRank = {
-  decision: string;
   departmentId: number;
-  id: string;
-  luUsersUsertypesId: number;
   periodId: number;
-  ranking: string | null;
+  decision: string;
   timestamp: Date;
+  luUsersUsertypesId: number;
+  ranking: string | null;
+  id: string;
 };

@@ -30,6 +30,14 @@ class ApplicationPeriod {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
+  startDate!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   endDate!: Date;
 
   @ApiProperty({
@@ -39,14 +47,6 @@ class ApplicationPeriod {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  startDate!: Date;
 }
 
 export { ApplicationPeriod as ApplicationPeriod };

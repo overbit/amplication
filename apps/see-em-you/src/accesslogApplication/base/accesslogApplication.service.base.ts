@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, AccesslogApplication } from "@prisma/client";
+import {
+  Prisma,
+  AccesslogApplication as PrismaAccesslogApplication,
+} from "@prisma/client";
 
 export class AccesslogApplicationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class AccesslogApplicationServiceBase {
     return this.prisma.accesslogApplication.count(args);
   }
 
-  async findMany<T extends Prisma.AccesslogApplicationFindManyArgs>(
+  async accesslogApplications<
+    T extends Prisma.AccesslogApplicationFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.AccesslogApplicationFindManyArgs>
-  ): Promise<AccesslogApplication[]> {
+  ): Promise<PrismaAccesslogApplication[]> {
     return this.prisma.accesslogApplication.findMany(args);
   }
-  async findOne<T extends Prisma.AccesslogApplicationFindUniqueArgs>(
+  async accesslogApplication<
+    T extends Prisma.AccesslogApplicationFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.AccesslogApplicationFindUniqueArgs>
-  ): Promise<AccesslogApplication | null> {
+  ): Promise<PrismaAccesslogApplication | null> {
     return this.prisma.accesslogApplication.findUnique(args);
   }
-  async create<T extends Prisma.AccesslogApplicationCreateArgs>(
+  async createAccesslogApplication<
+    T extends Prisma.AccesslogApplicationCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.AccesslogApplicationCreateArgs>
-  ): Promise<AccesslogApplication> {
+  ): Promise<PrismaAccesslogApplication> {
     return this.prisma.accesslogApplication.create<T>(args);
   }
-  async update<T extends Prisma.AccesslogApplicationUpdateArgs>(
+  async updateAccesslogApplication<
+    T extends Prisma.AccesslogApplicationUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.AccesslogApplicationUpdateArgs>
-  ): Promise<AccesslogApplication> {
+  ): Promise<PrismaAccesslogApplication> {
     return this.prisma.accesslogApplication.update<T>(args);
   }
-  async delete<T extends Prisma.AccesslogApplicationDeleteArgs>(
+  async deleteAccesslogApplication<
+    T extends Prisma.AccesslogApplicationDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.AccesslogApplicationDeleteArgs>
-  ): Promise<AccesslogApplication> {
+  ): Promise<PrismaAccesslogApplication> {
     return this.prisma.accesslogApplication.delete(args);
   }
 }

@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Unit, DomainUnit } from "@prisma/client";
+import {
+  Prisma,
+  Unit as PrismaUnit,
+  DomainUnit as PrismaDomainUnit,
+} from "@prisma/client";
 
 export class UnitServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,36 +25,36 @@ export class UnitServiceBase {
     return this.prisma.unit.count(args);
   }
 
-  async findMany<T extends Prisma.UnitFindManyArgs>(
+  async units<T extends Prisma.UnitFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitFindManyArgs>
-  ): Promise<Unit[]> {
+  ): Promise<PrismaUnit[]> {
     return this.prisma.unit.findMany(args);
   }
-  async findOne<T extends Prisma.UnitFindUniqueArgs>(
+  async unit<T extends Prisma.UnitFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitFindUniqueArgs>
-  ): Promise<Unit | null> {
+  ): Promise<PrismaUnit | null> {
     return this.prisma.unit.findUnique(args);
   }
-  async create<T extends Prisma.UnitCreateArgs>(
+  async createUnit<T extends Prisma.UnitCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitCreateArgs>
-  ): Promise<Unit> {
+  ): Promise<PrismaUnit> {
     return this.prisma.unit.create<T>(args);
   }
-  async update<T extends Prisma.UnitUpdateArgs>(
+  async updateUnit<T extends Prisma.UnitUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitUpdateArgs>
-  ): Promise<Unit> {
+  ): Promise<PrismaUnit> {
     return this.prisma.unit.update<T>(args);
   }
-  async delete<T extends Prisma.UnitDeleteArgs>(
+  async deleteUnit<T extends Prisma.UnitDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitDeleteArgs>
-  ): Promise<Unit> {
+  ): Promise<PrismaUnit> {
     return this.prisma.unit.delete(args);
   }
 
   async findDomainUnit(
     parentId: number,
     args: Prisma.DomainUnitFindManyArgs
-  ): Promise<DomainUnit[]> {
+  ): Promise<PrismaDomainUnit[]> {
     return this.prisma.unit
       .findUniqueOrThrow({
         where: { id: parentId },

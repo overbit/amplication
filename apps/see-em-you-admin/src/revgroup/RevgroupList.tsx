@@ -12,10 +12,10 @@ export const RevgroupList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Name" source="name" />
         <TextField label="Department Id" source="departmentId" />
         <TextField label="Group Type" source="groupType" />
         <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
       </Datagrid>
     </List>
   );

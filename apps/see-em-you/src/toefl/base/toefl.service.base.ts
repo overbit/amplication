@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Toefl } from "@prisma/client";
+import { Prisma, Toefl as PrismaToefl } from "@prisma/client";
 
 export class ToeflServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ToeflServiceBase {
     return this.prisma.toefl.count(args);
   }
 
-  async findMany<T extends Prisma.ToeflFindManyArgs>(
+  async toefls<T extends Prisma.ToeflFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflFindManyArgs>
-  ): Promise<Toefl[]> {
+  ): Promise<PrismaToefl[]> {
     return this.prisma.toefl.findMany(args);
   }
-  async findOne<T extends Prisma.ToeflFindUniqueArgs>(
+  async toefl<T extends Prisma.ToeflFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflFindUniqueArgs>
-  ): Promise<Toefl | null> {
+  ): Promise<PrismaToefl | null> {
     return this.prisma.toefl.findUnique(args);
   }
-  async create<T extends Prisma.ToeflCreateArgs>(
+  async createToefl<T extends Prisma.ToeflCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflCreateArgs>
-  ): Promise<Toefl> {
+  ): Promise<PrismaToefl> {
     return this.prisma.toefl.create<T>(args);
   }
-  async update<T extends Prisma.ToeflUpdateArgs>(
+  async updateToefl<T extends Prisma.ToeflUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflUpdateArgs>
-  ): Promise<Toefl> {
+  ): Promise<PrismaToefl> {
     return this.prisma.toefl.update<T>(args);
   }
-  async delete<T extends Prisma.ToeflDeleteArgs>(
+  async deleteToefl<T extends Prisma.ToeflDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflDeleteArgs>
-  ): Promise<Toefl> {
+  ): Promise<PrismaToefl> {
     return this.prisma.toefl.delete(args);
   }
 }

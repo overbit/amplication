@@ -11,31 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationAdminNoteCreateNestedManyWithoutUsersInput } from "./ApplicationAdminNoteCreateNestedManyWithoutUsersInput";
 import {
-  ValidateNested,
-  IsOptional,
   IsString,
+  IsOptional,
   IsDate,
   IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { ApplicationAdminNoteCreateNestedManyWithoutUsersInput } from "./ApplicationAdminNoteCreateNestedManyWithoutUsersInput";
 import { LuUsersUsertypeCreateNestedManyWithoutUsersInput } from "./LuUsersUsertypeCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
-  @ApiProperty({
-    required: false,
-    type: () => ApplicationAdminNoteCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationAdminNoteCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => ApplicationAdminNoteCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  applicationAdminNote?: ApplicationAdminNoteCreateNestedManyWithoutUsersInput;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -43,6 +31,17 @@ class UserCreateInput {
   @IsString()
   @Field(() => String)
   email!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  title?: string | null;
 
   @ApiProperty({
     required: true,
@@ -61,26 +60,7 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  firstNamePref?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  guid!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  initials?: string | null;
+  middlename?: string | null;
 
   @ApiProperty({
     required: true,
@@ -89,37 +69,6 @@ class UserCreateInput {
   @IsString()
   @Field(() => String)
   lastname!: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => LuUsersUsertypeCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertypeCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => LuUsersUsertypeCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  luUsersUsertypes?: LuUsersUsertypeCreateNestedManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  middlename?: string | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  signupDate!: Date;
 
   @ApiProperty({
     required: false,
@@ -141,7 +90,15 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  title?: string | null;
+  initials?: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  signupDate!: Date;
 
   @ApiProperty({
     required: true,
@@ -150,6 +107,49 @@ class UserCreateInput {
   @IsBoolean()
   @Field(() => Boolean)
   verified!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  guid!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  firstNamePref?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationAdminNoteCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationAdminNoteCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => ApplicationAdminNoteCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  applicationAdminNote?: ApplicationAdminNoteCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => LuUsersUsertypeCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertypeCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => LuUsersUsertypeCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  luUsersUsertypes?: LuUsersUsertypeCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

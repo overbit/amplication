@@ -39,7 +39,7 @@ class PeriodApplicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  period_id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class PeriodApplicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  period_id?: SortOrder;
+  id?: SortOrder;
 }
 
 export { PeriodApplicationOrderByInput as PeriodApplicationOrderByInput };

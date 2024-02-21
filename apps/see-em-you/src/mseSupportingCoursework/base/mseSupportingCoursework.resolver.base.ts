@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMseSupportingCourseworkArgs } from "./CreateMseSupportingCourseworkArgs";
-import { UpdateMseSupportingCourseworkArgs } from "./UpdateMseSupportingCourseworkArgs";
-import { DeleteMseSupportingCourseworkArgs } from "./DeleteMseSupportingCourseworkArgs";
+import { MseSupportingCoursework } from "./MseSupportingCoursework";
 import { MseSupportingCourseworkCountArgs } from "./MseSupportingCourseworkCountArgs";
 import { MseSupportingCourseworkFindManyArgs } from "./MseSupportingCourseworkFindManyArgs";
 import { MseSupportingCourseworkFindUniqueArgs } from "./MseSupportingCourseworkFindUniqueArgs";
-import { MseSupportingCoursework } from "./MseSupportingCoursework";
+import { CreateMseSupportingCourseworkArgs } from "./CreateMseSupportingCourseworkArgs";
+import { UpdateMseSupportingCourseworkArgs } from "./UpdateMseSupportingCourseworkArgs";
+import { DeleteMseSupportingCourseworkArgs } from "./DeleteMseSupportingCourseworkArgs";
 import { MseSupportingCourseworkService } from "../mseSupportingCoursework.service";
 @graphql.Resolver(() => MseSupportingCoursework)
 export class MseSupportingCourseworkResolverBase {
@@ -38,14 +38,14 @@ export class MseSupportingCourseworkResolverBase {
   async mseSupportingCourseworks(
     @graphql.Args() args: MseSupportingCourseworkFindManyArgs
   ): Promise<MseSupportingCoursework[]> {
-    return this.service.findMany(args);
+    return this.service.mseSupportingCourseworks(args);
   }
 
   @graphql.Query(() => MseSupportingCoursework, { nullable: true })
   async mseSupportingCoursework(
     @graphql.Args() args: MseSupportingCourseworkFindUniqueArgs
   ): Promise<MseSupportingCoursework | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mseSupportingCoursework(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MseSupportingCourseworkResolverBase {
   async createMseSupportingCoursework(
     @graphql.Args() args: CreateMseSupportingCourseworkArgs
   ): Promise<MseSupportingCoursework> {
-    return await this.service.create({
+    return await this.service.createMseSupportingCoursework({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MseSupportingCourseworkResolverBase {
     @graphql.Args() args: UpdateMseSupportingCourseworkArgs
   ): Promise<MseSupportingCoursework | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseSupportingCoursework({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MseSupportingCourseworkResolverBase {
     @graphql.Args() args: DeleteMseSupportingCourseworkArgs
   ): Promise<MseSupportingCoursework | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMseSupportingCoursework(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

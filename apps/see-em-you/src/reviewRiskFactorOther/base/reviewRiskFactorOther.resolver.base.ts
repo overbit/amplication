@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReviewRiskFactorOtherArgs } from "./CreateReviewRiskFactorOtherArgs";
-import { UpdateReviewRiskFactorOtherArgs } from "./UpdateReviewRiskFactorOtherArgs";
-import { DeleteReviewRiskFactorOtherArgs } from "./DeleteReviewRiskFactorOtherArgs";
+import { ReviewRiskFactorOther } from "./ReviewRiskFactorOther";
 import { ReviewRiskFactorOtherCountArgs } from "./ReviewRiskFactorOtherCountArgs";
 import { ReviewRiskFactorOtherFindManyArgs } from "./ReviewRiskFactorOtherFindManyArgs";
 import { ReviewRiskFactorOtherFindUniqueArgs } from "./ReviewRiskFactorOtherFindUniqueArgs";
-import { ReviewRiskFactorOther } from "./ReviewRiskFactorOther";
+import { CreateReviewRiskFactorOtherArgs } from "./CreateReviewRiskFactorOtherArgs";
+import { UpdateReviewRiskFactorOtherArgs } from "./UpdateReviewRiskFactorOtherArgs";
+import { DeleteReviewRiskFactorOtherArgs } from "./DeleteReviewRiskFactorOtherArgs";
 import { ReviewRiskFactorOtherService } from "../reviewRiskFactorOther.service";
 @graphql.Resolver(() => ReviewRiskFactorOther)
 export class ReviewRiskFactorOtherResolverBase {
@@ -38,14 +38,14 @@ export class ReviewRiskFactorOtherResolverBase {
   async reviewRiskFactorOthers(
     @graphql.Args() args: ReviewRiskFactorOtherFindManyArgs
   ): Promise<ReviewRiskFactorOther[]> {
-    return this.service.findMany(args);
+    return this.service.reviewRiskFactorOthers(args);
   }
 
   @graphql.Query(() => ReviewRiskFactorOther, { nullable: true })
   async reviewRiskFactorOther(
     @graphql.Args() args: ReviewRiskFactorOtherFindUniqueArgs
   ): Promise<ReviewRiskFactorOther | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reviewRiskFactorOther(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ReviewRiskFactorOtherResolverBase {
   async createReviewRiskFactorOther(
     @graphql.Args() args: CreateReviewRiskFactorOtherArgs
   ): Promise<ReviewRiskFactorOther> {
-    return await this.service.create({
+    return await this.service.createReviewRiskFactorOther({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ReviewRiskFactorOtherResolverBase {
     @graphql.Args() args: UpdateReviewRiskFactorOtherArgs
   ): Promise<ReviewRiskFactorOther | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewRiskFactorOther({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ReviewRiskFactorOtherResolverBase {
     @graphql.Args() args: DeleteReviewRiskFactorOtherArgs
   ): Promise<ReviewRiskFactorOther | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReviewRiskFactorOther(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

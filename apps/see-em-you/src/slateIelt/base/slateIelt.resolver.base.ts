@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateIeltArgs } from "./CreateSlateIeltArgs";
-import { UpdateSlateIeltArgs } from "./UpdateSlateIeltArgs";
-import { DeleteSlateIeltArgs } from "./DeleteSlateIeltArgs";
+import { SlateIelt } from "./SlateIelt";
 import { SlateIeltCountArgs } from "./SlateIeltCountArgs";
 import { SlateIeltFindManyArgs } from "./SlateIeltFindManyArgs";
 import { SlateIeltFindUniqueArgs } from "./SlateIeltFindUniqueArgs";
-import { SlateIelt } from "./SlateIelt";
+import { CreateSlateIeltArgs } from "./CreateSlateIeltArgs";
+import { UpdateSlateIeltArgs } from "./UpdateSlateIeltArgs";
+import { DeleteSlateIeltArgs } from "./DeleteSlateIeltArgs";
 import { SlateIeltService } from "../slateIelt.service";
 @graphql.Resolver(() => SlateIelt)
 export class SlateIeltResolverBase {
@@ -38,14 +38,14 @@ export class SlateIeltResolverBase {
   async slateIelts(
     @graphql.Args() args: SlateIeltFindManyArgs
   ): Promise<SlateIelt[]> {
-    return this.service.findMany(args);
+    return this.service.slateIelts(args);
   }
 
   @graphql.Query(() => SlateIelt, { nullable: true })
   async slateIelt(
     @graphql.Args() args: SlateIeltFindUniqueArgs
   ): Promise<SlateIelt | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateIelt(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateIeltResolverBase {
   async createSlateIelt(
     @graphql.Args() args: CreateSlateIeltArgs
   ): Promise<SlateIelt> {
-    return await this.service.create({
+    return await this.service.createSlateIelt({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateIeltResolverBase {
     @graphql.Args() args: UpdateSlateIeltArgs
   ): Promise<SlateIelt | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateIelt({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateIeltResolverBase {
     @graphql.Args() args: DeleteSlateIeltArgs
   ): Promise<SlateIelt | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateIelt(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

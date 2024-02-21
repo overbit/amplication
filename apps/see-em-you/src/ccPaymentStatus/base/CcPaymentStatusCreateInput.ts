@@ -29,7 +29,7 @@ class CcPaymentStatusCreateInput {
   })
   @IsNumber()
   @Field(() => Number)
-  creditTotal!: number;
+  settleTotal!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class CcPaymentStatusCreateInput {
   })
   @IsNumber()
   @Field(() => Number)
-  settleTotal!: number;
+  creditTotal!: number;
 }
 
 export { CcPaymentStatusCreateInput as CcPaymentStatusCreateInput };

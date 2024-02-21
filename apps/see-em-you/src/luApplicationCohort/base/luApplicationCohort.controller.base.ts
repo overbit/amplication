@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuApplicationCohortService } from "../luApplicationCohort.service";
 import { LuApplicationCohortCreateInput } from "./LuApplicationCohortCreateInput";
-import { LuApplicationCohortWhereInput } from "./LuApplicationCohortWhereInput";
-import { LuApplicationCohortWhereUniqueInput } from "./LuApplicationCohortWhereUniqueInput";
-import { LuApplicationCohortFindManyArgs } from "./LuApplicationCohortFindManyArgs";
-import { LuApplicationCohortUpdateInput } from "./LuApplicationCohortUpdateInput";
 import { LuApplicationCohort } from "./LuApplicationCohort";
+import { LuApplicationCohortFindManyArgs } from "./LuApplicationCohortFindManyArgs";
+import { LuApplicationCohortWhereUniqueInput } from "./LuApplicationCohortWhereUniqueInput";
+import { LuApplicationCohortUpdateInput } from "./LuApplicationCohortUpdateInput";
 
 export class LuApplicationCohortControllerBase {
   constructor(protected readonly service: LuApplicationCohortService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuApplicationCohort })
-  async create(
+  async createLuApplicationCohort(
     @common.Body() data: LuApplicationCohortCreateInput
   ): Promise<LuApplicationCohort> {
-    return await this.service.create({
+    return await this.service.createLuApplicationCohort({
       data: {
         ...data,
 
@@ -40,13 +39,14 @@ export class LuApplicationCohortControllerBase {
         },
       },
       select: {
+        cohortId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        cohortId: true,
         id: true,
       },
     });
@@ -55,20 +55,21 @@ export class LuApplicationCohortControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuApplicationCohort] })
   @ApiNestedQuery(LuApplicationCohortFindManyArgs)
-  async findMany(
+  async luApplicationCohorts(
     @common.Req() request: Request
   ): Promise<LuApplicationCohort[]> {
     const args = plainToClass(LuApplicationCohortFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luApplicationCohorts({
       ...args,
       select: {
+        cohortId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        cohortId: true,
         id: true,
       },
     });
@@ -77,19 +78,20 @@ export class LuApplicationCohortControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationCohort })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luApplicationCohort(
     @common.Param() params: LuApplicationCohortWhereUniqueInput
   ): Promise<LuApplicationCohort | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luApplicationCohort({
       where: params,
       select: {
+        cohortId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        cohortId: true,
         id: true,
       },
     });
@@ -104,12 +106,12 @@ export class LuApplicationCohortControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationCohort })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuApplicationCohort(
     @common.Param() params: LuApplicationCohortWhereUniqueInput,
     @common.Body() data: LuApplicationCohortUpdateInput
   ): Promise<LuApplicationCohort | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationCohort({
         where: params,
         data: {
           ...data,
@@ -119,13 +121,14 @@ export class LuApplicationCohortControllerBase {
           },
         },
         select: {
+          cohortId: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          cohortId: true,
           id: true,
         },
       });
@@ -142,20 +145,21 @@ export class LuApplicationCohortControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationCohort })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuApplicationCohort(
     @common.Param() params: LuApplicationCohortWhereUniqueInput
   ): Promise<LuApplicationCohort | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuApplicationCohort({
         where: params,
         select: {
+          cohortId: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          cohortId: true,
           id: true,
         },
       });

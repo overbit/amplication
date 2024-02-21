@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SpecialConsiderationService } from "../specialConsideration.service";
 import { SpecialConsiderationCreateInput } from "./SpecialConsiderationCreateInput";
-import { SpecialConsiderationWhereInput } from "./SpecialConsiderationWhereInput";
-import { SpecialConsiderationWhereUniqueInput } from "./SpecialConsiderationWhereUniqueInput";
-import { SpecialConsiderationFindManyArgs } from "./SpecialConsiderationFindManyArgs";
-import { SpecialConsiderationUpdateInput } from "./SpecialConsiderationUpdateInput";
 import { SpecialConsideration } from "./SpecialConsideration";
+import { SpecialConsiderationFindManyArgs } from "./SpecialConsiderationFindManyArgs";
+import { SpecialConsiderationWhereUniqueInput } from "./SpecialConsiderationWhereUniqueInput";
+import { SpecialConsiderationUpdateInput } from "./SpecialConsiderationUpdateInput";
 
 export class SpecialConsiderationControllerBase {
   constructor(protected readonly service: SpecialConsiderationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SpecialConsideration })
-  async create(
+  async createSpecialConsideration(
     @common.Body() data: SpecialConsiderationCreateInput
   ): Promise<SpecialConsideration> {
-    return await this.service.create({
+    return await this.service.createSpecialConsideration({
       data: {
         ...data,
 
@@ -40,6 +39,9 @@ export class SpecialConsiderationControllerBase {
         },
       },
       select: {
+        reviewerId: true,
+        specialConsideration: true,
+
         application: {
           select: {
             id: true,
@@ -47,8 +49,6 @@ export class SpecialConsiderationControllerBase {
         },
 
         id: true,
-        reviewerId: true,
-        specialConsideration: true,
       },
     });
   }
@@ -56,13 +56,16 @@ export class SpecialConsiderationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SpecialConsideration] })
   @ApiNestedQuery(SpecialConsiderationFindManyArgs)
-  async findMany(
+  async specialConsiderations(
     @common.Req() request: Request
   ): Promise<SpecialConsideration[]> {
     const args = plainToClass(SpecialConsiderationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.specialConsiderations({
       ...args,
       select: {
+        reviewerId: true,
+        specialConsideration: true,
+
         application: {
           select: {
             id: true,
@@ -70,8 +73,6 @@ export class SpecialConsiderationControllerBase {
         },
 
         id: true,
-        reviewerId: true,
-        specialConsideration: true,
       },
     });
   }
@@ -79,12 +80,15 @@ export class SpecialConsiderationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SpecialConsideration })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async specialConsideration(
     @common.Param() params: SpecialConsiderationWhereUniqueInput
   ): Promise<SpecialConsideration | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.specialConsideration({
       where: params,
       select: {
+        reviewerId: true,
+        specialConsideration: true,
+
         application: {
           select: {
             id: true,
@@ -92,8 +96,6 @@ export class SpecialConsiderationControllerBase {
         },
 
         id: true,
-        reviewerId: true,
-        specialConsideration: true,
       },
     });
     if (result === null) {
@@ -107,12 +109,12 @@ export class SpecialConsiderationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SpecialConsideration })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSpecialConsideration(
     @common.Param() params: SpecialConsiderationWhereUniqueInput,
     @common.Body() data: SpecialConsiderationUpdateInput
   ): Promise<SpecialConsideration | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSpecialConsideration({
         where: params,
         data: {
           ...data,
@@ -122,6 +124,9 @@ export class SpecialConsiderationControllerBase {
           },
         },
         select: {
+          reviewerId: true,
+          specialConsideration: true,
+
           application: {
             select: {
               id: true,
@@ -129,8 +134,6 @@ export class SpecialConsiderationControllerBase {
           },
 
           id: true,
-          reviewerId: true,
-          specialConsideration: true,
         },
       });
     } catch (error) {
@@ -146,13 +149,16 @@ export class SpecialConsiderationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SpecialConsideration })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSpecialConsideration(
     @common.Param() params: SpecialConsiderationWhereUniqueInput
   ): Promise<SpecialConsideration | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSpecialConsideration({
         where: params,
         select: {
+          reviewerId: true,
+          specialConsideration: true,
+
           application: {
             select: {
               id: true,
@@ -160,8 +166,6 @@ export class SpecialConsiderationControllerBase {
           },
 
           id: true,
-          reviewerId: true,
-          specialConsideration: true,
         },
       });
     } catch (error) {

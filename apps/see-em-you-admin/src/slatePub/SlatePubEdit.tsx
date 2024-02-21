@@ -5,6 +5,10 @@ export const SlatePubEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="Prefix" source="prefix" />
+        <TextInput label="First" source="first" />
+        <TextInput label="Middle" source="middle" />
+        <TextInput label="Last" source="last" />
         <TextInput label="Authors Pub1" source="authorsPub1" />
         <TextInput label="Authors Pub2" source="authorsPub2" />
         <TextInput label="Authors Pub3" source="authorsPub3" />
@@ -23,10 +27,7 @@ export const SlatePubEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="Destination Pub4" source="destinationPub4" />
         <TextInput label="Destination Pub5" source="destinationPub5" />
         <TextInput label="Destination Pub6" source="destinationPub6" />
-        <TextInput label="First" source="first" />
         <TextInput label="Has Publications" source="hasPublications" />
-        <TextInput label="Last" source="last" />
-        <TextInput label="Middle" source="middle" />
         <TextInput
           label="Other Type Of Publication1"
           source="otherTypeOfPublication1"
@@ -51,7 +52,6 @@ export const SlatePubEdit = (props: EditProps): React.ReactElement => {
           label="Other Type Of Publication6"
           source="otherTypeOfPublication6"
         />
-        <TextInput label="Prefix" source="prefix" />
         <TextInput
           label="Status Of Publication1"
           source="statusOfPublication1"

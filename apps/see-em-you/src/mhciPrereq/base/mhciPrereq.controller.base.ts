@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqService } from "../mhciPrereq.service";
 import { MhciPrereqCreateInput } from "./MhciPrereqCreateInput";
-import { MhciPrereqWhereInput } from "./MhciPrereqWhereInput";
-import { MhciPrereqWhereUniqueInput } from "./MhciPrereqWhereUniqueInput";
-import { MhciPrereqFindManyArgs } from "./MhciPrereqFindManyArgs";
-import { MhciPrereqUpdateInput } from "./MhciPrereqUpdateInput";
 import { MhciPrereq } from "./MhciPrereq";
+import { MhciPrereqFindManyArgs } from "./MhciPrereqFindManyArgs";
+import { MhciPrereqWhereUniqueInput } from "./MhciPrereqWhereUniqueInput";
+import { MhciPrereqUpdateInput } from "./MhciPrereqUpdateInput";
 import { MhciPrereqsConversationCommentFindManyArgs } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentFindManyArgs";
 import { MhciPrereqsConversationComment } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationComment";
 import { MhciPrereqsConversationCommentWhereUniqueInput } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentWhereUniqueInput";
@@ -31,10 +30,10 @@ export class MhciPrereqControllerBase {
   constructor(protected readonly service: MhciPrereqService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereq })
-  async create(
+  async createMhciPrereq(
     @common.Body() data: MhciPrereqCreateInput
   ): Promise<MhciPrereq> {
-    return await this.service.create({
+    return await this.service.createMhciPrereq({
       data: {
         ...data,
 
@@ -49,13 +48,18 @@ export class MhciPrereqControllerBase {
           : undefined,
       },
       select: {
+        studentLuUsersUsertypesId: true,
+        prereq_type: true,
+        periodId: true,
+        student_assessment: true,
+        status2: true,
+        timestamp: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        id: true,
 
         mhciPrereqsStatus: {
           select: {
@@ -63,12 +67,7 @@ export class MhciPrereqControllerBase {
           },
         },
 
-        periodId: true,
-        prereq_type: true,
-        status2: true,
-        student_assessment: true,
-        studentLuUsersUsertypesId: true,
-        timestamp: true,
+        id: true,
       },
     });
   }
@@ -76,18 +75,23 @@ export class MhciPrereqControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereq] })
   @ApiNestedQuery(MhciPrereqFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MhciPrereq[]> {
+  async mhciPrereqs(@common.Req() request: Request): Promise<MhciPrereq[]> {
     const args = plainToClass(MhciPrereqFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciPrereqs({
       ...args,
       select: {
+        studentLuUsersUsertypesId: true,
+        prereq_type: true,
+        periodId: true,
+        student_assessment: true,
+        status2: true,
+        timestamp: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        id: true,
 
         mhciPrereqsStatus: {
           select: {
@@ -95,12 +99,7 @@ export class MhciPrereqControllerBase {
           },
         },
 
-        periodId: true,
-        prereq_type: true,
-        status2: true,
-        student_assessment: true,
-        studentLuUsersUsertypesId: true,
-        timestamp: true,
+        id: true,
       },
     });
   }
@@ -108,19 +107,24 @@ export class MhciPrereqControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereq(
     @common.Param() params: MhciPrereqWhereUniqueInput
   ): Promise<MhciPrereq | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereq({
       where: params,
       select: {
+        studentLuUsersUsertypesId: true,
+        prereq_type: true,
+        periodId: true,
+        student_assessment: true,
+        status2: true,
+        timestamp: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        id: true,
 
         mhciPrereqsStatus: {
           select: {
@@ -128,12 +132,7 @@ export class MhciPrereqControllerBase {
           },
         },
 
-        periodId: true,
-        prereq_type: true,
-        status2: true,
-        student_assessment: true,
-        studentLuUsersUsertypesId: true,
-        timestamp: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -147,12 +146,12 @@ export class MhciPrereqControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereq(
     @common.Param() params: MhciPrereqWhereUniqueInput,
     @common.Body() data: MhciPrereqUpdateInput
   ): Promise<MhciPrereq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereq({
         where: params,
         data: {
           ...data,
@@ -168,13 +167,18 @@ export class MhciPrereqControllerBase {
             : undefined,
         },
         select: {
+          studentLuUsersUsertypesId: true,
+          prereq_type: true,
+          periodId: true,
+          student_assessment: true,
+          status2: true,
+          timestamp: true,
+
           application: {
             select: {
               id: true,
             },
           },
-
-          id: true,
 
           mhciPrereqsStatus: {
             select: {
@@ -182,12 +186,7 @@ export class MhciPrereqControllerBase {
             },
           },
 
-          periodId: true,
-          prereq_type: true,
-          status2: true,
-          student_assessment: true,
-          studentLuUsersUsertypesId: true,
-          timestamp: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -203,20 +202,25 @@ export class MhciPrereqControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereq(
     @common.Param() params: MhciPrereqWhereUniqueInput
   ): Promise<MhciPrereq | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereq({
         where: params,
         select: {
+          studentLuUsersUsertypesId: true,
+          prereq_type: true,
+          periodId: true,
+          student_assessment: true,
+          status2: true,
+          timestamp: true,
+
           application: {
             select: {
               id: true,
             },
           },
-
-          id: true,
 
           mhciPrereqsStatus: {
             select: {
@@ -224,12 +228,7 @@ export class MhciPrereqControllerBase {
             },
           },
 
-          periodId: true,
-          prereq_type: true,
-          status2: true,
-          student_assessment: true,
-          studentLuUsersUsertypesId: true,
-          timestamp: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -244,7 +243,7 @@ export class MhciPrereqControllerBase {
 
   @common.Get("/:id/mhciPrereqsConversationComments")
   @ApiNestedQuery(MhciPrereqsConversationCommentFindManyArgs)
-  async findManyMhciPrereqsConversationComments(
+  async findMhciPrereqsConversationComments(
     @common.Req() request: Request,
     @common.Param() params: MhciPrereqWhereUniqueInput
   ): Promise<MhciPrereqsConversationComment[]> {
@@ -259,13 +258,9 @@ export class MhciPrereqControllerBase {
         select: {
           applicationId: true,
           comment: true,
-          id: true,
-
-          luUsersUsertypes: {
-            select: {
-              id: true,
-            },
-          },
+          timestamp: true,
+          periodId: true,
+          programId: true,
 
           mhciPrereqs: {
             select: {
@@ -273,9 +268,13 @@ export class MhciPrereqControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          timestamp: true,
+          luUsersUsertypes: {
+            select: {
+              id: true,
+            },
+          },
+
+          id: true,
         },
       }
     );
@@ -297,7 +296,7 @@ export class MhciPrereqControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateMhciPrereq({
       where: params,
       data,
       select: { id: true },
@@ -314,7 +313,7 @@ export class MhciPrereqControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateMhciPrereq({
       where: params,
       data,
       select: { id: true },
@@ -331,7 +330,7 @@ export class MhciPrereqControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateMhciPrereq({
       where: params,
       data,
       select: { id: true },

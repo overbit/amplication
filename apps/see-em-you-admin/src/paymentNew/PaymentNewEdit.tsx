@@ -13,7 +13,7 @@ export const PaymentNewEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Last Mod User Id" source="lastModUserId" />
+        <NumberInput step={1} label="Payment Type" source="paymentType" />
         <NumberInput label="Payment Amount" source="paymentAmount" />
         <DateTimeInput label="Payment Intent Date" source="paymentIntentDate" />
         <SelectInput
@@ -28,7 +28,7 @@ export const PaymentNewEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <NumberInput step={1} label="Payment Type" source="paymentType" />
+        <NumberInput step={1} label="Last Mod User Id" source="lastModUserId" />
       </SimpleForm>
     </Edit>
   );

@@ -16,6 +16,14 @@ import { IsInt, IsOptional } from "class-validator";
 @InputType()
 class LuReviewerGroupCreateInput {
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  reviewerId!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -33,14 +41,6 @@ class LuReviewerGroupCreateInput {
   @IsInt()
   @Field(() => Number)
   groupId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reviewerId!: number;
 
   @ApiProperty({
     required: true,

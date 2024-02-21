@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuReviewInterestArgs } from "./CreateLuReviewInterestArgs";
-import { UpdateLuReviewInterestArgs } from "./UpdateLuReviewInterestArgs";
-import { DeleteLuReviewInterestArgs } from "./DeleteLuReviewInterestArgs";
+import { LuReviewInterest } from "./LuReviewInterest";
 import { LuReviewInterestCountArgs } from "./LuReviewInterestCountArgs";
 import { LuReviewInterestFindManyArgs } from "./LuReviewInterestFindManyArgs";
 import { LuReviewInterestFindUniqueArgs } from "./LuReviewInterestFindUniqueArgs";
-import { LuReviewInterest } from "./LuReviewInterest";
+import { CreateLuReviewInterestArgs } from "./CreateLuReviewInterestArgs";
+import { UpdateLuReviewInterestArgs } from "./UpdateLuReviewInterestArgs";
+import { DeleteLuReviewInterestArgs } from "./DeleteLuReviewInterestArgs";
 import { LuReviewInterestService } from "../luReviewInterest.service";
 @graphql.Resolver(() => LuReviewInterest)
 export class LuReviewInterestResolverBase {
@@ -38,14 +38,14 @@ export class LuReviewInterestResolverBase {
   async luReviewInterests(
     @graphql.Args() args: LuReviewInterestFindManyArgs
   ): Promise<LuReviewInterest[]> {
-    return this.service.findMany(args);
+    return this.service.luReviewInterests(args);
   }
 
   @graphql.Query(() => LuReviewInterest, { nullable: true })
   async luReviewInterest(
     @graphql.Args() args: LuReviewInterestFindUniqueArgs
   ): Promise<LuReviewInterest | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luReviewInterest(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LuReviewInterestResolverBase {
   async createLuReviewInterest(
     @graphql.Args() args: CreateLuReviewInterestArgs
   ): Promise<LuReviewInterest> {
-    return await this.service.create({
+    return await this.service.createLuReviewInterest({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LuReviewInterestResolverBase {
     @graphql.Args() args: UpdateLuReviewInterestArgs
   ): Promise<LuReviewInterest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuReviewInterest({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LuReviewInterestResolverBase {
     @graphql.Args() args: DeleteLuReviewInterestArgs
   ): Promise<LuReviewInterest | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuReviewInterest(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

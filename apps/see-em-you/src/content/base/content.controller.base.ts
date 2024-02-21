@@ -18,28 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ContentService } from "../content.service";
 import { ContentCreateInput } from "./ContentCreateInput";
-import { ContentWhereInput } from "./ContentWhereInput";
-import { ContentWhereUniqueInput } from "./ContentWhereUniqueInput";
-import { ContentFindManyArgs } from "./ContentFindManyArgs";
-import { ContentUpdateInput } from "./ContentUpdateInput";
 import { Content } from "./Content";
+import { ContentFindManyArgs } from "./ContentFindManyArgs";
+import { ContentWhereUniqueInput } from "./ContentWhereUniqueInput";
+import { ContentUpdateInput } from "./ContentUpdateInput";
 
 export class ContentControllerBase {
   constructor(protected readonly service: ContentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Content })
-  async create(@common.Body() data: ContentCreateInput): Promise<Content> {
-    return await this.service.create({
+  async createContent(
+    @common.Body() data: ContentCreateInput
+  ): Promise<Content> {
+    return await this.service.createContent({
       data: data,
       select: {
+        name: true,
         content: true,
         contenttypeId: true,
-        departmentId: true,
         domainId: true,
-        id: true,
-        modifiedby: true,
         modifieddate: true,
-        name: true,
+        modifiedby: true,
+        departmentId: true,
+        id: true,
       },
     });
   }
@@ -47,19 +48,19 @@ export class ContentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Content] })
   @ApiNestedQuery(ContentFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Content[]> {
+  async contents(@common.Req() request: Request): Promise<Content[]> {
     const args = plainToClass(ContentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.contents({
       ...args,
       select: {
+        name: true,
         content: true,
         contenttypeId: true,
-        departmentId: true,
         domainId: true,
-        id: true,
-        modifiedby: true,
         modifieddate: true,
-        name: true,
+        modifiedby: true,
+        departmentId: true,
+        id: true,
       },
     });
   }
@@ -67,20 +68,20 @@ export class ContentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Content })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async content(
     @common.Param() params: ContentWhereUniqueInput
   ): Promise<Content | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.content({
       where: params,
       select: {
+        name: true,
         content: true,
         contenttypeId: true,
-        departmentId: true,
         domainId: true,
-        id: true,
-        modifiedby: true,
         modifieddate: true,
-        name: true,
+        modifiedby: true,
+        departmentId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -94,23 +95,23 @@ export class ContentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Content })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateContent(
     @common.Param() params: ContentWhereUniqueInput,
     @common.Body() data: ContentUpdateInput
   ): Promise<Content | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateContent({
         where: params,
         data: data,
         select: {
+          name: true,
           content: true,
           contenttypeId: true,
-          departmentId: true,
           domainId: true,
-          id: true,
-          modifiedby: true,
           modifieddate: true,
-          name: true,
+          modifiedby: true,
+          departmentId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -126,21 +127,21 @@ export class ContentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Content })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteContent(
     @common.Param() params: ContentWhereUniqueInput
   ): Promise<Content | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteContent({
         where: params,
         select: {
+          name: true,
           content: true,
           contenttypeId: true,
-          departmentId: true,
           domainId: true,
-          id: true,
-          modifiedby: true,
           modifieddate: true,
-          name: true,
+          modifiedby: true,
+          departmentId: true,
+          id: true,
         },
       });
     } catch (error) {

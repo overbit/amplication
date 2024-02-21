@@ -19,18 +19,18 @@ export const LangProfRecommendList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
+        <TextField label="Rec User Id" source="recUserId" />
         <TextField label="Content" source="content" />
         <TextField label="Datafile Id" source="datafileId" />
-        <TextField label="Id" source="id" />
         <TextField label="Lang Prof Rec Id" source="langProfRecId" />
+        <BooleanField label="Submitted" source="submitted" />
+        <TextField label="Reminder Sent Count" source="reminderSentCount" />
+        <TextField label="Last Reminder Sent" source="lastReminderSent" />
         <TextField
           label="Language Specialization"
           source="languageSpecialization"
         />
-        <TextField label="Last Reminder Sent" source="lastReminderSent" />
-        <TextField label="Rec User Id" source="recUserId" />
-        <TextField label="Reminder Sent Count" source="reminderSentCount" />
-        <BooleanField label="Submitted" source="submitted" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

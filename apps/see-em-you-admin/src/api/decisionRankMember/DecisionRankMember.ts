@@ -1,8 +1,8 @@
 export type DecisionRankMember = {
-  applicationId: number;
-  decision: string;
   departmentId: number;
+  periodId: number;
+  decision: string;
+  applicationId: number;
   drank: number;
   id: string;
-  periodId: number;
 };

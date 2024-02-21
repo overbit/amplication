@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString, IsDate } from "class-validator";
+import { IsInt, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -29,14 +29,14 @@ class MseInterviewUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  interviewComments?: string;
+  reviewerId?: number;
 
   @ApiProperty({
     required: false,
@@ -73,14 +73,14 @@ class MseInterviewUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  reviewerId?: number;
+  interviewComments?: string;
 }
 
 export { MseInterviewUpdateInput as MseInterviewUpdateInput };

@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LangProfRecommend } from "@prisma/client";
+import {
+  Prisma,
+  LangProfRecommend as PrismaLangProfRecommend,
+} from "@prisma/client";
 
 export class LangProfRecommendServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class LangProfRecommendServiceBase {
     return this.prisma.langProfRecommend.count(args);
   }
 
-  async findMany<T extends Prisma.LangProfRecommendFindManyArgs>(
+  async langProfRecommends<T extends Prisma.LangProfRecommendFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LangProfRecommendFindManyArgs>
-  ): Promise<LangProfRecommend[]> {
+  ): Promise<PrismaLangProfRecommend[]> {
     return this.prisma.langProfRecommend.findMany(args);
   }
-  async findOne<T extends Prisma.LangProfRecommendFindUniqueArgs>(
+  async langProfRecommend<T extends Prisma.LangProfRecommendFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LangProfRecommendFindUniqueArgs>
-  ): Promise<LangProfRecommend | null> {
+  ): Promise<PrismaLangProfRecommend | null> {
     return this.prisma.langProfRecommend.findUnique(args);
   }
-  async create<T extends Prisma.LangProfRecommendCreateArgs>(
+  async createLangProfRecommend<T extends Prisma.LangProfRecommendCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LangProfRecommendCreateArgs>
-  ): Promise<LangProfRecommend> {
+  ): Promise<PrismaLangProfRecommend> {
     return this.prisma.langProfRecommend.create<T>(args);
   }
-  async update<T extends Prisma.LangProfRecommendUpdateArgs>(
+  async updateLangProfRecommend<T extends Prisma.LangProfRecommendUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LangProfRecommendUpdateArgs>
-  ): Promise<LangProfRecommend> {
+  ): Promise<PrismaLangProfRecommend> {
     return this.prisma.langProfRecommend.update<T>(args);
   }
-  async delete<T extends Prisma.LangProfRecommendDeleteArgs>(
+  async deleteLangProfRecommend<T extends Prisma.LangProfRecommendDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.LangProfRecommendDeleteArgs>
-  ): Promise<LangProfRecommend> {
+  ): Promise<PrismaLangProfRecommend> {
     return this.prisma.langProfRecommend.delete(args);
   }
 }

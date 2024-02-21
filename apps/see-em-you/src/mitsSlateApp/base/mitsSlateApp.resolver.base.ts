@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMitsSlateAppArgs } from "./CreateMitsSlateAppArgs";
-import { UpdateMitsSlateAppArgs } from "./UpdateMitsSlateAppArgs";
-import { DeleteMitsSlateAppArgs } from "./DeleteMitsSlateAppArgs";
+import { MitsSlateApp } from "./MitsSlateApp";
 import { MitsSlateAppCountArgs } from "./MitsSlateAppCountArgs";
 import { MitsSlateAppFindManyArgs } from "./MitsSlateAppFindManyArgs";
 import { MitsSlateAppFindUniqueArgs } from "./MitsSlateAppFindUniqueArgs";
-import { MitsSlateApp } from "./MitsSlateApp";
+import { CreateMitsSlateAppArgs } from "./CreateMitsSlateAppArgs";
+import { UpdateMitsSlateAppArgs } from "./UpdateMitsSlateAppArgs";
+import { DeleteMitsSlateAppArgs } from "./DeleteMitsSlateAppArgs";
 import { MitsSlateAppService } from "../mitsSlateApp.service";
 @graphql.Resolver(() => MitsSlateApp)
 export class MitsSlateAppResolverBase {
@@ -38,14 +38,14 @@ export class MitsSlateAppResolverBase {
   async mitsSlateApps(
     @graphql.Args() args: MitsSlateAppFindManyArgs
   ): Promise<MitsSlateApp[]> {
-    return this.service.findMany(args);
+    return this.service.mitsSlateApps(args);
   }
 
   @graphql.Query(() => MitsSlateApp, { nullable: true })
   async mitsSlateApp(
     @graphql.Args() args: MitsSlateAppFindUniqueArgs
   ): Promise<MitsSlateApp | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mitsSlateApp(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MitsSlateAppResolverBase {
   async createMitsSlateApp(
     @graphql.Args() args: CreateMitsSlateAppArgs
   ): Promise<MitsSlateApp> {
-    return await this.service.create({
+    return await this.service.createMitsSlateApp({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MitsSlateAppResolverBase {
     @graphql.Args() args: UpdateMitsSlateAppArgs
   ): Promise<MitsSlateApp | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateApp({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MitsSlateAppResolverBase {
     @graphql.Args() args: DeleteMitsSlateAppArgs
   ): Promise<MitsSlateApp | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMitsSlateApp(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

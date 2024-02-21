@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { GroupRankMemberService } from "../groupRankMember.service";
 import { GroupRankMemberCreateInput } from "./GroupRankMemberCreateInput";
-import { GroupRankMemberWhereInput } from "./GroupRankMemberWhereInput";
-import { GroupRankMemberWhereUniqueInput } from "./GroupRankMemberWhereUniqueInput";
-import { GroupRankMemberFindManyArgs } from "./GroupRankMemberFindManyArgs";
-import { GroupRankMemberUpdateInput } from "./GroupRankMemberUpdateInput";
 import { GroupRankMember } from "./GroupRankMember";
+import { GroupRankMemberFindManyArgs } from "./GroupRankMemberFindManyArgs";
+import { GroupRankMemberWhereUniqueInput } from "./GroupRankMemberWhereUniqueInput";
+import { GroupRankMemberUpdateInput } from "./GroupRankMemberUpdateInput";
 
 export class GroupRankMemberControllerBase {
   constructor(protected readonly service: GroupRankMemberService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: GroupRankMember })
-  async create(
+  async createGroupRankMember(
     @common.Body() data: GroupRankMemberCreateInput
   ): Promise<GroupRankMember> {
-    return await this.service.create({
+    return await this.service.createGroupRankMember({
       data: data,
       select: {
-        applicationId: true,
-        grank: true,
         groupId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
         round: true,
+        periodId: true,
+        applicationId: true,
+        luUsersUsertypesId: true,
+        grank: true,
+        id: true,
       },
     });
   }
@@ -48,18 +47,20 @@ export class GroupRankMemberControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [GroupRankMember] })
   @ApiNestedQuery(GroupRankMemberFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<GroupRankMember[]> {
+  async groupRankMembers(
+    @common.Req() request: Request
+  ): Promise<GroupRankMember[]> {
     const args = plainToClass(GroupRankMemberFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.groupRankMembers({
       ...args,
       select: {
-        applicationId: true,
-        grank: true,
         groupId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
         round: true,
+        periodId: true,
+        applicationId: true,
+        luUsersUsertypesId: true,
+        grank: true,
+        id: true,
       },
     });
   }
@@ -67,19 +68,19 @@ export class GroupRankMemberControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: GroupRankMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async groupRankMember(
     @common.Param() params: GroupRankMemberWhereUniqueInput
   ): Promise<GroupRankMember | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.groupRankMember({
       where: params,
       select: {
-        applicationId: true,
-        grank: true,
         groupId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
         round: true,
+        periodId: true,
+        applicationId: true,
+        luUsersUsertypesId: true,
+        grank: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -93,22 +94,22 @@ export class GroupRankMemberControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: GroupRankMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateGroupRankMember(
     @common.Param() params: GroupRankMemberWhereUniqueInput,
     @common.Body() data: GroupRankMemberUpdateInput
   ): Promise<GroupRankMember | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGroupRankMember({
         where: params,
         data: data,
         select: {
-          applicationId: true,
-          grank: true,
           groupId: true,
-          id: true,
-          luUsersUsertypesId: true,
-          periodId: true,
           round: true,
+          periodId: true,
+          applicationId: true,
+          luUsersUsertypesId: true,
+          grank: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -124,20 +125,20 @@ export class GroupRankMemberControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: GroupRankMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteGroupRankMember(
     @common.Param() params: GroupRankMemberWhereUniqueInput
   ): Promise<GroupRankMember | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteGroupRankMember({
         where: params,
         select: {
-          applicationId: true,
-          grank: true,
           groupId: true,
-          id: true,
-          luUsersUsertypesId: true,
-          periodId: true,
           round: true,
+          periodId: true,
+          applicationId: true,
+          luUsersUsertypesId: true,
+          grank: true,
+          id: true,
         },
       });
     } catch (error) {

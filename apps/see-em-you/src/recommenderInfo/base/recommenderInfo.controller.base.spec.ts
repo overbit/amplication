@@ -18,46 +18,46 @@ import { RecommenderInfoService } from "../recommenderInfo.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  affiliation: "exampleAffiliation",
-  id: 42,
-  phone: "examplePhone",
   recUserId: 42,
-  relationshipToApplicant: "exampleRelationshipToApplicant",
   title: "exampleTitle",
+  affiliation: "exampleAffiliation",
+  phone: "examplePhone",
+  relationshipToApplicant: "exampleRelationshipToApplicant",
+  id: 42,
 };
 const CREATE_RESULT = {
-  affiliation: "exampleAffiliation",
-  id: 42,
-  phone: "examplePhone",
   recUserId: 42,
-  relationshipToApplicant: "exampleRelationshipToApplicant",
   title: "exampleTitle",
+  affiliation: "exampleAffiliation",
+  phone: "examplePhone",
+  relationshipToApplicant: "exampleRelationshipToApplicant",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    affiliation: "exampleAffiliation",
-    id: 42,
-    phone: "examplePhone",
     recUserId: 42,
-    relationshipToApplicant: "exampleRelationshipToApplicant",
     title: "exampleTitle",
+    affiliation: "exampleAffiliation",
+    phone: "examplePhone",
+    relationshipToApplicant: "exampleRelationshipToApplicant",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  affiliation: "exampleAffiliation",
-  id: 42,
-  phone: "examplePhone",
   recUserId: 42,
-  relationshipToApplicant: "exampleRelationshipToApplicant",
   title: "exampleTitle",
+  affiliation: "exampleAffiliation",
+  phone: "examplePhone",
+  relationshipToApplicant: "exampleRelationshipToApplicant",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createRecommenderInfo() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  recommenderInfos: () => FIND_MANY_RESULT,
+  recommenderInfo: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, StudentDecisionUniversity } from "@prisma/client";
+import {
+  Prisma,
+  StudentDecisionUniversity as PrismaStudentDecisionUniversity,
+} from "@prisma/client";
 
 export class StudentDecisionUniversityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class StudentDecisionUniversityServiceBase {
     return this.prisma.studentDecisionUniversity.count(args);
   }
 
-  async findMany<T extends Prisma.StudentDecisionUniversityFindManyArgs>(
+  async studentDecisionUniversities<
+    T extends Prisma.StudentDecisionUniversityFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionUniversityFindManyArgs>
-  ): Promise<StudentDecisionUniversity[]> {
+  ): Promise<PrismaStudentDecisionUniversity[]> {
     return this.prisma.studentDecisionUniversity.findMany(args);
   }
-  async findOne<T extends Prisma.StudentDecisionUniversityFindUniqueArgs>(
+  async studentDecisionUniversity<
+    T extends Prisma.StudentDecisionUniversityFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionUniversityFindUniqueArgs>
-  ): Promise<StudentDecisionUniversity | null> {
+  ): Promise<PrismaStudentDecisionUniversity | null> {
     return this.prisma.studentDecisionUniversity.findUnique(args);
   }
-  async create<T extends Prisma.StudentDecisionUniversityCreateArgs>(
+  async createStudentDecisionUniversity<
+    T extends Prisma.StudentDecisionUniversityCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionUniversityCreateArgs>
-  ): Promise<StudentDecisionUniversity> {
+  ): Promise<PrismaStudentDecisionUniversity> {
     return this.prisma.studentDecisionUniversity.create<T>(args);
   }
-  async update<T extends Prisma.StudentDecisionUniversityUpdateArgs>(
+  async updateStudentDecisionUniversity<
+    T extends Prisma.StudentDecisionUniversityUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionUniversityUpdateArgs>
-  ): Promise<StudentDecisionUniversity> {
+  ): Promise<PrismaStudentDecisionUniversity> {
     return this.prisma.studentDecisionUniversity.update<T>(args);
   }
-  async delete<T extends Prisma.StudentDecisionUniversityDeleteArgs>(
+  async deleteStudentDecisionUniversity<
+    T extends Prisma.StudentDecisionUniversityDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionUniversityDeleteArgs>
-  ): Promise<StudentDecisionUniversity> {
+  ): Promise<PrismaStudentDecisionUniversity> {
     return this.prisma.studentDecisionUniversity.delete(args);
   }
 }

@@ -24,6 +24,14 @@ class WaiverApplicationCreateInput {
   applicationId!: number;
 
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  orgId!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -33,14 +41,6 @@ class WaiverApplicationCreateInput {
     nullable: true,
   })
   datafileId?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  orgId!: number;
 }
 
 export { WaiverApplicationCreateInput as WaiverApplicationCreateInput };

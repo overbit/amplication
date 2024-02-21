@@ -5,8 +5,8 @@ export const CountryCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Iso Code" source="isoCode" />
         <TextInput label="Name" source="name" />
+        <TextInput label="Iso Code" source="isoCode" />
       </SimpleForm>
     </Create>
   );

@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ReviewIniAlternativeProgram } from "@prisma/client";
+import {
+  Prisma,
+  ReviewIniAlternativeProgram as PrismaReviewIniAlternativeProgram,
+} from "@prisma/client";
 
 export class ReviewIniAlternativeProgramServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,32 +24,42 @@ export class ReviewIniAlternativeProgramServiceBase {
     return this.prisma.reviewIniAlternativeProgram.count(args);
   }
 
-  async findMany<T extends Prisma.ReviewIniAlternativeProgramFindManyArgs>(
+  async reviewIniAlternativePrograms<
+    T extends Prisma.ReviewIniAlternativeProgramFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAlternativeProgramFindManyArgs>
-  ): Promise<ReviewIniAlternativeProgram[]> {
+  ): Promise<PrismaReviewIniAlternativeProgram[]> {
     return this.prisma.reviewIniAlternativeProgram.findMany(args);
   }
-  async findOne<T extends Prisma.ReviewIniAlternativeProgramFindUniqueArgs>(
+  async reviewIniAlternativeProgram<
+    T extends Prisma.ReviewIniAlternativeProgramFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.ReviewIniAlternativeProgramFindUniqueArgs
     >
-  ): Promise<ReviewIniAlternativeProgram | null> {
+  ): Promise<PrismaReviewIniAlternativeProgram | null> {
     return this.prisma.reviewIniAlternativeProgram.findUnique(args);
   }
-  async create<T extends Prisma.ReviewIniAlternativeProgramCreateArgs>(
+  async createReviewIniAlternativeProgram<
+    T extends Prisma.ReviewIniAlternativeProgramCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAlternativeProgramCreateArgs>
-  ): Promise<ReviewIniAlternativeProgram> {
+  ): Promise<PrismaReviewIniAlternativeProgram> {
     return this.prisma.reviewIniAlternativeProgram.create<T>(args);
   }
-  async update<T extends Prisma.ReviewIniAlternativeProgramUpdateArgs>(
+  async updateReviewIniAlternativeProgram<
+    T extends Prisma.ReviewIniAlternativeProgramUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAlternativeProgramUpdateArgs>
-  ): Promise<ReviewIniAlternativeProgram> {
+  ): Promise<PrismaReviewIniAlternativeProgram> {
     return this.prisma.reviewIniAlternativeProgram.update<T>(args);
   }
-  async delete<T extends Prisma.ReviewIniAlternativeProgramDeleteArgs>(
+  async deleteReviewIniAlternativeProgram<
+    T extends Prisma.ReviewIniAlternativeProgramDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAlternativeProgramDeleteArgs>
-  ): Promise<ReviewIniAlternativeProgram> {
+  ): Promise<PrismaReviewIniAlternativeProgram> {
     return this.prisma.reviewIniAlternativeProgram.delete(args);
   }
 }

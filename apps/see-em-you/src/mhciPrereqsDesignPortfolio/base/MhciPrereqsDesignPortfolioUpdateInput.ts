@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString, ValidateNested } from "class-validator";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 import { Type } from "class-transformer";
 
@@ -19,14 +19,14 @@ import { Type } from "class-transformer";
 class MhciPrereqsDesignPortfolioUpdateInput {
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  applicationId?: number | null;
+  url?: string | null;
 
   @ApiProperty({
     required: false,
@@ -41,18 +41,6 @@ class MhciPrereqsDesignPortfolioUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => LuUsersUsertypeWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertypeWhereUniqueInput)
-  @IsOptional()
-  @Field(() => LuUsersUsertypeWhereUniqueInput, {
-    nullable: true,
-  })
-  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -60,7 +48,7 @@ class MhciPrereqsDesignPortfolioUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  periodId?: number | null;
+  applicationId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -75,14 +63,26 @@ class MhciPrereqsDesignPortfolioUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  url?: string | null;
+  periodId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => LuUsersUsertypeWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertypeWhereUniqueInput)
+  @IsOptional()
+  @Field(() => LuUsersUsertypeWhereUniqueInput, {
+    nullable: true,
+  })
+  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
 }
 
 export { MhciPrereqsDesignPortfolioUpdateInput as MhciPrereqsDesignPortfolioUpdateInput };

@@ -4,11 +4,11 @@ import {
   SimpleShowLayout,
   ShowProps,
   TextField,
-  ReferenceField,
   DateField,
+  ReferenceField,
 } from "react-admin";
-import { LUUSERSUSERTYPE_TITLE_FIELD } from "../luUsersUsertype/LuUsersUsertypeTitle";
 import { MHCIPREREQ_TITLE_FIELD } from "../mhciPrereq/MhciPrereqTitle";
+import { LUUSERSUSERTYPE_TITLE_FIELD } from "../luUsersUsertype/LuUsersUsertypeTitle";
 
 export const MhciPrereqsConversationCommentShow = (
   props: ShowProps
@@ -18,14 +18,9 @@ export const MhciPrereqsConversationCommentShow = (
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
         <TextField label="Comment" source="comment" />
-        <TextField label="Id" source="id" />
-        <ReferenceField
-          label="Lu Users Usertypes"
-          source="luusersusertype.id"
-          reference="LuUsersUsertype"
-        >
-          <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
-        </ReferenceField>
+        <DateField source="timestamp" label="Timestamp" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Program Id" source="programId" />
         <ReferenceField
           label="Mhci Prereqs"
           source="mhciprereq.id"
@@ -33,9 +28,14 @@ export const MhciPrereqsConversationCommentShow = (
         >
           <TextField source={MHCIPREREQ_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Period Id" source="periodId" />
-        <TextField label="Program Id" source="programId" />
-        <DateField source="timestamp" label="Timestamp" />
+        <ReferenceField
+          label="Lu Users Usertypes"
+          source="luusersusertype.id"
+          reference="LuUsersUsertype"
+        >
+          <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
+        </ReferenceField>
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

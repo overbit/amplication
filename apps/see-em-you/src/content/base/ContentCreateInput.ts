@@ -22,6 +22,14 @@ class ContentCreateInput {
   })
   @IsString()
   @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   content!: string;
 
   @ApiProperty({
@@ -31,14 +39,6 @@ class ContentCreateInput {
   @IsInt()
   @Field(() => Number)
   contenttypeId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  departmentId!: number;
 
   @ApiProperty({
     required: false,
@@ -53,14 +53,6 @@ class ContentCreateInput {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  modifiedby!: number;
-
-  @ApiProperty({
-    required: true,
   })
   @IsDate()
   @Type(() => Date)
@@ -69,11 +61,19 @@ class ContentCreateInput {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  name!: string;
+  @IsInt()
+  @Field(() => Number)
+  modifiedby!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  departmentId!: number;
 }
 
 export { ContentCreateInput as ContentCreateInput };

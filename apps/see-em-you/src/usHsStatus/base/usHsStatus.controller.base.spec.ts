@@ -18,58 +18,58 @@ import { UsHsStatusService } from "../usHsStatus.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  anyUsHs: 42,
   appId: 42,
+  usHSGrad: 42,
+  anyUsHs: 42,
+  pell: 42,
+  ugFedWorkStudy: 42,
+  permZipGrad: 42,
   firstGen: 42,
   firstGenGrad: 42,
   id: 42,
-  pell: 42,
-  permZipGrad: 42,
-  ugFedWorkStudy: 42,
-  usHSGrad: 42,
 };
 const CREATE_RESULT = {
-  anyUsHs: 42,
   appId: 42,
+  usHSGrad: 42,
+  anyUsHs: 42,
+  pell: 42,
+  ugFedWorkStudy: 42,
+  permZipGrad: 42,
   firstGen: 42,
   firstGenGrad: 42,
   id: 42,
-  pell: 42,
-  permZipGrad: 42,
-  ugFedWorkStudy: 42,
-  usHSGrad: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    anyUsHs: 42,
     appId: 42,
+    usHSGrad: 42,
+    anyUsHs: 42,
+    pell: 42,
+    ugFedWorkStudy: 42,
+    permZipGrad: 42,
     firstGen: 42,
     firstGenGrad: 42,
     id: 42,
-    pell: 42,
-    permZipGrad: 42,
-    ugFedWorkStudy: 42,
-    usHSGrad: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  anyUsHs: 42,
   appId: 42,
+  usHSGrad: 42,
+  anyUsHs: 42,
+  pell: 42,
+  ugFedWorkStudy: 42,
+  permZipGrad: 42,
   firstGen: 42,
   firstGenGrad: 42,
   id: 42,
-  pell: 42,
-  permZipGrad: 42,
-  ugFedWorkStudy: 42,
-  usHSGrad: 42,
 };
 
 const service = {
-  create() {
+  createUsHsStatus() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  usHsStatuses: () => FIND_MANY_RESULT,
+  usHsStatus: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

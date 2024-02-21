@@ -1,1 +1,5 @@
-export type CcTransactionDetailWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type CcTransactionDetailWhereInput = {
+  id?: StringFilter;
+};

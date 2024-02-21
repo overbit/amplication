@@ -13,15 +13,15 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateProgramsApplicationreqArgs } from "./CreateProgramsApplicationreqArgs";
-import { UpdateProgramsApplicationreqArgs } from "./UpdateProgramsApplicationreqArgs";
-import { DeleteProgramsApplicationreqArgs } from "./DeleteProgramsApplicationreqArgs";
+import { ProgramsApplicationreq } from "./ProgramsApplicationreq";
 import { ProgramsApplicationreqCountArgs } from "./ProgramsApplicationreqCountArgs";
 import { ProgramsApplicationreqFindManyArgs } from "./ProgramsApplicationreqFindManyArgs";
 import { ProgramsApplicationreqFindUniqueArgs } from "./ProgramsApplicationreqFindUniqueArgs";
-import { ProgramsApplicationreq } from "./ProgramsApplicationreq";
-import { Applicationreq } from "../../applicationreq/base/Applicationreq";
+import { CreateProgramsApplicationreqArgs } from "./CreateProgramsApplicationreqArgs";
+import { UpdateProgramsApplicationreqArgs } from "./UpdateProgramsApplicationreqArgs";
+import { DeleteProgramsApplicationreqArgs } from "./DeleteProgramsApplicationreqArgs";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
+import { Applicationreq } from "../../applicationreq/base/Applicationreq";
 import { ProgramsApplicationreqService } from "../programsApplicationreq.service";
 @graphql.Resolver(() => ProgramsApplicationreq)
 export class ProgramsApplicationreqResolverBase {
@@ -40,14 +40,14 @@ export class ProgramsApplicationreqResolverBase {
   async programsApplicationreqs(
     @graphql.Args() args: ProgramsApplicationreqFindManyArgs
   ): Promise<ProgramsApplicationreq[]> {
-    return this.service.findMany(args);
+    return this.service.programsApplicationreqs(args);
   }
 
   @graphql.Query(() => ProgramsApplicationreq, { nullable: true })
   async programsApplicationreq(
     @graphql.Args() args: ProgramsApplicationreqFindUniqueArgs
   ): Promise<ProgramsApplicationreq | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.programsApplicationreq(args);
     if (result === null) {
       return null;
     }
@@ -58,17 +58,17 @@ export class ProgramsApplicationreqResolverBase {
   async createProgramsApplicationreq(
     @graphql.Args() args: CreateProgramsApplicationreqArgs
   ): Promise<ProgramsApplicationreq> {
-    return await this.service.create({
+    return await this.service.createProgramsApplicationreq({
       ...args,
       data: {
         ...args.data,
 
-        applicationreqs: {
-          connect: args.data.applicationreqs,
-        },
-
         programs: {
           connect: args.data.programs,
+        },
+
+        applicationreqs: {
+          connect: args.data.applicationreqs,
         },
       },
     });
@@ -79,17 +79,17 @@ export class ProgramsApplicationreqResolverBase {
     @graphql.Args() args: UpdateProgramsApplicationreqArgs
   ): Promise<ProgramsApplicationreq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramsApplicationreq({
         ...args,
         data: {
           ...args.data,
 
-          applicationreqs: {
-            connect: args.data.applicationreqs,
-          },
-
           programs: {
             connect: args.data.programs,
+          },
+
+          applicationreqs: {
+            connect: args.data.applicationreqs,
           },
         },
       });
@@ -108,7 +108,7 @@ export class ProgramsApplicationreqResolverBase {
     @graphql.Args() args: DeleteProgramsApplicationreqArgs
   ): Promise<ProgramsApplicationreq | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteProgramsApplicationreq(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -119,14 +119,14 @@ export class ProgramsApplicationreqResolverBase {
     }
   }
 
-  @graphql.ResolveField(() => Applicationreq, {
+  @graphql.ResolveField(() => ProgramModel, {
     nullable: true,
-    name: "applicationreqs",
+    name: "programs",
   })
-  async resolveFieldApplicationreqs(
+  async getPrograms(
     @graphql.Parent() parent: ProgramsApplicationreq
-  ): Promise<Applicationreq | null> {
-    const result = await this.service.getApplicationreqs(parent.id);
+  ): Promise<ProgramModel | null> {
+    const result = await this.service.getPrograms(parent.id);
 
     if (!result) {
       return null;
@@ -134,14 +134,14 @@ export class ProgramsApplicationreqResolverBase {
     return result;
   }
 
-  @graphql.ResolveField(() => ProgramModel, {
+  @graphql.ResolveField(() => Applicationreq, {
     nullable: true,
-    name: "programs",
+    name: "applicationreqs",
   })
-  async resolveFieldPrograms(
+  async getApplicationreqs(
     @graphql.Parent() parent: ProgramsApplicationreq
-  ): Promise<ProgramModel | null> {
-    const result = await this.service.getPrograms(parent.id);
+  ): Promise<Applicationreq | null> {
+    const result = await this.service.getApplicationreqs(parent.id);
 
     if (!result) {
       return null;

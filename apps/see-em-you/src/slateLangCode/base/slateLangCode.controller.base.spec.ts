@@ -18,30 +18,30 @@ import { SlateLangCodeService } from "../slateLangCode.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
   language: "exampleLanguage",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
   language: "exampleLanguage",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
     language: "exampleLanguage",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
   language: "exampleLanguage",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createSlateLangCode() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slateLangCodes: () => FIND_MANY_RESULT,
+  slateLangCode: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -4,12 +4,12 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
   SelectInput,
+  TextInput,
+  NumberInput,
+  ReferenceInput,
   ReferenceArrayInput,
   SelectArrayInput,
-  NumberInput,
-  TextInput,
 } from "react-admin";
 
 import { ApplicationTitle } from "../application/ApplicationTitle";
@@ -22,13 +22,6 @@ export const MhciPrereqsCourseCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="application.id"
-          reference="Application"
-          label="Application"
-        >
-          <SelectInput optionText={ApplicationTitle} />
-        </ReferenceInput>
         <SelectInput
           source="course_type"
           label="Course Type"
@@ -49,6 +42,27 @@ export const MhciPrereqsCourseCreate = (
           optionText="label"
           optionValue="value"
         />
+        <TextInput label="Student Course Name" source="studentCourseName" />
+        <TextInput label="Student Course Time" source="studentCourseTime" />
+        <TextInput
+          label="Student Course Institution"
+          source="studentCourseInstitution"
+        />
+        <TextInput label="Student Course Grade" source="studentCourseGrade" />
+        <NumberInput
+          step={1}
+          label="Submitted To Reviewer"
+          source="submittedToReviewer"
+        />
+        <NumberInput step={1} label="Period Id" source="periodId" />
+        <NumberInput step={1} label="Program Id" source="programId" />
+        <ReferenceInput
+          source="application.id"
+          reference="Application"
+          label="Application"
+        >
+          <SelectInput optionText={ApplicationTitle} />
+        </ReferenceInput>
         <ReferenceInput
           source="luUsersUsertypes.id"
           reference="LuUsersUsertype"
@@ -64,20 +78,6 @@ export const MhciPrereqsCourseCreate = (
         >
           <SelectArrayInput optionText={MhciPrereqsCourseDatafileTitle} />
         </ReferenceArrayInput>
-        <NumberInput step={1} label="Period Id" source="periodId" />
-        <NumberInput step={1} label="Program Id" source="programId" />
-        <TextInput label="Student Course Grade" source="studentCourseGrade" />
-        <TextInput
-          label="Student Course Institution"
-          source="studentCourseInstitution"
-        />
-        <TextInput label="Student Course Name" source="studentCourseName" />
-        <TextInput label="Student Course Time" source="studentCourseTime" />
-        <NumberInput
-          step={1}
-          label="Submitted To Reviewer"
-          source="submittedToReviewer"
-        />
       </SimpleForm>
     </Create>
   );

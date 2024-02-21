@@ -18,38 +18,38 @@ import { ApplicationMergeFileService } from "../applicationMergeFile.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  guid: "exampleGuid",
   id: 42,
-  mergeDate: new Date(),
+  guid: "exampleGuid",
   mergeFile: "exampleMergeFile",
+  mergeDate: new Date(),
 };
 const CREATE_RESULT = {
-  guid: "exampleGuid",
   id: 42,
-  mergeDate: new Date(),
+  guid: "exampleGuid",
   mergeFile: "exampleMergeFile",
+  mergeDate: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
-    guid: "exampleGuid",
     id: 42,
-    mergeDate: new Date(),
+    guid: "exampleGuid",
     mergeFile: "exampleMergeFile",
+    mergeDate: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
-  guid: "exampleGuid",
   id: 42,
-  mergeDate: new Date(),
+  guid: "exampleGuid",
   mergeFile: "exampleMergeFile",
+  mergeDate: new Date(),
 };
 
 const service = {
-  create() {
+  createApplicationMergeFile() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  applicationMergeFiles: () => FIND_MANY_RESULT,
+  applicationMergeFile: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

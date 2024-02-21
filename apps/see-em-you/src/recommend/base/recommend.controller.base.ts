@@ -18,18 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RecommendService } from "../recommend.service";
 import { RecommendCreateInput } from "./RecommendCreateInput";
-import { RecommendWhereInput } from "./RecommendWhereInput";
-import { RecommendWhereUniqueInput } from "./RecommendWhereUniqueInput";
-import { RecommendFindManyArgs } from "./RecommendFindManyArgs";
-import { RecommendUpdateInput } from "./RecommendUpdateInput";
 import { Recommend } from "./Recommend";
+import { RecommendFindManyArgs } from "./RecommendFindManyArgs";
+import { RecommendWhereUniqueInput } from "./RecommendWhereUniqueInput";
+import { RecommendUpdateInput } from "./RecommendUpdateInput";
 
 export class RecommendControllerBase {
   constructor(protected readonly service: RecommendService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Recommend })
-  async create(@common.Body() data: RecommendCreateInput): Promise<Recommend> {
-    return await this.service.create({
+  async createRecommend(
+    @common.Body() data: RecommendCreateInput
+  ): Promise<Recommend> {
+    return await this.service.createRecommend({
       data: {
         ...data,
 
@@ -38,22 +39,23 @@ export class RecommendControllerBase {
         },
       },
       select: {
+        recUserId: true,
+        recommendtype: true,
+        content: true,
+        datafileId: true,
+        submitted: true,
+        reminderSentCount: true,
+        lastReminderSent: true,
+        cmuAffiliation: true,
+        buckleyatupload: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        buckleyatupload: true,
-        cmuAffiliation: true,
-        content: true,
-        datafileId: true,
         id: true,
-        lastReminderSent: true,
-        recommendtype: true,
-        recUserId: true,
-        reminderSentCount: true,
-        submitted: true,
       },
     });
   }
@@ -61,27 +63,28 @@ export class RecommendControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Recommend] })
   @ApiNestedQuery(RecommendFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Recommend[]> {
+  async recommends(@common.Req() request: Request): Promise<Recommend[]> {
     const args = plainToClass(RecommendFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.recommends({
       ...args,
       select: {
+        recUserId: true,
+        recommendtype: true,
+        content: true,
+        datafileId: true,
+        submitted: true,
+        reminderSentCount: true,
+        lastReminderSent: true,
+        cmuAffiliation: true,
+        buckleyatupload: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        buckleyatupload: true,
-        cmuAffiliation: true,
-        content: true,
-        datafileId: true,
         id: true,
-        lastReminderSent: true,
-        recommendtype: true,
-        recUserId: true,
-        reminderSentCount: true,
-        submitted: true,
       },
     });
   }
@@ -89,28 +92,29 @@ export class RecommendControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Recommend })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async recommend(
     @common.Param() params: RecommendWhereUniqueInput
   ): Promise<Recommend | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.recommend({
       where: params,
       select: {
+        recUserId: true,
+        recommendtype: true,
+        content: true,
+        datafileId: true,
+        submitted: true,
+        reminderSentCount: true,
+        lastReminderSent: true,
+        cmuAffiliation: true,
+        buckleyatupload: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        buckleyatupload: true,
-        cmuAffiliation: true,
-        content: true,
-        datafileId: true,
         id: true,
-        lastReminderSent: true,
-        recommendtype: true,
-        recUserId: true,
-        reminderSentCount: true,
-        submitted: true,
       },
     });
     if (result === null) {
@@ -124,12 +128,12 @@ export class RecommendControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Recommend })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRecommend(
     @common.Param() params: RecommendWhereUniqueInput,
     @common.Body() data: RecommendUpdateInput
   ): Promise<Recommend | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecommend({
         where: params,
         data: {
           ...data,
@@ -139,22 +143,23 @@ export class RecommendControllerBase {
           },
         },
         select: {
+          recUserId: true,
+          recommendtype: true,
+          content: true,
+          datafileId: true,
+          submitted: true,
+          reminderSentCount: true,
+          lastReminderSent: true,
+          cmuAffiliation: true,
+          buckleyatupload: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          buckleyatupload: true,
-          cmuAffiliation: true,
-          content: true,
-          datafileId: true,
           id: true,
-          lastReminderSent: true,
-          recommendtype: true,
-          recUserId: true,
-          reminderSentCount: true,
-          submitted: true,
         },
       });
     } catch (error) {
@@ -170,29 +175,30 @@ export class RecommendControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Recommend })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRecommend(
     @common.Param() params: RecommendWhereUniqueInput
   ): Promise<Recommend | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRecommend({
         where: params,
         select: {
+          recUserId: true,
+          recommendtype: true,
+          content: true,
+          datafileId: true,
+          submitted: true,
+          reminderSentCount: true,
+          lastReminderSent: true,
+          cmuAffiliation: true,
+          buckleyatupload: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          buckleyatupload: true,
-          cmuAffiliation: true,
-          content: true,
-          datafileId: true,
           id: true,
-          lastReminderSent: true,
-          recommendtype: true,
-          recUserId: true,
-          reminderSentCount: true,
-          submitted: true,
         },
       });
     } catch (error) {

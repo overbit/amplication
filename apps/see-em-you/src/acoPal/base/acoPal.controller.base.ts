@@ -18,18 +18,17 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AcoPalService } from "../acoPal.service";
 import { AcoPalCreateInput } from "./AcoPalCreateInput";
-import { AcoPalWhereInput } from "./AcoPalWhereInput";
-import { AcoPalWhereUniqueInput } from "./AcoPalWhereUniqueInput";
-import { AcoPalFindManyArgs } from "./AcoPalFindManyArgs";
-import { AcoPalUpdateInput } from "./AcoPalUpdateInput";
 import { AcoPal } from "./AcoPal";
+import { AcoPalFindManyArgs } from "./AcoPalFindManyArgs";
+import { AcoPalWhereUniqueInput } from "./AcoPalWhereUniqueInput";
+import { AcoPalUpdateInput } from "./AcoPalUpdateInput";
 
 export class AcoPalControllerBase {
   constructor(protected readonly service: AcoPalService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: AcoPal })
-  async create(@common.Body() data: AcoPalCreateInput): Promise<AcoPal> {
-    return await this.service.create({
+  async createAcoPal(@common.Body() data: AcoPalCreateInput): Promise<AcoPal> {
+    return await this.service.createAcoPal({
       data: {
         ...data,
 
@@ -39,6 +38,7 @@ export class AcoPalControllerBase {
       },
       select: {
         aco: true,
+        pal: true,
 
         application: {
           select: {
@@ -47,7 +47,6 @@ export class AcoPalControllerBase {
         },
 
         id: true,
-        pal: true,
       },
     });
   }
@@ -55,12 +54,13 @@ export class AcoPalControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [AcoPal] })
   @ApiNestedQuery(AcoPalFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<AcoPal[]> {
+  async acoPals(@common.Req() request: Request): Promise<AcoPal[]> {
     const args = plainToClass(AcoPalFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.acoPals({
       ...args,
       select: {
         aco: true,
+        pal: true,
 
         application: {
           select: {
@@ -69,7 +69,6 @@ export class AcoPalControllerBase {
         },
 
         id: true,
-        pal: true,
       },
     });
   }
@@ -77,13 +76,14 @@ export class AcoPalControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: AcoPal })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async acoPal(
     @common.Param() params: AcoPalWhereUniqueInput
   ): Promise<AcoPal | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.acoPal({
       where: params,
       select: {
         aco: true,
+        pal: true,
 
         application: {
           select: {
@@ -92,7 +92,6 @@ export class AcoPalControllerBase {
         },
 
         id: true,
-        pal: true,
       },
     });
     if (result === null) {
@@ -106,12 +105,12 @@ export class AcoPalControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: AcoPal })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAcoPal(
     @common.Param() params: AcoPalWhereUniqueInput,
     @common.Body() data: AcoPalUpdateInput
   ): Promise<AcoPal | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAcoPal({
         where: params,
         data: {
           ...data,
@@ -122,6 +121,7 @@ export class AcoPalControllerBase {
         },
         select: {
           aco: true,
+          pal: true,
 
           application: {
             select: {
@@ -130,7 +130,6 @@ export class AcoPalControllerBase {
           },
 
           id: true,
-          pal: true,
         },
       });
     } catch (error) {
@@ -146,14 +145,15 @@ export class AcoPalControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: AcoPal })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAcoPal(
     @common.Param() params: AcoPalWhereUniqueInput
   ): Promise<AcoPal | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAcoPal({
         where: params,
         select: {
           aco: true,
+          pal: true,
 
           application: {
             select: {
@@ -162,7 +162,6 @@ export class AcoPalControllerBase {
           },
 
           id: true,
-          pal: true,
         },
       });
     } catch (error) {

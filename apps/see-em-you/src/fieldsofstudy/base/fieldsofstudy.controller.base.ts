@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { FieldsofstudyService } from "../fieldsofstudy.service";
 import { FieldsofstudyCreateInput } from "./FieldsofstudyCreateInput";
-import { FieldsofstudyWhereInput } from "./FieldsofstudyWhereInput";
-import { FieldsofstudyWhereUniqueInput } from "./FieldsofstudyWhereUniqueInput";
-import { FieldsofstudyFindManyArgs } from "./FieldsofstudyFindManyArgs";
-import { FieldsofstudyUpdateInput } from "./FieldsofstudyUpdateInput";
 import { Fieldsofstudy } from "./Fieldsofstudy";
+import { FieldsofstudyFindManyArgs } from "./FieldsofstudyFindManyArgs";
+import { FieldsofstudyWhereUniqueInput } from "./FieldsofstudyWhereUniqueInput";
+import { FieldsofstudyUpdateInput } from "./FieldsofstudyUpdateInput";
 import { ProgramModelFindManyArgs } from "../../programModel/base/ProgramModelFindManyArgs";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
 import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
@@ -31,14 +30,14 @@ export class FieldsofstudyControllerBase {
   constructor(protected readonly service: FieldsofstudyService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Fieldsofstudy })
-  async create(
+  async createFieldsofstudy(
     @common.Body() data: FieldsofstudyCreateInput
   ): Promise<Fieldsofstudy> {
-    return await this.service.create({
+    return await this.service.createFieldsofstudy({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -46,13 +45,15 @@ export class FieldsofstudyControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Fieldsofstudy] })
   @ApiNestedQuery(FieldsofstudyFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Fieldsofstudy[]> {
+  async fieldsofstudies(
+    @common.Req() request: Request
+  ): Promise<Fieldsofstudy[]> {
     const args = plainToClass(FieldsofstudyFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.fieldsofstudies({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -60,14 +61,14 @@ export class FieldsofstudyControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Fieldsofstudy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async fieldsofstudy(
     @common.Param() params: FieldsofstudyWhereUniqueInput
   ): Promise<Fieldsofstudy | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.fieldsofstudy({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,17 +82,17 @@ export class FieldsofstudyControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Fieldsofstudy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateFieldsofstudy(
     @common.Param() params: FieldsofstudyWhereUniqueInput,
     @common.Body() data: FieldsofstudyUpdateInput
   ): Promise<Fieldsofstudy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateFieldsofstudy({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -107,15 +108,15 @@ export class FieldsofstudyControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Fieldsofstudy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteFieldsofstudy(
     @common.Param() params: FieldsofstudyWhereUniqueInput
   ): Promise<Fieldsofstudy | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteFieldsofstudy({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -130,7 +131,7 @@ export class FieldsofstudyControllerBase {
 
   @common.Get("/:id/programs")
   @ApiNestedQuery(ProgramModelFindManyArgs)
-  async findManyPrograms(
+  async findPrograms(
     @common.Req() request: Request,
     @common.Param() params: FieldsofstudyWhereUniqueInput
   ): Promise<ProgramModel[]> {
@@ -138,8 +139,18 @@ export class FieldsofstudyControllerBase {
     const results = await this.service.findPrograms(params.id, {
       ...query,
       select: {
+        id: true,
+        linkword: true,
+        programprice: true,
+        programpriceLate: true,
+        description: true,
+        url: true,
+        oraclestring: true,
+        registrationoraclestring: true,
         baseprice: true,
         basepriceLate: true,
+        prank: true,
+        enabled: true,
 
         degree: {
           select: {
@@ -147,23 +158,11 @@ export class FieldsofstudyControllerBase {
           },
         },
 
-        description: true,
-        enabled: true,
-
         fieldsofstudy: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        linkword: true,
-        oraclestring: true,
-        prank: true,
-        programprice: true,
-        programpriceLate: true,
-        registrationoraclestring: true,
-        url: true,
       },
     });
     if (results === null) {
@@ -184,7 +183,7 @@ export class FieldsofstudyControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateFieldsofstudy({
       where: params,
       data,
       select: { id: true },
@@ -201,7 +200,7 @@ export class FieldsofstudyControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateFieldsofstudy({
       where: params,
       data,
       select: { id: true },
@@ -218,7 +217,7 @@ export class FieldsofstudyControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateFieldsofstudy({
       where: params,
       data,
       select: { id: true },

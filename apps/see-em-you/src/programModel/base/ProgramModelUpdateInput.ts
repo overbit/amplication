@@ -12,11 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsNumber,
-  IsOptional,
-  ValidateNested,
   IsString,
+  IsOptional,
+  IsNumber,
   IsInt,
+  ValidateNested,
 } from "class-validator";
 import { Decimal } from "decimal.js";
 import { DegreeWhereUniqueInput } from "../../degree/base/DegreeWhereUniqueInput";
@@ -29,6 +29,83 @@ import { ProgramsApplicationreqUpdateManyWithoutProgramModelsInput } from "./Pro
 
 @InputType()
 class ProgramModelUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  linkword?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  programprice?: Decimal;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  programpriceLate?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  description?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  url?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  oraclestring?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  registrationoraclestring?: string | null;
+
   @ApiProperty({
     required: false,
     type: Number,
@@ -53,26 +130,14 @@ class ProgramModelUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => DegreeWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => DegreeWhereUniqueInput)
+  @IsInt()
   @IsOptional()
-  @Field(() => DegreeWhereUniqueInput, {
+  @Field(() => Number, {
     nullable: true,
   })
-  degree?: DegreeWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description?: string | null;
+  prank?: number;
 
   @ApiProperty({
     required: false,
@@ -87,6 +152,18 @@ class ProgramModelUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: () => DegreeWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => DegreeWhereUniqueInput)
+  @IsOptional()
+  @Field(() => DegreeWhereUniqueInput, {
+    nullable: true,
+  })
+  degree?: DegreeWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
     type: () => FieldsofstudyWhereUniqueInput,
   })
   @ValidateNested()
@@ -96,17 +173,6 @@ class ProgramModelUpdateInput {
     nullable: true,
   })
   fieldsofstudy?: FieldsofstudyWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  linkword?: string;
 
   @ApiProperty({
     required: false,
@@ -134,17 +200,6 @@ class ProgramModelUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  oraclestring?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: () => PaymentItemUpdateManyWithoutProgramModelsInput,
   })
   @ValidateNested()
@@ -157,39 +212,6 @@ class ProgramModelUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  prank?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  programprice?: Decimal;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  programpriceLate?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
     type: () => ProgramsApplicationreqUpdateManyWithoutProgramModelsInput,
   })
   @ValidateNested()
@@ -199,28 +221,6 @@ class ProgramModelUpdateInput {
     nullable: true,
   })
   programsApplicationreqs?: ProgramsApplicationreqUpdateManyWithoutProgramModelsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  registrationoraclestring?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  url?: string | null;
 }
 
 export { ProgramModelUpdateInput as ProgramModelUpdateInput };

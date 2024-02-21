@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReviewIniAdminArgs } from "./CreateReviewIniAdminArgs";
-import { UpdateReviewIniAdminArgs } from "./UpdateReviewIniAdminArgs";
-import { DeleteReviewIniAdminArgs } from "./DeleteReviewIniAdminArgs";
+import { ReviewIniAdmin } from "./ReviewIniAdmin";
 import { ReviewIniAdminCountArgs } from "./ReviewIniAdminCountArgs";
 import { ReviewIniAdminFindManyArgs } from "./ReviewIniAdminFindManyArgs";
 import { ReviewIniAdminFindUniqueArgs } from "./ReviewIniAdminFindUniqueArgs";
-import { ReviewIniAdmin } from "./ReviewIniAdmin";
+import { CreateReviewIniAdminArgs } from "./CreateReviewIniAdminArgs";
+import { UpdateReviewIniAdminArgs } from "./UpdateReviewIniAdminArgs";
+import { DeleteReviewIniAdminArgs } from "./DeleteReviewIniAdminArgs";
 import { ReviewIniAdminService } from "../reviewIniAdmin.service";
 @graphql.Resolver(() => ReviewIniAdmin)
 export class ReviewIniAdminResolverBase {
@@ -38,14 +38,14 @@ export class ReviewIniAdminResolverBase {
   async reviewIniAdmins(
     @graphql.Args() args: ReviewIniAdminFindManyArgs
   ): Promise<ReviewIniAdmin[]> {
-    return this.service.findMany(args);
+    return this.service.reviewIniAdmins(args);
   }
 
   @graphql.Query(() => ReviewIniAdmin, { nullable: true })
   async reviewIniAdmin(
     @graphql.Args() args: ReviewIniAdminFindUniqueArgs
   ): Promise<ReviewIniAdmin | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reviewIniAdmin(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ReviewIniAdminResolverBase {
   async createReviewIniAdmin(
     @graphql.Args() args: CreateReviewIniAdminArgs
   ): Promise<ReviewIniAdmin> {
-    return await this.service.create({
+    return await this.service.createReviewIniAdmin({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ReviewIniAdminResolverBase {
     @graphql.Args() args: UpdateReviewIniAdminArgs
   ): Promise<ReviewIniAdmin | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIniAdmin({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ReviewIniAdminResolverBase {
     @graphql.Args() args: DeleteReviewIniAdminArgs
   ): Promise<ReviewIniAdmin | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReviewIniAdmin(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

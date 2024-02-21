@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Visatype } from "@prisma/client";
+import { Prisma, Visatype as PrismaVisatype } from "@prisma/client";
 
 export class VisatypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class VisatypeServiceBase {
     return this.prisma.visatype.count(args);
   }
 
-  async findMany<T extends Prisma.VisatypeFindManyArgs>(
+  async visatypes<T extends Prisma.VisatypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.VisatypeFindManyArgs>
-  ): Promise<Visatype[]> {
+  ): Promise<PrismaVisatype[]> {
     return this.prisma.visatype.findMany(args);
   }
-  async findOne<T extends Prisma.VisatypeFindUniqueArgs>(
+  async visatype<T extends Prisma.VisatypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.VisatypeFindUniqueArgs>
-  ): Promise<Visatype | null> {
+  ): Promise<PrismaVisatype | null> {
     return this.prisma.visatype.findUnique(args);
   }
-  async create<T extends Prisma.VisatypeCreateArgs>(
+  async createVisatype<T extends Prisma.VisatypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VisatypeCreateArgs>
-  ): Promise<Visatype> {
+  ): Promise<PrismaVisatype> {
     return this.prisma.visatype.create<T>(args);
   }
-  async update<T extends Prisma.VisatypeUpdateArgs>(
+  async updateVisatype<T extends Prisma.VisatypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VisatypeUpdateArgs>
-  ): Promise<Visatype> {
+  ): Promise<PrismaVisatype> {
     return this.prisma.visatype.update<T>(args);
   }
-  async delete<T extends Prisma.VisatypeDeleteArgs>(
+  async deleteVisatype<T extends Prisma.VisatypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.VisatypeDeleteArgs>
-  ): Promise<Visatype> {
+  ): Promise<PrismaVisatype> {
     return this.prisma.visatype.delete(args);
   }
 }

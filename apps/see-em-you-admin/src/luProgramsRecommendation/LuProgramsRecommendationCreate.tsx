@@ -7,13 +7,13 @@ export const LuProgramsRecommendationCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Numrequired" source="numrequired" />
         <NumberInput step={1} label="Program Id" source="programId" />
         <NumberInput
           step={1}
           label="Recommendationtype Id"
           source="recommendationtypeId"
         />
+        <NumberInput step={1} label="Numrequired" source="numrequired" />
       </SimpleForm>
     </Create>
   );

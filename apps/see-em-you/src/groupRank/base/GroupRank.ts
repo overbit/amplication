@@ -11,22 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt, IsDate } from "class-validator";
+import { IsInt, IsDate, IsString, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class GroupRank {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  comment!: string | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -37,11 +26,27 @@ class GroupRank {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  @IsInt()
+  @Field(() => Number)
+  round!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  timestamp!: Date;
 
   @ApiProperty({
     required: true,
@@ -52,12 +57,15 @@ class GroupRank {
   luUsersUsertypesId!: number;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  comment!: string | null;
 
   @ApiProperty({
     required: false,
@@ -72,19 +80,11 @@ class GroupRank {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  round!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  timestamp!: Date;
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { GroupRank as GroupRank };

@@ -1,7 +1,7 @@
 export type RecyclableSelectionUpdateInput = {
-  applicationId?: number;
-  departmentId?: number;
-  luUsersUsertypesId?: number;
-  periodId?: number;
   usersId?: number;
+  luUsersUsertypesId?: number;
+  departmentId?: number;
+  periodId?: number;
+  applicationId?: number;
 };

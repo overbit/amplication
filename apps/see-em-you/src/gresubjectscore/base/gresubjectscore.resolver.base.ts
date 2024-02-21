@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGresubjectscoreArgs } from "./CreateGresubjectscoreArgs";
-import { UpdateGresubjectscoreArgs } from "./UpdateGresubjectscoreArgs";
-import { DeleteGresubjectscoreArgs } from "./DeleteGresubjectscoreArgs";
+import { Gresubjectscore } from "./Gresubjectscore";
 import { GresubjectscoreCountArgs } from "./GresubjectscoreCountArgs";
 import { GresubjectscoreFindManyArgs } from "./GresubjectscoreFindManyArgs";
 import { GresubjectscoreFindUniqueArgs } from "./GresubjectscoreFindUniqueArgs";
-import { Gresubjectscore } from "./Gresubjectscore";
+import { CreateGresubjectscoreArgs } from "./CreateGresubjectscoreArgs";
+import { UpdateGresubjectscoreArgs } from "./UpdateGresubjectscoreArgs";
+import { DeleteGresubjectscoreArgs } from "./DeleteGresubjectscoreArgs";
 import { Application } from "../../application/base/Application";
 import { GresubjectscoreService } from "../gresubjectscore.service";
 @graphql.Resolver(() => Gresubjectscore)
@@ -39,14 +39,14 @@ export class GresubjectscoreResolverBase {
   async gresubjectscores(
     @graphql.Args() args: GresubjectscoreFindManyArgs
   ): Promise<Gresubjectscore[]> {
-    return this.service.findMany(args);
+    return this.service.gresubjectscores(args);
   }
 
   @graphql.Query(() => Gresubjectscore, { nullable: true })
   async gresubjectscore(
     @graphql.Args() args: GresubjectscoreFindUniqueArgs
   ): Promise<Gresubjectscore | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.gresubjectscore(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class GresubjectscoreResolverBase {
   async createGresubjectscore(
     @graphql.Args() args: CreateGresubjectscoreArgs
   ): Promise<Gresubjectscore> {
-    return await this.service.create({
+    return await this.service.createGresubjectscore({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class GresubjectscoreResolverBase {
     @graphql.Args() args: UpdateGresubjectscoreArgs
   ): Promise<Gresubjectscore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGresubjectscore({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class GresubjectscoreResolverBase {
     @graphql.Args() args: DeleteGresubjectscoreArgs
   ): Promise<Gresubjectscore | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGresubjectscore(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class GresubjectscoreResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: Gresubjectscore
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

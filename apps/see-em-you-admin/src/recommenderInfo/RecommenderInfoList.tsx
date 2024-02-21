@@ -12,15 +12,15 @@ export const RecommenderInfoList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Affiliation" source="affiliation" />
-        <TextField label="Id" source="id" />
-        <TextField label="Phone" source="phone" />
         <TextField label="Rec User Id" source="recUserId" />
+        <TextField label="Title" source="title" />
+        <TextField label="Affiliation" source="affiliation" />
+        <TextField label="Phone" source="phone" />
         <TextField
           label="Relationship To Applicant"
           source="relationshipToApplicant"
         />
-        <TextField label="Title" source="title" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

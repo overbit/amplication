@@ -6,8 +6,8 @@ export const VoucherTypeShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Description" source="description" />
-        <TextField label="Id" source="id" />
         <TextField label="Prefix" source="prefix" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

@@ -1,15 +1,15 @@
 export type CcTransactionSummary = {
-  authAmount: number | null;
+  ccId: number;
+  date: Date;
+  time: Date;
+  reportDate: Date;
+  paymentId: number;
   authCode: string | null;
   authMessage: string | null;
-  ccId: number;
-  creditAmount: number | null;
-  date: Date;
-  id: string;
-  paymentId: number;
-  reportDate: Date;
-  settleAmount: number | null;
   settleCode: string | null;
   settleMessage: string | null;
-  time: Date;
+  authAmount: number | null;
+  settleAmount: number | null;
+  creditAmount: number | null;
+  id: string;
 };

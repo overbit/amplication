@@ -1,1 +1,5 @@
-export type ContentWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type ContentWhereInput = {
+  id?: IntFilter;
+};

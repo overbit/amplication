@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DietrichRecognition } from "@prisma/client";
+import {
+  Prisma,
+  DietrichRecognition as PrismaDietrichRecognition,
+} from "@prisma/client";
 
 export class DietrichRecognitionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,35 @@ export class DietrichRecognitionServiceBase {
     return this.prisma.dietrichRecognition.count(args);
   }
 
-  async findMany<T extends Prisma.DietrichRecognitionFindManyArgs>(
+  async dietrichRecognitions<T extends Prisma.DietrichRecognitionFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichRecognitionFindManyArgs>
-  ): Promise<DietrichRecognition[]> {
+  ): Promise<PrismaDietrichRecognition[]> {
     return this.prisma.dietrichRecognition.findMany(args);
   }
-  async findOne<T extends Prisma.DietrichRecognitionFindUniqueArgs>(
+  async dietrichRecognition<T extends Prisma.DietrichRecognitionFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichRecognitionFindUniqueArgs>
-  ): Promise<DietrichRecognition | null> {
+  ): Promise<PrismaDietrichRecognition | null> {
     return this.prisma.dietrichRecognition.findUnique(args);
   }
-  async create<T extends Prisma.DietrichRecognitionCreateArgs>(
+  async createDietrichRecognition<
+    T extends Prisma.DietrichRecognitionCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DietrichRecognitionCreateArgs>
-  ): Promise<DietrichRecognition> {
+  ): Promise<PrismaDietrichRecognition> {
     return this.prisma.dietrichRecognition.create<T>(args);
   }
-  async update<T extends Prisma.DietrichRecognitionUpdateArgs>(
+  async updateDietrichRecognition<
+    T extends Prisma.DietrichRecognitionUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DietrichRecognitionUpdateArgs>
-  ): Promise<DietrichRecognition> {
+  ): Promise<PrismaDietrichRecognition> {
     return this.prisma.dietrichRecognition.update<T>(args);
   }
-  async delete<T extends Prisma.DietrichRecognitionDeleteArgs>(
+  async deleteDietrichRecognition<
+    T extends Prisma.DietrichRecognitionDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DietrichRecognitionDeleteArgs>
-  ): Promise<DietrichRecognition> {
+  ): Promise<PrismaDietrichRecognition> {
     return this.prisma.dietrichRecognition.delete(args);
   }
 }

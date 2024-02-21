@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, AaDepartment, Department, Period } from "@prisma/client";
+
+import {
+  Prisma,
+  AaDepartment as PrismaAaDepartment,
+  Period as PrismaPeriod,
+  Department as PrismaDepartment,
+} from "@prisma/client";
 
 export class AaDepartmentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,45 +27,45 @@ export class AaDepartmentServiceBase {
     return this.prisma.aaDepartment.count(args);
   }
 
-  async findMany<T extends Prisma.AaDepartmentFindManyArgs>(
+  async aaDepartments<T extends Prisma.AaDepartmentFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AaDepartmentFindManyArgs>
-  ): Promise<AaDepartment[]> {
+  ): Promise<PrismaAaDepartment[]> {
     return this.prisma.aaDepartment.findMany(args);
   }
-  async findOne<T extends Prisma.AaDepartmentFindUniqueArgs>(
+  async aaDepartment<T extends Prisma.AaDepartmentFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AaDepartmentFindUniqueArgs>
-  ): Promise<AaDepartment | null> {
+  ): Promise<PrismaAaDepartment | null> {
     return this.prisma.aaDepartment.findUnique(args);
   }
-  async create<T extends Prisma.AaDepartmentCreateArgs>(
+  async createAaDepartment<T extends Prisma.AaDepartmentCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AaDepartmentCreateArgs>
-  ): Promise<AaDepartment> {
+  ): Promise<PrismaAaDepartment> {
     return this.prisma.aaDepartment.create<T>(args);
   }
-  async update<T extends Prisma.AaDepartmentUpdateArgs>(
+  async updateAaDepartment<T extends Prisma.AaDepartmentUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AaDepartmentUpdateArgs>
-  ): Promise<AaDepartment> {
+  ): Promise<PrismaAaDepartment> {
     return this.prisma.aaDepartment.update<T>(args);
   }
-  async delete<T extends Prisma.AaDepartmentDeleteArgs>(
+  async deleteAaDepartment<T extends Prisma.AaDepartmentDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AaDepartmentDeleteArgs>
-  ): Promise<AaDepartment> {
+  ): Promise<PrismaAaDepartment> {
     return this.prisma.aaDepartment.delete(args);
   }
 
-  async getDepartment(parentId: number): Promise<Department | null> {
-    return this.prisma.aaDepartment
-      .findUnique({
-        where: { id: parentId },
-      })
-      .department();
-  }
-
-  async getPeriod(parentId: number): Promise<Period | null> {
+  async getPeriod(parentId: number): Promise<PrismaPeriod | null> {
     return this.prisma.aaDepartment
       .findUnique({
         where: { id: parentId },
       })
       .period();
+  }
+
+  async getDepartment(parentId: number): Promise<PrismaDepartment | null> {
+    return this.prisma.aaDepartment
+      .findUnique({
+        where: { id: parentId },
+      })
+      .department();
   }
 }

@@ -18,38 +18,38 @@ import { ReclogService } from "../reclog.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  created: new Date(),
-  id: 42,
   ip: "exampleIp",
   message: "exampleMessage",
+  created: new Date(),
+  id: 42,
 };
 const CREATE_RESULT = {
-  created: new Date(),
-  id: 42,
   ip: "exampleIp",
   message: "exampleMessage",
+  created: new Date(),
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    created: new Date(),
-    id: 42,
     ip: "exampleIp",
     message: "exampleMessage",
+    created: new Date(),
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  created: new Date(),
-  id: 42,
   ip: "exampleIp",
   message: "exampleMessage",
+  created: new Date(),
+  id: 42,
 };
 
 const service = {
-  create() {
+  createReclog() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  reclogs: () => FIND_MANY_RESULT,
+  reclog: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

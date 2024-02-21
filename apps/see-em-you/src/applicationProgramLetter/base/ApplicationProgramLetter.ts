@@ -25,36 +25,6 @@ class ApplicationProgramLetter {
   @Field(() => Boolean, {
     nullable: true,
   })
-  admitSent!: boolean | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  admitSentDate!: Date | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
   rejectionSent!: boolean | null;
 
   @ApiProperty({
@@ -77,6 +47,28 @@ class ApplicationProgramLetter {
   @Field(() => Boolean, {
     nullable: true,
   })
+  admitSent!: boolean | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  admitSentDate!: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
   waitlistSent!: boolean | null;
 
   @ApiProperty({
@@ -89,6 +81,14 @@ class ApplicationProgramLetter {
     nullable: true,
   })
   waitlistSentDate!: Date | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { ApplicationProgramLetter as ApplicationProgramLetter };

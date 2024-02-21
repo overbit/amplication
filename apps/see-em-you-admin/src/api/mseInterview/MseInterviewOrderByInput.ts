@@ -2,10 +2,10 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type MseInterviewOrderByInput = {
   applicationId?: SortOrder;
-  id?: SortOrder;
-  interviewComments?: SortOrder;
+  reviewerId?: SortOrder;
   interviewDate?: SortOrder;
   interviewType?: SortOrder;
   interviewTypeOther?: SortOrder;
-  reviewerId?: SortOrder;
+  interviewComments?: SortOrder;
+  id?: SortOrder;
 };

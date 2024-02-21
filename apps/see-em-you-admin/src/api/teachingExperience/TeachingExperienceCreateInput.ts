@@ -1,9 +1,9 @@
 export type TeachingExperienceCreateInput = {
-  address?: string | null;
   applicationId: number;
-  coursesTaught?: string | null;
-  endDate?: string | null;
-  institution?: string | null;
   orderEntered?: number | null;
+  institution?: string | null;
+  address?: string | null;
+  coursesTaught?: string | null;
   startDate?: Date | null;
+  endDate?: string | null;
 };

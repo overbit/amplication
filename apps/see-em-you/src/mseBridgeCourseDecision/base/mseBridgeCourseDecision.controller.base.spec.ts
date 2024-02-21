@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
+  programId: 42,
   courseId: 42,
   id: "exampleId",
-  programId: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
+  programId: 42,
   courseId: 42,
   id: "exampleId",
-  programId: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
+    programId: 42,
     courseId: 42,
     id: "exampleId",
-    programId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
+  programId: 42,
   courseId: 42,
   id: "exampleId",
-  programId: 42,
 };
 
 const service = {
-  create() {
+  createMseBridgeCourseDecision() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mseBridgeCourseDecisions: () => FIND_MANY_RESULT,
+  mseBridgeCourseDecision: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

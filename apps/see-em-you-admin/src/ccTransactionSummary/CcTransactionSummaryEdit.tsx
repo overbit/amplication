@@ -4,8 +4,8 @@ import {
   SimpleForm,
   EditProps,
   NumberInput,
-  TextInput,
   DateTimeInput,
+  TextInput,
 } from "react-admin";
 
 export const CcTransactionSummaryEdit = (
@@ -14,18 +14,18 @@ export const CcTransactionSummaryEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput label="Auth Amount" source="authAmount" />
+        <NumberInput step={1} label="Cc Id" source="ccId" />
+        <DateTimeInput label="Date" source="date" />
+        <DateTimeInput label="Time" source="time" />
+        <DateTimeInput label="Report Date" source="reportDate" />
+        <NumberInput step={1} label="Payment Id" source="paymentId" />
         <TextInput label="Auth Code" source="authCode" />
         <TextInput label="Auth Message" source="authMessage" />
-        <NumberInput step={1} label="Cc Id" source="ccId" />
-        <NumberInput label="Credit Amount" source="creditAmount" />
-        <DateTimeInput label="Date" source="date" />
-        <NumberInput step={1} label="Payment Id" source="paymentId" />
-        <DateTimeInput label="Report Date" source="reportDate" />
-        <NumberInput label="Settle Amount" source="settleAmount" />
         <TextInput label="Settle Code" source="settleCode" />
         <TextInput label="Settle Message" source="settleMessage" />
-        <DateTimeInput label="Time" source="time" />
+        <NumberInput label="Auth Amount" source="authAmount" />
+        <NumberInput label="Settle Amount" source="settleAmount" />
+        <NumberInput label="Credit Amount" source="creditAmount" />
       </SimpleForm>
     </Edit>
   );

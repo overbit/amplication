@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Accesslog } from "@prisma/client";
+import { Prisma, Accesslog as PrismaAccesslog } from "@prisma/client";
 
 export class AccesslogServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class AccesslogServiceBase {
     return this.prisma.accesslog.count(args);
   }
 
-  async findMany<T extends Prisma.AccesslogFindManyArgs>(
+  async accesslogs<T extends Prisma.AccesslogFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogFindManyArgs>
-  ): Promise<Accesslog[]> {
+  ): Promise<PrismaAccesslog[]> {
     return this.prisma.accesslog.findMany(args);
   }
-  async findOne<T extends Prisma.AccesslogFindUniqueArgs>(
+  async accesslog<T extends Prisma.AccesslogFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogFindUniqueArgs>
-  ): Promise<Accesslog | null> {
+  ): Promise<PrismaAccesslog | null> {
     return this.prisma.accesslog.findUnique(args);
   }
-  async create<T extends Prisma.AccesslogCreateArgs>(
+  async createAccesslog<T extends Prisma.AccesslogCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogCreateArgs>
-  ): Promise<Accesslog> {
+  ): Promise<PrismaAccesslog> {
     return this.prisma.accesslog.create<T>(args);
   }
-  async update<T extends Prisma.AccesslogUpdateArgs>(
+  async updateAccesslog<T extends Prisma.AccesslogUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogUpdateArgs>
-  ): Promise<Accesslog> {
+  ): Promise<PrismaAccesslog> {
     return this.prisma.accesslog.update<T>(args);
   }
-  async delete<T extends Prisma.AccesslogDeleteArgs>(
+  async deleteAccesslog<T extends Prisma.AccesslogDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogDeleteArgs>
-  ): Promise<Accesslog> {
+  ): Promise<PrismaAccesslog> {
     return this.prisma.accesslog.delete(args);
   }
 }

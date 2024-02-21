@@ -11,25 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationreqWhereUniqueInput } from "../../applicationreq/base/ApplicationreqWhereUniqueInput";
+import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
+import { ApplicationreqWhereUniqueInput } from "../../applicationreq/base/ApplicationreqWhereUniqueInput";
 
 @InputType()
 class ProgramsApplicationreqUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: () => ApplicationreqWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationreqWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ApplicationreqWhereUniqueInput, {
-    nullable: true,
-  })
-  applicationreqs?: ApplicationreqWhereUniqueInput;
-
   @ApiProperty({
     required: false,
     type: () => ProgramModelWhereUniqueInput,
@@ -41,6 +29,18 @@ class ProgramsApplicationreqUpdateInput {
     nullable: true,
   })
   programs?: ProgramModelWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationreqWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationreqWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationreqWhereUniqueInput, {
+    nullable: true,
+  })
+  applicationreqs?: ApplicationreqWhereUniqueInput;
 }
 
 export { ProgramsApplicationreqUpdateInput as ProgramsApplicationreqUpdateInput };

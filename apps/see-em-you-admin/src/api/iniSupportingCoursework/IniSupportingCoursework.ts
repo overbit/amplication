@@ -1,13 +1,13 @@
 export type IniSupportingCoursework = {
   applicationId: number;
-  dataStructuresNumber: string;
   dataStructuresTitle: string;
-  id: number;
-  msitExperience: string | null;
-  probabilityNumber: string;
+  dataStructuresNumber: string;
   probabilityTitle: string;
+  probabilityNumber: string;
+  statisticsTitle: string;
+  statisticsNumber: string;
+  msitExperience: string | null;
   programmingDescription: string;
   programmingDescription2: string | null;
-  statisticsNumber: string;
-  statisticsTitle: string;
+  id: number;
 };

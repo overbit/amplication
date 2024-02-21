@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SemPreviousCourseService } from "../semPreviousCourse.service";
 import { SemPreviousCourseCreateInput } from "./SemPreviousCourseCreateInput";
-import { SemPreviousCourseWhereInput } from "./SemPreviousCourseWhereInput";
-import { SemPreviousCourseWhereUniqueInput } from "./SemPreviousCourseWhereUniqueInput";
-import { SemPreviousCourseFindManyArgs } from "./SemPreviousCourseFindManyArgs";
-import { SemPreviousCourseUpdateInput } from "./SemPreviousCourseUpdateInput";
 import { SemPreviousCourse } from "./SemPreviousCourse";
+import { SemPreviousCourseFindManyArgs } from "./SemPreviousCourseFindManyArgs";
+import { SemPreviousCourseWhereUniqueInput } from "./SemPreviousCourseWhereUniqueInput";
+import { SemPreviousCourseUpdateInput } from "./SemPreviousCourseUpdateInput";
 
 export class SemPreviousCourseControllerBase {
   constructor(protected readonly service: SemPreviousCourseService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SemPreviousCourse })
-  async create(
+  async createSemPreviousCourse(
     @common.Body() data: SemPreviousCourseCreateInput
   ): Promise<SemPreviousCourse> {
-    return await this.service.create({
+    return await this.service.createSemPreviousCourse({
       data: data,
       select: {
         applicationId: true,
@@ -45,9 +44,11 @@ export class SemPreviousCourseControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SemPreviousCourse] })
   @ApiNestedQuery(SemPreviousCourseFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SemPreviousCourse[]> {
+  async semPreviousCourses(
+    @common.Req() request: Request
+  ): Promise<SemPreviousCourse[]> {
     const args = plainToClass(SemPreviousCourseFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.semPreviousCourses({
       ...args,
       select: {
         applicationId: true,
@@ -61,10 +62,10 @@ export class SemPreviousCourseControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SemPreviousCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async semPreviousCourse(
     @common.Param() params: SemPreviousCourseWhereUniqueInput
   ): Promise<SemPreviousCourse | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.semPreviousCourse({
       where: params,
       select: {
         applicationId: true,
@@ -84,12 +85,12 @@ export class SemPreviousCourseControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SemPreviousCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSemPreviousCourse(
     @common.Param() params: SemPreviousCourseWhereUniqueInput,
     @common.Body() data: SemPreviousCourseUpdateInput
   ): Promise<SemPreviousCourse | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSemPreviousCourse({
         where: params,
         data: data,
         select: {
@@ -112,11 +113,11 @@ export class SemPreviousCourseControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SemPreviousCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSemPreviousCourse(
     @common.Param() params: SemPreviousCourseWhereUniqueInput
   ): Promise<SemPreviousCourse | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSemPreviousCourse({
         where: params,
         select: {
           applicationId: true,

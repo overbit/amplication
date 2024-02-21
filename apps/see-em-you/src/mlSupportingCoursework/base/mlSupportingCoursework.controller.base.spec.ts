@@ -18,74 +18,74 @@ import { MlSupportingCourseworkService } from "../mlSupportingCoursework.service
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
-  introCourse2Grade: "exampleIntroCourse2Grade",
-  introCourse2Num: "exampleIntroCourse2Num",
-  introCourse2Semester: "exampleIntroCourse2Semester",
-  introCourseGrade: "exampleIntroCourseGrade",
   introCourseNum: "exampleIntroCourseNum",
   introCourseSemester: "exampleIntroCourseSemester",
-  ml1CourseGrade: "exampleMl1CourseGrade",
+  introCourseGrade: "exampleIntroCourseGrade",
+  introCourse2Num: "exampleIntroCourse2Num",
+  introCourse2Semester: "exampleIntroCourse2Semester",
+  introCourse2Grade: "exampleIntroCourse2Grade",
   ml1CourseNum: "exampleMl1CourseNum",
   ml1CourseSemester: "exampleMl1CourseSemester",
-  ml2CourseGrade: "exampleMl2CourseGrade",
+  ml1CourseGrade: "exampleMl1CourseGrade",
   ml2CourseNum: "exampleMl2CourseNum",
   ml2CourseSemester: "exampleMl2CourseSemester",
+  ml2CourseGrade: "exampleMl2CourseGrade",
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
-  introCourse2Grade: "exampleIntroCourse2Grade",
-  introCourse2Num: "exampleIntroCourse2Num",
-  introCourse2Semester: "exampleIntroCourse2Semester",
-  introCourseGrade: "exampleIntroCourseGrade",
   introCourseNum: "exampleIntroCourseNum",
   introCourseSemester: "exampleIntroCourseSemester",
-  ml1CourseGrade: "exampleMl1CourseGrade",
+  introCourseGrade: "exampleIntroCourseGrade",
+  introCourse2Num: "exampleIntroCourse2Num",
+  introCourse2Semester: "exampleIntroCourse2Semester",
+  introCourse2Grade: "exampleIntroCourse2Grade",
   ml1CourseNum: "exampleMl1CourseNum",
   ml1CourseSemester: "exampleMl1CourseSemester",
-  ml2CourseGrade: "exampleMl2CourseGrade",
+  ml1CourseGrade: "exampleMl1CourseGrade",
   ml2CourseNum: "exampleMl2CourseNum",
   ml2CourseSemester: "exampleMl2CourseSemester",
+  ml2CourseGrade: "exampleMl2CourseGrade",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
-    introCourse2Grade: "exampleIntroCourse2Grade",
-    introCourse2Num: "exampleIntroCourse2Num",
-    introCourse2Semester: "exampleIntroCourse2Semester",
-    introCourseGrade: "exampleIntroCourseGrade",
     introCourseNum: "exampleIntroCourseNum",
     introCourseSemester: "exampleIntroCourseSemester",
-    ml1CourseGrade: "exampleMl1CourseGrade",
+    introCourseGrade: "exampleIntroCourseGrade",
+    introCourse2Num: "exampleIntroCourse2Num",
+    introCourse2Semester: "exampleIntroCourse2Semester",
+    introCourse2Grade: "exampleIntroCourse2Grade",
     ml1CourseNum: "exampleMl1CourseNum",
     ml1CourseSemester: "exampleMl1CourseSemester",
-    ml2CourseGrade: "exampleMl2CourseGrade",
+    ml1CourseGrade: "exampleMl1CourseGrade",
     ml2CourseNum: "exampleMl2CourseNum",
     ml2CourseSemester: "exampleMl2CourseSemester",
+    ml2CourseGrade: "exampleMl2CourseGrade",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
-  introCourse2Grade: "exampleIntroCourse2Grade",
-  introCourse2Num: "exampleIntroCourse2Num",
-  introCourse2Semester: "exampleIntroCourse2Semester",
-  introCourseGrade: "exampleIntroCourseGrade",
   introCourseNum: "exampleIntroCourseNum",
   introCourseSemester: "exampleIntroCourseSemester",
-  ml1CourseGrade: "exampleMl1CourseGrade",
+  introCourseGrade: "exampleIntroCourseGrade",
+  introCourse2Num: "exampleIntroCourse2Num",
+  introCourse2Semester: "exampleIntroCourse2Semester",
+  introCourse2Grade: "exampleIntroCourse2Grade",
   ml1CourseNum: "exampleMl1CourseNum",
   ml1CourseSemester: "exampleMl1CourseSemester",
-  ml2CourseGrade: "exampleMl2CourseGrade",
+  ml1CourseGrade: "exampleMl1CourseGrade",
   ml2CourseNum: "exampleMl2CourseNum",
   ml2CourseSemester: "exampleMl2CourseSemester",
+  ml2CourseGrade: "exampleMl2CourseGrade",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMlSupportingCoursework() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mlSupportingCourseworks: () => FIND_MANY_RESULT,
+  mlSupportingCoursework: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -25,15 +25,7 @@ class TagInstance {
   @Field(() => Number, {
     nullable: true,
   })
-  department!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  tagId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -45,6 +37,17 @@ class TagInstance {
     nullable: true,
   })
   owner!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  department!: number | null;
 
   @ApiProperty({
     required: false,
@@ -69,15 +72,12 @@ class TagInstance {
   status?: "open" | "closed" | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  tagId!: number | null;
+  @Field(() => Number)
+  id!: number;
 }
 
 export { TagInstance as TagInstance };

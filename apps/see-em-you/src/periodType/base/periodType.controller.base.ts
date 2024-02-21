@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PeriodTypeService } from "../periodType.service";
 import { PeriodTypeCreateInput } from "./PeriodTypeCreateInput";
-import { PeriodTypeWhereInput } from "./PeriodTypeWhereInput";
-import { PeriodTypeWhereUniqueInput } from "./PeriodTypeWhereUniqueInput";
-import { PeriodTypeFindManyArgs } from "./PeriodTypeFindManyArgs";
-import { PeriodTypeUpdateInput } from "./PeriodTypeUpdateInput";
 import { PeriodType } from "./PeriodType";
+import { PeriodTypeFindManyArgs } from "./PeriodTypeFindManyArgs";
+import { PeriodTypeWhereUniqueInput } from "./PeriodTypeWhereUniqueInput";
+import { PeriodTypeUpdateInput } from "./PeriodTypeUpdateInput";
 
 export class PeriodTypeControllerBase {
   constructor(protected readonly service: PeriodTypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PeriodType })
-  async create(
+  async createPeriodType(
     @common.Body() data: PeriodTypeCreateInput
   ): Promise<PeriodType> {
-    return await this.service.create({
+    return await this.service.createPeriodType({
       data: data,
       select: {
-        id: true,
         periodType: true,
+        id: true,
       },
     });
   }
@@ -43,13 +42,13 @@ export class PeriodTypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PeriodType] })
   @ApiNestedQuery(PeriodTypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PeriodType[]> {
+  async periodTypes(@common.Req() request: Request): Promise<PeriodType[]> {
     const args = plainToClass(PeriodTypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.periodTypes({
       ...args,
       select: {
-        id: true,
         periodType: true,
+        id: true,
       },
     });
   }
@@ -57,14 +56,14 @@ export class PeriodTypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PeriodType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async periodType(
     @common.Param() params: PeriodTypeWhereUniqueInput
   ): Promise<PeriodType | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.periodType({
       where: params,
       select: {
-        id: true,
         periodType: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -78,17 +77,17 @@ export class PeriodTypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PeriodType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePeriodType(
     @common.Param() params: PeriodTypeWhereUniqueInput,
     @common.Body() data: PeriodTypeUpdateInput
   ): Promise<PeriodType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriodType({
         where: params,
         data: data,
         select: {
-          id: true,
           periodType: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -104,15 +103,15 @@ export class PeriodTypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PeriodType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePeriodType(
     @common.Param() params: PeriodTypeWhereUniqueInput
   ): Promise<PeriodType | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePeriodType({
         where: params,
         select: {
-          id: true,
           periodType: true,
+          id: true,
         },
       });
     } catch (error) {

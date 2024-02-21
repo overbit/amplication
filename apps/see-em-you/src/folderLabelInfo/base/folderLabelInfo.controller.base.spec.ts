@@ -18,42 +18,42 @@ import { FolderLabelInfoService } from "../folderLabelInfo.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
+  periodId: 42,
+  lastRanTime: new Date(),
   lastLabelColumn: 42,
   lastLabelRow: 42,
-  lastRanTime: new Date(),
-  periodId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
+  periodId: 42,
+  lastRanTime: new Date(),
   lastLabelColumn: 42,
   lastLabelRow: 42,
-  lastRanTime: new Date(),
-  periodId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
+    periodId: 42,
+    lastRanTime: new Date(),
     lastLabelColumn: 42,
     lastLabelRow: 42,
-    lastRanTime: new Date(),
-    periodId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
+  periodId: 42,
+  lastRanTime: new Date(),
   lastLabelColumn: 42,
   lastLabelRow: 42,
-  lastRanTime: new Date(),
-  periodId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createFolderLabelInfo() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  folderLabelInfos: () => FIND_MANY_RESULT,
+  folderLabelInfo: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

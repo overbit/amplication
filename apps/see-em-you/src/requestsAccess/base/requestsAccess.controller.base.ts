@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RequestsAccessService } from "../requestsAccess.service";
 import { RequestsAccessCreateInput } from "./RequestsAccessCreateInput";
-import { RequestsAccessWhereInput } from "./RequestsAccessWhereInput";
-import { RequestsAccessWhereUniqueInput } from "./RequestsAccessWhereUniqueInput";
-import { RequestsAccessFindManyArgs } from "./RequestsAccessFindManyArgs";
-import { RequestsAccessUpdateInput } from "./RequestsAccessUpdateInput";
 import { RequestsAccess } from "./RequestsAccess";
+import { RequestsAccessFindManyArgs } from "./RequestsAccessFindManyArgs";
+import { RequestsAccessWhereUniqueInput } from "./RequestsAccessWhereUniqueInput";
+import { RequestsAccessUpdateInput } from "./RequestsAccessUpdateInput";
 
 export class RequestsAccessControllerBase {
   constructor(protected readonly service: RequestsAccessService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RequestsAccess })
-  async create(
+  async createRequestsAccess(
     @common.Body() data: RequestsAccessCreateInput
   ): Promise<RequestsAccess> {
-    return await this.service.create({
+    return await this.service.createRequestsAccess({
       data: data,
       select: {
+        user: true,
         createdDate: true,
         id: true,
-        user: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class RequestsAccessControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RequestsAccess] })
   @ApiNestedQuery(RequestsAccessFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<RequestsAccess[]> {
+  async requestsAccesses(
+    @common.Req() request: Request
+  ): Promise<RequestsAccess[]> {
     const args = plainToClass(RequestsAccessFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.requestsAccesses({
       ...args,
       select: {
+        user: true,
         createdDate: true,
         id: true,
-        user: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class RequestsAccessControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RequestsAccess })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async requestsAccess(
     @common.Param() params: RequestsAccessWhereUniqueInput
   ): Promise<RequestsAccess | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.requestsAccess({
       where: params,
       select: {
+        user: true,
         createdDate: true,
         id: true,
-        user: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class RequestsAccessControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RequestsAccess })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRequestsAccess(
     @common.Param() params: RequestsAccessWhereUniqueInput,
     @common.Body() data: RequestsAccessUpdateInput
   ): Promise<RequestsAccess | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRequestsAccess({
         where: params,
         data: data,
         select: {
+          user: true,
           createdDate: true,
           id: true,
-          user: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class RequestsAccessControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RequestsAccess })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRequestsAccess(
     @common.Param() params: RequestsAccessWhereUniqueInput
   ): Promise<RequestsAccess | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRequestsAccess({
         where: params,
         select: {
+          user: true,
           createdDate: true,
           id: true,
-          user: true,
         },
       });
     } catch (error) {

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, CcTransaction } from "@prisma/client";
+import { Prisma, CcTransaction as PrismaCcTransaction } from "@prisma/client";
 
 export class CcTransactionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class CcTransactionServiceBase {
     return this.prisma.ccTransaction.count(args);
   }
 
-  async findMany<T extends Prisma.CcTransactionFindManyArgs>(
+  async ccTransactions<T extends Prisma.CcTransactionFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionFindManyArgs>
-  ): Promise<CcTransaction[]> {
+  ): Promise<PrismaCcTransaction[]> {
     return this.prisma.ccTransaction.findMany(args);
   }
-  async findOne<T extends Prisma.CcTransactionFindUniqueArgs>(
+  async ccTransaction<T extends Prisma.CcTransactionFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionFindUniqueArgs>
-  ): Promise<CcTransaction | null> {
+  ): Promise<PrismaCcTransaction | null> {
     return this.prisma.ccTransaction.findUnique(args);
   }
-  async create<T extends Prisma.CcTransactionCreateArgs>(
+  async createCcTransaction<T extends Prisma.CcTransactionCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionCreateArgs>
-  ): Promise<CcTransaction> {
+  ): Promise<PrismaCcTransaction> {
     return this.prisma.ccTransaction.create<T>(args);
   }
-  async update<T extends Prisma.CcTransactionUpdateArgs>(
+  async updateCcTransaction<T extends Prisma.CcTransactionUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionUpdateArgs>
-  ): Promise<CcTransaction> {
+  ): Promise<PrismaCcTransaction> {
     return this.prisma.ccTransaction.update<T>(args);
   }
-  async delete<T extends Prisma.CcTransactionDeleteArgs>(
+  async deleteCcTransaction<T extends Prisma.CcTransactionDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionDeleteArgs>
-  ): Promise<CcTransaction> {
+  ): Promise<PrismaCcTransaction> {
     return this.prisma.ccTransaction.delete(args);
   }
 }

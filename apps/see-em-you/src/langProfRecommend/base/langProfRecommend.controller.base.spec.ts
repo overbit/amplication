@@ -19,61 +19,61 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
+  recUserId: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
   langProfRecId: 42,
-  languageSpecialization: "exampleLanguageSpecialization",
-  lastReminderSent: new Date(),
-  recUserId: 42,
-  reminderSentCount: 42,
   submitted: "true",
+  reminderSentCount: 42,
+  lastReminderSent: new Date(),
+  languageSpecialization: "exampleLanguageSpecialization",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
+  recUserId: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
   langProfRecId: 42,
-  languageSpecialization: "exampleLanguageSpecialization",
-  lastReminderSent: new Date(),
-  recUserId: 42,
-  reminderSentCount: 42,
   submitted: "true",
+  reminderSentCount: 42,
+  lastReminderSent: new Date(),
+  languageSpecialization: "exampleLanguageSpecialization",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
+    recUserId: 42,
     content: "exampleContent",
     datafileId: 42,
-    id: 42,
     langProfRecId: 42,
-    languageSpecialization: "exampleLanguageSpecialization",
-    lastReminderSent: new Date(),
-    recUserId: 42,
-    reminderSentCount: 42,
     submitted: "true",
+    reminderSentCount: 42,
+    lastReminderSent: new Date(),
+    languageSpecialization: "exampleLanguageSpecialization",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
+  recUserId: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
   langProfRecId: 42,
-  languageSpecialization: "exampleLanguageSpecialization",
-  lastReminderSent: new Date(),
-  recUserId: 42,
-  reminderSentCount: 42,
   submitted: "true",
+  reminderSentCount: 42,
+  lastReminderSent: new Date(),
+  languageSpecialization: "exampleLanguageSpecialization",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLangProfRecommend() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  langProfRecommends: () => FIND_MANY_RESULT,
+  langProfRecommend: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

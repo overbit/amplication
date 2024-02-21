@@ -18,28 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { GroupRankService } from "../groupRank.service";
 import { GroupRankCreateInput } from "./GroupRankCreateInput";
-import { GroupRankWhereInput } from "./GroupRankWhereInput";
-import { GroupRankWhereUniqueInput } from "./GroupRankWhereUniqueInput";
-import { GroupRankFindManyArgs } from "./GroupRankFindManyArgs";
-import { GroupRankUpdateInput } from "./GroupRankUpdateInput";
 import { GroupRank } from "./GroupRank";
+import { GroupRankFindManyArgs } from "./GroupRankFindManyArgs";
+import { GroupRankWhereUniqueInput } from "./GroupRankWhereUniqueInput";
+import { GroupRankUpdateInput } from "./GroupRankUpdateInput";
 
 export class GroupRankControllerBase {
   constructor(protected readonly service: GroupRankService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: GroupRank })
-  async create(@common.Body() data: GroupRankCreateInput): Promise<GroupRank> {
-    return await this.service.create({
+  async createGroupRank(
+    @common.Body() data: GroupRankCreateInput
+  ): Promise<GroupRank> {
+    return await this.service.createGroupRank({
       data: data,
       select: {
-        comment: true,
         groupId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
-        ranking: true,
         round: true,
+        periodId: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        comment: true,
+        ranking: true,
+        id: true,
       },
     });
   }
@@ -47,19 +48,19 @@ export class GroupRankControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [GroupRank] })
   @ApiNestedQuery(GroupRankFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<GroupRank[]> {
+  async groupRanks(@common.Req() request: Request): Promise<GroupRank[]> {
     const args = plainToClass(GroupRankFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.groupRanks({
       ...args,
       select: {
-        comment: true,
         groupId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
-        ranking: true,
         round: true,
+        periodId: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        comment: true,
+        ranking: true,
+        id: true,
       },
     });
   }
@@ -67,20 +68,20 @@ export class GroupRankControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: GroupRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async groupRank(
     @common.Param() params: GroupRankWhereUniqueInput
   ): Promise<GroupRank | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.groupRank({
       where: params,
       select: {
-        comment: true,
         groupId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
-        ranking: true,
         round: true,
+        periodId: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        comment: true,
+        ranking: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -94,23 +95,23 @@ export class GroupRankControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: GroupRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateGroupRank(
     @common.Param() params: GroupRankWhereUniqueInput,
     @common.Body() data: GroupRankUpdateInput
   ): Promise<GroupRank | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGroupRank({
         where: params,
         data: data,
         select: {
-          comment: true,
           groupId: true,
-          id: true,
-          luUsersUsertypesId: true,
-          periodId: true,
-          ranking: true,
           round: true,
+          periodId: true,
           timestamp: true,
+          luUsersUsertypesId: true,
+          comment: true,
+          ranking: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -126,21 +127,21 @@ export class GroupRankControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: GroupRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteGroupRank(
     @common.Param() params: GroupRankWhereUniqueInput
   ): Promise<GroupRank | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteGroupRank({
         where: params,
         select: {
-          comment: true,
           groupId: true,
-          id: true,
-          luUsersUsertypesId: true,
-          periodId: true,
-          ranking: true,
           round: true,
+          periodId: true,
           timestamp: true,
+          luUsersUsertypesId: true,
+          comment: true,
+          ranking: true,
+          id: true,
         },
       });
     } catch (error) {

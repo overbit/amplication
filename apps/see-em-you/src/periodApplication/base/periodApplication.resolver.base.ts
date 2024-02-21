@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePeriodApplicationArgs } from "./CreatePeriodApplicationArgs";
-import { UpdatePeriodApplicationArgs } from "./UpdatePeriodApplicationArgs";
-import { DeletePeriodApplicationArgs } from "./DeletePeriodApplicationArgs";
+import { PeriodApplication } from "./PeriodApplication";
 import { PeriodApplicationCountArgs } from "./PeriodApplicationCountArgs";
 import { PeriodApplicationFindManyArgs } from "./PeriodApplicationFindManyArgs";
 import { PeriodApplicationFindUniqueArgs } from "./PeriodApplicationFindUniqueArgs";
-import { PeriodApplication } from "./PeriodApplication";
+import { CreatePeriodApplicationArgs } from "./CreatePeriodApplicationArgs";
+import { UpdatePeriodApplicationArgs } from "./UpdatePeriodApplicationArgs";
+import { DeletePeriodApplicationArgs } from "./DeletePeriodApplicationArgs";
 import { Application } from "../../application/base/Application";
 import { Period } from "../../period/base/Period";
 import { PeriodApplicationService } from "../periodApplication.service";
@@ -40,14 +40,14 @@ export class PeriodApplicationResolverBase {
   async periodApplications(
     @graphql.Args() args: PeriodApplicationFindManyArgs
   ): Promise<PeriodApplication[]> {
-    return this.service.findMany(args);
+    return this.service.periodApplications(args);
   }
 
   @graphql.Query(() => PeriodApplication, { nullable: true })
   async periodApplication(
     @graphql.Args() args: PeriodApplicationFindUniqueArgs
   ): Promise<PeriodApplication | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.periodApplication(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class PeriodApplicationResolverBase {
   async createPeriodApplication(
     @graphql.Args() args: CreatePeriodApplicationArgs
   ): Promise<PeriodApplication> {
-    return await this.service.create({
+    return await this.service.createPeriodApplication({
       ...args,
       data: {
         ...args.data,
@@ -79,7 +79,7 @@ export class PeriodApplicationResolverBase {
     @graphql.Args() args: UpdatePeriodApplicationArgs
   ): Promise<PeriodApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriodApplication({
         ...args,
         data: {
           ...args.data,
@@ -108,7 +108,7 @@ export class PeriodApplicationResolverBase {
     @graphql.Args() args: DeletePeriodApplicationArgs
   ): Promise<PeriodApplication | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePeriodApplication(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -123,7 +123,7 @@ export class PeriodApplicationResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: PeriodApplication
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);
@@ -138,7 +138,7 @@ export class PeriodApplicationResolverBase {
     nullable: true,
     name: "period",
   })
-  async resolveFieldPeriod(
+  async getPeriod(
     @graphql.Parent() parent: PeriodApplication
   ): Promise<Period | null> {
     const result = await this.service.getPeriod(parent.id);

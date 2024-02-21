@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateEmploy } from "@prisma/client";
+import { Prisma, SlateEmploy as PrismaSlateEmploy } from "@prisma/client";
 
 export class SlateEmployServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateEmployServiceBase {
     return this.prisma.slateEmploy.count(args);
   }
 
-  async findMany<T extends Prisma.SlateEmployFindManyArgs>(
+  async slateEmploys<T extends Prisma.SlateEmployFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmployFindManyArgs>
-  ): Promise<SlateEmploy[]> {
+  ): Promise<PrismaSlateEmploy[]> {
     return this.prisma.slateEmploy.findMany(args);
   }
-  async findOne<T extends Prisma.SlateEmployFindUniqueArgs>(
+  async slateEmploy<T extends Prisma.SlateEmployFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmployFindUniqueArgs>
-  ): Promise<SlateEmploy | null> {
+  ): Promise<PrismaSlateEmploy | null> {
     return this.prisma.slateEmploy.findUnique(args);
   }
-  async create<T extends Prisma.SlateEmployCreateArgs>(
+  async createSlateEmploy<T extends Prisma.SlateEmployCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmployCreateArgs>
-  ): Promise<SlateEmploy> {
+  ): Promise<PrismaSlateEmploy> {
     return this.prisma.slateEmploy.create<T>(args);
   }
-  async update<T extends Prisma.SlateEmployUpdateArgs>(
+  async updateSlateEmploy<T extends Prisma.SlateEmployUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmployUpdateArgs>
-  ): Promise<SlateEmploy> {
+  ): Promise<PrismaSlateEmploy> {
     return this.prisma.slateEmploy.update<T>(args);
   }
-  async delete<T extends Prisma.SlateEmployDeleteArgs>(
+  async deleteSlateEmploy<T extends Prisma.SlateEmployDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmployDeleteArgs>
-  ): Promise<SlateEmploy> {
+  ): Promise<PrismaSlateEmploy> {
     return this.prisma.slateEmploy.delete(args);
   }
 }

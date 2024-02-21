@@ -28,17 +28,6 @@ class CashnetPaymentCopyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  amount?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   appId?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,7 @@ class CashnetPaymentCopyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicantEmail?: SortOrder;
+  transactionId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +61,7 @@ class CashnetPaymentCopyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  applicantEmail?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,17 +94,6 @@ class CashnetPaymentCopyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  transactionId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   transactionTime?: SortOrder;
 
   @ApiProperty({
@@ -128,6 +106,28 @@ class CashnetPaymentCopyOrderByInput {
     nullable: true,
   })
   transactionType?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  amount?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { CashnetPaymentCopyOrderByInput as CashnetPaymentCopyOrderByInput };

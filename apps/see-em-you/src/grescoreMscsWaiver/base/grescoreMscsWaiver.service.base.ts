@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, GrescoreMscsWaiver } from "@prisma/client";
+import {
+  Prisma,
+  GrescoreMscsWaiver as PrismaGrescoreMscsWaiver,
+} from "@prisma/client";
 
 export class GrescoreMscsWaiverServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class GrescoreMscsWaiverServiceBase {
     return this.prisma.grescoreMscsWaiver.count(args);
   }
 
-  async findMany<T extends Prisma.GrescoreMscsWaiverFindManyArgs>(
+  async grescoreMscsWaivers<T extends Prisma.GrescoreMscsWaiverFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreMscsWaiverFindManyArgs>
-  ): Promise<GrescoreMscsWaiver[]> {
+  ): Promise<PrismaGrescoreMscsWaiver[]> {
     return this.prisma.grescoreMscsWaiver.findMany(args);
   }
-  async findOne<T extends Prisma.GrescoreMscsWaiverFindUniqueArgs>(
+  async grescoreMscsWaiver<T extends Prisma.GrescoreMscsWaiverFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreMscsWaiverFindUniqueArgs>
-  ): Promise<GrescoreMscsWaiver | null> {
+  ): Promise<PrismaGrescoreMscsWaiver | null> {
     return this.prisma.grescoreMscsWaiver.findUnique(args);
   }
-  async create<T extends Prisma.GrescoreMscsWaiverCreateArgs>(
+  async createGrescoreMscsWaiver<T extends Prisma.GrescoreMscsWaiverCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreMscsWaiverCreateArgs>
-  ): Promise<GrescoreMscsWaiver> {
+  ): Promise<PrismaGrescoreMscsWaiver> {
     return this.prisma.grescoreMscsWaiver.create<T>(args);
   }
-  async update<T extends Prisma.GrescoreMscsWaiverUpdateArgs>(
+  async updateGrescoreMscsWaiver<T extends Prisma.GrescoreMscsWaiverUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreMscsWaiverUpdateArgs>
-  ): Promise<GrescoreMscsWaiver> {
+  ): Promise<PrismaGrescoreMscsWaiver> {
     return this.prisma.grescoreMscsWaiver.update<T>(args);
   }
-  async delete<T extends Prisma.GrescoreMscsWaiverDeleteArgs>(
+  async deleteGrescoreMscsWaiver<T extends Prisma.GrescoreMscsWaiverDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreMscsWaiverDeleteArgs>
-  ): Promise<GrescoreMscsWaiver> {
+  ): Promise<PrismaGrescoreMscsWaiver> {
     return this.prisma.grescoreMscsWaiver.delete(args);
   }
 }

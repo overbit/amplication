@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { IsString, IsOptional, IsInt } from "class-validator";
 
 @InputType()
 class PositiveFactorUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  departmentId?: number;
-
   @ApiProperty({
     required: false,
     type: String,
@@ -36,6 +25,17 @@ class PositiveFactorUpdateInput {
     nullable: true,
   })
   positiveFactor?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  departmentId?: number;
 
   @ApiProperty({
     required: false,

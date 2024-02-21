@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, TeachingExperience } from "@prisma/client";
+import {
+  Prisma,
+  TeachingExperience as PrismaTeachingExperience,
+} from "@prisma/client";
 
 export class TeachingExperienceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class TeachingExperienceServiceBase {
     return this.prisma.teachingExperience.count(args);
   }
 
-  async findMany<T extends Prisma.TeachingExperienceFindManyArgs>(
+  async teachingExperiences<T extends Prisma.TeachingExperienceFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.TeachingExperienceFindManyArgs>
-  ): Promise<TeachingExperience[]> {
+  ): Promise<PrismaTeachingExperience[]> {
     return this.prisma.teachingExperience.findMany(args);
   }
-  async findOne<T extends Prisma.TeachingExperienceFindUniqueArgs>(
+  async teachingExperience<T extends Prisma.TeachingExperienceFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.TeachingExperienceFindUniqueArgs>
-  ): Promise<TeachingExperience | null> {
+  ): Promise<PrismaTeachingExperience | null> {
     return this.prisma.teachingExperience.findUnique(args);
   }
-  async create<T extends Prisma.TeachingExperienceCreateArgs>(
+  async createTeachingExperience<T extends Prisma.TeachingExperienceCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TeachingExperienceCreateArgs>
-  ): Promise<TeachingExperience> {
+  ): Promise<PrismaTeachingExperience> {
     return this.prisma.teachingExperience.create<T>(args);
   }
-  async update<T extends Prisma.TeachingExperienceUpdateArgs>(
+  async updateTeachingExperience<T extends Prisma.TeachingExperienceUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TeachingExperienceUpdateArgs>
-  ): Promise<TeachingExperience> {
+  ): Promise<PrismaTeachingExperience> {
     return this.prisma.teachingExperience.update<T>(args);
   }
-  async delete<T extends Prisma.TeachingExperienceDeleteArgs>(
+  async deleteTeachingExperience<T extends Prisma.TeachingExperienceDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.TeachingExperienceDeleteArgs>
-  ): Promise<TeachingExperience> {
+  ): Promise<PrismaTeachingExperience> {
     return this.prisma.teachingExperience.delete(args);
   }
 }

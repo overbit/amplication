@@ -18,34 +18,35 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AccesslogService } from "../accesslog.service";
 import { AccesslogCreateInput } from "./AccesslogCreateInput";
-import { AccesslogWhereInput } from "./AccesslogWhereInput";
-import { AccesslogWhereUniqueInput } from "./AccesslogWhereUniqueInput";
-import { AccesslogFindManyArgs } from "./AccesslogFindManyArgs";
-import { AccesslogUpdateInput } from "./AccesslogUpdateInput";
 import { Accesslog } from "./Accesslog";
+import { AccesslogFindManyArgs } from "./AccesslogFindManyArgs";
+import { AccesslogWhereUniqueInput } from "./AccesslogWhereUniqueInput";
+import { AccesslogUpdateInput } from "./AccesslogUpdateInput";
 
 export class AccesslogControllerBase {
   constructor(protected readonly service: AccesslogService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Accesslog })
-  async create(@common.Body() data: AccesslogCreateInput): Promise<Accesslog> {
-    return await this.service.create({
+  async createAccesslog(
+    @common.Body() data: AccesslogCreateInput
+  ): Promise<Accesslog> {
+    return await this.service.createAccesslog({
       data: data,
       select: {
-        activity: true,
+        id: true,
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        domain: true,
         eventtime: true,
-        id: true,
-        lastsrv: true,
-        luUsersUsertypesId: true,
-        ra: true,
+        activity: true,
+        domain: true,
         referer: true,
-        sa: true,
-        usersId: true,
-        usertypeId: true,
         xforward: true,
+        sa: true,
+        ra: true,
+        lastsrv: true,
       },
     });
   }
@@ -53,25 +54,25 @@ export class AccesslogControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Accesslog] })
   @ApiNestedQuery(AccesslogFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Accesslog[]> {
+  async accesslogs(@common.Req() request: Request): Promise<Accesslog[]> {
     const args = plainToClass(AccesslogFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.accesslogs({
       ...args,
       select: {
-        activity: true,
+        id: true,
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        domain: true,
         eventtime: true,
-        id: true,
-        lastsrv: true,
-        luUsersUsertypesId: true,
-        ra: true,
+        activity: true,
+        domain: true,
         referer: true,
-        sa: true,
-        usersId: true,
-        usertypeId: true,
         xforward: true,
+        sa: true,
+        ra: true,
+        lastsrv: true,
       },
     });
   }
@@ -79,26 +80,26 @@ export class AccesslogControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Accesslog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async accesslog(
     @common.Param() params: AccesslogWhereUniqueInput
   ): Promise<Accesslog | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.accesslog({
       where: params,
       select: {
-        activity: true,
+        id: true,
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        domain: true,
         eventtime: true,
-        id: true,
-        lastsrv: true,
-        luUsersUsertypesId: true,
-        ra: true,
+        activity: true,
+        domain: true,
         referer: true,
-        sa: true,
-        usersId: true,
-        usertypeId: true,
         xforward: true,
+        sa: true,
+        ra: true,
+        lastsrv: true,
       },
     });
     if (result === null) {
@@ -112,29 +113,29 @@ export class AccesslogControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Accesslog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAccesslog(
     @common.Param() params: AccesslogWhereUniqueInput,
     @common.Body() data: AccesslogUpdateInput
   ): Promise<Accesslog | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAccesslog({
         where: params,
         data: data,
         select: {
-          activity: true,
+          id: true,
+          usersId: true,
+          luUsersUsertypesId: true,
+          usertypeId: true,
           applicationId: true,
           client: true,
-          domain: true,
           eventtime: true,
-          id: true,
-          lastsrv: true,
-          luUsersUsertypesId: true,
-          ra: true,
+          activity: true,
+          domain: true,
           referer: true,
-          sa: true,
-          usersId: true,
-          usertypeId: true,
           xforward: true,
+          sa: true,
+          ra: true,
+          lastsrv: true,
         },
       });
     } catch (error) {
@@ -150,27 +151,27 @@ export class AccesslogControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Accesslog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAccesslog(
     @common.Param() params: AccesslogWhereUniqueInput
   ): Promise<Accesslog | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAccesslog({
         where: params,
         select: {
-          activity: true,
+          id: true,
+          usersId: true,
+          luUsersUsertypesId: true,
+          usertypeId: true,
           applicationId: true,
           client: true,
-          domain: true,
           eventtime: true,
-          id: true,
-          lastsrv: true,
-          luUsersUsertypesId: true,
-          ra: true,
+          activity: true,
+          domain: true,
           referer: true,
-          sa: true,
-          usersId: true,
-          usertypeId: true,
           xforward: true,
+          sa: true,
+          ra: true,
+          lastsrv: true,
         },
       });
     } catch (error) {

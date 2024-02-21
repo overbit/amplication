@@ -18,54 +18,54 @@ import { VeteranInfoService } from "../veteranInfo.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  branch: "exampleBranch",
-  discharge: "exampleDischarge",
-  enddate: new Date(),
-  id: 42,
-  startdate: new Date(),
+  userId: 42,
   status: "exampleStatus",
   statusEnroll: "exampleStatusEnroll",
-  userId: 42,
+  branch: "exampleBranch",
+  startdate: new Date(),
+  enddate: new Date(),
+  discharge: "exampleDischarge",
+  id: 42,
 };
 const CREATE_RESULT = {
-  branch: "exampleBranch",
-  discharge: "exampleDischarge",
-  enddate: new Date(),
-  id: 42,
-  startdate: new Date(),
+  userId: 42,
   status: "exampleStatus",
   statusEnroll: "exampleStatusEnroll",
-  userId: 42,
+  branch: "exampleBranch",
+  startdate: new Date(),
+  enddate: new Date(),
+  discharge: "exampleDischarge",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    branch: "exampleBranch",
-    discharge: "exampleDischarge",
-    enddate: new Date(),
-    id: 42,
-    startdate: new Date(),
+    userId: 42,
     status: "exampleStatus",
     statusEnroll: "exampleStatusEnroll",
-    userId: 42,
+    branch: "exampleBranch",
+    startdate: new Date(),
+    enddate: new Date(),
+    discharge: "exampleDischarge",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  branch: "exampleBranch",
-  discharge: "exampleDischarge",
-  enddate: new Date(),
-  id: 42,
-  startdate: new Date(),
+  userId: 42,
   status: "exampleStatus",
   statusEnroll: "exampleStatusEnroll",
-  userId: 42,
+  branch: "exampleBranch",
+  startdate: new Date(),
+  enddate: new Date(),
+  discharge: "exampleDischarge",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createVeteranInfo() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  veteranInfos: () => FIND_MANY_RESULT,
+  veteranInfo: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -142,8 +142,8 @@ describe("VeteranInfo", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        enddate: CREATE_RESULT.enddate.toISOString(),
         startdate: CREATE_RESULT.startdate.toISOString(),
+        enddate: CREATE_RESULT.enddate.toISOString(),
       });
   });
 
@@ -154,8 +154,8 @@ describe("VeteranInfo", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          enddate: FIND_MANY_RESULT[0].enddate.toISOString(),
           startdate: FIND_MANY_RESULT[0].startdate.toISOString(),
+          enddate: FIND_MANY_RESULT[0].enddate.toISOString(),
         },
       ]);
   });
@@ -177,8 +177,8 @@ describe("VeteranInfo", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        enddate: FIND_ONE_RESULT.enddate.toISOString(),
         startdate: FIND_ONE_RESULT.startdate.toISOString(),
+        enddate: FIND_ONE_RESULT.enddate.toISOString(),
       });
   });
 
@@ -190,8 +190,8 @@ describe("VeteranInfo", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        enddate: CREATE_RESULT.enddate.toISOString(),
         startdate: CREATE_RESULT.startdate.toISOString(),
+        enddate: CREATE_RESULT.enddate.toISOString(),
       })
       .then(function () {
         agent

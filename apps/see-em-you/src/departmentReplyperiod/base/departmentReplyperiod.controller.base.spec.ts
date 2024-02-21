@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   deptId: 42,
+  start: new Date(),
   end: new Date(),
   id: 42,
-  start: new Date(),
 };
 const CREATE_RESULT = {
   deptId: 42,
+  start: new Date(),
   end: new Date(),
   id: 42,
-  start: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
     deptId: 42,
+    start: new Date(),
     end: new Date(),
     id: 42,
-    start: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
   deptId: 42,
+  start: new Date(),
   end: new Date(),
   id: 42,
-  start: new Date(),
 };
 
 const service = {
-  create() {
+  createDepartmentReplyperiod() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  departmentReplyperiods: () => FIND_MANY_RESULT,
+  departmentReplyperiod: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -126,8 +126,8 @@ describe("DepartmentReplyperiod", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        end: CREATE_RESULT.end.toISOString(),
         start: CREATE_RESULT.start.toISOString(),
+        end: CREATE_RESULT.end.toISOString(),
       });
   });
 
@@ -138,8 +138,8 @@ describe("DepartmentReplyperiod", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          end: FIND_MANY_RESULT[0].end.toISOString(),
           start: FIND_MANY_RESULT[0].start.toISOString(),
+          end: FIND_MANY_RESULT[0].end.toISOString(),
         },
       ]);
   });
@@ -161,8 +161,8 @@ describe("DepartmentReplyperiod", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        end: FIND_ONE_RESULT.end.toISOString(),
         start: FIND_ONE_RESULT.start.toISOString(),
+        end: FIND_ONE_RESULT.end.toISOString(),
       });
   });
 
@@ -174,8 +174,8 @@ describe("DepartmentReplyperiod", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        end: CREATE_RESULT.end.toISOString(),
         start: CREATE_RESULT.start.toISOString(),
+        end: CREATE_RESULT.end.toISOString(),
       })
       .then(function () {
         agent

@@ -24,6 +24,17 @@ class LuReviewerGroupUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  reviewerId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   departmentId?: number | null;
 
   @ApiProperty({
@@ -36,17 +47,6 @@ class LuReviewerGroupUpdateInput {
     nullable: true,
   })
   groupId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  reviewerId?: number;
 
   @ApiProperty({
     required: false,

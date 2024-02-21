@@ -11,52 +11,21 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { MhciPrereqWhereUniqueInput } from "../../mhciPrereq/base/MhciPrereqWhereUniqueInput";
 import {
-  ValidateNested,
   IsInt,
   IsOptional,
-  IsString,
   IsEnum,
+  IsString,
   IsDate,
+  ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { EnumMhciPrereqsStatusReviewerStatus } from "./EnumMhciPrereqsStatusReviewerStatus";
+import { Type } from "class-transformer";
 import { EnumMhciPrereqsStatusStatus3 } from "./EnumMhciPrereqsStatusStatus3";
+import { MhciPrereqWhereUniqueInput } from "../../mhciPrereq/base/MhciPrereqWhereUniqueInput";
 
 @InputType()
 class MhciPrereqsStatusCreateInput {
-  @ApiProperty({
-    required: true,
-    type: () => MhciPrereqWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereqWhereUniqueInput)
-  @Field(() => MhciPrereqWhereUniqueInput)
-  mhciPrereqs!: MhciPrereqWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reviewerExplanation?: string | null;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -84,6 +53,17 @@ class MhciPrereqsStatusCreateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reviewerExplanation?: string | null;
+
+  @ApiProperty({
+    required: false,
   })
   @IsDate()
   @Type(() => Date)
@@ -108,6 +88,26 @@ class MhciPrereqsStatusCreateInput {
     | "Student_Edited"
     | "Reviewer_Responded"
     | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  programId?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => MhciPrereqWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => MhciPrereqWhereUniqueInput)
+  @Field(() => MhciPrereqWhereUniqueInput)
+  mhciPrereqs!: MhciPrereqWhereUniqueInput;
 }
 
 export { MhciPrereqsStatusCreateInput as MhciPrereqsStatusCreateInput };

@@ -21,14 +21,6 @@ class MseLetterRecsDecision {
   })
   @IsInt()
   @Field(() => Number)
-  algorithms!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   applicationId!: number;
 
   @ApiProperty({
@@ -37,23 +29,7 @@ class MseLetterRecsDecision {
   })
   @IsInt()
   @Field(() => Number)
-  dataStructures!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  discrete!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  programId!: number;
 
   @ApiProperty({
     required: true,
@@ -69,7 +45,31 @@ class MseLetterRecsDecision {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
+  discrete!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  algorithms!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  dataStructures!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { MseLetterRecsDecision as MseLetterRecsDecision };

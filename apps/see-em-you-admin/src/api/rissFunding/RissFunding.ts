@@ -1,11 +1,11 @@
 import { Application } from "../application/Application";
 
 export type RissFunding = {
-  application?: Application;
-  directFunding: boolean;
-  externalAmount: string | null;
   externalFunding: boolean;
   externalSource: string | null;
-  id: number;
+  externalAmount: string | null;
   reuScholarship: boolean;
+  directFunding: boolean;
+  application?: Application;
+  id: number;
 };

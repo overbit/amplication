@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuApplicationStartSemesterArgs } from "./CreateLuApplicationStartSemesterArgs";
-import { UpdateLuApplicationStartSemesterArgs } from "./UpdateLuApplicationStartSemesterArgs";
-import { DeleteLuApplicationStartSemesterArgs } from "./DeleteLuApplicationStartSemesterArgs";
+import { LuApplicationStartSemester } from "./LuApplicationStartSemester";
 import { LuApplicationStartSemesterCountArgs } from "./LuApplicationStartSemesterCountArgs";
 import { LuApplicationStartSemesterFindManyArgs } from "./LuApplicationStartSemesterFindManyArgs";
 import { LuApplicationStartSemesterFindUniqueArgs } from "./LuApplicationStartSemesterFindUniqueArgs";
-import { LuApplicationStartSemester } from "./LuApplicationStartSemester";
+import { CreateLuApplicationStartSemesterArgs } from "./CreateLuApplicationStartSemesterArgs";
+import { UpdateLuApplicationStartSemesterArgs } from "./UpdateLuApplicationStartSemesterArgs";
+import { DeleteLuApplicationStartSemesterArgs } from "./DeleteLuApplicationStartSemesterArgs";
 import { Application } from "../../application/base/Application";
 import { LuApplicationStartSemesterService } from "../luApplicationStartSemester.service";
 @graphql.Resolver(() => LuApplicationStartSemester)
@@ -39,14 +39,14 @@ export class LuApplicationStartSemesterResolverBase {
   async luApplicationStartSemesters(
     @graphql.Args() args: LuApplicationStartSemesterFindManyArgs
   ): Promise<LuApplicationStartSemester[]> {
-    return this.service.findMany(args);
+    return this.service.luApplicationStartSemesters(args);
   }
 
   @graphql.Query(() => LuApplicationStartSemester, { nullable: true })
   async luApplicationStartSemester(
     @graphql.Args() args: LuApplicationStartSemesterFindUniqueArgs
   ): Promise<LuApplicationStartSemester | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luApplicationStartSemester(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class LuApplicationStartSemesterResolverBase {
   async createLuApplicationStartSemester(
     @graphql.Args() args: CreateLuApplicationStartSemesterArgs
   ): Promise<LuApplicationStartSemester> {
-    return await this.service.create({
+    return await this.service.createLuApplicationStartSemester({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class LuApplicationStartSemesterResolverBase {
     @graphql.Args() args: UpdateLuApplicationStartSemesterArgs
   ): Promise<LuApplicationStartSemester | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationStartSemester({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class LuApplicationStartSemesterResolverBase {
     @graphql.Args() args: DeleteLuApplicationStartSemesterArgs
   ): Promise<LuApplicationStartSemester | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuApplicationStartSemester(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class LuApplicationStartSemesterResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: LuApplicationStartSemester
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

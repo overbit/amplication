@@ -29,6 +29,14 @@ class Admission {
   })
   @IsInt()
   @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   code!: number;
 
   @ApiProperty({
@@ -38,14 +46,6 @@ class Admission {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
 }
 
 export { Admission as Admission };

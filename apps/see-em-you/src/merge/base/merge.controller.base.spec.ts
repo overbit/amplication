@@ -18,46 +18,46 @@ import { MergeService } from "../merge.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationId: 42,
-  errorField: 42,
-  id: 42,
-  merged: "true",
   mergeDate: new Date(),
+  applicationId: 42,
+  merged: "true",
+  errorField: 42,
   message: "exampleMessage",
+  id: 42,
 };
 const CREATE_RESULT = {
-  applicationId: 42,
-  errorField: 42,
-  id: 42,
-  merged: "true",
   mergeDate: new Date(),
+  applicationId: 42,
+  merged: "true",
+  errorField: 42,
   message: "exampleMessage",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    applicationId: 42,
-    errorField: 42,
-    id: 42,
-    merged: "true",
     mergeDate: new Date(),
+    applicationId: 42,
+    merged: "true",
+    errorField: 42,
     message: "exampleMessage",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationId: 42,
-  errorField: 42,
-  id: 42,
-  merged: "true",
   mergeDate: new Date(),
+  applicationId: 42,
+  merged: "true",
+  errorField: 42,
   message: "exampleMessage",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMerge() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  merges: () => FIND_MANY_RESULT,
+  merge: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

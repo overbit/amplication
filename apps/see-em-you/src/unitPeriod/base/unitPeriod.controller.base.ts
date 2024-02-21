@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UnitPeriodService } from "../unitPeriod.service";
 import { UnitPeriodCreateInput } from "./UnitPeriodCreateInput";
-import { UnitPeriodWhereInput } from "./UnitPeriodWhereInput";
-import { UnitPeriodWhereUniqueInput } from "./UnitPeriodWhereUniqueInput";
-import { UnitPeriodFindManyArgs } from "./UnitPeriodFindManyArgs";
-import { UnitPeriodUpdateInput } from "./UnitPeriodUpdateInput";
 import { UnitPeriod } from "./UnitPeriod";
+import { UnitPeriodFindManyArgs } from "./UnitPeriodFindManyArgs";
+import { UnitPeriodWhereUniqueInput } from "./UnitPeriodWhereUniqueInput";
+import { UnitPeriodUpdateInput } from "./UnitPeriodUpdateInput";
 
 export class UnitPeriodControllerBase {
   constructor(protected readonly service: UnitPeriodService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: UnitPeriod })
-  async create(
+  async createUnitPeriod(
     @common.Body() data: UnitPeriodCreateInput
   ): Promise<UnitPeriod> {
-    return await this.service.create({
+    return await this.service.createUnitPeriod({
       data: data,
       select: {
         id: true,
-        periodId: true,
         unitId: true,
+        periodId: true,
       },
     });
   }
@@ -44,14 +43,14 @@ export class UnitPeriodControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [UnitPeriod] })
   @ApiNestedQuery(UnitPeriodFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<UnitPeriod[]> {
+  async unitPeriods(@common.Req() request: Request): Promise<UnitPeriod[]> {
     const args = plainToClass(UnitPeriodFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.unitPeriods({
       ...args,
       select: {
         id: true,
-        periodId: true,
         unitId: true,
+        periodId: true,
       },
     });
   }
@@ -59,15 +58,15 @@ export class UnitPeriodControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: UnitPeriod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async unitPeriod(
     @common.Param() params: UnitPeriodWhereUniqueInput
   ): Promise<UnitPeriod | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.unitPeriod({
       where: params,
       select: {
         id: true,
-        periodId: true,
         unitId: true,
+        periodId: true,
       },
     });
     if (result === null) {
@@ -81,18 +80,18 @@ export class UnitPeriodControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: UnitPeriod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUnitPeriod(
     @common.Param() params: UnitPeriodWhereUniqueInput,
     @common.Body() data: UnitPeriodUpdateInput
   ): Promise<UnitPeriod | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUnitPeriod({
         where: params,
         data: data,
         select: {
           id: true,
-          periodId: true,
           unitId: true,
+          periodId: true,
         },
       });
     } catch (error) {
@@ -108,16 +107,16 @@ export class UnitPeriodControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: UnitPeriod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUnitPeriod(
     @common.Param() params: UnitPeriodWhereUniqueInput
   ): Promise<UnitPeriod | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUnitPeriod({
         where: params,
         select: {
           id: true,
-          periodId: true,
           unitId: true,
+          periodId: true,
         },
       });
     } catch (error) {

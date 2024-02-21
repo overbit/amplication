@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationDecisionSchoolService } from "../applicationDecisionSchool.service";
 import { ApplicationDecisionSchoolCreateInput } from "./ApplicationDecisionSchoolCreateInput";
-import { ApplicationDecisionSchoolWhereInput } from "./ApplicationDecisionSchoolWhereInput";
-import { ApplicationDecisionSchoolWhereUniqueInput } from "./ApplicationDecisionSchoolWhereUniqueInput";
-import { ApplicationDecisionSchoolFindManyArgs } from "./ApplicationDecisionSchoolFindManyArgs";
-import { ApplicationDecisionSchoolUpdateInput } from "./ApplicationDecisionSchoolUpdateInput";
 import { ApplicationDecisionSchool } from "./ApplicationDecisionSchool";
+import { ApplicationDecisionSchoolFindManyArgs } from "./ApplicationDecisionSchoolFindManyArgs";
+import { ApplicationDecisionSchoolWhereUniqueInput } from "./ApplicationDecisionSchoolWhereUniqueInput";
+import { ApplicationDecisionSchoolUpdateInput } from "./ApplicationDecisionSchoolUpdateInput";
 
 export class ApplicationDecisionSchoolControllerBase {
   constructor(protected readonly service: ApplicationDecisionSchoolService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicationDecisionSchool })
-  async create(
+  async createApplicationDecisionSchool(
     @common.Body() data: ApplicationDecisionSchoolCreateInput
   ): Promise<ApplicationDecisionSchool> {
-    return await this.service.create({
+    return await this.service.createApplicationDecisionSchool({
       data: data,
       select: {
-        accepted: true,
         applicationId: true,
-        id: true,
-        name: true,
-        periodId: true,
         programId: true,
+        periodId: true,
+        name: true,
+        accepted: true,
+        id: true,
       },
     });
   }
@@ -47,22 +46,22 @@ export class ApplicationDecisionSchoolControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicationDecisionSchool] })
   @ApiNestedQuery(ApplicationDecisionSchoolFindManyArgs)
-  async findMany(
+  async applicationDecisionSchools(
     @common.Req() request: Request
   ): Promise<ApplicationDecisionSchool[]> {
     const args = plainToClass(
       ApplicationDecisionSchoolFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.applicationDecisionSchools({
       ...args,
       select: {
-        accepted: true,
         applicationId: true,
-        id: true,
-        name: true,
-        periodId: true,
         programId: true,
+        periodId: true,
+        name: true,
+        accepted: true,
+        id: true,
       },
     });
   }
@@ -70,18 +69,18 @@ export class ApplicationDecisionSchoolControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecisionSchool })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationDecisionSchool(
     @common.Param() params: ApplicationDecisionSchoolWhereUniqueInput
   ): Promise<ApplicationDecisionSchool | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationDecisionSchool({
       where: params,
       select: {
-        accepted: true,
         applicationId: true,
-        id: true,
-        name: true,
-        periodId: true,
         programId: true,
+        periodId: true,
+        name: true,
+        accepted: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -95,21 +94,21 @@ export class ApplicationDecisionSchoolControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecisionSchool })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationDecisionSchool(
     @common.Param() params: ApplicationDecisionSchoolWhereUniqueInput,
     @common.Body() data: ApplicationDecisionSchoolUpdateInput
   ): Promise<ApplicationDecisionSchool | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationDecisionSchool({
         where: params,
         data: data,
         select: {
-          accepted: true,
           applicationId: true,
-          id: true,
-          name: true,
-          periodId: true,
           programId: true,
+          periodId: true,
+          name: true,
+          accepted: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -125,19 +124,19 @@ export class ApplicationDecisionSchoolControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecisionSchool })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationDecisionSchool(
     @common.Param() params: ApplicationDecisionSchoolWhereUniqueInput
   ): Promise<ApplicationDecisionSchool | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationDecisionSchool({
         where: params,
         select: {
-          accepted: true,
           applicationId: true,
-          id: true,
-          name: true,
-          periodId: true,
           programId: true,
+          periodId: true,
+          name: true,
+          accepted: true,
+          id: true,
         },
       });
     } catch (error) {

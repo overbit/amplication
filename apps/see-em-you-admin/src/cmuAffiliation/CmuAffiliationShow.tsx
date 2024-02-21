@@ -6,11 +6,11 @@ export const CmuAffiliationShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Cmu Employee" source="cmuEmployee" />
         <TextField
           label="Cmu Student Or Alumnus"
           source="cmuStudentOrAlumnus"
         />
+        <TextField label="Cmu Employee" source="cmuEmployee" />
         <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>

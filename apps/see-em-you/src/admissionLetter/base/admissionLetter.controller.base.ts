@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AdmissionLetterService } from "../admissionLetter.service";
 import { AdmissionLetterCreateInput } from "./AdmissionLetterCreateInput";
-import { AdmissionLetterWhereInput } from "./AdmissionLetterWhereInput";
-import { AdmissionLetterWhereUniqueInput } from "./AdmissionLetterWhereUniqueInput";
-import { AdmissionLetterFindManyArgs } from "./AdmissionLetterFindManyArgs";
-import { AdmissionLetterUpdateInput } from "./AdmissionLetterUpdateInput";
 import { AdmissionLetter } from "./AdmissionLetter";
+import { AdmissionLetterFindManyArgs } from "./AdmissionLetterFindManyArgs";
+import { AdmissionLetterWhereUniqueInput } from "./AdmissionLetterWhereUniqueInput";
+import { AdmissionLetterUpdateInput } from "./AdmissionLetterUpdateInput";
 
 export class AdmissionLetterControllerBase {
   constructor(protected readonly service: AdmissionLetterService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: AdmissionLetter })
-  async create(
+  async createAdmissionLetter(
     @common.Body() data: AdmissionLetterCreateInput
   ): Promise<AdmissionLetter> {
-    return await this.service.create({
+    return await this.service.createAdmissionLetter({
       data: data,
       select: {
         applicationId: true,
         departmentId: true,
-        id: true,
         sections: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class AdmissionLetterControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [AdmissionLetter] })
   @ApiNestedQuery(AdmissionLetterFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<AdmissionLetter[]> {
+  async admissionLetters(
+    @common.Req() request: Request
+  ): Promise<AdmissionLetter[]> {
     const args = plainToClass(AdmissionLetterFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.admissionLetters({
       ...args,
       select: {
         applicationId: true,
         departmentId: true,
-        id: true,
         sections: true,
+        id: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class AdmissionLetterControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: AdmissionLetter })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async admissionLetter(
     @common.Param() params: AdmissionLetterWhereUniqueInput
   ): Promise<AdmissionLetter | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.admissionLetter({
       where: params,
       select: {
         applicationId: true,
         departmentId: true,
-        id: true,
         sections: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class AdmissionLetterControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: AdmissionLetter })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAdmissionLetter(
     @common.Param() params: AdmissionLetterWhereUniqueInput,
     @common.Body() data: AdmissionLetterUpdateInput
   ): Promise<AdmissionLetter | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAdmissionLetter({
         where: params,
         data: data,
         select: {
           applicationId: true,
           departmentId: true,
-          id: true,
           sections: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class AdmissionLetterControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: AdmissionLetter })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAdmissionLetter(
     @common.Param() params: AdmissionLetterWhereUniqueInput
   ): Promise<AdmissionLetter | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAdmissionLetter({
         where: params,
         select: {
           applicationId: true,
           departmentId: true,
-          id: true,
           sections: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -18,62 +18,62 @@ import { RecommendService } from "../recommend.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  buckleyatupload: 42,
-  cmuAffiliation: 42,
+  recUserId: 42,
+  recommendtype: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
-  lastReminderSent: new Date(),
-  recommendtype: 42,
-  recUserId: 42,
-  reminderSentCount: 42,
   submitted: "true",
+  reminderSentCount: 42,
+  lastReminderSent: new Date(),
+  cmuAffiliation: 42,
+  buckleyatupload: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  buckleyatupload: 42,
-  cmuAffiliation: 42,
+  recUserId: 42,
+  recommendtype: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
-  lastReminderSent: new Date(),
-  recommendtype: 42,
-  recUserId: 42,
-  reminderSentCount: 42,
   submitted: "true",
+  reminderSentCount: 42,
+  lastReminderSent: new Date(),
+  cmuAffiliation: 42,
+  buckleyatupload: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    buckleyatupload: 42,
-    cmuAffiliation: 42,
+    recUserId: 42,
+    recommendtype: 42,
     content: "exampleContent",
     datafileId: 42,
-    id: 42,
-    lastReminderSent: new Date(),
-    recommendtype: 42,
-    recUserId: 42,
-    reminderSentCount: 42,
     submitted: "true",
+    reminderSentCount: 42,
+    lastReminderSent: new Date(),
+    cmuAffiliation: 42,
+    buckleyatupload: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  buckleyatupload: 42,
-  cmuAffiliation: 42,
+  recUserId: 42,
+  recommendtype: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
-  lastReminderSent: new Date(),
-  recommendtype: 42,
-  recUserId: 42,
-  reminderSentCount: 42,
   submitted: "true",
+  reminderSentCount: 42,
+  lastReminderSent: new Date(),
+  cmuAffiliation: 42,
+  buckleyatupload: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createRecommend() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  recommends: () => FIND_MANY_RESULT,
+  recommend: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

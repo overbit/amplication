@@ -28,17 +28,6 @@ class ProgramGroupProgramOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   programGroupId?: SortOrder;
 
   @ApiProperty({
@@ -51,6 +40,17 @@ class ProgramGroupProgramOrderByInput {
     nullable: true,
   })
   unitId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { ProgramGroupProgramOrderByInput as ProgramGroupProgramOrderByInput };

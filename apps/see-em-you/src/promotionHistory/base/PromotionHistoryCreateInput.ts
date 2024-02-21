@@ -11,22 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsInt, IsEnum, IsOptional } from "class-validator";
-import { Type } from "class-transformer";
+import { IsInt, IsEnum, IsOptional, ValidateNested } from "class-validator";
 import { EnumPromotionHistoryPromotionMethod } from "./EnumPromotionHistoryPromotionMethod";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
+import { Type } from "class-transformer";
 
 @InputType()
 class PromotionHistoryCreateInput {
-  @ApiProperty({
-    required: true,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -37,19 +28,19 @@ class PromotionHistoryCreateInput {
 
   @ApiProperty({
     required: true,
-    enum: EnumPromotionHistoryPromotionMethod,
-  })
-  @IsEnum(EnumPromotionHistoryPromotionMethod)
-  @Field(() => EnumPromotionHistoryPromotionMethod)
-  promotion_method!: "default" | "voting" | "promotion" | "demotion";
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
   round!: number;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumPromotionHistoryPromotionMethod,
+  })
+  @IsEnum(EnumPromotionHistoryPromotionMethod)
+  @Field(() => EnumPromotionHistoryPromotionMethod)
+  promotion_method!: "default" | "voting" | "promotion" | "demotion";
 
   @ApiProperty({
     required: false,
@@ -61,6 +52,15 @@ class PromotionHistoryCreateInput {
     nullable: true,
   })
   usersId?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { PromotionHistoryCreateInput as PromotionHistoryCreateInput };

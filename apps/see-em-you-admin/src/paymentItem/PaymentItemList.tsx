@@ -19,10 +19,9 @@ export const PaymentItemList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
+        <TextField label="Payment Item Id" source="paymentItemId" />
         <TextField label="Payment Id" source="paymentId" />
         <TextField label="Payment Item Amount" source="paymentItemAmount" />
-        <TextField label="Payment Item Id" source="paymentItemId" />
         <ReferenceField
           label="Programs"
           source="programmodel.id"
@@ -30,6 +29,7 @@ export const PaymentItemList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={PROGRAMMODEL_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

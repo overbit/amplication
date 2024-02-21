@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuDegreesApplicationreqService } from "../luDegreesApplicationreq.service";
 import { LuDegreesApplicationreqCreateInput } from "./LuDegreesApplicationreqCreateInput";
-import { LuDegreesApplicationreqWhereInput } from "./LuDegreesApplicationreqWhereInput";
-import { LuDegreesApplicationreqWhereUniqueInput } from "./LuDegreesApplicationreqWhereUniqueInput";
-import { LuDegreesApplicationreqFindManyArgs } from "./LuDegreesApplicationreqFindManyArgs";
-import { LuDegreesApplicationreqUpdateInput } from "./LuDegreesApplicationreqUpdateInput";
 import { LuDegreesApplicationreq } from "./LuDegreesApplicationreq";
+import { LuDegreesApplicationreqFindManyArgs } from "./LuDegreesApplicationreqFindManyArgs";
+import { LuDegreesApplicationreqWhereUniqueInput } from "./LuDegreesApplicationreqWhereUniqueInput";
+import { LuDegreesApplicationreqUpdateInput } from "./LuDegreesApplicationreqUpdateInput";
 
 export class LuDegreesApplicationreqControllerBase {
   constructor(protected readonly service: LuDegreesApplicationreqService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuDegreesApplicationreq })
-  async create(
+  async createLuDegreesApplicationreq(
     @common.Body() data: LuDegreesApplicationreqCreateInput
   ): Promise<LuDegreesApplicationreq> {
-    return await this.service.create({
+    return await this.service.createLuDegreesApplicationreq({
       data: data,
       select: {
-        appreqId: true,
         degreeId: true,
+        appreqId: true,
         id: true,
       },
     });
@@ -44,18 +43,18 @@ export class LuDegreesApplicationreqControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuDegreesApplicationreq] })
   @ApiNestedQuery(LuDegreesApplicationreqFindManyArgs)
-  async findMany(
+  async luDegreesApplicationreqs(
     @common.Req() request: Request
   ): Promise<LuDegreesApplicationreq[]> {
     const args = plainToClass(
       LuDegreesApplicationreqFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.luDegreesApplicationreqs({
       ...args,
       select: {
-        appreqId: true,
         degreeId: true,
+        appreqId: true,
         id: true,
       },
     });
@@ -64,14 +63,14 @@ export class LuDegreesApplicationreqControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuDegreesApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luDegreesApplicationreq(
     @common.Param() params: LuDegreesApplicationreqWhereUniqueInput
   ): Promise<LuDegreesApplicationreq | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luDegreesApplicationreq({
       where: params,
       select: {
-        appreqId: true,
         degreeId: true,
+        appreqId: true,
         id: true,
       },
     });
@@ -86,17 +85,17 @@ export class LuDegreesApplicationreqControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuDegreesApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuDegreesApplicationreq(
     @common.Param() params: LuDegreesApplicationreqWhereUniqueInput,
     @common.Body() data: LuDegreesApplicationreqUpdateInput
   ): Promise<LuDegreesApplicationreq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuDegreesApplicationreq({
         where: params,
         data: data,
         select: {
-          appreqId: true,
           degreeId: true,
+          appreqId: true,
           id: true,
         },
       });
@@ -113,15 +112,15 @@ export class LuDegreesApplicationreqControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuDegreesApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuDegreesApplicationreq(
     @common.Param() params: LuDegreesApplicationreqWhereUniqueInput
   ): Promise<LuDegreesApplicationreq | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuDegreesApplicationreq({
         where: params,
         select: {
-          appreqId: true,
           degreeId: true,
+          appreqId: true,
           id: true,
         },
       });

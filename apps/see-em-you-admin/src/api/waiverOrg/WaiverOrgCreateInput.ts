@@ -1,4 +1,4 @@
 export type WaiverOrgCreateInput = {
-  active?: number | null;
   name?: string | null;
+  active?: number | null;
 };

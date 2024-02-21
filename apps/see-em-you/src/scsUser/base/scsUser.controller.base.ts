@@ -18,27 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ScsUserService } from "../scsUser.service";
 import { ScsUserCreateInput } from "./ScsUserCreateInput";
-import { ScsUserWhereInput } from "./ScsUserWhereInput";
-import { ScsUserWhereUniqueInput } from "./ScsUserWhereUniqueInput";
-import { ScsUserFindManyArgs } from "./ScsUserFindManyArgs";
-import { ScsUserUpdateInput } from "./ScsUserUpdateInput";
 import { ScsUser } from "./ScsUser";
+import { ScsUserFindManyArgs } from "./ScsUserFindManyArgs";
+import { ScsUserWhereUniqueInput } from "./ScsUserWhereUniqueInput";
+import { ScsUserUpdateInput } from "./ScsUserUpdateInput";
 
 export class ScsUserControllerBase {
   constructor(protected readonly service: ScsUserService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ScsUser })
-  async create(@common.Body() data: ScsUserCreateInput): Promise<ScsUser> {
-    return await this.service.create({
+  async createScsUser(
+    @common.Body() data: ScsUserCreateInput
+  ): Promise<ScsUser> {
+    return await this.service.createScsUser({
       data: data,
       select: {
-        andrewId: true,
+        usersId: true,
         cmuGuid: true,
         csId: true,
+        andrewId: true,
         eceId: true,
-        id: true,
         qatarId: true,
-        usersId: true,
+        id: true,
       },
     });
   }
@@ -46,18 +47,18 @@ export class ScsUserControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ScsUser] })
   @ApiNestedQuery(ScsUserFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ScsUser[]> {
+  async scsUsers(@common.Req() request: Request): Promise<ScsUser[]> {
     const args = plainToClass(ScsUserFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.scsUsers({
       ...args,
       select: {
-        andrewId: true,
+        usersId: true,
         cmuGuid: true,
         csId: true,
+        andrewId: true,
         eceId: true,
-        id: true,
         qatarId: true,
-        usersId: true,
+        id: true,
       },
     });
   }
@@ -65,19 +66,19 @@ export class ScsUserControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ScsUser })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async scsUser(
     @common.Param() params: ScsUserWhereUniqueInput
   ): Promise<ScsUser | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.scsUser({
       where: params,
       select: {
-        andrewId: true,
+        usersId: true,
         cmuGuid: true,
         csId: true,
+        andrewId: true,
         eceId: true,
-        id: true,
         qatarId: true,
-        usersId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -91,22 +92,22 @@ export class ScsUserControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ScsUser })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateScsUser(
     @common.Param() params: ScsUserWhereUniqueInput,
     @common.Body() data: ScsUserUpdateInput
   ): Promise<ScsUser | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateScsUser({
         where: params,
         data: data,
         select: {
-          andrewId: true,
+          usersId: true,
           cmuGuid: true,
           csId: true,
+          andrewId: true,
           eceId: true,
-          id: true,
           qatarId: true,
-          usersId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -122,20 +123,20 @@ export class ScsUserControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ScsUser })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteScsUser(
     @common.Param() params: ScsUserWhereUniqueInput
   ): Promise<ScsUser | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteScsUser({
         where: params,
         select: {
-          andrewId: true,
+          usersId: true,
           cmuGuid: true,
           csId: true,
+          andrewId: true,
           eceId: true,
-          id: true,
           qatarId: true,
-          usersId: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Multiprogramlockout } from "@prisma/client";
+import {
+  Prisma,
+  Multiprogramlockout as PrismaMultiprogramlockout,
+} from "@prisma/client";
 
 export class MultiprogramlockoutServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,35 @@ export class MultiprogramlockoutServiceBase {
     return this.prisma.multiprogramlockout.count(args);
   }
 
-  async findMany<T extends Prisma.MultiprogramlockoutFindManyArgs>(
+  async multiprogramlockouts<T extends Prisma.MultiprogramlockoutFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MultiprogramlockoutFindManyArgs>
-  ): Promise<Multiprogramlockout[]> {
+  ): Promise<PrismaMultiprogramlockout[]> {
     return this.prisma.multiprogramlockout.findMany(args);
   }
-  async findOne<T extends Prisma.MultiprogramlockoutFindUniqueArgs>(
+  async multiprogramlockout<T extends Prisma.MultiprogramlockoutFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MultiprogramlockoutFindUniqueArgs>
-  ): Promise<Multiprogramlockout | null> {
+  ): Promise<PrismaMultiprogramlockout | null> {
     return this.prisma.multiprogramlockout.findUnique(args);
   }
-  async create<T extends Prisma.MultiprogramlockoutCreateArgs>(
+  async createMultiprogramlockout<
+    T extends Prisma.MultiprogramlockoutCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MultiprogramlockoutCreateArgs>
-  ): Promise<Multiprogramlockout> {
+  ): Promise<PrismaMultiprogramlockout> {
     return this.prisma.multiprogramlockout.create<T>(args);
   }
-  async update<T extends Prisma.MultiprogramlockoutUpdateArgs>(
+  async updateMultiprogramlockout<
+    T extends Prisma.MultiprogramlockoutUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MultiprogramlockoutUpdateArgs>
-  ): Promise<Multiprogramlockout> {
+  ): Promise<PrismaMultiprogramlockout> {
     return this.prisma.multiprogramlockout.update<T>(args);
   }
-  async delete<T extends Prisma.MultiprogramlockoutDeleteArgs>(
+  async deleteMultiprogramlockout<
+    T extends Prisma.MultiprogramlockoutDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MultiprogramlockoutDeleteArgs>
-  ): Promise<Multiprogramlockout> {
+  ): Promise<PrismaMultiprogramlockout> {
     return this.prisma.multiprogramlockout.delete(args);
   }
 }

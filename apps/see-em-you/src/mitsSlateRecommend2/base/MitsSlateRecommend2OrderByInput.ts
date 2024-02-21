@@ -28,29 +28,18 @@ class MitsSlateRecommend2OrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  prefix?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   first?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  last?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +61,7 @@ class MitsSlateRecommend2OrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  prefix?: SortOrder;
+  last?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,62 +72,7 @@ class MitsSlateRecommend2OrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  reference2Email?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  reference2First?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  reference2Industry?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  reference2Last?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  reference2Organization?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  reference2Phone?: SortOrder;
+  reference2Type?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -160,6 +94,50 @@ class MitsSlateRecommend2OrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  reference2First?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  reference2Last?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  reference2Industry?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  reference2Organization?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   reference2Title?: SortOrder;
 
   @ApiProperty({
@@ -171,7 +149,18 @@ class MitsSlateRecommend2OrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  reference2Type?: SortOrder;
+  reference2Email?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  reference2Phone?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -480,6 +469,17 @@ class MitsSlateRecommend2OrderByInput {
     nullable: true,
   })
   referenceNum2RecommenderScore8?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MitsSlateRecommend2OrderByInput as MitsSlateRecommend2OrderByInput };

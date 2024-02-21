@@ -28,7 +28,7 @@ class SystemenvOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  appbaseprice?: SortOrder;
+  domainId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -40,17 +40,6 @@ class SystemenvOrderByInput {
     nullable: true,
   })
   coorduserId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  domainId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +72,7 @@ class SystemenvOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  appbaseprice?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -95,6 +84,17 @@ class SystemenvOrderByInput {
     nullable: true,
   })
   sysemail?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { SystemenvOrderByInput as SystemenvOrderByInput };

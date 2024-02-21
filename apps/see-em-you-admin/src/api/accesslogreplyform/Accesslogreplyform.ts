@@ -1,10 +1,10 @@
 export type Accesslogreplyform = {
-  activity: string | null;
+  usersId: number | null;
+  luUsersUsertypesId: number | null;
+  usertypeId: number | null;
   applicationId: number | null;
   client: string | null;
-  id: number;
-  luUsersUsertypesId: number | null;
   timestamp: Date;
-  usersId: number | null;
-  usertypeId: number | null;
+  activity: string | null;
+  id: number;
 };

@@ -6,8 +6,8 @@ export const CcPaymentStatusEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <NumberInput label="Auth Total" source="authTotal" />
-        <NumberInput label="Credit Total" source="creditTotal" />
         <NumberInput label="Settle Total" source="settleTotal" />
+        <NumberInput label="Credit Total" source="creditTotal" />
       </SimpleForm>
     </Edit>
   );

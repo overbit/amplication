@@ -16,6 +16,7 @@ import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { CohortListRelationFilter } from "../../cohort/base/CohortListRelationFilter";
 import { PeriodApplicationListRelationFilter } from "../../periodApplication/base/PeriodApplicationListRelationFilter";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class PeriodWhereInput {
@@ -54,6 +55,17 @@ class PeriodWhereInput {
     nullable: true,
   })
   periodApplication?: PeriodApplicationListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { PeriodWhereInput as PeriodWhereInput };

@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ProgramsUnitService } from "../programsUnit.service";
 import { ProgramsUnitCreateInput } from "./ProgramsUnitCreateInput";
-import { ProgramsUnitWhereInput } from "./ProgramsUnitWhereInput";
-import { ProgramsUnitWhereUniqueInput } from "./ProgramsUnitWhereUniqueInput";
-import { ProgramsUnitFindManyArgs } from "./ProgramsUnitFindManyArgs";
-import { ProgramsUnitUpdateInput } from "./ProgramsUnitUpdateInput";
 import { ProgramsUnit } from "./ProgramsUnit";
+import { ProgramsUnitFindManyArgs } from "./ProgramsUnitFindManyArgs";
+import { ProgramsUnitWhereUniqueInput } from "./ProgramsUnitWhereUniqueInput";
+import { ProgramsUnitUpdateInput } from "./ProgramsUnitUpdateInput";
 
 export class ProgramsUnitControllerBase {
   constructor(protected readonly service: ProgramsUnitService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ProgramsUnit })
-  async create(
+  async createProgramsUnit(
     @common.Body() data: ProgramsUnitCreateInput
   ): Promise<ProgramsUnit> {
-    return await this.service.create({
+    return await this.service.createProgramsUnit({
       data: data,
       select: {
-        id: true,
         programsId: true,
         unitId: true,
+        id: true,
       },
     });
   }
@@ -44,14 +43,14 @@ export class ProgramsUnitControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ProgramsUnit] })
   @ApiNestedQuery(ProgramsUnitFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ProgramsUnit[]> {
+  async programsUnits(@common.Req() request: Request): Promise<ProgramsUnit[]> {
     const args = plainToClass(ProgramsUnitFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.programsUnits({
       ...args,
       select: {
-        id: true,
         programsId: true,
         unitId: true,
+        id: true,
       },
     });
   }
@@ -59,15 +58,15 @@ export class ProgramsUnitControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ProgramsUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async programsUnit(
     @common.Param() params: ProgramsUnitWhereUniqueInput
   ): Promise<ProgramsUnit | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.programsUnit({
       where: params,
       select: {
-        id: true,
         programsId: true,
         unitId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,18 +80,18 @@ export class ProgramsUnitControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ProgramsUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateProgramsUnit(
     @common.Param() params: ProgramsUnitWhereUniqueInput,
     @common.Body() data: ProgramsUnitUpdateInput
   ): Promise<ProgramsUnit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramsUnit({
         where: params,
         data: data,
         select: {
-          id: true,
           programsId: true,
           unitId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -108,16 +107,16 @@ export class ProgramsUnitControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ProgramsUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteProgramsUnit(
     @common.Param() params: ProgramsUnitWhereUniqueInput
   ): Promise<ProgramsUnit | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteProgramsUnit({
         where: params,
         select: {
-          id: true,
           programsId: true,
           unitId: true,
+          id: true,
         },
       });
     } catch (error) {

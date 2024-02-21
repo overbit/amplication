@@ -12,6 +12,10 @@ export const SlateCodilityList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Prefix" source="prefix" />
+        <TextField label="First" source="first" />
+        <TextField label="Middle" source="middle" />
+        <TextField label="Last" source="last" />
         <TextField label="Codility Close Date" source="codilityCloseDate" />
         <TextField label="Codility Create Date" source="codilityCreateDate" />
         <TextField label="Codility Ip Addresses" source="codilityIpAddresses" />
@@ -105,11 +109,7 @@ export const SlateCodilityList = (props: ListProps): React.ReactElement => {
         <TextField label="Codility Task4 Score" source="codilityTask4Score" />
         <TextField label="Codility Test Name" source="codilityTestName" />
         <TextField label="Codility Test Session" source="codilityTestSession" />
-        <TextField label="First" source="first" />
         <TextField label="Id" source="id" />
-        <TextField label="Last" source="last" />
-        <TextField label="Middle" source="middle" />
-        <TextField label="Prefix" source="prefix" />
       </Datagrid>
     </List>
   );

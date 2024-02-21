@@ -29,6 +29,17 @@ class AcoPal {
   aco!: boolean | null;
 
   @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  pal!: boolean | null;
+
+  @ApiProperty({
     required: true,
     type: () => Application,
   })
@@ -43,17 +54,6 @@ class AcoPal {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  pal!: boolean | null;
 }
 
 export { AcoPal as AcoPal };

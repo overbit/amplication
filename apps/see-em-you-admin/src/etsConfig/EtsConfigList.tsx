@@ -12,11 +12,11 @@ export const EtsConfigList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
-        <TextField label="Login" source="login" />
-        <TextField label="Password" source="password" />
         <TextField label="Test Name" source="testName" />
         <TextField label="Wsdl" source="wsdl" />
+        <TextField label="Login" source="login" />
+        <TextField label="Password" source="password" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

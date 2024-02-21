@@ -1,15 +1,15 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type PublicationOrderByInput = {
-  application_id?: SortOrder;
-  author?: SortOrder;
-  citation?: SortOrder;
-  datafileId?: SortOrder;
-  forum?: SortOrder;
-  id?: SortOrder;
-  status?: SortOrder;
   title?: SortOrder;
+  author?: SortOrder;
+  forum?: SortOrder;
+  citation?: SortOrder;
+  url?: SortOrder;
+  status?: SortOrder;
   typeField?: SortOrder;
   typeOther?: SortOrder;
-  url?: SortOrder;
+  datafileId?: SortOrder;
+  application_id?: SortOrder;
+  id?: SortOrder;
 };

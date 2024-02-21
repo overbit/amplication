@@ -1,9 +1,9 @@
 import { Accesslogreplyform as TAccesslogreplyform } from "../api/accesslogreplyform/Accesslogreplyform";
 
-export const ACCESSLOGREPLYFORM_TITLE_FIELD = "activity";
+export const ACCESSLOGREPLYFORM_TITLE_FIELD = "client";
 
 export const AccesslogreplyformTitle = (
   record: TAccesslogreplyform
 ): string => {
-  return record.activity?.toString() || String(record.id);
+  return record.client?.toString() || String(record.id);
 };

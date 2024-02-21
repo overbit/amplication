@@ -28,7 +28,7 @@ class DepartmentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  allowRequestAdvisors?: SortOrder;
+  name?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,29 @@ class DepartmentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  ccEmail?: SortOrder;
+  parentSchoolId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  oraclestring?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  registrationoraclestring?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +83,7 @@ class DepartmentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  enableFinal?: SortOrder;
+  ccEmail?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -116,51 +138,7 @@ class DepartmentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  name?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  oraclestring?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  parentSchoolId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  registrationoraclestring?: SortOrder;
+  enableFinal?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -172,6 +150,28 @@ class DepartmentOrderByInput {
     nullable: true,
   })
   semiblindReview?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  allowRequestAdvisors?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { DepartmentOrderByInput as DepartmentOrderByInput };

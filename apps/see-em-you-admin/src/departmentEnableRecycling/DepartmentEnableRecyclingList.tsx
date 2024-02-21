@@ -15,10 +15,10 @@ export const DepartmentEnableRecyclingList = (
     >
       <Datagrid rowClick="show">
         <TextField label="Department Id" source="departmentId" />
-        <TextField label="Enable Recycling" source="enableRecycling" />
-        <TextField label="Id" source="id" />
         <TextField label="Period Id" source="periodId" />
+        <TextField label="Enable Recycling" source="enableRecycling" />
         <TextField label="Users Id" source="usersId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

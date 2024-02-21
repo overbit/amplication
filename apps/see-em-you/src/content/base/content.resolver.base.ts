@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateContentArgs } from "./CreateContentArgs";
-import { UpdateContentArgs } from "./UpdateContentArgs";
-import { DeleteContentArgs } from "./DeleteContentArgs";
+import { Content } from "./Content";
 import { ContentCountArgs } from "./ContentCountArgs";
 import { ContentFindManyArgs } from "./ContentFindManyArgs";
 import { ContentFindUniqueArgs } from "./ContentFindUniqueArgs";
-import { Content } from "./Content";
+import { CreateContentArgs } from "./CreateContentArgs";
+import { UpdateContentArgs } from "./UpdateContentArgs";
+import { DeleteContentArgs } from "./DeleteContentArgs";
 import { ContentService } from "../content.service";
 @graphql.Resolver(() => Content)
 export class ContentResolverBase {
@@ -38,14 +38,14 @@ export class ContentResolverBase {
   async contents(
     @graphql.Args() args: ContentFindManyArgs
   ): Promise<Content[]> {
-    return this.service.findMany(args);
+    return this.service.contents(args);
   }
 
   @graphql.Query(() => Content, { nullable: true })
   async content(
     @graphql.Args() args: ContentFindUniqueArgs
   ): Promise<Content | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.content(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ContentResolverBase {
   async createContent(
     @graphql.Args() args: CreateContentArgs
   ): Promise<Content> {
-    return await this.service.create({
+    return await this.service.createContent({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ContentResolverBase {
     @graphql.Args() args: UpdateContentArgs
   ): Promise<Content | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateContent({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ContentResolverBase {
     @graphql.Args() args: DeleteContentArgs
   ): Promise<Content | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteContent(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMseInterviewArgs } from "./CreateMseInterviewArgs";
-import { UpdateMseInterviewArgs } from "./UpdateMseInterviewArgs";
-import { DeleteMseInterviewArgs } from "./DeleteMseInterviewArgs";
+import { MseInterview } from "./MseInterview";
 import { MseInterviewCountArgs } from "./MseInterviewCountArgs";
 import { MseInterviewFindManyArgs } from "./MseInterviewFindManyArgs";
 import { MseInterviewFindUniqueArgs } from "./MseInterviewFindUniqueArgs";
-import { MseInterview } from "./MseInterview";
+import { CreateMseInterviewArgs } from "./CreateMseInterviewArgs";
+import { UpdateMseInterviewArgs } from "./UpdateMseInterviewArgs";
+import { DeleteMseInterviewArgs } from "./DeleteMseInterviewArgs";
 import { MseInterviewService } from "../mseInterview.service";
 @graphql.Resolver(() => MseInterview)
 export class MseInterviewResolverBase {
@@ -38,14 +38,14 @@ export class MseInterviewResolverBase {
   async mseInterviews(
     @graphql.Args() args: MseInterviewFindManyArgs
   ): Promise<MseInterview[]> {
-    return this.service.findMany(args);
+    return this.service.mseInterviews(args);
   }
 
   @graphql.Query(() => MseInterview, { nullable: true })
   async mseInterview(
     @graphql.Args() args: MseInterviewFindUniqueArgs
   ): Promise<MseInterview | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mseInterview(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MseInterviewResolverBase {
   async createMseInterview(
     @graphql.Args() args: CreateMseInterviewArgs
   ): Promise<MseInterview> {
-    return await this.service.create({
+    return await this.service.createMseInterview({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MseInterviewResolverBase {
     @graphql.Args() args: UpdateMseInterviewArgs
   ): Promise<MseInterview | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseInterview({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MseInterviewResolverBase {
     @graphql.Args() args: DeleteMseInterviewArgs
   ): Promise<MseInterview | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMseInterview(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

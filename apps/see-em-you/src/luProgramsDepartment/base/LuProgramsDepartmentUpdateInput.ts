@@ -24,7 +24,7 @@ class LuProgramsDepartmentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  departmentId?: number;
+  programId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class LuProgramsDepartmentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  programId?: number;
+  departmentId?: number;
 }
 
 export { LuProgramsDepartmentUpdateInput as LuProgramsDepartmentUpdateInput };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateProgramModelArgs } from "./CreateProgramModelArgs";
-import { UpdateProgramModelArgs } from "./UpdateProgramModelArgs";
-import { DeleteProgramModelArgs } from "./DeleteProgramModelArgs";
+import { ProgramModel } from "./ProgramModel";
 import { ProgramModelCountArgs } from "./ProgramModelCountArgs";
 import { ProgramModelFindManyArgs } from "./ProgramModelFindManyArgs";
 import { ProgramModelFindUniqueArgs } from "./ProgramModelFindUniqueArgs";
-import { ProgramModel } from "./ProgramModel";
+import { CreateProgramModelArgs } from "./CreateProgramModelArgs";
+import { UpdateProgramModelArgs } from "./UpdateProgramModelArgs";
+import { DeleteProgramModelArgs } from "./DeleteProgramModelArgs";
 import { LuApplicationProgramFindManyArgs } from "../../luApplicationProgram/base/LuApplicationProgramFindManyArgs";
 import { LuApplicationProgram } from "../../luApplicationProgram/base/LuApplicationProgram";
 import { MlAreaFindManyArgs } from "../../mlArea/base/MlAreaFindManyArgs";
@@ -48,14 +48,14 @@ export class ProgramModelResolverBase {
   async programModels(
     @graphql.Args() args: ProgramModelFindManyArgs
   ): Promise<ProgramModel[]> {
-    return this.service.findMany(args);
+    return this.service.programModels(args);
   }
 
   @graphql.Query(() => ProgramModel, { nullable: true })
   async programModel(
     @graphql.Args() args: ProgramModelFindUniqueArgs
   ): Promise<ProgramModel | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.programModel(args);
     if (result === null) {
       return null;
     }
@@ -66,7 +66,7 @@ export class ProgramModelResolverBase {
   async createProgramModel(
     @graphql.Args() args: CreateProgramModelArgs
   ): Promise<ProgramModel> {
-    return await this.service.create({
+    return await this.service.createProgramModel({
       ...args,
       data: {
         ...args.data,
@@ -87,7 +87,7 @@ export class ProgramModelResolverBase {
     @graphql.Args() args: UpdateProgramModelArgs
   ): Promise<ProgramModel | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramModel({
         ...args,
         data: {
           ...args.data,
@@ -116,7 +116,7 @@ export class ProgramModelResolverBase {
     @graphql.Args() args: DeleteProgramModelArgs
   ): Promise<ProgramModel | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteProgramModel(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -130,7 +130,7 @@ export class ProgramModelResolverBase {
   @graphql.ResolveField(() => [LuApplicationProgram], {
     name: "luApplicationPrograms",
   })
-  async resolveFieldLuApplicationPrograms(
+  async findLuApplicationPrograms(
     @graphql.Parent() parent: ProgramModel,
     @graphql.Args() args: LuApplicationProgramFindManyArgs
   ): Promise<LuApplicationProgram[]> {
@@ -147,7 +147,7 @@ export class ProgramModelResolverBase {
   }
 
   @graphql.ResolveField(() => [MlArea], { name: "mlArea" })
-  async resolveFieldMlArea(
+  async findMlArea(
     @graphql.Parent() parent: ProgramModel,
     @graphql.Args() args: MlAreaFindManyArgs
   ): Promise<MlArea[]> {
@@ -161,7 +161,7 @@ export class ProgramModelResolverBase {
   }
 
   @graphql.ResolveField(() => [PaymentItem], { name: "paymentItem" })
-  async resolveFieldPaymentItem(
+  async findPaymentItem(
     @graphql.Parent() parent: ProgramModel,
     @graphql.Args() args: PaymentItemFindManyArgs
   ): Promise<PaymentItem[]> {
@@ -177,7 +177,7 @@ export class ProgramModelResolverBase {
   @graphql.ResolveField(() => [ProgramsApplicationreq], {
     name: "programsApplicationreqs",
   })
-  async resolveFieldProgramsApplicationreqs(
+  async findProgramsApplicationreqs(
     @graphql.Parent() parent: ProgramModel,
     @graphql.Args() args: ProgramsApplicationreqFindManyArgs
   ): Promise<ProgramsApplicationreq[]> {
@@ -197,7 +197,7 @@ export class ProgramModelResolverBase {
     nullable: true,
     name: "degree",
   })
-  async resolveFieldDegree(
+  async getDegree(
     @graphql.Parent() parent: ProgramModel
   ): Promise<Degree | null> {
     const result = await this.service.getDegree(parent.id);
@@ -212,7 +212,7 @@ export class ProgramModelResolverBase {
     nullable: true,
     name: "fieldsofstudy",
   })
-  async resolveFieldFieldsofstudy(
+  async getFieldsofstudy(
     @graphql.Parent() parent: ProgramModel
   ): Promise<Fieldsofstudy | null> {
     const result = await this.service.getFieldsofstudy(parent.id);

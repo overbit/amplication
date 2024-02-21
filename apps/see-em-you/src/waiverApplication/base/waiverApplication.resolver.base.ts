@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateWaiverApplicationArgs } from "./CreateWaiverApplicationArgs";
-import { UpdateWaiverApplicationArgs } from "./UpdateWaiverApplicationArgs";
-import { DeleteWaiverApplicationArgs } from "./DeleteWaiverApplicationArgs";
+import { WaiverApplication } from "./WaiverApplication";
 import { WaiverApplicationCountArgs } from "./WaiverApplicationCountArgs";
 import { WaiverApplicationFindManyArgs } from "./WaiverApplicationFindManyArgs";
 import { WaiverApplicationFindUniqueArgs } from "./WaiverApplicationFindUniqueArgs";
-import { WaiverApplication } from "./WaiverApplication";
+import { CreateWaiverApplicationArgs } from "./CreateWaiverApplicationArgs";
+import { UpdateWaiverApplicationArgs } from "./UpdateWaiverApplicationArgs";
+import { DeleteWaiverApplicationArgs } from "./DeleteWaiverApplicationArgs";
 import { WaiverApplicationService } from "../waiverApplication.service";
 @graphql.Resolver(() => WaiverApplication)
 export class WaiverApplicationResolverBase {
@@ -38,14 +38,14 @@ export class WaiverApplicationResolverBase {
   async waiverApplications(
     @graphql.Args() args: WaiverApplicationFindManyArgs
   ): Promise<WaiverApplication[]> {
-    return this.service.findMany(args);
+    return this.service.waiverApplications(args);
   }
 
   @graphql.Query(() => WaiverApplication, { nullable: true })
   async waiverApplication(
     @graphql.Args() args: WaiverApplicationFindUniqueArgs
   ): Promise<WaiverApplication | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.waiverApplication(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class WaiverApplicationResolverBase {
   async createWaiverApplication(
     @graphql.Args() args: CreateWaiverApplicationArgs
   ): Promise<WaiverApplication> {
-    return await this.service.create({
+    return await this.service.createWaiverApplication({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class WaiverApplicationResolverBase {
     @graphql.Args() args: UpdateWaiverApplicationArgs
   ): Promise<WaiverApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateWaiverApplication({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class WaiverApplicationResolverBase {
     @graphql.Args() args: DeleteWaiverApplicationArgs
   ): Promise<WaiverApplication | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteWaiverApplication(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

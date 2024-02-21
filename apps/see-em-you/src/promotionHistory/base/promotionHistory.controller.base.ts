@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PromotionHistoryService } from "../promotionHistory.service";
 import { PromotionHistoryCreateInput } from "./PromotionHistoryCreateInput";
-import { PromotionHistoryWhereInput } from "./PromotionHistoryWhereInput";
-import { PromotionHistoryWhereUniqueInput } from "./PromotionHistoryWhereUniqueInput";
-import { PromotionHistoryFindManyArgs } from "./PromotionHistoryFindManyArgs";
-import { PromotionHistoryUpdateInput } from "./PromotionHistoryUpdateInput";
 import { PromotionHistory } from "./PromotionHistory";
+import { PromotionHistoryFindManyArgs } from "./PromotionHistoryFindManyArgs";
+import { PromotionHistoryWhereUniqueInput } from "./PromotionHistoryWhereUniqueInput";
+import { PromotionHistoryUpdateInput } from "./PromotionHistoryUpdateInput";
 
 export class PromotionHistoryControllerBase {
   constructor(protected readonly service: PromotionHistoryService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PromotionHistory })
-  async create(
+  async createPromotionHistory(
     @common.Body() data: PromotionHistoryCreateInput
   ): Promise<PromotionHistory> {
-    return await this.service.create({
+    return await this.service.createPromotionHistory({
       data: {
         ...data,
 
@@ -40,6 +39,12 @@ export class PromotionHistoryControllerBase {
         },
       },
       select: {
+        programId: true,
+        statusTime: true,
+        round: true,
+        promotion_method: true,
+        usersId: true,
+
         application: {
           select: {
             id: true,
@@ -47,11 +52,6 @@ export class PromotionHistoryControllerBase {
         },
 
         id: true,
-        programId: true,
-        promotion_method: true,
-        round: true,
-        statusTime: true,
-        usersId: true,
       },
     });
   }
@@ -59,11 +59,19 @@ export class PromotionHistoryControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PromotionHistory] })
   @ApiNestedQuery(PromotionHistoryFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PromotionHistory[]> {
+  async promotionHistories(
+    @common.Req() request: Request
+  ): Promise<PromotionHistory[]> {
     const args = plainToClass(PromotionHistoryFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.promotionHistories({
       ...args,
       select: {
+        programId: true,
+        statusTime: true,
+        round: true,
+        promotion_method: true,
+        usersId: true,
+
         application: {
           select: {
             id: true,
@@ -71,11 +79,6 @@ export class PromotionHistoryControllerBase {
         },
 
         id: true,
-        programId: true,
-        promotion_method: true,
-        round: true,
-        statusTime: true,
-        usersId: true,
       },
     });
   }
@@ -83,12 +86,18 @@ export class PromotionHistoryControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PromotionHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async promotionHistory(
     @common.Param() params: PromotionHistoryWhereUniqueInput
   ): Promise<PromotionHistory | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.promotionHistory({
       where: params,
       select: {
+        programId: true,
+        statusTime: true,
+        round: true,
+        promotion_method: true,
+        usersId: true,
+
         application: {
           select: {
             id: true,
@@ -96,11 +105,6 @@ export class PromotionHistoryControllerBase {
         },
 
         id: true,
-        programId: true,
-        promotion_method: true,
-        round: true,
-        statusTime: true,
-        usersId: true,
       },
     });
     if (result === null) {
@@ -114,12 +118,12 @@ export class PromotionHistoryControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PromotionHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePromotionHistory(
     @common.Param() params: PromotionHistoryWhereUniqueInput,
     @common.Body() data: PromotionHistoryUpdateInput
   ): Promise<PromotionHistory | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePromotionHistory({
         where: params,
         data: {
           ...data,
@@ -129,6 +133,12 @@ export class PromotionHistoryControllerBase {
           },
         },
         select: {
+          programId: true,
+          statusTime: true,
+          round: true,
+          promotion_method: true,
+          usersId: true,
+
           application: {
             select: {
               id: true,
@@ -136,11 +146,6 @@ export class PromotionHistoryControllerBase {
           },
 
           id: true,
-          programId: true,
-          promotion_method: true,
-          round: true,
-          statusTime: true,
-          usersId: true,
         },
       });
     } catch (error) {
@@ -156,13 +161,19 @@ export class PromotionHistoryControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PromotionHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePromotionHistory(
     @common.Param() params: PromotionHistoryWhereUniqueInput
   ): Promise<PromotionHistory | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePromotionHistory({
         where: params,
         select: {
+          programId: true,
+          statusTime: true,
+          round: true,
+          promotion_method: true,
+          usersId: true,
+
           application: {
             select: {
               id: true,
@@ -170,11 +181,6 @@ export class PromotionHistoryControllerBase {
           },
 
           id: true,
-          programId: true,
-          promotion_method: true,
-          round: true,
-          statusTime: true,
-          usersId: true,
         },
       });
     } catch (error) {

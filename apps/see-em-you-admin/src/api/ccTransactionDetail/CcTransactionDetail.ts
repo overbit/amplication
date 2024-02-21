@@ -1,13 +1,13 @@
 export type CcTransactionDetail = {
   ccId: number;
   date: Date;
-  id: string;
-  itemGlString: string;
-  itemName: string;
-  itemPriceEach: number;
-  itemQty: number;
-  paymentId: number;
-  reportDate: Date;
   time: Date;
+  reportDate: Date;
+  paymentId: number;
   transactionType: string;
+  itemName: string;
+  itemQty: number;
+  itemPriceEach: number;
+  itemGlString: string;
+  id: string;
 };

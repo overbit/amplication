@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateAppSchool } from "@prisma/client";
+import { Prisma, SlateAppSchool as PrismaSlateAppSchool } from "@prisma/client";
 
 export class SlateAppSchoolServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateAppSchoolServiceBase {
     return this.prisma.slateAppSchool.count(args);
   }
 
-  async findMany<T extends Prisma.SlateAppSchoolFindManyArgs>(
+  async slateAppSchools<T extends Prisma.SlateAppSchoolFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppSchoolFindManyArgs>
-  ): Promise<SlateAppSchool[]> {
+  ): Promise<PrismaSlateAppSchool[]> {
     return this.prisma.slateAppSchool.findMany(args);
   }
-  async findOne<T extends Prisma.SlateAppSchoolFindUniqueArgs>(
+  async slateAppSchool<T extends Prisma.SlateAppSchoolFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppSchoolFindUniqueArgs>
-  ): Promise<SlateAppSchool | null> {
+  ): Promise<PrismaSlateAppSchool | null> {
     return this.prisma.slateAppSchool.findUnique(args);
   }
-  async create<T extends Prisma.SlateAppSchoolCreateArgs>(
+  async createSlateAppSchool<T extends Prisma.SlateAppSchoolCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppSchoolCreateArgs>
-  ): Promise<SlateAppSchool> {
+  ): Promise<PrismaSlateAppSchool> {
     return this.prisma.slateAppSchool.create<T>(args);
   }
-  async update<T extends Prisma.SlateAppSchoolUpdateArgs>(
+  async updateSlateAppSchool<T extends Prisma.SlateAppSchoolUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppSchoolUpdateArgs>
-  ): Promise<SlateAppSchool> {
+  ): Promise<PrismaSlateAppSchool> {
     return this.prisma.slateAppSchool.update<T>(args);
   }
-  async delete<T extends Prisma.SlateAppSchoolDeleteArgs>(
+  async deleteSlateAppSchool<T extends Prisma.SlateAppSchoolDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAppSchoolDeleteArgs>
-  ): Promise<SlateAppSchool> {
+  ): Promise<PrismaSlateAppSchool> {
     return this.prisma.slateAppSchool.delete(args);
   }
 }

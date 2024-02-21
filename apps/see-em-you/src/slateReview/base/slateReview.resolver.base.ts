@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateReviewArgs } from "./CreateSlateReviewArgs";
-import { UpdateSlateReviewArgs } from "./UpdateSlateReviewArgs";
-import { DeleteSlateReviewArgs } from "./DeleteSlateReviewArgs";
+import { SlateReview } from "./SlateReview";
 import { SlateReviewCountArgs } from "./SlateReviewCountArgs";
 import { SlateReviewFindManyArgs } from "./SlateReviewFindManyArgs";
 import { SlateReviewFindUniqueArgs } from "./SlateReviewFindUniqueArgs";
-import { SlateReview } from "./SlateReview";
+import { CreateSlateReviewArgs } from "./CreateSlateReviewArgs";
+import { UpdateSlateReviewArgs } from "./UpdateSlateReviewArgs";
+import { DeleteSlateReviewArgs } from "./DeleteSlateReviewArgs";
 import { SlateReviewService } from "../slateReview.service";
 @graphql.Resolver(() => SlateReview)
 export class SlateReviewResolverBase {
@@ -38,14 +38,14 @@ export class SlateReviewResolverBase {
   async slateReviews(
     @graphql.Args() args: SlateReviewFindManyArgs
   ): Promise<SlateReview[]> {
-    return this.service.findMany(args);
+    return this.service.slateReviews(args);
   }
 
   @graphql.Query(() => SlateReview, { nullable: true })
   async slateReview(
     @graphql.Args() args: SlateReviewFindUniqueArgs
   ): Promise<SlateReview | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateReview(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateReviewResolverBase {
   async createSlateReview(
     @graphql.Args() args: CreateSlateReviewArgs
   ): Promise<SlateReview> {
-    return await this.service.create({
+    return await this.service.createSlateReview({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateReviewResolverBase {
     @graphql.Args() args: UpdateSlateReviewArgs
   ): Promise<SlateReview | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateReview({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateReviewResolverBase {
     @graphql.Args() args: DeleteSlateReviewArgs
   ): Promise<SlateReview | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateReview(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

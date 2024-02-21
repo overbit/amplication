@@ -18,34 +18,41 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateSuppinfoService } from "../slateSuppinfo.service";
 import { SlateSuppinfoCreateInput } from "./SlateSuppinfoCreateInput";
-import { SlateSuppinfoWhereInput } from "./SlateSuppinfoWhereInput";
-import { SlateSuppinfoWhereUniqueInput } from "./SlateSuppinfoWhereUniqueInput";
-import { SlateSuppinfoFindManyArgs } from "./SlateSuppinfoFindManyArgs";
-import { SlateSuppinfoUpdateInput } from "./SlateSuppinfoUpdateInput";
 import { SlateSuppinfo } from "./SlateSuppinfo";
+import { SlateSuppinfoFindManyArgs } from "./SlateSuppinfoFindManyArgs";
+import { SlateSuppinfoWhereUniqueInput } from "./SlateSuppinfoWhereUniqueInput";
+import { SlateSuppinfoUpdateInput } from "./SlateSuppinfoUpdateInput";
 
 export class SlateSuppinfoControllerBase {
   constructor(protected readonly service: SlateSuppinfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateSuppinfo })
-  async create(
+  async createSlateSuppinfo(
     @common.Body() data: SlateSuppinfoCreateInput
   ): Promise<SlateSuppinfo> {
-    return await this.service.create({
+    return await this.service.createSlateSuppinfo({
       data: data,
       select: {
-        fellowship10Amount: true,
-        fellowship10AppliedDate: true,
-        fellowship10AwardedDate: true,
-        fellowship10Duration: true,
-        fellowship10Name: true,
-        fellowship10Status: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        videoEssayUrl: true,
+        videoEssayAccessCode: true,
+        learnAboutUs: true,
+        learnAboutOther: true,
         fellowship1Amount: true,
         fellowship1AppliedDate: true,
         fellowship1AwardedDate: true,
         fellowship1Duration: true,
         fellowship1Name: true,
         fellowship1Status: true,
+        fellowship10Amount: true,
+        fellowship10AppliedDate: true,
+        fellowship10AwardedDate: true,
+        fellowship10Duration: true,
+        fellowship10Name: true,
+        fellowship10Status: true,
         fellowship2Amount: true,
         fellowship2AppliedDate: true,
         fellowship2AwardedDate: true,
@@ -94,16 +101,8 @@ export class SlateSuppinfoControllerBase {
         fellowship9Duration: true,
         fellowship9Name: true,
         fellowship9Status: true,
-        first: true,
         hasFellowships: true,
         id: true,
-        last: true,
-        learnAboutOther: true,
-        learnAboutUs: true,
-        middle: true,
-        prefix: true,
-        videoEssayAccessCode: true,
-        videoEssayUrl: true,
       },
     });
   }
@@ -111,23 +110,33 @@ export class SlateSuppinfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateSuppinfo] })
   @ApiNestedQuery(SlateSuppinfoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateSuppinfo[]> {
+  async slateSuppinfos(
+    @common.Req() request: Request
+  ): Promise<SlateSuppinfo[]> {
     const args = plainToClass(SlateSuppinfoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateSuppinfos({
       ...args,
       select: {
-        fellowship10Amount: true,
-        fellowship10AppliedDate: true,
-        fellowship10AwardedDate: true,
-        fellowship10Duration: true,
-        fellowship10Name: true,
-        fellowship10Status: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        videoEssayUrl: true,
+        videoEssayAccessCode: true,
+        learnAboutUs: true,
+        learnAboutOther: true,
         fellowship1Amount: true,
         fellowship1AppliedDate: true,
         fellowship1AwardedDate: true,
         fellowship1Duration: true,
         fellowship1Name: true,
         fellowship1Status: true,
+        fellowship10Amount: true,
+        fellowship10AppliedDate: true,
+        fellowship10AwardedDate: true,
+        fellowship10Duration: true,
+        fellowship10Name: true,
+        fellowship10Status: true,
         fellowship2Amount: true,
         fellowship2AppliedDate: true,
         fellowship2AwardedDate: true,
@@ -176,16 +185,8 @@ export class SlateSuppinfoControllerBase {
         fellowship9Duration: true,
         fellowship9Name: true,
         fellowship9Status: true,
-        first: true,
         hasFellowships: true,
         id: true,
-        last: true,
-        learnAboutOther: true,
-        learnAboutUs: true,
-        middle: true,
-        prefix: true,
-        videoEssayAccessCode: true,
-        videoEssayUrl: true,
       },
     });
   }
@@ -193,24 +194,32 @@ export class SlateSuppinfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateSuppinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateSuppinfo(
     @common.Param() params: SlateSuppinfoWhereUniqueInput
   ): Promise<SlateSuppinfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateSuppinfo({
       where: params,
       select: {
-        fellowship10Amount: true,
-        fellowship10AppliedDate: true,
-        fellowship10AwardedDate: true,
-        fellowship10Duration: true,
-        fellowship10Name: true,
-        fellowship10Status: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        videoEssayUrl: true,
+        videoEssayAccessCode: true,
+        learnAboutUs: true,
+        learnAboutOther: true,
         fellowship1Amount: true,
         fellowship1AppliedDate: true,
         fellowship1AwardedDate: true,
         fellowship1Duration: true,
         fellowship1Name: true,
         fellowship1Status: true,
+        fellowship10Amount: true,
+        fellowship10AppliedDate: true,
+        fellowship10AwardedDate: true,
+        fellowship10Duration: true,
+        fellowship10Name: true,
+        fellowship10Status: true,
         fellowship2Amount: true,
         fellowship2AppliedDate: true,
         fellowship2AwardedDate: true,
@@ -259,16 +268,8 @@ export class SlateSuppinfoControllerBase {
         fellowship9Duration: true,
         fellowship9Name: true,
         fellowship9Status: true,
-        first: true,
         hasFellowships: true,
         id: true,
-        last: true,
-        learnAboutOther: true,
-        learnAboutUs: true,
-        middle: true,
-        prefix: true,
-        videoEssayAccessCode: true,
-        videoEssayUrl: true,
       },
     });
     if (result === null) {
@@ -282,27 +283,35 @@ export class SlateSuppinfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateSuppinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateSuppinfo(
     @common.Param() params: SlateSuppinfoWhereUniqueInput,
     @common.Body() data: SlateSuppinfoUpdateInput
   ): Promise<SlateSuppinfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateSuppinfo({
         where: params,
         data: data,
         select: {
-          fellowship10Amount: true,
-          fellowship10AppliedDate: true,
-          fellowship10AwardedDate: true,
-          fellowship10Duration: true,
-          fellowship10Name: true,
-          fellowship10Status: true,
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          videoEssayUrl: true,
+          videoEssayAccessCode: true,
+          learnAboutUs: true,
+          learnAboutOther: true,
           fellowship1Amount: true,
           fellowship1AppliedDate: true,
           fellowship1AwardedDate: true,
           fellowship1Duration: true,
           fellowship1Name: true,
           fellowship1Status: true,
+          fellowship10Amount: true,
+          fellowship10AppliedDate: true,
+          fellowship10AwardedDate: true,
+          fellowship10Duration: true,
+          fellowship10Name: true,
+          fellowship10Status: true,
           fellowship2Amount: true,
           fellowship2AppliedDate: true,
           fellowship2AwardedDate: true,
@@ -351,16 +360,8 @@ export class SlateSuppinfoControllerBase {
           fellowship9Duration: true,
           fellowship9Name: true,
           fellowship9Status: true,
-          first: true,
           hasFellowships: true,
           id: true,
-          last: true,
-          learnAboutOther: true,
-          learnAboutUs: true,
-          middle: true,
-          prefix: true,
-          videoEssayAccessCode: true,
-          videoEssayUrl: true,
         },
       });
     } catch (error) {
@@ -376,25 +377,33 @@ export class SlateSuppinfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateSuppinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateSuppinfo(
     @common.Param() params: SlateSuppinfoWhereUniqueInput
   ): Promise<SlateSuppinfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateSuppinfo({
         where: params,
         select: {
-          fellowship10Amount: true,
-          fellowship10AppliedDate: true,
-          fellowship10AwardedDate: true,
-          fellowship10Duration: true,
-          fellowship10Name: true,
-          fellowship10Status: true,
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          videoEssayUrl: true,
+          videoEssayAccessCode: true,
+          learnAboutUs: true,
+          learnAboutOther: true,
           fellowship1Amount: true,
           fellowship1AppliedDate: true,
           fellowship1AwardedDate: true,
           fellowship1Duration: true,
           fellowship1Name: true,
           fellowship1Status: true,
+          fellowship10Amount: true,
+          fellowship10AppliedDate: true,
+          fellowship10AwardedDate: true,
+          fellowship10Duration: true,
+          fellowship10Name: true,
+          fellowship10Status: true,
           fellowship2Amount: true,
           fellowship2AppliedDate: true,
           fellowship2AwardedDate: true,
@@ -443,16 +452,8 @@ export class SlateSuppinfoControllerBase {
           fellowship9Duration: true,
           fellowship9Name: true,
           fellowship9Status: true,
-          first: true,
           hasFellowships: true,
           id: true,
-          last: true,
-          learnAboutOther: true,
-          learnAboutUs: true,
-          middle: true,
-          prefix: true,
-          videoEssayAccessCode: true,
-          videoEssayUrl: true,
         },
       });
     } catch (error) {

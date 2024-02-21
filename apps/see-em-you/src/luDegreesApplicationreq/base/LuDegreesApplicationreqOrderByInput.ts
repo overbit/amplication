@@ -28,7 +28,7 @@ class LuDegreesApplicationreqOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  appreqId?: SortOrder;
+  degreeId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class LuDegreesApplicationreqOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  degreeId?: SortOrder;
+  appreqId?: SortOrder;
 
   @ApiProperty({
     required: false,

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGroupRankCommentArgs } from "./CreateGroupRankCommentArgs";
-import { UpdateGroupRankCommentArgs } from "./UpdateGroupRankCommentArgs";
-import { DeleteGroupRankCommentArgs } from "./DeleteGroupRankCommentArgs";
+import { GroupRankComment } from "./GroupRankComment";
 import { GroupRankCommentCountArgs } from "./GroupRankCommentCountArgs";
 import { GroupRankCommentFindManyArgs } from "./GroupRankCommentFindManyArgs";
 import { GroupRankCommentFindUniqueArgs } from "./GroupRankCommentFindUniqueArgs";
-import { GroupRankComment } from "./GroupRankComment";
+import { CreateGroupRankCommentArgs } from "./CreateGroupRankCommentArgs";
+import { UpdateGroupRankCommentArgs } from "./UpdateGroupRankCommentArgs";
+import { DeleteGroupRankCommentArgs } from "./DeleteGroupRankCommentArgs";
 import { GroupRankCommentService } from "../groupRankComment.service";
 @graphql.Resolver(() => GroupRankComment)
 export class GroupRankCommentResolverBase {
@@ -38,14 +38,14 @@ export class GroupRankCommentResolverBase {
   async groupRankComments(
     @graphql.Args() args: GroupRankCommentFindManyArgs
   ): Promise<GroupRankComment[]> {
-    return this.service.findMany(args);
+    return this.service.groupRankComments(args);
   }
 
   @graphql.Query(() => GroupRankComment, { nullable: true })
   async groupRankComment(
     @graphql.Args() args: GroupRankCommentFindUniqueArgs
   ): Promise<GroupRankComment | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.groupRankComment(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class GroupRankCommentResolverBase {
   async createGroupRankComment(
     @graphql.Args() args: CreateGroupRankCommentArgs
   ): Promise<GroupRankComment> {
-    return await this.service.create({
+    return await this.service.createGroupRankComment({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class GroupRankCommentResolverBase {
     @graphql.Args() args: UpdateGroupRankCommentArgs
   ): Promise<GroupRankComment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGroupRankComment({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class GroupRankCommentResolverBase {
     @graphql.Args() args: DeleteGroupRankCommentArgs
   ): Promise<GroupRankComment | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGroupRankComment(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

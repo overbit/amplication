@@ -36,7 +36,7 @@ class DepartmentReplyperiodUpdateInput {
   @Field(() => Date, {
     nullable: true,
   })
-  end?: Date | null;
+  start?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -47,7 +47,7 @@ class DepartmentReplyperiodUpdateInput {
   @Field(() => Date, {
     nullable: true,
   })
-  start?: Date | null;
+  end?: Date | null;
 }
 
 export { DepartmentReplyperiodUpdateInput as DepartmentReplyperiodUpdateInput };

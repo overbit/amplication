@@ -24,7 +24,7 @@ class VoucherProgramUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  programId?: number;
+  voucherId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class VoucherProgramUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  voucherId?: number;
+  programId?: number;
 }
 
 export { VoucherProgramUpdateInput as VoucherProgramUpdateInput };

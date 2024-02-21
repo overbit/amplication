@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateInstituteArgs } from "./CreateInstituteArgs";
-import { UpdateInstituteArgs } from "./UpdateInstituteArgs";
-import { DeleteInstituteArgs } from "./DeleteInstituteArgs";
+import { Institute } from "./Institute";
 import { InstituteCountArgs } from "./InstituteCountArgs";
 import { InstituteFindManyArgs } from "./InstituteFindManyArgs";
 import { InstituteFindUniqueArgs } from "./InstituteFindUniqueArgs";
-import { Institute } from "./Institute";
+import { CreateInstituteArgs } from "./CreateInstituteArgs";
+import { UpdateInstituteArgs } from "./UpdateInstituteArgs";
+import { DeleteInstituteArgs } from "./DeleteInstituteArgs";
 import { InstituteService } from "../institute.service";
 @graphql.Resolver(() => Institute)
 export class InstituteResolverBase {
@@ -38,14 +38,14 @@ export class InstituteResolverBase {
   async institutes(
     @graphql.Args() args: InstituteFindManyArgs
   ): Promise<Institute[]> {
-    return this.service.findMany(args);
+    return this.service.institutes(args);
   }
 
   @graphql.Query(() => Institute, { nullable: true })
   async institute(
     @graphql.Args() args: InstituteFindUniqueArgs
   ): Promise<Institute | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.institute(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class InstituteResolverBase {
   async createInstitute(
     @graphql.Args() args: CreateInstituteArgs
   ): Promise<Institute> {
-    return await this.service.create({
+    return await this.service.createInstitute({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class InstituteResolverBase {
     @graphql.Args() args: UpdateInstituteArgs
   ): Promise<Institute | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateInstitute({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class InstituteResolverBase {
     @graphql.Args() args: DeleteInstituteArgs
   ): Promise<Institute | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteInstitute(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

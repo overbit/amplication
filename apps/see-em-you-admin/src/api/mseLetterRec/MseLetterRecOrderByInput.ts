@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MseLetterRecOrderByInput = {
-  algortihms?: SortOrder;
   applicationId?: SortOrder;
-  dataStructures?: SortOrder;
-  discrete?: SortOrder;
-  id?: SortOrder;
-  java?: SortOrder;
   reviewerId?: SortOrder;
+  java?: SortOrder;
+  discrete?: SortOrder;
+  algortihms?: SortOrder;
+  dataStructures?: SortOrder;
+  id?: SortOrder;
 };

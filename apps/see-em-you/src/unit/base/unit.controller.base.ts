@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UnitService } from "../unit.service";
 import { UnitCreateInput } from "./UnitCreateInput";
-import { UnitWhereInput } from "./UnitWhereInput";
-import { UnitWhereUniqueInput } from "./UnitWhereUniqueInput";
-import { UnitFindManyArgs } from "./UnitFindManyArgs";
-import { UnitUpdateInput } from "./UnitUpdateInput";
 import { Unit } from "./Unit";
+import { UnitFindManyArgs } from "./UnitFindManyArgs";
+import { UnitWhereUniqueInput } from "./UnitWhereUniqueInput";
+import { UnitUpdateInput } from "./UnitUpdateInput";
 import { DomainUnitFindManyArgs } from "../../domainUnit/base/DomainUnitFindManyArgs";
 import { DomainUnit } from "../../domainUnit/base/DomainUnit";
 import { DomainUnitWhereUniqueInput } from "../../domainUnit/base/DomainUnitWhereUniqueInput";
@@ -31,21 +30,21 @@ export class UnitControllerBase {
   constructor(protected readonly service: UnitService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Unit })
-  async create(@common.Body() data: UnitCreateInput): Promise<Unit> {
-    return await this.service.create({
+  async createUnit(@common.Body() data: UnitCreateInput): Promise<Unit> {
+    return await this.service.createUnit({
       data: data,
       select: {
-        applicationBasePrice: true,
-        applicationProgramPrice: true,
-        id: true,
-        parentUnitId: true,
-        unitCcEmail: true,
-        unitDescription: true,
         unitName: true,
         unitNameShort: true,
+        unitDescription: true,
+        unitUrl: true,
         unitOracleString: true,
         unitSystemEmail: true,
-        unitUrl: true,
+        unitCcEmail: true,
+        applicationBasePrice: true,
+        applicationProgramPrice: true,
+        parentUnitId: true,
+        id: true,
       },
     });
   }
@@ -53,22 +52,22 @@ export class UnitControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Unit] })
   @ApiNestedQuery(UnitFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Unit[]> {
+  async units(@common.Req() request: Request): Promise<Unit[]> {
     const args = plainToClass(UnitFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.units({
       ...args,
       select: {
-        applicationBasePrice: true,
-        applicationProgramPrice: true,
-        id: true,
-        parentUnitId: true,
-        unitCcEmail: true,
-        unitDescription: true,
         unitName: true,
         unitNameShort: true,
+        unitDescription: true,
+        unitUrl: true,
         unitOracleString: true,
         unitSystemEmail: true,
-        unitUrl: true,
+        unitCcEmail: true,
+        applicationBasePrice: true,
+        applicationProgramPrice: true,
+        parentUnitId: true,
+        id: true,
       },
     });
   }
@@ -76,23 +75,23 @@ export class UnitControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Unit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async unit(
     @common.Param() params: UnitWhereUniqueInput
   ): Promise<Unit | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.unit({
       where: params,
       select: {
-        applicationBasePrice: true,
-        applicationProgramPrice: true,
-        id: true,
-        parentUnitId: true,
-        unitCcEmail: true,
-        unitDescription: true,
         unitName: true,
         unitNameShort: true,
+        unitDescription: true,
+        unitUrl: true,
         unitOracleString: true,
         unitSystemEmail: true,
-        unitUrl: true,
+        unitCcEmail: true,
+        applicationBasePrice: true,
+        applicationProgramPrice: true,
+        parentUnitId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -106,26 +105,26 @@ export class UnitControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Unit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUnit(
     @common.Param() params: UnitWhereUniqueInput,
     @common.Body() data: UnitUpdateInput
   ): Promise<Unit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUnit({
         where: params,
         data: data,
         select: {
-          applicationBasePrice: true,
-          applicationProgramPrice: true,
-          id: true,
-          parentUnitId: true,
-          unitCcEmail: true,
-          unitDescription: true,
           unitName: true,
           unitNameShort: true,
+          unitDescription: true,
+          unitUrl: true,
           unitOracleString: true,
           unitSystemEmail: true,
-          unitUrl: true,
+          unitCcEmail: true,
+          applicationBasePrice: true,
+          applicationProgramPrice: true,
+          parentUnitId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -141,24 +140,24 @@ export class UnitControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Unit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUnit(
     @common.Param() params: UnitWhereUniqueInput
   ): Promise<Unit | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUnit({
         where: params,
         select: {
-          applicationBasePrice: true,
-          applicationProgramPrice: true,
-          id: true,
-          parentUnitId: true,
-          unitCcEmail: true,
-          unitDescription: true,
           unitName: true,
           unitNameShort: true,
+          unitDescription: true,
+          unitUrl: true,
           unitOracleString: true,
           unitSystemEmail: true,
-          unitUrl: true,
+          unitCcEmail: true,
+          applicationBasePrice: true,
+          applicationProgramPrice: true,
+          parentUnitId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -173,7 +172,7 @@ export class UnitControllerBase {
 
   @common.Get("/:id/domainUnit")
   @ApiNestedQuery(DomainUnitFindManyArgs)
-  async findManyDomainUnit(
+  async findDomainUnit(
     @common.Req() request: Request,
     @common.Param() params: UnitWhereUniqueInput
   ): Promise<DomainUnit[]> {
@@ -187,13 +186,13 @@ export class UnitControllerBase {
           },
         },
 
-        id: true,
-
         unit: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -214,7 +213,7 @@ export class UnitControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUnit({
       where: params,
       data,
       select: { id: true },
@@ -231,7 +230,7 @@ export class UnitControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUnit({
       where: params,
       data,
       select: { id: true },
@@ -248,7 +247,7 @@ export class UnitControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUnit({
       where: params,
       data,
       select: { id: true },

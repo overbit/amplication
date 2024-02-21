@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsOptional, IsString } from "class-validator";
 
 @InputType()
 class IniSopUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  additionalInfo?: string | null;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -36,28 +25,6 @@ class IniSopUpdateInput {
     nullable: true,
   })
   applicationId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  background?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  leadershipExperience?: string;
 
   @ApiProperty({
     required: false,
@@ -79,6 +46,17 @@ class IniSopUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  background?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   researchExperience?: string;
 
   @ApiProperty({
@@ -90,7 +68,29 @@ class IniSopUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  leadershipExperience?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   sfsInterest?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  additionalInfo?: string | null;
 }
 
 export { IniSopUpdateInput as IniSopUpdateInput };

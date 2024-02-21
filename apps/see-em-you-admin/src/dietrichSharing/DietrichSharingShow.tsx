@@ -6,9 +6,9 @@ export const DietrichSharingShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
         <TextField label="Sds" source="sds" />
         <TextField label="Tepper" source="tepper" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

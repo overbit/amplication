@@ -1,19 +1,19 @@
 import { Decimal } from "decimal.js";
 
 export type Grescore = {
-  analyticalpercentile: string | null;
-  analyticalscore: string | null;
-  analyticalwritingpercentile: string | null;
-  analyticalwritingscore: Decimal | null;
   applicationId: number;
-  athome: number | null;
+  testdate: Date | null;
+  verbalscore: string | null;
+  verbalpercentile: string | null;
+  quantitativescore: string | null;
+  quantitativepercentile: string | null;
+  analyticalscore: string | null;
+  analyticalpercentile: string | null;
+  analyticalwritingscore: Decimal | null;
+  analyticalwritingpercentile: string | null;
+  scorereceived: boolean;
   datafileId: number | null;
+  athome: number | null;
   greEmail: string | null;
   id: number;
-  quantitativepercentile: string | null;
-  quantitativescore: string | null;
-  scorereceived: boolean;
-  testdate: Date | null;
-  verbalpercentile: string | null;
-  verbalscore: string | null;
 };

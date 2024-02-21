@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { MhciPrereqWhereUniqueInput } from "../../mhciPrereq/base/MhciPrereqWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class MhciPrereqsStatusWhereInput {
@@ -28,6 +29,17 @@ class MhciPrereqsStatusWhereInput {
     nullable: true,
   })
   mhciPrereqs?: MhciPrereqWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { MhciPrereqsStatusWhereInput as MhciPrereqsStatusWhereInput };

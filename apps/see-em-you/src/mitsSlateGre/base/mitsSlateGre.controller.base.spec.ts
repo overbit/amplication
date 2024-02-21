@@ -18,66 +18,66 @@ import { MitsSlateGreService } from "../mitsSlateGre.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  prefix: "examplePrefix",
   first: "exampleFirst",
-  greAnalyticalWriting: "exampleGreAnalyticalWriting",
-  greAnalyticalWritingPct: "exampleGreAnalyticalWritingPct",
-  greQuantitative: "exampleGreQuantitative",
-  greQuantitativePct: "exampleGreQuantitativePct",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   greVerbal: "exampleGreVerbal",
   greVerbalPct: "exampleGreVerbalPct",
+  greQuantitative: "exampleGreQuantitative",
+  greQuantitativePct: "exampleGreQuantitativePct",
+  greAnalyticalWriting: "exampleGreAnalyticalWriting",
+  greAnalyticalWritingPct: "exampleGreAnalyticalWritingPct",
   id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
-  prefix: "examplePrefix",
 };
 const CREATE_RESULT = {
+  prefix: "examplePrefix",
   first: "exampleFirst",
-  greAnalyticalWriting: "exampleGreAnalyticalWriting",
-  greAnalyticalWritingPct: "exampleGreAnalyticalWritingPct",
-  greQuantitative: "exampleGreQuantitative",
-  greQuantitativePct: "exampleGreQuantitativePct",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   greVerbal: "exampleGreVerbal",
   greVerbalPct: "exampleGreVerbalPct",
+  greQuantitative: "exampleGreQuantitative",
+  greQuantitativePct: "exampleGreQuantitativePct",
+  greAnalyticalWriting: "exampleGreAnalyticalWriting",
+  greAnalyticalWritingPct: "exampleGreAnalyticalWritingPct",
   id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
-  prefix: "examplePrefix",
 };
 const FIND_MANY_RESULT = [
   {
+    prefix: "examplePrefix",
     first: "exampleFirst",
-    greAnalyticalWriting: "exampleGreAnalyticalWriting",
-    greAnalyticalWritingPct: "exampleGreAnalyticalWritingPct",
-    greQuantitative: "exampleGreQuantitative",
-    greQuantitativePct: "exampleGreQuantitativePct",
+    middle: "exampleMiddle",
+    last: "exampleLast",
     greVerbal: "exampleGreVerbal",
     greVerbalPct: "exampleGreVerbalPct",
+    greQuantitative: "exampleGreQuantitative",
+    greQuantitativePct: "exampleGreQuantitativePct",
+    greAnalyticalWriting: "exampleGreAnalyticalWriting",
+    greAnalyticalWritingPct: "exampleGreAnalyticalWritingPct",
     id: "exampleId",
-    last: "exampleLast",
-    middle: "exampleMiddle",
-    prefix: "examplePrefix",
   },
 ];
 const FIND_ONE_RESULT = {
+  prefix: "examplePrefix",
   first: "exampleFirst",
-  greAnalyticalWriting: "exampleGreAnalyticalWriting",
-  greAnalyticalWritingPct: "exampleGreAnalyticalWritingPct",
-  greQuantitative: "exampleGreQuantitative",
-  greQuantitativePct: "exampleGreQuantitativePct",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   greVerbal: "exampleGreVerbal",
   greVerbalPct: "exampleGreVerbalPct",
+  greQuantitative: "exampleGreQuantitative",
+  greQuantitativePct: "exampleGreQuantitativePct",
+  greAnalyticalWriting: "exampleGreAnalyticalWriting",
+  greAnalyticalWritingPct: "exampleGreAnalyticalWritingPct",
   id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
-  prefix: "examplePrefix",
 };
 
 const service = {
-  create() {
+  createMitsSlateGre() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mitsSlateGres: () => FIND_MANY_RESULT,
+  mitsSlateGre: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

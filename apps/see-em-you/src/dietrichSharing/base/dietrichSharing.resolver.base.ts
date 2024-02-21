@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDietrichSharingArgs } from "./CreateDietrichSharingArgs";
-import { UpdateDietrichSharingArgs } from "./UpdateDietrichSharingArgs";
-import { DeleteDietrichSharingArgs } from "./DeleteDietrichSharingArgs";
+import { DietrichSharing } from "./DietrichSharing";
 import { DietrichSharingCountArgs } from "./DietrichSharingCountArgs";
 import { DietrichSharingFindManyArgs } from "./DietrichSharingFindManyArgs";
 import { DietrichSharingFindUniqueArgs } from "./DietrichSharingFindUniqueArgs";
-import { DietrichSharing } from "./DietrichSharing";
+import { CreateDietrichSharingArgs } from "./CreateDietrichSharingArgs";
+import { UpdateDietrichSharingArgs } from "./UpdateDietrichSharingArgs";
+import { DeleteDietrichSharingArgs } from "./DeleteDietrichSharingArgs";
 import { DietrichSharingService } from "../dietrichSharing.service";
 @graphql.Resolver(() => DietrichSharing)
 export class DietrichSharingResolverBase {
@@ -38,14 +38,14 @@ export class DietrichSharingResolverBase {
   async dietrichSharings(
     @graphql.Args() args: DietrichSharingFindManyArgs
   ): Promise<DietrichSharing[]> {
-    return this.service.findMany(args);
+    return this.service.dietrichSharings(args);
   }
 
   @graphql.Query(() => DietrichSharing, { nullable: true })
   async dietrichSharing(
     @graphql.Args() args: DietrichSharingFindUniqueArgs
   ): Promise<DietrichSharing | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.dietrichSharing(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DietrichSharingResolverBase {
   async createDietrichSharing(
     @graphql.Args() args: CreateDietrichSharingArgs
   ): Promise<DietrichSharing> {
-    return await this.service.create({
+    return await this.service.createDietrichSharing({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DietrichSharingResolverBase {
     @graphql.Args() args: UpdateDietrichSharingArgs
   ): Promise<DietrichSharing | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDietrichSharing({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DietrichSharingResolverBase {
     @graphql.Args() args: DeleteDietrichSharingArgs
   ): Promise<DietrichSharing | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDietrichSharing(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

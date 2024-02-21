@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDegreeArgs } from "./CreateDegreeArgs";
-import { UpdateDegreeArgs } from "./UpdateDegreeArgs";
-import { DeleteDegreeArgs } from "./DeleteDegreeArgs";
+import { Degree } from "./Degree";
 import { DegreeCountArgs } from "./DegreeCountArgs";
 import { DegreeFindManyArgs } from "./DegreeFindManyArgs";
 import { DegreeFindUniqueArgs } from "./DegreeFindUniqueArgs";
-import { Degree } from "./Degree";
+import { CreateDegreeArgs } from "./CreateDegreeArgs";
+import { UpdateDegreeArgs } from "./UpdateDegreeArgs";
+import { DeleteDegreeArgs } from "./DeleteDegreeArgs";
 import { ProgramModelFindManyArgs } from "../../programModel/base/ProgramModelFindManyArgs";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
 import { DegreeService } from "../degree.service";
@@ -38,14 +38,14 @@ export class DegreeResolverBase {
 
   @graphql.Query(() => [Degree])
   async degrees(@graphql.Args() args: DegreeFindManyArgs): Promise<Degree[]> {
-    return this.service.findMany(args);
+    return this.service.degrees(args);
   }
 
   @graphql.Query(() => Degree, { nullable: true })
   async degree(
     @graphql.Args() args: DegreeFindUniqueArgs
   ): Promise<Degree | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.degree(args);
     if (result === null) {
       return null;
     }
@@ -54,7 +54,7 @@ export class DegreeResolverBase {
 
   @graphql.Mutation(() => Degree)
   async createDegree(@graphql.Args() args: CreateDegreeArgs): Promise<Degree> {
-    return await this.service.create({
+    return await this.service.createDegree({
       ...args,
       data: args.data,
     });
@@ -65,7 +65,7 @@ export class DegreeResolverBase {
     @graphql.Args() args: UpdateDegreeArgs
   ): Promise<Degree | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDegree({
         ...args,
         data: args.data,
       });
@@ -84,7 +84,7 @@ export class DegreeResolverBase {
     @graphql.Args() args: DeleteDegreeArgs
   ): Promise<Degree | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDegree(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -96,7 +96,7 @@ export class DegreeResolverBase {
   }
 
   @graphql.ResolveField(() => [ProgramModel], { name: "programs" })
-  async resolveFieldPrograms(
+  async findPrograms(
     @graphql.Parent() parent: Degree,
     @graphql.Args() args: ProgramModelFindManyArgs
   ): Promise<ProgramModel[]> {

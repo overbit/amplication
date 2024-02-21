@@ -1,17 +1,17 @@
 export type SlateRecommend2CreateInput = {
-  first?: string | null;
-  last?: string | null;
-  middle?: string | null;
   prefix?: string | null;
-  reference2Email?: string | null;
-  reference2First?: string | null;
-  reference2Industry?: string | null;
-  reference2Last?: string | null;
-  reference2Organization?: string | null;
-  reference2Phone?: string | null;
-  reference2Submitted?: string | null;
-  reference2Title?: string | null;
+  first?: string | null;
+  middle?: string | null;
+  last?: string | null;
   reference2Type?: string | null;
+  reference2Submitted?: string | null;
+  reference2First?: string | null;
+  reference2Last?: string | null;
+  reference2Industry?: string | null;
+  reference2Organization?: string | null;
+  reference2Title?: string | null;
+  reference2Email?: string | null;
+  reference2Phone?: string | null;
   referenceNum2IsrmsRecommenderScore1?: string | null;
   referenceNum2IsrmsRecommenderScore10?: string | null;
   referenceNum2IsrmsRecommenderScore11?: string | null;

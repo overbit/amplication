@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuProgramsApplicationreqService } from "../luProgramsApplicationreq.service";
 import { LuProgramsApplicationreqCreateInput } from "./LuProgramsApplicationreqCreateInput";
-import { LuProgramsApplicationreqWhereInput } from "./LuProgramsApplicationreqWhereInput";
-import { LuProgramsApplicationreqWhereUniqueInput } from "./LuProgramsApplicationreqWhereUniqueInput";
-import { LuProgramsApplicationreqFindManyArgs } from "./LuProgramsApplicationreqFindManyArgs";
-import { LuProgramsApplicationreqUpdateInput } from "./LuProgramsApplicationreqUpdateInput";
 import { LuProgramsApplicationreq } from "./LuProgramsApplicationreq";
+import { LuProgramsApplicationreqFindManyArgs } from "./LuProgramsApplicationreqFindManyArgs";
+import { LuProgramsApplicationreqWhereUniqueInput } from "./LuProgramsApplicationreqWhereUniqueInput";
+import { LuProgramsApplicationreqUpdateInput } from "./LuProgramsApplicationreqUpdateInput";
 
 export class LuProgramsApplicationreqControllerBase {
   constructor(protected readonly service: LuProgramsApplicationreqService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuProgramsApplicationreq })
-  async create(
+  async createLuProgramsApplicationreq(
     @common.Body() data: LuProgramsApplicationreqCreateInput
   ): Promise<LuProgramsApplicationreq> {
-    return await this.service.create({
+    return await this.service.createLuProgramsApplicationreq({
       data: data,
       select: {
-        appreqId: true,
         degreeId: true,
-        id: true,
+        appreqId: true,
         programId: true,
+        id: true,
       },
     });
   }
@@ -45,20 +44,20 @@ export class LuProgramsApplicationreqControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuProgramsApplicationreq] })
   @ApiNestedQuery(LuProgramsApplicationreqFindManyArgs)
-  async findMany(
+  async luProgramsApplicationreqs(
     @common.Req() request: Request
   ): Promise<LuProgramsApplicationreq[]> {
     const args = plainToClass(
       LuProgramsApplicationreqFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.luProgramsApplicationreqs({
       ...args,
       select: {
-        appreqId: true,
         degreeId: true,
-        id: true,
+        appreqId: true,
         programId: true,
+        id: true,
       },
     });
   }
@@ -66,16 +65,16 @@ export class LuProgramsApplicationreqControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luProgramsApplicationreq(
     @common.Param() params: LuProgramsApplicationreqWhereUniqueInput
   ): Promise<LuProgramsApplicationreq | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luProgramsApplicationreq({
       where: params,
       select: {
-        appreqId: true,
         degreeId: true,
-        id: true,
+        appreqId: true,
         programId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -89,19 +88,19 @@ export class LuProgramsApplicationreqControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuProgramsApplicationreq(
     @common.Param() params: LuProgramsApplicationreqWhereUniqueInput,
     @common.Body() data: LuProgramsApplicationreqUpdateInput
   ): Promise<LuProgramsApplicationreq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuProgramsApplicationreq({
         where: params,
         data: data,
         select: {
-          appreqId: true,
           degreeId: true,
-          id: true,
+          appreqId: true,
           programId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -117,17 +116,17 @@ export class LuProgramsApplicationreqControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuProgramsApplicationreq(
     @common.Param() params: LuProgramsApplicationreqWhereUniqueInput
   ): Promise<LuProgramsApplicationreq | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuProgramsApplicationreq({
         where: params,
         select: {
-          appreqId: true,
           degreeId: true,
-          id: true,
+          appreqId: true,
           programId: true,
+          id: true,
         },
       });
     } catch (error) {

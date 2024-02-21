@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PhoneScreen } from "@prisma/client";
+import { Prisma, PhoneScreen as PrismaPhoneScreen } from "@prisma/client";
 
 export class PhoneScreenServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class PhoneScreenServiceBase {
     return this.prisma.phoneScreen.count(args);
   }
 
-  async findMany<T extends Prisma.PhoneScreenFindManyArgs>(
+  async phoneScreens<T extends Prisma.PhoneScreenFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PhoneScreenFindManyArgs>
-  ): Promise<PhoneScreen[]> {
+  ): Promise<PrismaPhoneScreen[]> {
     return this.prisma.phoneScreen.findMany(args);
   }
-  async findOne<T extends Prisma.PhoneScreenFindUniqueArgs>(
+  async phoneScreen<T extends Prisma.PhoneScreenFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PhoneScreenFindUniqueArgs>
-  ): Promise<PhoneScreen | null> {
+  ): Promise<PrismaPhoneScreen | null> {
     return this.prisma.phoneScreen.findUnique(args);
   }
-  async create<T extends Prisma.PhoneScreenCreateArgs>(
+  async createPhoneScreen<T extends Prisma.PhoneScreenCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PhoneScreenCreateArgs>
-  ): Promise<PhoneScreen> {
+  ): Promise<PrismaPhoneScreen> {
     return this.prisma.phoneScreen.create<T>(args);
   }
-  async update<T extends Prisma.PhoneScreenUpdateArgs>(
+  async updatePhoneScreen<T extends Prisma.PhoneScreenUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PhoneScreenUpdateArgs>
-  ): Promise<PhoneScreen> {
+  ): Promise<PrismaPhoneScreen> {
     return this.prisma.phoneScreen.update<T>(args);
   }
-  async delete<T extends Prisma.PhoneScreenDeleteArgs>(
+  async deletePhoneScreen<T extends Prisma.PhoneScreenDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PhoneScreenDeleteArgs>
-  ): Promise<PhoneScreen> {
+  ): Promise<PrismaPhoneScreen> {
     return this.prisma.phoneScreen.delete(args);
   }
 }

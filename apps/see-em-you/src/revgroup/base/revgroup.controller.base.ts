@@ -18,24 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RevgroupService } from "../revgroup.service";
 import { RevgroupCreateInput } from "./RevgroupCreateInput";
-import { RevgroupWhereInput } from "./RevgroupWhereInput";
-import { RevgroupWhereUniqueInput } from "./RevgroupWhereUniqueInput";
-import { RevgroupFindManyArgs } from "./RevgroupFindManyArgs";
-import { RevgroupUpdateInput } from "./RevgroupUpdateInput";
 import { Revgroup } from "./Revgroup";
+import { RevgroupFindManyArgs } from "./RevgroupFindManyArgs";
+import { RevgroupWhereUniqueInput } from "./RevgroupWhereUniqueInput";
+import { RevgroupUpdateInput } from "./RevgroupUpdateInput";
 
 export class RevgroupControllerBase {
   constructor(protected readonly service: RevgroupService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Revgroup })
-  async create(@common.Body() data: RevgroupCreateInput): Promise<Revgroup> {
-    return await this.service.create({
+  async createRevgroup(
+    @common.Body() data: RevgroupCreateInput
+  ): Promise<Revgroup> {
+    return await this.service.createRevgroup({
       data: data,
       select: {
+        name: true,
         departmentId: true,
         groupType: true,
         id: true,
-        name: true,
       },
     });
   }
@@ -43,15 +44,15 @@ export class RevgroupControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Revgroup] })
   @ApiNestedQuery(RevgroupFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Revgroup[]> {
+  async revgroups(@common.Req() request: Request): Promise<Revgroup[]> {
     const args = plainToClass(RevgroupFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.revgroups({
       ...args,
       select: {
+        name: true,
         departmentId: true,
         groupType: true,
         id: true,
-        name: true,
       },
     });
   }
@@ -59,16 +60,16 @@ export class RevgroupControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Revgroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async revgroup(
     @common.Param() params: RevgroupWhereUniqueInput
   ): Promise<Revgroup | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.revgroup({
       where: params,
       select: {
+        name: true,
         departmentId: true,
         groupType: true,
         id: true,
-        name: true,
       },
     });
     if (result === null) {
@@ -82,19 +83,19 @@ export class RevgroupControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Revgroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRevgroup(
     @common.Param() params: RevgroupWhereUniqueInput,
     @common.Body() data: RevgroupUpdateInput
   ): Promise<Revgroup | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRevgroup({
         where: params,
         data: data,
         select: {
+          name: true,
           departmentId: true,
           groupType: true,
           id: true,
-          name: true,
         },
       });
     } catch (error) {
@@ -110,17 +111,17 @@ export class RevgroupControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Revgroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRevgroup(
     @common.Param() params: RevgroupWhereUniqueInput
   ): Promise<Revgroup | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRevgroup({
         where: params,
         select: {
+          name: true,
           departmentId: true,
           groupType: true,
           id: true,
-          name: true,
         },
       });
     } catch (error) {

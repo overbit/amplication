@@ -1,4 +1,4 @@
 export type ReviewerPreference = {
-  id: number;
   viewMode: number | null;
+  id: number;
 };

@@ -3,9 +3,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  NumberInput,
   ReferenceInput,
   SelectInput,
-  NumberInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -13,6 +13,7 @@ export const TagMemberEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Tag Instance Id" source="tagInstanceId" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -20,7 +21,6 @@ export const TagMemberEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Tag Instance Id" source="tagInstanceId" />
       </SimpleForm>
     </Edit>
   );

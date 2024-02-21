@@ -1,6 +1,6 @@
 export type ProgramGroupRole = {
-  id: string;
   programGroupId: number;
-  roleId: number;
   usersId: number;
+  roleId: number;
+  id: string;
 };

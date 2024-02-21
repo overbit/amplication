@@ -1,18 +1,17 @@
 export type SlateRecommend3 = {
-  first: string | null;
-  id: string;
-  last: string | null;
-  middle: string | null;
   prefix: string | null;
-  reference3Email: string | null;
-  reference3First: string | null;
-  reference3Industry: string | null;
-  reference3Last: string | null;
-  reference3Organization: string | null;
-  reference3Phone: string | null;
-  reference3Submitted: string | null;
-  reference3Title: string | null;
+  first: string | null;
+  middle: string | null;
+  last: string | null;
   reference3Type: string | null;
+  reference3Submitted: string | null;
+  reference3First: string | null;
+  reference3Last: string | null;
+  reference3Industry: string | null;
+  reference3Organization: string | null;
+  reference3Title: string | null;
+  reference3Email: string | null;
+  reference3Phone: string | null;
   referenceNum3IsrmsRecommenderScore1: string | null;
   referenceNum3IsrmsRecommenderScore10: string | null;
   referenceNum3IsrmsRecommenderScore11: string | null;
@@ -41,4 +40,5 @@ export type SlateRecommend3 = {
   referenceNum3RecommenderScore6: string | null;
   referenceNum3RecommenderScore7: string | null;
   referenceNum3RecommenderScore8: string | null;
+  id: string;
 };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateFellowshipArgs } from "./CreateFellowshipArgs";
-import { UpdateFellowshipArgs } from "./UpdateFellowshipArgs";
-import { DeleteFellowshipArgs } from "./DeleteFellowshipArgs";
+import { Fellowship } from "./Fellowship";
 import { FellowshipCountArgs } from "./FellowshipCountArgs";
 import { FellowshipFindManyArgs } from "./FellowshipFindManyArgs";
 import { FellowshipFindUniqueArgs } from "./FellowshipFindUniqueArgs";
-import { Fellowship } from "./Fellowship";
+import { CreateFellowshipArgs } from "./CreateFellowshipArgs";
+import { UpdateFellowshipArgs } from "./UpdateFellowshipArgs";
+import { DeleteFellowshipArgs } from "./DeleteFellowshipArgs";
 import { Application } from "../../application/base/Application";
 import { FellowshipService } from "../fellowship.service";
 @graphql.Resolver(() => Fellowship)
@@ -39,14 +39,14 @@ export class FellowshipResolverBase {
   async fellowships(
     @graphql.Args() args: FellowshipFindManyArgs
   ): Promise<Fellowship[]> {
-    return this.service.findMany(args);
+    return this.service.fellowships(args);
   }
 
   @graphql.Query(() => Fellowship, { nullable: true })
   async fellowship(
     @graphql.Args() args: FellowshipFindUniqueArgs
   ): Promise<Fellowship | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.fellowship(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class FellowshipResolverBase {
   async createFellowship(
     @graphql.Args() args: CreateFellowshipArgs
   ): Promise<Fellowship> {
-    return await this.service.create({
+    return await this.service.createFellowship({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class FellowshipResolverBase {
     @graphql.Args() args: UpdateFellowshipArgs
   ): Promise<Fellowship | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateFellowship({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class FellowshipResolverBase {
     @graphql.Args() args: DeleteFellowshipArgs
   ): Promise<Fellowship | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteFellowship(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class FellowshipResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: Fellowship
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

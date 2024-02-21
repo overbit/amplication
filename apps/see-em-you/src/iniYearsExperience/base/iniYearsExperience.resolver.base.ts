@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIniYearsExperienceArgs } from "./CreateIniYearsExperienceArgs";
-import { UpdateIniYearsExperienceArgs } from "./UpdateIniYearsExperienceArgs";
-import { DeleteIniYearsExperienceArgs } from "./DeleteIniYearsExperienceArgs";
+import { IniYearsExperience } from "./IniYearsExperience";
 import { IniYearsExperienceCountArgs } from "./IniYearsExperienceCountArgs";
 import { IniYearsExperienceFindManyArgs } from "./IniYearsExperienceFindManyArgs";
 import { IniYearsExperienceFindUniqueArgs } from "./IniYearsExperienceFindUniqueArgs";
-import { IniYearsExperience } from "./IniYearsExperience";
+import { CreateIniYearsExperienceArgs } from "./CreateIniYearsExperienceArgs";
+import { UpdateIniYearsExperienceArgs } from "./UpdateIniYearsExperienceArgs";
+import { DeleteIniYearsExperienceArgs } from "./DeleteIniYearsExperienceArgs";
 import { IniYearsExperienceService } from "../iniYearsExperience.service";
 @graphql.Resolver(() => IniYearsExperience)
 export class IniYearsExperienceResolverBase {
@@ -38,14 +38,14 @@ export class IniYearsExperienceResolverBase {
   async iniYearsExperiences(
     @graphql.Args() args: IniYearsExperienceFindManyArgs
   ): Promise<IniYearsExperience[]> {
-    return this.service.findMany(args);
+    return this.service.iniYearsExperiences(args);
   }
 
   @graphql.Query(() => IniYearsExperience, { nullable: true })
   async iniYearsExperience(
     @graphql.Args() args: IniYearsExperienceFindUniqueArgs
   ): Promise<IniYearsExperience | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.iniYearsExperience(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class IniYearsExperienceResolverBase {
   async createIniYearsExperience(
     @graphql.Args() args: CreateIniYearsExperienceArgs
   ): Promise<IniYearsExperience> {
-    return await this.service.create({
+    return await this.service.createIniYearsExperience({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class IniYearsExperienceResolverBase {
     @graphql.Args() args: UpdateIniYearsExperienceArgs
   ): Promise<IniYearsExperience | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniYearsExperience({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class IniYearsExperienceResolverBase {
     @graphql.Args() args: DeleteIniYearsExperienceArgs
   ): Promise<IniYearsExperience | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIniYearsExperience(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

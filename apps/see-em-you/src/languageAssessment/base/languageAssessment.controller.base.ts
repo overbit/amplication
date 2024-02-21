@@ -18,33 +18,32 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LanguageAssessmentService } from "../languageAssessment.service";
 import { LanguageAssessmentCreateInput } from "./LanguageAssessmentCreateInput";
-import { LanguageAssessmentWhereInput } from "./LanguageAssessmentWhereInput";
-import { LanguageAssessmentWhereUniqueInput } from "./LanguageAssessmentWhereUniqueInput";
-import { LanguageAssessmentFindManyArgs } from "./LanguageAssessmentFindManyArgs";
-import { LanguageAssessmentUpdateInput } from "./LanguageAssessmentUpdateInput";
 import { LanguageAssessment } from "./LanguageAssessment";
+import { LanguageAssessmentFindManyArgs } from "./LanguageAssessmentFindManyArgs";
+import { LanguageAssessmentWhereUniqueInput } from "./LanguageAssessmentWhereUniqueInput";
+import { LanguageAssessmentUpdateInput } from "./LanguageAssessmentUpdateInput";
 
 export class LanguageAssessmentControllerBase {
   constructor(protected readonly service: LanguageAssessmentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LanguageAssessment })
-  async create(
+  async createLanguageAssessment(
     @common.Body() data: LanguageAssessmentCreateInput
   ): Promise<LanguageAssessment> {
-    return await this.service.create({
+    return await this.service.createLanguageAssessment({
       data: data,
       select: {
         applicationId: true,
-        competencyEvidence: true,
-        id: true,
         language: true,
         listening: true,
-        nativeSpeaker: true,
-        reading: true,
         speaking: true,
-        studyLevel: true,
+        reading: true,
         writing: true,
+        nativeSpeaker: true,
         yearsStudy: true,
+        studyLevel: true,
+        competencyEvidence: true,
+        id: true,
       },
     });
   }
@@ -52,24 +51,24 @@ export class LanguageAssessmentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LanguageAssessment] })
   @ApiNestedQuery(LanguageAssessmentFindManyArgs)
-  async findMany(
+  async languageAssessments(
     @common.Req() request: Request
   ): Promise<LanguageAssessment[]> {
     const args = plainToClass(LanguageAssessmentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.languageAssessments({
       ...args,
       select: {
         applicationId: true,
-        competencyEvidence: true,
-        id: true,
         language: true,
         listening: true,
-        nativeSpeaker: true,
-        reading: true,
         speaking: true,
-        studyLevel: true,
+        reading: true,
         writing: true,
+        nativeSpeaker: true,
         yearsStudy: true,
+        studyLevel: true,
+        competencyEvidence: true,
+        id: true,
       },
     });
   }
@@ -77,23 +76,23 @@ export class LanguageAssessmentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async languageAssessment(
     @common.Param() params: LanguageAssessmentWhereUniqueInput
   ): Promise<LanguageAssessment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.languageAssessment({
       where: params,
       select: {
         applicationId: true,
-        competencyEvidence: true,
-        id: true,
         language: true,
         listening: true,
-        nativeSpeaker: true,
-        reading: true,
         speaking: true,
-        studyLevel: true,
+        reading: true,
         writing: true,
+        nativeSpeaker: true,
         yearsStudy: true,
+        studyLevel: true,
+        competencyEvidence: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -107,26 +106,26 @@ export class LanguageAssessmentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLanguageAssessment(
     @common.Param() params: LanguageAssessmentWhereUniqueInput,
     @common.Body() data: LanguageAssessmentUpdateInput
   ): Promise<LanguageAssessment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLanguageAssessment({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          competencyEvidence: true,
-          id: true,
           language: true,
           listening: true,
-          nativeSpeaker: true,
-          reading: true,
           speaking: true,
-          studyLevel: true,
+          reading: true,
           writing: true,
+          nativeSpeaker: true,
           yearsStudy: true,
+          studyLevel: true,
+          competencyEvidence: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -142,24 +141,24 @@ export class LanguageAssessmentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLanguageAssessment(
     @common.Param() params: LanguageAssessmentWhereUniqueInput
   ): Promise<LanguageAssessment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLanguageAssessment({
         where: params,
         select: {
           applicationId: true,
-          competencyEvidence: true,
-          id: true,
           language: true,
           listening: true,
-          nativeSpeaker: true,
-          reading: true,
           speaking: true,
-          studyLevel: true,
+          reading: true,
           writing: true,
+          nativeSpeaker: true,
           yearsStudy: true,
+          studyLevel: true,
+          competencyEvidence: true,
+          id: true,
         },
       });
     } catch (error) {

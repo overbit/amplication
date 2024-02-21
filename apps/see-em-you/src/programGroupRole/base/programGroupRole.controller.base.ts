@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ProgramGroupRoleService } from "../programGroupRole.service";
 import { ProgramGroupRoleCreateInput } from "./ProgramGroupRoleCreateInput";
-import { ProgramGroupRoleWhereInput } from "./ProgramGroupRoleWhereInput";
-import { ProgramGroupRoleWhereUniqueInput } from "./ProgramGroupRoleWhereUniqueInput";
-import { ProgramGroupRoleFindManyArgs } from "./ProgramGroupRoleFindManyArgs";
-import { ProgramGroupRoleUpdateInput } from "./ProgramGroupRoleUpdateInput";
 import { ProgramGroupRole } from "./ProgramGroupRole";
+import { ProgramGroupRoleFindManyArgs } from "./ProgramGroupRoleFindManyArgs";
+import { ProgramGroupRoleWhereUniqueInput } from "./ProgramGroupRoleWhereUniqueInput";
+import { ProgramGroupRoleUpdateInput } from "./ProgramGroupRoleUpdateInput";
 
 export class ProgramGroupRoleControllerBase {
   constructor(protected readonly service: ProgramGroupRoleService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ProgramGroupRole })
-  async create(
+  async createProgramGroupRole(
     @common.Body() data: ProgramGroupRoleCreateInput
   ): Promise<ProgramGroupRole> {
-    return await this.service.create({
+    return await this.service.createProgramGroupRole({
       data: data,
       select: {
-        id: true,
         programGroupId: true,
-        roleId: true,
         usersId: true,
+        roleId: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class ProgramGroupRoleControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ProgramGroupRole] })
   @ApiNestedQuery(ProgramGroupRoleFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ProgramGroupRole[]> {
+  async programGroupRoles(
+    @common.Req() request: Request
+  ): Promise<ProgramGroupRole[]> {
     const args = plainToClass(ProgramGroupRoleFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.programGroupRoles({
       ...args,
       select: {
-        id: true,
         programGroupId: true,
-        roleId: true,
         usersId: true,
+        roleId: true,
+        id: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class ProgramGroupRoleControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ProgramGroupRole })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async programGroupRole(
     @common.Param() params: ProgramGroupRoleWhereUniqueInput
   ): Promise<ProgramGroupRole | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.programGroupRole({
       where: params,
       select: {
-        id: true,
         programGroupId: true,
-        roleId: true,
         usersId: true,
+        roleId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class ProgramGroupRoleControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ProgramGroupRole })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateProgramGroupRole(
     @common.Param() params: ProgramGroupRoleWhereUniqueInput,
     @common.Body() data: ProgramGroupRoleUpdateInput
   ): Promise<ProgramGroupRole | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramGroupRole({
         where: params,
         data: data,
         select: {
-          id: true,
           programGroupId: true,
-          roleId: true,
           usersId: true,
+          roleId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class ProgramGroupRoleControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ProgramGroupRole })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteProgramGroupRole(
     @common.Param() params: ProgramGroupRoleWhereUniqueInput
   ): Promise<ProgramGroupRole | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteProgramGroupRole({
         where: params,
         select: {
-          id: true,
           programGroupId: true,
-          roleId: true,
           usersId: true,
+          roleId: true,
+          id: true,
         },
       });
     } catch (error) {

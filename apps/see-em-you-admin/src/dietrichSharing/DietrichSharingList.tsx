@@ -13,9 +13,9 @@ export const DietrichSharingList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
         <TextField label="Sds" source="sds" />
         <TextField label="Tepper" source="tepper" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

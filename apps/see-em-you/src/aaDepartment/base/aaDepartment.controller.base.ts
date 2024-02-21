@@ -18,34 +18,39 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AaDepartmentService } from "../aaDepartment.service";
 import { AaDepartmentCreateInput } from "./AaDepartmentCreateInput";
-import { AaDepartmentWhereInput } from "./AaDepartmentWhereInput";
-import { AaDepartmentWhereUniqueInput } from "./AaDepartmentWhereUniqueInput";
-import { AaDepartmentFindManyArgs } from "./AaDepartmentFindManyArgs";
-import { AaDepartmentUpdateInput } from "./AaDepartmentUpdateInput";
 import { AaDepartment } from "./AaDepartment";
+import { AaDepartmentFindManyArgs } from "./AaDepartmentFindManyArgs";
+import { AaDepartmentWhereUniqueInput } from "./AaDepartmentWhereUniqueInput";
+import { AaDepartmentUpdateInput } from "./AaDepartmentUpdateInput";
 
 export class AaDepartmentControllerBase {
   constructor(protected readonly service: AaDepartmentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: AaDepartment })
-  async create(
+  async createAaDepartment(
     @common.Body() data: AaDepartmentCreateInput
   ): Promise<AaDepartment> {
-    return await this.service.create({
+    return await this.service.createAaDepartment({
       data: {
         ...data,
-
-        department: {
-          connect: data.department,
-        },
 
         period: data.period
           ? {
               connect: data.period,
             }
           : undefined,
+
+        department: {
+          connect: data.department,
+        },
       },
       select: {
+        period: {
+          select: {
+            id: true,
+          },
+        },
+
         department: {
           select: {
             id: true,
@@ -53,12 +58,6 @@ export class AaDepartmentControllerBase {
         },
 
         id: true,
-
-        period: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -66,11 +65,17 @@ export class AaDepartmentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [AaDepartment] })
   @ApiNestedQuery(AaDepartmentFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<AaDepartment[]> {
+  async aaDepartments(@common.Req() request: Request): Promise<AaDepartment[]> {
     const args = plainToClass(AaDepartmentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.aaDepartments({
       ...args,
       select: {
+        period: {
+          select: {
+            id: true,
+          },
+        },
+
         department: {
           select: {
             id: true,
@@ -78,12 +83,6 @@ export class AaDepartmentControllerBase {
         },
 
         id: true,
-
-        period: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -91,12 +90,18 @@ export class AaDepartmentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: AaDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async aaDepartment(
     @common.Param() params: AaDepartmentWhereUniqueInput
   ): Promise<AaDepartment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.aaDepartment({
       where: params,
       select: {
+        period: {
+          select: {
+            id: true,
+          },
+        },
+
         department: {
           select: {
             id: true,
@@ -104,12 +109,6 @@ export class AaDepartmentControllerBase {
         },
 
         id: true,
-
-        period: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (result === null) {
@@ -123,27 +122,33 @@ export class AaDepartmentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: AaDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAaDepartment(
     @common.Param() params: AaDepartmentWhereUniqueInput,
     @common.Body() data: AaDepartmentUpdateInput
   ): Promise<AaDepartment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAaDepartment({
         where: params,
         data: {
           ...data,
-
-          department: {
-            connect: data.department,
-          },
 
           period: data.period
             ? {
                 connect: data.period,
               }
             : undefined,
+
+          department: {
+            connect: data.department,
+          },
         },
         select: {
+          period: {
+            select: {
+              id: true,
+            },
+          },
+
           department: {
             select: {
               id: true,
@@ -151,12 +156,6 @@ export class AaDepartmentControllerBase {
           },
 
           id: true,
-
-          period: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -172,13 +171,19 @@ export class AaDepartmentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: AaDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAaDepartment(
     @common.Param() params: AaDepartmentWhereUniqueInput
   ): Promise<AaDepartment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAaDepartment({
         where: params,
         select: {
+          period: {
+            select: {
+              id: true,
+            },
+          },
+
           department: {
             select: {
               id: true,
@@ -186,12 +191,6 @@ export class AaDepartmentControllerBase {
           },
 
           id: true,
-
-          period: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {

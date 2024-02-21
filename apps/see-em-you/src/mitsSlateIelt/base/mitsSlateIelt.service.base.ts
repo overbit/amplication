@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateIelt } from "@prisma/client";
+import { Prisma, MitsSlateIelt as PrismaMitsSlateIelt } from "@prisma/client";
 
 export class MitsSlateIeltServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MitsSlateIeltServiceBase {
     return this.prisma.mitsSlateIelt.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateIeltFindManyArgs>(
+  async mitsSlateIelts<T extends Prisma.MitsSlateIeltFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateIeltFindManyArgs>
-  ): Promise<MitsSlateIelt[]> {
+  ): Promise<PrismaMitsSlateIelt[]> {
     return this.prisma.mitsSlateIelt.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateIeltFindUniqueArgs>(
+  async mitsSlateIelt<T extends Prisma.MitsSlateIeltFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateIeltFindUniqueArgs>
-  ): Promise<MitsSlateIelt | null> {
+  ): Promise<PrismaMitsSlateIelt | null> {
     return this.prisma.mitsSlateIelt.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateIeltCreateArgs>(
+  async createMitsSlateIelt<T extends Prisma.MitsSlateIeltCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateIeltCreateArgs>
-  ): Promise<MitsSlateIelt> {
+  ): Promise<PrismaMitsSlateIelt> {
     return this.prisma.mitsSlateIelt.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateIeltUpdateArgs>(
+  async updateMitsSlateIelt<T extends Prisma.MitsSlateIeltUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateIeltUpdateArgs>
-  ): Promise<MitsSlateIelt> {
+  ): Promise<PrismaMitsSlateIelt> {
     return this.prisma.mitsSlateIelt.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateIeltDeleteArgs>(
+  async deleteMitsSlateIelt<T extends Prisma.MitsSlateIeltDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateIeltDeleteArgs>
-  ): Promise<MitsSlateIelt> {
+  ): Promise<PrismaMitsSlateIelt> {
     return this.prisma.mitsSlateIelt.delete(args);
   }
 }

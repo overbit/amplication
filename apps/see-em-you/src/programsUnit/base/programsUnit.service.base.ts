@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ProgramsUnit } from "@prisma/client";
+import { Prisma, ProgramsUnit as PrismaProgramsUnit } from "@prisma/client";
 
 export class ProgramsUnitServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ProgramsUnitServiceBase {
     return this.prisma.programsUnit.count(args);
   }
 
-  async findMany<T extends Prisma.ProgramsUnitFindManyArgs>(
+  async programsUnits<T extends Prisma.ProgramsUnitFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramsUnitFindManyArgs>
-  ): Promise<ProgramsUnit[]> {
+  ): Promise<PrismaProgramsUnit[]> {
     return this.prisma.programsUnit.findMany(args);
   }
-  async findOne<T extends Prisma.ProgramsUnitFindUniqueArgs>(
+  async programsUnit<T extends Prisma.ProgramsUnitFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramsUnitFindUniqueArgs>
-  ): Promise<ProgramsUnit | null> {
+  ): Promise<PrismaProgramsUnit | null> {
     return this.prisma.programsUnit.findUnique(args);
   }
-  async create<T extends Prisma.ProgramsUnitCreateArgs>(
+  async createProgramsUnit<T extends Prisma.ProgramsUnitCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramsUnitCreateArgs>
-  ): Promise<ProgramsUnit> {
+  ): Promise<PrismaProgramsUnit> {
     return this.prisma.programsUnit.create<T>(args);
   }
-  async update<T extends Prisma.ProgramsUnitUpdateArgs>(
+  async updateProgramsUnit<T extends Prisma.ProgramsUnitUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramsUnitUpdateArgs>
-  ): Promise<ProgramsUnit> {
+  ): Promise<PrismaProgramsUnit> {
     return this.prisma.programsUnit.update<T>(args);
   }
-  async delete<T extends Prisma.ProgramsUnitDeleteArgs>(
+  async deleteProgramsUnit<T extends Prisma.ProgramsUnitDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramsUnitDeleteArgs>
-  ): Promise<ProgramsUnit> {
+  ): Promise<PrismaProgramsUnit> {
     return this.prisma.programsUnit.delete(args);
   }
 }

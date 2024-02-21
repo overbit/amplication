@@ -3,9 +3,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  TextInput,
   ReferenceInput,
   SelectInput,
-  TextInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -13,6 +13,8 @@ export const RissMcnairEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="Site" source="site" />
+        <TextInput label="Contact" source="contact" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -20,8 +22,6 @@ export const RissMcnairEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <TextInput label="Contact" source="contact" />
-        <TextInput label="Site" source="site" />
       </SimpleForm>
     </Edit>
   );

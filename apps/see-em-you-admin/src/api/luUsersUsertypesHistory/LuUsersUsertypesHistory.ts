@@ -1,7 +1,7 @@
 export type LuUsersUsertypesHistory = {
-  deleteTimestamp: Date;
-  deleteUsersId: number | null;
-  id: number;
   userId: number;
   usertypeId: number;
+  deleteUsersId: number | null;
+  deleteTimestamp: Date;
+  id: number;
 };

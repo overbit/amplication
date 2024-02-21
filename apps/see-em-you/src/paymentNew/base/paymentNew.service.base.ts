@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PaymentNew } from "@prisma/client";
+import { Prisma, PaymentNew as PrismaPaymentNew } from "@prisma/client";
 
 export class PaymentNewServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class PaymentNewServiceBase {
     return this.prisma.paymentNew.count(args);
   }
 
-  async findMany<T extends Prisma.PaymentNewFindManyArgs>(
+  async paymentNews<T extends Prisma.PaymentNewFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentNewFindManyArgs>
-  ): Promise<PaymentNew[]> {
+  ): Promise<PrismaPaymentNew[]> {
     return this.prisma.paymentNew.findMany(args);
   }
-  async findOne<T extends Prisma.PaymentNewFindUniqueArgs>(
+  async paymentNew<T extends Prisma.PaymentNewFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentNewFindUniqueArgs>
-  ): Promise<PaymentNew | null> {
+  ): Promise<PrismaPaymentNew | null> {
     return this.prisma.paymentNew.findUnique(args);
   }
-  async create<T extends Prisma.PaymentNewCreateArgs>(
+  async createPaymentNew<T extends Prisma.PaymentNewCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentNewCreateArgs>
-  ): Promise<PaymentNew> {
+  ): Promise<PrismaPaymentNew> {
     return this.prisma.paymentNew.create<T>(args);
   }
-  async update<T extends Prisma.PaymentNewUpdateArgs>(
+  async updatePaymentNew<T extends Prisma.PaymentNewUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentNewUpdateArgs>
-  ): Promise<PaymentNew> {
+  ): Promise<PrismaPaymentNew> {
     return this.prisma.paymentNew.update<T>(args);
   }
-  async delete<T extends Prisma.PaymentNewDeleteArgs>(
+  async deletePaymentNew<T extends Prisma.PaymentNewDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentNewDeleteArgs>
-  ): Promise<PaymentNew> {
+  ): Promise<PrismaPaymentNew> {
     return this.prisma.paymentNew.delete(args);
   }
 }

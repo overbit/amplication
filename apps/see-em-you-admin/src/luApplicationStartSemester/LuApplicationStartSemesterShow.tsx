@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
 
@@ -14,6 +14,8 @@ export const LuApplicationStartSemesterShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Semester" source="semester" />
+        <TextField label="Year" source="year" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -22,8 +24,6 @@ export const LuApplicationStartSemesterShow = (
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Id" source="id" />
-        <TextField label="Semester" source="semester" />
-        <TextField label="Year" source="year" />
       </SimpleShowLayout>
     </Show>
   );

@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewerPreferenceService } from "../reviewerPreference.service";
 import { ReviewerPreferenceCreateInput } from "./ReviewerPreferenceCreateInput";
-import { ReviewerPreferenceWhereInput } from "./ReviewerPreferenceWhereInput";
-import { ReviewerPreferenceWhereUniqueInput } from "./ReviewerPreferenceWhereUniqueInput";
-import { ReviewerPreferenceFindManyArgs } from "./ReviewerPreferenceFindManyArgs";
-import { ReviewerPreferenceUpdateInput } from "./ReviewerPreferenceUpdateInput";
 import { ReviewerPreference } from "./ReviewerPreference";
+import { ReviewerPreferenceFindManyArgs } from "./ReviewerPreferenceFindManyArgs";
+import { ReviewerPreferenceWhereUniqueInput } from "./ReviewerPreferenceWhereUniqueInput";
+import { ReviewerPreferenceUpdateInput } from "./ReviewerPreferenceUpdateInput";
 
 export class ReviewerPreferenceControllerBase {
   constructor(protected readonly service: ReviewerPreferenceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewerPreference })
-  async create(
+  async createReviewerPreference(
     @common.Body() data: ReviewerPreferenceCreateInput
   ): Promise<ReviewerPreference> {
-    return await this.service.create({
+    return await this.service.createReviewerPreference({
       data: data,
       select: {
-        id: true,
         viewMode: true,
+        id: true,
       },
     });
   }
@@ -43,15 +42,15 @@ export class ReviewerPreferenceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewerPreference] })
   @ApiNestedQuery(ReviewerPreferenceFindManyArgs)
-  async findMany(
+  async reviewerPreferences(
     @common.Req() request: Request
   ): Promise<ReviewerPreference[]> {
     const args = plainToClass(ReviewerPreferenceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.reviewerPreferences({
       ...args,
       select: {
-        id: true,
         viewMode: true,
+        id: true,
       },
     });
   }
@@ -59,14 +58,14 @@ export class ReviewerPreferenceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewerPreference })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewerPreference(
     @common.Param() params: ReviewerPreferenceWhereUniqueInput
   ): Promise<ReviewerPreference | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewerPreference({
       where: params,
       select: {
-        id: true,
         viewMode: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -80,17 +79,17 @@ export class ReviewerPreferenceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewerPreference })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewerPreference(
     @common.Param() params: ReviewerPreferenceWhereUniqueInput,
     @common.Body() data: ReviewerPreferenceUpdateInput
   ): Promise<ReviewerPreference | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewerPreference({
         where: params,
         data: data,
         select: {
-          id: true,
           viewMode: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -106,15 +105,15 @@ export class ReviewerPreferenceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewerPreference })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewerPreference(
     @common.Param() params: ReviewerPreferenceWhereUniqueInput
   ): Promise<ReviewerPreference | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewerPreference({
         where: params,
         select: {
-          id: true,
           viewMode: true,
+          id: true,
         },
       });
     } catch (error) {

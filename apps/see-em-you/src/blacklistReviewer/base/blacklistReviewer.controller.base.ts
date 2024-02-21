@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { BlacklistReviewerService } from "../blacklistReviewer.service";
 import { BlacklistReviewerCreateInput } from "./BlacklistReviewerCreateInput";
-import { BlacklistReviewerWhereInput } from "./BlacklistReviewerWhereInput";
-import { BlacklistReviewerWhereUniqueInput } from "./BlacklistReviewerWhereUniqueInput";
-import { BlacklistReviewerFindManyArgs } from "./BlacklistReviewerFindManyArgs";
-import { BlacklistReviewerUpdateInput } from "./BlacklistReviewerUpdateInput";
 import { BlacklistReviewer } from "./BlacklistReviewer";
+import { BlacklistReviewerFindManyArgs } from "./BlacklistReviewerFindManyArgs";
+import { BlacklistReviewerWhereUniqueInput } from "./BlacklistReviewerWhereUniqueInput";
+import { BlacklistReviewerUpdateInput } from "./BlacklistReviewerUpdateInput";
 
 export class BlacklistReviewerControllerBase {
   constructor(protected readonly service: BlacklistReviewerService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: BlacklistReviewer })
-  async create(
+  async createBlacklistReviewer(
     @common.Body() data: BlacklistReviewerCreateInput
   ): Promise<BlacklistReviewer> {
-    return await this.service.create({
+    return await this.service.createBlacklistReviewer({
       data: data,
       select: {
         appId: true,
+        reviewerId: true,
         deny: true,
         id: true,
-        reviewerId: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class BlacklistReviewerControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [BlacklistReviewer] })
   @ApiNestedQuery(BlacklistReviewerFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<BlacklistReviewer[]> {
+  async blacklistReviewers(
+    @common.Req() request: Request
+  ): Promise<BlacklistReviewer[]> {
     const args = plainToClass(BlacklistReviewerFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.blacklistReviewers({
       ...args,
       select: {
         appId: true,
+        reviewerId: true,
         deny: true,
         id: true,
-        reviewerId: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class BlacklistReviewerControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: BlacklistReviewer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async blacklistReviewer(
     @common.Param() params: BlacklistReviewerWhereUniqueInput
   ): Promise<BlacklistReviewer | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.blacklistReviewer({
       where: params,
       select: {
         appId: true,
+        reviewerId: true,
         deny: true,
         id: true,
-        reviewerId: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class BlacklistReviewerControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: BlacklistReviewer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateBlacklistReviewer(
     @common.Param() params: BlacklistReviewerWhereUniqueInput,
     @common.Body() data: BlacklistReviewerUpdateInput
   ): Promise<BlacklistReviewer | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateBlacklistReviewer({
         where: params,
         data: data,
         select: {
           appId: true,
+          reviewerId: true,
           deny: true,
           id: true,
-          reviewerId: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class BlacklistReviewerControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: BlacklistReviewer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteBlacklistReviewer(
     @common.Param() params: BlacklistReviewerWhereUniqueInput
   ): Promise<BlacklistReviewer | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteBlacklistReviewer({
         where: params,
         select: {
           appId: true,
+          reviewerId: true,
           deny: true,
           id: true,
-          reviewerId: true,
         },
       });
     } catch (error) {

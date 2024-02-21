@@ -28,7 +28,7 @@ class ApplicationContentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  desired?: SortOrder;
+  id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class ApplicationContentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  sectionIdentifier?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class ApplicationContentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  required?: SortOrder;
+  desired?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +72,7 @@ class ApplicationContentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  sectionIdentifier?: SortOrder;
+  required?: SortOrder;
 }
 
 export { ApplicationContentOrderByInput as ApplicationContentOrderByInput };

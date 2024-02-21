@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, IniYearsExperience } from "@prisma/client";
+import {
+  Prisma,
+  IniYearsExperience as PrismaIniYearsExperience,
+} from "@prisma/client";
 
 export class IniYearsExperienceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class IniYearsExperienceServiceBase {
     return this.prisma.iniYearsExperience.count(args);
   }
 
-  async findMany<T extends Prisma.IniYearsExperienceFindManyArgs>(
+  async iniYearsExperiences<T extends Prisma.IniYearsExperienceFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniYearsExperienceFindManyArgs>
-  ): Promise<IniYearsExperience[]> {
+  ): Promise<PrismaIniYearsExperience[]> {
     return this.prisma.iniYearsExperience.findMany(args);
   }
-  async findOne<T extends Prisma.IniYearsExperienceFindUniqueArgs>(
+  async iniYearsExperience<T extends Prisma.IniYearsExperienceFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniYearsExperienceFindUniqueArgs>
-  ): Promise<IniYearsExperience | null> {
+  ): Promise<PrismaIniYearsExperience | null> {
     return this.prisma.iniYearsExperience.findUnique(args);
   }
-  async create<T extends Prisma.IniYearsExperienceCreateArgs>(
+  async createIniYearsExperience<T extends Prisma.IniYearsExperienceCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniYearsExperienceCreateArgs>
-  ): Promise<IniYearsExperience> {
+  ): Promise<PrismaIniYearsExperience> {
     return this.prisma.iniYearsExperience.create<T>(args);
   }
-  async update<T extends Prisma.IniYearsExperienceUpdateArgs>(
+  async updateIniYearsExperience<T extends Prisma.IniYearsExperienceUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniYearsExperienceUpdateArgs>
-  ): Promise<IniYearsExperience> {
+  ): Promise<PrismaIniYearsExperience> {
     return this.prisma.iniYearsExperience.update<T>(args);
   }
-  async delete<T extends Prisma.IniYearsExperienceDeleteArgs>(
+  async deleteIniYearsExperience<T extends Prisma.IniYearsExperienceDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniYearsExperienceDeleteArgs>
-  ): Promise<IniYearsExperience> {
+  ): Promise<PrismaIniYearsExperience> {
     return this.prisma.iniYearsExperience.delete(args);
   }
 }

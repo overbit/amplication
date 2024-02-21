@@ -21,7 +21,7 @@ class LuReviewInterestCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  code!: number;
+  reviewId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class LuReviewInterestCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  reviewId!: number;
+  code!: number;
 }
 
 export { LuReviewInterestCreateInput as LuReviewInterestCreateInput };

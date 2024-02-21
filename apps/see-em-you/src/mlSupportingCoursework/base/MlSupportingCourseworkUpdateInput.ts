@@ -11,23 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class MlSupportingCourseworkUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput;
+  introCourseNum?: string;
 
   @ApiProperty({
     required: false,
@@ -38,7 +37,18 @@ class MlSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  introCourse2Grade?: string;
+  introCourseSemester?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  introCourseGrade?: string;
 
   @ApiProperty({
     required: false,
@@ -71,40 +81,7 @@ class MlSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  introCourseGrade?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  introCourseNum?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  introCourseSemester?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  ml1CourseGrade?: string;
+  introCourse2Grade?: string;
 
   @ApiProperty({
     required: false,
@@ -137,7 +114,7 @@ class MlSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  ml2CourseGrade?: string;
+  ml1CourseGrade?: string;
 
   @ApiProperty({
     required: false,
@@ -160,6 +137,29 @@ class MlSupportingCourseworkUpdateInput {
     nullable: true,
   })
   ml2CourseSemester?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  ml2CourseGrade?: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationWhereUniqueInput, {
+    nullable: true,
+  })
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { MlSupportingCourseworkUpdateInput as MlSupportingCourseworkUpdateInput };

@@ -24,7 +24,7 @@ class CommitteeUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  groupId?: number;
+  userId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class CommitteeUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  userId?: number;
+  groupId?: number;
 }
 
 export { CommitteeUpdateInput as CommitteeUpdateInput };

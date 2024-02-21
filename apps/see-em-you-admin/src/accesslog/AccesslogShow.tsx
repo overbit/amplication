@@ -11,20 +11,20 @@ export const AccesslogShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Activity" source="activity" />
+        <TextField label="Id" source="id" />
+        <TextField label="Users Id" source="usersId" />
+        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Usertype Id" source="usertypeId" />
         <TextField label="Application Id" source="applicationId" />
         <TextField label="Client" source="client" />
-        <TextField label="Domain" source="domain" />
         <DateField source="eventtime" label="Eventtime" />
-        <TextField label="Id" source="id" />
-        <TextField label="Lastsrv" source="lastsrv" />
-        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
-        <TextField label="Ra" source="ra" />
+        <TextField label="Activity" source="activity" />
+        <TextField label="Domain" source="domain" />
         <TextField label="Referer" source="referer" />
-        <TextField label="Sa" source="sa" />
-        <TextField label="Users Id" source="usersId" />
-        <TextField label="Usertype Id" source="usertypeId" />
         <TextField label="Xforward" source="xforward" />
+        <TextField label="Sa" source="sa" />
+        <TextField label="Ra" source="ra" />
+        <TextField label="Lastsrv" source="lastsrv" />
       </SimpleShowLayout>
     </Show>
   );

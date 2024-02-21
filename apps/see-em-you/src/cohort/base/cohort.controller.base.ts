@@ -18,18 +18,17 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CohortService } from "../cohort.service";
 import { CohortCreateInput } from "./CohortCreateInput";
-import { CohortWhereInput } from "./CohortWhereInput";
-import { CohortWhereUniqueInput } from "./CohortWhereUniqueInput";
-import { CohortFindManyArgs } from "./CohortFindManyArgs";
-import { CohortUpdateInput } from "./CohortUpdateInput";
 import { Cohort } from "./Cohort";
+import { CohortFindManyArgs } from "./CohortFindManyArgs";
+import { CohortWhereUniqueInput } from "./CohortWhereUniqueInput";
+import { CohortUpdateInput } from "./CohortUpdateInput";
 
 export class CohortControllerBase {
   constructor(protected readonly service: CohortService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Cohort })
-  async create(@common.Body() data: CohortCreateInput): Promise<Cohort> {
-    return await this.service.create({
+  async createCohort(@common.Body() data: CohortCreateInput): Promise<Cohort> {
+    return await this.service.createCohort({
       data: {
         ...data,
 
@@ -40,9 +39,9 @@ export class CohortControllerBase {
           : undefined,
       },
       select: {
-        closed: true,
         cohortId: true,
-        id: true,
+        startDate: true,
+        closed: true,
 
         period: {
           select: {
@@ -50,7 +49,7 @@ export class CohortControllerBase {
           },
         },
 
-        startDate: true,
+        id: true,
       },
     });
   }
@@ -58,14 +57,14 @@ export class CohortControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Cohort] })
   @ApiNestedQuery(CohortFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Cohort[]> {
+  async cohorts(@common.Req() request: Request): Promise<Cohort[]> {
     const args = plainToClass(CohortFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.cohorts({
       ...args,
       select: {
-        closed: true,
         cohortId: true,
-        id: true,
+        startDate: true,
+        closed: true,
 
         period: {
           select: {
@@ -73,7 +72,7 @@ export class CohortControllerBase {
           },
         },
 
-        startDate: true,
+        id: true,
       },
     });
   }
@@ -81,15 +80,15 @@ export class CohortControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Cohort })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async cohort(
     @common.Param() params: CohortWhereUniqueInput
   ): Promise<Cohort | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.cohort({
       where: params,
       select: {
-        closed: true,
         cohortId: true,
-        id: true,
+        startDate: true,
+        closed: true,
 
         period: {
           select: {
@@ -97,7 +96,7 @@ export class CohortControllerBase {
           },
         },
 
-        startDate: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -111,12 +110,12 @@ export class CohortControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Cohort })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCohort(
     @common.Param() params: CohortWhereUniqueInput,
     @common.Body() data: CohortUpdateInput
   ): Promise<Cohort | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCohort({
         where: params,
         data: {
           ...data,
@@ -128,9 +127,9 @@ export class CohortControllerBase {
             : undefined,
         },
         select: {
-          closed: true,
           cohortId: true,
-          id: true,
+          startDate: true,
+          closed: true,
 
           period: {
             select: {
@@ -138,7 +137,7 @@ export class CohortControllerBase {
             },
           },
 
-          startDate: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -154,16 +153,16 @@ export class CohortControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Cohort })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCohort(
     @common.Param() params: CohortWhereUniqueInput
   ): Promise<Cohort | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCohort({
         where: params,
         select: {
-          closed: true,
           cohortId: true,
-          id: true,
+          startDate: true,
+          closed: true,
 
           period: {
             select: {
@@ -171,7 +170,7 @@ export class CohortControllerBase {
             },
           },
 
-          startDate: true,
+          id: true,
         },
       });
     } catch (error) {

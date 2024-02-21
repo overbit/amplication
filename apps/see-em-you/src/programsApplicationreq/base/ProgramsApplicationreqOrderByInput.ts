@@ -28,6 +28,17 @@ class ProgramsApplicationreqOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  programs_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   applicationreqs_id?: SortOrder;
 
   @ApiProperty({
@@ -40,17 +51,6 @@ class ProgramsApplicationreqOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  programs_id?: SortOrder;
 }
 
 export { ProgramsApplicationreqOrderByInput as ProgramsApplicationreqOrderByInput };

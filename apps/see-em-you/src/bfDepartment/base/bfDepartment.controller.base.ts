@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { BfDepartmentService } from "../bfDepartment.service";
 import { BfDepartmentCreateInput } from "./BfDepartmentCreateInput";
-import { BfDepartmentWhereInput } from "./BfDepartmentWhereInput";
-import { BfDepartmentWhereUniqueInput } from "./BfDepartmentWhereUniqueInput";
-import { BfDepartmentFindManyArgs } from "./BfDepartmentFindManyArgs";
-import { BfDepartmentUpdateInput } from "./BfDepartmentUpdateInput";
 import { BfDepartment } from "./BfDepartment";
+import { BfDepartmentFindManyArgs } from "./BfDepartmentFindManyArgs";
+import { BfDepartmentWhereUniqueInput } from "./BfDepartmentWhereUniqueInput";
+import { BfDepartmentUpdateInput } from "./BfDepartmentUpdateInput";
 
 export class BfDepartmentControllerBase {
   constructor(protected readonly service: BfDepartmentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: BfDepartment })
-  async create(
+  async createBfDepartment(
     @common.Body() data: BfDepartmentCreateInput
   ): Promise<BfDepartment> {
-    return await this.service.create({
+    return await this.service.createBfDepartment({
       data: data,
       select: {
         bfDepartment: true,
@@ -44,9 +43,9 @@ export class BfDepartmentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [BfDepartment] })
   @ApiNestedQuery(BfDepartmentFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<BfDepartment[]> {
+  async bfDepartments(@common.Req() request: Request): Promise<BfDepartment[]> {
     const args = plainToClass(BfDepartmentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.bfDepartments({
       ...args,
       select: {
         bfDepartment: true,
@@ -59,10 +58,10 @@ export class BfDepartmentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: BfDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async bfDepartment(
     @common.Param() params: BfDepartmentWhereUniqueInput
   ): Promise<BfDepartment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.bfDepartment({
       where: params,
       select: {
         bfDepartment: true,
@@ -81,12 +80,12 @@ export class BfDepartmentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: BfDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateBfDepartment(
     @common.Param() params: BfDepartmentWhereUniqueInput,
     @common.Body() data: BfDepartmentUpdateInput
   ): Promise<BfDepartment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateBfDepartment({
         where: params,
         data: data,
         select: {
@@ -108,11 +107,11 @@ export class BfDepartmentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: BfDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteBfDepartment(
     @common.Param() params: BfDepartmentWhereUniqueInput
   ): Promise<BfDepartment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteBfDepartment({
         where: params,
         select: {
           bfDepartment: true,

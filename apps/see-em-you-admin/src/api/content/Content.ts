@@ -1,10 +1,10 @@
 export type Content = {
+  name: string;
   content: string;
   contenttypeId: number;
-  departmentId: number;
   domainId: number | null;
-  id: number;
-  modifiedby: number;
   modifieddate: Date;
-  name: string;
+  modifiedby: number;
+  departmentId: number;
+  id: number;
 };

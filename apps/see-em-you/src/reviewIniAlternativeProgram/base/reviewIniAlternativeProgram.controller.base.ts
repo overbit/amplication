@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewIniAlternativeProgramService } from "../reviewIniAlternativeProgram.service";
 import { ReviewIniAlternativeProgramCreateInput } from "./ReviewIniAlternativeProgramCreateInput";
-import { ReviewIniAlternativeProgramWhereInput } from "./ReviewIniAlternativeProgramWhereInput";
-import { ReviewIniAlternativeProgramWhereUniqueInput } from "./ReviewIniAlternativeProgramWhereUniqueInput";
-import { ReviewIniAlternativeProgramFindManyArgs } from "./ReviewIniAlternativeProgramFindManyArgs";
-import { ReviewIniAlternativeProgramUpdateInput } from "./ReviewIniAlternativeProgramUpdateInput";
 import { ReviewIniAlternativeProgram } from "./ReviewIniAlternativeProgram";
+import { ReviewIniAlternativeProgramFindManyArgs } from "./ReviewIniAlternativeProgramFindManyArgs";
+import { ReviewIniAlternativeProgramWhereUniqueInput } from "./ReviewIniAlternativeProgramWhereUniqueInput";
+import { ReviewIniAlternativeProgramUpdateInput } from "./ReviewIniAlternativeProgramUpdateInput";
 
 export class ReviewIniAlternativeProgramControllerBase {
   constructor(protected readonly service: ReviewIniAlternativeProgramService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewIniAlternativeProgram })
-  async create(
+  async createReviewIniAlternativeProgram(
     @common.Body() data: ReviewIniAlternativeProgramCreateInput
   ): Promise<ReviewIniAlternativeProgram> {
-    return await this.service.create({
+    return await this.service.createReviewIniAlternativeProgram({
       data: data,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -43,18 +42,18 @@ export class ReviewIniAlternativeProgramControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewIniAlternativeProgram] })
   @ApiNestedQuery(ReviewIniAlternativeProgramFindManyArgs)
-  async findMany(
+  async reviewIniAlternativePrograms(
     @common.Req() request: Request
   ): Promise<ReviewIniAlternativeProgram[]> {
     const args = plainToClass(
       ReviewIniAlternativeProgramFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.reviewIniAlternativePrograms({
       ...args,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -62,14 +61,14 @@ export class ReviewIniAlternativeProgramControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniAlternativeProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewIniAlternativeProgram(
     @common.Param() params: ReviewIniAlternativeProgramWhereUniqueInput
   ): Promise<ReviewIniAlternativeProgram | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewIniAlternativeProgram({
       where: params,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -83,17 +82,17 @@ export class ReviewIniAlternativeProgramControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniAlternativeProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewIniAlternativeProgram(
     @common.Param() params: ReviewIniAlternativeProgramWhereUniqueInput,
     @common.Body() data: ReviewIniAlternativeProgramUpdateInput
   ): Promise<ReviewIniAlternativeProgram | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIniAlternativeProgram({
         where: params,
         data: data,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -109,15 +108,15 @@ export class ReviewIniAlternativeProgramControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniAlternativeProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewIniAlternativeProgram(
     @common.Param() params: ReviewIniAlternativeProgramWhereUniqueInput
   ): Promise<ReviewIniAlternativeProgram | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewIniAlternativeProgram({
         where: params,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {

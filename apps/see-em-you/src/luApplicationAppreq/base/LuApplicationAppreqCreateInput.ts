@@ -11,20 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsBoolean, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsBoolean, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class LuApplicationAppreqCreateInput {
   @ApiProperty({
     required: true,
-    type: () => ApplicationWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
+  @IsInt()
+  @Field(() => Number)
+  reqId!: number;
 
   @ApiProperty({
     required: true,
@@ -36,11 +35,12 @@ class LuApplicationAppreqCreateInput {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsInt()
-  @Field(() => Number)
-  reqId!: number;
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { LuApplicationAppreqCreateInput as LuApplicationAppreqCreateInput };

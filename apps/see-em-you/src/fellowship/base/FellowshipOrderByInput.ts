@@ -28,6 +28,17 @@ class FellowshipOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  name?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   amount?: SortOrder;
 
   @ApiProperty({
@@ -39,7 +50,7 @@ class FellowshipOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  application_id?: SortOrder;
+  status?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,17 +83,6 @@ class FellowshipOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  datafileId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   duration?: SortOrder;
 
   @ApiProperty({
@@ -94,18 +94,7 @@ class FellowshipOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  name?: SortOrder;
+  datafileId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -127,7 +116,18 @@ class FellowshipOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  status?: SortOrder;
+  application_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { FellowshipOrderByInput as FellowshipOrderByInput };

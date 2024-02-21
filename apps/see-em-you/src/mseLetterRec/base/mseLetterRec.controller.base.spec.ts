@@ -18,50 +18,50 @@ import { MseLetterRecService } from "../mseLetterRec.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  algortihms: 42,
   applicationId: 42,
-  dataStructures: 42,
-  discrete: 42,
-  id: "exampleId",
-  java: 42,
   reviewerId: 42,
+  java: 42,
+  discrete: 42,
+  algortihms: 42,
+  dataStructures: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  algortihms: 42,
   applicationId: 42,
-  dataStructures: 42,
-  discrete: 42,
-  id: "exampleId",
-  java: 42,
   reviewerId: 42,
+  java: 42,
+  discrete: 42,
+  algortihms: 42,
+  dataStructures: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    algortihms: 42,
     applicationId: 42,
-    dataStructures: 42,
-    discrete: 42,
-    id: "exampleId",
-    java: 42,
     reviewerId: 42,
+    java: 42,
+    discrete: 42,
+    algortihms: 42,
+    dataStructures: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  algortihms: 42,
   applicationId: 42,
-  dataStructures: 42,
-  discrete: 42,
-  id: "exampleId",
-  java: 42,
   reviewerId: 42,
+  java: 42,
+  discrete: 42,
+  algortihms: 42,
+  dataStructures: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createMseLetterRec() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mseLetterRecs: () => FIND_MANY_RESULT,
+  mseLetterRec: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

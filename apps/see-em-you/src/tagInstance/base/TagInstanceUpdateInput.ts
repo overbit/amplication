@@ -25,7 +25,7 @@ class TagInstanceUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  department?: number | null;
+  tagId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -37,6 +37,17 @@ class TagInstanceUpdateInput {
     nullable: true,
   })
   owner?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  department?: number | null;
 
   @ApiProperty({
     required: false,
@@ -59,17 +70,6 @@ class TagInstanceUpdateInput {
     nullable: true,
   })
   status?: "open" | "closed" | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  tagId?: number | null;
 }
 
 export { TagInstanceUpdateInput as TagInstanceUpdateInput };

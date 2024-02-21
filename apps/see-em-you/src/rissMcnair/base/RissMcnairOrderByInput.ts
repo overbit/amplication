@@ -28,7 +28,7 @@ class RissMcnairOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  appId?: SortOrder;
+  site?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class RissMcnairOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  appId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class RissMcnairOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  site?: SortOrder;
+  id?: SortOrder;
 }
 
 export { RissMcnairOrderByInput as RissMcnairOrderByInput };

@@ -11,29 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
-import { ValidateNested, IsInt, IsDate, IsString } from "class-validator";
+import { IsDate, IsString, ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
+import { Application } from "../../application/base/Application";
 import { User } from "../../user/base/User";
 
 @ObjectType()
 class ApplicationAdminNote {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
   @ApiProperty({
     required: true,
   })
@@ -52,11 +36,27 @@ class ApplicationAdminNote {
 
   @ApiProperty({
     required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
     type: () => User,
   })
   @ValidateNested()
   @Type(() => User)
   users?: User;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { ApplicationAdminNote as ApplicationAdminNote };

@@ -11,11 +11,11 @@ export const WaiverApplicationShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Application Id" source="applicationId" />
-        <DateField source="createDate" label="Create Date" />
-        <TextField label="Datafile Id" source="datafileId" />
         <TextField label="Id" source="id" />
+        <TextField label="Application Id" source="applicationId" />
         <TextField label="Org Id" source="orgId" />
+        <TextField label="Datafile Id" source="datafileId" />
+        <DateField source="createDate" label="Create Date" />
         <DateField source="updateDate" label="Update Date" />
       </SimpleShowLayout>
     </Show>

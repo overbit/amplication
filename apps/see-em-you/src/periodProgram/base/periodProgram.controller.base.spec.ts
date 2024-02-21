@@ -18,34 +18,34 @@ import { PeriodProgramService } from "../periodProgram.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
   periodId: 42,
   unitId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
   periodId: 42,
   unitId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
     periodId: 42,
     unitId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
   periodId: 42,
   unitId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createPeriodProgram() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  periodPrograms: () => FIND_MANY_RESULT,
+  periodProgram: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

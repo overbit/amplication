@@ -14,9 +14,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
   IsOptional,
-  ValidateNested,
-  IsBoolean,
   IsString,
+  IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { MhciPrereqsCourse } from "../../mhciPrereqsCourse/base/MhciPrereqsCourse";
 import { Type } from "class-transformer";
@@ -33,30 +33,6 @@ class MhciPrereqsCourseDatafile {
     nullable: true,
   })
   datafileinfoId!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: () => MhciPrereqsCourse,
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereqsCourse)
-  mhciPrereqsCourses?: MhciPrereqsCourse;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  newFileUploaded!: boolean;
 
   @ApiProperty({
     required: false,
@@ -76,6 +52,30 @@ class MhciPrereqsCourseDatafile {
   @IsBoolean()
   @Field(() => Boolean)
   submittedToReviewer!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  newFileUploaded!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: () => MhciPrereqsCourse,
+  })
+  @ValidateNested()
+  @Type(() => MhciPrereqsCourse)
+  mhciPrereqsCourses?: MhciPrereqsCourse;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MhciPrereqsCourseDatafile as MhciPrereqsCourseDatafile };

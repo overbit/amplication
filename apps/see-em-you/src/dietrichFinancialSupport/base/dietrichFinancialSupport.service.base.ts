@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DietrichFinancialSupport } from "@prisma/client";
+import {
+  Prisma,
+  DietrichFinancialSupport as PrismaDietrichFinancialSupport,
+} from "@prisma/client";
 
 export class DietrichFinancialSupportServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class DietrichFinancialSupportServiceBase {
     return this.prisma.dietrichFinancialSupport.count(args);
   }
 
-  async findMany<T extends Prisma.DietrichFinancialSupportFindManyArgs>(
+  async dietrichFinancialSupports<
+    T extends Prisma.DietrichFinancialSupportFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DietrichFinancialSupportFindManyArgs>
-  ): Promise<DietrichFinancialSupport[]> {
+  ): Promise<PrismaDietrichFinancialSupport[]> {
     return this.prisma.dietrichFinancialSupport.findMany(args);
   }
-  async findOne<T extends Prisma.DietrichFinancialSupportFindUniqueArgs>(
+  async dietrichFinancialSupport<
+    T extends Prisma.DietrichFinancialSupportFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DietrichFinancialSupportFindUniqueArgs>
-  ): Promise<DietrichFinancialSupport | null> {
+  ): Promise<PrismaDietrichFinancialSupport | null> {
     return this.prisma.dietrichFinancialSupport.findUnique(args);
   }
-  async create<T extends Prisma.DietrichFinancialSupportCreateArgs>(
+  async createDietrichFinancialSupport<
+    T extends Prisma.DietrichFinancialSupportCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DietrichFinancialSupportCreateArgs>
-  ): Promise<DietrichFinancialSupport> {
+  ): Promise<PrismaDietrichFinancialSupport> {
     return this.prisma.dietrichFinancialSupport.create<T>(args);
   }
-  async update<T extends Prisma.DietrichFinancialSupportUpdateArgs>(
+  async updateDietrichFinancialSupport<
+    T extends Prisma.DietrichFinancialSupportUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DietrichFinancialSupportUpdateArgs>
-  ): Promise<DietrichFinancialSupport> {
+  ): Promise<PrismaDietrichFinancialSupport> {
     return this.prisma.dietrichFinancialSupport.update<T>(args);
   }
-  async delete<T extends Prisma.DietrichFinancialSupportDeleteArgs>(
+  async deleteDietrichFinancialSupport<
+    T extends Prisma.DietrichFinancialSupportDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DietrichFinancialSupportDeleteArgs>
-  ): Promise<DietrichFinancialSupport> {
+  ): Promise<PrismaDietrichFinancialSupport> {
     return this.prisma.dietrichFinancialSupport.delete(args);
   }
 }

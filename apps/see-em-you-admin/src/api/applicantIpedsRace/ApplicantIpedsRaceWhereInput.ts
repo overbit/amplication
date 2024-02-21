@@ -1,1 +1,5 @@
-export type ApplicantIpedsRaceWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type ApplicantIpedsRaceWhereInput = {
+  id?: StringFilter;
+};

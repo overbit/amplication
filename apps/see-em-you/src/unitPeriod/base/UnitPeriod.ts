@@ -29,7 +29,7 @@ class UnitPeriod {
   })
   @IsInt()
   @Field(() => Number)
-  periodId!: number;
+  unitId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class UnitPeriod {
   })
   @IsInt()
   @Field(() => Number)
-  unitId!: number;
+  periodId!: number;
 }
 
 export { UnitPeriod as UnitPeriod };

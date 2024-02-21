@@ -1,7 +1,7 @@
 import { MhciSlateGre as TMhciSlateGre } from "../api/mhciSlateGre/MhciSlateGre";
 
-export const MHCISLATEGRE_TITLE_FIELD = "first";
+export const MHCISLATEGRE_TITLE_FIELD = "prefix";
 
 export const MhciSlateGreTitle = (record: TMhciSlateGre): string => {
-  return record.first?.toString() || String(record.id);
+  return record.prefix?.toString() || String(record.id);
 };

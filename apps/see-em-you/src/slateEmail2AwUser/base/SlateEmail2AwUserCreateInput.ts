@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { IsString, IsOptional, IsInt } from "class-validator";
 
 @InputType()
 class SlateEmail2AwUserCreateInput {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  awLuuUserId?: number | null;
-
   @ApiProperty({
     required: false,
     type: String,
@@ -36,6 +25,17 @@ class SlateEmail2AwUserCreateInput {
     nullable: true,
   })
   slateEmail?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  awLuuUserId?: number | null;
 }
 
 export { SlateEmail2AwUserCreateInput as SlateEmail2AwUserCreateInput };

@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqsReviewerService } from "../mhciPrereqsReviewer.service";
 import { MhciPrereqsReviewerCreateInput } from "./MhciPrereqsReviewerCreateInput";
-import { MhciPrereqsReviewerWhereInput } from "./MhciPrereqsReviewerWhereInput";
-import { MhciPrereqsReviewerWhereUniqueInput } from "./MhciPrereqsReviewerWhereUniqueInput";
-import { MhciPrereqsReviewerFindManyArgs } from "./MhciPrereqsReviewerFindManyArgs";
-import { MhciPrereqsReviewerUpdateInput } from "./MhciPrereqsReviewerUpdateInput";
 import { MhciPrereqsReviewer } from "./MhciPrereqsReviewer";
+import { MhciPrereqsReviewerFindManyArgs } from "./MhciPrereqsReviewerFindManyArgs";
+import { MhciPrereqsReviewerWhereUniqueInput } from "./MhciPrereqsReviewerWhereUniqueInput";
+import { MhciPrereqsReviewerUpdateInput } from "./MhciPrereqsReviewerUpdateInput";
 
 export class MhciPrereqsReviewerControllerBase {
   constructor(protected readonly service: MhciPrereqsReviewerService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereqsReviewer })
-  async create(
+  async createMhciPrereqsReviewer(
     @common.Body() data: MhciPrereqsReviewerCreateInput
   ): Promise<MhciPrereqsReviewer> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsReviewer({
       data: data,
       select: {
+        reviewerLuuId: true,
+        prereqType: true,
+        placeoutPeriodId: true,
         emailNotification: true,
         id: true,
-        placeoutPeriodId: true,
-        prereqType: true,
-        reviewerLuuId: true,
       },
     });
   }
@@ -46,18 +45,18 @@ export class MhciPrereqsReviewerControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereqsReviewer] })
   @ApiNestedQuery(MhciPrereqsReviewerFindManyArgs)
-  async findMany(
+  async mhciPrereqsReviewers(
     @common.Req() request: Request
   ): Promise<MhciPrereqsReviewer[]> {
     const args = plainToClass(MhciPrereqsReviewerFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciPrereqsReviewers({
       ...args,
       select: {
+        reviewerLuuId: true,
+        prereqType: true,
+        placeoutPeriodId: true,
         emailNotification: true,
         id: true,
-        placeoutPeriodId: true,
-        prereqType: true,
-        reviewerLuuId: true,
       },
     });
   }
@@ -65,17 +64,17 @@ export class MhciPrereqsReviewerControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsReviewer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereqsReviewer(
     @common.Param() params: MhciPrereqsReviewerWhereUniqueInput
   ): Promise<MhciPrereqsReviewer | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereqsReviewer({
       where: params,
       select: {
+        reviewerLuuId: true,
+        prereqType: true,
+        placeoutPeriodId: true,
         emailNotification: true,
         id: true,
-        placeoutPeriodId: true,
-        prereqType: true,
-        reviewerLuuId: true,
       },
     });
     if (result === null) {
@@ -89,20 +88,20 @@ export class MhciPrereqsReviewerControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsReviewer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereqsReviewer(
     @common.Param() params: MhciPrereqsReviewerWhereUniqueInput,
     @common.Body() data: MhciPrereqsReviewerUpdateInput
   ): Promise<MhciPrereqsReviewer | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsReviewer({
         where: params,
         data: data,
         select: {
+          reviewerLuuId: true,
+          prereqType: true,
+          placeoutPeriodId: true,
           emailNotification: true,
           id: true,
-          placeoutPeriodId: true,
-          prereqType: true,
-          reviewerLuuId: true,
         },
       });
     } catch (error) {
@@ -118,18 +117,18 @@ export class MhciPrereqsReviewerControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsReviewer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereqsReviewer(
     @common.Param() params: MhciPrereqsReviewerWhereUniqueInput
   ): Promise<MhciPrereqsReviewer | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereqsReviewer({
         where: params,
         select: {
+          reviewerLuuId: true,
+          prereqType: true,
+          placeoutPeriodId: true,
           emailNotification: true,
           id: true,
-          placeoutPeriodId: true,
-          prereqType: true,
-          reviewerLuuId: true,
         },
       });
     } catch (error) {

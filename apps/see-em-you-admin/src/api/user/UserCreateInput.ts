@@ -2,17 +2,17 @@ import { ApplicationAdminNoteCreateNestedManyWithoutUsersInput } from "./Applica
 import { LuUsersUsertypeCreateNestedManyWithoutUsersInput } from "./LuUsersUsertypeCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
-  applicationAdminNote?: ApplicationAdminNoteCreateNestedManyWithoutUsersInput;
   email: string;
-  firstname: string;
-  firstNamePref?: string | null;
-  guid: string;
-  initials?: string | null;
-  lastname: string;
-  luUsersUsertypes?: LuUsersUsertypeCreateNestedManyWithoutUsersInput;
-  middlename?: string | null;
-  signupDate: Date;
-  suffix?: string | null;
   title?: string | null;
+  firstname: string;
+  middlename?: string | null;
+  lastname: string;
+  suffix?: string | null;
+  initials?: string | null;
+  signupDate: Date;
   verified: boolean;
+  guid: string;
+  firstNamePref?: string | null;
+  applicationAdminNote?: ApplicationAdminNoteCreateNestedManyWithoutUsersInput;
+  luUsersUsertypes?: LuUsersUsertypeCreateNestedManyWithoutUsersInput;
 };

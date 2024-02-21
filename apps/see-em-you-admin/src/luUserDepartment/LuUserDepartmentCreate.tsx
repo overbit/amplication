@@ -7,8 +7,8 @@ export const LuUserDepartmentCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Department Id" source="departmentId" />
         <NumberInput step={1} label="User Id" source="userId" />
+        <NumberInput step={1} label="Department Id" source="departmentId" />
       </SimpleForm>
     </Create>
   );

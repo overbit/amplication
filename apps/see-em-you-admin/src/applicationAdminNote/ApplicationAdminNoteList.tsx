@@ -3,9 +3,9 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
-  TextField,
   DateField,
+  TextField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
@@ -23,6 +23,8 @@ export const ApplicationAdminNoteList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <DateField source="insertTime" label="Insert Time" />
+        <TextField label="Note" source="note" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -30,12 +32,10 @@ export const ApplicationAdminNoteList = (
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Id" source="id" />
-        <DateField source="insertTime" label="Insert Time" />
-        <TextField label="Note" source="note" />
         <ReferenceField label="Users" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

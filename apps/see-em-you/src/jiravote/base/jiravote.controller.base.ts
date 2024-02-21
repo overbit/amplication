@@ -18,25 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { JiravoteService } from "../jiravote.service";
 import { JiravoteCreateInput } from "./JiravoteCreateInput";
-import { JiravoteWhereInput } from "./JiravoteWhereInput";
-import { JiravoteWhereUniqueInput } from "./JiravoteWhereUniqueInput";
-import { JiravoteFindManyArgs } from "./JiravoteFindManyArgs";
-import { JiravoteUpdateInput } from "./JiravoteUpdateInput";
 import { Jiravote } from "./Jiravote";
+import { JiravoteFindManyArgs } from "./JiravoteFindManyArgs";
+import { JiravoteWhereUniqueInput } from "./JiravoteWhereUniqueInput";
+import { JiravoteUpdateInput } from "./JiravoteUpdateInput";
 
 export class JiravoteControllerBase {
   constructor(protected readonly service: JiravoteService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Jiravote })
-  async create(@common.Body() data: JiravoteCreateInput): Promise<Jiravote> {
-    return await this.service.create({
+  async createJiravote(
+    @common.Body() data: JiravoteCreateInput
+  ): Promise<Jiravote> {
+    return await this.service.createJiravote({
       data: data,
       select: {
         created: true,
-        id: true,
-        jiraName: true,
         updatedAt: true,
+        jiraName: true,
         user: true,
+        id: true,
       },
     });
   }
@@ -44,16 +45,16 @@ export class JiravoteControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Jiravote] })
   @ApiNestedQuery(JiravoteFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Jiravote[]> {
+  async jiravotes(@common.Req() request: Request): Promise<Jiravote[]> {
     const args = plainToClass(JiravoteFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.jiravotes({
       ...args,
       select: {
         created: true,
-        id: true,
-        jiraName: true,
         updatedAt: true,
+        jiraName: true,
         user: true,
+        id: true,
       },
     });
   }
@@ -61,17 +62,17 @@ export class JiravoteControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Jiravote })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async jiravote(
     @common.Param() params: JiravoteWhereUniqueInput
   ): Promise<Jiravote | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.jiravote({
       where: params,
       select: {
         created: true,
-        id: true,
-        jiraName: true,
         updatedAt: true,
+        jiraName: true,
         user: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -85,20 +86,20 @@ export class JiravoteControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Jiravote })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateJiravote(
     @common.Param() params: JiravoteWhereUniqueInput,
     @common.Body() data: JiravoteUpdateInput
   ): Promise<Jiravote | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateJiravote({
         where: params,
         data: data,
         select: {
           created: true,
-          id: true,
-          jiraName: true,
           updatedAt: true,
+          jiraName: true,
           user: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -114,18 +115,18 @@ export class JiravoteControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Jiravote })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteJiravote(
     @common.Param() params: JiravoteWhereUniqueInput
   ): Promise<Jiravote | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteJiravote({
         where: params,
         select: {
           created: true,
-          id: true,
-          jiraName: true,
           updatedAt: true,
+          jiraName: true,
           user: true,
+          id: true,
         },
       });
     } catch (error) {

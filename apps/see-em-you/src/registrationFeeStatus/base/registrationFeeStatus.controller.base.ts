@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RegistrationFeeStatusService } from "../registrationFeeStatus.service";
 import { RegistrationFeeStatusCreateInput } from "./RegistrationFeeStatusCreateInput";
-import { RegistrationFeeStatusWhereInput } from "./RegistrationFeeStatusWhereInput";
-import { RegistrationFeeStatusWhereUniqueInput } from "./RegistrationFeeStatusWhereUniqueInput";
-import { RegistrationFeeStatusFindManyArgs } from "./RegistrationFeeStatusFindManyArgs";
-import { RegistrationFeeStatusUpdateInput } from "./RegistrationFeeStatusUpdateInput";
 import { RegistrationFeeStatus } from "./RegistrationFeeStatus";
+import { RegistrationFeeStatusFindManyArgs } from "./RegistrationFeeStatusFindManyArgs";
+import { RegistrationFeeStatusWhereUniqueInput } from "./RegistrationFeeStatusWhereUniqueInput";
+import { RegistrationFeeStatusUpdateInput } from "./RegistrationFeeStatusUpdateInput";
 
 export class RegistrationFeeStatusControllerBase {
   constructor(protected readonly service: RegistrationFeeStatusService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RegistrationFeeStatus })
-  async create(
+  async createRegistrationFeeStatus(
     @common.Body() data: RegistrationFeeStatusCreateInput
   ): Promise<RegistrationFeeStatus> {
-    return await this.service.create({
+    return await this.service.createRegistrationFeeStatus({
       data: {
         ...data,
 
@@ -40,7 +39,10 @@ export class RegistrationFeeStatusControllerBase {
         },
       },
       select: {
+        departmentId: true,
         amount: true,
+        paid: true,
+        waived: true,
 
         application: {
           select: {
@@ -48,10 +50,7 @@ export class RegistrationFeeStatusControllerBase {
           },
         },
 
-        departmentId: true,
         id: true,
-        paid: true,
-        waived: true,
       },
     });
   }
@@ -59,14 +58,17 @@ export class RegistrationFeeStatusControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RegistrationFeeStatus] })
   @ApiNestedQuery(RegistrationFeeStatusFindManyArgs)
-  async findMany(
+  async registrationFeeStatuses(
     @common.Req() request: Request
   ): Promise<RegistrationFeeStatus[]> {
     const args = plainToClass(RegistrationFeeStatusFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.registrationFeeStatuses({
       ...args,
       select: {
+        departmentId: true,
         amount: true,
+        paid: true,
+        waived: true,
 
         application: {
           select: {
@@ -74,10 +76,7 @@ export class RegistrationFeeStatusControllerBase {
           },
         },
 
-        departmentId: true,
         id: true,
-        paid: true,
-        waived: true,
       },
     });
   }
@@ -85,13 +84,16 @@ export class RegistrationFeeStatusControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RegistrationFeeStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async registrationFeeStatus(
     @common.Param() params: RegistrationFeeStatusWhereUniqueInput
   ): Promise<RegistrationFeeStatus | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.registrationFeeStatus({
       where: params,
       select: {
+        departmentId: true,
         amount: true,
+        paid: true,
+        waived: true,
 
         application: {
           select: {
@@ -99,10 +101,7 @@ export class RegistrationFeeStatusControllerBase {
           },
         },
 
-        departmentId: true,
         id: true,
-        paid: true,
-        waived: true,
       },
     });
     if (result === null) {
@@ -116,12 +115,12 @@ export class RegistrationFeeStatusControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RegistrationFeeStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRegistrationFeeStatus(
     @common.Param() params: RegistrationFeeStatusWhereUniqueInput,
     @common.Body() data: RegistrationFeeStatusUpdateInput
   ): Promise<RegistrationFeeStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRegistrationFeeStatus({
         where: params,
         data: {
           ...data,
@@ -131,7 +130,10 @@ export class RegistrationFeeStatusControllerBase {
           },
         },
         select: {
+          departmentId: true,
           amount: true,
+          paid: true,
+          waived: true,
 
           application: {
             select: {
@@ -139,10 +141,7 @@ export class RegistrationFeeStatusControllerBase {
             },
           },
 
-          departmentId: true,
           id: true,
-          paid: true,
-          waived: true,
         },
       });
     } catch (error) {
@@ -158,14 +157,17 @@ export class RegistrationFeeStatusControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RegistrationFeeStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRegistrationFeeStatus(
     @common.Param() params: RegistrationFeeStatusWhereUniqueInput
   ): Promise<RegistrationFeeStatus | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRegistrationFeeStatus({
         where: params,
         select: {
+          departmentId: true,
           amount: true,
+          paid: true,
+          waived: true,
 
           application: {
             select: {
@@ -173,10 +175,7 @@ export class RegistrationFeeStatusControllerBase {
             },
           },
 
-          departmentId: true,
           id: true,
-          paid: true,
-          waived: true,
         },
       });
     } catch (error) {

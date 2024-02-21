@@ -11,19 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsString, IsOptional, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class Publication {
   @ApiProperty({
-    required: true,
-    type: () => Application,
+    required: false,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  title!: string | null;
 
   @ApiProperty({
     required: false,
@@ -45,18 +48,7 @@ class Publication {
   @Field(() => String, {
     nullable: true,
   })
-  citation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  datafileId!: number | null;
+  forum!: string | null;
 
   @ApiProperty({
     required: false,
@@ -67,15 +59,18 @@ class Publication {
   @Field(() => String, {
     nullable: true,
   })
-  forum!: string | null;
+  citation!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  url!: string | null;
 
   @ApiProperty({
     required: false,
@@ -87,17 +82,6 @@ class Publication {
     nullable: true,
   })
   status!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  title!: string | null;
 
   @ApiProperty({
     required: false,
@@ -123,14 +107,30 @@ class Publication {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  url!: string | null;
+  datafileId!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Publication as Publication };

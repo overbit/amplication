@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Cohort, Period } from "@prisma/client";
+import {
+  Prisma,
+  Cohort as PrismaCohort,
+  Period as PrismaPeriod,
+} from "@prisma/client";
 
 export class CohortServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class CohortServiceBase {
     return this.prisma.cohort.count(args);
   }
 
-  async findMany<T extends Prisma.CohortFindManyArgs>(
+  async cohorts<T extends Prisma.CohortFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CohortFindManyArgs>
-  ): Promise<Cohort[]> {
+  ): Promise<PrismaCohort[]> {
     return this.prisma.cohort.findMany(args);
   }
-  async findOne<T extends Prisma.CohortFindUniqueArgs>(
+  async cohort<T extends Prisma.CohortFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CohortFindUniqueArgs>
-  ): Promise<Cohort | null> {
+  ): Promise<PrismaCohort | null> {
     return this.prisma.cohort.findUnique(args);
   }
-  async create<T extends Prisma.CohortCreateArgs>(
+  async createCohort<T extends Prisma.CohortCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CohortCreateArgs>
-  ): Promise<Cohort> {
+  ): Promise<PrismaCohort> {
     return this.prisma.cohort.create<T>(args);
   }
-  async update<T extends Prisma.CohortUpdateArgs>(
+  async updateCohort<T extends Prisma.CohortUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CohortUpdateArgs>
-  ): Promise<Cohort> {
+  ): Promise<PrismaCohort> {
     return this.prisma.cohort.update<T>(args);
   }
-  async delete<T extends Prisma.CohortDeleteArgs>(
+  async deleteCohort<T extends Prisma.CohortDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CohortDeleteArgs>
-  ): Promise<Cohort> {
+  ): Promise<PrismaCohort> {
     return this.prisma.cohort.delete(args);
   }
 
-  async getPeriod(parentId: number): Promise<Period | null> {
+  async getPeriod(parentId: number): Promise<PrismaPeriod | null> {
     return this.prisma.cohort
       .findUnique({
         where: { id: parentId },

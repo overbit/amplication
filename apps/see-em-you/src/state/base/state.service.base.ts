@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, State } from "@prisma/client";
+import { Prisma, State as PrismaState } from "@prisma/client";
 
 export class StateServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class StateServiceBase {
     return this.prisma.state.count(args);
   }
 
-  async findMany<T extends Prisma.StateFindManyArgs>(
+  async states<T extends Prisma.StateFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.StateFindManyArgs>
-  ): Promise<State[]> {
+  ): Promise<PrismaState[]> {
     return this.prisma.state.findMany(args);
   }
-  async findOne<T extends Prisma.StateFindUniqueArgs>(
+  async state<T extends Prisma.StateFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.StateFindUniqueArgs>
-  ): Promise<State | null> {
+  ): Promise<PrismaState | null> {
     return this.prisma.state.findUnique(args);
   }
-  async create<T extends Prisma.StateCreateArgs>(
+  async createState<T extends Prisma.StateCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.StateCreateArgs>
-  ): Promise<State> {
+  ): Promise<PrismaState> {
     return this.prisma.state.create<T>(args);
   }
-  async update<T extends Prisma.StateUpdateArgs>(
+  async updateState<T extends Prisma.StateUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.StateUpdateArgs>
-  ): Promise<State> {
+  ): Promise<PrismaState> {
     return this.prisma.state.update<T>(args);
   }
-  async delete<T extends Prisma.StateDeleteArgs>(
+  async deleteState<T extends Prisma.StateDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.StateDeleteArgs>
-  ): Promise<State> {
+  ): Promise<PrismaState> {
     return this.prisma.state.delete(args);
   }
 }

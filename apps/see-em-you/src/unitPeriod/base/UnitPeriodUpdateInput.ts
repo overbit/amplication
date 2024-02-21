@@ -24,7 +24,7 @@ class UnitPeriodUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  periodId?: number;
+  unitId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class UnitPeriodUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  unitId?: number;
+  periodId?: number;
 }
 
 export { UnitPeriodUpdateInput as UnitPeriodUpdateInput };

@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SearchTextTestService } from "../searchTextTest.service";
 import { SearchTextTestCreateInput } from "./SearchTextTestCreateInput";
-import { SearchTextTestWhereInput } from "./SearchTextTestWhereInput";
-import { SearchTextTestWhereUniqueInput } from "./SearchTextTestWhereUniqueInput";
-import { SearchTextTestFindManyArgs } from "./SearchTextTestFindManyArgs";
-import { SearchTextTestUpdateInput } from "./SearchTextTestUpdateInput";
 import { SearchTextTest } from "./SearchTextTest";
+import { SearchTextTestFindManyArgs } from "./SearchTextTestFindManyArgs";
+import { SearchTextTestWhereUniqueInput } from "./SearchTextTestWhereUniqueInput";
+import { SearchTextTestUpdateInput } from "./SearchTextTestUpdateInput";
 
 export class SearchTextTestControllerBase {
   constructor(protected readonly service: SearchTextTestService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SearchTextTest })
-  async create(
+  async createSearchTextTest(
     @common.Body() data: SearchTextTestCreateInput
   ): Promise<SearchTextTest> {
-    return await this.service.create({
+    return await this.service.createSearchTextTest({
       data: data,
       select: {
         applicationId: true,
-        applicationText: true,
         guid: true,
+        applicationText: true,
         id: true,
       },
     });
@@ -45,14 +44,16 @@ export class SearchTextTestControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SearchTextTest] })
   @ApiNestedQuery(SearchTextTestFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SearchTextTest[]> {
+  async searchTextTests(
+    @common.Req() request: Request
+  ): Promise<SearchTextTest[]> {
     const args = plainToClass(SearchTextTestFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.searchTextTests({
       ...args,
       select: {
         applicationId: true,
-        applicationText: true,
         guid: true,
+        applicationText: true,
         id: true,
       },
     });
@@ -61,15 +62,15 @@ export class SearchTextTestControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SearchTextTest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async searchTextTest(
     @common.Param() params: SearchTextTestWhereUniqueInput
   ): Promise<SearchTextTest | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.searchTextTest({
       where: params,
       select: {
         applicationId: true,
-        applicationText: true,
         guid: true,
+        applicationText: true,
         id: true,
       },
     });
@@ -84,18 +85,18 @@ export class SearchTextTestControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SearchTextTest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSearchTextTest(
     @common.Param() params: SearchTextTestWhereUniqueInput,
     @common.Body() data: SearchTextTestUpdateInput
   ): Promise<SearchTextTest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSearchTextTest({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          applicationText: true,
           guid: true,
+          applicationText: true,
           id: true,
         },
       });
@@ -112,16 +113,16 @@ export class SearchTextTestControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SearchTextTest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSearchTextTest(
     @common.Param() params: SearchTextTestWhereUniqueInput
   ): Promise<SearchTextTest | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSearchTextTest({
         where: params,
         select: {
           applicationId: true,
-          applicationText: true,
           guid: true,
+          applicationText: true,
           id: true,
         },
       });

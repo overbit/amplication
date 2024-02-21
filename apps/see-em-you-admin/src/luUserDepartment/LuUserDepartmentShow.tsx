@@ -5,9 +5,9 @@ export const LuUserDepartmentShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="User Id" source="userId" />
         <TextField label="Department Id" source="departmentId" />
         <TextField label="Id" source="id" />
-        <TextField label="User Id" source="userId" />
       </SimpleShowLayout>
     </Show>
   );

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSemPreviousCourseArgs } from "./CreateSemPreviousCourseArgs";
-import { UpdateSemPreviousCourseArgs } from "./UpdateSemPreviousCourseArgs";
-import { DeleteSemPreviousCourseArgs } from "./DeleteSemPreviousCourseArgs";
+import { SemPreviousCourse } from "./SemPreviousCourse";
 import { SemPreviousCourseCountArgs } from "./SemPreviousCourseCountArgs";
 import { SemPreviousCourseFindManyArgs } from "./SemPreviousCourseFindManyArgs";
 import { SemPreviousCourseFindUniqueArgs } from "./SemPreviousCourseFindUniqueArgs";
-import { SemPreviousCourse } from "./SemPreviousCourse";
+import { CreateSemPreviousCourseArgs } from "./CreateSemPreviousCourseArgs";
+import { UpdateSemPreviousCourseArgs } from "./UpdateSemPreviousCourseArgs";
+import { DeleteSemPreviousCourseArgs } from "./DeleteSemPreviousCourseArgs";
 import { SemPreviousCourseService } from "../semPreviousCourse.service";
 @graphql.Resolver(() => SemPreviousCourse)
 export class SemPreviousCourseResolverBase {
@@ -38,14 +38,14 @@ export class SemPreviousCourseResolverBase {
   async semPreviousCourses(
     @graphql.Args() args: SemPreviousCourseFindManyArgs
   ): Promise<SemPreviousCourse[]> {
-    return this.service.findMany(args);
+    return this.service.semPreviousCourses(args);
   }
 
   @graphql.Query(() => SemPreviousCourse, { nullable: true })
   async semPreviousCourse(
     @graphql.Args() args: SemPreviousCourseFindUniqueArgs
   ): Promise<SemPreviousCourse | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.semPreviousCourse(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SemPreviousCourseResolverBase {
   async createSemPreviousCourse(
     @graphql.Args() args: CreateSemPreviousCourseArgs
   ): Promise<SemPreviousCourse> {
-    return await this.service.create({
+    return await this.service.createSemPreviousCourse({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SemPreviousCourseResolverBase {
     @graphql.Args() args: UpdateSemPreviousCourseArgs
   ): Promise<SemPreviousCourse | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSemPreviousCourse({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SemPreviousCourseResolverBase {
     @graphql.Args() args: DeleteSemPreviousCourseArgs
   ): Promise<SemPreviousCourse | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSemPreviousCourse(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

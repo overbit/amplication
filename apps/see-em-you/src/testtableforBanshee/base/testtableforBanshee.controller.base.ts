@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { TesttableforBansheeService } from "../testtableforBanshee.service";
 import { TesttableforBansheeCreateInput } from "./TesttableforBansheeCreateInput";
-import { TesttableforBansheeWhereInput } from "./TesttableforBansheeWhereInput";
-import { TesttableforBansheeWhereUniqueInput } from "./TesttableforBansheeWhereUniqueInput";
-import { TesttableforBansheeFindManyArgs } from "./TesttableforBansheeFindManyArgs";
-import { TesttableforBansheeUpdateInput } from "./TesttableforBansheeUpdateInput";
 import { TesttableforBanshee } from "./TesttableforBanshee";
+import { TesttableforBansheeFindManyArgs } from "./TesttableforBansheeFindManyArgs";
+import { TesttableforBansheeWhereUniqueInput } from "./TesttableforBansheeWhereUniqueInput";
+import { TesttableforBansheeUpdateInput } from "./TesttableforBansheeUpdateInput";
 
 export class TesttableforBansheeControllerBase {
   constructor(protected readonly service: TesttableforBansheeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: TesttableforBanshee })
-  async create(
+  async createTesttableforBanshee(
     @common.Body() data: TesttableforBansheeCreateInput
   ): Promise<TesttableforBanshee> {
-    return await this.service.create({
+    return await this.service.createTesttableforBanshee({
       data: data,
       select: {
         id: true,
@@ -42,11 +41,11 @@ export class TesttableforBansheeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [TesttableforBanshee] })
   @ApiNestedQuery(TesttableforBansheeFindManyArgs)
-  async findMany(
+  async testtableforBanshees(
     @common.Req() request: Request
   ): Promise<TesttableforBanshee[]> {
     const args = plainToClass(TesttableforBansheeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.testtableforBanshees({
       ...args,
       select: {
         id: true,
@@ -57,10 +56,10 @@ export class TesttableforBansheeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: TesttableforBanshee })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async testtableforBanshee(
     @common.Param() params: TesttableforBansheeWhereUniqueInput
   ): Promise<TesttableforBanshee | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.testtableforBanshee({
       where: params,
       select: {
         id: true,
@@ -77,12 +76,12 @@ export class TesttableforBansheeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: TesttableforBanshee })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateTesttableforBanshee(
     @common.Param() params: TesttableforBansheeWhereUniqueInput,
     @common.Body() data: TesttableforBansheeUpdateInput
   ): Promise<TesttableforBanshee | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTesttableforBanshee({
         where: params,
         data: data,
         select: {
@@ -102,11 +101,11 @@ export class TesttableforBansheeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: TesttableforBanshee })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteTesttableforBanshee(
     @common.Param() params: TesttableforBansheeWhereUniqueInput
   ): Promise<TesttableforBanshee | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteTesttableforBanshee({
         where: params,
         select: {
           id: true,

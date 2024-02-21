@@ -7,21 +7,21 @@ import { PaymentItemUpdateManyWithoutProgramModelsInput } from "./PaymentItemUpd
 import { ProgramsApplicationreqUpdateManyWithoutProgramModelsInput } from "./ProgramsApplicationreqUpdateManyWithoutProgramModelsInput";
 
 export type ProgramModelUpdateInput = {
-  baseprice?: Decimal;
-  basepriceLate?: Decimal | null;
-  degree?: DegreeWhereUniqueInput;
-  description?: string | null;
-  enabled?: string | null;
-  fieldsofstudy?: FieldsofstudyWhereUniqueInput;
   linkword?: string;
-  luApplicationPrograms?: LuApplicationProgramUpdateManyWithoutProgramModelsInput;
-  mlArea?: MlAreaUpdateManyWithoutProgramModelsInput;
-  oraclestring?: string | null;
-  paymentItem?: PaymentItemUpdateManyWithoutProgramModelsInput;
-  prank?: number;
   programprice?: Decimal;
   programpriceLate?: Decimal | null;
-  programsApplicationreqs?: ProgramsApplicationreqUpdateManyWithoutProgramModelsInput;
-  registrationoraclestring?: string | null;
+  description?: string | null;
   url?: string | null;
+  oraclestring?: string | null;
+  registrationoraclestring?: string | null;
+  baseprice?: Decimal;
+  basepriceLate?: Decimal | null;
+  prank?: number;
+  enabled?: string | null;
+  degree?: DegreeWhereUniqueInput;
+  fieldsofstudy?: FieldsofstudyWhereUniqueInput;
+  luApplicationPrograms?: LuApplicationProgramUpdateManyWithoutProgramModelsInput;
+  mlArea?: MlAreaUpdateManyWithoutProgramModelsInput;
+  paymentItem?: PaymentItemUpdateManyWithoutProgramModelsInput;
+  programsApplicationreqs?: ProgramsApplicationreqUpdateManyWithoutProgramModelsInput;
 };

@@ -12,11 +12,11 @@ export const VisatypeList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Added For" source="addedFor" />
-        <TextField label="Description" source="description" />
-        <TextField label="Id" source="id" />
         <TextField label="Name" source="name" />
         <TextField label="Short" source="short" />
+        <TextField label="Description" source="description" />
+        <TextField label="Added For" source="addedFor" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

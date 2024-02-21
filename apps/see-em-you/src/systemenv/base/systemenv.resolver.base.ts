@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSystemenvArgs } from "./CreateSystemenvArgs";
-import { UpdateSystemenvArgs } from "./UpdateSystemenvArgs";
-import { DeleteSystemenvArgs } from "./DeleteSystemenvArgs";
+import { Systemenv } from "./Systemenv";
 import { SystemenvCountArgs } from "./SystemenvCountArgs";
 import { SystemenvFindManyArgs } from "./SystemenvFindManyArgs";
 import { SystemenvFindUniqueArgs } from "./SystemenvFindUniqueArgs";
-import { Systemenv } from "./Systemenv";
+import { CreateSystemenvArgs } from "./CreateSystemenvArgs";
+import { UpdateSystemenvArgs } from "./UpdateSystemenvArgs";
+import { DeleteSystemenvArgs } from "./DeleteSystemenvArgs";
 import { SystemenvService } from "../systemenv.service";
 @graphql.Resolver(() => Systemenv)
 export class SystemenvResolverBase {
@@ -38,14 +38,14 @@ export class SystemenvResolverBase {
   async systemenvs(
     @graphql.Args() args: SystemenvFindManyArgs
   ): Promise<Systemenv[]> {
-    return this.service.findMany(args);
+    return this.service.systemenvs(args);
   }
 
   @graphql.Query(() => Systemenv, { nullable: true })
   async systemenv(
     @graphql.Args() args: SystemenvFindUniqueArgs
   ): Promise<Systemenv | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.systemenv(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SystemenvResolverBase {
   async createSystemenv(
     @graphql.Args() args: CreateSystemenvArgs
   ): Promise<Systemenv> {
-    return await this.service.create({
+    return await this.service.createSystemenv({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SystemenvResolverBase {
     @graphql.Args() args: UpdateSystemenvArgs
   ): Promise<Systemenv | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSystemenv({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SystemenvResolverBase {
     @graphql.Args() args: DeleteSystemenvArgs
   ): Promise<Systemenv | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSystemenv(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

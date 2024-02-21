@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuApplicationEtsgre } from "@prisma/client";
+import {
+  Prisma,
+  LuApplicationEtsgre as PrismaLuApplicationEtsgre,
+} from "@prisma/client";
 
 export class LuApplicationEtsgreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,35 @@ export class LuApplicationEtsgreServiceBase {
     return this.prisma.luApplicationEtsgre.count(args);
   }
 
-  async findMany<T extends Prisma.LuApplicationEtsgreFindManyArgs>(
+  async luApplicationEtsgres<T extends Prisma.LuApplicationEtsgreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationEtsgreFindManyArgs>
-  ): Promise<LuApplicationEtsgre[]> {
+  ): Promise<PrismaLuApplicationEtsgre[]> {
     return this.prisma.luApplicationEtsgre.findMany(args);
   }
-  async findOne<T extends Prisma.LuApplicationEtsgreFindUniqueArgs>(
+  async luApplicationEtsgre<T extends Prisma.LuApplicationEtsgreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationEtsgreFindUniqueArgs>
-  ): Promise<LuApplicationEtsgre | null> {
+  ): Promise<PrismaLuApplicationEtsgre | null> {
     return this.prisma.luApplicationEtsgre.findUnique(args);
   }
-  async create<T extends Prisma.LuApplicationEtsgreCreateArgs>(
+  async createLuApplicationEtsgre<
+    T extends Prisma.LuApplicationEtsgreCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationEtsgreCreateArgs>
-  ): Promise<LuApplicationEtsgre> {
+  ): Promise<PrismaLuApplicationEtsgre> {
     return this.prisma.luApplicationEtsgre.create<T>(args);
   }
-  async update<T extends Prisma.LuApplicationEtsgreUpdateArgs>(
+  async updateLuApplicationEtsgre<
+    T extends Prisma.LuApplicationEtsgreUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationEtsgreUpdateArgs>
-  ): Promise<LuApplicationEtsgre> {
+  ): Promise<PrismaLuApplicationEtsgre> {
     return this.prisma.luApplicationEtsgre.update<T>(args);
   }
-  async delete<T extends Prisma.LuApplicationEtsgreDeleteArgs>(
+  async deleteLuApplicationEtsgre<
+    T extends Prisma.LuApplicationEtsgreDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationEtsgreDeleteArgs>
-  ): Promise<LuApplicationEtsgre> {
+  ): Promise<PrismaLuApplicationEtsgre> {
     return this.prisma.luApplicationEtsgre.delete(args);
   }
 }

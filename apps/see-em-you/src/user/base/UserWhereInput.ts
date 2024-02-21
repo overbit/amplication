@@ -15,6 +15,7 @@ import { ApplicationAdminNoteListRelationFilter } from "../../applicationAdminNo
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { LuUsersUsertypeListRelationFilter } from "../../luUsersUsertype/base/LuUsersUsertypeListRelationFilter";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class UserWhereInput {
@@ -41,6 +42,17 @@ class UserWhereInput {
     nullable: true,
   })
   luUsersUsertypes?: LuUsersUsertypeListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { UserWhereInput as UserWhereInput };

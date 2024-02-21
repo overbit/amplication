@@ -5,6 +5,29 @@ export const SlateSuppinfoCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <TextInput label="Prefix" source="prefix" />
+        <TextInput label="First" source="first" />
+        <TextInput label="Middle" source="middle" />
+        <TextInput label="Last" source="last" />
+        <TextInput label="Video Essay Url" source="videoEssayUrl" />
+        <TextInput
+          label="Video Essay Access Code"
+          source="videoEssayAccessCode"
+        />
+        <TextInput label="Learn About Us" source="learnAboutUs" />
+        <TextInput label="Learn About Other" source="learnAboutOther" />
+        <TextInput label="Fellowship1 Amount" source="fellowship1Amount" />
+        <TextInput
+          label="Fellowship1 Applied Date"
+          source="fellowship1AppliedDate"
+        />
+        <TextInput
+          label="Fellowship1 Awarded Date"
+          source="fellowship1AwardedDate"
+        />
+        <TextInput label="Fellowship1 Duration" source="fellowship1Duration" />
+        <TextInput label="Fellowship1 Name" source="fellowship1Name" />
+        <TextInput label="Fellowship1 Status" source="fellowship1Status" />
         <TextInput label="Fellowship10 Amount" source="fellowship10Amount" />
         <TextInput
           label="Fellowship10 Applied Date"
@@ -20,18 +43,6 @@ export const SlateSuppinfoCreate = (props: CreateProps): React.ReactElement => {
         />
         <TextInput label="Fellowship10 Name" source="fellowship10Name" />
         <TextInput label="Fellowship10 Status" source="fellowship10Status" />
-        <TextInput label="Fellowship1 Amount" source="fellowship1Amount" />
-        <TextInput
-          label="Fellowship1 Applied Date"
-          source="fellowship1AppliedDate"
-        />
-        <TextInput
-          label="Fellowship1 Awarded Date"
-          source="fellowship1AwardedDate"
-        />
-        <TextInput label="Fellowship1 Duration" source="fellowship1Duration" />
-        <TextInput label="Fellowship1 Name" source="fellowship1Name" />
-        <TextInput label="Fellowship1 Status" source="fellowship1Status" />
         <TextInput label="Fellowship2 Amount" source="fellowship2Amount" />
         <TextInput
           label="Fellowship2 Applied Date"
@@ -128,18 +139,7 @@ export const SlateSuppinfoCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="Fellowship9 Duration" source="fellowship9Duration" />
         <TextInput label="Fellowship9 Name" source="fellowship9Name" />
         <TextInput label="Fellowship9 Status" source="fellowship9Status" />
-        <TextInput label="First" source="first" />
         <TextInput label="Has Fellowships" source="hasFellowships" />
-        <TextInput label="Last" source="last" />
-        <TextInput label="Learn About Other" source="learnAboutOther" />
-        <TextInput label="Learn About Us" source="learnAboutUs" />
-        <TextInput label="Middle" source="middle" />
-        <TextInput label="Prefix" source="prefix" />
-        <TextInput
-          label="Video Essay Access Code"
-          source="videoEssayAccessCode"
-        />
-        <TextInput label="Video Essay Url" source="videoEssayUrl" />
       </SimpleForm>
     </Create>
   );

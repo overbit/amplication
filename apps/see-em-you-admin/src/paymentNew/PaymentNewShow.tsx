@@ -12,13 +12,13 @@ export const PaymentNewShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
-        <DateField source="lastModTime" label="Last Mod Time" />
-        <TextField label="Last Mod User Id" source="lastModUserId" />
+        <TextField label="Payment Type" source="paymentType" />
         <TextField label="Payment Amount" source="paymentAmount" />
         <TextField label="Payment Intent Date" source="paymentIntentDate" />
         <TextField label="Payment Status" source="payment_status" />
-        <TextField label="Payment Type" source="paymentType" />
+        <DateField source="lastModTime" label="Last Mod Time" />
+        <TextField label="Last Mod User Id" source="lastModUserId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

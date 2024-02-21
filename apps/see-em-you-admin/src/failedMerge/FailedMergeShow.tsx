@@ -6,8 +6,8 @@ export const FailedMergeShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="File" source="file" />
         <TextField label="Guid" source="guid" />
+        <TextField label="File" source="file" />
         <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>

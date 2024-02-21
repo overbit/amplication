@@ -28,7 +28,7 @@ class LuReviewInterestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  code?: SortOrder;
+  id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class LuReviewInterestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  reviewId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class LuReviewInterestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  reviewId?: SortOrder;
+  code?: SortOrder;
 }
 
 export { LuReviewInterestOrderByInput as LuReviewInterestOrderByInput };

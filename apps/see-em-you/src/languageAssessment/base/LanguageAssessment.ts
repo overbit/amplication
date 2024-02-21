@@ -24,25 +24,6 @@ class LanguageAssessment {
   applicationId!: number;
 
   @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  competencyEvidence!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
     required: true,
     type: String,
   })
@@ -62,25 +43,6 @@ class LanguageAssessment {
   listening!: number | null;
 
   @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  nativeSpeaker!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reading!: number;
-
-  @ApiProperty({
     required: true,
     type: Number,
   })
@@ -89,15 +51,12 @@ class LanguageAssessment {
   speaking!: number;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  studyLevel!: number | null;
+  @Field(() => Number)
+  reading!: number;
 
   @ApiProperty({
     required: true,
@@ -116,7 +75,48 @@ class LanguageAssessment {
   @Field(() => Number, {
     nullable: true,
   })
+  nativeSpeaker!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   yearsStudy!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  studyLevel!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  competencyEvidence!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { LanguageAssessment as LanguageAssessment };

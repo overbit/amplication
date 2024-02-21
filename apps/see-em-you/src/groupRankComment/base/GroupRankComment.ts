@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @ObjectType()
 class GroupRankComment {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  comment!: string | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -36,19 +25,11 @@ class GroupRankComment {
 
   @ApiProperty({
     required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  luUsersUsertypesId!: number;
+  round!: number;
 
   @ApiProperty({
     required: true,
@@ -64,7 +45,26 @@ class GroupRankComment {
   })
   @IsInt()
   @Field(() => Number)
-  round!: number;
+  luUsersUsertypesId!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  comment!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { GroupRankComment as GroupRankComment };

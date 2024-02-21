@@ -19,7 +19,16 @@ export const ExperienceList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Datafile Id" source="datafileId" />
+        <TextField label="Experiencetype" source="experiencetype" />
+        <TextField label="Order Entered" source="orderEntered" />
+        <TextField label="Company" source="company" />
+        <TextField label="Start Date" source="startDate" />
+        <TextField label="End Date" source="endDate" />
+        <TextField label="Years Exp" source="yearsExp" />
         <TextField label="Address" source="address" />
+        <TextField label="Job Title" source="jobTitle" />
+        <TextField label="Job Description" source="jobDescription" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -27,16 +36,7 @@ export const ExperienceList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Company" source="company" />
-        <TextField label="Datafile Id" source="datafileId" />
-        <TextField label="End Date" source="endDate" />
-        <TextField label="Experiencetype" source="experiencetype" />
         <TextField label="Id" source="id" />
-        <TextField label="Job Description" source="jobDescription" />
-        <TextField label="Job Title" source="jobTitle" />
-        <TextField label="Order Entered" source="orderEntered" />
-        <TextField label="Start Date" source="startDate" />
-        <TextField label="Years Exp" source="yearsExp" />
       </Datagrid>
     </List>
   );

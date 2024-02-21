@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MseBridgeCourseDecisionService } from "../mseBridgeCourseDecision.service";
 import { MseBridgeCourseDecisionCreateInput } from "./MseBridgeCourseDecisionCreateInput";
-import { MseBridgeCourseDecisionWhereInput } from "./MseBridgeCourseDecisionWhereInput";
-import { MseBridgeCourseDecisionWhereUniqueInput } from "./MseBridgeCourseDecisionWhereUniqueInput";
-import { MseBridgeCourseDecisionFindManyArgs } from "./MseBridgeCourseDecisionFindManyArgs";
-import { MseBridgeCourseDecisionUpdateInput } from "./MseBridgeCourseDecisionUpdateInput";
 import { MseBridgeCourseDecision } from "./MseBridgeCourseDecision";
+import { MseBridgeCourseDecisionFindManyArgs } from "./MseBridgeCourseDecisionFindManyArgs";
+import { MseBridgeCourseDecisionWhereUniqueInput } from "./MseBridgeCourseDecisionWhereUniqueInput";
+import { MseBridgeCourseDecisionUpdateInput } from "./MseBridgeCourseDecisionUpdateInput";
 
 export class MseBridgeCourseDecisionControllerBase {
   constructor(protected readonly service: MseBridgeCourseDecisionService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MseBridgeCourseDecision })
-  async create(
+  async createMseBridgeCourseDecision(
     @common.Body() data: MseBridgeCourseDecisionCreateInput
   ): Promise<MseBridgeCourseDecision> {
-    return await this.service.create({
+    return await this.service.createMseBridgeCourseDecision({
       data: data,
       select: {
         applicationId: true,
+        programId: true,
         courseId: true,
         id: true,
-        programId: true,
       },
     });
   }
@@ -45,20 +44,20 @@ export class MseBridgeCourseDecisionControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MseBridgeCourseDecision] })
   @ApiNestedQuery(MseBridgeCourseDecisionFindManyArgs)
-  async findMany(
+  async mseBridgeCourseDecisions(
     @common.Req() request: Request
   ): Promise<MseBridgeCourseDecision[]> {
     const args = plainToClass(
       MseBridgeCourseDecisionFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.mseBridgeCourseDecisions({
       ...args,
       select: {
         applicationId: true,
+        programId: true,
         courseId: true,
         id: true,
-        programId: true,
       },
     });
   }
@@ -66,16 +65,16 @@ export class MseBridgeCourseDecisionControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MseBridgeCourseDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mseBridgeCourseDecision(
     @common.Param() params: MseBridgeCourseDecisionWhereUniqueInput
   ): Promise<MseBridgeCourseDecision | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mseBridgeCourseDecision({
       where: params,
       select: {
         applicationId: true,
+        programId: true,
         courseId: true,
         id: true,
-        programId: true,
       },
     });
     if (result === null) {
@@ -89,19 +88,19 @@ export class MseBridgeCourseDecisionControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MseBridgeCourseDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMseBridgeCourseDecision(
     @common.Param() params: MseBridgeCourseDecisionWhereUniqueInput,
     @common.Body() data: MseBridgeCourseDecisionUpdateInput
   ): Promise<MseBridgeCourseDecision | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseBridgeCourseDecision({
         where: params,
         data: data,
         select: {
           applicationId: true,
+          programId: true,
           courseId: true,
           id: true,
-          programId: true,
         },
       });
     } catch (error) {
@@ -117,17 +116,17 @@ export class MseBridgeCourseDecisionControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MseBridgeCourseDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMseBridgeCourseDecision(
     @common.Param() params: MseBridgeCourseDecisionWhereUniqueInput
   ): Promise<MseBridgeCourseDecision | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMseBridgeCourseDecision({
         where: params,
         select: {
           applicationId: true,
+          programId: true,
           courseId: true,
           id: true,
-          programId: true,
         },
       });
     } catch (error) {

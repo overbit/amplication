@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateLangCodeArgs } from "./CreateSlateLangCodeArgs";
-import { UpdateSlateLangCodeArgs } from "./UpdateSlateLangCodeArgs";
-import { DeleteSlateLangCodeArgs } from "./DeleteSlateLangCodeArgs";
+import { SlateLangCode } from "./SlateLangCode";
 import { SlateLangCodeCountArgs } from "./SlateLangCodeCountArgs";
 import { SlateLangCodeFindManyArgs } from "./SlateLangCodeFindManyArgs";
 import { SlateLangCodeFindUniqueArgs } from "./SlateLangCodeFindUniqueArgs";
-import { SlateLangCode } from "./SlateLangCode";
+import { CreateSlateLangCodeArgs } from "./CreateSlateLangCodeArgs";
+import { UpdateSlateLangCodeArgs } from "./UpdateSlateLangCodeArgs";
+import { DeleteSlateLangCodeArgs } from "./DeleteSlateLangCodeArgs";
 import { SlateLangCodeService } from "../slateLangCode.service";
 @graphql.Resolver(() => SlateLangCode)
 export class SlateLangCodeResolverBase {
@@ -38,14 +38,14 @@ export class SlateLangCodeResolverBase {
   async slateLangCodes(
     @graphql.Args() args: SlateLangCodeFindManyArgs
   ): Promise<SlateLangCode[]> {
-    return this.service.findMany(args);
+    return this.service.slateLangCodes(args);
   }
 
   @graphql.Query(() => SlateLangCode, { nullable: true })
   async slateLangCode(
     @graphql.Args() args: SlateLangCodeFindUniqueArgs
   ): Promise<SlateLangCode | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateLangCode(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateLangCodeResolverBase {
   async createSlateLangCode(
     @graphql.Args() args: CreateSlateLangCodeArgs
   ): Promise<SlateLangCode> {
-    return await this.service.create({
+    return await this.service.createSlateLangCode({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateLangCodeResolverBase {
     @graphql.Args() args: UpdateSlateLangCodeArgs
   ): Promise<SlateLangCode | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateLangCode({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateLangCodeResolverBase {
     @graphql.Args() args: DeleteSlateLangCodeArgs
   ): Promise<SlateLangCode | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateLangCode(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

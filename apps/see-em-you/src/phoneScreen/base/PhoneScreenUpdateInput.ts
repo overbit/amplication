@@ -35,17 +35,6 @@ class PhoneScreenUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  languageScreen?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   reviewerId?: number;
 
   @ApiProperty({
@@ -58,6 +47,17 @@ class PhoneScreenUpdateInput {
     nullable: true,
   })
   technicalScreen?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  languageScreen?: number;
 }
 
 export { PhoneScreenUpdateInput as PhoneScreenUpdateInput };

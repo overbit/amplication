@@ -24,6 +24,17 @@ class MhciSlateGre {
   @Field(() => String, {
     nullable: true,
   })
+  prefix!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   first!: string | null;
 
   @ApiProperty({
@@ -35,7 +46,7 @@ class MhciSlateGre {
   @Field(() => String, {
     nullable: true,
   })
-  greAnalyticalWriting!: string | null;
+  middle!: string | null;
 
   @ApiProperty({
     required: false,
@@ -46,7 +57,29 @@ class MhciSlateGre {
   @Field(() => String, {
     nullable: true,
   })
-  greAnalyticalWritingPct!: string | null;
+  last!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  greVerbal!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  greVerbalPct!: string | null;
 
   @ApiProperty({
     required: false,
@@ -79,7 +112,7 @@ class MhciSlateGre {
   @Field(() => String, {
     nullable: true,
   })
-  greVerbal!: string | null;
+  greAnalyticalWriting!: string | null;
 
   @ApiProperty({
     required: false,
@@ -90,7 +123,7 @@ class MhciSlateGre {
   @Field(() => String, {
     nullable: true,
   })
-  greVerbalPct!: string | null;
+  greAnalyticalWritingPct!: string | null;
 
   @ApiProperty({
     required: true,
@@ -99,39 +132,6 @@ class MhciSlateGre {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  last!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  middle!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  prefix!: string | null;
 }
 
 export { MhciSlateGre as MhciSlateGre };

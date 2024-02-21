@@ -1,6 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MhciSlatePubOrderByInput = {
+  destinationPub2?: SortOrder;
+  prefix?: SortOrder;
+  first?: SortOrder;
+  middle?: SortOrder;
+  last?: SortOrder;
   authorsPub1?: SortOrder;
   authorsPub2?: SortOrder;
   authorsPub3?: SortOrder;
@@ -14,23 +19,17 @@ export type MhciSlatePubOrderByInput = {
   citationPub5?: SortOrder;
   citationPub6?: SortOrder;
   destinationPub1?: SortOrder;
-  destinationPub2?: SortOrder;
   destinationPub3?: SortOrder;
   destinationPub4?: SortOrder;
   destinationPub5?: SortOrder;
   destinationPub6?: SortOrder;
-  first?: SortOrder;
   hasPublications?: SortOrder;
-  id?: SortOrder;
-  last?: SortOrder;
-  middle?: SortOrder;
   otherTypeOfPublication1?: SortOrder;
   otherTypeOfPublication2?: SortOrder;
   otherTypeOfPublication3?: SortOrder;
   otherTypeOfPublication4?: SortOrder;
   otherTypeOfPublication5?: SortOrder;
   otherTypeOfPublication6?: SortOrder;
-  prefix?: SortOrder;
   statusOfPublication1?: SortOrder;
   statusOfPublication2?: SortOrder;
   statusOfPublication3?: SortOrder;
@@ -55,4 +54,5 @@ export type MhciSlatePubOrderByInput = {
   urlPub4?: SortOrder;
   urlPub5?: SortOrder;
   urlPub6?: SortOrder;
+  id?: SortOrder;
 };

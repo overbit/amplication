@@ -24,6 +24,14 @@ class PaymentAuditCreateInput {
   })
   @IsInt()
   @Field(() => Number)
+  paymentId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   applicationId!: number;
 
   @ApiProperty({
@@ -32,7 +40,7 @@ class PaymentAuditCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  lastModUserId!: number;
+  paymentType!: number;
 
   @ApiProperty({
     required: true,
@@ -41,14 +49,6 @@ class PaymentAuditCreateInput {
   @IsNumber()
   @Field(() => Float)
   paymentAmount!: Decimal;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  paymentId!: number;
 
   @ApiProperty({
     required: true,
@@ -72,7 +72,7 @@ class PaymentAuditCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  paymentType!: number;
+  lastModUserId!: number;
 }
 
 export { PaymentAuditCreateInput as PaymentAuditCreateInput };

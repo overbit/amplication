@@ -28,17 +28,6 @@ class LuProgramsApplicationreqOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  appreqId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   degreeId?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,7 @@ class LuProgramsApplicationreqOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  appreqId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -62,6 +51,17 @@ class LuProgramsApplicationreqOrderByInput {
     nullable: true,
   })
   programId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { LuProgramsApplicationreqOrderByInput as LuProgramsApplicationreqOrderByInput };

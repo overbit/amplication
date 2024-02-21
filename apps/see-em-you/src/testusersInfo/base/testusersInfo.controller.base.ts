@@ -18,57 +18,56 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { TestusersInfoService } from "../testusersInfo.service";
 import { TestusersInfoCreateInput } from "./TestusersInfoCreateInput";
-import { TestusersInfoWhereInput } from "./TestusersInfoWhereInput";
-import { TestusersInfoWhereUniqueInput } from "./TestusersInfoWhereUniqueInput";
-import { TestusersInfoFindManyArgs } from "./TestusersInfoFindManyArgs";
-import { TestusersInfoUpdateInput } from "./TestusersInfoUpdateInput";
 import { TestusersInfo } from "./TestusersInfo";
+import { TestusersInfoFindManyArgs } from "./TestusersInfoFindManyArgs";
+import { TestusersInfoWhereUniqueInput } from "./TestusersInfoWhereUniqueInput";
+import { TestusersInfoUpdateInput } from "./TestusersInfoUpdateInput";
 
 export class TestusersInfoControllerBase {
   constructor(protected readonly service: TestusersInfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: TestusersInfo })
-  async create(
+  async createTestusersInfo(
     @common.Body() data: TestusersInfoCreateInput
   ): Promise<TestusersInfo> {
-    return await this.service.create({
+    return await this.service.createTestusersInfo({
       data: data,
       select: {
-        additionalinfo: true,
-        addressCurCity: true,
-        addressCurCountry: true,
-        addressCurPcode: true,
-        addressCurState: true,
+        userId: true,
+        gender: true,
+        dob: true,
         addressCurStreet1: true,
         addressCurStreet2: true,
         addressCurStreet3: true,
         addressCurStreet4: true,
+        addressCurCity: true,
+        addressCurState: true,
+        addressCurPcode: true,
+        addressCurCountry: true,
         addressCurTel: true,
         addressCurTelMobile: true,
         addressCurTelWork: true,
-        addressPermCity: true,
-        addressPermCountry: true,
-        addressPermPcode: true,
-        addressPermState: true,
         addressPermStreet1: true,
         addressPermStreet2: true,
         addressPermStreet3: true,
         addressPermStreet4: true,
+        addressPermCity: true,
+        addressPermState: true,
+        addressPermPcode: true,
+        addressPermCountry: true,
         addressPermTel: true,
         addressPermTelMobile: true,
         addressPermTelWork: true,
-        buckleyWaive: true,
-        citCountry: true,
-        company: true,
-        curPaRes: true,
-        dob: true,
         ethnicity: true,
         ethtest: true,
-        gender: true,
-        homepage: true,
-        id: true,
-        userId: true,
         visastatus: true,
+        company: true,
+        buckleyWaive: true,
+        homepage: true,
+        citCountry: true,
+        additionalinfo: true,
+        curPaRes: true,
+        id: true,
       },
     });
   }
@@ -76,46 +75,48 @@ export class TestusersInfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [TestusersInfo] })
   @ApiNestedQuery(TestusersInfoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<TestusersInfo[]> {
+  async testusersInfos(
+    @common.Req() request: Request
+  ): Promise<TestusersInfo[]> {
     const args = plainToClass(TestusersInfoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.testusersInfos({
       ...args,
       select: {
-        additionalinfo: true,
-        addressCurCity: true,
-        addressCurCountry: true,
-        addressCurPcode: true,
-        addressCurState: true,
+        userId: true,
+        gender: true,
+        dob: true,
         addressCurStreet1: true,
         addressCurStreet2: true,
         addressCurStreet3: true,
         addressCurStreet4: true,
+        addressCurCity: true,
+        addressCurState: true,
+        addressCurPcode: true,
+        addressCurCountry: true,
         addressCurTel: true,
         addressCurTelMobile: true,
         addressCurTelWork: true,
-        addressPermCity: true,
-        addressPermCountry: true,
-        addressPermPcode: true,
-        addressPermState: true,
         addressPermStreet1: true,
         addressPermStreet2: true,
         addressPermStreet3: true,
         addressPermStreet4: true,
+        addressPermCity: true,
+        addressPermState: true,
+        addressPermPcode: true,
+        addressPermCountry: true,
         addressPermTel: true,
         addressPermTelMobile: true,
         addressPermTelWork: true,
-        buckleyWaive: true,
-        citCountry: true,
-        company: true,
-        curPaRes: true,
-        dob: true,
         ethnicity: true,
         ethtest: true,
-        gender: true,
-        homepage: true,
-        id: true,
-        userId: true,
         visastatus: true,
+        company: true,
+        buckleyWaive: true,
+        homepage: true,
+        citCountry: true,
+        additionalinfo: true,
+        curPaRes: true,
+        id: true,
       },
     });
   }
@@ -123,47 +124,47 @@ export class TestusersInfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: TestusersInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async testusersInfo(
     @common.Param() params: TestusersInfoWhereUniqueInput
   ): Promise<TestusersInfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.testusersInfo({
       where: params,
       select: {
-        additionalinfo: true,
-        addressCurCity: true,
-        addressCurCountry: true,
-        addressCurPcode: true,
-        addressCurState: true,
+        userId: true,
+        gender: true,
+        dob: true,
         addressCurStreet1: true,
         addressCurStreet2: true,
         addressCurStreet3: true,
         addressCurStreet4: true,
+        addressCurCity: true,
+        addressCurState: true,
+        addressCurPcode: true,
+        addressCurCountry: true,
         addressCurTel: true,
         addressCurTelMobile: true,
         addressCurTelWork: true,
-        addressPermCity: true,
-        addressPermCountry: true,
-        addressPermPcode: true,
-        addressPermState: true,
         addressPermStreet1: true,
         addressPermStreet2: true,
         addressPermStreet3: true,
         addressPermStreet4: true,
+        addressPermCity: true,
+        addressPermState: true,
+        addressPermPcode: true,
+        addressPermCountry: true,
         addressPermTel: true,
         addressPermTelMobile: true,
         addressPermTelWork: true,
-        buckleyWaive: true,
-        citCountry: true,
-        company: true,
-        curPaRes: true,
-        dob: true,
         ethnicity: true,
         ethtest: true,
-        gender: true,
-        homepage: true,
-        id: true,
-        userId: true,
         visastatus: true,
+        company: true,
+        buckleyWaive: true,
+        homepage: true,
+        citCountry: true,
+        additionalinfo: true,
+        curPaRes: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -177,50 +178,50 @@ export class TestusersInfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: TestusersInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateTestusersInfo(
     @common.Param() params: TestusersInfoWhereUniqueInput,
     @common.Body() data: TestusersInfoUpdateInput
   ): Promise<TestusersInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTestusersInfo({
         where: params,
         data: data,
         select: {
-          additionalinfo: true,
-          addressCurCity: true,
-          addressCurCountry: true,
-          addressCurPcode: true,
-          addressCurState: true,
+          userId: true,
+          gender: true,
+          dob: true,
           addressCurStreet1: true,
           addressCurStreet2: true,
           addressCurStreet3: true,
           addressCurStreet4: true,
+          addressCurCity: true,
+          addressCurState: true,
+          addressCurPcode: true,
+          addressCurCountry: true,
           addressCurTel: true,
           addressCurTelMobile: true,
           addressCurTelWork: true,
-          addressPermCity: true,
-          addressPermCountry: true,
-          addressPermPcode: true,
-          addressPermState: true,
           addressPermStreet1: true,
           addressPermStreet2: true,
           addressPermStreet3: true,
           addressPermStreet4: true,
+          addressPermCity: true,
+          addressPermState: true,
+          addressPermPcode: true,
+          addressPermCountry: true,
           addressPermTel: true,
           addressPermTelMobile: true,
           addressPermTelWork: true,
-          buckleyWaive: true,
-          citCountry: true,
-          company: true,
-          curPaRes: true,
-          dob: true,
           ethnicity: true,
           ethtest: true,
-          gender: true,
-          homepage: true,
-          id: true,
-          userId: true,
           visastatus: true,
+          company: true,
+          buckleyWaive: true,
+          homepage: true,
+          citCountry: true,
+          additionalinfo: true,
+          curPaRes: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -236,48 +237,48 @@ export class TestusersInfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: TestusersInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteTestusersInfo(
     @common.Param() params: TestusersInfoWhereUniqueInput
   ): Promise<TestusersInfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteTestusersInfo({
         where: params,
         select: {
-          additionalinfo: true,
-          addressCurCity: true,
-          addressCurCountry: true,
-          addressCurPcode: true,
-          addressCurState: true,
+          userId: true,
+          gender: true,
+          dob: true,
           addressCurStreet1: true,
           addressCurStreet2: true,
           addressCurStreet3: true,
           addressCurStreet4: true,
+          addressCurCity: true,
+          addressCurState: true,
+          addressCurPcode: true,
+          addressCurCountry: true,
           addressCurTel: true,
           addressCurTelMobile: true,
           addressCurTelWork: true,
-          addressPermCity: true,
-          addressPermCountry: true,
-          addressPermPcode: true,
-          addressPermState: true,
           addressPermStreet1: true,
           addressPermStreet2: true,
           addressPermStreet3: true,
           addressPermStreet4: true,
+          addressPermCity: true,
+          addressPermState: true,
+          addressPermPcode: true,
+          addressPermCountry: true,
           addressPermTel: true,
           addressPermTelMobile: true,
           addressPermTelWork: true,
-          buckleyWaive: true,
-          citCountry: true,
-          company: true,
-          curPaRes: true,
-          dob: true,
           ethnicity: true,
           ethtest: true,
-          gender: true,
-          homepage: true,
-          id: true,
-          userId: true,
           visastatus: true,
+          company: true,
+          buckleyWaive: true,
+          homepage: true,
+          citCountry: true,
+          additionalinfo: true,
+          curPaRes: true,
+          id: true,
         },
       });
     } catch (error) {

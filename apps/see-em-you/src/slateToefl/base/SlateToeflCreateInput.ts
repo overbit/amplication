@@ -24,7 +24,7 @@ class SlateToeflCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  first?: string | null;
+  prefix?: string | null;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class SlateToeflCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  last?: string | null;
+  first?: string | null;
 
   @ApiProperty({
     required: false,
@@ -57,7 +57,18 @@ class SlateToeflCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  prefix?: string | null;
+  last?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  toeflTotal?: string | null;
 
   @ApiProperty({
     required: false,
@@ -90,17 +101,6 @@ class SlateToeflCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  toeflSpeaking?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   toeflStructureWrittenExpression?: string | null;
 
   @ApiProperty({
@@ -112,7 +112,7 @@ class SlateToeflCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  toeflTotal?: string | null;
+  toeflSpeaking?: string | null;
 }
 
 export { SlateToeflCreateInput as SlateToeflCreateInput };

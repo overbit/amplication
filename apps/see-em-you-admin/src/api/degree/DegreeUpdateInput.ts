@@ -2,6 +2,6 @@ import { ProgramModelUpdateManyWithoutDegreesInput } from "./ProgramModelUpdateM
 
 export type DegreeUpdateInput = {
   name?: string;
-  programs?: ProgramModelUpdateManyWithoutDegreesInput;
   short?: string;
+  programs?: ProgramModelUpdateManyWithoutDegreesInput;
 };

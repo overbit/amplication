@@ -1,13 +1,13 @@
 export type ToeflItpPlus = {
   applicationId: number;
-  datafileId: number | null;
-  id: number;
-  listeningscore: number | null;
-  overallscore: number | null;
-  readingscore: number | null;
-  scorereceived: number | null;
   testdate: Date | null;
-  testEmail: string | null;
-  url: string | null;
+  listeningscore: number | null;
+  readingscore: number | null;
   writingscore: number | null;
+  overallscore: number | null;
+  url: string | null;
+  scorereceived: number | null;
+  datafileId: number | null;
+  testEmail: string | null;
+  id: number;
 };

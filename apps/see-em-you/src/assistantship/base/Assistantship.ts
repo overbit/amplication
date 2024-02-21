@@ -21,22 +21,6 @@ class Assistantship {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  granted!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   id!: number;
 
   @ApiProperty({
@@ -45,7 +29,23 @@ class Assistantship {
   })
   @IsInt()
   @Field(() => Number)
+  applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   requested!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  granted!: number;
 }
 
 export { Assistantship as Assistantship };

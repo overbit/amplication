@@ -19,53 +19,53 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   appId: 42,
-  created: new Date(),
-  id: 42,
-  modified: new Date(),
-  p1EdLevel: 42,
   p1Profession: "exampleP1Profession",
-  p2EdLevel: 42,
+  p1EdLevel: 42,
   p2Profession: "exampleP2Profession",
+  p2EdLevel: 42,
+  created: new Date(),
+  modified: new Date(),
+  id: 42,
 };
 const CREATE_RESULT = {
   appId: 42,
-  created: new Date(),
-  id: 42,
-  modified: new Date(),
-  p1EdLevel: 42,
   p1Profession: "exampleP1Profession",
-  p2EdLevel: 42,
+  p1EdLevel: 42,
   p2Profession: "exampleP2Profession",
+  p2EdLevel: 42,
+  created: new Date(),
+  modified: new Date(),
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     appId: 42,
-    created: new Date(),
-    id: 42,
-    modified: new Date(),
-    p1EdLevel: 42,
     p1Profession: "exampleP1Profession",
-    p2EdLevel: 42,
+    p1EdLevel: 42,
     p2Profession: "exampleP2Profession",
+    p2EdLevel: 42,
+    created: new Date(),
+    modified: new Date(),
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   appId: 42,
-  created: new Date(),
-  id: 42,
-  modified: new Date(),
-  p1EdLevel: 42,
   p1Profession: "exampleP1Profession",
-  p2EdLevel: 42,
+  p1EdLevel: 42,
   p2Profession: "exampleP2Profession",
+  p2EdLevel: 42,
+  created: new Date(),
+  modified: new Date(),
+  id: 42,
 };
 
 const service = {
-  create() {
+  createParentInfo() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  parentInfos: () => FIND_MANY_RESULT,
+  parentInfo: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

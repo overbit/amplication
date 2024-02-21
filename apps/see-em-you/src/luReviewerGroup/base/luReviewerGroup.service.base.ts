@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuReviewerGroup } from "@prisma/client";
+import {
+  Prisma,
+  LuReviewerGroup as PrismaLuReviewerGroup,
+} from "@prisma/client";
 
 export class LuReviewerGroupServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class LuReviewerGroupServiceBase {
     return this.prisma.luReviewerGroup.count(args);
   }
 
-  async findMany<T extends Prisma.LuReviewerGroupFindManyArgs>(
+  async luReviewerGroups<T extends Prisma.LuReviewerGroupFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuReviewerGroupFindManyArgs>
-  ): Promise<LuReviewerGroup[]> {
+  ): Promise<PrismaLuReviewerGroup[]> {
     return this.prisma.luReviewerGroup.findMany(args);
   }
-  async findOne<T extends Prisma.LuReviewerGroupFindUniqueArgs>(
+  async luReviewerGroup<T extends Prisma.LuReviewerGroupFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuReviewerGroupFindUniqueArgs>
-  ): Promise<LuReviewerGroup | null> {
+  ): Promise<PrismaLuReviewerGroup | null> {
     return this.prisma.luReviewerGroup.findUnique(args);
   }
-  async create<T extends Prisma.LuReviewerGroupCreateArgs>(
+  async createLuReviewerGroup<T extends Prisma.LuReviewerGroupCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuReviewerGroupCreateArgs>
-  ): Promise<LuReviewerGroup> {
+  ): Promise<PrismaLuReviewerGroup> {
     return this.prisma.luReviewerGroup.create<T>(args);
   }
-  async update<T extends Prisma.LuReviewerGroupUpdateArgs>(
+  async updateLuReviewerGroup<T extends Prisma.LuReviewerGroupUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuReviewerGroupUpdateArgs>
-  ): Promise<LuReviewerGroup> {
+  ): Promise<PrismaLuReviewerGroup> {
     return this.prisma.luReviewerGroup.update<T>(args);
   }
-  async delete<T extends Prisma.LuReviewerGroupDeleteArgs>(
+  async deleteLuReviewerGroup<T extends Prisma.LuReviewerGroupDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuReviewerGroupDeleteArgs>
-  ): Promise<LuReviewerGroup> {
+  ): Promise<PrismaLuReviewerGroup> {
     return this.prisma.luReviewerGroup.delete(args);
   }
 }

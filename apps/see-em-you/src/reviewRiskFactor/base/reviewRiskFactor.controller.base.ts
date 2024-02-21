@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewRiskFactorService } from "../reviewRiskFactor.service";
 import { ReviewRiskFactorCreateInput } from "./ReviewRiskFactorCreateInput";
-import { ReviewRiskFactorWhereInput } from "./ReviewRiskFactorWhereInput";
-import { ReviewRiskFactorWhereUniqueInput } from "./ReviewRiskFactorWhereUniqueInput";
-import { ReviewRiskFactorFindManyArgs } from "./ReviewRiskFactorFindManyArgs";
-import { ReviewRiskFactorUpdateInput } from "./ReviewRiskFactorUpdateInput";
 import { ReviewRiskFactor } from "./ReviewRiskFactor";
+import { ReviewRiskFactorFindManyArgs } from "./ReviewRiskFactorFindManyArgs";
+import { ReviewRiskFactorWhereUniqueInput } from "./ReviewRiskFactorWhereUniqueInput";
+import { ReviewRiskFactorUpdateInput } from "./ReviewRiskFactorUpdateInput";
 
 export class ReviewRiskFactorControllerBase {
   constructor(protected readonly service: ReviewRiskFactorService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewRiskFactor })
-  async create(
+  async createReviewRiskFactor(
     @common.Body() data: ReviewRiskFactorCreateInput
   ): Promise<ReviewRiskFactor> {
-    return await this.service.create({
+    return await this.service.createReviewRiskFactor({
       data: data,
       select: {
-        id: true,
         reviewId: true,
         riskFactorId: true,
+        id: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class ReviewRiskFactorControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewRiskFactor] })
   @ApiNestedQuery(ReviewRiskFactorFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ReviewRiskFactor[]> {
+  async reviewRiskFactors(
+    @common.Req() request: Request
+  ): Promise<ReviewRiskFactor[]> {
     const args = plainToClass(ReviewRiskFactorFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.reviewRiskFactors({
       ...args,
       select: {
-        id: true,
         reviewId: true,
         riskFactorId: true,
+        id: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class ReviewRiskFactorControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewRiskFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewRiskFactor(
     @common.Param() params: ReviewRiskFactorWhereUniqueInput
   ): Promise<ReviewRiskFactor | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewRiskFactor({
       where: params,
       select: {
-        id: true,
         reviewId: true,
         riskFactorId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class ReviewRiskFactorControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewRiskFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewRiskFactor(
     @common.Param() params: ReviewRiskFactorWhereUniqueInput,
     @common.Body() data: ReviewRiskFactorUpdateInput
   ): Promise<ReviewRiskFactor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewRiskFactor({
         where: params,
         data: data,
         select: {
-          id: true,
           reviewId: true,
           riskFactorId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class ReviewRiskFactorControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewRiskFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewRiskFactor(
     @common.Param() params: ReviewRiskFactorWhereUniqueInput
   ): Promise<ReviewRiskFactor | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewRiskFactor({
         where: params,
         select: {
-          id: true,
           reviewId: true,
           riskFactorId: true,
+          id: true,
         },
       });
     } catch (error) {

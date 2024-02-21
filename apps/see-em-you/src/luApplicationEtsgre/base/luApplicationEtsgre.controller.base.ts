@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuApplicationEtsgreService } from "../luApplicationEtsgre.service";
 import { LuApplicationEtsgreCreateInput } from "./LuApplicationEtsgreCreateInput";
-import { LuApplicationEtsgreWhereInput } from "./LuApplicationEtsgreWhereInput";
-import { LuApplicationEtsgreWhereUniqueInput } from "./LuApplicationEtsgreWhereUniqueInput";
-import { LuApplicationEtsgreFindManyArgs } from "./LuApplicationEtsgreFindManyArgs";
-import { LuApplicationEtsgreUpdateInput } from "./LuApplicationEtsgreUpdateInput";
 import { LuApplicationEtsgre } from "./LuApplicationEtsgre";
+import { LuApplicationEtsgreFindManyArgs } from "./LuApplicationEtsgreFindManyArgs";
+import { LuApplicationEtsgreWhereUniqueInput } from "./LuApplicationEtsgreWhereUniqueInput";
+import { LuApplicationEtsgreUpdateInput } from "./LuApplicationEtsgreUpdateInput";
 
 export class LuApplicationEtsgreControllerBase {
   constructor(protected readonly service: LuApplicationEtsgreService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuApplicationEtsgre })
-  async create(
+  async createLuApplicationEtsgre(
     @common.Body() data: LuApplicationEtsgreCreateInput
   ): Promise<LuApplicationEtsgre> {
-    return await this.service.create({
+    return await this.service.createLuApplicationEtsgre({
       data: data,
       select: {
         appId: true,
@@ -44,11 +43,11 @@ export class LuApplicationEtsgreControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuApplicationEtsgre] })
   @ApiNestedQuery(LuApplicationEtsgreFindManyArgs)
-  async findMany(
+  async luApplicationEtsgres(
     @common.Req() request: Request
   ): Promise<LuApplicationEtsgre[]> {
     const args = plainToClass(LuApplicationEtsgreFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luApplicationEtsgres({
       ...args,
       select: {
         appId: true,
@@ -61,10 +60,10 @@ export class LuApplicationEtsgreControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationEtsgre })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luApplicationEtsgre(
     @common.Param() params: LuApplicationEtsgreWhereUniqueInput
   ): Promise<LuApplicationEtsgre | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luApplicationEtsgre({
       where: params,
       select: {
         appId: true,
@@ -83,12 +82,12 @@ export class LuApplicationEtsgreControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationEtsgre })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuApplicationEtsgre(
     @common.Param() params: LuApplicationEtsgreWhereUniqueInput,
     @common.Body() data: LuApplicationEtsgreUpdateInput
   ): Promise<LuApplicationEtsgre | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationEtsgre({
         where: params,
         data: data,
         select: {
@@ -110,11 +109,11 @@ export class LuApplicationEtsgreControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationEtsgre })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuApplicationEtsgre(
     @common.Param() params: LuApplicationEtsgreWhereUniqueInput
   ): Promise<LuApplicationEtsgre | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuApplicationEtsgre({
         where: params,
         select: {
           appId: true,

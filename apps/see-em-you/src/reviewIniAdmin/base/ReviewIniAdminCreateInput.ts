@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, IsOptional } from "class-validator";
+import { IsInt, IsOptional, IsString } from "class-validator";
 
 @InputType()
 class ReviewIniAdminCreateInput {
@@ -25,11 +25,11 @@ class ReviewIniAdminCreateInput {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  comments!: string;
+  @IsInt()
+  @Field(() => Number)
+  reviewerId!: number;
 
   @ApiProperty({
     required: true,
@@ -38,14 +38,6 @@ class ReviewIniAdminCreateInput {
   @IsInt()
   @Field(() => Number)
   departmentId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reviewerId!: number;
 
   @ApiProperty({
     required: false,
@@ -57,6 +49,14 @@ class ReviewIniAdminCreateInput {
     nullable: true,
   })
   round?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  comments!: string;
 }
 
 export { ReviewIniAdminCreateInput as ReviewIniAdminCreateInput };

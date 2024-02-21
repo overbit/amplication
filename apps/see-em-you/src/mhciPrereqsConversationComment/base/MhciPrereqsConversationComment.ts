@@ -14,13 +14,13 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
   IsString,
-  ValidateNested,
-  IsOptional,
   IsDate,
+  IsOptional,
+  ValidateNested,
 } from "class-validator";
-import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 import { Type } from "class-transformer";
 import { MhciPrereq } from "../../mhciPrereq/base/MhciPrereq";
+import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 
 @ObjectType()
 class MhciPrereqsConversationComment {
@@ -42,27 +42,11 @@ class MhciPrereqsConversationComment {
 
   @ApiProperty({
     required: true,
-    type: Number,
   })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: () => LuUsersUsertype,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertype)
-  luUsersUsertypes?: LuUsersUsertype;
-
-  @ApiProperty({
-    required: true,
-    type: () => MhciPrereq,
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereq)
-  mhciPrereqs?: MhciPrereq;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  timestamp!: Date;
 
   @ApiProperty({
     required: false,
@@ -88,11 +72,27 @@ class MhciPrereqsConversationComment {
 
   @ApiProperty({
     required: true,
+    type: () => MhciPrereq,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  timestamp!: Date;
+  @ValidateNested()
+  @Type(() => MhciPrereq)
+  mhciPrereqs?: MhciPrereq;
+
+  @ApiProperty({
+    required: true,
+    type: () => LuUsersUsertype,
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertype)
+  luUsersUsertypes?: LuUsersUsertype;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MhciPrereqsConversationComment as MhciPrereqsConversationComment };

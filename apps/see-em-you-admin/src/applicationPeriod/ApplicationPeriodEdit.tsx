@@ -12,8 +12,8 @@ export const ApplicationPeriodEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Department Id" source="departmentId" />
-        <DateTimeInput label="End Date" source="endDate" />
         <DateTimeInput label="Start Date" source="startDate" />
+        <DateTimeInput label="End Date" source="endDate" />
       </SimpleForm>
     </Edit>
   );

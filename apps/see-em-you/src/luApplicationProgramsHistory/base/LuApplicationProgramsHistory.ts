@@ -22,6 +22,14 @@ class LuApplicationProgramsHistory {
   })
   @IsInt()
   @Field(() => Number)
+  lapId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   applicationId!: number;
 
   @ApiProperty({
@@ -30,7 +38,23 @@ class LuApplicationProgramsHistory {
   })
   @IsInt()
   @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   choice!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  deletedBy!: number;
 
   @ApiProperty({
     required: true,
@@ -46,31 +70,7 @@ class LuApplicationProgramsHistory {
   })
   @IsInt()
   @Field(() => Number)
-  deletedBy!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  lapId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
 }
 
 export { LuApplicationProgramsHistory as LuApplicationProgramsHistory };

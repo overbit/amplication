@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMitsSlateCodilityArgs } from "./CreateMitsSlateCodilityArgs";
-import { UpdateMitsSlateCodilityArgs } from "./UpdateMitsSlateCodilityArgs";
-import { DeleteMitsSlateCodilityArgs } from "./DeleteMitsSlateCodilityArgs";
+import { MitsSlateCodility } from "./MitsSlateCodility";
 import { MitsSlateCodilityCountArgs } from "./MitsSlateCodilityCountArgs";
 import { MitsSlateCodilityFindManyArgs } from "./MitsSlateCodilityFindManyArgs";
 import { MitsSlateCodilityFindUniqueArgs } from "./MitsSlateCodilityFindUniqueArgs";
-import { MitsSlateCodility } from "./MitsSlateCodility";
+import { CreateMitsSlateCodilityArgs } from "./CreateMitsSlateCodilityArgs";
+import { UpdateMitsSlateCodilityArgs } from "./UpdateMitsSlateCodilityArgs";
+import { DeleteMitsSlateCodilityArgs } from "./DeleteMitsSlateCodilityArgs";
 import { MitsSlateCodilityService } from "../mitsSlateCodility.service";
 @graphql.Resolver(() => MitsSlateCodility)
 export class MitsSlateCodilityResolverBase {
@@ -38,14 +38,14 @@ export class MitsSlateCodilityResolverBase {
   async mitsSlateCodilities(
     @graphql.Args() args: MitsSlateCodilityFindManyArgs
   ): Promise<MitsSlateCodility[]> {
-    return this.service.findMany(args);
+    return this.service.mitsSlateCodilities(args);
   }
 
   @graphql.Query(() => MitsSlateCodility, { nullable: true })
   async mitsSlateCodility(
     @graphql.Args() args: MitsSlateCodilityFindUniqueArgs
   ): Promise<MitsSlateCodility | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mitsSlateCodility(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MitsSlateCodilityResolverBase {
   async createMitsSlateCodility(
     @graphql.Args() args: CreateMitsSlateCodilityArgs
   ): Promise<MitsSlateCodility> {
-    return await this.service.create({
+    return await this.service.createMitsSlateCodility({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MitsSlateCodilityResolverBase {
     @graphql.Args() args: UpdateMitsSlateCodilityArgs
   ): Promise<MitsSlateCodility | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateCodility({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MitsSlateCodilityResolverBase {
     @graphql.Args() args: DeleteMitsSlateCodilityArgs
   ): Promise<MitsSlateCodility | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMitsSlateCodility(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

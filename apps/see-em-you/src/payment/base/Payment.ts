@@ -11,29 +11,29 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
 import {
-  ValidateNested,
   IsInt,
-  IsDate,
   IsNumber,
+  IsDate,
   IsEnum,
+  ValidateNested,
   IsOptional,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { Decimal } from "decimal.js";
+import { Type } from "class-transformer";
 import { EnumPaymentPaymentStatus } from "./EnumPaymentPaymentStatus";
+import { Application } from "../../application/base/Application";
 import { PaymentVoucher } from "../../paymentVoucher/base/PaymentVoucher";
 
 @ObjectType()
 class Payment {
   @ApiProperty({
     required: true,
-    type: () => Application,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
+  @IsInt()
+  @Field(() => Number)
+  paymentId!: number;
 
   @ApiProperty({
     required: true,
@@ -41,23 +41,7 @@ class Payment {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  lastModTime!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  lastModUserId!: number;
+  paymentType!: number;
 
   @ApiProperty({
     required: true,
@@ -66,14 +50,6 @@ class Payment {
   @IsNumber()
   @Field(() => Float)
   paymentAmount!: Decimal;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  paymentId!: number;
 
   @ApiProperty({
     required: true,
@@ -95,11 +71,27 @@ class Payment {
 
   @ApiProperty({
     required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  lastModTime!: Date;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  paymentType!: number;
+  lastModUserId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
 
   @ApiProperty({
     required: false,
@@ -109,6 +101,14 @@ class Payment {
   @Type(() => PaymentVoucher)
   @IsOptional()
   paymentVoucher?: PaymentVoucher | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Payment as Payment };

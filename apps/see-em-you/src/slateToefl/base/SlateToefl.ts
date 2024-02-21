@@ -24,15 +24,7 @@ class SlateToefl {
   @Field(() => String, {
     nullable: true,
   })
-  first!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  prefix!: string | null;
 
   @ApiProperty({
     required: false,
@@ -43,7 +35,7 @@ class SlateToefl {
   @Field(() => String, {
     nullable: true,
   })
-  last!: string | null;
+  first!: string | null;
 
   @ApiProperty({
     required: false,
@@ -65,7 +57,18 @@ class SlateToefl {
   @Field(() => String, {
     nullable: true,
   })
-  prefix!: string | null;
+  last!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  toeflTotal!: string | null;
 
   @ApiProperty({
     required: false,
@@ -98,17 +101,6 @@ class SlateToefl {
   @Field(() => String, {
     nullable: true,
   })
-  toeflSpeaking!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   toeflStructureWrittenExpression!: string | null;
 
   @ApiProperty({
@@ -120,7 +112,15 @@ class SlateToefl {
   @Field(() => String, {
     nullable: true,
   })
-  toeflTotal!: string | null;
+  toeflSpeaking!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { SlateToefl as SlateToefl };

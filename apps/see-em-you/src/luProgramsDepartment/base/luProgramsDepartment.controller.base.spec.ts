@@ -18,34 +18,34 @@ import { LuProgramsDepartmentService } from "../luProgramsDepartment.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  programId: 42,
   departmentId: 42,
   id: 42,
-  programId: 42,
 };
 const CREATE_RESULT = {
+  programId: 42,
   departmentId: 42,
   id: 42,
-  programId: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    programId: 42,
     departmentId: 42,
     id: 42,
-    programId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  programId: 42,
   departmentId: 42,
   id: 42,
-  programId: 42,
 };
 
 const service = {
-  create() {
+  createLuProgramsDepartment() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luProgramsDepartments: () => FIND_MANY_RESULT,
+  luProgramsDepartment: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

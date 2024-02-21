@@ -1,8 +1,8 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type GpascaleOrderByInput = {
-  formula?: SortOrder;
-  id?: SortOrder;
   name?: SortOrder;
+  formula?: SortOrder;
   sortorder?: SortOrder;
+  id?: SortOrder;
 };

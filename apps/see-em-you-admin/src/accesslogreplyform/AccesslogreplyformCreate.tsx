@@ -3,8 +3,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const AccesslogreplyformCreate = (
@@ -13,16 +13,16 @@ export const AccesslogreplyformCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Activity" source="activity" />
-        <NumberInput step={1} label="Application Id" source="applicationId" />
-        <TextInput label="Client" source="client" />
+        <NumberInput step={1} label="Users Id" source="usersId" />
         <NumberInput
           step={1}
           label="Lu Users Usertypes Id"
           source="luUsersUsertypesId"
         />
-        <NumberInput step={1} label="Users Id" source="usersId" />
         <NumberInput step={1} label="Usertype Id" source="usertypeId" />
+        <NumberInput step={1} label="Application Id" source="applicationId" />
+        <TextInput label="Client" source="client" />
+        <TextInput label="Activity" source="activity" />
       </SimpleForm>
     </Create>
   );

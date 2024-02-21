@@ -28,6 +28,28 @@ class MergeDatafileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  mergeId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  datafileinfoId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   converted?: SortOrder;
 
   @ApiProperty({
@@ -61,18 +83,7 @@ class MergeDatafileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  datafileinfoId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
+  mergeFilename?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,29 +116,18 @@ class MergeDatafileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mergeFilename?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  mergeId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   mergeMessage?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MergeDatafileOrderByInput as MergeDatafileOrderByInput };

@@ -15,6 +15,7 @@ import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationW
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class MlAreaWhereInput {
@@ -41,6 +42,17 @@ class MlAreaWhereInput {
     nullable: true,
   })
   programs?: ProgramModelWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { MlAreaWhereInput as MlAreaWhereInput };

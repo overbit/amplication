@@ -1,4 +1,4 @@
 export type Gender = {
-  id: number;
   name: string;
+  id: number;
 };

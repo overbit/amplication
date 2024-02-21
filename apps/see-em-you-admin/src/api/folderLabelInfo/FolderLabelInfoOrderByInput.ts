@@ -1,9 +1,9 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type FolderLabelInfoOrderByInput = {
-  id?: SortOrder;
+  periodId?: SortOrder;
+  lastRanTime?: SortOrder;
   lastLabelColumn?: SortOrder;
   lastLabelRow?: SortOrder;
-  lastRanTime?: SortOrder;
-  periodId?: SortOrder;
+  id?: SortOrder;
 };

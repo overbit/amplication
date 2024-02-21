@@ -3,13 +3,13 @@ import { CohortUpdateManyWithoutPeriodsInput } from "./CohortUpdateManyWithoutPe
 import { PeriodApplicationUpdateManyWithoutPeriodsInput } from "./PeriodApplicationUpdateManyWithoutPeriodsInput";
 
 export type PeriodUpdateInput = {
-  aaDepartment?: AaDepartmentUpdateManyWithoutPeriodsInput;
-  cohort?: CohortUpdateManyWithoutPeriodsInput;
+  unitId?: number;
+  periodTypeId?: number;
   description?: string | null;
+  startDate?: Date;
   endDate?: Date | null;
   parentPeriodId?: number | null;
+  aaDepartment?: AaDepartmentUpdateManyWithoutPeriodsInput;
+  cohort?: CohortUpdateManyWithoutPeriodsInput;
   periodApplication?: PeriodApplicationUpdateManyWithoutPeriodsInput;
-  periodTypeId?: number;
-  startDate?: Date;
-  unitId?: number;
 };

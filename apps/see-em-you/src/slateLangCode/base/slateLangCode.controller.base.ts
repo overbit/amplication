@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateLangCodeService } from "../slateLangCode.service";
 import { SlateLangCodeCreateInput } from "./SlateLangCodeCreateInput";
-import { SlateLangCodeWhereInput } from "./SlateLangCodeWhereInput";
-import { SlateLangCodeWhereUniqueInput } from "./SlateLangCodeWhereUniqueInput";
-import { SlateLangCodeFindManyArgs } from "./SlateLangCodeFindManyArgs";
-import { SlateLangCodeUpdateInput } from "./SlateLangCodeUpdateInput";
 import { SlateLangCode } from "./SlateLangCode";
+import { SlateLangCodeFindManyArgs } from "./SlateLangCodeFindManyArgs";
+import { SlateLangCodeWhereUniqueInput } from "./SlateLangCodeWhereUniqueInput";
+import { SlateLangCodeUpdateInput } from "./SlateLangCodeUpdateInput";
 
 export class SlateLangCodeControllerBase {
   constructor(protected readonly service: SlateLangCodeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateLangCode })
-  async create(
+  async createSlateLangCode(
     @common.Body() data: SlateLangCodeCreateInput
   ): Promise<SlateLangCode> {
-    return await this.service.create({
+    return await this.service.createSlateLangCode({
       data: data,
       select: {
-        id: true,
         language: true,
+        id: true,
       },
     });
   }
@@ -43,13 +42,15 @@ export class SlateLangCodeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateLangCode] })
   @ApiNestedQuery(SlateLangCodeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateLangCode[]> {
+  async slateLangCodes(
+    @common.Req() request: Request
+  ): Promise<SlateLangCode[]> {
     const args = plainToClass(SlateLangCodeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateLangCodes({
       ...args,
       select: {
-        id: true,
         language: true,
+        id: true,
       },
     });
   }
@@ -57,14 +58,14 @@ export class SlateLangCodeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateLangCode })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateLangCode(
     @common.Param() params: SlateLangCodeWhereUniqueInput
   ): Promise<SlateLangCode | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateLangCode({
       where: params,
       select: {
-        id: true,
         language: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -78,17 +79,17 @@ export class SlateLangCodeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateLangCode })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateLangCode(
     @common.Param() params: SlateLangCodeWhereUniqueInput,
     @common.Body() data: SlateLangCodeUpdateInput
   ): Promise<SlateLangCode | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateLangCode({
         where: params,
         data: data,
         select: {
-          id: true,
           language: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -104,15 +105,15 @@ export class SlateLangCodeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateLangCode })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateLangCode(
     @common.Param() params: SlateLangCodeWhereUniqueInput
   ): Promise<SlateLangCode | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateLangCode({
         where: params,
         select: {
-          id: true,
           language: true,
+          id: true,
         },
       });
     } catch (error) {

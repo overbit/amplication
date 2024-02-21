@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseCodility, Application } from "@prisma/client";
+import {
+  Prisma,
+  MseCodility as PrismaMseCodility,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class MseCodilityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class MseCodilityServiceBase {
     return this.prisma.mseCodility.count(args);
   }
 
-  async findMany<T extends Prisma.MseCodilityFindManyArgs>(
+  async mseCodilities<T extends Prisma.MseCodilityFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseCodilityFindManyArgs>
-  ): Promise<MseCodility[]> {
+  ): Promise<PrismaMseCodility[]> {
     return this.prisma.mseCodility.findMany(args);
   }
-  async findOne<T extends Prisma.MseCodilityFindUniqueArgs>(
+  async mseCodility<T extends Prisma.MseCodilityFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseCodilityFindUniqueArgs>
-  ): Promise<MseCodility | null> {
+  ): Promise<PrismaMseCodility | null> {
     return this.prisma.mseCodility.findUnique(args);
   }
-  async create<T extends Prisma.MseCodilityCreateArgs>(
+  async createMseCodility<T extends Prisma.MseCodilityCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseCodilityCreateArgs>
-  ): Promise<MseCodility> {
+  ): Promise<PrismaMseCodility> {
     return this.prisma.mseCodility.create<T>(args);
   }
-  async update<T extends Prisma.MseCodilityUpdateArgs>(
+  async updateMseCodility<T extends Prisma.MseCodilityUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseCodilityUpdateArgs>
-  ): Promise<MseCodility> {
+  ): Promise<PrismaMseCodility> {
     return this.prisma.mseCodility.update<T>(args);
   }
-  async delete<T extends Prisma.MseCodilityDeleteArgs>(
+  async deleteMseCodility<T extends Prisma.MseCodilityDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseCodilityDeleteArgs>
-  ): Promise<MseCodility> {
+  ): Promise<PrismaMseCodility> {
     return this.prisma.mseCodility.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.mseCodility
       .findUnique({
         where: { id: parentId },

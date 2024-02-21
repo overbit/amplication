@@ -11,10 +11,21 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { IsString, IsOptional, IsInt } from "class-validator";
 
 @InputType()
 class RiskFactorUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  riskFactor?: string;
+
   @ApiProperty({
     required: false,
     type: Number,
@@ -36,17 +47,6 @@ class RiskFactorUpdateInput {
     nullable: true,
   })
   departmentId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  riskFactor?: string;
 }
 
 export { RiskFactorUpdateInput as RiskFactorUpdateInput };

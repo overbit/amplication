@@ -28,7 +28,7 @@ class PublicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  application_id?: SortOrder;
+  title?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,28 +50,6 @@ class PublicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  citation?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  datafileId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   forum?: SortOrder;
 
   @ApiProperty({
@@ -83,7 +61,18 @@ class PublicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  citation?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  url?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -95,17 +84,6 @@ class PublicationOrderByInput {
     nullable: true,
   })
   status?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  title?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -138,7 +116,29 @@ class PublicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  url?: SortOrder;
+  datafileId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  application_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { PublicationOrderByInput as PublicationOrderByInput };

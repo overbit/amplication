@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DomainUnitService } from "../domainUnit.service";
 import { DomainUnitCreateInput } from "./DomainUnitCreateInput";
-import { DomainUnitWhereInput } from "./DomainUnitWhereInput";
-import { DomainUnitWhereUniqueInput } from "./DomainUnitWhereUniqueInput";
-import { DomainUnitFindManyArgs } from "./DomainUnitFindManyArgs";
-import { DomainUnitUpdateInput } from "./DomainUnitUpdateInput";
 import { DomainUnit } from "./DomainUnit";
+import { DomainUnitFindManyArgs } from "./DomainUnitFindManyArgs";
+import { DomainUnitWhereUniqueInput } from "./DomainUnitWhereUniqueInput";
+import { DomainUnitUpdateInput } from "./DomainUnitUpdateInput";
 
 export class DomainUnitControllerBase {
   constructor(protected readonly service: DomainUnitService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DomainUnit })
-  async create(
+  async createDomainUnit(
     @common.Body() data: DomainUnitCreateInput
   ): Promise<DomainUnit> {
-    return await this.service.create({
+    return await this.service.createDomainUnit({
       data: {
         ...data,
 
@@ -50,13 +49,13 @@ export class DomainUnitControllerBase {
           },
         },
 
-        id: true,
-
         unit: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -64,9 +63,9 @@ export class DomainUnitControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DomainUnit] })
   @ApiNestedQuery(DomainUnitFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DomainUnit[]> {
+  async domainUnits(@common.Req() request: Request): Promise<DomainUnit[]> {
     const args = plainToClass(DomainUnitFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.domainUnits({
       ...args,
       select: {
         domain: {
@@ -75,13 +74,13 @@ export class DomainUnitControllerBase {
           },
         },
 
-        id: true,
-
         unit: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -89,10 +88,10 @@ export class DomainUnitControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DomainUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async domainUnit(
     @common.Param() params: DomainUnitWhereUniqueInput
   ): Promise<DomainUnit | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.domainUnit({
       where: params,
       select: {
         domain: {
@@ -101,13 +100,13 @@ export class DomainUnitControllerBase {
           },
         },
 
-        id: true,
-
         unit: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -121,12 +120,12 @@ export class DomainUnitControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DomainUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDomainUnit(
     @common.Param() params: DomainUnitWhereUniqueInput,
     @common.Body() data: DomainUnitUpdateInput
   ): Promise<DomainUnit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDomainUnit({
         where: params,
         data: {
           ...data,
@@ -146,13 +145,13 @@ export class DomainUnitControllerBase {
             },
           },
 
-          id: true,
-
           unit: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -168,11 +167,11 @@ export class DomainUnitControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DomainUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDomainUnit(
     @common.Param() params: DomainUnitWhereUniqueInput
   ): Promise<DomainUnit | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDomainUnit({
         where: params,
         select: {
           domain: {
@@ -181,13 +180,13 @@ export class DomainUnitControllerBase {
             },
           },
 
-          id: true,
-
           unit: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {

@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UserService } from "../user.service";
 import { UserCreateInput } from "./UserCreateInput";
-import { UserWhereInput } from "./UserWhereInput";
-import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
-import { UserFindManyArgs } from "./UserFindManyArgs";
-import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { UserFindManyArgs } from "./UserFindManyArgs";
+import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
+import { UserUpdateInput } from "./UserUpdateInput";
 import { ApplicationAdminNoteFindManyArgs } from "../../applicationAdminNote/base/ApplicationAdminNoteFindManyArgs";
 import { ApplicationAdminNote } from "../../applicationAdminNote/base/ApplicationAdminNote";
 import { ApplicationAdminNoteWhereUniqueInput } from "../../applicationAdminNote/base/ApplicationAdminNoteWhereUniqueInput";
@@ -34,22 +33,22 @@ export class UserControllerBase {
   constructor(protected readonly service: UserService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: User })
-  async create(@common.Body() data: UserCreateInput): Promise<User> {
-    return await this.service.create({
+  async createUser(@common.Body() data: UserCreateInput): Promise<User> {
+    return await this.service.createUser({
       data: data,
       select: {
         email: true,
-        firstname: true,
-        firstNamePref: true,
-        guid: true,
-        id: true,
-        initials: true,
-        lastname: true,
-        middlename: true,
-        signupDate: true,
-        suffix: true,
         title: true,
+        firstname: true,
+        middlename: true,
+        lastname: true,
+        suffix: true,
+        initials: true,
+        signupDate: true,
         verified: true,
+        guid: true,
+        firstNamePref: true,
+        id: true,
       },
     });
   }
@@ -57,23 +56,23 @@ export class UserControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [User] })
   @ApiNestedQuery(UserFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<User[]> {
+  async users(@common.Req() request: Request): Promise<User[]> {
     const args = plainToClass(UserFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.users({
       ...args,
       select: {
         email: true,
-        firstname: true,
-        firstNamePref: true,
-        guid: true,
-        id: true,
-        initials: true,
-        lastname: true,
-        middlename: true,
-        signupDate: true,
-        suffix: true,
         title: true,
+        firstname: true,
+        middlename: true,
+        lastname: true,
+        suffix: true,
+        initials: true,
+        signupDate: true,
         verified: true,
+        guid: true,
+        firstNamePref: true,
+        id: true,
       },
     });
   }
@@ -81,24 +80,24 @@ export class UserControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async user(
     @common.Param() params: UserWhereUniqueInput
   ): Promise<User | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.user({
       where: params,
       select: {
         email: true,
-        firstname: true,
-        firstNamePref: true,
-        guid: true,
-        id: true,
-        initials: true,
-        lastname: true,
-        middlename: true,
-        signupDate: true,
-        suffix: true,
         title: true,
+        firstname: true,
+        middlename: true,
+        lastname: true,
+        suffix: true,
+        initials: true,
+        signupDate: true,
         verified: true,
+        guid: true,
+        firstNamePref: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -112,27 +111,27 @@ export class UserControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUser(
     @common.Param() params: UserWhereUniqueInput,
     @common.Body() data: UserUpdateInput
   ): Promise<User | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUser({
         where: params,
         data: data,
         select: {
           email: true,
-          firstname: true,
-          firstNamePref: true,
-          guid: true,
-          id: true,
-          initials: true,
-          lastname: true,
-          middlename: true,
-          signupDate: true,
-          suffix: true,
           title: true,
+          firstname: true,
+          middlename: true,
+          lastname: true,
+          suffix: true,
+          initials: true,
+          signupDate: true,
           verified: true,
+          guid: true,
+          firstNamePref: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -148,25 +147,25 @@ export class UserControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUser(
     @common.Param() params: UserWhereUniqueInput
   ): Promise<User | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUser({
         where: params,
         select: {
           email: true,
-          firstname: true,
-          firstNamePref: true,
-          guid: true,
-          id: true,
-          initials: true,
-          lastname: true,
-          middlename: true,
-          signupDate: true,
-          suffix: true,
           title: true,
+          firstname: true,
+          middlename: true,
+          lastname: true,
+          suffix: true,
+          initials: true,
+          signupDate: true,
           verified: true,
+          guid: true,
+          firstNamePref: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -181,7 +180,7 @@ export class UserControllerBase {
 
   @common.Get("/:id/applicationAdminNote")
   @ApiNestedQuery(ApplicationAdminNoteFindManyArgs)
-  async findManyApplicationAdminNote(
+  async findApplicationAdminNote(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
   ): Promise<ApplicationAdminNote[]> {
@@ -189,21 +188,22 @@ export class UserControllerBase {
     const results = await this.service.findApplicationAdminNote(params.id, {
       ...query,
       select: {
+        insertTime: true,
+        note: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        insertTime: true,
-        note: true,
-
         users: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -224,7 +224,7 @@ export class UserControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUser({
       where: params,
       data,
       select: { id: true },
@@ -241,7 +241,7 @@ export class UserControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUser({
       where: params,
       data,
       select: { id: true },
@@ -258,7 +258,7 @@ export class UserControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUser({
       where: params,
       data,
       select: { id: true },
@@ -267,7 +267,7 @@ export class UserControllerBase {
 
   @common.Get("/:id/luUsersUsertypes")
   @ApiNestedQuery(LuUsersUsertypeFindManyArgs)
-  async findManyLuUsersUsertypes(
+  async findLuUsersUsertypes(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
   ): Promise<LuUsersUsertype[]> {
@@ -275,14 +275,8 @@ export class UserControllerBase {
     const results = await this.service.findLuUsersUsertypes(params.id, {
       ...query,
       select: {
+        usertypeId: true,
         domain: true,
-        id: true,
-
-        mhciPrereqsProgrammingSamples: {
-          select: {
-            id: true,
-          },
-        },
 
         users: {
           select: {
@@ -290,7 +284,13 @@ export class UserControllerBase {
           },
         },
 
-        usertypeId: true,
+        mhciPrereqsProgrammingSamples: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -311,7 +311,7 @@ export class UserControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUser({
       where: params,
       data,
       select: { id: true },
@@ -328,7 +328,7 @@ export class UserControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUser({
       where: params,
       data,
       select: { id: true },
@@ -345,7 +345,7 @@ export class UserControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateUser({
       where: params,
       data,
       select: { id: true },

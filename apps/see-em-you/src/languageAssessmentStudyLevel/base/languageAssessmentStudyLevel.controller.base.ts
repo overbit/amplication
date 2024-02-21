@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LanguageAssessmentStudyLevelService } from "../languageAssessmentStudyLevel.service";
 import { LanguageAssessmentStudyLevelCreateInput } from "./LanguageAssessmentStudyLevelCreateInput";
-import { LanguageAssessmentStudyLevelWhereInput } from "./LanguageAssessmentStudyLevelWhereInput";
-import { LanguageAssessmentStudyLevelWhereUniqueInput } from "./LanguageAssessmentStudyLevelWhereUniqueInput";
-import { LanguageAssessmentStudyLevelFindManyArgs } from "./LanguageAssessmentStudyLevelFindManyArgs";
-import { LanguageAssessmentStudyLevelUpdateInput } from "./LanguageAssessmentStudyLevelUpdateInput";
 import { LanguageAssessmentStudyLevel } from "./LanguageAssessmentStudyLevel";
+import { LanguageAssessmentStudyLevelFindManyArgs } from "./LanguageAssessmentStudyLevelFindManyArgs";
+import { LanguageAssessmentStudyLevelWhereUniqueInput } from "./LanguageAssessmentStudyLevelWhereUniqueInput";
+import { LanguageAssessmentStudyLevelUpdateInput } from "./LanguageAssessmentStudyLevelUpdateInput";
 
 export class LanguageAssessmentStudyLevelControllerBase {
   constructor(
@@ -30,14 +29,14 @@ export class LanguageAssessmentStudyLevelControllerBase {
   ) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LanguageAssessmentStudyLevel })
-  async create(
+  async createLanguageAssessmentStudyLevel(
     @common.Body() data: LanguageAssessmentStudyLevelCreateInput
   ): Promise<LanguageAssessmentStudyLevel> {
-    return await this.service.create({
+    return await this.service.createLanguageAssessmentStudyLevel({
       data: data,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -45,18 +44,18 @@ export class LanguageAssessmentStudyLevelControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LanguageAssessmentStudyLevel] })
   @ApiNestedQuery(LanguageAssessmentStudyLevelFindManyArgs)
-  async findMany(
+  async languageAssessmentStudyLevels(
     @common.Req() request: Request
   ): Promise<LanguageAssessmentStudyLevel[]> {
     const args = plainToClass(
       LanguageAssessmentStudyLevelFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.languageAssessmentStudyLevels({
       ...args,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -64,14 +63,14 @@ export class LanguageAssessmentStudyLevelControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessmentStudyLevel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async languageAssessmentStudyLevel(
     @common.Param() params: LanguageAssessmentStudyLevelWhereUniqueInput
   ): Promise<LanguageAssessmentStudyLevel | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.languageAssessmentStudyLevel({
       where: params,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -85,17 +84,17 @@ export class LanguageAssessmentStudyLevelControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessmentStudyLevel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLanguageAssessmentStudyLevel(
     @common.Param() params: LanguageAssessmentStudyLevelWhereUniqueInput,
     @common.Body() data: LanguageAssessmentStudyLevelUpdateInput
   ): Promise<LanguageAssessmentStudyLevel | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLanguageAssessmentStudyLevel({
         where: params,
         data: data,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -111,15 +110,15 @@ export class LanguageAssessmentStudyLevelControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessmentStudyLevel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLanguageAssessmentStudyLevel(
     @common.Param() params: LanguageAssessmentStudyLevelWhereUniqueInput
   ): Promise<LanguageAssessmentStudyLevel | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLanguageAssessmentStudyLevel({
         where: params,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {

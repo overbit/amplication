@@ -1,12 +1,12 @@
 export type SlateToefl = {
-  first: string | null;
-  id: string;
-  last: string | null;
-  middle: string | null;
   prefix: string | null;
+  first: string | null;
+  middle: string | null;
+  last: string | null;
+  toeflTotal: string | null;
   toeflListening: string | null;
   toeflReading: string | null;
-  toeflSpeaking: string | null;
   toeflStructureWrittenExpression: string | null;
-  toeflTotal: string | null;
+  toeflSpeaking: string | null;
+  id: string;
 };

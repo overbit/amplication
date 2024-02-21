@@ -18,50 +18,50 @@ import { Em2SopService } from "../em2Sop.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  additionalInfo: "exampleAdditionalInfo",
   applicationId: 42,
-  background: "exampleBackground",
-  id: 42,
   objective: "exampleObjective",
+  background: "exampleBackground",
   researchExperience: "exampleResearchExperience",
   taInterest: "exampleTaInterest",
+  additionalInfo: "exampleAdditionalInfo",
+  id: 42,
 };
 const CREATE_RESULT = {
-  additionalInfo: "exampleAdditionalInfo",
   applicationId: 42,
-  background: "exampleBackground",
-  id: 42,
   objective: "exampleObjective",
+  background: "exampleBackground",
   researchExperience: "exampleResearchExperience",
   taInterest: "exampleTaInterest",
+  additionalInfo: "exampleAdditionalInfo",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    additionalInfo: "exampleAdditionalInfo",
     applicationId: 42,
-    background: "exampleBackground",
-    id: 42,
     objective: "exampleObjective",
+    background: "exampleBackground",
     researchExperience: "exampleResearchExperience",
     taInterest: "exampleTaInterest",
+    additionalInfo: "exampleAdditionalInfo",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  additionalInfo: "exampleAdditionalInfo",
   applicationId: 42,
-  background: "exampleBackground",
-  id: 42,
   objective: "exampleObjective",
+  background: "exampleBackground",
   researchExperience: "exampleResearchExperience",
   taInterest: "exampleTaInterest",
+  additionalInfo: "exampleAdditionalInfo",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createEm2Sop() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  em2Sops: () => FIND_MANY_RESULT,
+  em2Sop: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateOrgArgs } from "./CreateSlateOrgArgs";
-import { UpdateSlateOrgArgs } from "./UpdateSlateOrgArgs";
-import { DeleteSlateOrgArgs } from "./DeleteSlateOrgArgs";
+import { SlateOrg } from "./SlateOrg";
 import { SlateOrgCountArgs } from "./SlateOrgCountArgs";
 import { SlateOrgFindManyArgs } from "./SlateOrgFindManyArgs";
 import { SlateOrgFindUniqueArgs } from "./SlateOrgFindUniqueArgs";
-import { SlateOrg } from "./SlateOrg";
+import { CreateSlateOrgArgs } from "./CreateSlateOrgArgs";
+import { UpdateSlateOrgArgs } from "./UpdateSlateOrgArgs";
+import { DeleteSlateOrgArgs } from "./DeleteSlateOrgArgs";
 import { SlateOrgService } from "../slateOrg.service";
 @graphql.Resolver(() => SlateOrg)
 export class SlateOrgResolverBase {
@@ -38,14 +38,14 @@ export class SlateOrgResolverBase {
   async slateOrgs(
     @graphql.Args() args: SlateOrgFindManyArgs
   ): Promise<SlateOrg[]> {
-    return this.service.findMany(args);
+    return this.service.slateOrgs(args);
   }
 
   @graphql.Query(() => SlateOrg, { nullable: true })
   async slateOrg(
     @graphql.Args() args: SlateOrgFindUniqueArgs
   ): Promise<SlateOrg | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateOrg(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateOrgResolverBase {
   async createSlateOrg(
     @graphql.Args() args: CreateSlateOrgArgs
   ): Promise<SlateOrg> {
-    return await this.service.create({
+    return await this.service.createSlateOrg({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateOrgResolverBase {
     @graphql.Args() args: UpdateSlateOrgArgs
   ): Promise<SlateOrg | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateOrg({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateOrgResolverBase {
     @graphql.Args() args: DeleteSlateOrgArgs
   ): Promise<SlateOrg | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateOrg(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

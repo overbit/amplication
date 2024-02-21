@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ToeflEssential } from "@prisma/client";
+import { Prisma, ToeflEssential as PrismaToeflEssential } from "@prisma/client";
 
 export class ToeflEssentialServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ToeflEssentialServiceBase {
     return this.prisma.toeflEssential.count(args);
   }
 
-  async findMany<T extends Prisma.ToeflEssentialFindManyArgs>(
+  async toeflEssentials<T extends Prisma.ToeflEssentialFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflEssentialFindManyArgs>
-  ): Promise<ToeflEssential[]> {
+  ): Promise<PrismaToeflEssential[]> {
     return this.prisma.toeflEssential.findMany(args);
   }
-  async findOne<T extends Prisma.ToeflEssentialFindUniqueArgs>(
+  async toeflEssential<T extends Prisma.ToeflEssentialFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflEssentialFindUniqueArgs>
-  ): Promise<ToeflEssential | null> {
+  ): Promise<PrismaToeflEssential | null> {
     return this.prisma.toeflEssential.findUnique(args);
   }
-  async create<T extends Prisma.ToeflEssentialCreateArgs>(
+  async createToeflEssential<T extends Prisma.ToeflEssentialCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflEssentialCreateArgs>
-  ): Promise<ToeflEssential> {
+  ): Promise<PrismaToeflEssential> {
     return this.prisma.toeflEssential.create<T>(args);
   }
-  async update<T extends Prisma.ToeflEssentialUpdateArgs>(
+  async updateToeflEssential<T extends Prisma.ToeflEssentialUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflEssentialUpdateArgs>
-  ): Promise<ToeflEssential> {
+  ): Promise<PrismaToeflEssential> {
     return this.prisma.toeflEssential.update<T>(args);
   }
-  async delete<T extends Prisma.ToeflEssentialDeleteArgs>(
+  async deleteToeflEssential<T extends Prisma.ToeflEssentialDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflEssentialDeleteArgs>
-  ): Promise<ToeflEssential> {
+  ): Promise<PrismaToeflEssential> {
     return this.prisma.toeflEssential.delete(args);
   }
 }

@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqsDesignPortfolioService } from "../mhciPrereqsDesignPortfolio.service";
 import { MhciPrereqsDesignPortfolioCreateInput } from "./MhciPrereqsDesignPortfolioCreateInput";
-import { MhciPrereqsDesignPortfolioWhereInput } from "./MhciPrereqsDesignPortfolioWhereInput";
-import { MhciPrereqsDesignPortfolioWhereUniqueInput } from "./MhciPrereqsDesignPortfolioWhereUniqueInput";
-import { MhciPrereqsDesignPortfolioFindManyArgs } from "./MhciPrereqsDesignPortfolioFindManyArgs";
-import { MhciPrereqsDesignPortfolioUpdateInput } from "./MhciPrereqsDesignPortfolioUpdateInput";
 import { MhciPrereqsDesignPortfolio } from "./MhciPrereqsDesignPortfolio";
+import { MhciPrereqsDesignPortfolioFindManyArgs } from "./MhciPrereqsDesignPortfolioFindManyArgs";
+import { MhciPrereqsDesignPortfolioWhereUniqueInput } from "./MhciPrereqsDesignPortfolioWhereUniqueInput";
+import { MhciPrereqsDesignPortfolioUpdateInput } from "./MhciPrereqsDesignPortfolioUpdateInput";
 
 export class MhciPrereqsDesignPortfolioControllerBase {
   constructor(protected readonly service: MhciPrereqsDesignPortfolioService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereqsDesignPortfolio })
-  async create(
+  async createMhciPrereqsDesignPortfolio(
     @common.Body() data: MhciPrereqsDesignPortfolioCreateInput
   ): Promise<MhciPrereqsDesignPortfolio> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsDesignPortfolio({
       data: {
         ...data,
 
@@ -40,9 +39,11 @@ export class MhciPrereqsDesignPortfolioControllerBase {
         },
       },
       select: {
-        applicationId: true,
+        url: true,
         description: true,
-        id: true,
+        applicationId: true,
+        programId: true,
+        periodId: true,
 
         luUsersUsertypes: {
           select: {
@@ -50,9 +51,7 @@ export class MhciPrereqsDesignPortfolioControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        url: true,
+        id: true,
       },
     });
   }
@@ -60,19 +59,21 @@ export class MhciPrereqsDesignPortfolioControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereqsDesignPortfolio] })
   @ApiNestedQuery(MhciPrereqsDesignPortfolioFindManyArgs)
-  async findMany(
+  async mhciPrereqsDesignPortfolios(
     @common.Req() request: Request
   ): Promise<MhciPrereqsDesignPortfolio[]> {
     const args = plainToClass(
       MhciPrereqsDesignPortfolioFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.mhciPrereqsDesignPortfolios({
       ...args,
       select: {
-        applicationId: true,
+        url: true,
         description: true,
-        id: true,
+        applicationId: true,
+        programId: true,
+        periodId: true,
 
         luUsersUsertypes: {
           select: {
@@ -80,9 +81,7 @@ export class MhciPrereqsDesignPortfolioControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        url: true,
+        id: true,
       },
     });
   }
@@ -90,15 +89,17 @@ export class MhciPrereqsDesignPortfolioControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsDesignPortfolio })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereqsDesignPortfolio(
     @common.Param() params: MhciPrereqsDesignPortfolioWhereUniqueInput
   ): Promise<MhciPrereqsDesignPortfolio | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereqsDesignPortfolio({
       where: params,
       select: {
-        applicationId: true,
+        url: true,
         description: true,
-        id: true,
+        applicationId: true,
+        programId: true,
+        periodId: true,
 
         luUsersUsertypes: {
           select: {
@@ -106,9 +107,7 @@ export class MhciPrereqsDesignPortfolioControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        url: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -122,12 +121,12 @@ export class MhciPrereqsDesignPortfolioControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsDesignPortfolio })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereqsDesignPortfolio(
     @common.Param() params: MhciPrereqsDesignPortfolioWhereUniqueInput,
     @common.Body() data: MhciPrereqsDesignPortfolioUpdateInput
   ): Promise<MhciPrereqsDesignPortfolio | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsDesignPortfolio({
         where: params,
         data: {
           ...data,
@@ -137,9 +136,11 @@ export class MhciPrereqsDesignPortfolioControllerBase {
           },
         },
         select: {
-          applicationId: true,
+          url: true,
           description: true,
-          id: true,
+          applicationId: true,
+          programId: true,
+          periodId: true,
 
           luUsersUsertypes: {
             select: {
@@ -147,9 +148,7 @@ export class MhciPrereqsDesignPortfolioControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          url: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -165,16 +164,18 @@ export class MhciPrereqsDesignPortfolioControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsDesignPortfolio })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereqsDesignPortfolio(
     @common.Param() params: MhciPrereqsDesignPortfolioWhereUniqueInput
   ): Promise<MhciPrereqsDesignPortfolio | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereqsDesignPortfolio({
         where: params,
         select: {
-          applicationId: true,
+          url: true,
           description: true,
-          id: true,
+          applicationId: true,
+          programId: true,
+          periodId: true,
 
           luUsersUsertypes: {
             select: {
@@ -182,9 +183,7 @@ export class MhciPrereqsDesignPortfolioControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          url: true,
+          id: true,
         },
       });
     } catch (error) {

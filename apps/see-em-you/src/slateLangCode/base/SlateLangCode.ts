@@ -16,14 +16,6 @@ import { IsString, IsOptional } from "class-validator";
 @ObjectType()
 class SlateLangCode {
   @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -33,6 +25,14 @@ class SlateLangCode {
     nullable: true,
   })
   language!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { SlateLangCode as SlateLangCode };

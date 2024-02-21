@@ -1,8 +1,8 @@
 export type Recommendform = {
+  recommendId: number;
   formId: number;
-  id: number;
   questionId: number;
   questionKey: number | null;
-  recommendId: number;
   response: string | null;
+  id: number;
 };

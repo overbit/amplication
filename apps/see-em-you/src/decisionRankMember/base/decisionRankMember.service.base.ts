@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DecisionRankMember } from "@prisma/client";
+import {
+  Prisma,
+  DecisionRankMember as PrismaDecisionRankMember,
+} from "@prisma/client";
 
 export class DecisionRankMemberServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class DecisionRankMemberServiceBase {
     return this.prisma.decisionRankMember.count(args);
   }
 
-  async findMany<T extends Prisma.DecisionRankMemberFindManyArgs>(
+  async decisionRankMembers<T extends Prisma.DecisionRankMemberFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankMemberFindManyArgs>
-  ): Promise<DecisionRankMember[]> {
+  ): Promise<PrismaDecisionRankMember[]> {
     return this.prisma.decisionRankMember.findMany(args);
   }
-  async findOne<T extends Prisma.DecisionRankMemberFindUniqueArgs>(
+  async decisionRankMember<T extends Prisma.DecisionRankMemberFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankMemberFindUniqueArgs>
-  ): Promise<DecisionRankMember | null> {
+  ): Promise<PrismaDecisionRankMember | null> {
     return this.prisma.decisionRankMember.findUnique(args);
   }
-  async create<T extends Prisma.DecisionRankMemberCreateArgs>(
+  async createDecisionRankMember<T extends Prisma.DecisionRankMemberCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankMemberCreateArgs>
-  ): Promise<DecisionRankMember> {
+  ): Promise<PrismaDecisionRankMember> {
     return this.prisma.decisionRankMember.create<T>(args);
   }
-  async update<T extends Prisma.DecisionRankMemberUpdateArgs>(
+  async updateDecisionRankMember<T extends Prisma.DecisionRankMemberUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankMemberUpdateArgs>
-  ): Promise<DecisionRankMember> {
+  ): Promise<PrismaDecisionRankMember> {
     return this.prisma.decisionRankMember.update<T>(args);
   }
-  async delete<T extends Prisma.DecisionRankMemberDeleteArgs>(
+  async deleteDecisionRankMember<T extends Prisma.DecisionRankMemberDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankMemberDeleteArgs>
-  ): Promise<DecisionRankMember> {
+  ): Promise<PrismaDecisionRankMember> {
     return this.prisma.decisionRankMember.delete(args);
   }
 }

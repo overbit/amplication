@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ScsUserWebisoService } from "../scsUserWebiso.service";
 import { ScsUserWebisoCreateInput } from "./ScsUserWebisoCreateInput";
-import { ScsUserWebisoWhereInput } from "./ScsUserWebisoWhereInput";
-import { ScsUserWebisoWhereUniqueInput } from "./ScsUserWebisoWhereUniqueInput";
-import { ScsUserWebisoFindManyArgs } from "./ScsUserWebisoFindManyArgs";
-import { ScsUserWebisoUpdateInput } from "./ScsUserWebisoUpdateInput";
 import { ScsUserWebiso } from "./ScsUserWebiso";
+import { ScsUserWebisoFindManyArgs } from "./ScsUserWebisoFindManyArgs";
+import { ScsUserWebisoWhereUniqueInput } from "./ScsUserWebisoWhereUniqueInput";
+import { ScsUserWebisoUpdateInput } from "./ScsUserWebisoUpdateInput";
 
 export class ScsUserWebisoControllerBase {
   constructor(protected readonly service: ScsUserWebisoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ScsUserWebiso })
-  async create(
+  async createScsUserWebiso(
     @common.Body() data: ScsUserWebisoCreateInput
   ): Promise<ScsUserWebiso> {
-    return await this.service.create({
+    return await this.service.createScsUserWebiso({
       data: data,
       select: {
-        id: true,
         scsUserId: true,
         webiso: true,
+        id: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class ScsUserWebisoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ScsUserWebiso] })
   @ApiNestedQuery(ScsUserWebisoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ScsUserWebiso[]> {
+  async scsUserWebisos(
+    @common.Req() request: Request
+  ): Promise<ScsUserWebiso[]> {
     const args = plainToClass(ScsUserWebisoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.scsUserWebisos({
       ...args,
       select: {
-        id: true,
         scsUserId: true,
         webiso: true,
+        id: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class ScsUserWebisoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ScsUserWebiso })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async scsUserWebiso(
     @common.Param() params: ScsUserWebisoWhereUniqueInput
   ): Promise<ScsUserWebiso | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.scsUserWebiso({
       where: params,
       select: {
-        id: true,
         scsUserId: true,
         webiso: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class ScsUserWebisoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ScsUserWebiso })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateScsUserWebiso(
     @common.Param() params: ScsUserWebisoWhereUniqueInput,
     @common.Body() data: ScsUserWebisoUpdateInput
   ): Promise<ScsUserWebiso | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateScsUserWebiso({
         where: params,
         data: data,
         select: {
-          id: true,
           scsUserId: true,
           webiso: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class ScsUserWebisoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ScsUserWebiso })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteScsUserWebiso(
     @common.Param() params: ScsUserWebisoWhereUniqueInput
   ): Promise<ScsUserWebiso | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteScsUserWebiso({
         where: params,
         select: {
-          id: true,
           scsUserId: true,
           webiso: true,
+          id: true,
         },
       });
     } catch (error) {

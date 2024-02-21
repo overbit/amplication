@@ -7,8 +7,8 @@ export const AccesslogApplicationShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Active" source="active" />
         <TextField label="App Id" source="appId" />
+        <TextField label="Active" source="active" />
         <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>

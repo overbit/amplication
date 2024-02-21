@@ -12,9 +12,9 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsBoolean,
   IsString,
   IsOptional,
+  IsBoolean,
   ValidateNested,
   IsInt,
 } from "class-validator";
@@ -23,6 +23,33 @@ import { Type } from "class-transformer";
 
 @ObjectType()
 class Domain {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  description!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  path!: string;
+
   @ApiProperty({
     required: true,
     type: Boolean,
@@ -41,17 +68,6 @@ class Domain {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description!: string | null;
-
-  @ApiProperty({
-    required: false,
     type: () => [DomainUnit],
   })
   @ValidateNested()
@@ -66,22 +82,6 @@ class Domain {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  path!: string;
 }
 
 export { Domain as Domain };

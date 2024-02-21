@@ -3,9 +3,9 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
   TextField,
   DateField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
@@ -21,6 +21,15 @@ export const MhciPrereqList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField
+          label="Student Lu Users Usertypes Id"
+          source="studentLuUsersUsertypesId"
+        />
+        <TextField label="Prereq Type" source="prereq_type" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Student Assessment" source="student_assessment" />
+        <TextField label="Status2" source="status2" />
+        <DateField source="timestamp" label="Timestamp" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -28,7 +37,6 @@ export const MhciPrereqList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Id" source="id" />
         <ReferenceField
           label="Mhci Prereqs Status"
           source="mhciprereqsstatus.id"
@@ -36,15 +44,7 @@ export const MhciPrereqList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={MHCIPREREQSSTATUS_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Period Id" source="periodId" />
-        <TextField label="Prereq Type" source="prereq_type" />
-        <TextField label="Status2" source="status2" />
-        <TextField label="Student Assessment" source="student_assessment" />
-        <TextField
-          label="Student Lu Users Usertypes Id"
-          source="studentLuUsersUsertypesId"
-        />
-        <DateField source="timestamp" label="Timestamp" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PaymentVoucherService } from "../paymentVoucher.service";
 import { PaymentVoucherCreateInput } from "./PaymentVoucherCreateInput";
-import { PaymentVoucherWhereInput } from "./PaymentVoucherWhereInput";
-import { PaymentVoucherWhereUniqueInput } from "./PaymentVoucherWhereUniqueInput";
-import { PaymentVoucherFindManyArgs } from "./PaymentVoucherFindManyArgs";
-import { PaymentVoucherUpdateInput } from "./PaymentVoucherUpdateInput";
 import { PaymentVoucher } from "./PaymentVoucher";
+import { PaymentVoucherFindManyArgs } from "./PaymentVoucherFindManyArgs";
+import { PaymentVoucherWhereUniqueInput } from "./PaymentVoucherWhereUniqueInput";
+import { PaymentVoucherUpdateInput } from "./PaymentVoucherUpdateInput";
 
 export class PaymentVoucherControllerBase {
   constructor(protected readonly service: PaymentVoucherService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PaymentVoucher })
-  async create(
+  async createPaymentVoucher(
     @common.Body() data: PaymentVoucherCreateInput
   ): Promise<PaymentVoucher> {
-    return await this.service.create({
+    return await this.service.createPaymentVoucher({
       data: {
         ...data,
 
@@ -41,13 +40,14 @@ export class PaymentVoucherControllerBase {
       },
       select: {
         datafileinfoId: true,
-        id: true,
 
         payment: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -55,19 +55,22 @@ export class PaymentVoucherControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PaymentVoucher] })
   @ApiNestedQuery(PaymentVoucherFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PaymentVoucher[]> {
+  async paymentVouchers(
+    @common.Req() request: Request
+  ): Promise<PaymentVoucher[]> {
     const args = plainToClass(PaymentVoucherFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.paymentVouchers({
       ...args,
       select: {
         datafileinfoId: true,
-        id: true,
 
         payment: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -75,20 +78,21 @@ export class PaymentVoucherControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PaymentVoucher })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async paymentVoucher(
     @common.Param() params: PaymentVoucherWhereUniqueInput
   ): Promise<PaymentVoucher | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.paymentVoucher({
       where: params,
       select: {
         datafileinfoId: true,
-        id: true,
 
         payment: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -102,12 +106,12 @@ export class PaymentVoucherControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PaymentVoucher })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePaymentVoucher(
     @common.Param() params: PaymentVoucherWhereUniqueInput,
     @common.Body() data: PaymentVoucherUpdateInput
   ): Promise<PaymentVoucher | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePaymentVoucher({
         where: params,
         data: {
           ...data,
@@ -118,13 +122,14 @@ export class PaymentVoucherControllerBase {
         },
         select: {
           datafileinfoId: true,
-          id: true,
 
           payment: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -140,21 +145,22 @@ export class PaymentVoucherControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PaymentVoucher })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePaymentVoucher(
     @common.Param() params: PaymentVoucherWhereUniqueInput
   ): Promise<PaymentVoucher | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePaymentVoucher({
         where: params,
         select: {
           datafileinfoId: true,
-          id: true,
 
           payment: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {

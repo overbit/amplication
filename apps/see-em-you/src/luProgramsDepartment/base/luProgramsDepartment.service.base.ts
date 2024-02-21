@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuProgramsDepartment } from "@prisma/client";
+import {
+  Prisma,
+  LuProgramsDepartment as PrismaLuProgramsDepartment,
+} from "@prisma/client";
 
 export class LuProgramsDepartmentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class LuProgramsDepartmentServiceBase {
     return this.prisma.luProgramsDepartment.count(args);
   }
 
-  async findMany<T extends Prisma.LuProgramsDepartmentFindManyArgs>(
+  async luProgramsDepartments<
+    T extends Prisma.LuProgramsDepartmentFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuProgramsDepartmentFindManyArgs>
-  ): Promise<LuProgramsDepartment[]> {
+  ): Promise<PrismaLuProgramsDepartment[]> {
     return this.prisma.luProgramsDepartment.findMany(args);
   }
-  async findOne<T extends Prisma.LuProgramsDepartmentFindUniqueArgs>(
+  async luProgramsDepartment<
+    T extends Prisma.LuProgramsDepartmentFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuProgramsDepartmentFindUniqueArgs>
-  ): Promise<LuProgramsDepartment | null> {
+  ): Promise<PrismaLuProgramsDepartment | null> {
     return this.prisma.luProgramsDepartment.findUnique(args);
   }
-  async create<T extends Prisma.LuProgramsDepartmentCreateArgs>(
+  async createLuProgramsDepartment<
+    T extends Prisma.LuProgramsDepartmentCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuProgramsDepartmentCreateArgs>
-  ): Promise<LuProgramsDepartment> {
+  ): Promise<PrismaLuProgramsDepartment> {
     return this.prisma.luProgramsDepartment.create<T>(args);
   }
-  async update<T extends Prisma.LuProgramsDepartmentUpdateArgs>(
+  async updateLuProgramsDepartment<
+    T extends Prisma.LuProgramsDepartmentUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuProgramsDepartmentUpdateArgs>
-  ): Promise<LuProgramsDepartment> {
+  ): Promise<PrismaLuProgramsDepartment> {
     return this.prisma.luProgramsDepartment.update<T>(args);
   }
-  async delete<T extends Prisma.LuProgramsDepartmentDeleteArgs>(
+  async deleteLuProgramsDepartment<
+    T extends Prisma.LuProgramsDepartmentDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuProgramsDepartmentDeleteArgs>
-  ): Promise<LuProgramsDepartment> {
+  ): Promise<PrismaLuProgramsDepartment> {
     return this.prisma.luProgramsDepartment.delete(args);
   }
 }

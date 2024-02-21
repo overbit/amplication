@@ -12,10 +12,10 @@ export const ProgramGroupRoleList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Program Group Id" source="programGroupId" />
-        <TextField label="Role Id" source="roleId" />
         <TextField label="Users Id" source="usersId" />
+        <TextField label="Role Id" source="roleId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

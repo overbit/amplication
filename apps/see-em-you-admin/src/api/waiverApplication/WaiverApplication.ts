@@ -1,8 +1,8 @@
 export type WaiverApplication = {
-  applicationId: number;
-  createDate: Date | null;
-  datafileId: number | null;
   id: number;
+  applicationId: number;
   orgId: number;
+  datafileId: number | null;
+  createDate: Date | null;
   updateDate: Date | null;
 };

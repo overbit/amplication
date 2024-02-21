@@ -5,9 +5,9 @@ export const ScsUserWebisoShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="Scs User Id" source="scsUserId" />
         <TextField label="Webiso" source="webiso" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

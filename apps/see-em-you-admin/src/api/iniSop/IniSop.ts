@@ -1,10 +1,10 @@
 export type IniSop = {
-  additionalInfo: string | null;
   applicationId: number;
-  background: string;
-  id: number;
-  leadershipExperience: string;
   objective: string;
+  background: string;
   researchExperience: string;
+  leadershipExperience: string;
   sfsInterest: string | null;
+  additionalInfo: string | null;
+  id: number;
 };

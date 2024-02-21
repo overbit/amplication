@@ -18,18 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PaymentService } from "../payment.service";
 import { PaymentCreateInput } from "./PaymentCreateInput";
-import { PaymentWhereInput } from "./PaymentWhereInput";
-import { PaymentWhereUniqueInput } from "./PaymentWhereUniqueInput";
-import { PaymentFindManyArgs } from "./PaymentFindManyArgs";
-import { PaymentUpdateInput } from "./PaymentUpdateInput";
 import { Payment } from "./Payment";
+import { PaymentFindManyArgs } from "./PaymentFindManyArgs";
+import { PaymentWhereUniqueInput } from "./PaymentWhereUniqueInput";
+import { PaymentUpdateInput } from "./PaymentUpdateInput";
 
 export class PaymentControllerBase {
   constructor(protected readonly service: PaymentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Payment })
-  async create(@common.Body() data: PaymentCreateInput): Promise<Payment> {
-    return await this.service.create({
+  async createPayment(
+    @common.Body() data: PaymentCreateInput
+  ): Promise<Payment> {
+    return await this.service.createPayment({
       data: {
         ...data,
 
@@ -44,26 +45,27 @@ export class PaymentControllerBase {
           : undefined,
       },
       select: {
+        paymentId: true,
+        paymentType: true,
+        paymentAmount: true,
+        paymentIntentDate: true,
+        payment_status: true,
+        lastModTime: true,
+        lastModUserId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
-        paymentId: true,
-        paymentIntentDate: true,
-        payment_status: true,
-        paymentType: true,
-
         paymentVoucher: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -71,31 +73,32 @@ export class PaymentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Payment] })
   @ApiNestedQuery(PaymentFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Payment[]> {
+  async payments(@common.Req() request: Request): Promise<Payment[]> {
     const args = plainToClass(PaymentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.payments({
       ...args,
       select: {
+        paymentId: true,
+        paymentType: true,
+        paymentAmount: true,
+        paymentIntentDate: true,
+        payment_status: true,
+        lastModTime: true,
+        lastModUserId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
-        paymentId: true,
-        paymentIntentDate: true,
-        payment_status: true,
-        paymentType: true,
-
         paymentVoucher: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -103,32 +106,33 @@ export class PaymentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Payment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async payment(
     @common.Param() params: PaymentWhereUniqueInput
   ): Promise<Payment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.payment({
       where: params,
       select: {
+        paymentId: true,
+        paymentType: true,
+        paymentAmount: true,
+        paymentIntentDate: true,
+        payment_status: true,
+        lastModTime: true,
+        lastModUserId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
-        paymentId: true,
-        paymentIntentDate: true,
-        payment_status: true,
-        paymentType: true,
-
         paymentVoucher: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -142,12 +146,12 @@ export class PaymentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Payment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePayment(
     @common.Param() params: PaymentWhereUniqueInput,
     @common.Body() data: PaymentUpdateInput
   ): Promise<Payment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePayment({
         where: params,
         data: {
           ...data,
@@ -163,26 +167,27 @@ export class PaymentControllerBase {
             : undefined,
         },
         select: {
+          paymentId: true,
+          paymentType: true,
+          paymentAmount: true,
+          paymentIntentDate: true,
+          payment_status: true,
+          lastModTime: true,
+          lastModUserId: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          id: true,
-          lastModTime: true,
-          lastModUserId: true,
-          paymentAmount: true,
-          paymentId: true,
-          paymentIntentDate: true,
-          payment_status: true,
-          paymentType: true,
-
           paymentVoucher: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -198,33 +203,34 @@ export class PaymentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Payment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePayment(
     @common.Param() params: PaymentWhereUniqueInput
   ): Promise<Payment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePayment({
         where: params,
         select: {
+          paymentId: true,
+          paymentType: true,
+          paymentAmount: true,
+          paymentIntentDate: true,
+          payment_status: true,
+          lastModTime: true,
+          lastModUserId: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          id: true,
-          lastModTime: true,
-          lastModUserId: true,
-          paymentAmount: true,
-          paymentId: true,
-          paymentIntentDate: true,
-          payment_status: true,
-          paymentType: true,
-
           paymentVoucher: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {

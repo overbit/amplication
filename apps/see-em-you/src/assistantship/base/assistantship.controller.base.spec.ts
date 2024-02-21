@@ -18,38 +18,38 @@ import { AssistantshipService } from "../assistantship.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationId: 42,
-  granted: 42,
   id: 42,
+  applicationId: 42,
   requested: 42,
+  granted: 42,
 };
 const CREATE_RESULT = {
-  applicationId: 42,
-  granted: 42,
   id: 42,
+  applicationId: 42,
   requested: 42,
+  granted: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    applicationId: 42,
-    granted: 42,
     id: 42,
+    applicationId: 42,
     requested: 42,
+    granted: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationId: 42,
-  granted: 42,
   id: 42,
+  applicationId: 42,
   requested: 42,
+  granted: 42,
 };
 
 const service = {
-  create() {
+  createAssistantship() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  assistantships: () => FIND_MANY_RESULT,
+  assistantship: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

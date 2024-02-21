@@ -18,33 +18,32 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ToeflItpPlusService } from "../toeflItpPlus.service";
 import { ToeflItpPlusCreateInput } from "./ToeflItpPlusCreateInput";
-import { ToeflItpPlusWhereInput } from "./ToeflItpPlusWhereInput";
-import { ToeflItpPlusWhereUniqueInput } from "./ToeflItpPlusWhereUniqueInput";
-import { ToeflItpPlusFindManyArgs } from "./ToeflItpPlusFindManyArgs";
-import { ToeflItpPlusUpdateInput } from "./ToeflItpPlusUpdateInput";
 import { ToeflItpPlus } from "./ToeflItpPlus";
+import { ToeflItpPlusFindManyArgs } from "./ToeflItpPlusFindManyArgs";
+import { ToeflItpPlusWhereUniqueInput } from "./ToeflItpPlusWhereUniqueInput";
+import { ToeflItpPlusUpdateInput } from "./ToeflItpPlusUpdateInput";
 
 export class ToeflItpPlusControllerBase {
   constructor(protected readonly service: ToeflItpPlusService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ToeflItpPlus })
-  async create(
+  async createToeflItpPlus(
     @common.Body() data: ToeflItpPlusCreateInput
   ): Promise<ToeflItpPlus> {
-    return await this.service.create({
+    return await this.service.createToeflItpPlus({
       data: data,
       select: {
         applicationId: true,
-        datafileId: true,
-        id: true,
-        listeningscore: true,
-        overallscore: true,
-        readingscore: true,
-        scorereceived: true,
         testdate: true,
-        testEmail: true,
-        url: true,
+        listeningscore: true,
+        readingscore: true,
         writingscore: true,
+        overallscore: true,
+        url: true,
+        scorereceived: true,
+        datafileId: true,
+        testEmail: true,
+        id: true,
       },
     });
   }
@@ -52,22 +51,24 @@ export class ToeflItpPlusControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ToeflItpPlus] })
   @ApiNestedQuery(ToeflItpPlusFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ToeflItpPlus[]> {
+  async toeflItpPluses(
+    @common.Req() request: Request
+  ): Promise<ToeflItpPlus[]> {
     const args = plainToClass(ToeflItpPlusFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.toeflItpPluses({
       ...args,
       select: {
         applicationId: true,
-        datafileId: true,
-        id: true,
-        listeningscore: true,
-        overallscore: true,
-        readingscore: true,
-        scorereceived: true,
         testdate: true,
-        testEmail: true,
-        url: true,
+        listeningscore: true,
+        readingscore: true,
         writingscore: true,
+        overallscore: true,
+        url: true,
+        scorereceived: true,
+        datafileId: true,
+        testEmail: true,
+        id: true,
       },
     });
   }
@@ -75,23 +76,23 @@ export class ToeflItpPlusControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ToeflItpPlus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async toeflItpPlus(
     @common.Param() params: ToeflItpPlusWhereUniqueInput
   ): Promise<ToeflItpPlus | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.toeflItpPlus({
       where: params,
       select: {
         applicationId: true,
-        datafileId: true,
-        id: true,
-        listeningscore: true,
-        overallscore: true,
-        readingscore: true,
-        scorereceived: true,
         testdate: true,
-        testEmail: true,
-        url: true,
+        listeningscore: true,
+        readingscore: true,
         writingscore: true,
+        overallscore: true,
+        url: true,
+        scorereceived: true,
+        datafileId: true,
+        testEmail: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -105,26 +106,26 @@ export class ToeflItpPlusControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ToeflItpPlus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateToeflItpPlus(
     @common.Param() params: ToeflItpPlusWhereUniqueInput,
     @common.Body() data: ToeflItpPlusUpdateInput
   ): Promise<ToeflItpPlus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateToeflItpPlus({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          datafileId: true,
-          id: true,
-          listeningscore: true,
-          overallscore: true,
-          readingscore: true,
-          scorereceived: true,
           testdate: true,
-          testEmail: true,
-          url: true,
+          listeningscore: true,
+          readingscore: true,
           writingscore: true,
+          overallscore: true,
+          url: true,
+          scorereceived: true,
+          datafileId: true,
+          testEmail: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -140,24 +141,24 @@ export class ToeflItpPlusControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ToeflItpPlus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteToeflItpPlus(
     @common.Param() params: ToeflItpPlusWhereUniqueInput
   ): Promise<ToeflItpPlus | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteToeflItpPlus({
         where: params,
         select: {
           applicationId: true,
-          datafileId: true,
-          id: true,
-          listeningscore: true,
-          overallscore: true,
-          readingscore: true,
-          scorereceived: true,
           testdate: true,
-          testEmail: true,
-          url: true,
+          listeningscore: true,
+          readingscore: true,
           writingscore: true,
+          overallscore: true,
+          url: true,
+          scorereceived: true,
+          datafileId: true,
+          testEmail: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -11,24 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class LuApplicationStartSemesterUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
-    nullable: true,
-  })
-  application?: ApplicationWhereUniqueInput;
-
   @ApiProperty({
     required: false,
     type: String,
@@ -50,6 +38,18 @@ class LuApplicationStartSemesterUpdateInput {
     nullable: true,
   })
   year?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationWhereUniqueInput, {
+    nullable: true,
+  })
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { LuApplicationStartSemesterUpdateInput as LuApplicationStartSemesterUpdateInput };

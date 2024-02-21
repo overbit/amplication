@@ -3,9 +3,9 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  TextInput,
   ReferenceInput,
   SelectInput,
-  TextInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 import { UserTitle } from "../user/UserTitle";
@@ -16,6 +16,7 @@ export const ApplicationAdminNoteCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
+        <TextInput label="Note" source="note" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -23,7 +24,6 @@ export const ApplicationAdminNoteCreate = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <TextInput label="Note" source="note" />
         <ReferenceInput source="users.id" reference="User" label="Users">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>

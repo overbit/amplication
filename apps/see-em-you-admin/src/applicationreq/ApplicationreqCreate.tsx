@@ -5,9 +5,9 @@ import {
   SimpleForm,
   CreateProps,
   TextInput,
+  NumberInput,
   ReferenceArrayInput,
   SelectArrayInput,
-  NumberInput,
 } from "react-admin";
 
 import { ProgramsApplicationreqTitle } from "../programsApplicationreq/ProgramsApplicationreqTitle";
@@ -18,8 +18,10 @@ export const ApplicationreqCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Linkname" source="linkname" />
         <TextInput label="Name" source="name" />
+        <TextInput label="Short" source="short" />
+        <TextInput label="Linkname" source="linkname" />
+        <NumberInput step={1} label="Sortorder" source="sortorder" />
         <ReferenceArrayInput
           source="programsApplicationreqs"
           reference="ProgramsApplicationreq"
@@ -28,8 +30,6 @@ export const ApplicationreqCreate = (
         >
           <SelectArrayInput optionText={ProgramsApplicationreqTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Short" source="short" />
-        <NumberInput step={1} label="Sortorder" source="sortorder" />
       </SimpleForm>
     </Create>
   );

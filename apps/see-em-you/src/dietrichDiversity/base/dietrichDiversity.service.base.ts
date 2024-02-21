@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DietrichDiversity } from "@prisma/client";
+import {
+  Prisma,
+  DietrichDiversity as PrismaDietrichDiversity,
+} from "@prisma/client";
 
 export class DietrichDiversityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class DietrichDiversityServiceBase {
     return this.prisma.dietrichDiversity.count(args);
   }
 
-  async findMany<T extends Prisma.DietrichDiversityFindManyArgs>(
+  async dietrichDiversities<T extends Prisma.DietrichDiversityFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichDiversityFindManyArgs>
-  ): Promise<DietrichDiversity[]> {
+  ): Promise<PrismaDietrichDiversity[]> {
     return this.prisma.dietrichDiversity.findMany(args);
   }
-  async findOne<T extends Prisma.DietrichDiversityFindUniqueArgs>(
+  async dietrichDiversity<T extends Prisma.DietrichDiversityFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichDiversityFindUniqueArgs>
-  ): Promise<DietrichDiversity | null> {
+  ): Promise<PrismaDietrichDiversity | null> {
     return this.prisma.dietrichDiversity.findUnique(args);
   }
-  async create<T extends Prisma.DietrichDiversityCreateArgs>(
+  async createDietrichDiversity<T extends Prisma.DietrichDiversityCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichDiversityCreateArgs>
-  ): Promise<DietrichDiversity> {
+  ): Promise<PrismaDietrichDiversity> {
     return this.prisma.dietrichDiversity.create<T>(args);
   }
-  async update<T extends Prisma.DietrichDiversityUpdateArgs>(
+  async updateDietrichDiversity<T extends Prisma.DietrichDiversityUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichDiversityUpdateArgs>
-  ): Promise<DietrichDiversity> {
+  ): Promise<PrismaDietrichDiversity> {
     return this.prisma.dietrichDiversity.update<T>(args);
   }
-  async delete<T extends Prisma.DietrichDiversityDeleteArgs>(
+  async deleteDietrichDiversity<T extends Prisma.DietrichDiversityDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DietrichDiversityDeleteArgs>
-  ): Promise<DietrichDiversity> {
+  ): Promise<PrismaDietrichDiversity> {
     return this.prisma.dietrichDiversity.delete(args);
   }
 }

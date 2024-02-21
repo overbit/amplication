@@ -11,28 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, ValidateNested, IsInt } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsInt, IsString, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class LuApplicationStartSemester {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
   @ApiProperty({
     required: false,
     type: String,
@@ -54,6 +38,22 @@ class LuApplicationStartSemester {
     nullable: true,
   })
   year!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { LuApplicationStartSemester as LuApplicationStartSemester };

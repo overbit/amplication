@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   departmentId: 42,
+  startDate: new Date(),
   endDate: new Date(),
   id: 42,
-  startDate: new Date(),
 };
 const CREATE_RESULT = {
   departmentId: 42,
+  startDate: new Date(),
   endDate: new Date(),
   id: 42,
-  startDate: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
     departmentId: 42,
+    startDate: new Date(),
     endDate: new Date(),
     id: 42,
-    startDate: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
   departmentId: 42,
+  startDate: new Date(),
   endDate: new Date(),
   id: 42,
-  startDate: new Date(),
 };
 
 const service = {
-  create() {
+  createApplicationPeriod() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  applicationPeriods: () => FIND_MANY_RESULT,
+  applicationPeriod: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -126,8 +126,8 @@ describe("ApplicationPeriod", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        endDate: CREATE_RESULT.endDate.toISOString(),
         startDate: CREATE_RESULT.startDate.toISOString(),
+        endDate: CREATE_RESULT.endDate.toISOString(),
       });
   });
 
@@ -138,8 +138,8 @@ describe("ApplicationPeriod", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          endDate: FIND_MANY_RESULT[0].endDate.toISOString(),
           startDate: FIND_MANY_RESULT[0].startDate.toISOString(),
+          endDate: FIND_MANY_RESULT[0].endDate.toISOString(),
         },
       ]);
   });
@@ -161,8 +161,8 @@ describe("ApplicationPeriod", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        endDate: FIND_ONE_RESULT.endDate.toISOString(),
         startDate: FIND_ONE_RESULT.startDate.toISOString(),
+        endDate: FIND_ONE_RESULT.endDate.toISOString(),
       });
   });
 
@@ -174,8 +174,8 @@ describe("ApplicationPeriod", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        endDate: CREATE_RESULT.endDate.toISOString(),
         startDate: CREATE_RESULT.startDate.toISOString(),
+        endDate: CREATE_RESULT.endDate.toISOString(),
       })
       .then(function () {
         agent

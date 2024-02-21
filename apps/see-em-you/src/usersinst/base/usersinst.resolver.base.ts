@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUsersinstArgs } from "./CreateUsersinstArgs";
-import { UpdateUsersinstArgs } from "./UpdateUsersinstArgs";
-import { DeleteUsersinstArgs } from "./DeleteUsersinstArgs";
+import { Usersinst } from "./Usersinst";
 import { UsersinstCountArgs } from "./UsersinstCountArgs";
 import { UsersinstFindManyArgs } from "./UsersinstFindManyArgs";
 import { UsersinstFindUniqueArgs } from "./UsersinstFindUniqueArgs";
-import { Usersinst } from "./Usersinst";
+import { CreateUsersinstArgs } from "./CreateUsersinstArgs";
+import { UpdateUsersinstArgs } from "./UpdateUsersinstArgs";
+import { DeleteUsersinstArgs } from "./DeleteUsersinstArgs";
 import { UsersinstService } from "../usersinst.service";
 @graphql.Resolver(() => Usersinst)
 export class UsersinstResolverBase {
@@ -38,14 +38,14 @@ export class UsersinstResolverBase {
   async usersinsts(
     @graphql.Args() args: UsersinstFindManyArgs
   ): Promise<Usersinst[]> {
-    return this.service.findMany(args);
+    return this.service.usersinsts(args);
   }
 
   @graphql.Query(() => Usersinst, { nullable: true })
   async usersinst(
     @graphql.Args() args: UsersinstFindUniqueArgs
   ): Promise<Usersinst | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.usersinst(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class UsersinstResolverBase {
   async createUsersinst(
     @graphql.Args() args: CreateUsersinstArgs
   ): Promise<Usersinst> {
-    return await this.service.create({
+    return await this.service.createUsersinst({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class UsersinstResolverBase {
     @graphql.Args() args: UpdateUsersinstArgs
   ): Promise<Usersinst | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsersinst({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class UsersinstResolverBase {
     @graphql.Args() args: DeleteUsersinstArgs
   ): Promise<Usersinst | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUsersinst(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

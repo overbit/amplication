@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   appId: 42,
+  reviewerId: 42,
   deny: 42,
   id: 42,
-  reviewerId: 42,
 };
 const CREATE_RESULT = {
   appId: 42,
+  reviewerId: 42,
   deny: 42,
   id: 42,
-  reviewerId: 42,
 };
 const FIND_MANY_RESULT = [
   {
     appId: 42,
+    reviewerId: 42,
     deny: 42,
     id: 42,
-    reviewerId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   appId: 42,
+  reviewerId: 42,
   deny: 42,
   id: 42,
-  reviewerId: 42,
 };
 
 const service = {
-  create() {
+  createBlacklistReviewer() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  blacklistReviewers: () => FIND_MANY_RESULT,
+  blacklistReviewer: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

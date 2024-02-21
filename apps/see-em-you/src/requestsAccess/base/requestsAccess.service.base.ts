@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, RequestsAccess } from "@prisma/client";
+import { Prisma, RequestsAccess as PrismaRequestsAccess } from "@prisma/client";
 
 export class RequestsAccessServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class RequestsAccessServiceBase {
     return this.prisma.requestsAccess.count(args);
   }
 
-  async findMany<T extends Prisma.RequestsAccessFindManyArgs>(
+  async requestsAccesses<T extends Prisma.RequestsAccessFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RequestsAccessFindManyArgs>
-  ): Promise<RequestsAccess[]> {
+  ): Promise<PrismaRequestsAccess[]> {
     return this.prisma.requestsAccess.findMany(args);
   }
-  async findOne<T extends Prisma.RequestsAccessFindUniqueArgs>(
+  async requestsAccess<T extends Prisma.RequestsAccessFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RequestsAccessFindUniqueArgs>
-  ): Promise<RequestsAccess | null> {
+  ): Promise<PrismaRequestsAccess | null> {
     return this.prisma.requestsAccess.findUnique(args);
   }
-  async create<T extends Prisma.RequestsAccessCreateArgs>(
+  async createRequestsAccess<T extends Prisma.RequestsAccessCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RequestsAccessCreateArgs>
-  ): Promise<RequestsAccess> {
+  ): Promise<PrismaRequestsAccess> {
     return this.prisma.requestsAccess.create<T>(args);
   }
-  async update<T extends Prisma.RequestsAccessUpdateArgs>(
+  async updateRequestsAccess<T extends Prisma.RequestsAccessUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RequestsAccessUpdateArgs>
-  ): Promise<RequestsAccess> {
+  ): Promise<PrismaRequestsAccess> {
     return this.prisma.requestsAccess.update<T>(args);
   }
-  async delete<T extends Prisma.RequestsAccessDeleteArgs>(
+  async deleteRequestsAccess<T extends Prisma.RequestsAccessDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RequestsAccessDeleteArgs>
-  ): Promise<RequestsAccess> {
+  ): Promise<PrismaRequestsAccess> {
     return this.prisma.requestsAccess.delete(args);
   }
 }

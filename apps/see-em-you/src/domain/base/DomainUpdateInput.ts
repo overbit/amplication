@@ -12,9 +12,9 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsBoolean,
-  IsOptional,
   IsString,
+  IsOptional,
+  IsBoolean,
   ValidateNested,
 } from "class-validator";
 import { DomainUnitUpdateManyWithoutDomainsInput } from "./DomainUnitUpdateManyWithoutDomainsInput";
@@ -22,6 +22,39 @@ import { Type } from "class-transformer";
 
 @InputType()
 class DomainUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  name?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  description?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  path?: string;
+
   @ApiProperty({
     required: false,
     type: Boolean,
@@ -46,17 +79,6 @@ class DomainUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: () => DomainUnitUpdateManyWithoutDomainsInput,
   })
   @ValidateNested()
@@ -66,28 +88,6 @@ class DomainUpdateInput {
     nullable: true,
   })
   domainUnit?: DomainUnitUpdateManyWithoutDomainsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  name?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  path?: string;
 }
 
 export { DomainUpdateInput as DomainUpdateInput };

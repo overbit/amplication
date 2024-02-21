@@ -18,38 +18,38 @@ import { LuUsersUsertypesOrigService } from "../luUsersUsertypesOrig.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  domain: 42,
-  id: 42,
   userId: 42,
   usertypeId: 42,
+  domain: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  domain: 42,
-  id: 42,
   userId: 42,
   usertypeId: 42,
+  domain: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    domain: 42,
-    id: 42,
     userId: 42,
     usertypeId: 42,
+    domain: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  domain: 42,
-  id: 42,
   userId: 42,
   usertypeId: 42,
+  domain: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLuUsersUsertypesOrig() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luUsersUsertypesOrigs: () => FIND_MANY_RESULT,
+  luUsersUsertypesOrig: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

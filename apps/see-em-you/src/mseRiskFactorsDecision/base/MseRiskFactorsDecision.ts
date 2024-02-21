@@ -21,7 +21,7 @@ class MseRiskFactorsDecision {
   })
   @IsInt()
   @Field(() => Number)
-  academic!: number;
+  experience!: number;
 
   @ApiProperty({
     required: true,
@@ -37,15 +37,7 @@ class MseRiskFactorsDecision {
   })
   @IsInt()
   @Field(() => Number)
-  experience!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  programId!: number;
 
   @ApiProperty({
     required: true,
@@ -54,6 +46,14 @@ class MseRiskFactorsDecision {
   @IsInt()
   @Field(() => Number)
   language!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  academic!: number;
 
   @ApiProperty({
     required: true,
@@ -76,11 +76,11 @@ class MseRiskFactorsDecision {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { MseRiskFactorsDecision as MseRiskFactorsDecision };

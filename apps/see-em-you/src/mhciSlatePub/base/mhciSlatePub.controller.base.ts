@@ -18,22 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciSlatePubService } from "../mhciSlatePub.service";
 import { MhciSlatePubCreateInput } from "./MhciSlatePubCreateInput";
-import { MhciSlatePubWhereInput } from "./MhciSlatePubWhereInput";
-import { MhciSlatePubWhereUniqueInput } from "./MhciSlatePubWhereUniqueInput";
-import { MhciSlatePubFindManyArgs } from "./MhciSlatePubFindManyArgs";
-import { MhciSlatePubUpdateInput } from "./MhciSlatePubUpdateInput";
 import { MhciSlatePub } from "./MhciSlatePub";
+import { MhciSlatePubFindManyArgs } from "./MhciSlatePubFindManyArgs";
+import { MhciSlatePubWhereUniqueInput } from "./MhciSlatePubWhereUniqueInput";
+import { MhciSlatePubUpdateInput } from "./MhciSlatePubUpdateInput";
 
 export class MhciSlatePubControllerBase {
   constructor(protected readonly service: MhciSlatePubService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciSlatePub })
-  async create(
+  async createMhciSlatePub(
     @common.Body() data: MhciSlatePubCreateInput
   ): Promise<MhciSlatePub> {
-    return await this.service.create({
+    return await this.service.createMhciSlatePub({
       data: data,
       select: {
+        destinationPub2: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -47,23 +51,17 @@ export class MhciSlatePubControllerBase {
         citationPub5: true,
         citationPub6: true,
         destinationPub1: true,
-        destinationPub2: true,
         destinationPub3: true,
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -88,6 +86,7 @@ export class MhciSlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
   }
@@ -95,11 +94,16 @@ export class MhciSlatePubControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciSlatePub] })
   @ApiNestedQuery(MhciSlatePubFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MhciSlatePub[]> {
+  async mhciSlatePubs(@common.Req() request: Request): Promise<MhciSlatePub[]> {
     const args = plainToClass(MhciSlatePubFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciSlatePubs({
       ...args,
       select: {
+        destinationPub2: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -113,23 +117,17 @@ export class MhciSlatePubControllerBase {
         citationPub5: true,
         citationPub6: true,
         destinationPub1: true,
-        destinationPub2: true,
         destinationPub3: true,
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -154,6 +152,7 @@ export class MhciSlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
   }
@@ -161,12 +160,17 @@ export class MhciSlatePubControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciSlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciSlatePub(
     @common.Param() params: MhciSlatePubWhereUniqueInput
   ): Promise<MhciSlatePub | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciSlatePub({
       where: params,
       select: {
+        destinationPub2: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -180,23 +184,17 @@ export class MhciSlatePubControllerBase {
         citationPub5: true,
         citationPub6: true,
         destinationPub1: true,
-        destinationPub2: true,
         destinationPub3: true,
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -221,6 +219,7 @@ export class MhciSlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -234,15 +233,20 @@ export class MhciSlatePubControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciSlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciSlatePub(
     @common.Param() params: MhciSlatePubWhereUniqueInput,
     @common.Body() data: MhciSlatePubUpdateInput
   ): Promise<MhciSlatePub | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciSlatePub({
         where: params,
         data: data,
         select: {
+          destinationPub2: true,
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           authorsPub1: true,
           authorsPub2: true,
           authorsPub3: true,
@@ -256,23 +260,17 @@ export class MhciSlatePubControllerBase {
           citationPub5: true,
           citationPub6: true,
           destinationPub1: true,
-          destinationPub2: true,
           destinationPub3: true,
           destinationPub4: true,
           destinationPub5: true,
           destinationPub6: true,
-          first: true,
           hasPublications: true,
-          id: true,
-          last: true,
-          middle: true,
           otherTypeOfPublication1: true,
           otherTypeOfPublication2: true,
           otherTypeOfPublication3: true,
           otherTypeOfPublication4: true,
           otherTypeOfPublication5: true,
           otherTypeOfPublication6: true,
-          prefix: true,
           statusOfPublication1: true,
           statusOfPublication2: true,
           statusOfPublication3: true,
@@ -297,6 +295,7 @@ export class MhciSlatePubControllerBase {
           urlPub4: true,
           urlPub5: true,
           urlPub6: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -312,13 +311,18 @@ export class MhciSlatePubControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciSlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciSlatePub(
     @common.Param() params: MhciSlatePubWhereUniqueInput
   ): Promise<MhciSlatePub | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciSlatePub({
         where: params,
         select: {
+          destinationPub2: true,
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           authorsPub1: true,
           authorsPub2: true,
           authorsPub3: true,
@@ -332,23 +336,17 @@ export class MhciSlatePubControllerBase {
           citationPub5: true,
           citationPub6: true,
           destinationPub1: true,
-          destinationPub2: true,
           destinationPub3: true,
           destinationPub4: true,
           destinationPub5: true,
           destinationPub6: true,
-          first: true,
           hasPublications: true,
-          id: true,
-          last: true,
-          middle: true,
           otherTypeOfPublication1: true,
           otherTypeOfPublication2: true,
           otherTypeOfPublication3: true,
           otherTypeOfPublication4: true,
           otherTypeOfPublication5: true,
           otherTypeOfPublication6: true,
-          prefix: true,
           statusOfPublication1: true,
           statusOfPublication2: true,
           statusOfPublication3: true,
@@ -373,6 +371,7 @@ export class MhciSlatePubControllerBase {
           urlPub4: true,
           urlPub5: true,
           urlPub6: true,
+          id: true,
         },
       });
     } catch (error) {

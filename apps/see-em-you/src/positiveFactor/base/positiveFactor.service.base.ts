@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PositiveFactor } from "@prisma/client";
+import { Prisma, PositiveFactor as PrismaPositiveFactor } from "@prisma/client";
 
 export class PositiveFactorServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class PositiveFactorServiceBase {
     return this.prisma.positiveFactor.count(args);
   }
 
-  async findMany<T extends Prisma.PositiveFactorFindManyArgs>(
+  async positiveFactors<T extends Prisma.PositiveFactorFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PositiveFactorFindManyArgs>
-  ): Promise<PositiveFactor[]> {
+  ): Promise<PrismaPositiveFactor[]> {
     return this.prisma.positiveFactor.findMany(args);
   }
-  async findOne<T extends Prisma.PositiveFactorFindUniqueArgs>(
+  async positiveFactor<T extends Prisma.PositiveFactorFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PositiveFactorFindUniqueArgs>
-  ): Promise<PositiveFactor | null> {
+  ): Promise<PrismaPositiveFactor | null> {
     return this.prisma.positiveFactor.findUnique(args);
   }
-  async create<T extends Prisma.PositiveFactorCreateArgs>(
+  async createPositiveFactor<T extends Prisma.PositiveFactorCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PositiveFactorCreateArgs>
-  ): Promise<PositiveFactor> {
+  ): Promise<PrismaPositiveFactor> {
     return this.prisma.positiveFactor.create<T>(args);
   }
-  async update<T extends Prisma.PositiveFactorUpdateArgs>(
+  async updatePositiveFactor<T extends Prisma.PositiveFactorUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PositiveFactorUpdateArgs>
-  ): Promise<PositiveFactor> {
+  ): Promise<PrismaPositiveFactor> {
     return this.prisma.positiveFactor.update<T>(args);
   }
-  async delete<T extends Prisma.PositiveFactorDeleteArgs>(
+  async deletePositiveFactor<T extends Prisma.PositiveFactorDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PositiveFactorDeleteArgs>
-  ): Promise<PositiveFactor> {
+  ): Promise<PrismaPositiveFactor> {
     return this.prisma.positiveFactor.delete(args);
   }
 }

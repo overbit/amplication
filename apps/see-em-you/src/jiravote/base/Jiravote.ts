@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsInt, IsString } from "class-validator";
+import { IsDate, IsString, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -23,22 +23,6 @@ class Jiravote {
   @Type(() => Date)
   @Field(() => Date)
   created!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  jiraName!: string;
 
   @ApiProperty({
     required: true,
@@ -54,7 +38,23 @@ class Jiravote {
   })
   @IsString()
   @Field(() => String)
+  jiraName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   user!: string;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Jiravote as Jiravote };

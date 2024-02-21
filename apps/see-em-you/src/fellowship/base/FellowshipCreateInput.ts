@@ -14,12 +14,12 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  ValidateNested,
   IsDate,
   IsInt,
+  ValidateNested,
 } from "class-validator";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { Type } from "class-transformer";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 
 @InputType()
 class FellowshipCreateInput {
@@ -32,16 +32,29 @@ class FellowshipCreateInput {
   @Field(() => String, {
     nullable: true,
   })
+  name?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   amount?: string | null;
 
   @ApiProperty({
-    required: true,
-    type: () => ApplicationWhereUniqueInput,
+    required: false,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  status?: string | null;
 
   @ApiProperty({
     required: false,
@@ -74,7 +87,7 @@ class FellowshipCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  datafileId?: number | null;
+  duration?: number | null;
 
   @ApiProperty({
     required: false,
@@ -85,18 +98,7 @@ class FellowshipCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  duration?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  name?: string | null;
+  datafileId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -110,15 +112,13 @@ class FellowshipCreateInput {
   short?: number | null;
 
   @ApiProperty({
-    required: false,
-    type: String,
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  status?: string | null;
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { FellowshipCreateInput as FellowshipCreateInput };

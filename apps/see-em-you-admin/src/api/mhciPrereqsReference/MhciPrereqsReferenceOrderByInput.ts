@@ -1,18 +1,18 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MhciPrereqsReferenceOrderByInput = {
-  anovaComment?: SortOrder;
-  anova_knowledge?: SortOrder;
   applicationId?: SortOrder;
+  refUserId?: SortOrder;
   content?: SortOrder;
   datafileId?: SortOrder;
-  id?: SortOrder;
+  submitted?: SortOrder;
+  reminderSentCount?: SortOrder;
   lastReminderSent?: SortOrder;
+  anova_knowledge?: SortOrder;
+  anovaComment?: SortOrder;
+  regression_knowledge?: SortOrder;
+  regressionComment?: SortOrder;
   periodId?: SortOrder;
   programId?: SortOrder;
-  refUserId?: SortOrder;
-  regressionComment?: SortOrder;
-  regression_knowledge?: SortOrder;
-  reminderSentCount?: SortOrder;
-  submitted?: SortOrder;
+  id?: SortOrder;
 };

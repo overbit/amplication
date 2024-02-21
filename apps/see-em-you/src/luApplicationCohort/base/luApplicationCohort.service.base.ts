@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuApplicationCohort, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  LuApplicationCohort as PrismaLuApplicationCohort,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class LuApplicationCohortServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,39 @@ export class LuApplicationCohortServiceBase {
     return this.prisma.luApplicationCohort.count(args);
   }
 
-  async findMany<T extends Prisma.LuApplicationCohortFindManyArgs>(
+  async luApplicationCohorts<T extends Prisma.LuApplicationCohortFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationCohortFindManyArgs>
-  ): Promise<LuApplicationCohort[]> {
+  ): Promise<PrismaLuApplicationCohort[]> {
     return this.prisma.luApplicationCohort.findMany(args);
   }
-  async findOne<T extends Prisma.LuApplicationCohortFindUniqueArgs>(
+  async luApplicationCohort<T extends Prisma.LuApplicationCohortFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationCohortFindUniqueArgs>
-  ): Promise<LuApplicationCohort | null> {
+  ): Promise<PrismaLuApplicationCohort | null> {
     return this.prisma.luApplicationCohort.findUnique(args);
   }
-  async create<T extends Prisma.LuApplicationCohortCreateArgs>(
+  async createLuApplicationCohort<
+    T extends Prisma.LuApplicationCohortCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationCohortCreateArgs>
-  ): Promise<LuApplicationCohort> {
+  ): Promise<PrismaLuApplicationCohort> {
     return this.prisma.luApplicationCohort.create<T>(args);
   }
-  async update<T extends Prisma.LuApplicationCohortUpdateArgs>(
+  async updateLuApplicationCohort<
+    T extends Prisma.LuApplicationCohortUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationCohortUpdateArgs>
-  ): Promise<LuApplicationCohort> {
+  ): Promise<PrismaLuApplicationCohort> {
     return this.prisma.luApplicationCohort.update<T>(args);
   }
-  async delete<T extends Prisma.LuApplicationCohortDeleteArgs>(
+  async deleteLuApplicationCohort<
+    T extends Prisma.LuApplicationCohortDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationCohortDeleteArgs>
-  ): Promise<LuApplicationCohort> {
+  ): Promise<PrismaLuApplicationCohort> {
     return this.prisma.luApplicationCohort.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.luApplicationCohort
       .findUnique({
         where: { id: parentId },

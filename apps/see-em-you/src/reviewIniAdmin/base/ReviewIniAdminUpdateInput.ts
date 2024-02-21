@@ -28,14 +28,14 @@ class ReviewIniAdminUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  comments?: string;
+  reviewerId?: number;
 
   @ApiProperty({
     required: false,
@@ -57,18 +57,18 @@ class ReviewIniAdminUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  reviewerId?: number;
+  round?: number | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  round?: number | null;
+  comments?: string;
 }
 
 export { ReviewIniAdminUpdateInput as ReviewIniAdminUpdateInput };

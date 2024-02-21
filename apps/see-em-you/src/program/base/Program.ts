@@ -21,7 +21,7 @@ class Program {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  programTypeId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class Program {
   })
   @IsInt()
   @Field(() => Number)
-  programTypeId!: number;
+  id!: number;
 }
 
 export { Program as Program };

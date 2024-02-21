@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateProgramGroupGroupTypeArgs } from "./CreateProgramGroupGroupTypeArgs";
-import { UpdateProgramGroupGroupTypeArgs } from "./UpdateProgramGroupGroupTypeArgs";
-import { DeleteProgramGroupGroupTypeArgs } from "./DeleteProgramGroupGroupTypeArgs";
+import { ProgramGroupGroupType } from "./ProgramGroupGroupType";
 import { ProgramGroupGroupTypeCountArgs } from "./ProgramGroupGroupTypeCountArgs";
 import { ProgramGroupGroupTypeFindManyArgs } from "./ProgramGroupGroupTypeFindManyArgs";
 import { ProgramGroupGroupTypeFindUniqueArgs } from "./ProgramGroupGroupTypeFindUniqueArgs";
-import { ProgramGroupGroupType } from "./ProgramGroupGroupType";
+import { CreateProgramGroupGroupTypeArgs } from "./CreateProgramGroupGroupTypeArgs";
+import { UpdateProgramGroupGroupTypeArgs } from "./UpdateProgramGroupGroupTypeArgs";
+import { DeleteProgramGroupGroupTypeArgs } from "./DeleteProgramGroupGroupTypeArgs";
 import { ProgramGroupGroupTypeService } from "../programGroupGroupType.service";
 @graphql.Resolver(() => ProgramGroupGroupType)
 export class ProgramGroupGroupTypeResolverBase {
@@ -38,14 +38,14 @@ export class ProgramGroupGroupTypeResolverBase {
   async programGroupGroupTypes(
     @graphql.Args() args: ProgramGroupGroupTypeFindManyArgs
   ): Promise<ProgramGroupGroupType[]> {
-    return this.service.findMany(args);
+    return this.service.programGroupGroupTypes(args);
   }
 
   @graphql.Query(() => ProgramGroupGroupType, { nullable: true })
   async programGroupGroupType(
     @graphql.Args() args: ProgramGroupGroupTypeFindUniqueArgs
   ): Promise<ProgramGroupGroupType | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.programGroupGroupType(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ProgramGroupGroupTypeResolverBase {
   async createProgramGroupGroupType(
     @graphql.Args() args: CreateProgramGroupGroupTypeArgs
   ): Promise<ProgramGroupGroupType> {
-    return await this.service.create({
+    return await this.service.createProgramGroupGroupType({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ProgramGroupGroupTypeResolverBase {
     @graphql.Args() args: UpdateProgramGroupGroupTypeArgs
   ): Promise<ProgramGroupGroupType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramGroupGroupType({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ProgramGroupGroupTypeResolverBase {
     @graphql.Args() args: DeleteProgramGroupGroupTypeArgs
   ): Promise<ProgramGroupGroupType | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteProgramGroupGroupType(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

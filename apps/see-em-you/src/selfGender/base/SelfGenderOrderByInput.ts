@@ -28,6 +28,17 @@ class SelfGenderOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  userId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   genderIndex?: SortOrder;
 
   @ApiProperty({
@@ -40,17 +51,6 @@ class SelfGenderOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  userId?: SortOrder;
 }
 
 export { SelfGenderOrderByInput as SelfGenderOrderByInput };

@@ -1,12 +1,12 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type DecisionAoiRankOrderByInput = {
-  decision?: SortOrder;
   departmentId?: SortOrder;
-  id?: SortOrder;
-  interestId?: SortOrder;
-  luUsersUsertypesId?: SortOrder;
   periodId?: SortOrder;
-  ranking?: SortOrder;
+  interestId?: SortOrder;
+  decision?: SortOrder;
   timestamp?: SortOrder;
+  luUsersUsertypesId?: SortOrder;
+  ranking?: SortOrder;
+  id?: SortOrder;
 };

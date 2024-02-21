@@ -24,17 +24,6 @@ class VoucherApplicationErrorUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  allowMultiple?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   appId?: number;
 
   @ApiProperty({
@@ -47,6 +36,17 @@ class VoucherApplicationErrorUpdateInput {
     nullable: true,
   })
   code?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  vaId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -68,7 +68,7 @@ class VoucherApplicationErrorUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  vaId?: number | null;
+  allowMultiple?: number | null;
 }
 
 export { VoucherApplicationErrorUpdateInput as VoucherApplicationErrorUpdateInput };

@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ApplicationContent } from "@prisma/client";
+import {
+  Prisma,
+  ApplicationContent as PrismaApplicationContent,
+} from "@prisma/client";
 
 export class ApplicationContentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class ApplicationContentServiceBase {
     return this.prisma.applicationContent.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicationContentFindManyArgs>(
+  async applicationContents<T extends Prisma.ApplicationContentFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationContentFindManyArgs>
-  ): Promise<ApplicationContent[]> {
+  ): Promise<PrismaApplicationContent[]> {
     return this.prisma.applicationContent.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicationContentFindUniqueArgs>(
+  async applicationContent<T extends Prisma.ApplicationContentFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationContentFindUniqueArgs>
-  ): Promise<ApplicationContent | null> {
+  ): Promise<PrismaApplicationContent | null> {
     return this.prisma.applicationContent.findUnique(args);
   }
-  async create<T extends Prisma.ApplicationContentCreateArgs>(
+  async createApplicationContent<T extends Prisma.ApplicationContentCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationContentCreateArgs>
-  ): Promise<ApplicationContent> {
+  ): Promise<PrismaApplicationContent> {
     return this.prisma.applicationContent.create<T>(args);
   }
-  async update<T extends Prisma.ApplicationContentUpdateArgs>(
+  async updateApplicationContent<T extends Prisma.ApplicationContentUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationContentUpdateArgs>
-  ): Promise<ApplicationContent> {
+  ): Promise<PrismaApplicationContent> {
     return this.prisma.applicationContent.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicationContentDeleteArgs>(
+  async deleteApplicationContent<T extends Prisma.ApplicationContentDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationContentDeleteArgs>
-  ): Promise<ApplicationContent> {
+  ): Promise<PrismaApplicationContent> {
     return this.prisma.applicationContent.delete(args);
   }
 }

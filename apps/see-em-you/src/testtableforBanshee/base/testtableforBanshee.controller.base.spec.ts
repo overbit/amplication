@@ -33,11 +33,11 @@ const FIND_ONE_RESULT = {
 };
 
 const service = {
-  create() {
+  createTesttableforBanshee() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  testtableforBanshees: () => FIND_MANY_RESULT,
+  testtableforBanshee: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -11,23 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, ValidateNested, IsDate } from "class-validator";
-import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
+import { IsInt, IsOptional, IsDate, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
+import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
 
 @InputType()
 class CohortUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  closed?: number;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -41,6 +30,28 @@ class CohortUpdateInput {
 
   @ApiProperty({
     required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  startDate?: Date;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  closed?: number;
+
+  @ApiProperty({
+    required: false,
     type: () => PeriodWhereUniqueInput,
   })
   @ValidateNested()
@@ -50,17 +61,6 @@ class CohortUpdateInput {
     nullable: true,
   })
   period?: PeriodWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  startDate?: Date;
 }
 
 export { CohortUpdateInput as CohortUpdateInput };

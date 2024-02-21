@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, ValidateNested, IsString } from "class-validator";
+import { IsInt, IsOptional, IsString, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { Type } from "class-transformer";
 
@@ -26,33 +26,10 @@ class LuApplicationAdvisorUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  advisorType?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   advisorUserId?: number | null;
 
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
-    nullable: true,
-  })
-  application?: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -60,7 +37,7 @@ class LuApplicationAdvisorUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  choice?: number | null;
+  advisorType?: number;
 
   @ApiProperty({
     required: false,
@@ -83,6 +60,29 @@ class LuApplicationAdvisorUpdateInput {
     nullable: true,
   })
   programId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  choice?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationWhereUniqueInput, {
+    nullable: true,
+  })
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { LuApplicationAdvisorUpdateInput as LuApplicationAdvisorUpdateInput };

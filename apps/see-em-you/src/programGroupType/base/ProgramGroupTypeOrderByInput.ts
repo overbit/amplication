@@ -28,7 +28,7 @@ class ProgramGroupTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  programGroupTypeName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class ProgramGroupTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  programGroupTypeName?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ProgramGroupTypeOrderByInput as ProgramGroupTypeOrderByInput };

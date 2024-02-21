@@ -24,7 +24,7 @@ class SelfGenderUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  genderIndex?: number | null;
+  userId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class SelfGenderUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  userId?: number;
+  genderIndex?: number | null;
 }
 
 export { SelfGenderUpdateInput as SelfGenderUpdateInput };

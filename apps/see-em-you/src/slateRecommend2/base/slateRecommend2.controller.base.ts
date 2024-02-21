@@ -18,36 +18,34 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateRecommend2Service } from "../slateRecommend2.service";
 import { SlateRecommend2CreateInput } from "./SlateRecommend2CreateInput";
-import { SlateRecommend2WhereInput } from "./SlateRecommend2WhereInput";
-import { SlateRecommend2WhereUniqueInput } from "./SlateRecommend2WhereUniqueInput";
-import { SlateRecommend2FindManyArgs } from "./SlateRecommend2FindManyArgs";
-import { SlateRecommend2UpdateInput } from "./SlateRecommend2UpdateInput";
 import { SlateRecommend2 } from "./SlateRecommend2";
+import { SlateRecommend2FindManyArgs } from "./SlateRecommend2FindManyArgs";
+import { SlateRecommend2WhereUniqueInput } from "./SlateRecommend2WhereUniqueInput";
+import { SlateRecommend2UpdateInput } from "./SlateRecommend2UpdateInput";
 
 export class SlateRecommend2ControllerBase {
   constructor(protected readonly service: SlateRecommend2Service) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateRecommend2 })
-  async create(
+  async createSlateRecommend2(
     @common.Body() data: SlateRecommend2CreateInput
   ): Promise<SlateRecommend2> {
-    return await this.service.create({
+    return await this.service.createSlateRecommend2({
       data: data,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference2Email: true,
-        reference2First: true,
-        reference2Industry: true,
-        reference2Last: true,
-        reference2Organization: true,
-        reference2Phone: true,
-        reference2Submitted: true,
-        reference2Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference2Type: true,
+        reference2Submitted: true,
+        reference2First: true,
+        reference2Last: true,
+        reference2Industry: true,
+        reference2Organization: true,
+        reference2Title: true,
+        reference2Email: true,
+        reference2Phone: true,
         referenceNum2IsrmsRecommenderScore1: true,
         referenceNum2IsrmsRecommenderScore10: true,
         referenceNum2IsrmsRecommenderScore11: true,
@@ -76,6 +74,7 @@ export class SlateRecommend2ControllerBase {
         referenceNum2RecommenderScore6: true,
         referenceNum2RecommenderScore7: true,
         referenceNum2RecommenderScore8: true,
+        id: true,
       },
     });
   }
@@ -83,25 +82,26 @@ export class SlateRecommend2ControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateRecommend2] })
   @ApiNestedQuery(SlateRecommend2FindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateRecommend2[]> {
+  async slateRecommend2s(
+    @common.Req() request: Request
+  ): Promise<SlateRecommend2[]> {
     const args = plainToClass(SlateRecommend2FindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateRecommend2s({
       ...args,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference2Email: true,
-        reference2First: true,
-        reference2Industry: true,
-        reference2Last: true,
-        reference2Organization: true,
-        reference2Phone: true,
-        reference2Submitted: true,
-        reference2Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference2Type: true,
+        reference2Submitted: true,
+        reference2First: true,
+        reference2Last: true,
+        reference2Industry: true,
+        reference2Organization: true,
+        reference2Title: true,
+        reference2Email: true,
+        reference2Phone: true,
         referenceNum2IsrmsRecommenderScore1: true,
         referenceNum2IsrmsRecommenderScore10: true,
         referenceNum2IsrmsRecommenderScore11: true,
@@ -130,6 +130,7 @@ export class SlateRecommend2ControllerBase {
         referenceNum2RecommenderScore6: true,
         referenceNum2RecommenderScore7: true,
         referenceNum2RecommenderScore8: true,
+        id: true,
       },
     });
   }
@@ -137,26 +138,25 @@ export class SlateRecommend2ControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateRecommend2 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateRecommend2(
     @common.Param() params: SlateRecommend2WhereUniqueInput
   ): Promise<SlateRecommend2 | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateRecommend2({
       where: params,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference2Email: true,
-        reference2First: true,
-        reference2Industry: true,
-        reference2Last: true,
-        reference2Organization: true,
-        reference2Phone: true,
-        reference2Submitted: true,
-        reference2Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference2Type: true,
+        reference2Submitted: true,
+        reference2First: true,
+        reference2Last: true,
+        reference2Industry: true,
+        reference2Organization: true,
+        reference2Title: true,
+        reference2Email: true,
+        reference2Phone: true,
         referenceNum2IsrmsRecommenderScore1: true,
         referenceNum2IsrmsRecommenderScore10: true,
         referenceNum2IsrmsRecommenderScore11: true,
@@ -185,6 +185,7 @@ export class SlateRecommend2ControllerBase {
         referenceNum2RecommenderScore6: true,
         referenceNum2RecommenderScore7: true,
         referenceNum2RecommenderScore8: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -198,29 +199,28 @@ export class SlateRecommend2ControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateRecommend2 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateRecommend2(
     @common.Param() params: SlateRecommend2WhereUniqueInput,
     @common.Body() data: SlateRecommend2UpdateInput
   ): Promise<SlateRecommend2 | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateRecommend2({
         where: params,
         data: data,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
-          reference2Email: true,
-          reference2First: true,
-          reference2Industry: true,
-          reference2Last: true,
-          reference2Organization: true,
-          reference2Phone: true,
-          reference2Submitted: true,
-          reference2Title: true,
+          first: true,
+          middle: true,
+          last: true,
           reference2Type: true,
+          reference2Submitted: true,
+          reference2First: true,
+          reference2Last: true,
+          reference2Industry: true,
+          reference2Organization: true,
+          reference2Title: true,
+          reference2Email: true,
+          reference2Phone: true,
           referenceNum2IsrmsRecommenderScore1: true,
           referenceNum2IsrmsRecommenderScore10: true,
           referenceNum2IsrmsRecommenderScore11: true,
@@ -249,6 +249,7 @@ export class SlateRecommend2ControllerBase {
           referenceNum2RecommenderScore6: true,
           referenceNum2RecommenderScore7: true,
           referenceNum2RecommenderScore8: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -264,27 +265,26 @@ export class SlateRecommend2ControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateRecommend2 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateRecommend2(
     @common.Param() params: SlateRecommend2WhereUniqueInput
   ): Promise<SlateRecommend2 | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateRecommend2({
         where: params,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
-          reference2Email: true,
-          reference2First: true,
-          reference2Industry: true,
-          reference2Last: true,
-          reference2Organization: true,
-          reference2Phone: true,
-          reference2Submitted: true,
-          reference2Title: true,
+          first: true,
+          middle: true,
+          last: true,
           reference2Type: true,
+          reference2Submitted: true,
+          reference2First: true,
+          reference2Last: true,
+          reference2Industry: true,
+          reference2Organization: true,
+          reference2Title: true,
+          reference2Email: true,
+          reference2Phone: true,
           referenceNum2IsrmsRecommenderScore1: true,
           referenceNum2IsrmsRecommenderScore10: true,
           referenceNum2IsrmsRecommenderScore11: true,
@@ -313,6 +313,7 @@ export class SlateRecommend2ControllerBase {
           referenceNum2RecommenderScore6: true,
           referenceNum2RecommenderScore7: true,
           referenceNum2RecommenderScore8: true,
+          id: true,
         },
       });
     } catch (error) {

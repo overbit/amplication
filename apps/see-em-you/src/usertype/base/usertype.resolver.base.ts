@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUsertypeArgs } from "./CreateUsertypeArgs";
-import { UpdateUsertypeArgs } from "./UpdateUsertypeArgs";
-import { DeleteUsertypeArgs } from "./DeleteUsertypeArgs";
+import { Usertype } from "./Usertype";
 import { UsertypeCountArgs } from "./UsertypeCountArgs";
 import { UsertypeFindManyArgs } from "./UsertypeFindManyArgs";
 import { UsertypeFindUniqueArgs } from "./UsertypeFindUniqueArgs";
-import { Usertype } from "./Usertype";
+import { CreateUsertypeArgs } from "./CreateUsertypeArgs";
+import { UpdateUsertypeArgs } from "./UpdateUsertypeArgs";
+import { DeleteUsertypeArgs } from "./DeleteUsertypeArgs";
 import { UsertypeService } from "../usertype.service";
 @graphql.Resolver(() => Usertype)
 export class UsertypeResolverBase {
@@ -38,14 +38,14 @@ export class UsertypeResolverBase {
   async usertypes(
     @graphql.Args() args: UsertypeFindManyArgs
   ): Promise<Usertype[]> {
-    return this.service.findMany(args);
+    return this.service.usertypes(args);
   }
 
   @graphql.Query(() => Usertype, { nullable: true })
   async usertype(
     @graphql.Args() args: UsertypeFindUniqueArgs
   ): Promise<Usertype | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.usertype(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class UsertypeResolverBase {
   async createUsertype(
     @graphql.Args() args: CreateUsertypeArgs
   ): Promise<Usertype> {
-    return await this.service.create({
+    return await this.service.createUsertype({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class UsertypeResolverBase {
     @graphql.Args() args: UpdateUsertypeArgs
   ): Promise<Usertype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsertype({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class UsertypeResolverBase {
     @graphql.Args() args: DeleteUsertypeArgs
   ): Promise<Usertype | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUsertype(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

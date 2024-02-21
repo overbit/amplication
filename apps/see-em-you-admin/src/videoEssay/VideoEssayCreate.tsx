@@ -3,17 +3,17 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const VideoEssayCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Access Code" source="accessCode" />
         <NumberInput step={1} label="Application Id" source="applicationId" />
         <TextInput label="Url" source="url" />
+        <TextInput label="Access Code" source="accessCode" />
       </SimpleForm>
     </Create>
   );

@@ -12,8 +12,8 @@ export const FailedMergeCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <TextInput label="File" source="file" />
         <TextInput label="Guid" source="guid" />
+        <TextInput label="File" source="file" />
       </SimpleForm>
     </Create>
   );

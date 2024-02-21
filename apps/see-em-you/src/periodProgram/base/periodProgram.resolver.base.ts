@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePeriodProgramArgs } from "./CreatePeriodProgramArgs";
-import { UpdatePeriodProgramArgs } from "./UpdatePeriodProgramArgs";
-import { DeletePeriodProgramArgs } from "./DeletePeriodProgramArgs";
+import { PeriodProgram } from "./PeriodProgram";
 import { PeriodProgramCountArgs } from "./PeriodProgramCountArgs";
 import { PeriodProgramFindManyArgs } from "./PeriodProgramFindManyArgs";
 import { PeriodProgramFindUniqueArgs } from "./PeriodProgramFindUniqueArgs";
-import { PeriodProgram } from "./PeriodProgram";
+import { CreatePeriodProgramArgs } from "./CreatePeriodProgramArgs";
+import { UpdatePeriodProgramArgs } from "./UpdatePeriodProgramArgs";
+import { DeletePeriodProgramArgs } from "./DeletePeriodProgramArgs";
 import { PeriodProgramService } from "../periodProgram.service";
 @graphql.Resolver(() => PeriodProgram)
 export class PeriodProgramResolverBase {
@@ -38,14 +38,14 @@ export class PeriodProgramResolverBase {
   async periodPrograms(
     @graphql.Args() args: PeriodProgramFindManyArgs
   ): Promise<PeriodProgram[]> {
-    return this.service.findMany(args);
+    return this.service.periodPrograms(args);
   }
 
   @graphql.Query(() => PeriodProgram, { nullable: true })
   async periodProgram(
     @graphql.Args() args: PeriodProgramFindUniqueArgs
   ): Promise<PeriodProgram | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.periodProgram(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PeriodProgramResolverBase {
   async createPeriodProgram(
     @graphql.Args() args: CreatePeriodProgramArgs
   ): Promise<PeriodProgram> {
-    return await this.service.create({
+    return await this.service.createPeriodProgram({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PeriodProgramResolverBase {
     @graphql.Args() args: UpdatePeriodProgramArgs
   ): Promise<PeriodProgram | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriodProgram({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PeriodProgramResolverBase {
     @graphql.Args() args: DeletePeriodProgramArgs
   ): Promise<PeriodProgram | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePeriodProgram(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

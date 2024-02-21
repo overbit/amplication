@@ -11,33 +11,32 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import {
-  ValidateNested,
-  IsOptional,
   IsInt,
+  IsOptional,
   IsNumber,
   IsDate,
   IsEnum,
+  ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { Decimal } from "decimal.js";
+import { Type } from "class-transformer";
 import { EnumPaymentPaymentStatus } from "./EnumPaymentPaymentStatus";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { PaymentVoucherWhereUniqueInput } from "../../paymentVoucher/base/PaymentVoucherWhereUniqueInput";
 
 @InputType()
 class PaymentUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsInt()
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => Number, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput;
+  paymentId?: number;
 
   @ApiProperty({
     required: false,
@@ -48,7 +47,7 @@ class PaymentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  lastModUserId?: number;
+  paymentType?: number;
 
   @ApiProperty({
     required: false,
@@ -60,17 +59,6 @@ class PaymentUpdateInput {
     nullable: true,
   })
   paymentAmount?: Decimal;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  paymentId?: number;
 
   @ApiProperty({
     required: false,
@@ -103,7 +91,19 @@ class PaymentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  paymentType?: number;
+  lastModUserId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationWhereUniqueInput, {
+    nullable: true,
+  })
+  application?: ApplicationWhereUniqueInput;
 
   @ApiProperty({
     required: false,

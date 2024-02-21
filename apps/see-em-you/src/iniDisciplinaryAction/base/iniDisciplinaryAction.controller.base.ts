@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IniDisciplinaryActionService } from "../iniDisciplinaryAction.service";
 import { IniDisciplinaryActionCreateInput } from "./IniDisciplinaryActionCreateInput";
-import { IniDisciplinaryActionWhereInput } from "./IniDisciplinaryActionWhereInput";
-import { IniDisciplinaryActionWhereUniqueInput } from "./IniDisciplinaryActionWhereUniqueInput";
-import { IniDisciplinaryActionFindManyArgs } from "./IniDisciplinaryActionFindManyArgs";
-import { IniDisciplinaryActionUpdateInput } from "./IniDisciplinaryActionUpdateInput";
 import { IniDisciplinaryAction } from "./IniDisciplinaryAction";
+import { IniDisciplinaryActionFindManyArgs } from "./IniDisciplinaryActionFindManyArgs";
+import { IniDisciplinaryActionWhereUniqueInput } from "./IniDisciplinaryActionWhereUniqueInput";
+import { IniDisciplinaryActionUpdateInput } from "./IniDisciplinaryActionUpdateInput";
 
 export class IniDisciplinaryActionControllerBase {
   constructor(protected readonly service: IniDisciplinaryActionService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IniDisciplinaryAction })
-  async create(
+  async createIniDisciplinaryAction(
     @common.Body() data: IniDisciplinaryActionCreateInput
   ): Promise<IniDisciplinaryAction> {
-    return await this.service.create({
+    return await this.service.createIniDisciplinaryAction({
       data: data,
       select: {
         applicationId: true,
-        id: true,
-        retraction: true,
-        retractionDescription: true,
         sanction: true,
         sanctionDescription: true,
+        retraction: true,
+        retractionDescription: true,
+        id: true,
       },
     });
   }
@@ -47,19 +46,19 @@ export class IniDisciplinaryActionControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [IniDisciplinaryAction] })
   @ApiNestedQuery(IniDisciplinaryActionFindManyArgs)
-  async findMany(
+  async iniDisciplinaryActions(
     @common.Req() request: Request
   ): Promise<IniDisciplinaryAction[]> {
     const args = plainToClass(IniDisciplinaryActionFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.iniDisciplinaryActions({
       ...args,
       select: {
         applicationId: true,
-        id: true,
-        retraction: true,
-        retractionDescription: true,
         sanction: true,
         sanctionDescription: true,
+        retraction: true,
+        retractionDescription: true,
+        id: true,
       },
     });
   }
@@ -67,18 +66,18 @@ export class IniDisciplinaryActionControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IniDisciplinaryAction })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async iniDisciplinaryAction(
     @common.Param() params: IniDisciplinaryActionWhereUniqueInput
   ): Promise<IniDisciplinaryAction | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.iniDisciplinaryAction({
       where: params,
       select: {
         applicationId: true,
-        id: true,
-        retraction: true,
-        retractionDescription: true,
         sanction: true,
         sanctionDescription: true,
+        retraction: true,
+        retractionDescription: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -92,21 +91,21 @@ export class IniDisciplinaryActionControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IniDisciplinaryAction })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIniDisciplinaryAction(
     @common.Param() params: IniDisciplinaryActionWhereUniqueInput,
     @common.Body() data: IniDisciplinaryActionUpdateInput
   ): Promise<IniDisciplinaryAction | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniDisciplinaryAction({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          id: true,
-          retraction: true,
-          retractionDescription: true,
           sanction: true,
           sanctionDescription: true,
+          retraction: true,
+          retractionDescription: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -122,19 +121,19 @@ export class IniDisciplinaryActionControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IniDisciplinaryAction })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIniDisciplinaryAction(
     @common.Param() params: IniDisciplinaryActionWhereUniqueInput
   ): Promise<IniDisciplinaryAction | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIniDisciplinaryAction({
         where: params,
         select: {
           applicationId: true,
-          id: true,
-          retraction: true,
-          retractionDescription: true,
           sanction: true,
           sanctionDescription: true,
+          retraction: true,
+          retractionDescription: true,
+          id: true,
         },
       });
     } catch (error) {

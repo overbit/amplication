@@ -1,1 +1,5 @@
-export type DisabilityWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type DisabilityWhereInput = {
+  id?: IntFilter;
+};

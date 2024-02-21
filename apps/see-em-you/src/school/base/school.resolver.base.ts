@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSchoolArgs } from "./CreateSchoolArgs";
-import { UpdateSchoolArgs } from "./UpdateSchoolArgs";
-import { DeleteSchoolArgs } from "./DeleteSchoolArgs";
+import { School } from "./School";
 import { SchoolCountArgs } from "./SchoolCountArgs";
 import { SchoolFindManyArgs } from "./SchoolFindManyArgs";
 import { SchoolFindUniqueArgs } from "./SchoolFindUniqueArgs";
-import { School } from "./School";
+import { CreateSchoolArgs } from "./CreateSchoolArgs";
+import { UpdateSchoolArgs } from "./UpdateSchoolArgs";
+import { DeleteSchoolArgs } from "./DeleteSchoolArgs";
 import { SchoolService } from "../school.service";
 @graphql.Resolver(() => School)
 export class SchoolResolverBase {
@@ -36,14 +36,14 @@ export class SchoolResolverBase {
 
   @graphql.Query(() => [School])
   async schools(@graphql.Args() args: SchoolFindManyArgs): Promise<School[]> {
-    return this.service.findMany(args);
+    return this.service.schools(args);
   }
 
   @graphql.Query(() => School, { nullable: true })
   async school(
     @graphql.Args() args: SchoolFindUniqueArgs
   ): Promise<School | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.school(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class SchoolResolverBase {
 
   @graphql.Mutation(() => School)
   async createSchool(@graphql.Args() args: CreateSchoolArgs): Promise<School> {
-    return await this.service.create({
+    return await this.service.createSchool({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class SchoolResolverBase {
     @graphql.Args() args: UpdateSchoolArgs
   ): Promise<School | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSchool({
         ...args,
         data: args.data,
       });
@@ -82,7 +82,7 @@ export class SchoolResolverBase {
     @graphql.Args() args: DeleteSchoolArgs
   ): Promise<School | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSchool(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

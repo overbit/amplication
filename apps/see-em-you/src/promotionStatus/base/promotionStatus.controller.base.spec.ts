@@ -20,40 +20,40 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
   departmentId: 42,
-  id: "exampleId",
   round: 42,
   statusTime: new Date(),
+  id: "exampleId",
 };
 const CREATE_RESULT = {
   applicationId: 42,
   departmentId: 42,
-  id: "exampleId",
   round: 42,
   statusTime: new Date(),
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
     departmentId: 42,
-    id: "exampleId",
     round: 42,
     statusTime: new Date(),
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
   departmentId: 42,
-  id: "exampleId",
   round: 42,
   statusTime: new Date(),
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createPromotionStatus() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  promotionStatuses: () => FIND_MANY_RESULT,
+  promotionStatus: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

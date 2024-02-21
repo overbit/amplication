@@ -18,50 +18,50 @@ import { GroupRankMemberService } from "../groupRankMember.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationId: 42,
-  grank: 42,
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
   round: 42,
+  periodId: 42,
+  applicationId: 42,
+  luUsersUsertypesId: 42,
+  grank: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  applicationId: 42,
-  grank: 42,
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
   round: 42,
+  periodId: 42,
+  applicationId: 42,
+  luUsersUsertypesId: 42,
+  grank: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    applicationId: 42,
-    grank: 42,
     groupId: 42,
-    id: "exampleId",
-    luUsersUsertypesId: 42,
-    periodId: 42,
     round: 42,
+    periodId: 42,
+    applicationId: 42,
+    luUsersUsertypesId: 42,
+    grank: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationId: 42,
-  grank: 42,
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
   round: 42,
+  periodId: 42,
+  applicationId: 42,
+  luUsersUsertypesId: 42,
+  grank: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createGroupRankMember() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  groupRankMembers: () => FIND_MANY_RESULT,
+  groupRankMember: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

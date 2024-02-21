@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLanguageAssessmentStudyLevelArgs } from "./CreateLanguageAssessmentStudyLevelArgs";
-import { UpdateLanguageAssessmentStudyLevelArgs } from "./UpdateLanguageAssessmentStudyLevelArgs";
-import { DeleteLanguageAssessmentStudyLevelArgs } from "./DeleteLanguageAssessmentStudyLevelArgs";
+import { LanguageAssessmentStudyLevel } from "./LanguageAssessmentStudyLevel";
 import { LanguageAssessmentStudyLevelCountArgs } from "./LanguageAssessmentStudyLevelCountArgs";
 import { LanguageAssessmentStudyLevelFindManyArgs } from "./LanguageAssessmentStudyLevelFindManyArgs";
 import { LanguageAssessmentStudyLevelFindUniqueArgs } from "./LanguageAssessmentStudyLevelFindUniqueArgs";
-import { LanguageAssessmentStudyLevel } from "./LanguageAssessmentStudyLevel";
+import { CreateLanguageAssessmentStudyLevelArgs } from "./CreateLanguageAssessmentStudyLevelArgs";
+import { UpdateLanguageAssessmentStudyLevelArgs } from "./UpdateLanguageAssessmentStudyLevelArgs";
+import { DeleteLanguageAssessmentStudyLevelArgs } from "./DeleteLanguageAssessmentStudyLevelArgs";
 import { LanguageAssessmentStudyLevelService } from "../languageAssessmentStudyLevel.service";
 @graphql.Resolver(() => LanguageAssessmentStudyLevel)
 export class LanguageAssessmentStudyLevelResolverBase {
@@ -40,14 +40,14 @@ export class LanguageAssessmentStudyLevelResolverBase {
   async languageAssessmentStudyLevels(
     @graphql.Args() args: LanguageAssessmentStudyLevelFindManyArgs
   ): Promise<LanguageAssessmentStudyLevel[]> {
-    return this.service.findMany(args);
+    return this.service.languageAssessmentStudyLevels(args);
   }
 
   @graphql.Query(() => LanguageAssessmentStudyLevel, { nullable: true })
   async languageAssessmentStudyLevel(
     @graphql.Args() args: LanguageAssessmentStudyLevelFindUniqueArgs
   ): Promise<LanguageAssessmentStudyLevel | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.languageAssessmentStudyLevel(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class LanguageAssessmentStudyLevelResolverBase {
   async createLanguageAssessmentStudyLevel(
     @graphql.Args() args: CreateLanguageAssessmentStudyLevelArgs
   ): Promise<LanguageAssessmentStudyLevel> {
-    return await this.service.create({
+    return await this.service.createLanguageAssessmentStudyLevel({
       ...args,
       data: args.data,
     });
@@ -69,7 +69,7 @@ export class LanguageAssessmentStudyLevelResolverBase {
     @graphql.Args() args: UpdateLanguageAssessmentStudyLevelArgs
   ): Promise<LanguageAssessmentStudyLevel | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLanguageAssessmentStudyLevel({
         ...args,
         data: args.data,
       });
@@ -88,7 +88,7 @@ export class LanguageAssessmentStudyLevelResolverBase {
     @graphql.Args() args: DeleteLanguageAssessmentStudyLevelArgs
   ): Promise<LanguageAssessmentStudyLevel | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLanguageAssessmentStudyLevel(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

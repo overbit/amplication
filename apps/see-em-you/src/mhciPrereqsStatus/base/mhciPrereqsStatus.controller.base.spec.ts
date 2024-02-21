@@ -18,42 +18,42 @@ import { MhciPrereqsStatusService } from "../mhciPrereqsStatus.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
-  programId: 42,
-  reviewerExplanation: "exampleReviewerExplanation",
   reviewerLuUsersUsertypesId: 42,
+  reviewerExplanation: "exampleReviewerExplanation",
   reviewerTimestamp: new Date(),
+  programId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
-  programId: 42,
-  reviewerExplanation: "exampleReviewerExplanation",
   reviewerLuUsersUsertypesId: 42,
+  reviewerExplanation: "exampleReviewerExplanation",
   reviewerTimestamp: new Date(),
+  programId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
-    programId: 42,
-    reviewerExplanation: "exampleReviewerExplanation",
     reviewerLuUsersUsertypesId: 42,
+    reviewerExplanation: "exampleReviewerExplanation",
     reviewerTimestamp: new Date(),
+    programId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
-  programId: 42,
-  reviewerExplanation: "exampleReviewerExplanation",
   reviewerLuUsersUsertypesId: 42,
+  reviewerExplanation: "exampleReviewerExplanation",
   reviewerTimestamp: new Date(),
+  programId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMhciPrereqsStatus() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mhciPrereqsStatuses: () => FIND_MANY_RESULT,
+  mhciPrereqsStatus: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

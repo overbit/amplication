@@ -1,9 +1,9 @@
 export type MseLetterRec = {
-  algortihms: number;
   applicationId: number;
-  dataStructures: number;
-  discrete: number;
-  id: string;
-  java: number;
   reviewerId: number;
+  java: number;
+  discrete: number;
+  algortihms: number;
+  dataStructures: number;
+  id: string;
 };

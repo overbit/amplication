@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateApplicantIpedsRaceArgs } from "./CreateApplicantIpedsRaceArgs";
-import { UpdateApplicantIpedsRaceArgs } from "./UpdateApplicantIpedsRaceArgs";
-import { DeleteApplicantIpedsRaceArgs } from "./DeleteApplicantIpedsRaceArgs";
+import { ApplicantIpedsRace } from "./ApplicantIpedsRace";
 import { ApplicantIpedsRaceCountArgs } from "./ApplicantIpedsRaceCountArgs";
 import { ApplicantIpedsRaceFindManyArgs } from "./ApplicantIpedsRaceFindManyArgs";
 import { ApplicantIpedsRaceFindUniqueArgs } from "./ApplicantIpedsRaceFindUniqueArgs";
-import { ApplicantIpedsRace } from "./ApplicantIpedsRace";
+import { CreateApplicantIpedsRaceArgs } from "./CreateApplicantIpedsRaceArgs";
+import { UpdateApplicantIpedsRaceArgs } from "./UpdateApplicantIpedsRaceArgs";
+import { DeleteApplicantIpedsRaceArgs } from "./DeleteApplicantIpedsRaceArgs";
 import { ApplicantIpedsRaceService } from "../applicantIpedsRace.service";
 @graphql.Resolver(() => ApplicantIpedsRace)
 export class ApplicantIpedsRaceResolverBase {
@@ -38,14 +38,14 @@ export class ApplicantIpedsRaceResolverBase {
   async applicantIpedsRaces(
     @graphql.Args() args: ApplicantIpedsRaceFindManyArgs
   ): Promise<ApplicantIpedsRace[]> {
-    return this.service.findMany(args);
+    return this.service.applicantIpedsRaces(args);
   }
 
   @graphql.Query(() => ApplicantIpedsRace, { nullable: true })
   async applicantIpedsRace(
     @graphql.Args() args: ApplicantIpedsRaceFindUniqueArgs
   ): Promise<ApplicantIpedsRace | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.applicantIpedsRace(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ApplicantIpedsRaceResolverBase {
   async createApplicantIpedsRace(
     @graphql.Args() args: CreateApplicantIpedsRaceArgs
   ): Promise<ApplicantIpedsRace> {
-    return await this.service.create({
+    return await this.service.createApplicantIpedsRace({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ApplicantIpedsRaceResolverBase {
     @graphql.Args() args: UpdateApplicantIpedsRaceArgs
   ): Promise<ApplicantIpedsRace | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicantIpedsRace({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ApplicantIpedsRaceResolverBase {
     @graphql.Args() args: DeleteApplicantIpedsRaceArgs
   ): Promise<ApplicantIpedsRace | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteApplicantIpedsRace(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

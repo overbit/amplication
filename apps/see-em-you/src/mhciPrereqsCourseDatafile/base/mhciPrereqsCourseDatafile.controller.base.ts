@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqsCourseDatafileService } from "../mhciPrereqsCourseDatafile.service";
 import { MhciPrereqsCourseDatafileCreateInput } from "./MhciPrereqsCourseDatafileCreateInput";
-import { MhciPrereqsCourseDatafileWhereInput } from "./MhciPrereqsCourseDatafileWhereInput";
-import { MhciPrereqsCourseDatafileWhereUniqueInput } from "./MhciPrereqsCourseDatafileWhereUniqueInput";
-import { MhciPrereqsCourseDatafileFindManyArgs } from "./MhciPrereqsCourseDatafileFindManyArgs";
-import { MhciPrereqsCourseDatafileUpdateInput } from "./MhciPrereqsCourseDatafileUpdateInput";
 import { MhciPrereqsCourseDatafile } from "./MhciPrereqsCourseDatafile";
+import { MhciPrereqsCourseDatafileFindManyArgs } from "./MhciPrereqsCourseDatafileFindManyArgs";
+import { MhciPrereqsCourseDatafileWhereUniqueInput } from "./MhciPrereqsCourseDatafileWhereUniqueInput";
+import { MhciPrereqsCourseDatafileUpdateInput } from "./MhciPrereqsCourseDatafileUpdateInput";
 
 export class MhciPrereqsCourseDatafileControllerBase {
   constructor(protected readonly service: MhciPrereqsCourseDatafileService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereqsCourseDatafile })
-  async create(
+  async createMhciPrereqsCourseDatafile(
     @common.Body() data: MhciPrereqsCourseDatafileCreateInput
   ): Promise<MhciPrereqsCourseDatafile> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsCourseDatafile({
       data: {
         ...data,
 
@@ -41,7 +40,9 @@ export class MhciPrereqsCourseDatafileControllerBase {
       },
       select: {
         datafileinfoId: true,
-        id: true,
+        note: true,
+        submittedToReviewer: true,
+        newFileUploaded: true,
 
         mhciPrereqsCourses: {
           select: {
@@ -49,9 +50,7 @@ export class MhciPrereqsCourseDatafileControllerBase {
           },
         },
 
-        newFileUploaded: true,
-        note: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
   }
@@ -59,18 +58,20 @@ export class MhciPrereqsCourseDatafileControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereqsCourseDatafile] })
   @ApiNestedQuery(MhciPrereqsCourseDatafileFindManyArgs)
-  async findMany(
+  async mhciPrereqsCourseDatafiles(
     @common.Req() request: Request
   ): Promise<MhciPrereqsCourseDatafile[]> {
     const args = plainToClass(
       MhciPrereqsCourseDatafileFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.mhciPrereqsCourseDatafiles({
       ...args,
       select: {
         datafileinfoId: true,
-        id: true,
+        note: true,
+        submittedToReviewer: true,
+        newFileUploaded: true,
 
         mhciPrereqsCourses: {
           select: {
@@ -78,9 +79,7 @@ export class MhciPrereqsCourseDatafileControllerBase {
           },
         },
 
-        newFileUploaded: true,
-        note: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
   }
@@ -88,14 +87,16 @@ export class MhciPrereqsCourseDatafileControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsCourseDatafile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereqsCourseDatafile(
     @common.Param() params: MhciPrereqsCourseDatafileWhereUniqueInput
   ): Promise<MhciPrereqsCourseDatafile | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereqsCourseDatafile({
       where: params,
       select: {
         datafileinfoId: true,
-        id: true,
+        note: true,
+        submittedToReviewer: true,
+        newFileUploaded: true,
 
         mhciPrereqsCourses: {
           select: {
@@ -103,9 +104,7 @@ export class MhciPrereqsCourseDatafileControllerBase {
           },
         },
 
-        newFileUploaded: true,
-        note: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -119,12 +118,12 @@ export class MhciPrereqsCourseDatafileControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsCourseDatafile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereqsCourseDatafile(
     @common.Param() params: MhciPrereqsCourseDatafileWhereUniqueInput,
     @common.Body() data: MhciPrereqsCourseDatafileUpdateInput
   ): Promise<MhciPrereqsCourseDatafile | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsCourseDatafile({
         where: params,
         data: {
           ...data,
@@ -135,7 +134,9 @@ export class MhciPrereqsCourseDatafileControllerBase {
         },
         select: {
           datafileinfoId: true,
-          id: true,
+          note: true,
+          submittedToReviewer: true,
+          newFileUploaded: true,
 
           mhciPrereqsCourses: {
             select: {
@@ -143,9 +144,7 @@ export class MhciPrereqsCourseDatafileControllerBase {
             },
           },
 
-          newFileUploaded: true,
-          note: true,
-          submittedToReviewer: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -161,15 +160,17 @@ export class MhciPrereqsCourseDatafileControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsCourseDatafile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereqsCourseDatafile(
     @common.Param() params: MhciPrereqsCourseDatafileWhereUniqueInput
   ): Promise<MhciPrereqsCourseDatafile | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereqsCourseDatafile({
         where: params,
         select: {
           datafileinfoId: true,
-          id: true,
+          note: true,
+          submittedToReviewer: true,
+          newFileUploaded: true,
 
           mhciPrereqsCourses: {
             select: {
@@ -177,9 +178,7 @@ export class MhciPrereqsCourseDatafileControllerBase {
             },
           },
 
-          newFileUploaded: true,
-          note: true,
-          submittedToReviewer: true,
+          id: true,
         },
       });
     } catch (error) {

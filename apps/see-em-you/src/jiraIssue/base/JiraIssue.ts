@@ -11,36 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsInt } from "class-validator";
-import { Type } from "class-transformer";
+import { IsInt, IsString, IsDate } from "class-validator";
 import { GraphQLBigInt } from "../../util/GraphQLBigInt";
+import { Type } from "class-transformer";
 
 @ObjectType()
 class JiraIssue {
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  created!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => GraphQLBigInt)
-  jiraId!: bigint;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -59,11 +35,35 @@ class JiraIssue {
 
   @ApiProperty({
     required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => GraphQLBigInt)
+  jiraId!: bigint;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  created!: Date;
+
+  @ApiProperty({
+    required: true,
   })
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
   updatedAt!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { JiraIssue as JiraIssue };

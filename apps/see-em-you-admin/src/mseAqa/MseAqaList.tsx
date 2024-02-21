@@ -3,8 +3,8 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
@@ -19,6 +19,25 @@ export const MseAqaList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Reviewer Id" source="reviewerId" />
+        <TextField label="English Comments" source="englishComments" />
+        <TextField label="Programming Comments" source="programmingComments" />
+        <TextField
+          label="Foundational Comments"
+          source="foundationalComments"
+        />
+        <TextField label="Maturity Comments" source="maturityComments" />
+        <TextField
+          label="Understanding Comments"
+          source="understandingComments"
+        />
+        <TextField label="Experience Comments" source="experienceComments" />
+        <TextField label="English Rating" source="englishRating" />
+        <TextField label="Programming Rating" source="programmingRating" />
+        <TextField label="Foundational Rating" source="foundationalRating" />
+        <TextField label="Maturity Rating" source="maturityRating" />
+        <TextField label="Understanding Rating" source="understandingRating" />
+        <TextField label="Experience Rating" source="experienceRating" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -26,26 +45,7 @@ export const MseAqaList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="English Comments" source="englishComments" />
-        <TextField label="English Rating" source="englishRating" />
-        <TextField label="Experience Comments" source="experienceComments" />
-        <TextField label="Experience Rating" source="experienceRating" />
-        <TextField
-          label="Foundational Comments"
-          source="foundationalComments"
-        />
-        <TextField label="Foundational Rating" source="foundationalRating" />
         <TextField label="Id" source="id" />
-        <TextField label="Maturity Comments" source="maturityComments" />
-        <TextField label="Maturity Rating" source="maturityRating" />
-        <TextField label="Programming Comments" source="programmingComments" />
-        <TextField label="Programming Rating" source="programmingRating" />
-        <TextField label="Reviewer Id" source="reviewerId" />
-        <TextField
-          label="Understanding Comments"
-          source="understandingComments"
-        />
-        <TextField label="Understanding Rating" source="understandingRating" />
       </Datagrid>
     </List>
   );

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuReviewerGroupArgs } from "./CreateLuReviewerGroupArgs";
-import { UpdateLuReviewerGroupArgs } from "./UpdateLuReviewerGroupArgs";
-import { DeleteLuReviewerGroupArgs } from "./DeleteLuReviewerGroupArgs";
+import { LuReviewerGroup } from "./LuReviewerGroup";
 import { LuReviewerGroupCountArgs } from "./LuReviewerGroupCountArgs";
 import { LuReviewerGroupFindManyArgs } from "./LuReviewerGroupFindManyArgs";
 import { LuReviewerGroupFindUniqueArgs } from "./LuReviewerGroupFindUniqueArgs";
-import { LuReviewerGroup } from "./LuReviewerGroup";
+import { CreateLuReviewerGroupArgs } from "./CreateLuReviewerGroupArgs";
+import { UpdateLuReviewerGroupArgs } from "./UpdateLuReviewerGroupArgs";
+import { DeleteLuReviewerGroupArgs } from "./DeleteLuReviewerGroupArgs";
 import { LuReviewerGroupService } from "../luReviewerGroup.service";
 @graphql.Resolver(() => LuReviewerGroup)
 export class LuReviewerGroupResolverBase {
@@ -38,14 +38,14 @@ export class LuReviewerGroupResolverBase {
   async luReviewerGroups(
     @graphql.Args() args: LuReviewerGroupFindManyArgs
   ): Promise<LuReviewerGroup[]> {
-    return this.service.findMany(args);
+    return this.service.luReviewerGroups(args);
   }
 
   @graphql.Query(() => LuReviewerGroup, { nullable: true })
   async luReviewerGroup(
     @graphql.Args() args: LuReviewerGroupFindUniqueArgs
   ): Promise<LuReviewerGroup | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luReviewerGroup(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LuReviewerGroupResolverBase {
   async createLuReviewerGroup(
     @graphql.Args() args: CreateLuReviewerGroupArgs
   ): Promise<LuReviewerGroup> {
-    return await this.service.create({
+    return await this.service.createLuReviewerGroup({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LuReviewerGroupResolverBase {
     @graphql.Args() args: UpdateLuReviewerGroupArgs
   ): Promise<LuReviewerGroup | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuReviewerGroup({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LuReviewerGroupResolverBase {
     @graphql.Args() args: DeleteLuReviewerGroupArgs
   ): Promise<LuReviewerGroup | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuReviewerGroup(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

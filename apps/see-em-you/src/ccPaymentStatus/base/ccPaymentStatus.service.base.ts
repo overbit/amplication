@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, CcPaymentStatus } from "@prisma/client";
+import {
+  Prisma,
+  CcPaymentStatus as PrismaCcPaymentStatus,
+} from "@prisma/client";
 
 export class CcPaymentStatusServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class CcPaymentStatusServiceBase {
     return this.prisma.ccPaymentStatus.count(args);
   }
 
-  async findMany<T extends Prisma.CcPaymentStatusFindManyArgs>(
+  async ccPaymentStatuses<T extends Prisma.CcPaymentStatusFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcPaymentStatusFindManyArgs>
-  ): Promise<CcPaymentStatus[]> {
+  ): Promise<PrismaCcPaymentStatus[]> {
     return this.prisma.ccPaymentStatus.findMany(args);
   }
-  async findOne<T extends Prisma.CcPaymentStatusFindUniqueArgs>(
+  async ccPaymentStatus<T extends Prisma.CcPaymentStatusFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcPaymentStatusFindUniqueArgs>
-  ): Promise<CcPaymentStatus | null> {
+  ): Promise<PrismaCcPaymentStatus | null> {
     return this.prisma.ccPaymentStatus.findUnique(args);
   }
-  async create<T extends Prisma.CcPaymentStatusCreateArgs>(
+  async createCcPaymentStatus<T extends Prisma.CcPaymentStatusCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcPaymentStatusCreateArgs>
-  ): Promise<CcPaymentStatus> {
+  ): Promise<PrismaCcPaymentStatus> {
     return this.prisma.ccPaymentStatus.create<T>(args);
   }
-  async update<T extends Prisma.CcPaymentStatusUpdateArgs>(
+  async updateCcPaymentStatus<T extends Prisma.CcPaymentStatusUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcPaymentStatusUpdateArgs>
-  ): Promise<CcPaymentStatus> {
+  ): Promise<PrismaCcPaymentStatus> {
     return this.prisma.ccPaymentStatus.update<T>(args);
   }
-  async delete<T extends Prisma.CcPaymentStatusDeleteArgs>(
+  async deleteCcPaymentStatus<T extends Prisma.CcPaymentStatusDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CcPaymentStatusDeleteArgs>
-  ): Promise<CcPaymentStatus> {
+  ): Promise<PrismaCcPaymentStatus> {
     return this.prisma.ccPaymentStatus.delete(args);
   }
 }

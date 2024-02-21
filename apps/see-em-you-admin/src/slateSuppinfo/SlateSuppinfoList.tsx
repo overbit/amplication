@@ -12,6 +12,29 @@ export const SlateSuppinfoList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Prefix" source="prefix" />
+        <TextField label="First" source="first" />
+        <TextField label="Middle" source="middle" />
+        <TextField label="Last" source="last" />
+        <TextField label="Video Essay Url" source="videoEssayUrl" />
+        <TextField
+          label="Video Essay Access Code"
+          source="videoEssayAccessCode"
+        />
+        <TextField label="Learn About Us" source="learnAboutUs" />
+        <TextField label="Learn About Other" source="learnAboutOther" />
+        <TextField label="Fellowship1 Amount" source="fellowship1Amount" />
+        <TextField
+          label="Fellowship1 Applied Date"
+          source="fellowship1AppliedDate"
+        />
+        <TextField
+          label="Fellowship1 Awarded Date"
+          source="fellowship1AwardedDate"
+        />
+        <TextField label="Fellowship1 Duration" source="fellowship1Duration" />
+        <TextField label="Fellowship1 Name" source="fellowship1Name" />
+        <TextField label="Fellowship1 Status" source="fellowship1Status" />
         <TextField label="Fellowship10 Amount" source="fellowship10Amount" />
         <TextField
           label="Fellowship10 Applied Date"
@@ -27,18 +50,6 @@ export const SlateSuppinfoList = (props: ListProps): React.ReactElement => {
         />
         <TextField label="Fellowship10 Name" source="fellowship10Name" />
         <TextField label="Fellowship10 Status" source="fellowship10Status" />
-        <TextField label="Fellowship1 Amount" source="fellowship1Amount" />
-        <TextField
-          label="Fellowship1 Applied Date"
-          source="fellowship1AppliedDate"
-        />
-        <TextField
-          label="Fellowship1 Awarded Date"
-          source="fellowship1AwardedDate"
-        />
-        <TextField label="Fellowship1 Duration" source="fellowship1Duration" />
-        <TextField label="Fellowship1 Name" source="fellowship1Name" />
-        <TextField label="Fellowship1 Status" source="fellowship1Status" />
         <TextField label="Fellowship2 Amount" source="fellowship2Amount" />
         <TextField
           label="Fellowship2 Applied Date"
@@ -135,19 +146,8 @@ export const SlateSuppinfoList = (props: ListProps): React.ReactElement => {
         <TextField label="Fellowship9 Duration" source="fellowship9Duration" />
         <TextField label="Fellowship9 Name" source="fellowship9Name" />
         <TextField label="Fellowship9 Status" source="fellowship9Status" />
-        <TextField label="First" source="first" />
         <TextField label="Has Fellowships" source="hasFellowships" />
         <TextField label="Id" source="id" />
-        <TextField label="Last" source="last" />
-        <TextField label="Learn About Other" source="learnAboutOther" />
-        <TextField label="Learn About Us" source="learnAboutUs" />
-        <TextField label="Middle" source="middle" />
-        <TextField label="Prefix" source="prefix" />
-        <TextField
-          label="Video Essay Access Code"
-          source="videoEssayAccessCode"
-        />
-        <TextField label="Video Essay Url" source="videoEssayUrl" />
       </Datagrid>
     </List>
   );

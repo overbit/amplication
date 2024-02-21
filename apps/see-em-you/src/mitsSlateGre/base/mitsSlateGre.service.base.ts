@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateGre } from "@prisma/client";
+import { Prisma, MitsSlateGre as PrismaMitsSlateGre } from "@prisma/client";
 
 export class MitsSlateGreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MitsSlateGreServiceBase {
     return this.prisma.mitsSlateGre.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateGreFindManyArgs>(
+  async mitsSlateGres<T extends Prisma.MitsSlateGreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateGreFindManyArgs>
-  ): Promise<MitsSlateGre[]> {
+  ): Promise<PrismaMitsSlateGre[]> {
     return this.prisma.mitsSlateGre.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateGreFindUniqueArgs>(
+  async mitsSlateGre<T extends Prisma.MitsSlateGreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateGreFindUniqueArgs>
-  ): Promise<MitsSlateGre | null> {
+  ): Promise<PrismaMitsSlateGre | null> {
     return this.prisma.mitsSlateGre.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateGreCreateArgs>(
+  async createMitsSlateGre<T extends Prisma.MitsSlateGreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateGreCreateArgs>
-  ): Promise<MitsSlateGre> {
+  ): Promise<PrismaMitsSlateGre> {
     return this.prisma.mitsSlateGre.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateGreUpdateArgs>(
+  async updateMitsSlateGre<T extends Prisma.MitsSlateGreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateGreUpdateArgs>
-  ): Promise<MitsSlateGre> {
+  ): Promise<PrismaMitsSlateGre> {
     return this.prisma.mitsSlateGre.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateGreDeleteArgs>(
+  async deleteMitsSlateGre<T extends Prisma.MitsSlateGreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateGreDeleteArgs>
-  ): Promise<MitsSlateGre> {
+  ): Promise<PrismaMitsSlateGre> {
     return this.prisma.mitsSlateGre.delete(args);
   }
 }

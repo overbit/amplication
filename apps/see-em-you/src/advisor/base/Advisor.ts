@@ -21,6 +21,14 @@ class Advisor {
   })
   @IsInt()
   @Field(() => Number)
+  userId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   departmentId!: number;
 
   @ApiProperty({
@@ -30,14 +38,6 @@ class Advisor {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  userId!: number;
 }
 
 export { Advisor as Advisor };

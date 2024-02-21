@@ -1,10 +1,10 @@
 export type UsHsStatusUpdateInput = {
-  anyUsHs?: number | null;
   appId?: number;
+  usHSGrad?: number | null;
+  anyUsHs?: number | null;
+  pell?: number | null;
+  ugFedWorkStudy?: number | null;
+  permZipGrad?: number | null;
   firstGen?: number | null;
   firstGenGrad?: number | null;
-  pell?: number | null;
-  permZipGrad?: number | null;
-  ugFedWorkStudy?: number | null;
-  usHSGrad?: number | null;
 };

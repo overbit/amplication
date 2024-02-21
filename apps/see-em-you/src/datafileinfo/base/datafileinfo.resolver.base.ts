@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDatafileinfoArgs } from "./CreateDatafileinfoArgs";
-import { UpdateDatafileinfoArgs } from "./UpdateDatafileinfoArgs";
-import { DeleteDatafileinfoArgs } from "./DeleteDatafileinfoArgs";
+import { Datafileinfo } from "./Datafileinfo";
 import { DatafileinfoCountArgs } from "./DatafileinfoCountArgs";
 import { DatafileinfoFindManyArgs } from "./DatafileinfoFindManyArgs";
 import { DatafileinfoFindUniqueArgs } from "./DatafileinfoFindUniqueArgs";
-import { Datafileinfo } from "./Datafileinfo";
+import { CreateDatafileinfoArgs } from "./CreateDatafileinfoArgs";
+import { UpdateDatafileinfoArgs } from "./UpdateDatafileinfoArgs";
+import { DeleteDatafileinfoArgs } from "./DeleteDatafileinfoArgs";
 import { DatafileinfoService } from "../datafileinfo.service";
 @graphql.Resolver(() => Datafileinfo)
 export class DatafileinfoResolverBase {
@@ -38,14 +38,14 @@ export class DatafileinfoResolverBase {
   async datafileinfos(
     @graphql.Args() args: DatafileinfoFindManyArgs
   ): Promise<Datafileinfo[]> {
-    return this.service.findMany(args);
+    return this.service.datafileinfos(args);
   }
 
   @graphql.Query(() => Datafileinfo, { nullable: true })
   async datafileinfo(
     @graphql.Args() args: DatafileinfoFindUniqueArgs
   ): Promise<Datafileinfo | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.datafileinfo(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DatafileinfoResolverBase {
   async createDatafileinfo(
     @graphql.Args() args: CreateDatafileinfoArgs
   ): Promise<Datafileinfo> {
-    return await this.service.create({
+    return await this.service.createDatafileinfo({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DatafileinfoResolverBase {
     @graphql.Args() args: UpdateDatafileinfoArgs
   ): Promise<Datafileinfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDatafileinfo({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DatafileinfoResolverBase {
     @graphql.Args() args: DeleteDatafileinfoArgs
   ): Promise<Datafileinfo | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDatafileinfo(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

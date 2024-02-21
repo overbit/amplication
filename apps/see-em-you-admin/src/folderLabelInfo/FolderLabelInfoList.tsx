@@ -12,11 +12,11 @@ export const FolderLabelInfoList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Last Ran Time" source="lastRanTime" />
         <TextField label="Last Label Column" source="lastLabelColumn" />
         <TextField label="Last Label Row" source="lastLabelRow" />
-        <TextField label="Last Ran Time" source="lastRanTime" />
-        <TextField label="Period Id" source="periodId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

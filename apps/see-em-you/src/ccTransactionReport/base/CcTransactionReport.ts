@@ -11,27 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsDate, IsInt } from "class-validator";
+import { IsInt, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class CcTransactionReport {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  lastModDate!: Date;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -46,7 +30,23 @@ class CcTransactionReport {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
+  lastModDate!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   statusTime!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { CcTransactionReport as CcTransactionReport };

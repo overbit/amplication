@@ -1,14 +1,14 @@
-import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 import { Decimal } from "decimal.js";
+import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 import { PaymentVoucherWhereUniqueInput } from "../paymentVoucher/PaymentVoucherWhereUniqueInput";
 
 export type PaymentUpdateInput = {
-  application?: ApplicationWhereUniqueInput;
-  lastModUserId?: number;
-  paymentAmount?: Decimal;
   paymentId?: number;
+  paymentType?: number;
+  paymentAmount?: Decimal;
   paymentIntentDate?: Date;
   payment_status?: "pending" | "paid" | "refunded" | "void";
-  paymentType?: number;
+  lastModUserId?: number;
+  application?: ApplicationWhereUniqueInput;
   paymentVoucher?: PaymentVoucherWhereUniqueInput | null;
 };

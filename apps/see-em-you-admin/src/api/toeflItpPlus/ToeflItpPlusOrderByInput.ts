@@ -2,14 +2,14 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type ToeflItpPlusOrderByInput = {
   applicationId?: SortOrder;
-  datafileId?: SortOrder;
-  id?: SortOrder;
-  listeningscore?: SortOrder;
-  overallscore?: SortOrder;
-  readingscore?: SortOrder;
-  scorereceived?: SortOrder;
   testdate?: SortOrder;
-  testEmail?: SortOrder;
-  url?: SortOrder;
+  listeningscore?: SortOrder;
+  readingscore?: SortOrder;
   writingscore?: SortOrder;
+  overallscore?: SortOrder;
+  url?: SortOrder;
+  scorereceived?: SortOrder;
+  datafileId?: SortOrder;
+  testEmail?: SortOrder;
+  id?: SortOrder;
 };

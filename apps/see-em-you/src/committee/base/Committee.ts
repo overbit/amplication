@@ -21,6 +21,14 @@ class Committee {
   })
   @IsInt()
   @Field(() => Number)
+  userId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   groupId!: number;
 
   @ApiProperty({
@@ -30,14 +38,6 @@ class Committee {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  userId!: number;
 }
 
 export { Committee as Committee };

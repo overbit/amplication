@@ -14,6 +14,7 @@ export const AcoPalShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <BooleanField label="Aco" source="aco" />
+        <BooleanField label="Pal" source="pal" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -22,7 +23,6 @@ export const AcoPalShow = (props: ShowProps): React.ReactElement => {
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Id" source="id" />
-        <BooleanField label="Pal" source="pal" />
       </SimpleShowLayout>
     </Show>
   );

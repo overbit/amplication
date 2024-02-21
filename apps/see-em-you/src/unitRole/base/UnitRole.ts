@@ -11,17 +11,25 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt } from "class-validator";
+import { IsInt, IsString } from "class-validator";
 
 @ObjectType()
 class UnitRole {
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  @IsInt()
+  @Field(() => Number)
+  unitId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  usersId!: number;
 
   @ApiProperty({
     required: true,
@@ -41,19 +49,11 @@ class UnitRole {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  unitId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  usersId!: number;
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { UnitRole as UnitRole };

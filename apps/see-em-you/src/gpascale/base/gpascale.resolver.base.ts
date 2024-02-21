@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGpascaleArgs } from "./CreateGpascaleArgs";
-import { UpdateGpascaleArgs } from "./UpdateGpascaleArgs";
-import { DeleteGpascaleArgs } from "./DeleteGpascaleArgs";
+import { Gpascale } from "./Gpascale";
 import { GpascaleCountArgs } from "./GpascaleCountArgs";
 import { GpascaleFindManyArgs } from "./GpascaleFindManyArgs";
 import { GpascaleFindUniqueArgs } from "./GpascaleFindUniqueArgs";
-import { Gpascale } from "./Gpascale";
+import { CreateGpascaleArgs } from "./CreateGpascaleArgs";
+import { UpdateGpascaleArgs } from "./UpdateGpascaleArgs";
+import { DeleteGpascaleArgs } from "./DeleteGpascaleArgs";
 import { GpascaleService } from "../gpascale.service";
 @graphql.Resolver(() => Gpascale)
 export class GpascaleResolverBase {
@@ -38,14 +38,14 @@ export class GpascaleResolverBase {
   async gpascales(
     @graphql.Args() args: GpascaleFindManyArgs
   ): Promise<Gpascale[]> {
-    return this.service.findMany(args);
+    return this.service.gpascales(args);
   }
 
   @graphql.Query(() => Gpascale, { nullable: true })
   async gpascale(
     @graphql.Args() args: GpascaleFindUniqueArgs
   ): Promise<Gpascale | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.gpascale(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class GpascaleResolverBase {
   async createGpascale(
     @graphql.Args() args: CreateGpascaleArgs
   ): Promise<Gpascale> {
-    return await this.service.create({
+    return await this.service.createGpascale({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class GpascaleResolverBase {
     @graphql.Args() args: UpdateGpascaleArgs
   ): Promise<Gpascale | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGpascale({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class GpascaleResolverBase {
     @graphql.Args() args: DeleteGpascaleArgs
   ): Promise<Gpascale | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGpascale(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

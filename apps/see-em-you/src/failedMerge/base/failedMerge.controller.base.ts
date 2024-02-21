@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { FailedMergeService } from "../failedMerge.service";
 import { FailedMergeCreateInput } from "./FailedMergeCreateInput";
-import { FailedMergeWhereInput } from "./FailedMergeWhereInput";
-import { FailedMergeWhereUniqueInput } from "./FailedMergeWhereUniqueInput";
-import { FailedMergeFindManyArgs } from "./FailedMergeFindManyArgs";
-import { FailedMergeUpdateInput } from "./FailedMergeUpdateInput";
 import { FailedMerge } from "./FailedMerge";
+import { FailedMergeFindManyArgs } from "./FailedMergeFindManyArgs";
+import { FailedMergeWhereUniqueInput } from "./FailedMergeWhereUniqueInput";
+import { FailedMergeUpdateInput } from "./FailedMergeUpdateInput";
 
 export class FailedMergeControllerBase {
   constructor(protected readonly service: FailedMergeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: FailedMerge })
-  async create(
+  async createFailedMerge(
     @common.Body() data: FailedMergeCreateInput
   ): Promise<FailedMerge> {
-    return await this.service.create({
+    return await this.service.createFailedMerge({
       data: data,
       select: {
         applicationId: true,
-        file: true,
         guid: true,
+        file: true,
         id: true,
       },
     });
@@ -45,14 +44,14 @@ export class FailedMergeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [FailedMerge] })
   @ApiNestedQuery(FailedMergeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<FailedMerge[]> {
+  async failedMerges(@common.Req() request: Request): Promise<FailedMerge[]> {
     const args = plainToClass(FailedMergeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.failedMerges({
       ...args,
       select: {
         applicationId: true,
-        file: true,
         guid: true,
+        file: true,
         id: true,
       },
     });
@@ -61,15 +60,15 @@ export class FailedMergeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: FailedMerge })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async failedMerge(
     @common.Param() params: FailedMergeWhereUniqueInput
   ): Promise<FailedMerge | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.failedMerge({
       where: params,
       select: {
         applicationId: true,
-        file: true,
         guid: true,
+        file: true,
         id: true,
       },
     });
@@ -84,18 +83,18 @@ export class FailedMergeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: FailedMerge })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateFailedMerge(
     @common.Param() params: FailedMergeWhereUniqueInput,
     @common.Body() data: FailedMergeUpdateInput
   ): Promise<FailedMerge | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateFailedMerge({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          file: true,
           guid: true,
+          file: true,
           id: true,
         },
       });
@@ -112,16 +111,16 @@ export class FailedMergeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: FailedMerge })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteFailedMerge(
     @common.Param() params: FailedMergeWhereUniqueInput
   ): Promise<FailedMerge | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteFailedMerge({
         where: params,
         select: {
           applicationId: true,
-          file: true,
           guid: true,
+          file: true,
           id: true,
         },
       });

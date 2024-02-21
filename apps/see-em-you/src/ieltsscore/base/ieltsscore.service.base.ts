@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Ieltsscore, Application } from "@prisma/client";
+import {
+  Prisma,
+  Ieltsscore as PrismaIeltsscore,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class IeltsscoreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class IeltsscoreServiceBase {
     return this.prisma.ieltsscore.count(args);
   }
 
-  async findMany<T extends Prisma.IeltsscoreFindManyArgs>(
+  async ieltsscores<T extends Prisma.IeltsscoreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.IeltsscoreFindManyArgs>
-  ): Promise<Ieltsscore[]> {
+  ): Promise<PrismaIeltsscore[]> {
     return this.prisma.ieltsscore.findMany(args);
   }
-  async findOne<T extends Prisma.IeltsscoreFindUniqueArgs>(
+  async ieltsscore<T extends Prisma.IeltsscoreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.IeltsscoreFindUniqueArgs>
-  ): Promise<Ieltsscore | null> {
+  ): Promise<PrismaIeltsscore | null> {
     return this.prisma.ieltsscore.findUnique(args);
   }
-  async create<T extends Prisma.IeltsscoreCreateArgs>(
+  async createIeltsscore<T extends Prisma.IeltsscoreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.IeltsscoreCreateArgs>
-  ): Promise<Ieltsscore> {
+  ): Promise<PrismaIeltsscore> {
     return this.prisma.ieltsscore.create<T>(args);
   }
-  async update<T extends Prisma.IeltsscoreUpdateArgs>(
+  async updateIeltsscore<T extends Prisma.IeltsscoreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.IeltsscoreUpdateArgs>
-  ): Promise<Ieltsscore> {
+  ): Promise<PrismaIeltsscore> {
     return this.prisma.ieltsscore.update<T>(args);
   }
-  async delete<T extends Prisma.IeltsscoreDeleteArgs>(
+  async deleteIeltsscore<T extends Prisma.IeltsscoreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.IeltsscoreDeleteArgs>
-  ): Promise<Ieltsscore> {
+  ): Promise<PrismaIeltsscore> {
     return this.prisma.ieltsscore.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.ieltsscore
       .findUnique({
         where: { id: parentId },

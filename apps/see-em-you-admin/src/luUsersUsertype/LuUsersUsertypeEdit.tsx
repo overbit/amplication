@@ -5,24 +5,28 @@ import {
   SimpleForm,
   EditProps,
   NumberInput,
-  ReferenceArrayInput,
-  SelectArrayInput,
   ReferenceInput,
   SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 
+import { UserTitle } from "../user/UserTitle";
 import { MhciPrereqsConversationCommentTitle } from "../mhciPrereqsConversationComment/MhciPrereqsConversationCommentTitle";
 import { MhciPrereqsCourseTitle } from "../mhciPrereqsCourse/MhciPrereqsCourseTitle";
 import { MhciPrereqsDesignPortfolioTitle } from "../mhciPrereqsDesignPortfolio/MhciPrereqsDesignPortfolioTitle";
 import { MhciPrereqsProgrammingSampleTitle } from "../mhciPrereqsProgrammingSample/MhciPrereqsProgrammingSampleTitle";
 import { MhciPrereqsProgrammingTestTitle } from "../mhciPrereqsProgrammingTest/MhciPrereqsProgrammingTestTitle";
-import { UserTitle } from "../user/UserTitle";
 
 export const LuUsersUsertypeEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Usertype Id" source="usertypeId" />
         <NumberInput step={1} label="Domain" source="domain" />
+        <ReferenceInput source="users.id" reference="User" label="Users">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
         <ReferenceArrayInput
           source="mhciPrereqsConversationComments"
           reference="MhciPrereqsConversationComment"
@@ -62,10 +66,6 @@ export const LuUsersUsertypeEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={MhciPrereqsProgrammingTestTitle} />
         </ReferenceArrayInput>
-        <ReferenceInput source="users.id" reference="User" label="Users">
-          <SelectInput optionText={UserTitle} />
-        </ReferenceInput>
-        <NumberInput step={1} label="Usertype Id" source="usertypeId" />
       </SimpleForm>
     </Edit>
   );

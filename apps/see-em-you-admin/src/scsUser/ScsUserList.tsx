@@ -12,13 +12,13 @@ export const ScsUserList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Andrew Id" source="andrewId" />
+        <TextField label="Users Id" source="usersId" />
         <TextField label="Cmu Guid" source="cmuGuid" />
         <TextField label="Cs Id" source="csId" />
+        <TextField label="Andrew Id" source="andrewId" />
         <TextField label="Ece Id" source="eceId" />
-        <TextField label="Id" source="id" />
         <TextField label="Qatar Id" source="qatarId" />
-        <TextField label="Users Id" source="usersId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

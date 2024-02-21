@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMergeApplicationArgs } from "./CreateMergeApplicationArgs";
-import { UpdateMergeApplicationArgs } from "./UpdateMergeApplicationArgs";
-import { DeleteMergeApplicationArgs } from "./DeleteMergeApplicationArgs";
+import { MergeApplication } from "./MergeApplication";
 import { MergeApplicationCountArgs } from "./MergeApplicationCountArgs";
 import { MergeApplicationFindManyArgs } from "./MergeApplicationFindManyArgs";
 import { MergeApplicationFindUniqueArgs } from "./MergeApplicationFindUniqueArgs";
-import { MergeApplication } from "./MergeApplication";
+import { CreateMergeApplicationArgs } from "./CreateMergeApplicationArgs";
+import { UpdateMergeApplicationArgs } from "./UpdateMergeApplicationArgs";
+import { DeleteMergeApplicationArgs } from "./DeleteMergeApplicationArgs";
 import { MergeApplicationService } from "../mergeApplication.service";
 @graphql.Resolver(() => MergeApplication)
 export class MergeApplicationResolverBase {
@@ -38,14 +38,14 @@ export class MergeApplicationResolverBase {
   async mergeApplications(
     @graphql.Args() args: MergeApplicationFindManyArgs
   ): Promise<MergeApplication[]> {
-    return this.service.findMany(args);
+    return this.service.mergeApplications(args);
   }
 
   @graphql.Query(() => MergeApplication, { nullable: true })
   async mergeApplication(
     @graphql.Args() args: MergeApplicationFindUniqueArgs
   ): Promise<MergeApplication | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mergeApplication(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MergeApplicationResolverBase {
   async createMergeApplication(
     @graphql.Args() args: CreateMergeApplicationArgs
   ): Promise<MergeApplication> {
-    return await this.service.create({
+    return await this.service.createMergeApplication({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MergeApplicationResolverBase {
     @graphql.Args() args: UpdateMergeApplicationArgs
   ): Promise<MergeApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMergeApplication({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MergeApplicationResolverBase {
     @graphql.Args() args: DeleteMergeApplicationArgs
   ): Promise<MergeApplication | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMergeApplication(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

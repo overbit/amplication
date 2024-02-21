@@ -3,9 +3,9 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  ReferenceField,
-  TextField,
   BooleanField,
+  TextField,
+  ReferenceField,
 } from "react-admin";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
 
@@ -13,6 +13,11 @@ export const RissFundingShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <BooleanField label="External Funding" source="externalFunding" />
+        <TextField label="External Source" source="externalSource" />
+        <TextField label="External Amount" source="externalAmount" />
+        <BooleanField label="Reu Scholarship" source="reuScholarship" />
+        <BooleanField label="Direct Funding" source="directFunding" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -20,12 +25,7 @@ export const RissFundingShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <BooleanField label="Direct Funding" source="directFunding" />
-        <TextField label="External Amount" source="externalAmount" />
-        <BooleanField label="External Funding" source="externalFunding" />
-        <TextField label="External Source" source="externalSource" />
         <TextField label="Id" source="id" />
-        <BooleanField label="Reu Scholarship" source="reuScholarship" />
       </SimpleShowLayout>
     </Show>
   );

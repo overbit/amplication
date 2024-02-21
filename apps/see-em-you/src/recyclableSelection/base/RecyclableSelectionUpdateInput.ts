@@ -24,18 +24,7 @@ class RecyclableSelectionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  applicationId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  departmentId?: number;
+  usersId?: number;
 
   @ApiProperty({
     required: false,
@@ -57,6 +46,17 @@ class RecyclableSelectionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  departmentId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   periodId?: number;
 
   @ApiProperty({
@@ -68,7 +68,7 @@ class RecyclableSelectionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  usersId?: number;
+  applicationId?: number;
 }
 
 export { RecyclableSelectionUpdateInput as RecyclableSelectionUpdateInput };

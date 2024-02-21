@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlatePubArgs } from "./CreateSlatePubArgs";
-import { UpdateSlatePubArgs } from "./UpdateSlatePubArgs";
-import { DeleteSlatePubArgs } from "./DeleteSlatePubArgs";
+import { SlatePub } from "./SlatePub";
 import { SlatePubCountArgs } from "./SlatePubCountArgs";
 import { SlatePubFindManyArgs } from "./SlatePubFindManyArgs";
 import { SlatePubFindUniqueArgs } from "./SlatePubFindUniqueArgs";
-import { SlatePub } from "./SlatePub";
+import { CreateSlatePubArgs } from "./CreateSlatePubArgs";
+import { UpdateSlatePubArgs } from "./UpdateSlatePubArgs";
+import { DeleteSlatePubArgs } from "./DeleteSlatePubArgs";
 import { SlatePubService } from "../slatePub.service";
 @graphql.Resolver(() => SlatePub)
 export class SlatePubResolverBase {
@@ -38,14 +38,14 @@ export class SlatePubResolverBase {
   async slatePubs(
     @graphql.Args() args: SlatePubFindManyArgs
   ): Promise<SlatePub[]> {
-    return this.service.findMany(args);
+    return this.service.slatePubs(args);
   }
 
   @graphql.Query(() => SlatePub, { nullable: true })
   async slatePub(
     @graphql.Args() args: SlatePubFindUniqueArgs
   ): Promise<SlatePub | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slatePub(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlatePubResolverBase {
   async createSlatePub(
     @graphql.Args() args: CreateSlatePubArgs
   ): Promise<SlatePub> {
-    return await this.service.create({
+    return await this.service.createSlatePub({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlatePubResolverBase {
     @graphql.Args() args: UpdateSlatePubArgs
   ): Promise<SlatePub | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlatePub({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlatePubResolverBase {
     @graphql.Args() args: DeleteSlatePubArgs
   ): Promise<SlatePub | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlatePub(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -1,5 +1,5 @@
 export type PositiveFactorUpdateInput = {
-  departmentId?: number;
   positiveFactor?: string;
+  departmentId?: number;
   positiveFactorId?: number;
 };

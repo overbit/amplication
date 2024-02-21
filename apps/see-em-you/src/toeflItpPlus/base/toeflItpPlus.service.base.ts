@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ToeflItpPlus } from "@prisma/client";
+import { Prisma, ToeflItpPlus as PrismaToeflItpPlus } from "@prisma/client";
 
 export class ToeflItpPlusServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ToeflItpPlusServiceBase {
     return this.prisma.toeflItpPlus.count(args);
   }
 
-  async findMany<T extends Prisma.ToeflItpPlusFindManyArgs>(
+  async toeflItpPluses<T extends Prisma.ToeflItpPlusFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflItpPlusFindManyArgs>
-  ): Promise<ToeflItpPlus[]> {
+  ): Promise<PrismaToeflItpPlus[]> {
     return this.prisma.toeflItpPlus.findMany(args);
   }
-  async findOne<T extends Prisma.ToeflItpPlusFindUniqueArgs>(
+  async toeflItpPlus<T extends Prisma.ToeflItpPlusFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflItpPlusFindUniqueArgs>
-  ): Promise<ToeflItpPlus | null> {
+  ): Promise<PrismaToeflItpPlus | null> {
     return this.prisma.toeflItpPlus.findUnique(args);
   }
-  async create<T extends Prisma.ToeflItpPlusCreateArgs>(
+  async createToeflItpPlus<T extends Prisma.ToeflItpPlusCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflItpPlusCreateArgs>
-  ): Promise<ToeflItpPlus> {
+  ): Promise<PrismaToeflItpPlus> {
     return this.prisma.toeflItpPlus.create<T>(args);
   }
-  async update<T extends Prisma.ToeflItpPlusUpdateArgs>(
+  async updateToeflItpPlus<T extends Prisma.ToeflItpPlusUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflItpPlusUpdateArgs>
-  ): Promise<ToeflItpPlus> {
+  ): Promise<PrismaToeflItpPlus> {
     return this.prisma.toeflItpPlus.update<T>(args);
   }
-  async delete<T extends Prisma.ToeflItpPlusDeleteArgs>(
+  async deleteToeflItpPlus<T extends Prisma.ToeflItpPlusDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ToeflItpPlusDeleteArgs>
-  ): Promise<ToeflItpPlus> {
+  ): Promise<PrismaToeflItpPlus> {
     return this.prisma.toeflItpPlus.delete(args);
   }
 }

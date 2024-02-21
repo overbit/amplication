@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RecommenderInfoService } from "../recommenderInfo.service";
 import { RecommenderInfoCreateInput } from "./RecommenderInfoCreateInput";
-import { RecommenderInfoWhereInput } from "./RecommenderInfoWhereInput";
-import { RecommenderInfoWhereUniqueInput } from "./RecommenderInfoWhereUniqueInput";
-import { RecommenderInfoFindManyArgs } from "./RecommenderInfoFindManyArgs";
-import { RecommenderInfoUpdateInput } from "./RecommenderInfoUpdateInput";
 import { RecommenderInfo } from "./RecommenderInfo";
+import { RecommenderInfoFindManyArgs } from "./RecommenderInfoFindManyArgs";
+import { RecommenderInfoWhereUniqueInput } from "./RecommenderInfoWhereUniqueInput";
+import { RecommenderInfoUpdateInput } from "./RecommenderInfoUpdateInput";
 
 export class RecommenderInfoControllerBase {
   constructor(protected readonly service: RecommenderInfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RecommenderInfo })
-  async create(
+  async createRecommenderInfo(
     @common.Body() data: RecommenderInfoCreateInput
   ): Promise<RecommenderInfo> {
-    return await this.service.create({
+    return await this.service.createRecommenderInfo({
       data: data,
       select: {
-        affiliation: true,
-        id: true,
-        phone: true,
         recUserId: true,
-        relationshipToApplicant: true,
         title: true,
+        affiliation: true,
+        phone: true,
+        relationshipToApplicant: true,
+        id: true,
       },
     });
   }
@@ -47,17 +46,19 @@ export class RecommenderInfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RecommenderInfo] })
   @ApiNestedQuery(RecommenderInfoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<RecommenderInfo[]> {
+  async recommenderInfos(
+    @common.Req() request: Request
+  ): Promise<RecommenderInfo[]> {
     const args = plainToClass(RecommenderInfoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.recommenderInfos({
       ...args,
       select: {
-        affiliation: true,
-        id: true,
-        phone: true,
         recUserId: true,
-        relationshipToApplicant: true,
         title: true,
+        affiliation: true,
+        phone: true,
+        relationshipToApplicant: true,
+        id: true,
       },
     });
   }
@@ -65,18 +66,18 @@ export class RecommenderInfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RecommenderInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async recommenderInfo(
     @common.Param() params: RecommenderInfoWhereUniqueInput
   ): Promise<RecommenderInfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.recommenderInfo({
       where: params,
       select: {
-        affiliation: true,
-        id: true,
-        phone: true,
         recUserId: true,
-        relationshipToApplicant: true,
         title: true,
+        affiliation: true,
+        phone: true,
+        relationshipToApplicant: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -90,21 +91,21 @@ export class RecommenderInfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RecommenderInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRecommenderInfo(
     @common.Param() params: RecommenderInfoWhereUniqueInput,
     @common.Body() data: RecommenderInfoUpdateInput
   ): Promise<RecommenderInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecommenderInfo({
         where: params,
         data: data,
         select: {
-          affiliation: true,
-          id: true,
-          phone: true,
           recUserId: true,
-          relationshipToApplicant: true,
           title: true,
+          affiliation: true,
+          phone: true,
+          relationshipToApplicant: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -120,19 +121,19 @@ export class RecommenderInfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RecommenderInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRecommenderInfo(
     @common.Param() params: RecommenderInfoWhereUniqueInput
   ): Promise<RecommenderInfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRecommenderInfo({
         where: params,
         select: {
-          affiliation: true,
-          id: true,
-          phone: true,
           recUserId: true,
-          relationshipToApplicant: true,
           title: true,
+          affiliation: true,
+          phone: true,
+          relationshipToApplicant: true,
+          id: true,
         },
       });
     } catch (error) {

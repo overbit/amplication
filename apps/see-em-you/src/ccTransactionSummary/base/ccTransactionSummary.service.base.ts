@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, CcTransactionSummary } from "@prisma/client";
+import {
+  Prisma,
+  CcTransactionSummary as PrismaCcTransactionSummary,
+} from "@prisma/client";
 
 export class CcTransactionSummaryServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class CcTransactionSummaryServiceBase {
     return this.prisma.ccTransactionSummary.count(args);
   }
 
-  async findMany<T extends Prisma.CcTransactionSummaryFindManyArgs>(
+  async ccTransactionSummaries<
+    T extends Prisma.CcTransactionSummaryFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionSummaryFindManyArgs>
-  ): Promise<CcTransactionSummary[]> {
+  ): Promise<PrismaCcTransactionSummary[]> {
     return this.prisma.ccTransactionSummary.findMany(args);
   }
-  async findOne<T extends Prisma.CcTransactionSummaryFindUniqueArgs>(
+  async ccTransactionSummary<
+    T extends Prisma.CcTransactionSummaryFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionSummaryFindUniqueArgs>
-  ): Promise<CcTransactionSummary | null> {
+  ): Promise<PrismaCcTransactionSummary | null> {
     return this.prisma.ccTransactionSummary.findUnique(args);
   }
-  async create<T extends Prisma.CcTransactionSummaryCreateArgs>(
+  async createCcTransactionSummary<
+    T extends Prisma.CcTransactionSummaryCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionSummaryCreateArgs>
-  ): Promise<CcTransactionSummary> {
+  ): Promise<PrismaCcTransactionSummary> {
     return this.prisma.ccTransactionSummary.create<T>(args);
   }
-  async update<T extends Prisma.CcTransactionSummaryUpdateArgs>(
+  async updateCcTransactionSummary<
+    T extends Prisma.CcTransactionSummaryUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionSummaryUpdateArgs>
-  ): Promise<CcTransactionSummary> {
+  ): Promise<PrismaCcTransactionSummary> {
     return this.prisma.ccTransactionSummary.update<T>(args);
   }
-  async delete<T extends Prisma.CcTransactionSummaryDeleteArgs>(
+  async deleteCcTransactionSummary<
+    T extends Prisma.CcTransactionSummaryDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.CcTransactionSummaryDeleteArgs>
-  ): Promise<CcTransactionSummary> {
+  ): Promise<PrismaCcTransactionSummary> {
     return this.prisma.ccTransactionSummary.delete(args);
   }
 }

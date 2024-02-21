@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsReviewerArgs } from "./CreateMhciPrereqsReviewerArgs";
-import { UpdateMhciPrereqsReviewerArgs } from "./UpdateMhciPrereqsReviewerArgs";
-import { DeleteMhciPrereqsReviewerArgs } from "./DeleteMhciPrereqsReviewerArgs";
+import { MhciPrereqsReviewer } from "./MhciPrereqsReviewer";
 import { MhciPrereqsReviewerCountArgs } from "./MhciPrereqsReviewerCountArgs";
 import { MhciPrereqsReviewerFindManyArgs } from "./MhciPrereqsReviewerFindManyArgs";
 import { MhciPrereqsReviewerFindUniqueArgs } from "./MhciPrereqsReviewerFindUniqueArgs";
-import { MhciPrereqsReviewer } from "./MhciPrereqsReviewer";
+import { CreateMhciPrereqsReviewerArgs } from "./CreateMhciPrereqsReviewerArgs";
+import { UpdateMhciPrereqsReviewerArgs } from "./UpdateMhciPrereqsReviewerArgs";
+import { DeleteMhciPrereqsReviewerArgs } from "./DeleteMhciPrereqsReviewerArgs";
 import { MhciPrereqsReviewerService } from "../mhciPrereqsReviewer.service";
 @graphql.Resolver(() => MhciPrereqsReviewer)
 export class MhciPrereqsReviewerResolverBase {
@@ -38,14 +38,14 @@ export class MhciPrereqsReviewerResolverBase {
   async mhciPrereqsReviewers(
     @graphql.Args() args: MhciPrereqsReviewerFindManyArgs
   ): Promise<MhciPrereqsReviewer[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsReviewers(args);
   }
 
   @graphql.Query(() => MhciPrereqsReviewer, { nullable: true })
   async mhciPrereqsReviewer(
     @graphql.Args() args: MhciPrereqsReviewerFindUniqueArgs
   ): Promise<MhciPrereqsReviewer | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsReviewer(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MhciPrereqsReviewerResolverBase {
   async createMhciPrereqsReviewer(
     @graphql.Args() args: CreateMhciPrereqsReviewerArgs
   ): Promise<MhciPrereqsReviewer> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsReviewer({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MhciPrereqsReviewerResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsReviewerArgs
   ): Promise<MhciPrereqsReviewer | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsReviewer({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MhciPrereqsReviewerResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsReviewerArgs
   ): Promise<MhciPrereqsReviewer | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsReviewer(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

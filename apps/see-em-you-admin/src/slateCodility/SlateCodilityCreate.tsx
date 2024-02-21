@@ -5,6 +5,10 @@ export const SlateCodilityCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <TextInput label="Prefix" source="prefix" />
+        <TextInput label="First" source="first" />
+        <TextInput label="Middle" source="middle" />
+        <TextInput label="Last" source="last" />
         <TextInput label="Codility Close Date" source="codilityCloseDate" />
         <TextInput label="Codility Create Date" source="codilityCreateDate" />
         <TextInput label="Codility Ip Addresses" source="codilityIpAddresses" />
@@ -98,10 +102,6 @@ export const SlateCodilityCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="Codility Task4 Score" source="codilityTask4Score" />
         <TextInput label="Codility Test Name" source="codilityTestName" />
         <TextInput label="Codility Test Session" source="codilityTestSession" />
-        <TextInput label="First" source="first" />
-        <TextInput label="Last" source="last" />
-        <TextInput label="Middle" source="middle" />
-        <TextInput label="Prefix" source="prefix" />
       </SimpleForm>
     </Create>
   );

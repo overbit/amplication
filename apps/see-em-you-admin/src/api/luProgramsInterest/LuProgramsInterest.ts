@@ -1,5 +1,5 @@
 export type LuProgramsInterest = {
-  id: number;
-  interestId: number;
   programId: number;
+  interestId: number;
+  id: number;
 };

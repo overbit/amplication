@@ -28,6 +28,17 @@ class MitsSlateEmployOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  prefix?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   first?: SortOrder;
 
   @ApiProperty({
@@ -39,7 +50,7 @@ class MitsSlateEmployOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  middle?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +61,7 @@ class MitsSlateEmployOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  job1From?: SortOrder;
+  last?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -62,6 +73,28 @@ class MitsSlateEmployOrderByInput {
     nullable: true,
   })
   job1Organization?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  jobNum1YearsOfExperience?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  job1From?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -94,17 +127,6 @@ class MitsSlateEmployOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  job2Organization?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   job2To?: SortOrder;
 
   @ApiProperty({
@@ -116,40 +138,7 @@ class MitsSlateEmployOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  job3From?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  job3Organization?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  job3To?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  jobNum1YearsOfExperience?: SortOrder;
+  job2Organization?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -171,6 +160,39 @@ class MitsSlateEmployOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  job3Organization?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  job3From?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  job3To?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   jobNum3YearsOfExperience?: SortOrder;
 
   @ApiProperty({
@@ -182,29 +204,7 @@ class MitsSlateEmployOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  last?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  middle?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  prefix?: SortOrder;
+  id?: SortOrder;
 }
 
 export { MitsSlateEmployOrderByInput as MitsSlateEmployOrderByInput };

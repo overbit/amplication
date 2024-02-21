@@ -18,54 +18,54 @@ import { GroupRankService } from "../groupRank.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  comment: "exampleComment",
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
-  ranking: "exampleRanking",
   round: 42,
+  periodId: 42,
   timestamp: new Date(),
+  luUsersUsertypesId: 42,
+  comment: "exampleComment",
+  ranking: "exampleRanking",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  comment: "exampleComment",
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
-  ranking: "exampleRanking",
   round: 42,
+  periodId: 42,
   timestamp: new Date(),
+  luUsersUsertypesId: 42,
+  comment: "exampleComment",
+  ranking: "exampleRanking",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    comment: "exampleComment",
     groupId: 42,
-    id: "exampleId",
-    luUsersUsertypesId: 42,
-    periodId: 42,
-    ranking: "exampleRanking",
     round: 42,
+    periodId: 42,
     timestamp: new Date(),
+    luUsersUsertypesId: 42,
+    comment: "exampleComment",
+    ranking: "exampleRanking",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  comment: "exampleComment",
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
-  ranking: "exampleRanking",
   round: 42,
+  periodId: 42,
   timestamp: new Date(),
+  luUsersUsertypesId: 42,
+  comment: "exampleComment",
+  ranking: "exampleRanking",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createGroupRank() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  groupRanks: () => FIND_MANY_RESULT,
+  groupRank: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

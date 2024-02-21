@@ -2,6 +2,6 @@ import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniq
 
 export type AcoPalUpdateInput = {
   aco?: boolean | null;
-  application?: ApplicationWhereUniqueInput;
   pal?: boolean | null;
+  application?: ApplicationWhereUniqueInput;
 };

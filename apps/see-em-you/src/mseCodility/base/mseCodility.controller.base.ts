@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MseCodilityService } from "../mseCodility.service";
 import { MseCodilityCreateInput } from "./MseCodilityCreateInput";
-import { MseCodilityWhereInput } from "./MseCodilityWhereInput";
-import { MseCodilityWhereUniqueInput } from "./MseCodilityWhereUniqueInput";
-import { MseCodilityFindManyArgs } from "./MseCodilityFindManyArgs";
-import { MseCodilityUpdateInput } from "./MseCodilityUpdateInput";
 import { MseCodility } from "./MseCodility";
+import { MseCodilityFindManyArgs } from "./MseCodilityFindManyArgs";
+import { MseCodilityWhereUniqueInput } from "./MseCodilityWhereUniqueInput";
+import { MseCodilityUpdateInput } from "./MseCodilityUpdateInput";
 
 export class MseCodilityControllerBase {
   constructor(protected readonly service: MseCodilityService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MseCodility })
-  async create(
+  async createMseCodility(
     @common.Body() data: MseCodilityCreateInput
   ): Promise<MseCodility> {
-    return await this.service.create({
+    return await this.service.createMseCodility({
       data: {
         ...data,
 
@@ -40,52 +39,51 @@ export class MseCodilityControllerBase {
         },
       },
       select: {
+        id: true,
+        testSessionId: true,
+        test: true,
+        lastName: true,
+        nick: true,
+        email: true,
+        phone: true,
+        lastSchoolAttended: true,
+        fieldOfStudy: true,
         academicDegree: true,
+        programmingExperience: true,
+        profileUrl: true,
+        createDate: true,
+        startDate: true,
+        closeDate: true,
+        ips: true,
+        totalScore: true,
+        maxScore: true,
+        percentTotalScore: true,
+        percentCorrectness: true,
+        percentPerformance: true,
+        timeUsed: true,
+        similarityCheck: true,
+        task1Name: true,
+        task1Score: true,
+        task1Correctness: true,
+        task1Performance: true,
+        task2Name: true,
+        task2Score: true,
+        task2Correctness: true,
+        task2Performance: true,
+        task3Name: true,
+        task3Score: true,
+        task3Correctness: true,
+        task3Performance: true,
+        task4Name: true,
+        task4Score: true,
+        task4Correctness: true,
+        task4Performance: true,
 
         application: {
           select: {
             id: true,
           },
         },
-
-        closeDate: true,
-        createDate: true,
-        email: true,
-        fieldOfStudy: true,
-        id: true,
-        ips: true,
-        lastName: true,
-        lastSchoolAttended: true,
-        maxScore: true,
-        nick: true,
-        percentCorrectness: true,
-        percentPerformance: true,
-        percentTotalScore: true,
-        phone: true,
-        profileUrl: true,
-        programmingExperience: true,
-        similarityCheck: true,
-        startDate: true,
-        task1Correctness: true,
-        task1Name: true,
-        task1Performance: true,
-        task1Score: true,
-        task2Correctness: true,
-        task2Name: true,
-        task2Performance: true,
-        task2Score: true,
-        task3Correctness: true,
-        task3Name: true,
-        task3Performance: true,
-        task3Score: true,
-        task4Correctness: true,
-        task4Name: true,
-        task4Performance: true,
-        task4Score: true,
-        test: true,
-        testSessionId: true,
-        timeUsed: true,
-        totalScore: true,
       },
     });
   }
@@ -93,57 +91,56 @@ export class MseCodilityControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MseCodility] })
   @ApiNestedQuery(MseCodilityFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MseCodility[]> {
+  async mseCodilities(@common.Req() request: Request): Promise<MseCodility[]> {
     const args = plainToClass(MseCodilityFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mseCodilities({
       ...args,
       select: {
+        id: true,
+        testSessionId: true,
+        test: true,
+        lastName: true,
+        nick: true,
+        email: true,
+        phone: true,
+        lastSchoolAttended: true,
+        fieldOfStudy: true,
         academicDegree: true,
+        programmingExperience: true,
+        profileUrl: true,
+        createDate: true,
+        startDate: true,
+        closeDate: true,
+        ips: true,
+        totalScore: true,
+        maxScore: true,
+        percentTotalScore: true,
+        percentCorrectness: true,
+        percentPerformance: true,
+        timeUsed: true,
+        similarityCheck: true,
+        task1Name: true,
+        task1Score: true,
+        task1Correctness: true,
+        task1Performance: true,
+        task2Name: true,
+        task2Score: true,
+        task2Correctness: true,
+        task2Performance: true,
+        task3Name: true,
+        task3Score: true,
+        task3Correctness: true,
+        task3Performance: true,
+        task4Name: true,
+        task4Score: true,
+        task4Correctness: true,
+        task4Performance: true,
 
         application: {
           select: {
             id: true,
           },
         },
-
-        closeDate: true,
-        createDate: true,
-        email: true,
-        fieldOfStudy: true,
-        id: true,
-        ips: true,
-        lastName: true,
-        lastSchoolAttended: true,
-        maxScore: true,
-        nick: true,
-        percentCorrectness: true,
-        percentPerformance: true,
-        percentTotalScore: true,
-        phone: true,
-        profileUrl: true,
-        programmingExperience: true,
-        similarityCheck: true,
-        startDate: true,
-        task1Correctness: true,
-        task1Name: true,
-        task1Performance: true,
-        task1Score: true,
-        task2Correctness: true,
-        task2Name: true,
-        task2Performance: true,
-        task2Score: true,
-        task3Correctness: true,
-        task3Name: true,
-        task3Performance: true,
-        task3Score: true,
-        task4Correctness: true,
-        task4Name: true,
-        task4Performance: true,
-        task4Score: true,
-        test: true,
-        testSessionId: true,
-        timeUsed: true,
-        totalScore: true,
       },
     });
   }
@@ -151,58 +148,57 @@ export class MseCodilityControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MseCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mseCodility(
     @common.Param() params: MseCodilityWhereUniqueInput
   ): Promise<MseCodility | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mseCodility({
       where: params,
       select: {
+        id: true,
+        testSessionId: true,
+        test: true,
+        lastName: true,
+        nick: true,
+        email: true,
+        phone: true,
+        lastSchoolAttended: true,
+        fieldOfStudy: true,
         academicDegree: true,
+        programmingExperience: true,
+        profileUrl: true,
+        createDate: true,
+        startDate: true,
+        closeDate: true,
+        ips: true,
+        totalScore: true,
+        maxScore: true,
+        percentTotalScore: true,
+        percentCorrectness: true,
+        percentPerformance: true,
+        timeUsed: true,
+        similarityCheck: true,
+        task1Name: true,
+        task1Score: true,
+        task1Correctness: true,
+        task1Performance: true,
+        task2Name: true,
+        task2Score: true,
+        task2Correctness: true,
+        task2Performance: true,
+        task3Name: true,
+        task3Score: true,
+        task3Correctness: true,
+        task3Performance: true,
+        task4Name: true,
+        task4Score: true,
+        task4Correctness: true,
+        task4Performance: true,
 
         application: {
           select: {
             id: true,
           },
         },
-
-        closeDate: true,
-        createDate: true,
-        email: true,
-        fieldOfStudy: true,
-        id: true,
-        ips: true,
-        lastName: true,
-        lastSchoolAttended: true,
-        maxScore: true,
-        nick: true,
-        percentCorrectness: true,
-        percentPerformance: true,
-        percentTotalScore: true,
-        phone: true,
-        profileUrl: true,
-        programmingExperience: true,
-        similarityCheck: true,
-        startDate: true,
-        task1Correctness: true,
-        task1Name: true,
-        task1Performance: true,
-        task1Score: true,
-        task2Correctness: true,
-        task2Name: true,
-        task2Performance: true,
-        task2Score: true,
-        task3Correctness: true,
-        task3Name: true,
-        task3Performance: true,
-        task3Score: true,
-        task4Correctness: true,
-        task4Name: true,
-        task4Performance: true,
-        task4Score: true,
-        test: true,
-        testSessionId: true,
-        timeUsed: true,
-        totalScore: true,
       },
     });
     if (result === null) {
@@ -216,12 +212,12 @@ export class MseCodilityControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MseCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMseCodility(
     @common.Param() params: MseCodilityWhereUniqueInput,
     @common.Body() data: MseCodilityUpdateInput
   ): Promise<MseCodility | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseCodility({
         where: params,
         data: {
           ...data,
@@ -231,52 +227,51 @@ export class MseCodilityControllerBase {
           },
         },
         select: {
+          id: true,
+          testSessionId: true,
+          test: true,
+          lastName: true,
+          nick: true,
+          email: true,
+          phone: true,
+          lastSchoolAttended: true,
+          fieldOfStudy: true,
           academicDegree: true,
+          programmingExperience: true,
+          profileUrl: true,
+          createDate: true,
+          startDate: true,
+          closeDate: true,
+          ips: true,
+          totalScore: true,
+          maxScore: true,
+          percentTotalScore: true,
+          percentCorrectness: true,
+          percentPerformance: true,
+          timeUsed: true,
+          similarityCheck: true,
+          task1Name: true,
+          task1Score: true,
+          task1Correctness: true,
+          task1Performance: true,
+          task2Name: true,
+          task2Score: true,
+          task2Correctness: true,
+          task2Performance: true,
+          task3Name: true,
+          task3Score: true,
+          task3Correctness: true,
+          task3Performance: true,
+          task4Name: true,
+          task4Score: true,
+          task4Correctness: true,
+          task4Performance: true,
 
           application: {
             select: {
               id: true,
             },
           },
-
-          closeDate: true,
-          createDate: true,
-          email: true,
-          fieldOfStudy: true,
-          id: true,
-          ips: true,
-          lastName: true,
-          lastSchoolAttended: true,
-          maxScore: true,
-          nick: true,
-          percentCorrectness: true,
-          percentPerformance: true,
-          percentTotalScore: true,
-          phone: true,
-          profileUrl: true,
-          programmingExperience: true,
-          similarityCheck: true,
-          startDate: true,
-          task1Correctness: true,
-          task1Name: true,
-          task1Performance: true,
-          task1Score: true,
-          task2Correctness: true,
-          task2Name: true,
-          task2Performance: true,
-          task2Score: true,
-          task3Correctness: true,
-          task3Name: true,
-          task3Performance: true,
-          task3Score: true,
-          task4Correctness: true,
-          task4Name: true,
-          task4Performance: true,
-          task4Score: true,
-          test: true,
-          testSessionId: true,
-          timeUsed: true,
-          totalScore: true,
         },
       });
     } catch (error) {
@@ -292,59 +287,58 @@ export class MseCodilityControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MseCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMseCodility(
     @common.Param() params: MseCodilityWhereUniqueInput
   ): Promise<MseCodility | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMseCodility({
         where: params,
         select: {
+          id: true,
+          testSessionId: true,
+          test: true,
+          lastName: true,
+          nick: true,
+          email: true,
+          phone: true,
+          lastSchoolAttended: true,
+          fieldOfStudy: true,
           academicDegree: true,
+          programmingExperience: true,
+          profileUrl: true,
+          createDate: true,
+          startDate: true,
+          closeDate: true,
+          ips: true,
+          totalScore: true,
+          maxScore: true,
+          percentTotalScore: true,
+          percentCorrectness: true,
+          percentPerformance: true,
+          timeUsed: true,
+          similarityCheck: true,
+          task1Name: true,
+          task1Score: true,
+          task1Correctness: true,
+          task1Performance: true,
+          task2Name: true,
+          task2Score: true,
+          task2Correctness: true,
+          task2Performance: true,
+          task3Name: true,
+          task3Score: true,
+          task3Correctness: true,
+          task3Performance: true,
+          task4Name: true,
+          task4Score: true,
+          task4Correctness: true,
+          task4Performance: true,
 
           application: {
             select: {
               id: true,
             },
           },
-
-          closeDate: true,
-          createDate: true,
-          email: true,
-          fieldOfStudy: true,
-          id: true,
-          ips: true,
-          lastName: true,
-          lastSchoolAttended: true,
-          maxScore: true,
-          nick: true,
-          percentCorrectness: true,
-          percentPerformance: true,
-          percentTotalScore: true,
-          phone: true,
-          profileUrl: true,
-          programmingExperience: true,
-          similarityCheck: true,
-          startDate: true,
-          task1Correctness: true,
-          task1Name: true,
-          task1Performance: true,
-          task1Score: true,
-          task2Correctness: true,
-          task2Name: true,
-          task2Performance: true,
-          task2Score: true,
-          task3Correctness: true,
-          task3Name: true,
-          task3Performance: true,
-          task3Score: true,
-          task4Correctness: true,
-          task4Name: true,
-          task4Performance: true,
-          task4Score: true,
-          test: true,
-          testSessionId: true,
-          timeUsed: true,
-          totalScore: true,
         },
       });
     } catch (error) {

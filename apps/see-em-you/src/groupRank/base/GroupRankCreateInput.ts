@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @InputType()
 class GroupRankCreateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  comment?: string | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -40,7 +29,7 @@ class GroupRankCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  luUsersUsertypesId!: number;
+  round!: number;
 
   @ApiProperty({
     required: true,
@@ -49,6 +38,25 @@ class GroupRankCreateInput {
   @IsInt()
   @Field(() => Number)
   periodId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  luUsersUsertypesId!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  comment?: string | null;
 
   @ApiProperty({
     required: false,
@@ -60,14 +68,6 @@ class GroupRankCreateInput {
     nullable: true,
   })
   ranking?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  round!: number;
 }
 
 export { GroupRankCreateInput as GroupRankCreateInput };

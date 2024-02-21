@@ -1,1 +1,5 @@
-export type SlateOrgWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type SlateOrgWhereInput = {
+  id?: StringFilter;
+};

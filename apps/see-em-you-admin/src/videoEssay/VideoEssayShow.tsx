@@ -5,10 +5,10 @@ export const VideoEssayShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Access Code" source="accessCode" />
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
         <TextField label="Url" source="url" />
+        <TextField label="Access Code" source="accessCode" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicantIpedsRaceService } from "../applicantIpedsRace.service";
 import { ApplicantIpedsRaceCreateInput } from "./ApplicantIpedsRaceCreateInput";
-import { ApplicantIpedsRaceWhereInput } from "./ApplicantIpedsRaceWhereInput";
-import { ApplicantIpedsRaceWhereUniqueInput } from "./ApplicantIpedsRaceWhereUniqueInput";
-import { ApplicantIpedsRaceFindManyArgs } from "./ApplicantIpedsRaceFindManyArgs";
-import { ApplicantIpedsRaceUpdateInput } from "./ApplicantIpedsRaceUpdateInput";
 import { ApplicantIpedsRace } from "./ApplicantIpedsRace";
+import { ApplicantIpedsRaceFindManyArgs } from "./ApplicantIpedsRaceFindManyArgs";
+import { ApplicantIpedsRaceWhereUniqueInput } from "./ApplicantIpedsRaceWhereUniqueInput";
+import { ApplicantIpedsRaceUpdateInput } from "./ApplicantIpedsRaceUpdateInput";
 
 export class ApplicantIpedsRaceControllerBase {
   constructor(protected readonly service: ApplicantIpedsRaceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicantIpedsRace })
-  async create(
+  async createApplicantIpedsRace(
     @common.Body() data: ApplicantIpedsRaceCreateInput
   ): Promise<ApplicantIpedsRace> {
-    return await this.service.create({
+    return await this.service.createApplicantIpedsRace({
       data: data,
       select: {
-        id: true,
-        ipedsRaceId: true,
         luUsersUsertypesId: true,
+        ipedsRaceId: true,
+        id: true,
       },
     });
   }
@@ -44,16 +43,16 @@ export class ApplicantIpedsRaceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicantIpedsRace] })
   @ApiNestedQuery(ApplicantIpedsRaceFindManyArgs)
-  async findMany(
+  async applicantIpedsRaces(
     @common.Req() request: Request
   ): Promise<ApplicantIpedsRace[]> {
     const args = plainToClass(ApplicantIpedsRaceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.applicantIpedsRaces({
       ...args,
       select: {
-        id: true,
-        ipedsRaceId: true,
         luUsersUsertypesId: true,
+        ipedsRaceId: true,
+        id: true,
       },
     });
   }
@@ -61,15 +60,15 @@ export class ApplicantIpedsRaceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicantIpedsRace })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicantIpedsRace(
     @common.Param() params: ApplicantIpedsRaceWhereUniqueInput
   ): Promise<ApplicantIpedsRace | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicantIpedsRace({
       where: params,
       select: {
-        id: true,
-        ipedsRaceId: true,
         luUsersUsertypesId: true,
+        ipedsRaceId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -83,18 +82,18 @@ export class ApplicantIpedsRaceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicantIpedsRace })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicantIpedsRace(
     @common.Param() params: ApplicantIpedsRaceWhereUniqueInput,
     @common.Body() data: ApplicantIpedsRaceUpdateInput
   ): Promise<ApplicantIpedsRace | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicantIpedsRace({
         where: params,
         data: data,
         select: {
-          id: true,
-          ipedsRaceId: true,
           luUsersUsertypesId: true,
+          ipedsRaceId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -110,16 +109,16 @@ export class ApplicantIpedsRaceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicantIpedsRace })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicantIpedsRace(
     @common.Param() params: ApplicantIpedsRaceWhereUniqueInput
   ): Promise<ApplicantIpedsRace | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicantIpedsRace({
         where: params,
         select: {
-          id: true,
-          ipedsRaceId: true,
           luUsersUsertypesId: true,
+          ipedsRaceId: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMitsSlateRecommend2Args } from "./CreateMitsSlateRecommend2Args";
-import { UpdateMitsSlateRecommend2Args } from "./UpdateMitsSlateRecommend2Args";
-import { DeleteMitsSlateRecommend2Args } from "./DeleteMitsSlateRecommend2Args";
+import { MitsSlateRecommend2 } from "./MitsSlateRecommend2";
 import { MitsSlateRecommend2CountArgs } from "./MitsSlateRecommend2CountArgs";
 import { MitsSlateRecommend2FindManyArgs } from "./MitsSlateRecommend2FindManyArgs";
 import { MitsSlateRecommend2FindUniqueArgs } from "./MitsSlateRecommend2FindUniqueArgs";
-import { MitsSlateRecommend2 } from "./MitsSlateRecommend2";
+import { CreateMitsSlateRecommend2Args } from "./CreateMitsSlateRecommend2Args";
+import { UpdateMitsSlateRecommend2Args } from "./UpdateMitsSlateRecommend2Args";
+import { DeleteMitsSlateRecommend2Args } from "./DeleteMitsSlateRecommend2Args";
 import { MitsSlateRecommend2Service } from "../mitsSlateRecommend2.service";
 @graphql.Resolver(() => MitsSlateRecommend2)
 export class MitsSlateRecommend2ResolverBase {
@@ -38,14 +38,14 @@ export class MitsSlateRecommend2ResolverBase {
   async mitsSlateRecommend2s(
     @graphql.Args() args: MitsSlateRecommend2FindManyArgs
   ): Promise<MitsSlateRecommend2[]> {
-    return this.service.findMany(args);
+    return this.service.mitsSlateRecommend2s(args);
   }
 
   @graphql.Query(() => MitsSlateRecommend2, { nullable: true })
   async mitsSlateRecommend2(
     @graphql.Args() args: MitsSlateRecommend2FindUniqueArgs
   ): Promise<MitsSlateRecommend2 | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mitsSlateRecommend2(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MitsSlateRecommend2ResolverBase {
   async createMitsSlateRecommend2(
     @graphql.Args() args: CreateMitsSlateRecommend2Args
   ): Promise<MitsSlateRecommend2> {
-    return await this.service.create({
+    return await this.service.createMitsSlateRecommend2({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MitsSlateRecommend2ResolverBase {
     @graphql.Args() args: UpdateMitsSlateRecommend2Args
   ): Promise<MitsSlateRecommend2 | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateRecommend2({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MitsSlateRecommend2ResolverBase {
     @graphql.Args() args: DeleteMitsSlateRecommend2Args
   ): Promise<MitsSlateRecommend2 | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMitsSlateRecommend2(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

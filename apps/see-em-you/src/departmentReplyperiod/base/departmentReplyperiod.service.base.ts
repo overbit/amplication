@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DepartmentReplyperiod } from "@prisma/client";
+import {
+  Prisma,
+  DepartmentReplyperiod as PrismaDepartmentReplyperiod,
+} from "@prisma/client";
 
 export class DepartmentReplyperiodServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class DepartmentReplyperiodServiceBase {
     return this.prisma.departmentReplyperiod.count(args);
   }
 
-  async findMany<T extends Prisma.DepartmentReplyperiodFindManyArgs>(
+  async departmentReplyperiods<
+    T extends Prisma.DepartmentReplyperiodFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentReplyperiodFindManyArgs>
-  ): Promise<DepartmentReplyperiod[]> {
+  ): Promise<PrismaDepartmentReplyperiod[]> {
     return this.prisma.departmentReplyperiod.findMany(args);
   }
-  async findOne<T extends Prisma.DepartmentReplyperiodFindUniqueArgs>(
+  async departmentReplyperiod<
+    T extends Prisma.DepartmentReplyperiodFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentReplyperiodFindUniqueArgs>
-  ): Promise<DepartmentReplyperiod | null> {
+  ): Promise<PrismaDepartmentReplyperiod | null> {
     return this.prisma.departmentReplyperiod.findUnique(args);
   }
-  async create<T extends Prisma.DepartmentReplyperiodCreateArgs>(
+  async createDepartmentReplyperiod<
+    T extends Prisma.DepartmentReplyperiodCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentReplyperiodCreateArgs>
-  ): Promise<DepartmentReplyperiod> {
+  ): Promise<PrismaDepartmentReplyperiod> {
     return this.prisma.departmentReplyperiod.create<T>(args);
   }
-  async update<T extends Prisma.DepartmentReplyperiodUpdateArgs>(
+  async updateDepartmentReplyperiod<
+    T extends Prisma.DepartmentReplyperiodUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentReplyperiodUpdateArgs>
-  ): Promise<DepartmentReplyperiod> {
+  ): Promise<PrismaDepartmentReplyperiod> {
     return this.prisma.departmentReplyperiod.update<T>(args);
   }
-  async delete<T extends Prisma.DepartmentReplyperiodDeleteArgs>(
+  async deleteDepartmentReplyperiod<
+    T extends Prisma.DepartmentReplyperiodDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentReplyperiodDeleteArgs>
-  ): Promise<DepartmentReplyperiod> {
+  ): Promise<PrismaDepartmentReplyperiod> {
     return this.prisma.departmentReplyperiod.delete(args);
   }
 }

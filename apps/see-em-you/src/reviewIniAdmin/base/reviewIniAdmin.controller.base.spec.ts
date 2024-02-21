@@ -19,45 +19,45 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  comments: "exampleComments",
-  departmentId: 42,
-  id: 42,
   reviewerId: 42,
+  departmentId: 42,
   round: 42,
+  comments: "exampleComments",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  comments: "exampleComments",
-  departmentId: 42,
-  id: 42,
   reviewerId: 42,
+  departmentId: 42,
   round: 42,
+  comments: "exampleComments",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    comments: "exampleComments",
-    departmentId: 42,
-    id: 42,
     reviewerId: 42,
+    departmentId: 42,
     round: 42,
+    comments: "exampleComments",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  comments: "exampleComments",
-  departmentId: 42,
-  id: 42,
   reviewerId: 42,
+  departmentId: 42,
   round: 42,
+  comments: "exampleComments",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createReviewIniAdmin() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  reviewIniAdmins: () => FIND_MANY_RESULT,
+  reviewIniAdmin: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

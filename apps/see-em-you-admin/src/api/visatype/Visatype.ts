@@ -1,7 +1,7 @@
 export type Visatype = {
-  addedFor: string | null;
-  description: string | null;
-  id: number;
   name: string;
   short: string;
+  description: string | null;
+  addedFor: string | null;
+  id: number;
 };

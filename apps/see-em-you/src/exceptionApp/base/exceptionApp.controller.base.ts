@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ExceptionAppService } from "../exceptionApp.service";
 import { ExceptionAppCreateInput } from "./ExceptionAppCreateInput";
-import { ExceptionAppWhereInput } from "./ExceptionAppWhereInput";
-import { ExceptionAppWhereUniqueInput } from "./ExceptionAppWhereUniqueInput";
-import { ExceptionAppFindManyArgs } from "./ExceptionAppFindManyArgs";
-import { ExceptionAppUpdateInput } from "./ExceptionAppUpdateInput";
 import { ExceptionApp } from "./ExceptionApp";
+import { ExceptionAppFindManyArgs } from "./ExceptionAppFindManyArgs";
+import { ExceptionAppWhereUniqueInput } from "./ExceptionAppWhereUniqueInput";
+import { ExceptionAppUpdateInput } from "./ExceptionAppUpdateInput";
 
 export class ExceptionAppControllerBase {
   constructor(protected readonly service: ExceptionAppService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ExceptionApp })
-  async create(
+  async createExceptionApp(
     @common.Body() data: ExceptionAppCreateInput
   ): Promise<ExceptionApp> {
-    return await this.service.create({
+    return await this.service.createExceptionApp({
       data: data,
       select: {
-        active: true,
         appId: true,
+        active: true,
         id: true,
       },
     });
@@ -44,13 +43,13 @@ export class ExceptionAppControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ExceptionApp] })
   @ApiNestedQuery(ExceptionAppFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ExceptionApp[]> {
+  async exceptionApps(@common.Req() request: Request): Promise<ExceptionApp[]> {
     const args = plainToClass(ExceptionAppFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.exceptionApps({
       ...args,
       select: {
-        active: true,
         appId: true,
+        active: true,
         id: true,
       },
     });
@@ -59,14 +58,14 @@ export class ExceptionAppControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ExceptionApp })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async exceptionApp(
     @common.Param() params: ExceptionAppWhereUniqueInput
   ): Promise<ExceptionApp | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.exceptionApp({
       where: params,
       select: {
-        active: true,
         appId: true,
+        active: true,
         id: true,
       },
     });
@@ -81,17 +80,17 @@ export class ExceptionAppControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ExceptionApp })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateExceptionApp(
     @common.Param() params: ExceptionAppWhereUniqueInput,
     @common.Body() data: ExceptionAppUpdateInput
   ): Promise<ExceptionApp | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateExceptionApp({
         where: params,
         data: data,
         select: {
-          active: true,
           appId: true,
+          active: true,
           id: true,
         },
       });
@@ -108,15 +107,15 @@ export class ExceptionAppControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ExceptionApp })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteExceptionApp(
     @common.Param() params: ExceptionAppWhereUniqueInput
   ): Promise<ExceptionApp | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteExceptionApp({
         where: params,
         select: {
-          active: true,
           appId: true,
+          active: true,
           id: true,
         },
       });

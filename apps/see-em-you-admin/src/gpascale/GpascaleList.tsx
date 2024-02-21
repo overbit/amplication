@@ -12,10 +12,10 @@ export const GpascaleList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Formula" source="formula" />
-        <TextField label="Id" source="id" />
         <TextField label="Name" source="name" />
+        <TextField label="Formula" source="formula" />
         <TextField label="Sortorder" source="sortorder" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

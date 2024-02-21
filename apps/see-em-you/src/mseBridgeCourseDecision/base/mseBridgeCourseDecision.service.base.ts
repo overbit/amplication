@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseBridgeCourseDecision } from "@prisma/client";
+import {
+  Prisma,
+  MseBridgeCourseDecision as PrismaMseBridgeCourseDecision,
+} from "@prisma/client";
 
 export class MseBridgeCourseDecisionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class MseBridgeCourseDecisionServiceBase {
     return this.prisma.mseBridgeCourseDecision.count(args);
   }
 
-  async findMany<T extends Prisma.MseBridgeCourseDecisionFindManyArgs>(
+  async mseBridgeCourseDecisions<
+    T extends Prisma.MseBridgeCourseDecisionFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseBridgeCourseDecisionFindManyArgs>
-  ): Promise<MseBridgeCourseDecision[]> {
+  ): Promise<PrismaMseBridgeCourseDecision[]> {
     return this.prisma.mseBridgeCourseDecision.findMany(args);
   }
-  async findOne<T extends Prisma.MseBridgeCourseDecisionFindUniqueArgs>(
+  async mseBridgeCourseDecision<
+    T extends Prisma.MseBridgeCourseDecisionFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseBridgeCourseDecisionFindUniqueArgs>
-  ): Promise<MseBridgeCourseDecision | null> {
+  ): Promise<PrismaMseBridgeCourseDecision | null> {
     return this.prisma.mseBridgeCourseDecision.findUnique(args);
   }
-  async create<T extends Prisma.MseBridgeCourseDecisionCreateArgs>(
+  async createMseBridgeCourseDecision<
+    T extends Prisma.MseBridgeCourseDecisionCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseBridgeCourseDecisionCreateArgs>
-  ): Promise<MseBridgeCourseDecision> {
+  ): Promise<PrismaMseBridgeCourseDecision> {
     return this.prisma.mseBridgeCourseDecision.create<T>(args);
   }
-  async update<T extends Prisma.MseBridgeCourseDecisionUpdateArgs>(
+  async updateMseBridgeCourseDecision<
+    T extends Prisma.MseBridgeCourseDecisionUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseBridgeCourseDecisionUpdateArgs>
-  ): Promise<MseBridgeCourseDecision> {
+  ): Promise<PrismaMseBridgeCourseDecision> {
     return this.prisma.mseBridgeCourseDecision.update<T>(args);
   }
-  async delete<T extends Prisma.MseBridgeCourseDecisionDeleteArgs>(
+  async deleteMseBridgeCourseDecision<
+    T extends Prisma.MseBridgeCourseDecisionDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseBridgeCourseDecisionDeleteArgs>
-  ): Promise<MseBridgeCourseDecision> {
+  ): Promise<PrismaMseBridgeCourseDecision> {
     return this.prisma.mseBridgeCourseDecision.delete(args);
   }
 }

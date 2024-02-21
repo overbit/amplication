@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsProgrammingSampleArgs } from "./CreateMhciPrereqsProgrammingSampleArgs";
-import { UpdateMhciPrereqsProgrammingSampleArgs } from "./UpdateMhciPrereqsProgrammingSampleArgs";
-import { DeleteMhciPrereqsProgrammingSampleArgs } from "./DeleteMhciPrereqsProgrammingSampleArgs";
+import { MhciPrereqsProgrammingSample } from "./MhciPrereqsProgrammingSample";
 import { MhciPrereqsProgrammingSampleCountArgs } from "./MhciPrereqsProgrammingSampleCountArgs";
 import { MhciPrereqsProgrammingSampleFindManyArgs } from "./MhciPrereqsProgrammingSampleFindManyArgs";
 import { MhciPrereqsProgrammingSampleFindUniqueArgs } from "./MhciPrereqsProgrammingSampleFindUniqueArgs";
-import { MhciPrereqsProgrammingSample } from "./MhciPrereqsProgrammingSample";
+import { CreateMhciPrereqsProgrammingSampleArgs } from "./CreateMhciPrereqsProgrammingSampleArgs";
+import { UpdateMhciPrereqsProgrammingSampleArgs } from "./UpdateMhciPrereqsProgrammingSampleArgs";
+import { DeleteMhciPrereqsProgrammingSampleArgs } from "./DeleteMhciPrereqsProgrammingSampleArgs";
 import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 import { MhciPrereqsProgrammingSampleService } from "../mhciPrereqsProgrammingSample.service";
 @graphql.Resolver(() => MhciPrereqsProgrammingSample)
@@ -41,14 +41,14 @@ export class MhciPrereqsProgrammingSampleResolverBase {
   async mhciPrereqsProgrammingSamples(
     @graphql.Args() args: MhciPrereqsProgrammingSampleFindManyArgs
   ): Promise<MhciPrereqsProgrammingSample[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsProgrammingSamples(args);
   }
 
   @graphql.Query(() => MhciPrereqsProgrammingSample, { nullable: true })
   async mhciPrereqsProgrammingSample(
     @graphql.Args() args: MhciPrereqsProgrammingSampleFindUniqueArgs
   ): Promise<MhciPrereqsProgrammingSample | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsProgrammingSample(args);
     if (result === null) {
       return null;
     }
@@ -59,7 +59,7 @@ export class MhciPrereqsProgrammingSampleResolverBase {
   async createMhciPrereqsProgrammingSample(
     @graphql.Args() args: CreateMhciPrereqsProgrammingSampleArgs
   ): Promise<MhciPrereqsProgrammingSample> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsProgrammingSample({
       ...args,
       data: {
         ...args.data,
@@ -76,7 +76,7 @@ export class MhciPrereqsProgrammingSampleResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsProgrammingSampleArgs
   ): Promise<MhciPrereqsProgrammingSample | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsProgrammingSample({
         ...args,
         data: {
           ...args.data,
@@ -101,7 +101,7 @@ export class MhciPrereqsProgrammingSampleResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsProgrammingSampleArgs
   ): Promise<MhciPrereqsProgrammingSample | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsProgrammingSample(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -116,7 +116,7 @@ export class MhciPrereqsProgrammingSampleResolverBase {
     nullable: true,
     name: "luUsersUsertypes",
   })
-  async resolveFieldLuUsersUsertypes(
+  async getLuUsersUsertypes(
     @graphql.Parent() parent: MhciPrereqsProgrammingSample
   ): Promise<LuUsersUsertype | null> {
     const result = await this.service.getLuUsersUsertypes(parent.id);

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ReviewIniAdmin } from "@prisma/client";
+import { Prisma, ReviewIniAdmin as PrismaReviewIniAdmin } from "@prisma/client";
 
 export class ReviewIniAdminServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ReviewIniAdminServiceBase {
     return this.prisma.reviewIniAdmin.count(args);
   }
 
-  async findMany<T extends Prisma.ReviewIniAdminFindManyArgs>(
+  async reviewIniAdmins<T extends Prisma.ReviewIniAdminFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAdminFindManyArgs>
-  ): Promise<ReviewIniAdmin[]> {
+  ): Promise<PrismaReviewIniAdmin[]> {
     return this.prisma.reviewIniAdmin.findMany(args);
   }
-  async findOne<T extends Prisma.ReviewIniAdminFindUniqueArgs>(
+  async reviewIniAdmin<T extends Prisma.ReviewIniAdminFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAdminFindUniqueArgs>
-  ): Promise<ReviewIniAdmin | null> {
+  ): Promise<PrismaReviewIniAdmin | null> {
     return this.prisma.reviewIniAdmin.findUnique(args);
   }
-  async create<T extends Prisma.ReviewIniAdminCreateArgs>(
+  async createReviewIniAdmin<T extends Prisma.ReviewIniAdminCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAdminCreateArgs>
-  ): Promise<ReviewIniAdmin> {
+  ): Promise<PrismaReviewIniAdmin> {
     return this.prisma.reviewIniAdmin.create<T>(args);
   }
-  async update<T extends Prisma.ReviewIniAdminUpdateArgs>(
+  async updateReviewIniAdmin<T extends Prisma.ReviewIniAdminUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAdminUpdateArgs>
-  ): Promise<ReviewIniAdmin> {
+  ): Promise<PrismaReviewIniAdmin> {
     return this.prisma.reviewIniAdmin.update<T>(args);
   }
-  async delete<T extends Prisma.ReviewIniAdminDeleteArgs>(
+  async deleteReviewIniAdmin<T extends Prisma.ReviewIniAdminDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniAdminDeleteArgs>
-  ): Promise<ReviewIniAdmin> {
+  ): Promise<PrismaReviewIniAdmin> {
     return this.prisma.reviewIniAdmin.delete(args);
   }
 }

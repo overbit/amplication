@@ -3,9 +3,9 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  NumberInput,
   ReferenceInput,
   SelectInput,
-  NumberInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -13,6 +13,7 @@ export const TagMemberCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Tag Instance Id" source="tagInstanceId" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -20,7 +21,6 @@ export const TagMemberCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Tag Instance Id" source="tagInstanceId" />
       </SimpleForm>
     </Create>
   );

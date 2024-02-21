@@ -18,46 +18,46 @@ import { DomainService } from "../domain.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  name: "exampleName",
+  description: "exampleDescription",
+  path: "examplePath",
   active: "true",
   banner: "exampleBanner",
-  description: "exampleDescription",
   id: 42,
-  name: "exampleName",
-  path: "examplePath",
 };
 const CREATE_RESULT = {
+  name: "exampleName",
+  description: "exampleDescription",
+  path: "examplePath",
   active: "true",
   banner: "exampleBanner",
-  description: "exampleDescription",
   id: 42,
-  name: "exampleName",
-  path: "examplePath",
 };
 const FIND_MANY_RESULT = [
   {
+    name: "exampleName",
+    description: "exampleDescription",
+    path: "examplePath",
     active: "true",
     banner: "exampleBanner",
-    description: "exampleDescription",
     id: 42,
-    name: "exampleName",
-    path: "examplePath",
   },
 ];
 const FIND_ONE_RESULT = {
+  name: "exampleName",
+  description: "exampleDescription",
+  path: "examplePath",
   active: "true",
   banner: "exampleBanner",
-  description: "exampleDescription",
   id: 42,
-  name: "exampleName",
-  path: "examplePath",
 };
 
 const service = {
-  create() {
+  createDomain() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  domains: () => FIND_MANY_RESULT,
+  domain: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

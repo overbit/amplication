@@ -18,30 +18,30 @@ import { TagMemberService } from "../tagMember.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   tagInstanceId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   tagInstanceId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     tagInstanceId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   tagInstanceId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createTagMember() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  tagMembers: () => FIND_MANY_RESULT,
+  tagMember: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

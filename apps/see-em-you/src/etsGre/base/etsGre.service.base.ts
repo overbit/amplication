@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, EtsGre } from "@prisma/client";
+import { Prisma, EtsGre as PrismaEtsGre } from "@prisma/client";
 
 export class EtsGreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class EtsGreServiceBase {
     return this.prisma.etsGre.count(args);
   }
 
-  async findMany<T extends Prisma.EtsGreFindManyArgs>(
+  async etsGres<T extends Prisma.EtsGreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreFindManyArgs>
-  ): Promise<EtsGre[]> {
+  ): Promise<PrismaEtsGre[]> {
     return this.prisma.etsGre.findMany(args);
   }
-  async findOne<T extends Prisma.EtsGreFindUniqueArgs>(
+  async etsGre<T extends Prisma.EtsGreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreFindUniqueArgs>
-  ): Promise<EtsGre | null> {
+  ): Promise<PrismaEtsGre | null> {
     return this.prisma.etsGre.findUnique(args);
   }
-  async create<T extends Prisma.EtsGreCreateArgs>(
+  async createEtsGre<T extends Prisma.EtsGreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreCreateArgs>
-  ): Promise<EtsGre> {
+  ): Promise<PrismaEtsGre> {
     return this.prisma.etsGre.create<T>(args);
   }
-  async update<T extends Prisma.EtsGreUpdateArgs>(
+  async updateEtsGre<T extends Prisma.EtsGreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreUpdateArgs>
-  ): Promise<EtsGre> {
+  ): Promise<PrismaEtsGre> {
     return this.prisma.etsGre.update<T>(args);
   }
-  async delete<T extends Prisma.EtsGreDeleteArgs>(
+  async deleteEtsGre<T extends Prisma.EtsGreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreDeleteArgs>
-  ): Promise<EtsGre> {
+  ): Promise<PrismaEtsGre> {
     return this.prisma.etsGre.delete(args);
   }
 }

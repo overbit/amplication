@@ -18,32 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LangProfRecommendService } from "../langProfRecommend.service";
 import { LangProfRecommendCreateInput } from "./LangProfRecommendCreateInput";
-import { LangProfRecommendWhereInput } from "./LangProfRecommendWhereInput";
-import { LangProfRecommendWhereUniqueInput } from "./LangProfRecommendWhereUniqueInput";
-import { LangProfRecommendFindManyArgs } from "./LangProfRecommendFindManyArgs";
-import { LangProfRecommendUpdateInput } from "./LangProfRecommendUpdateInput";
 import { LangProfRecommend } from "./LangProfRecommend";
+import { LangProfRecommendFindManyArgs } from "./LangProfRecommendFindManyArgs";
+import { LangProfRecommendWhereUniqueInput } from "./LangProfRecommendWhereUniqueInput";
+import { LangProfRecommendUpdateInput } from "./LangProfRecommendUpdateInput";
 
 export class LangProfRecommendControllerBase {
   constructor(protected readonly service: LangProfRecommendService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LangProfRecommend })
-  async create(
+  async createLangProfRecommend(
     @common.Body() data: LangProfRecommendCreateInput
   ): Promise<LangProfRecommend> {
-    return await this.service.create({
+    return await this.service.createLangProfRecommend({
       data: data,
       select: {
         applicationId: true,
+        recUserId: true,
         content: true,
         datafileId: true,
-        id: true,
         langProfRecId: true,
-        languageSpecialization: true,
-        lastReminderSent: true,
-        recUserId: true,
-        reminderSentCount: true,
         submitted: true,
+        reminderSentCount: true,
+        lastReminderSent: true,
+        languageSpecialization: true,
+        id: true,
       },
     });
   }
@@ -51,21 +50,23 @@ export class LangProfRecommendControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LangProfRecommend] })
   @ApiNestedQuery(LangProfRecommendFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<LangProfRecommend[]> {
+  async langProfRecommends(
+    @common.Req() request: Request
+  ): Promise<LangProfRecommend[]> {
     const args = plainToClass(LangProfRecommendFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.langProfRecommends({
       ...args,
       select: {
         applicationId: true,
+        recUserId: true,
         content: true,
         datafileId: true,
-        id: true,
         langProfRecId: true,
-        languageSpecialization: true,
-        lastReminderSent: true,
-        recUserId: true,
-        reminderSentCount: true,
         submitted: true,
+        reminderSentCount: true,
+        lastReminderSent: true,
+        languageSpecialization: true,
+        id: true,
       },
     });
   }
@@ -73,22 +74,22 @@ export class LangProfRecommendControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LangProfRecommend })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async langProfRecommend(
     @common.Param() params: LangProfRecommendWhereUniqueInput
   ): Promise<LangProfRecommend | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.langProfRecommend({
       where: params,
       select: {
         applicationId: true,
+        recUserId: true,
         content: true,
         datafileId: true,
-        id: true,
         langProfRecId: true,
-        languageSpecialization: true,
-        lastReminderSent: true,
-        recUserId: true,
-        reminderSentCount: true,
         submitted: true,
+        reminderSentCount: true,
+        lastReminderSent: true,
+        languageSpecialization: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -102,25 +103,25 @@ export class LangProfRecommendControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LangProfRecommend })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLangProfRecommend(
     @common.Param() params: LangProfRecommendWhereUniqueInput,
     @common.Body() data: LangProfRecommendUpdateInput
   ): Promise<LangProfRecommend | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLangProfRecommend({
         where: params,
         data: data,
         select: {
           applicationId: true,
+          recUserId: true,
           content: true,
           datafileId: true,
-          id: true,
           langProfRecId: true,
-          languageSpecialization: true,
-          lastReminderSent: true,
-          recUserId: true,
-          reminderSentCount: true,
           submitted: true,
+          reminderSentCount: true,
+          lastReminderSent: true,
+          languageSpecialization: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -136,23 +137,23 @@ export class LangProfRecommendControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LangProfRecommend })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLangProfRecommend(
     @common.Param() params: LangProfRecommendWhereUniqueInput
   ): Promise<LangProfRecommend | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLangProfRecommend({
         where: params,
         select: {
           applicationId: true,
+          recUserId: true,
           content: true,
           datafileId: true,
-          id: true,
           langProfRecId: true,
-          languageSpecialization: true,
-          lastReminderSent: true,
-          recUserId: true,
-          reminderSentCount: true,
           submitted: true,
+          reminderSentCount: true,
+          lastReminderSent: true,
+          languageSpecialization: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, CashnetDirect } from "@prisma/client";
+import { Prisma, CashnetDirect as PrismaCashnetDirect } from "@prisma/client";
 
 export class CashnetDirectServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class CashnetDirectServiceBase {
     return this.prisma.cashnetDirect.count(args);
   }
 
-  async findMany<T extends Prisma.CashnetDirectFindManyArgs>(
+  async cashnetDirects<T extends Prisma.CashnetDirectFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetDirectFindManyArgs>
-  ): Promise<CashnetDirect[]> {
+  ): Promise<PrismaCashnetDirect[]> {
     return this.prisma.cashnetDirect.findMany(args);
   }
-  async findOne<T extends Prisma.CashnetDirectFindUniqueArgs>(
+  async cashnetDirect<T extends Prisma.CashnetDirectFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetDirectFindUniqueArgs>
-  ): Promise<CashnetDirect | null> {
+  ): Promise<PrismaCashnetDirect | null> {
     return this.prisma.cashnetDirect.findUnique(args);
   }
-  async create<T extends Prisma.CashnetDirectCreateArgs>(
+  async createCashnetDirect<T extends Prisma.CashnetDirectCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetDirectCreateArgs>
-  ): Promise<CashnetDirect> {
+  ): Promise<PrismaCashnetDirect> {
     return this.prisma.cashnetDirect.create<T>(args);
   }
-  async update<T extends Prisma.CashnetDirectUpdateArgs>(
+  async updateCashnetDirect<T extends Prisma.CashnetDirectUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetDirectUpdateArgs>
-  ): Promise<CashnetDirect> {
+  ): Promise<PrismaCashnetDirect> {
     return this.prisma.cashnetDirect.update<T>(args);
   }
-  async delete<T extends Prisma.CashnetDirectDeleteArgs>(
+  async deleteCashnetDirect<T extends Prisma.CashnetDirectDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetDirectDeleteArgs>
-  ): Promise<CashnetDirect> {
+  ): Promise<PrismaCashnetDirect> {
     return this.prisma.cashnetDirect.delete(args);
   }
 }

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PeriodType } from "@prisma/client";
+import { Prisma, PeriodType as PrismaPeriodType } from "@prisma/client";
 
 export class PeriodTypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class PeriodTypeServiceBase {
     return this.prisma.periodType.count(args);
   }
 
-  async findMany<T extends Prisma.PeriodTypeFindManyArgs>(
+  async periodTypes<T extends Prisma.PeriodTypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodTypeFindManyArgs>
-  ): Promise<PeriodType[]> {
+  ): Promise<PrismaPeriodType[]> {
     return this.prisma.periodType.findMany(args);
   }
-  async findOne<T extends Prisma.PeriodTypeFindUniqueArgs>(
+  async periodType<T extends Prisma.PeriodTypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodTypeFindUniqueArgs>
-  ): Promise<PeriodType | null> {
+  ): Promise<PrismaPeriodType | null> {
     return this.prisma.periodType.findUnique(args);
   }
-  async create<T extends Prisma.PeriodTypeCreateArgs>(
+  async createPeriodType<T extends Prisma.PeriodTypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodTypeCreateArgs>
-  ): Promise<PeriodType> {
+  ): Promise<PrismaPeriodType> {
     return this.prisma.periodType.create<T>(args);
   }
-  async update<T extends Prisma.PeriodTypeUpdateArgs>(
+  async updatePeriodType<T extends Prisma.PeriodTypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodTypeUpdateArgs>
-  ): Promise<PeriodType> {
+  ): Promise<PrismaPeriodType> {
     return this.prisma.periodType.update<T>(args);
   }
-  async delete<T extends Prisma.PeriodTypeDeleteArgs>(
+  async deletePeriodType<T extends Prisma.PeriodTypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodTypeDeleteArgs>
-  ): Promise<PeriodType> {
+  ): Promise<PrismaPeriodType> {
     return this.prisma.periodType.delete(args);
   }
 }

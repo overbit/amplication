@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, RissMcnair, Application } from "@prisma/client";
+import {
+  Prisma,
+  RissMcnair as PrismaRissMcnair,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class RissMcnairServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class RissMcnairServiceBase {
     return this.prisma.rissMcnair.count(args);
   }
 
-  async findMany<T extends Prisma.RissMcnairFindManyArgs>(
+  async rissMcnairs<T extends Prisma.RissMcnairFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissMcnairFindManyArgs>
-  ): Promise<RissMcnair[]> {
+  ): Promise<PrismaRissMcnair[]> {
     return this.prisma.rissMcnair.findMany(args);
   }
-  async findOne<T extends Prisma.RissMcnairFindUniqueArgs>(
+  async rissMcnair<T extends Prisma.RissMcnairFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissMcnairFindUniqueArgs>
-  ): Promise<RissMcnair | null> {
+  ): Promise<PrismaRissMcnair | null> {
     return this.prisma.rissMcnair.findUnique(args);
   }
-  async create<T extends Prisma.RissMcnairCreateArgs>(
+  async createRissMcnair<T extends Prisma.RissMcnairCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissMcnairCreateArgs>
-  ): Promise<RissMcnair> {
+  ): Promise<PrismaRissMcnair> {
     return this.prisma.rissMcnair.create<T>(args);
   }
-  async update<T extends Prisma.RissMcnairUpdateArgs>(
+  async updateRissMcnair<T extends Prisma.RissMcnairUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissMcnairUpdateArgs>
-  ): Promise<RissMcnair> {
+  ): Promise<PrismaRissMcnair> {
     return this.prisma.rissMcnair.update<T>(args);
   }
-  async delete<T extends Prisma.RissMcnairDeleteArgs>(
+  async deleteRissMcnair<T extends Prisma.RissMcnairDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissMcnairDeleteArgs>
-  ): Promise<RissMcnair> {
+  ): Promise<PrismaRissMcnair> {
     return this.prisma.rissMcnair.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.rissMcnair
       .findUnique({
         where: { id: parentId },

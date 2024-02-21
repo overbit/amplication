@@ -1,10 +1,10 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type RecommendformOrderByInput = {
+  recommendId?: SortOrder;
   formId?: SortOrder;
-  id?: SortOrder;
   questionId?: SortOrder;
   questionKey?: SortOrder;
-  recommendId?: SortOrder;
   response?: SortOrder;
+  id?: SortOrder;
 };

@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { FolderLabelInfoService } from "../folderLabelInfo.service";
 import { FolderLabelInfoCreateInput } from "./FolderLabelInfoCreateInput";
-import { FolderLabelInfoWhereInput } from "./FolderLabelInfoWhereInput";
-import { FolderLabelInfoWhereUniqueInput } from "./FolderLabelInfoWhereUniqueInput";
-import { FolderLabelInfoFindManyArgs } from "./FolderLabelInfoFindManyArgs";
-import { FolderLabelInfoUpdateInput } from "./FolderLabelInfoUpdateInput";
 import { FolderLabelInfo } from "./FolderLabelInfo";
+import { FolderLabelInfoFindManyArgs } from "./FolderLabelInfoFindManyArgs";
+import { FolderLabelInfoWhereUniqueInput } from "./FolderLabelInfoWhereUniqueInput";
+import { FolderLabelInfoUpdateInput } from "./FolderLabelInfoUpdateInput";
 
 export class FolderLabelInfoControllerBase {
   constructor(protected readonly service: FolderLabelInfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: FolderLabelInfo })
-  async create(
+  async createFolderLabelInfo(
     @common.Body() data: FolderLabelInfoCreateInput
   ): Promise<FolderLabelInfo> {
-    return await this.service.create({
+    return await this.service.createFolderLabelInfo({
       data: data,
       select: {
-        id: true,
+        periodId: true,
+        lastRanTime: true,
         lastLabelColumn: true,
         lastLabelRow: true,
-        lastRanTime: true,
-        periodId: true,
+        id: true,
       },
     });
   }
@@ -46,16 +45,18 @@ export class FolderLabelInfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [FolderLabelInfo] })
   @ApiNestedQuery(FolderLabelInfoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<FolderLabelInfo[]> {
+  async folderLabelInfos(
+    @common.Req() request: Request
+  ): Promise<FolderLabelInfo[]> {
     const args = plainToClass(FolderLabelInfoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.folderLabelInfos({
       ...args,
       select: {
-        id: true,
+        periodId: true,
+        lastRanTime: true,
         lastLabelColumn: true,
         lastLabelRow: true,
-        lastRanTime: true,
-        periodId: true,
+        id: true,
       },
     });
   }
@@ -63,17 +64,17 @@ export class FolderLabelInfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: FolderLabelInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async folderLabelInfo(
     @common.Param() params: FolderLabelInfoWhereUniqueInput
   ): Promise<FolderLabelInfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.folderLabelInfo({
       where: params,
       select: {
-        id: true,
+        periodId: true,
+        lastRanTime: true,
         lastLabelColumn: true,
         lastLabelRow: true,
-        lastRanTime: true,
-        periodId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -87,20 +88,20 @@ export class FolderLabelInfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: FolderLabelInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateFolderLabelInfo(
     @common.Param() params: FolderLabelInfoWhereUniqueInput,
     @common.Body() data: FolderLabelInfoUpdateInput
   ): Promise<FolderLabelInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateFolderLabelInfo({
         where: params,
         data: data,
         select: {
-          id: true,
+          periodId: true,
+          lastRanTime: true,
           lastLabelColumn: true,
           lastLabelRow: true,
-          lastRanTime: true,
-          periodId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -116,18 +117,18 @@ export class FolderLabelInfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: FolderLabelInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteFolderLabelInfo(
     @common.Param() params: FolderLabelInfoWhereUniqueInput
   ): Promise<FolderLabelInfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteFolderLabelInfo({
         where: params,
         select: {
-          id: true,
+          periodId: true,
+          lastRanTime: true,
           lastLabelColumn: true,
           lastLabelRow: true,
-          lastRanTime: true,
-          periodId: true,
+          id: true,
         },
       });
     } catch (error) {

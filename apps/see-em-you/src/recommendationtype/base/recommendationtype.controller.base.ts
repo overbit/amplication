@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RecommendationtypeService } from "../recommendationtype.service";
 import { RecommendationtypeCreateInput } from "./RecommendationtypeCreateInput";
-import { RecommendationtypeWhereInput } from "./RecommendationtypeWhereInput";
-import { RecommendationtypeWhereUniqueInput } from "./RecommendationtypeWhereUniqueInput";
-import { RecommendationtypeFindManyArgs } from "./RecommendationtypeFindManyArgs";
-import { RecommendationtypeUpdateInput } from "./RecommendationtypeUpdateInput";
 import { Recommendationtype } from "./Recommendationtype";
+import { RecommendationtypeFindManyArgs } from "./RecommendationtypeFindManyArgs";
+import { RecommendationtypeWhereUniqueInput } from "./RecommendationtypeWhereUniqueInput";
+import { RecommendationtypeUpdateInput } from "./RecommendationtypeUpdateInput";
 
 export class RecommendationtypeControllerBase {
   constructor(protected readonly service: RecommendationtypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Recommendationtype })
-  async create(
+  async createRecommendationtype(
     @common.Body() data: RecommendationtypeCreateInput
   ): Promise<Recommendationtype> {
-    return await this.service.create({
+    return await this.service.createRecommendationtype({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -43,15 +42,15 @@ export class RecommendationtypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Recommendationtype] })
   @ApiNestedQuery(RecommendationtypeFindManyArgs)
-  async findMany(
+  async recommendationtypes(
     @common.Req() request: Request
   ): Promise<Recommendationtype[]> {
     const args = plainToClass(RecommendationtypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.recommendationtypes({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -59,14 +58,14 @@ export class RecommendationtypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Recommendationtype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async recommendationtype(
     @common.Param() params: RecommendationtypeWhereUniqueInput
   ): Promise<Recommendationtype | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.recommendationtype({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -80,17 +79,17 @@ export class RecommendationtypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Recommendationtype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRecommendationtype(
     @common.Param() params: RecommendationtypeWhereUniqueInput,
     @common.Body() data: RecommendationtypeUpdateInput
   ): Promise<Recommendationtype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecommendationtype({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -106,15 +105,15 @@ export class RecommendationtypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Recommendationtype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRecommendationtype(
     @common.Param() params: RecommendationtypeWhereUniqueInput
   ): Promise<Recommendationtype | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRecommendationtype({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {

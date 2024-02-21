@@ -1,12 +1,12 @@
 import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 
 export type CashnetPaymentUpdateInput = {
-  amount?: number | null;
-  applicantEmail?: string;
+  transactionId?: number;
   applicantName?: string;
-  application?: ApplicationWhereUniqueInput;
+  applicantEmail?: string;
   merchant?: number;
   status?: string;
-  transactionId?: number;
   transactionType?: string;
+  amount?: number | null;
+  application?: ApplicationWhereUniqueInput;
 };

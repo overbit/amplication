@@ -3,22 +3,22 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const DecisionRankEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Decision" source="decision" />
         <NumberInput step={1} label="Department Id" source="departmentId" />
+        <NumberInput step={1} label="Period Id" source="periodId" />
+        <TextInput label="Decision" source="decision" />
         <NumberInput
           step={1}
           label="Lu Users Usertypes Id"
           source="luUsersUsertypesId"
         />
-        <NumberInput step={1} label="Period Id" source="periodId" />
         <TextInput label="Ranking" source="ranking" />
       </SimpleForm>
     </Edit>

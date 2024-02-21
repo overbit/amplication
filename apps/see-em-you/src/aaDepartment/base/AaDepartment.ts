@@ -11,13 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Department } from "../../department/base/Department";
-import { ValidateNested, IsInt, IsOptional } from "class-validator";
-import { Type } from "class-transformer";
 import { Period } from "../../period/base/Period";
+import { ValidateNested, IsOptional, IsInt } from "class-validator";
+import { Type } from "class-transformer";
+import { Department } from "../../department/base/Department";
 
 @ObjectType()
 class AaDepartment {
+  @ApiProperty({
+    required: false,
+    type: () => Period,
+  })
+  @ValidateNested()
+  @Type(() => Period)
+  @IsOptional()
+  period?: Period | null;
+
   @ApiProperty({
     required: true,
     type: () => Department,
@@ -33,15 +42,6 @@ class AaDepartment {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: () => Period,
-  })
-  @ValidateNested()
-  @Type(() => Period)
-  @IsOptional()
-  period?: Period | null;
 }
 
 export { AaDepartment as AaDepartment };

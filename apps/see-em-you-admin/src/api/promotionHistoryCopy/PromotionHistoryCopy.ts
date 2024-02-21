@@ -1,9 +1,9 @@
 export type PromotionHistoryCopy = {
   applicationId: number;
-  id: string;
   programId: number;
-  promotion_method?: "default" | "voting" | "promotion" | "demotion";
-  round: number;
   statusTime: Date;
+  round: number;
+  promotion_method?: "default" | "voting" | "promotion" | "demotion";
   usersId: number | null;
+  id: string;
 };

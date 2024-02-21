@@ -1,12 +1,12 @@
 export type LanguageAssessmentUpdateInput = {
   applicationId?: number;
-  competencyEvidence?: string | null;
   language?: string;
   listening?: number | null;
-  nativeSpeaker?: number | null;
-  reading?: number;
   speaking?: number;
-  studyLevel?: number | null;
+  reading?: number;
   writing?: number;
+  nativeSpeaker?: number | null;
   yearsStudy?: number | null;
+  studyLevel?: number | null;
+  competencyEvidence?: string | null;
 };

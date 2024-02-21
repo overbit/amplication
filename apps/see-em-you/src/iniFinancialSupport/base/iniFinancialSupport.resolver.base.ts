@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIniFinancialSupportArgs } from "./CreateIniFinancialSupportArgs";
-import { UpdateIniFinancialSupportArgs } from "./UpdateIniFinancialSupportArgs";
-import { DeleteIniFinancialSupportArgs } from "./DeleteIniFinancialSupportArgs";
+import { IniFinancialSupport } from "./IniFinancialSupport";
 import { IniFinancialSupportCountArgs } from "./IniFinancialSupportCountArgs";
 import { IniFinancialSupportFindManyArgs } from "./IniFinancialSupportFindManyArgs";
 import { IniFinancialSupportFindUniqueArgs } from "./IniFinancialSupportFindUniqueArgs";
-import { IniFinancialSupport } from "./IniFinancialSupport";
+import { CreateIniFinancialSupportArgs } from "./CreateIniFinancialSupportArgs";
+import { UpdateIniFinancialSupportArgs } from "./UpdateIniFinancialSupportArgs";
+import { DeleteIniFinancialSupportArgs } from "./DeleteIniFinancialSupportArgs";
 import { IniFinancialSupportService } from "../iniFinancialSupport.service";
 @graphql.Resolver(() => IniFinancialSupport)
 export class IniFinancialSupportResolverBase {
@@ -38,14 +38,14 @@ export class IniFinancialSupportResolverBase {
   async iniFinancialSupports(
     @graphql.Args() args: IniFinancialSupportFindManyArgs
   ): Promise<IniFinancialSupport[]> {
-    return this.service.findMany(args);
+    return this.service.iniFinancialSupports(args);
   }
 
   @graphql.Query(() => IniFinancialSupport, { nullable: true })
   async iniFinancialSupport(
     @graphql.Args() args: IniFinancialSupportFindUniqueArgs
   ): Promise<IniFinancialSupport | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.iniFinancialSupport(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class IniFinancialSupportResolverBase {
   async createIniFinancialSupport(
     @graphql.Args() args: CreateIniFinancialSupportArgs
   ): Promise<IniFinancialSupport> {
-    return await this.service.create({
+    return await this.service.createIniFinancialSupport({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class IniFinancialSupportResolverBase {
     @graphql.Args() args: UpdateIniFinancialSupportArgs
   ): Promise<IniFinancialSupport | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniFinancialSupport({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class IniFinancialSupportResolverBase {
     @graphql.Args() args: DeleteIniFinancialSupportArgs
   ): Promise<IniFinancialSupport | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIniFinancialSupport(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDegreesallArgs } from "./CreateDegreesallArgs";
-import { UpdateDegreesallArgs } from "./UpdateDegreesallArgs";
-import { DeleteDegreesallArgs } from "./DeleteDegreesallArgs";
+import { Degreesall } from "./Degreesall";
 import { DegreesallCountArgs } from "./DegreesallCountArgs";
 import { DegreesallFindManyArgs } from "./DegreesallFindManyArgs";
 import { DegreesallFindUniqueArgs } from "./DegreesallFindUniqueArgs";
-import { Degreesall } from "./Degreesall";
+import { CreateDegreesallArgs } from "./CreateDegreesallArgs";
+import { UpdateDegreesallArgs } from "./UpdateDegreesallArgs";
+import { DeleteDegreesallArgs } from "./DeleteDegreesallArgs";
 import { DegreesallService } from "../degreesall.service";
 @graphql.Resolver(() => Degreesall)
 export class DegreesallResolverBase {
@@ -38,14 +38,14 @@ export class DegreesallResolverBase {
   async degreesalls(
     @graphql.Args() args: DegreesallFindManyArgs
   ): Promise<Degreesall[]> {
-    return this.service.findMany(args);
+    return this.service.degreesalls(args);
   }
 
   @graphql.Query(() => Degreesall, { nullable: true })
   async degreesall(
     @graphql.Args() args: DegreesallFindUniqueArgs
   ): Promise<Degreesall | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.degreesall(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DegreesallResolverBase {
   async createDegreesall(
     @graphql.Args() args: CreateDegreesallArgs
   ): Promise<Degreesall> {
-    return await this.service.create({
+    return await this.service.createDegreesall({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DegreesallResolverBase {
     @graphql.Args() args: UpdateDegreesallArgs
   ): Promise<Degreesall | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDegreesall({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DegreesallResolverBase {
     @graphql.Args() args: DeleteDegreesallArgs
   ): Promise<Degreesall | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDegreesall(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

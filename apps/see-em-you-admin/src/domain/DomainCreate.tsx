@@ -4,8 +4,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  BooleanInput,
   TextInput,
+  BooleanInput,
   ReferenceArrayInput,
   SelectArrayInput,
 } from "react-admin";
@@ -16,9 +16,11 @@ export const DomainCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <TextInput label="Name" source="name" />
+        <TextInput label="Description" source="description" />
+        <TextInput label="Path" source="path" />
         <BooleanInput label="Active" source="active" />
         <TextInput label="Banner" source="banner" />
-        <TextInput label="Description" source="description" />
         <ReferenceArrayInput
           source="domainUnit"
           reference="DomainUnit"
@@ -27,8 +29,6 @@ export const DomainCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={DomainUnitTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Name" source="name" />
-        <TextInput label="Path" source="path" />
       </SimpleForm>
     </Create>
   );

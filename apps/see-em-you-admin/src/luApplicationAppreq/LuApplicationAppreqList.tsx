@@ -4,10 +4,10 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
   TextField,
-  BooleanField,
   DateField,
+  BooleanField,
+  ReferenceField,
 } from "react-admin";
 
 import Pagination from "../Components/Pagination";
@@ -25,6 +25,9 @@ export const LuApplicationAppreqList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Req Id" source="reqId" />
+        <DateField source="lastModified" label="Last Modified" />
+        <BooleanField label="Completed" source="completed" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -32,10 +35,7 @@ export const LuApplicationAppreqList = (
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <BooleanField label="Completed" source="completed" />
         <TextField label="Id" source="id" />
-        <DateField source="lastModified" label="Last Modified" />
-        <TextField label="Req Id" source="reqId" />
       </Datagrid>
     </List>
   );

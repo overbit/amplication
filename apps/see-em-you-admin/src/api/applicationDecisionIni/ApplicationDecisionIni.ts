@@ -1,13 +1,13 @@
 import { Decimal } from "decimal.js";
 
 export type ApplicationDecisionIni = {
-  admissionProgramId: number;
-  admissionStatus: number | null;
   applicationId: number;
+  admissionProgramId: number;
   choice: number | null;
+  admissionStatus: number | null;
   comments: string | null;
-  id: string;
   scholarshipAmt: Decimal | null;
   scholarshipComments: string | null;
   timestamp: Date | null;
+  id: string;
 };

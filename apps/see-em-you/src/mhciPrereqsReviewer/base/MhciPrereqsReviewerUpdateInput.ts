@@ -11,31 +11,20 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsOptional, IsString, IsInt } from "class-validator";
+import { IsInt, IsOptional, IsString, IsBoolean } from "class-validator";
 
 @InputType()
 class MhciPrereqsReviewerUpdateInput {
   @ApiProperty({
     required: false,
-    type: Boolean,
+    type: Number,
   })
-  @IsBoolean()
+  @IsInt()
   @IsOptional()
-  @Field(() => Boolean, {
+  @Field(() => Number, {
     nullable: true,
   })
-  emailNotification?: boolean;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  placeoutPeriodId?: string;
+  reviewerLuuId?: number;
 
   @ApiProperty({
     required: false,
@@ -50,14 +39,25 @@ class MhciPrereqsReviewerUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  reviewerLuuId?: number;
+  placeoutPeriodId?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  emailNotification?: boolean;
 }
 
 export { MhciPrereqsReviewerUpdateInput as MhciPrereqsReviewerUpdateInput };

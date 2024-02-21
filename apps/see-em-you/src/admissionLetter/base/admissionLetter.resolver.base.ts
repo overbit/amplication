@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAdmissionLetterArgs } from "./CreateAdmissionLetterArgs";
-import { UpdateAdmissionLetterArgs } from "./UpdateAdmissionLetterArgs";
-import { DeleteAdmissionLetterArgs } from "./DeleteAdmissionLetterArgs";
+import { AdmissionLetter } from "./AdmissionLetter";
 import { AdmissionLetterCountArgs } from "./AdmissionLetterCountArgs";
 import { AdmissionLetterFindManyArgs } from "./AdmissionLetterFindManyArgs";
 import { AdmissionLetterFindUniqueArgs } from "./AdmissionLetterFindUniqueArgs";
-import { AdmissionLetter } from "./AdmissionLetter";
+import { CreateAdmissionLetterArgs } from "./CreateAdmissionLetterArgs";
+import { UpdateAdmissionLetterArgs } from "./UpdateAdmissionLetterArgs";
+import { DeleteAdmissionLetterArgs } from "./DeleteAdmissionLetterArgs";
 import { AdmissionLetterService } from "../admissionLetter.service";
 @graphql.Resolver(() => AdmissionLetter)
 export class AdmissionLetterResolverBase {
@@ -38,14 +38,14 @@ export class AdmissionLetterResolverBase {
   async admissionLetters(
     @graphql.Args() args: AdmissionLetterFindManyArgs
   ): Promise<AdmissionLetter[]> {
-    return this.service.findMany(args);
+    return this.service.admissionLetters(args);
   }
 
   @graphql.Query(() => AdmissionLetter, { nullable: true })
   async admissionLetter(
     @graphql.Args() args: AdmissionLetterFindUniqueArgs
   ): Promise<AdmissionLetter | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.admissionLetter(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class AdmissionLetterResolverBase {
   async createAdmissionLetter(
     @graphql.Args() args: CreateAdmissionLetterArgs
   ): Promise<AdmissionLetter> {
-    return await this.service.create({
+    return await this.service.createAdmissionLetter({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class AdmissionLetterResolverBase {
     @graphql.Args() args: UpdateAdmissionLetterArgs
   ): Promise<AdmissionLetter | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAdmissionLetter({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class AdmissionLetterResolverBase {
     @graphql.Args() args: DeleteAdmissionLetterArgs
   ): Promise<AdmissionLetter | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAdmissionLetter(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

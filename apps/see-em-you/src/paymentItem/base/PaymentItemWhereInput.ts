@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class PaymentItemWhereInput {
@@ -28,6 +29,17 @@ class PaymentItemWhereInput {
     nullable: true,
   })
   programs?: ProgramModelWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { PaymentItemWhereInput as PaymentItemWhereInput };

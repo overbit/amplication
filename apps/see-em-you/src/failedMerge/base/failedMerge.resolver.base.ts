@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateFailedMergeArgs } from "./CreateFailedMergeArgs";
-import { UpdateFailedMergeArgs } from "./UpdateFailedMergeArgs";
-import { DeleteFailedMergeArgs } from "./DeleteFailedMergeArgs";
+import { FailedMerge } from "./FailedMerge";
 import { FailedMergeCountArgs } from "./FailedMergeCountArgs";
 import { FailedMergeFindManyArgs } from "./FailedMergeFindManyArgs";
 import { FailedMergeFindUniqueArgs } from "./FailedMergeFindUniqueArgs";
-import { FailedMerge } from "./FailedMerge";
+import { CreateFailedMergeArgs } from "./CreateFailedMergeArgs";
+import { UpdateFailedMergeArgs } from "./UpdateFailedMergeArgs";
+import { DeleteFailedMergeArgs } from "./DeleteFailedMergeArgs";
 import { FailedMergeService } from "../failedMerge.service";
 @graphql.Resolver(() => FailedMerge)
 export class FailedMergeResolverBase {
@@ -38,14 +38,14 @@ export class FailedMergeResolverBase {
   async failedMerges(
     @graphql.Args() args: FailedMergeFindManyArgs
   ): Promise<FailedMerge[]> {
-    return this.service.findMany(args);
+    return this.service.failedMerges(args);
   }
 
   @graphql.Query(() => FailedMerge, { nullable: true })
   async failedMerge(
     @graphql.Args() args: FailedMergeFindUniqueArgs
   ): Promise<FailedMerge | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.failedMerge(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class FailedMergeResolverBase {
   async createFailedMerge(
     @graphql.Args() args: CreateFailedMergeArgs
   ): Promise<FailedMerge> {
-    return await this.service.create({
+    return await this.service.createFailedMerge({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class FailedMergeResolverBase {
     @graphql.Args() args: UpdateFailedMergeArgs
   ): Promise<FailedMerge | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateFailedMerge({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class FailedMergeResolverBase {
     @graphql.Args() args: DeleteFailedMergeArgs
   ): Promise<FailedMerge | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteFailedMerge(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -3,7 +3,6 @@ import { LuUsersUsertypeWhereUniqueInput } from "../luUsersUsertype/LuUsersUsert
 import { MhciPrereqsCourseDatafileUpdateManyWithoutMhciPrereqsCoursesInput } from "./MhciPrereqsCourseDatafileUpdateManyWithoutMhciPrereqsCoursesInput";
 
 export type MhciPrereqsCourseUpdateInput = {
-  application?: ApplicationWhereUniqueInput;
   course_type?:
     | "Design"
     | "Programming"
@@ -11,13 +10,14 @@ export type MhciPrereqsCourseUpdateInput = {
     | "Single_way_ANOVA"
     | "Multi_factor_regression"
     | "Single_factor_regression";
-  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
-  mhciPrereqsCourseDatafiles?: MhciPrereqsCourseDatafileUpdateManyWithoutMhciPrereqsCoursesInput;
-  periodId?: number | null;
-  programId?: number | null;
-  studentCourseGrade?: string | null;
-  studentCourseInstitution?: string;
   studentCourseName?: string;
   studentCourseTime?: string;
+  studentCourseInstitution?: string;
+  studentCourseGrade?: string | null;
   submittedToReviewer?: number;
+  periodId?: number | null;
+  programId?: number | null;
+  application?: ApplicationWhereUniqueInput;
+  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
+  mhciPrereqsCourseDatafiles?: MhciPrereqsCourseDatafileUpdateManyWithoutMhciPrereqsCoursesInput;
 };

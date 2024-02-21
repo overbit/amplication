@@ -12,8 +12,8 @@ export const SearchTextTestEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <TextInput label="Application Id" source="applicationId" />
-        <TextInput label="Application Text" source="applicationText" />
         <NumberInput step={1} label="Guid" source="guid" />
+        <TextInput label="Application Text" source="applicationText" />
       </SimpleForm>
     </Edit>
   );

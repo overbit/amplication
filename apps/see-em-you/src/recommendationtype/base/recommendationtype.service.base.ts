@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Recommendationtype } from "@prisma/client";
+import {
+  Prisma,
+  Recommendationtype as PrismaRecommendationtype,
+} from "@prisma/client";
 
 export class RecommendationtypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class RecommendationtypeServiceBase {
     return this.prisma.recommendationtype.count(args);
   }
 
-  async findMany<T extends Prisma.RecommendationtypeFindManyArgs>(
+  async recommendationtypes<T extends Prisma.RecommendationtypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendationtypeFindManyArgs>
-  ): Promise<Recommendationtype[]> {
+  ): Promise<PrismaRecommendationtype[]> {
     return this.prisma.recommendationtype.findMany(args);
   }
-  async findOne<T extends Prisma.RecommendationtypeFindUniqueArgs>(
+  async recommendationtype<T extends Prisma.RecommendationtypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendationtypeFindUniqueArgs>
-  ): Promise<Recommendationtype | null> {
+  ): Promise<PrismaRecommendationtype | null> {
     return this.prisma.recommendationtype.findUnique(args);
   }
-  async create<T extends Prisma.RecommendationtypeCreateArgs>(
+  async createRecommendationtype<T extends Prisma.RecommendationtypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendationtypeCreateArgs>
-  ): Promise<Recommendationtype> {
+  ): Promise<PrismaRecommendationtype> {
     return this.prisma.recommendationtype.create<T>(args);
   }
-  async update<T extends Prisma.RecommendationtypeUpdateArgs>(
+  async updateRecommendationtype<T extends Prisma.RecommendationtypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendationtypeUpdateArgs>
-  ): Promise<Recommendationtype> {
+  ): Promise<PrismaRecommendationtype> {
     return this.prisma.recommendationtype.update<T>(args);
   }
-  async delete<T extends Prisma.RecommendationtypeDeleteArgs>(
+  async deleteRecommendationtype<T extends Prisma.RecommendationtypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendationtypeDeleteArgs>
-  ): Promise<Recommendationtype> {
+  ): Promise<PrismaRecommendationtype> {
     return this.prisma.recommendationtype.delete(args);
   }
 }

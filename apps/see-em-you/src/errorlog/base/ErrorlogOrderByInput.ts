@@ -28,6 +28,39 @@ class ErrorlogOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  usersId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  luUsersUsertypesId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  usertypeId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   applicationId?: SortOrder;
 
   @ApiProperty({
@@ -50,18 +83,7 @@ class ErrorlogOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  luUsersUsertypesId?: SortOrder;
+  timestamp?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,29 +105,7 @@ class ErrorlogOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  timestamp?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  usersId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  usertypeId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ErrorlogOrderByInput as ErrorlogOrderByInput };

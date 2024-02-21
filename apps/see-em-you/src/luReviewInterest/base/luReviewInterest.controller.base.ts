@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuReviewInterestService } from "../luReviewInterest.service";
 import { LuReviewInterestCreateInput } from "./LuReviewInterestCreateInput";
-import { LuReviewInterestWhereInput } from "./LuReviewInterestWhereInput";
-import { LuReviewInterestWhereUniqueInput } from "./LuReviewInterestWhereUniqueInput";
-import { LuReviewInterestFindManyArgs } from "./LuReviewInterestFindManyArgs";
-import { LuReviewInterestUpdateInput } from "./LuReviewInterestUpdateInput";
 import { LuReviewInterest } from "./LuReviewInterest";
+import { LuReviewInterestFindManyArgs } from "./LuReviewInterestFindManyArgs";
+import { LuReviewInterestWhereUniqueInput } from "./LuReviewInterestWhereUniqueInput";
+import { LuReviewInterestUpdateInput } from "./LuReviewInterestUpdateInput";
 
 export class LuReviewInterestControllerBase {
   constructor(protected readonly service: LuReviewInterestService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuReviewInterest })
-  async create(
+  async createLuReviewInterest(
     @common.Body() data: LuReviewInterestCreateInput
   ): Promise<LuReviewInterest> {
-    return await this.service.create({
+    return await this.service.createLuReviewInterest({
       data: data,
       select: {
-        code: true,
         id: true,
-        programId: true,
         reviewId: true,
+        programId: true,
+        code: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class LuReviewInterestControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuReviewInterest] })
   @ApiNestedQuery(LuReviewInterestFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<LuReviewInterest[]> {
+  async luReviewInterests(
+    @common.Req() request: Request
+  ): Promise<LuReviewInterest[]> {
     const args = plainToClass(LuReviewInterestFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luReviewInterests({
       ...args,
       select: {
-        code: true,
         id: true,
-        programId: true,
         reviewId: true,
+        programId: true,
+        code: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class LuReviewInterestControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuReviewInterest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luReviewInterest(
     @common.Param() params: LuReviewInterestWhereUniqueInput
   ): Promise<LuReviewInterest | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luReviewInterest({
       where: params,
       select: {
-        code: true,
         id: true,
-        programId: true,
         reviewId: true,
+        programId: true,
+        code: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class LuReviewInterestControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuReviewInterest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuReviewInterest(
     @common.Param() params: LuReviewInterestWhereUniqueInput,
     @common.Body() data: LuReviewInterestUpdateInput
   ): Promise<LuReviewInterest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuReviewInterest({
         where: params,
         data: data,
         select: {
-          code: true,
           id: true,
-          programId: true,
           reviewId: true,
+          programId: true,
+          code: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class LuReviewInterestControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuReviewInterest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuReviewInterest(
     @common.Param() params: LuReviewInterestWhereUniqueInput
   ): Promise<LuReviewInterest | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuReviewInterest({
         where: params,
         select: {
-          code: true,
           id: true,
-          programId: true,
           reviewId: true,
+          programId: true,
+          code: true,
         },
       });
     } catch (error) {

@@ -40,6 +40,39 @@ class CcTransactionDetailUpdateInput {
 
   @ApiProperty({
     required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  time?: Date;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  reportDate?: Date;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  paymentId?: number;
+
+  @ApiProperty({
+    required: false,
     type: String,
   })
   @IsString()
@@ -47,7 +80,7 @@ class CcTransactionDetailUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  itemGlString?: string;
+  transactionType?: string;
 
   @ApiProperty({
     required: false,
@@ -69,7 +102,7 @@ class CcTransactionDetailUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  itemPriceEach?: number;
+  itemQty?: number;
 
   @ApiProperty({
     required: false,
@@ -80,40 +113,7 @@ class CcTransactionDetailUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  itemQty?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  paymentId?: number;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  reportDate?: Date;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  time?: Date;
+  itemPriceEach?: number;
 
   @ApiProperty({
     required: false,
@@ -124,7 +124,7 @@ class CcTransactionDetailUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  transactionType?: string;
+  itemGlString?: string;
 }
 
 export { CcTransactionDetailUpdateInput as CcTransactionDetailUpdateInput };

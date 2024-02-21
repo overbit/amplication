@@ -18,70 +18,70 @@ import { MhciPrereqsReferenceService } from "../mhciPrereqsReference.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  anovaComment: "exampleAnovaComment",
   applicationId: 42,
+  refUserId: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
+  submitted: "true",
+  reminderSentCount: 42,
   lastReminderSent: new Date(),
+  anovaComment: "exampleAnovaComment",
+  regressionComment: "exampleRegressionComment",
   periodId: 42,
   programId: 42,
-  refUserId: 42,
-  regressionComment: "exampleRegressionComment",
-  reminderSentCount: 42,
-  submitted: "true",
+  id: 42,
 };
 const CREATE_RESULT = {
-  anovaComment: "exampleAnovaComment",
   applicationId: 42,
+  refUserId: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
+  submitted: "true",
+  reminderSentCount: 42,
   lastReminderSent: new Date(),
+  anovaComment: "exampleAnovaComment",
+  regressionComment: "exampleRegressionComment",
   periodId: 42,
   programId: 42,
-  refUserId: 42,
-  regressionComment: "exampleRegressionComment",
-  reminderSentCount: 42,
-  submitted: "true",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    anovaComment: "exampleAnovaComment",
     applicationId: 42,
+    refUserId: 42,
     content: "exampleContent",
     datafileId: 42,
-    id: 42,
+    submitted: "true",
+    reminderSentCount: 42,
     lastReminderSent: new Date(),
+    anovaComment: "exampleAnovaComment",
+    regressionComment: "exampleRegressionComment",
     periodId: 42,
     programId: 42,
-    refUserId: 42,
-    regressionComment: "exampleRegressionComment",
-    reminderSentCount: 42,
-    submitted: "true",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  anovaComment: "exampleAnovaComment",
   applicationId: 42,
+  refUserId: 42,
   content: "exampleContent",
   datafileId: 42,
-  id: 42,
+  submitted: "true",
+  reminderSentCount: 42,
   lastReminderSent: new Date(),
+  anovaComment: "exampleAnovaComment",
+  regressionComment: "exampleRegressionComment",
   periodId: 42,
   programId: 42,
-  refUserId: 42,
-  regressionComment: "exampleRegressionComment",
-  reminderSentCount: 42,
-  submitted: "true",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMhciPrereqsReference() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mhciPrereqsReferences: () => FIND_MANY_RESULT,
+  mhciPrereqsReference: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

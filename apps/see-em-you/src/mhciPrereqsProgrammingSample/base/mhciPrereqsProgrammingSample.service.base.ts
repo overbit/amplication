@@ -10,10 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  MhciPrereqsProgrammingSample,
-  LuUsersUsertype,
+  MhciPrereqsProgrammingSample as PrismaMhciPrereqsProgrammingSample,
+  LuUsersUsertype as PrismaLuUsersUsertype,
 } from "@prisma/client";
 
 export class MhciPrereqsProgrammingSampleServiceBase {
@@ -25,39 +26,51 @@ export class MhciPrereqsProgrammingSampleServiceBase {
     return this.prisma.mhciPrereqsProgrammingSample.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsProgrammingSampleFindManyArgs>(
+  async mhciPrereqsProgrammingSamples<
+    T extends Prisma.MhciPrereqsProgrammingSampleFindManyArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsProgrammingSampleFindManyArgs
     >
-  ): Promise<MhciPrereqsProgrammingSample[]> {
+  ): Promise<PrismaMhciPrereqsProgrammingSample[]> {
     return this.prisma.mhciPrereqsProgrammingSample.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsProgrammingSampleFindUniqueArgs>(
+  async mhciPrereqsProgrammingSample<
+    T extends Prisma.MhciPrereqsProgrammingSampleFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsProgrammingSampleFindUniqueArgs
     >
-  ): Promise<MhciPrereqsProgrammingSample | null> {
+  ): Promise<PrismaMhciPrereqsProgrammingSample | null> {
     return this.prisma.mhciPrereqsProgrammingSample.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsProgrammingSampleCreateArgs>(
+  async createMhciPrereqsProgrammingSample<
+    T extends Prisma.MhciPrereqsProgrammingSampleCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsProgrammingSampleCreateArgs>
-  ): Promise<MhciPrereqsProgrammingSample> {
+  ): Promise<PrismaMhciPrereqsProgrammingSample> {
     return this.prisma.mhciPrereqsProgrammingSample.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsProgrammingSampleUpdateArgs>(
+  async updateMhciPrereqsProgrammingSample<
+    T extends Prisma.MhciPrereqsProgrammingSampleUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsProgrammingSampleUpdateArgs>
-  ): Promise<MhciPrereqsProgrammingSample> {
+  ): Promise<PrismaMhciPrereqsProgrammingSample> {
     return this.prisma.mhciPrereqsProgrammingSample.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsProgrammingSampleDeleteArgs>(
+  async deleteMhciPrereqsProgrammingSample<
+    T extends Prisma.MhciPrereqsProgrammingSampleDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsProgrammingSampleDeleteArgs>
-  ): Promise<MhciPrereqsProgrammingSample> {
+  ): Promise<PrismaMhciPrereqsProgrammingSample> {
     return this.prisma.mhciPrereqsProgrammingSample.delete(args);
   }
 
-  async getLuUsersUsertypes(parentId: number): Promise<LuUsersUsertype | null> {
+  async getLuUsersUsertypes(
+    parentId: number
+  ): Promise<PrismaLuUsersUsertype | null> {
     return this.prisma.mhciPrereqsProgrammingSample
       .findUnique({
         where: { id: parentId },

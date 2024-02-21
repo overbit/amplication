@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateProgram } from "@prisma/client";
+import { Prisma, SlateProgram as PrismaSlateProgram } from "@prisma/client";
 
 export class SlateProgramServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateProgramServiceBase {
     return this.prisma.slateProgram.count(args);
   }
 
-  async findMany<T extends Prisma.SlateProgramFindManyArgs>(
+  async slatePrograms<T extends Prisma.SlateProgramFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateProgramFindManyArgs>
-  ): Promise<SlateProgram[]> {
+  ): Promise<PrismaSlateProgram[]> {
     return this.prisma.slateProgram.findMany(args);
   }
-  async findOne<T extends Prisma.SlateProgramFindUniqueArgs>(
+  async slateProgram<T extends Prisma.SlateProgramFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateProgramFindUniqueArgs>
-  ): Promise<SlateProgram | null> {
+  ): Promise<PrismaSlateProgram | null> {
     return this.prisma.slateProgram.findUnique(args);
   }
-  async create<T extends Prisma.SlateProgramCreateArgs>(
+  async createSlateProgram<T extends Prisma.SlateProgramCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateProgramCreateArgs>
-  ): Promise<SlateProgram> {
+  ): Promise<PrismaSlateProgram> {
     return this.prisma.slateProgram.create<T>(args);
   }
-  async update<T extends Prisma.SlateProgramUpdateArgs>(
+  async updateSlateProgram<T extends Prisma.SlateProgramUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateProgramUpdateArgs>
-  ): Promise<SlateProgram> {
+  ): Promise<PrismaSlateProgram> {
     return this.prisma.slateProgram.update<T>(args);
   }
-  async delete<T extends Prisma.SlateProgramDeleteArgs>(
+  async deleteSlateProgram<T extends Prisma.SlateProgramDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateProgramDeleteArgs>
-  ): Promise<SlateProgram> {
+  ): Promise<PrismaSlateProgram> {
     return this.prisma.slateProgram.delete(args);
   }
 }

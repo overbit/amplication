@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDecisionAoiRankArgs } from "./CreateDecisionAoiRankArgs";
-import { UpdateDecisionAoiRankArgs } from "./UpdateDecisionAoiRankArgs";
-import { DeleteDecisionAoiRankArgs } from "./DeleteDecisionAoiRankArgs";
+import { DecisionAoiRank } from "./DecisionAoiRank";
 import { DecisionAoiRankCountArgs } from "./DecisionAoiRankCountArgs";
 import { DecisionAoiRankFindManyArgs } from "./DecisionAoiRankFindManyArgs";
 import { DecisionAoiRankFindUniqueArgs } from "./DecisionAoiRankFindUniqueArgs";
-import { DecisionAoiRank } from "./DecisionAoiRank";
+import { CreateDecisionAoiRankArgs } from "./CreateDecisionAoiRankArgs";
+import { UpdateDecisionAoiRankArgs } from "./UpdateDecisionAoiRankArgs";
+import { DeleteDecisionAoiRankArgs } from "./DeleteDecisionAoiRankArgs";
 import { DecisionAoiRankService } from "../decisionAoiRank.service";
 @graphql.Resolver(() => DecisionAoiRank)
 export class DecisionAoiRankResolverBase {
@@ -38,14 +38,14 @@ export class DecisionAoiRankResolverBase {
   async decisionAoiRanks(
     @graphql.Args() args: DecisionAoiRankFindManyArgs
   ): Promise<DecisionAoiRank[]> {
-    return this.service.findMany(args);
+    return this.service.decisionAoiRanks(args);
   }
 
   @graphql.Query(() => DecisionAoiRank, { nullable: true })
   async decisionAoiRank(
     @graphql.Args() args: DecisionAoiRankFindUniqueArgs
   ): Promise<DecisionAoiRank | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.decisionAoiRank(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DecisionAoiRankResolverBase {
   async createDecisionAoiRank(
     @graphql.Args() args: CreateDecisionAoiRankArgs
   ): Promise<DecisionAoiRank> {
-    return await this.service.create({
+    return await this.service.createDecisionAoiRank({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DecisionAoiRankResolverBase {
     @graphql.Args() args: UpdateDecisionAoiRankArgs
   ): Promise<DecisionAoiRank | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDecisionAoiRank({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DecisionAoiRankResolverBase {
     @graphql.Args() args: DeleteDecisionAoiRankArgs
   ): Promise<DecisionAoiRank | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDecisionAoiRank(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DatafileType } from "@prisma/client";
+import { Prisma, DatafileType as PrismaDatafileType } from "@prisma/client";
 
 export class DatafileTypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DatafileTypeServiceBase {
     return this.prisma.datafileType.count(args);
   }
 
-  async findMany<T extends Prisma.DatafileTypeFindManyArgs>(
+  async datafileTypes<T extends Prisma.DatafileTypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileTypeFindManyArgs>
-  ): Promise<DatafileType[]> {
+  ): Promise<PrismaDatafileType[]> {
     return this.prisma.datafileType.findMany(args);
   }
-  async findOne<T extends Prisma.DatafileTypeFindUniqueArgs>(
+  async datafileType<T extends Prisma.DatafileTypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileTypeFindUniqueArgs>
-  ): Promise<DatafileType | null> {
+  ): Promise<PrismaDatafileType | null> {
     return this.prisma.datafileType.findUnique(args);
   }
-  async create<T extends Prisma.DatafileTypeCreateArgs>(
+  async createDatafileType<T extends Prisma.DatafileTypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileTypeCreateArgs>
-  ): Promise<DatafileType> {
+  ): Promise<PrismaDatafileType> {
     return this.prisma.datafileType.create<T>(args);
   }
-  async update<T extends Prisma.DatafileTypeUpdateArgs>(
+  async updateDatafileType<T extends Prisma.DatafileTypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileTypeUpdateArgs>
-  ): Promise<DatafileType> {
+  ): Promise<PrismaDatafileType> {
     return this.prisma.datafileType.update<T>(args);
   }
-  async delete<T extends Prisma.DatafileTypeDeleteArgs>(
+  async deleteDatafileType<T extends Prisma.DatafileTypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileTypeDeleteArgs>
-  ): Promise<DatafileType> {
+  ): Promise<PrismaDatafileType> {
     return this.prisma.datafileType.delete(args);
   }
 }

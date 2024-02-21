@@ -11,23 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class RissMcnairCreateInput {
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput | null;
+  site?: string | null;
 
   @ApiProperty({
     required: false,
@@ -42,14 +41,15 @@ class RissMcnairCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsString()
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => ApplicationWhereUniqueInput, {
     nullable: true,
   })
-  site?: string | null;
+  application?: ApplicationWhereUniqueInput | null;
 }
 
 export { RissMcnairCreateInput as RissMcnairCreateInput };

@@ -21,39 +21,15 @@ class GroupRankMember {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  grank!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   groupId!: number;
 
   @ApiProperty({
     required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  luUsersUsertypesId!: number;
+  round!: number;
 
   @ApiProperty({
     required: true,
@@ -69,7 +45,31 @@ class GroupRankMember {
   })
   @IsInt()
   @Field(() => Number)
-  round!: number;
+  applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  luUsersUsertypesId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  grank!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { GroupRankMember as GroupRankMember };

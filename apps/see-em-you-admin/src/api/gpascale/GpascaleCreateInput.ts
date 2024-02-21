@@ -1,5 +1,5 @@
 export type GpascaleCreateInput = {
-  formula?: string | null;
   name: string;
+  formula?: string | null;
   sortorder: number;
 };

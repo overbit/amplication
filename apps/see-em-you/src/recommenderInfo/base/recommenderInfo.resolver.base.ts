@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRecommenderInfoArgs } from "./CreateRecommenderInfoArgs";
-import { UpdateRecommenderInfoArgs } from "./UpdateRecommenderInfoArgs";
-import { DeleteRecommenderInfoArgs } from "./DeleteRecommenderInfoArgs";
+import { RecommenderInfo } from "./RecommenderInfo";
 import { RecommenderInfoCountArgs } from "./RecommenderInfoCountArgs";
 import { RecommenderInfoFindManyArgs } from "./RecommenderInfoFindManyArgs";
 import { RecommenderInfoFindUniqueArgs } from "./RecommenderInfoFindUniqueArgs";
-import { RecommenderInfo } from "./RecommenderInfo";
+import { CreateRecommenderInfoArgs } from "./CreateRecommenderInfoArgs";
+import { UpdateRecommenderInfoArgs } from "./UpdateRecommenderInfoArgs";
+import { DeleteRecommenderInfoArgs } from "./DeleteRecommenderInfoArgs";
 import { RecommenderInfoService } from "../recommenderInfo.service";
 @graphql.Resolver(() => RecommenderInfo)
 export class RecommenderInfoResolverBase {
@@ -38,14 +38,14 @@ export class RecommenderInfoResolverBase {
   async recommenderInfos(
     @graphql.Args() args: RecommenderInfoFindManyArgs
   ): Promise<RecommenderInfo[]> {
-    return this.service.findMany(args);
+    return this.service.recommenderInfos(args);
   }
 
   @graphql.Query(() => RecommenderInfo, { nullable: true })
   async recommenderInfo(
     @graphql.Args() args: RecommenderInfoFindUniqueArgs
   ): Promise<RecommenderInfo | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.recommenderInfo(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class RecommenderInfoResolverBase {
   async createRecommenderInfo(
     @graphql.Args() args: CreateRecommenderInfoArgs
   ): Promise<RecommenderInfo> {
-    return await this.service.create({
+    return await this.service.createRecommenderInfo({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class RecommenderInfoResolverBase {
     @graphql.Args() args: UpdateRecommenderInfoArgs
   ): Promise<RecommenderInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecommenderInfo({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class RecommenderInfoResolverBase {
     @graphql.Args() args: DeleteRecommenderInfoArgs
   ): Promise<RecommenderInfo | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRecommenderInfo(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -8,8 +8,8 @@ export const BlacklistReviewerCreate = (
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="App Id" source="appId" />
-        <NumberInput step={1} label="Deny" source="deny" />
         <NumberInput step={1} label="Reviewer Id" source="reviewerId" />
+        <NumberInput step={1} label="Deny" source="deny" />
       </SimpleForm>
     </Create>
   );

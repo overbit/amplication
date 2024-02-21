@@ -18,46 +18,46 @@ import { GroupRankCommentService } from "../groupRankComment.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  comment: "exampleComment",
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
   round: 42,
+  periodId: 42,
+  luUsersUsertypesId: 42,
+  comment: "exampleComment",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  comment: "exampleComment",
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
   round: 42,
+  periodId: 42,
+  luUsersUsertypesId: 42,
+  comment: "exampleComment",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    comment: "exampleComment",
     groupId: 42,
-    id: "exampleId",
-    luUsersUsertypesId: 42,
-    periodId: 42,
     round: 42,
+    periodId: 42,
+    luUsersUsertypesId: 42,
+    comment: "exampleComment",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  comment: "exampleComment",
   groupId: 42,
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  periodId: 42,
   round: 42,
+  periodId: 42,
+  luUsersUsertypesId: 42,
+  comment: "exampleComment",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createGroupRankComment() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  groupRankComments: () => FIND_MANY_RESULT,
+  groupRankComment: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

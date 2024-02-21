@@ -28,29 +28,7 @@ class MhciPrereqsReviewerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  emailNotification?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  placeoutPeriodId?: SortOrder;
+  reviewerLuuId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +50,29 @@ class MhciPrereqsReviewerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  reviewerLuuId?: SortOrder;
+  placeoutPeriodId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  emailNotification?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MhciPrereqsReviewerOrderByInput as MhciPrereqsReviewerOrderByInput };

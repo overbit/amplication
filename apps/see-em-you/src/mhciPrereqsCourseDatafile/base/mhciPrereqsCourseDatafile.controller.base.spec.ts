@@ -19,41 +19,41 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   datafileinfoId: 42,
-  id: 42,
-  newFileUploaded: "true",
   note: "exampleNote",
   submittedToReviewer: "true",
+  newFileUploaded: "true",
+  id: 42,
 };
 const CREATE_RESULT = {
   datafileinfoId: 42,
-  id: 42,
-  newFileUploaded: "true",
   note: "exampleNote",
   submittedToReviewer: "true",
+  newFileUploaded: "true",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     datafileinfoId: 42,
-    id: 42,
-    newFileUploaded: "true",
     note: "exampleNote",
     submittedToReviewer: "true",
+    newFileUploaded: "true",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   datafileinfoId: 42,
-  id: 42,
-  newFileUploaded: "true",
   note: "exampleNote",
   submittedToReviewer: "true",
+  newFileUploaded: "true",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMhciPrereqsCourseDatafile() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mhciPrereqsCourseDatafiles: () => FIND_MANY_RESULT,
+  mhciPrereqsCourseDatafile: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

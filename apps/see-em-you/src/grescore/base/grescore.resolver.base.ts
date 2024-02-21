@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGrescoreArgs } from "./CreateGrescoreArgs";
-import { UpdateGrescoreArgs } from "./UpdateGrescoreArgs";
-import { DeleteGrescoreArgs } from "./DeleteGrescoreArgs";
+import { Grescore } from "./Grescore";
 import { GrescoreCountArgs } from "./GrescoreCountArgs";
 import { GrescoreFindManyArgs } from "./GrescoreFindManyArgs";
 import { GrescoreFindUniqueArgs } from "./GrescoreFindUniqueArgs";
-import { Grescore } from "./Grescore";
+import { CreateGrescoreArgs } from "./CreateGrescoreArgs";
+import { UpdateGrescoreArgs } from "./UpdateGrescoreArgs";
+import { DeleteGrescoreArgs } from "./DeleteGrescoreArgs";
 import { GrescoreService } from "../grescore.service";
 @graphql.Resolver(() => Grescore)
 export class GrescoreResolverBase {
@@ -38,14 +38,14 @@ export class GrescoreResolverBase {
   async grescores(
     @graphql.Args() args: GrescoreFindManyArgs
   ): Promise<Grescore[]> {
-    return this.service.findMany(args);
+    return this.service.grescores(args);
   }
 
   @graphql.Query(() => Grescore, { nullable: true })
   async grescore(
     @graphql.Args() args: GrescoreFindUniqueArgs
   ): Promise<Grescore | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.grescore(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class GrescoreResolverBase {
   async createGrescore(
     @graphql.Args() args: CreateGrescoreArgs
   ): Promise<Grescore> {
-    return await this.service.create({
+    return await this.service.createGrescore({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class GrescoreResolverBase {
     @graphql.Args() args: UpdateGrescoreArgs
   ): Promise<Grescore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGrescore({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class GrescoreResolverBase {
     @graphql.Args() args: DeleteGrescoreArgs
   ): Promise<Grescore | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGrescore(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

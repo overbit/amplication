@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateCodility } from "@prisma/client";
+import { Prisma, SlateCodility as PrismaSlateCodility } from "@prisma/client";
 
 export class SlateCodilityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateCodilityServiceBase {
     return this.prisma.slateCodility.count(args);
   }
 
-  async findMany<T extends Prisma.SlateCodilityFindManyArgs>(
+  async slateCodilities<T extends Prisma.SlateCodilityFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateCodilityFindManyArgs>
-  ): Promise<SlateCodility[]> {
+  ): Promise<PrismaSlateCodility[]> {
     return this.prisma.slateCodility.findMany(args);
   }
-  async findOne<T extends Prisma.SlateCodilityFindUniqueArgs>(
+  async slateCodility<T extends Prisma.SlateCodilityFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateCodilityFindUniqueArgs>
-  ): Promise<SlateCodility | null> {
+  ): Promise<PrismaSlateCodility | null> {
     return this.prisma.slateCodility.findUnique(args);
   }
-  async create<T extends Prisma.SlateCodilityCreateArgs>(
+  async createSlateCodility<T extends Prisma.SlateCodilityCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateCodilityCreateArgs>
-  ): Promise<SlateCodility> {
+  ): Promise<PrismaSlateCodility> {
     return this.prisma.slateCodility.create<T>(args);
   }
-  async update<T extends Prisma.SlateCodilityUpdateArgs>(
+  async updateSlateCodility<T extends Prisma.SlateCodilityUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateCodilityUpdateArgs>
-  ): Promise<SlateCodility> {
+  ): Promise<PrismaSlateCodility> {
     return this.prisma.slateCodility.update<T>(args);
   }
-  async delete<T extends Prisma.SlateCodilityDeleteArgs>(
+  async deleteSlateCodility<T extends Prisma.SlateCodilityDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateCodilityDeleteArgs>
-  ): Promise<SlateCodility> {
+  ): Promise<PrismaSlateCodility> {
     return this.prisma.slateCodility.delete(args);
   }
 }

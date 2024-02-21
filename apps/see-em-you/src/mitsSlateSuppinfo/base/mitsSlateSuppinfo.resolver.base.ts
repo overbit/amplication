@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMitsSlateSuppinfoArgs } from "./CreateMitsSlateSuppinfoArgs";
-import { UpdateMitsSlateSuppinfoArgs } from "./UpdateMitsSlateSuppinfoArgs";
-import { DeleteMitsSlateSuppinfoArgs } from "./DeleteMitsSlateSuppinfoArgs";
+import { MitsSlateSuppinfo } from "./MitsSlateSuppinfo";
 import { MitsSlateSuppinfoCountArgs } from "./MitsSlateSuppinfoCountArgs";
 import { MitsSlateSuppinfoFindManyArgs } from "./MitsSlateSuppinfoFindManyArgs";
 import { MitsSlateSuppinfoFindUniqueArgs } from "./MitsSlateSuppinfoFindUniqueArgs";
-import { MitsSlateSuppinfo } from "./MitsSlateSuppinfo";
+import { CreateMitsSlateSuppinfoArgs } from "./CreateMitsSlateSuppinfoArgs";
+import { UpdateMitsSlateSuppinfoArgs } from "./UpdateMitsSlateSuppinfoArgs";
+import { DeleteMitsSlateSuppinfoArgs } from "./DeleteMitsSlateSuppinfoArgs";
 import { MitsSlateSuppinfoService } from "../mitsSlateSuppinfo.service";
 @graphql.Resolver(() => MitsSlateSuppinfo)
 export class MitsSlateSuppinfoResolverBase {
@@ -38,14 +38,14 @@ export class MitsSlateSuppinfoResolverBase {
   async mitsSlateSuppinfos(
     @graphql.Args() args: MitsSlateSuppinfoFindManyArgs
   ): Promise<MitsSlateSuppinfo[]> {
-    return this.service.findMany(args);
+    return this.service.mitsSlateSuppinfos(args);
   }
 
   @graphql.Query(() => MitsSlateSuppinfo, { nullable: true })
   async mitsSlateSuppinfo(
     @graphql.Args() args: MitsSlateSuppinfoFindUniqueArgs
   ): Promise<MitsSlateSuppinfo | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mitsSlateSuppinfo(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MitsSlateSuppinfoResolverBase {
   async createMitsSlateSuppinfo(
     @graphql.Args() args: CreateMitsSlateSuppinfoArgs
   ): Promise<MitsSlateSuppinfo> {
-    return await this.service.create({
+    return await this.service.createMitsSlateSuppinfo({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MitsSlateSuppinfoResolverBase {
     @graphql.Args() args: UpdateMitsSlateSuppinfoArgs
   ): Promise<MitsSlateSuppinfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateSuppinfo({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MitsSlateSuppinfoResolverBase {
     @graphql.Args() args: DeleteMitsSlateSuppinfoArgs
   ): Promise<MitsSlateSuppinfo | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMitsSlateSuppinfo(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

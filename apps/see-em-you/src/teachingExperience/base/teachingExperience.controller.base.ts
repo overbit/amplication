@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { TeachingExperienceService } from "../teachingExperience.service";
 import { TeachingExperienceCreateInput } from "./TeachingExperienceCreateInput";
-import { TeachingExperienceWhereInput } from "./TeachingExperienceWhereInput";
-import { TeachingExperienceWhereUniqueInput } from "./TeachingExperienceWhereUniqueInput";
-import { TeachingExperienceFindManyArgs } from "./TeachingExperienceFindManyArgs";
-import { TeachingExperienceUpdateInput } from "./TeachingExperienceUpdateInput";
 import { TeachingExperience } from "./TeachingExperience";
+import { TeachingExperienceFindManyArgs } from "./TeachingExperienceFindManyArgs";
+import { TeachingExperienceWhereUniqueInput } from "./TeachingExperienceWhereUniqueInput";
+import { TeachingExperienceUpdateInput } from "./TeachingExperienceUpdateInput";
 
 export class TeachingExperienceControllerBase {
   constructor(protected readonly service: TeachingExperienceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: TeachingExperience })
-  async create(
+  async createTeachingExperience(
     @common.Body() data: TeachingExperienceCreateInput
   ): Promise<TeachingExperience> {
-    return await this.service.create({
+    return await this.service.createTeachingExperience({
       data: data,
       select: {
-        address: true,
         applicationId: true,
+        orderEntered: true,
+        institution: true,
+        address: true,
         coursesTaught: true,
+        startDate: true,
         endDate: true,
         id: true,
-        institution: true,
-        orderEntered: true,
-        startDate: true,
       },
     });
   }
@@ -49,21 +48,21 @@ export class TeachingExperienceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [TeachingExperience] })
   @ApiNestedQuery(TeachingExperienceFindManyArgs)
-  async findMany(
+  async teachingExperiences(
     @common.Req() request: Request
   ): Promise<TeachingExperience[]> {
     const args = plainToClass(TeachingExperienceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.teachingExperiences({
       ...args,
       select: {
-        address: true,
         applicationId: true,
+        orderEntered: true,
+        institution: true,
+        address: true,
         coursesTaught: true,
+        startDate: true,
         endDate: true,
         id: true,
-        institution: true,
-        orderEntered: true,
-        startDate: true,
       },
     });
   }
@@ -71,20 +70,20 @@ export class TeachingExperienceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: TeachingExperience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async teachingExperience(
     @common.Param() params: TeachingExperienceWhereUniqueInput
   ): Promise<TeachingExperience | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.teachingExperience({
       where: params,
       select: {
-        address: true,
         applicationId: true,
+        orderEntered: true,
+        institution: true,
+        address: true,
         coursesTaught: true,
+        startDate: true,
         endDate: true,
         id: true,
-        institution: true,
-        orderEntered: true,
-        startDate: true,
       },
     });
     if (result === null) {
@@ -98,23 +97,23 @@ export class TeachingExperienceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: TeachingExperience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateTeachingExperience(
     @common.Param() params: TeachingExperienceWhereUniqueInput,
     @common.Body() data: TeachingExperienceUpdateInput
   ): Promise<TeachingExperience | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTeachingExperience({
         where: params,
         data: data,
         select: {
-          address: true,
           applicationId: true,
+          orderEntered: true,
+          institution: true,
+          address: true,
           coursesTaught: true,
+          startDate: true,
           endDate: true,
           id: true,
-          institution: true,
-          orderEntered: true,
-          startDate: true,
         },
       });
     } catch (error) {
@@ -130,21 +129,21 @@ export class TeachingExperienceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: TeachingExperience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteTeachingExperience(
     @common.Param() params: TeachingExperienceWhereUniqueInput
   ): Promise<TeachingExperience | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteTeachingExperience({
         where: params,
         select: {
-          address: true,
           applicationId: true,
+          orderEntered: true,
+          institution: true,
+          address: true,
           coursesTaught: true,
+          startDate: true,
           endDate: true,
           id: true,
-          institution: true,
-          orderEntered: true,
-          startDate: true,
         },
       });
     } catch (error) {

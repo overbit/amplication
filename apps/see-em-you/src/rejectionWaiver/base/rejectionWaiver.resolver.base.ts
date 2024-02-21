@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRejectionWaiverArgs } from "./CreateRejectionWaiverArgs";
-import { UpdateRejectionWaiverArgs } from "./UpdateRejectionWaiverArgs";
-import { DeleteRejectionWaiverArgs } from "./DeleteRejectionWaiverArgs";
+import { RejectionWaiver } from "./RejectionWaiver";
 import { RejectionWaiverCountArgs } from "./RejectionWaiverCountArgs";
 import { RejectionWaiverFindManyArgs } from "./RejectionWaiverFindManyArgs";
 import { RejectionWaiverFindUniqueArgs } from "./RejectionWaiverFindUniqueArgs";
-import { RejectionWaiver } from "./RejectionWaiver";
+import { CreateRejectionWaiverArgs } from "./CreateRejectionWaiverArgs";
+import { UpdateRejectionWaiverArgs } from "./UpdateRejectionWaiverArgs";
+import { DeleteRejectionWaiverArgs } from "./DeleteRejectionWaiverArgs";
 import { RejectionWaiverService } from "../rejectionWaiver.service";
 @graphql.Resolver(() => RejectionWaiver)
 export class RejectionWaiverResolverBase {
@@ -38,14 +38,14 @@ export class RejectionWaiverResolverBase {
   async rejectionWaivers(
     @graphql.Args() args: RejectionWaiverFindManyArgs
   ): Promise<RejectionWaiver[]> {
-    return this.service.findMany(args);
+    return this.service.rejectionWaivers(args);
   }
 
   @graphql.Query(() => RejectionWaiver, { nullable: true })
   async rejectionWaiver(
     @graphql.Args() args: RejectionWaiverFindUniqueArgs
   ): Promise<RejectionWaiver | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.rejectionWaiver(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class RejectionWaiverResolverBase {
   async createRejectionWaiver(
     @graphql.Args() args: CreateRejectionWaiverArgs
   ): Promise<RejectionWaiver> {
-    return await this.service.create({
+    return await this.service.createRejectionWaiver({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class RejectionWaiverResolverBase {
     @graphql.Args() args: UpdateRejectionWaiverArgs
   ): Promise<RejectionWaiver | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRejectionWaiver({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class RejectionWaiverResolverBase {
     @graphql.Args() args: DeleteRejectionWaiverArgs
   ): Promise<RejectionWaiver | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRejectionWaiver(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuApplicationGroup, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  LuApplicationGroup as PrismaLuApplicationGroup,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class LuApplicationGroupServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,33 @@ export class LuApplicationGroupServiceBase {
     return this.prisma.luApplicationGroup.count(args);
   }
 
-  async findMany<T extends Prisma.LuApplicationGroupFindManyArgs>(
+  async luApplicationGroups<T extends Prisma.LuApplicationGroupFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationGroupFindManyArgs>
-  ): Promise<LuApplicationGroup[]> {
+  ): Promise<PrismaLuApplicationGroup[]> {
     return this.prisma.luApplicationGroup.findMany(args);
   }
-  async findOne<T extends Prisma.LuApplicationGroupFindUniqueArgs>(
+  async luApplicationGroup<T extends Prisma.LuApplicationGroupFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationGroupFindUniqueArgs>
-  ): Promise<LuApplicationGroup | null> {
+  ): Promise<PrismaLuApplicationGroup | null> {
     return this.prisma.luApplicationGroup.findUnique(args);
   }
-  async create<T extends Prisma.LuApplicationGroupCreateArgs>(
+  async createLuApplicationGroup<T extends Prisma.LuApplicationGroupCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationGroupCreateArgs>
-  ): Promise<LuApplicationGroup> {
+  ): Promise<PrismaLuApplicationGroup> {
     return this.prisma.luApplicationGroup.create<T>(args);
   }
-  async update<T extends Prisma.LuApplicationGroupUpdateArgs>(
+  async updateLuApplicationGroup<T extends Prisma.LuApplicationGroupUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationGroupUpdateArgs>
-  ): Promise<LuApplicationGroup> {
+  ): Promise<PrismaLuApplicationGroup> {
     return this.prisma.luApplicationGroup.update<T>(args);
   }
-  async delete<T extends Prisma.LuApplicationGroupDeleteArgs>(
+  async deleteLuApplicationGroup<T extends Prisma.LuApplicationGroupDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationGroupDeleteArgs>
-  ): Promise<LuApplicationGroup> {
+  ): Promise<PrismaLuApplicationGroup> {
     return this.prisma.luApplicationGroup.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.luApplicationGroup
       .findUnique({
         where: { id: parentId },

@@ -1,10 +1,10 @@
 export type TeachingExperience = {
-  address: string | null;
   applicationId: number;
+  orderEntered: number | null;
+  institution: string | null;
+  address: string | null;
   coursesTaught: string | null;
+  startDate: Date | null;
   endDate: string | null;
   id: number;
-  institution: string | null;
-  orderEntered: number | null;
-  startDate: Date | null;
 };

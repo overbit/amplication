@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DietrichSharingService } from "../dietrichSharing.service";
 import { DietrichSharingCreateInput } from "./DietrichSharingCreateInput";
-import { DietrichSharingWhereInput } from "./DietrichSharingWhereInput";
-import { DietrichSharingWhereUniqueInput } from "./DietrichSharingWhereUniqueInput";
-import { DietrichSharingFindManyArgs } from "./DietrichSharingFindManyArgs";
-import { DietrichSharingUpdateInput } from "./DietrichSharingUpdateInput";
 import { DietrichSharing } from "./DietrichSharing";
+import { DietrichSharingFindManyArgs } from "./DietrichSharingFindManyArgs";
+import { DietrichSharingWhereUniqueInput } from "./DietrichSharingWhereUniqueInput";
+import { DietrichSharingUpdateInput } from "./DietrichSharingUpdateInput";
 
 export class DietrichSharingControllerBase {
   constructor(protected readonly service: DietrichSharingService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DietrichSharing })
-  async create(
+  async createDietrichSharing(
     @common.Body() data: DietrichSharingCreateInput
   ): Promise<DietrichSharing> {
-    return await this.service.create({
+    return await this.service.createDietrichSharing({
       data: data,
       select: {
         applicationId: true,
-        id: true,
         sds: true,
         tepper: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class DietrichSharingControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DietrichSharing] })
   @ApiNestedQuery(DietrichSharingFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DietrichSharing[]> {
+  async dietrichSharings(
+    @common.Req() request: Request
+  ): Promise<DietrichSharing[]> {
     const args = plainToClass(DietrichSharingFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.dietrichSharings({
       ...args,
       select: {
         applicationId: true,
-        id: true,
         sds: true,
         tepper: true,
+        id: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class DietrichSharingControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DietrichSharing })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async dietrichSharing(
     @common.Param() params: DietrichSharingWhereUniqueInput
   ): Promise<DietrichSharing | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.dietrichSharing({
       where: params,
       select: {
         applicationId: true,
-        id: true,
         sds: true,
         tepper: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class DietrichSharingControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DietrichSharing })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDietrichSharing(
     @common.Param() params: DietrichSharingWhereUniqueInput,
     @common.Body() data: DietrichSharingUpdateInput
   ): Promise<DietrichSharing | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDietrichSharing({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          id: true,
           sds: true,
           tepper: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class DietrichSharingControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DietrichSharing })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDietrichSharing(
     @common.Param() params: DietrichSharingWhereUniqueInput
   ): Promise<DietrichSharing | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDietrichSharing({
         where: params,
         select: {
           applicationId: true,
-          id: true,
           sds: true,
           tepper: true,
+          id: true,
         },
       });
     } catch (error) {

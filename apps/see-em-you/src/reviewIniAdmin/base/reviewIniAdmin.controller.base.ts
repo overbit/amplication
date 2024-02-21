@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewIniAdminService } from "../reviewIniAdmin.service";
 import { ReviewIniAdminCreateInput } from "./ReviewIniAdminCreateInput";
-import { ReviewIniAdminWhereInput } from "./ReviewIniAdminWhereInput";
-import { ReviewIniAdminWhereUniqueInput } from "./ReviewIniAdminWhereUniqueInput";
-import { ReviewIniAdminFindManyArgs } from "./ReviewIniAdminFindManyArgs";
-import { ReviewIniAdminUpdateInput } from "./ReviewIniAdminUpdateInput";
 import { ReviewIniAdmin } from "./ReviewIniAdmin";
+import { ReviewIniAdminFindManyArgs } from "./ReviewIniAdminFindManyArgs";
+import { ReviewIniAdminWhereUniqueInput } from "./ReviewIniAdminWhereUniqueInput";
+import { ReviewIniAdminUpdateInput } from "./ReviewIniAdminUpdateInput";
 
 export class ReviewIniAdminControllerBase {
   constructor(protected readonly service: ReviewIniAdminService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewIniAdmin })
-  async create(
+  async createReviewIniAdmin(
     @common.Body() data: ReviewIniAdminCreateInput
   ): Promise<ReviewIniAdmin> {
-    return await this.service.create({
+    return await this.service.createReviewIniAdmin({
       data: data,
       select: {
         applicationId: true,
-        comments: true,
-        departmentId: true,
-        id: true,
         reviewerId: true,
+        departmentId: true,
         round: true,
+        comments: true,
+        id: true,
       },
     });
   }
@@ -47,17 +46,19 @@ export class ReviewIniAdminControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewIniAdmin] })
   @ApiNestedQuery(ReviewIniAdminFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ReviewIniAdmin[]> {
+  async reviewIniAdmins(
+    @common.Req() request: Request
+  ): Promise<ReviewIniAdmin[]> {
     const args = plainToClass(ReviewIniAdminFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.reviewIniAdmins({
       ...args,
       select: {
         applicationId: true,
-        comments: true,
-        departmentId: true,
-        id: true,
         reviewerId: true,
+        departmentId: true,
         round: true,
+        comments: true,
+        id: true,
       },
     });
   }
@@ -65,18 +66,18 @@ export class ReviewIniAdminControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniAdmin })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewIniAdmin(
     @common.Param() params: ReviewIniAdminWhereUniqueInput
   ): Promise<ReviewIniAdmin | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewIniAdmin({
       where: params,
       select: {
         applicationId: true,
-        comments: true,
-        departmentId: true,
-        id: true,
         reviewerId: true,
+        departmentId: true,
         round: true,
+        comments: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -90,21 +91,21 @@ export class ReviewIniAdminControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniAdmin })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewIniAdmin(
     @common.Param() params: ReviewIniAdminWhereUniqueInput,
     @common.Body() data: ReviewIniAdminUpdateInput
   ): Promise<ReviewIniAdmin | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIniAdmin({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          comments: true,
-          departmentId: true,
-          id: true,
           reviewerId: true,
+          departmentId: true,
           round: true,
+          comments: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -120,19 +121,19 @@ export class ReviewIniAdminControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniAdmin })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewIniAdmin(
     @common.Param() params: ReviewIniAdminWhereUniqueInput
   ): Promise<ReviewIniAdmin | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewIniAdmin({
         where: params,
         select: {
           applicationId: true,
-          comments: true,
-          departmentId: true,
-          id: true,
           reviewerId: true,
+          departmentId: true,
           round: true,
+          comments: true,
+          id: true,
         },
       });
     } catch (error) {

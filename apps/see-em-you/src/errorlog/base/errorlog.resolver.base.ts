@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateErrorlogArgs } from "./CreateErrorlogArgs";
-import { UpdateErrorlogArgs } from "./UpdateErrorlogArgs";
-import { DeleteErrorlogArgs } from "./DeleteErrorlogArgs";
+import { Errorlog } from "./Errorlog";
 import { ErrorlogCountArgs } from "./ErrorlogCountArgs";
 import { ErrorlogFindManyArgs } from "./ErrorlogFindManyArgs";
 import { ErrorlogFindUniqueArgs } from "./ErrorlogFindUniqueArgs";
-import { Errorlog } from "./Errorlog";
+import { CreateErrorlogArgs } from "./CreateErrorlogArgs";
+import { UpdateErrorlogArgs } from "./UpdateErrorlogArgs";
+import { DeleteErrorlogArgs } from "./DeleteErrorlogArgs";
 import { ErrorlogService } from "../errorlog.service";
 @graphql.Resolver(() => Errorlog)
 export class ErrorlogResolverBase {
@@ -38,14 +38,14 @@ export class ErrorlogResolverBase {
   async errorlogs(
     @graphql.Args() args: ErrorlogFindManyArgs
   ): Promise<Errorlog[]> {
-    return this.service.findMany(args);
+    return this.service.errorlogs(args);
   }
 
   @graphql.Query(() => Errorlog, { nullable: true })
   async errorlog(
     @graphql.Args() args: ErrorlogFindUniqueArgs
   ): Promise<Errorlog | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.errorlog(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ErrorlogResolverBase {
   async createErrorlog(
     @graphql.Args() args: CreateErrorlogArgs
   ): Promise<Errorlog> {
-    return await this.service.create({
+    return await this.service.createErrorlog({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ErrorlogResolverBase {
     @graphql.Args() args: UpdateErrorlogArgs
   ): Promise<Errorlog | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateErrorlog({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ErrorlogResolverBase {
     @graphql.Args() args: DeleteErrorlogArgs
   ): Promise<Errorlog | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteErrorlog(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

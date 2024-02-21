@@ -1,1 +1,5 @@
-export type MseLetterRecWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type MseLetterRecWhereInput = {
+  id?: StringFilter;
+};

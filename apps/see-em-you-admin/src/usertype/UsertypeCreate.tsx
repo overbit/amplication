@@ -5,8 +5,8 @@ export const UsertypeCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Description" source="description" />
         <TextInput label="Name" source="name" />
+        <TextInput label="Description" source="description" />
       </SimpleForm>
     </Create>
   );

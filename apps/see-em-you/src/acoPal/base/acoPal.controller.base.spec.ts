@@ -19,33 +19,33 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   aco: "true",
-  id: 42,
   pal: "true",
+  id: 42,
 };
 const CREATE_RESULT = {
   aco: "true",
-  id: 42,
   pal: "true",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     aco: "true",
-    id: 42,
     pal: "true",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   aco: "true",
-  id: 42,
   pal: "true",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createAcoPal() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  acoPals: () => FIND_MANY_RESULT,
+  acoPal: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

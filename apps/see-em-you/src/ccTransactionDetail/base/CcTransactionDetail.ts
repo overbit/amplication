@@ -34,11 +34,27 @@ class CcTransactionDetail {
 
   @ApiProperty({
     required: true,
-    type: String,
   })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  time!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  reportDate!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  paymentId!: number;
 
   @ApiProperty({
     required: true,
@@ -46,7 +62,7 @@ class CcTransactionDetail {
   })
   @IsString()
   @Field(() => String)
-  itemGlString!: string;
+  transactionType!: string;
 
   @ApiProperty({
     required: true,
@@ -62,7 +78,7 @@ class CcTransactionDetail {
   })
   @IsNumber()
   @Field(() => Number)
-  itemPriceEach!: number;
+  itemQty!: number;
 
   @ApiProperty({
     required: true,
@@ -70,31 +86,7 @@ class CcTransactionDetail {
   })
   @IsNumber()
   @Field(() => Number)
-  itemQty!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  paymentId!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  reportDate!: Date;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  time!: Date;
+  itemPriceEach!: number;
 
   @ApiProperty({
     required: true,
@@ -102,7 +94,15 @@ class CcTransactionDetail {
   })
   @IsString()
   @Field(() => String)
-  transactionType!: string;
+  itemGlString!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { CcTransactionDetail as CcTransactionDetail };

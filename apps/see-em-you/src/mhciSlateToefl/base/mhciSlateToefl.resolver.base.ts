@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciSlateToeflArgs } from "./CreateMhciSlateToeflArgs";
-import { UpdateMhciSlateToeflArgs } from "./UpdateMhciSlateToeflArgs";
-import { DeleteMhciSlateToeflArgs } from "./DeleteMhciSlateToeflArgs";
+import { MhciSlateToefl } from "./MhciSlateToefl";
 import { MhciSlateToeflCountArgs } from "./MhciSlateToeflCountArgs";
 import { MhciSlateToeflFindManyArgs } from "./MhciSlateToeflFindManyArgs";
 import { MhciSlateToeflFindUniqueArgs } from "./MhciSlateToeflFindUniqueArgs";
-import { MhciSlateToefl } from "./MhciSlateToefl";
+import { CreateMhciSlateToeflArgs } from "./CreateMhciSlateToeflArgs";
+import { UpdateMhciSlateToeflArgs } from "./UpdateMhciSlateToeflArgs";
+import { DeleteMhciSlateToeflArgs } from "./DeleteMhciSlateToeflArgs";
 import { MhciSlateToeflService } from "../mhciSlateToefl.service";
 @graphql.Resolver(() => MhciSlateToefl)
 export class MhciSlateToeflResolverBase {
@@ -38,14 +38,14 @@ export class MhciSlateToeflResolverBase {
   async mhciSlateToefls(
     @graphql.Args() args: MhciSlateToeflFindManyArgs
   ): Promise<MhciSlateToefl[]> {
-    return this.service.findMany(args);
+    return this.service.mhciSlateToefls(args);
   }
 
   @graphql.Query(() => MhciSlateToefl, { nullable: true })
   async mhciSlateToefl(
     @graphql.Args() args: MhciSlateToeflFindUniqueArgs
   ): Promise<MhciSlateToefl | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciSlateToefl(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MhciSlateToeflResolverBase {
   async createMhciSlateToefl(
     @graphql.Args() args: CreateMhciSlateToeflArgs
   ): Promise<MhciSlateToefl> {
-    return await this.service.create({
+    return await this.service.createMhciSlateToefl({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MhciSlateToeflResolverBase {
     @graphql.Args() args: UpdateMhciSlateToeflArgs
   ): Promise<MhciSlateToefl | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciSlateToefl({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MhciSlateToeflResolverBase {
     @graphql.Args() args: DeleteMhciSlateToeflArgs
   ): Promise<MhciSlateToefl | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciSlateToefl(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

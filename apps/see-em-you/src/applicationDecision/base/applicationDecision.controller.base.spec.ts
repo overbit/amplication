@@ -18,70 +18,70 @@ import { ApplicationDecisionService } from "../applicationDecision.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  applicationId: 42,
+  programId: 42,
+  periodId: 42,
   admissionProgramId: 42,
   admissionStatus: "exampleAdmissionStatus",
-  applicationId: 42,
-  attendOtherUniversity: 42,
   comments: "exampleComments",
-  id: "exampleId",
+  attendOtherUniversity: 42,
   otherChoiceLocation: "exampleOtherChoiceLocation",
-  periodId: 42,
-  programId: 42,
   visitCampus: 42,
-  visitComments: 42,
   visitHelpful: 42,
+  visitComments: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
+  applicationId: 42,
+  programId: 42,
+  periodId: 42,
   admissionProgramId: 42,
   admissionStatus: "exampleAdmissionStatus",
-  applicationId: 42,
-  attendOtherUniversity: 42,
   comments: "exampleComments",
-  id: "exampleId",
+  attendOtherUniversity: 42,
   otherChoiceLocation: "exampleOtherChoiceLocation",
-  periodId: 42,
-  programId: 42,
   visitCampus: 42,
-  visitComments: 42,
   visitHelpful: 42,
+  visitComments: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
+    applicationId: 42,
+    programId: 42,
+    periodId: 42,
     admissionProgramId: 42,
     admissionStatus: "exampleAdmissionStatus",
-    applicationId: 42,
-    attendOtherUniversity: 42,
     comments: "exampleComments",
-    id: "exampleId",
+    attendOtherUniversity: 42,
     otherChoiceLocation: "exampleOtherChoiceLocation",
-    periodId: 42,
-    programId: 42,
     visitCampus: 42,
-    visitComments: 42,
     visitHelpful: 42,
+    visitComments: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
+  applicationId: 42,
+  programId: 42,
+  periodId: 42,
   admissionProgramId: 42,
   admissionStatus: "exampleAdmissionStatus",
-  applicationId: 42,
-  attendOtherUniversity: 42,
   comments: "exampleComments",
-  id: "exampleId",
+  attendOtherUniversity: 42,
   otherChoiceLocation: "exampleOtherChoiceLocation",
-  periodId: 42,
-  programId: 42,
   visitCampus: 42,
-  visitComments: 42,
   visitHelpful: 42,
+  visitComments: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createApplicationDecision() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  applicationDecisions: () => FIND_MANY_RESULT,
+  applicationDecision: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

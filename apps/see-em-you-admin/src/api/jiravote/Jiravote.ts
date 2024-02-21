@@ -1,7 +1,7 @@
 export type Jiravote = {
   created: Date;
-  id: number;
-  jiraName: string;
   updatedAt: Date;
+  jiraName: string;
   user: string;
+  id: number;
 };

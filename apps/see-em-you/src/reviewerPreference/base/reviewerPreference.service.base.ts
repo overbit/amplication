@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ReviewerPreference } from "@prisma/client";
+import {
+  Prisma,
+  ReviewerPreference as PrismaReviewerPreference,
+} from "@prisma/client";
 
 export class ReviewerPreferenceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class ReviewerPreferenceServiceBase {
     return this.prisma.reviewerPreference.count(args);
   }
 
-  async findMany<T extends Prisma.ReviewerPreferenceFindManyArgs>(
+  async reviewerPreferences<T extends Prisma.ReviewerPreferenceFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewerPreferenceFindManyArgs>
-  ): Promise<ReviewerPreference[]> {
+  ): Promise<PrismaReviewerPreference[]> {
     return this.prisma.reviewerPreference.findMany(args);
   }
-  async findOne<T extends Prisma.ReviewerPreferenceFindUniqueArgs>(
+  async reviewerPreference<T extends Prisma.ReviewerPreferenceFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewerPreferenceFindUniqueArgs>
-  ): Promise<ReviewerPreference | null> {
+  ): Promise<PrismaReviewerPreference | null> {
     return this.prisma.reviewerPreference.findUnique(args);
   }
-  async create<T extends Prisma.ReviewerPreferenceCreateArgs>(
+  async createReviewerPreference<T extends Prisma.ReviewerPreferenceCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewerPreferenceCreateArgs>
-  ): Promise<ReviewerPreference> {
+  ): Promise<PrismaReviewerPreference> {
     return this.prisma.reviewerPreference.create<T>(args);
   }
-  async update<T extends Prisma.ReviewerPreferenceUpdateArgs>(
+  async updateReviewerPreference<T extends Prisma.ReviewerPreferenceUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewerPreferenceUpdateArgs>
-  ): Promise<ReviewerPreference> {
+  ): Promise<PrismaReviewerPreference> {
     return this.prisma.reviewerPreference.update<T>(args);
   }
-  async delete<T extends Prisma.ReviewerPreferenceDeleteArgs>(
+  async deleteReviewerPreference<T extends Prisma.ReviewerPreferenceDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReviewerPreferenceDeleteArgs>
-  ): Promise<ReviewerPreference> {
+  ): Promise<PrismaReviewerPreference> {
     return this.prisma.reviewerPreference.delete(args);
   }
 }

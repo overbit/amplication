@@ -24,73 +24,7 @@ class ApplicationDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  admissionProgramId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  admissionStatus?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   applicationId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  attendOtherUniversity?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  comments?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  otherChoiceLocation?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  periodId?: number;
 
   @ApiProperty({
     required: false,
@@ -112,6 +46,72 @@ class ApplicationDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  periodId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  admissionProgramId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  admissionStatus?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  comments?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  attendOtherUniversity?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  otherChoiceLocation?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   visitCampus?: number | null;
 
   @ApiProperty({
@@ -123,7 +123,7 @@ class ApplicationDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  visitComments?: number | null;
+  visitHelpful?: number | null;
 
   @ApiProperty({
     required: false,
@@ -134,7 +134,7 @@ class ApplicationDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  visitHelpful?: number | null;
+  visitComments?: number | null;
 }
 
 export { ApplicationDecisionUpdateInput as ApplicationDecisionUpdateInput };

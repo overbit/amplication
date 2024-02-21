@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ProgramGroupRole } from "@prisma/client";
+import {
+  Prisma,
+  ProgramGroupRole as PrismaProgramGroupRole,
+} from "@prisma/client";
 
 export class ProgramGroupRoleServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class ProgramGroupRoleServiceBase {
     return this.prisma.programGroupRole.count(args);
   }
 
-  async findMany<T extends Prisma.ProgramGroupRoleFindManyArgs>(
+  async programGroupRoles<T extends Prisma.ProgramGroupRoleFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupRoleFindManyArgs>
-  ): Promise<ProgramGroupRole[]> {
+  ): Promise<PrismaProgramGroupRole[]> {
     return this.prisma.programGroupRole.findMany(args);
   }
-  async findOne<T extends Prisma.ProgramGroupRoleFindUniqueArgs>(
+  async programGroupRole<T extends Prisma.ProgramGroupRoleFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupRoleFindUniqueArgs>
-  ): Promise<ProgramGroupRole | null> {
+  ): Promise<PrismaProgramGroupRole | null> {
     return this.prisma.programGroupRole.findUnique(args);
   }
-  async create<T extends Prisma.ProgramGroupRoleCreateArgs>(
+  async createProgramGroupRole<T extends Prisma.ProgramGroupRoleCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupRoleCreateArgs>
-  ): Promise<ProgramGroupRole> {
+  ): Promise<PrismaProgramGroupRole> {
     return this.prisma.programGroupRole.create<T>(args);
   }
-  async update<T extends Prisma.ProgramGroupRoleUpdateArgs>(
+  async updateProgramGroupRole<T extends Prisma.ProgramGroupRoleUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupRoleUpdateArgs>
-  ): Promise<ProgramGroupRole> {
+  ): Promise<PrismaProgramGroupRole> {
     return this.prisma.programGroupRole.update<T>(args);
   }
-  async delete<T extends Prisma.ProgramGroupRoleDeleteArgs>(
+  async deleteProgramGroupRole<T extends Prisma.ProgramGroupRoleDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupRoleDeleteArgs>
-  ): Promise<ProgramGroupRole> {
+  ): Promise<PrismaProgramGroupRole> {
     return this.prisma.programGroupRole.delete(args);
   }
 }

@@ -1,1 +1,5 @@
-export type UsersinstWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type UsersinstWhereInput = {
+  id?: IntFilter;
+};

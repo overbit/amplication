@@ -39,7 +39,7 @@ class MhciPrereqsCourseDatafileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  note?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class MhciPrereqsCourseDatafileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  prereq_courses_id?: SortOrder;
+  submittedToReviewer?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +72,7 @@ class MhciPrereqsCourseDatafileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  note?: SortOrder;
+  prereq_courses_id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +83,7 @@ class MhciPrereqsCourseDatafileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  submittedToReviewer?: SortOrder;
+  id?: SortOrder;
 }
 
 export { MhciPrereqsCourseDatafileOrderByInput as MhciPrereqsCourseDatafileOrderByInput };

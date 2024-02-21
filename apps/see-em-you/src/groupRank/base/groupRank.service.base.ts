@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, GroupRank } from "@prisma/client";
+import { Prisma, GroupRank as PrismaGroupRank } from "@prisma/client";
 
 export class GroupRankServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class GroupRankServiceBase {
     return this.prisma.groupRank.count(args);
   }
 
-  async findMany<T extends Prisma.GroupRankFindManyArgs>(
+  async groupRanks<T extends Prisma.GroupRankFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankFindManyArgs>
-  ): Promise<GroupRank[]> {
+  ): Promise<PrismaGroupRank[]> {
     return this.prisma.groupRank.findMany(args);
   }
-  async findOne<T extends Prisma.GroupRankFindUniqueArgs>(
+  async groupRank<T extends Prisma.GroupRankFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankFindUniqueArgs>
-  ): Promise<GroupRank | null> {
+  ): Promise<PrismaGroupRank | null> {
     return this.prisma.groupRank.findUnique(args);
   }
-  async create<T extends Prisma.GroupRankCreateArgs>(
+  async createGroupRank<T extends Prisma.GroupRankCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankCreateArgs>
-  ): Promise<GroupRank> {
+  ): Promise<PrismaGroupRank> {
     return this.prisma.groupRank.create<T>(args);
   }
-  async update<T extends Prisma.GroupRankUpdateArgs>(
+  async updateGroupRank<T extends Prisma.GroupRankUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankUpdateArgs>
-  ): Promise<GroupRank> {
+  ): Promise<PrismaGroupRank> {
     return this.prisma.groupRank.update<T>(args);
   }
-  async delete<T extends Prisma.GroupRankDeleteArgs>(
+  async deleteGroupRank<T extends Prisma.GroupRankDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankDeleteArgs>
-  ): Promise<GroupRank> {
+  ): Promise<PrismaGroupRank> {
     return this.prisma.groupRank.delete(args);
   }
 }

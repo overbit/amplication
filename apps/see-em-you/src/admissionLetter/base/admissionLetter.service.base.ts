@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, AdmissionLetter } from "@prisma/client";
+import {
+  Prisma,
+  AdmissionLetter as PrismaAdmissionLetter,
+} from "@prisma/client";
 
 export class AdmissionLetterServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class AdmissionLetterServiceBase {
     return this.prisma.admissionLetter.count(args);
   }
 
-  async findMany<T extends Prisma.AdmissionLetterFindManyArgs>(
+  async admissionLetters<T extends Prisma.AdmissionLetterFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdmissionLetterFindManyArgs>
-  ): Promise<AdmissionLetter[]> {
+  ): Promise<PrismaAdmissionLetter[]> {
     return this.prisma.admissionLetter.findMany(args);
   }
-  async findOne<T extends Prisma.AdmissionLetterFindUniqueArgs>(
+  async admissionLetter<T extends Prisma.AdmissionLetterFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdmissionLetterFindUniqueArgs>
-  ): Promise<AdmissionLetter | null> {
+  ): Promise<PrismaAdmissionLetter | null> {
     return this.prisma.admissionLetter.findUnique(args);
   }
-  async create<T extends Prisma.AdmissionLetterCreateArgs>(
+  async createAdmissionLetter<T extends Prisma.AdmissionLetterCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdmissionLetterCreateArgs>
-  ): Promise<AdmissionLetter> {
+  ): Promise<PrismaAdmissionLetter> {
     return this.prisma.admissionLetter.create<T>(args);
   }
-  async update<T extends Prisma.AdmissionLetterUpdateArgs>(
+  async updateAdmissionLetter<T extends Prisma.AdmissionLetterUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdmissionLetterUpdateArgs>
-  ): Promise<AdmissionLetter> {
+  ): Promise<PrismaAdmissionLetter> {
     return this.prisma.admissionLetter.update<T>(args);
   }
-  async delete<T extends Prisma.AdmissionLetterDeleteArgs>(
+  async deleteAdmissionLetter<T extends Prisma.AdmissionLetterDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdmissionLetterDeleteArgs>
-  ): Promise<AdmissionLetter> {
+  ): Promise<PrismaAdmissionLetter> {
     return this.prisma.admissionLetter.delete(args);
   }
 }

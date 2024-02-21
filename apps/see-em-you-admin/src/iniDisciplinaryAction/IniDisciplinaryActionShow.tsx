@@ -8,14 +8,14 @@ export const IniDisciplinaryActionShow = (
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
+        <TextField label="Sanction" source="sanction" />
+        <TextField label="Sanction Description" source="sanctionDescription" />
         <TextField label="Retraction" source="retraction" />
         <TextField
           label="Retraction Description"
           source="retractionDescription"
         />
-        <TextField label="Sanction" source="sanction" />
-        <TextField label="Sanction Description" source="sanctionDescription" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

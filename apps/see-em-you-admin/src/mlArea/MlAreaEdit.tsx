@@ -3,9 +3,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  TextInput,
   ReferenceInput,
   SelectInput,
-  TextInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 import { ProgramModelTitle } from "../programModel/ProgramModelTitle";
@@ -14,6 +14,7 @@ export const MlAreaEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="Area" source="area" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -21,7 +22,6 @@ export const MlAreaEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <TextInput label="Area" source="area" />
         <ReferenceInput
           source="programs.id"
           reference="ProgramModel"

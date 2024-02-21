@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAcoPalArgs } from "./CreateAcoPalArgs";
-import { UpdateAcoPalArgs } from "./UpdateAcoPalArgs";
-import { DeleteAcoPalArgs } from "./DeleteAcoPalArgs";
+import { AcoPal } from "./AcoPal";
 import { AcoPalCountArgs } from "./AcoPalCountArgs";
 import { AcoPalFindManyArgs } from "./AcoPalFindManyArgs";
 import { AcoPalFindUniqueArgs } from "./AcoPalFindUniqueArgs";
-import { AcoPal } from "./AcoPal";
+import { CreateAcoPalArgs } from "./CreateAcoPalArgs";
+import { UpdateAcoPalArgs } from "./UpdateAcoPalArgs";
+import { DeleteAcoPalArgs } from "./DeleteAcoPalArgs";
 import { Application } from "../../application/base/Application";
 import { AcoPalService } from "../acoPal.service";
 @graphql.Resolver(() => AcoPal)
@@ -37,14 +37,14 @@ export class AcoPalResolverBase {
 
   @graphql.Query(() => [AcoPal])
   async acoPals(@graphql.Args() args: AcoPalFindManyArgs): Promise<AcoPal[]> {
-    return this.service.findMany(args);
+    return this.service.acoPals(args);
   }
 
   @graphql.Query(() => AcoPal, { nullable: true })
   async acoPal(
     @graphql.Args() args: AcoPalFindUniqueArgs
   ): Promise<AcoPal | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.acoPal(args);
     if (result === null) {
       return null;
     }
@@ -53,7 +53,7 @@ export class AcoPalResolverBase {
 
   @graphql.Mutation(() => AcoPal)
   async createAcoPal(@graphql.Args() args: CreateAcoPalArgs): Promise<AcoPal> {
-    return await this.service.create({
+    return await this.service.createAcoPal({
       ...args,
       data: {
         ...args.data,
@@ -70,7 +70,7 @@ export class AcoPalResolverBase {
     @graphql.Args() args: UpdateAcoPalArgs
   ): Promise<AcoPal | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAcoPal({
         ...args,
         data: {
           ...args.data,
@@ -95,7 +95,7 @@ export class AcoPalResolverBase {
     @graphql.Args() args: DeleteAcoPalArgs
   ): Promise<AcoPal | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAcoPal(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -110,7 +110,7 @@ export class AcoPalResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: AcoPal
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

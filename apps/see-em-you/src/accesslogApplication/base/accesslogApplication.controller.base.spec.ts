@@ -18,34 +18,34 @@ import { AccesslogApplicationService } from "../accesslogApplication.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  active: 42,
   appId: 42,
+  active: 42,
   id: 42,
 };
 const CREATE_RESULT = {
-  active: 42,
   appId: 42,
+  active: 42,
   id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    active: 42,
     appId: 42,
+    active: 42,
     id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  active: 42,
   appId: 42,
+  active: 42,
   id: 42,
 };
 
 const service = {
-  create() {
+  createAccesslogApplication() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  accesslogApplications: () => FIND_MANY_RESULT,
+  accesslogApplication: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

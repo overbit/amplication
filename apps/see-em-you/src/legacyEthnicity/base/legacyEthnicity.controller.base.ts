@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LegacyEthnicityService } from "../legacyEthnicity.service";
 import { LegacyEthnicityCreateInput } from "./LegacyEthnicityCreateInput";
-import { LegacyEthnicityWhereInput } from "./LegacyEthnicityWhereInput";
-import { LegacyEthnicityWhereUniqueInput } from "./LegacyEthnicityWhereUniqueInput";
-import { LegacyEthnicityFindManyArgs } from "./LegacyEthnicityFindManyArgs";
-import { LegacyEthnicityUpdateInput } from "./LegacyEthnicityUpdateInput";
 import { LegacyEthnicity } from "./LegacyEthnicity";
+import { LegacyEthnicityFindManyArgs } from "./LegacyEthnicityFindManyArgs";
+import { LegacyEthnicityWhereUniqueInput } from "./LegacyEthnicityWhereUniqueInput";
+import { LegacyEthnicityUpdateInput } from "./LegacyEthnicityUpdateInput";
 
 export class LegacyEthnicityControllerBase {
   constructor(protected readonly service: LegacyEthnicityService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LegacyEthnicity })
-  async create(
+  async createLegacyEthnicity(
     @common.Body() data: LegacyEthnicityCreateInput
   ): Promise<LegacyEthnicity> {
-    return await this.service.create({
+    return await this.service.createLegacyEthnicity({
       data: data,
       select: {
-        ethnicityId: true,
-        id: true,
         name: true,
         sortorder: true,
+        ethnicityId: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class LegacyEthnicityControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LegacyEthnicity] })
   @ApiNestedQuery(LegacyEthnicityFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<LegacyEthnicity[]> {
+  async legacyEthnicities(
+    @common.Req() request: Request
+  ): Promise<LegacyEthnicity[]> {
     const args = plainToClass(LegacyEthnicityFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.legacyEthnicities({
       ...args,
       select: {
-        ethnicityId: true,
-        id: true,
         name: true,
         sortorder: true,
+        ethnicityId: true,
+        id: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class LegacyEthnicityControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LegacyEthnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async legacyEthnicity(
     @common.Param() params: LegacyEthnicityWhereUniqueInput
   ): Promise<LegacyEthnicity | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.legacyEthnicity({
       where: params,
       select: {
-        ethnicityId: true,
-        id: true,
         name: true,
         sortorder: true,
+        ethnicityId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class LegacyEthnicityControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LegacyEthnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLegacyEthnicity(
     @common.Param() params: LegacyEthnicityWhereUniqueInput,
     @common.Body() data: LegacyEthnicityUpdateInput
   ): Promise<LegacyEthnicity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLegacyEthnicity({
         where: params,
         data: data,
         select: {
-          ethnicityId: true,
-          id: true,
           name: true,
           sortorder: true,
+          ethnicityId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class LegacyEthnicityControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LegacyEthnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLegacyEthnicity(
     @common.Param() params: LegacyEthnicityWhereUniqueInput
   ): Promise<LegacyEthnicity | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLegacyEthnicity({
         where: params,
         select: {
-          ethnicityId: true,
-          id: true,
           name: true,
           sortorder: true,
+          ethnicityId: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -1,4 +1,8 @@
 export type MitsSlatePub = {
+  prefix: string | null;
+  first: string | null;
+  middle: string | null;
+  last: string | null;
   authorsPub1: string | null;
   authorsPub2: string | null;
   authorsPub3: string | null;
@@ -17,18 +21,13 @@ export type MitsSlatePub = {
   destinationPub4: string | null;
   destinationPub5: string | null;
   destinationPub6: string | null;
-  first: string | null;
   hasPublications: string | null;
-  id: string;
-  last: string | null;
-  middle: string | null;
   otherTypeOfPublication1: string | null;
   otherTypeOfPublication2: string | null;
   otherTypeOfPublication3: string | null;
   otherTypeOfPublication4: string | null;
   otherTypeOfPublication5: string | null;
   otherTypeOfPublication6: string | null;
-  prefix: string | null;
   statusOfPublication1: string | null;
   statusOfPublication2: string | null;
   statusOfPublication3: string | null;
@@ -53,4 +52,5 @@ export type MitsSlatePub = {
   urlPub4: string | null;
   urlPub5: string | null;
   urlPub6: string | null;
+  id: string;
 };

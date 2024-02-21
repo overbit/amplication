@@ -18,38 +18,38 @@ import { LuDomainDepartmentService } from "../luDomainDepartment.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  departmentId: 42,
   domainId: 42,
+  departmentId: 42,
   drank: 42,
   id: 42,
 };
 const CREATE_RESULT = {
-  departmentId: 42,
   domainId: 42,
+  departmentId: 42,
   drank: 42,
   id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    departmentId: 42,
     domainId: 42,
+    departmentId: 42,
     drank: 42,
     id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  departmentId: 42,
   domainId: 42,
+  departmentId: 42,
   drank: 42,
   id: 42,
 };
 
 const service = {
-  create() {
+  createLuDomainDepartment() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luDomainDepartments: () => FIND_MANY_RESULT,
+  luDomainDepartment: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

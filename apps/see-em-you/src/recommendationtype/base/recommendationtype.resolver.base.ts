@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRecommendationtypeArgs } from "./CreateRecommendationtypeArgs";
-import { UpdateRecommendationtypeArgs } from "./UpdateRecommendationtypeArgs";
-import { DeleteRecommendationtypeArgs } from "./DeleteRecommendationtypeArgs";
+import { Recommendationtype } from "./Recommendationtype";
 import { RecommendationtypeCountArgs } from "./RecommendationtypeCountArgs";
 import { RecommendationtypeFindManyArgs } from "./RecommendationtypeFindManyArgs";
 import { RecommendationtypeFindUniqueArgs } from "./RecommendationtypeFindUniqueArgs";
-import { Recommendationtype } from "./Recommendationtype";
+import { CreateRecommendationtypeArgs } from "./CreateRecommendationtypeArgs";
+import { UpdateRecommendationtypeArgs } from "./UpdateRecommendationtypeArgs";
+import { DeleteRecommendationtypeArgs } from "./DeleteRecommendationtypeArgs";
 import { RecommendationtypeService } from "../recommendationtype.service";
 @graphql.Resolver(() => Recommendationtype)
 export class RecommendationtypeResolverBase {
@@ -38,14 +38,14 @@ export class RecommendationtypeResolverBase {
   async recommendationtypes(
     @graphql.Args() args: RecommendationtypeFindManyArgs
   ): Promise<Recommendationtype[]> {
-    return this.service.findMany(args);
+    return this.service.recommendationtypes(args);
   }
 
   @graphql.Query(() => Recommendationtype, { nullable: true })
   async recommendationtype(
     @graphql.Args() args: RecommendationtypeFindUniqueArgs
   ): Promise<Recommendationtype | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.recommendationtype(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class RecommendationtypeResolverBase {
   async createRecommendationtype(
     @graphql.Args() args: CreateRecommendationtypeArgs
   ): Promise<Recommendationtype> {
-    return await this.service.create({
+    return await this.service.createRecommendationtype({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class RecommendationtypeResolverBase {
     @graphql.Args() args: UpdateRecommendationtypeArgs
   ): Promise<Recommendationtype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecommendationtype({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class RecommendationtypeResolverBase {
     @graphql.Args() args: DeleteRecommendationtypeArgs
   ): Promise<Recommendationtype | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRecommendationtype(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

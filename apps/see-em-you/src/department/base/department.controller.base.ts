@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DepartmentService } from "../department.service";
 import { DepartmentCreateInput } from "./DepartmentCreateInput";
-import { DepartmentWhereInput } from "./DepartmentWhereInput";
-import { DepartmentWhereUniqueInput } from "./DepartmentWhereUniqueInput";
-import { DepartmentFindManyArgs } from "./DepartmentFindManyArgs";
-import { DepartmentUpdateInput } from "./DepartmentUpdateInput";
 import { Department } from "./Department";
+import { DepartmentFindManyArgs } from "./DepartmentFindManyArgs";
+import { DepartmentWhereUniqueInput } from "./DepartmentWhereUniqueInput";
+import { DepartmentUpdateInput } from "./DepartmentUpdateInput";
 import { AaDepartmentFindManyArgs } from "../../aaDepartment/base/AaDepartmentFindManyArgs";
 import { AaDepartment } from "../../aaDepartment/base/AaDepartment";
 import { AaDepartmentWhereUniqueInput } from "../../aaDepartment/base/AaDepartmentWhereUniqueInput";
@@ -31,26 +30,26 @@ export class DepartmentControllerBase {
   constructor(protected readonly service: DepartmentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Department })
-  async create(
+  async createDepartment(
     @common.Body() data: DepartmentCreateInput
   ): Promise<Department> {
-    return await this.service.create({
+    return await this.service.createDepartment({
       data: data,
       select: {
-        allowRequestAdvisors: true,
-        ccEmail: true,
+        name: true,
+        parentSchoolId: true,
+        oraclestring: true,
+        registrationoraclestring: true,
         drank: true,
-        enableFinal: true,
+        ccEmail: true,
         enableRound1: true,
         enableRound2: true,
         enableRound3: true,
         enableRound4: true,
-        id: true,
-        name: true,
-        oraclestring: true,
-        parentSchoolId: true,
-        registrationoraclestring: true,
+        enableFinal: true,
         semiblindReview: true,
+        allowRequestAdvisors: true,
+        id: true,
       },
     });
   }
@@ -58,25 +57,25 @@ export class DepartmentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Department] })
   @ApiNestedQuery(DepartmentFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Department[]> {
+  async departments(@common.Req() request: Request): Promise<Department[]> {
     const args = plainToClass(DepartmentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.departments({
       ...args,
       select: {
-        allowRequestAdvisors: true,
-        ccEmail: true,
+        name: true,
+        parentSchoolId: true,
+        oraclestring: true,
+        registrationoraclestring: true,
         drank: true,
-        enableFinal: true,
+        ccEmail: true,
         enableRound1: true,
         enableRound2: true,
         enableRound3: true,
         enableRound4: true,
-        id: true,
-        name: true,
-        oraclestring: true,
-        parentSchoolId: true,
-        registrationoraclestring: true,
+        enableFinal: true,
         semiblindReview: true,
+        allowRequestAdvisors: true,
+        id: true,
       },
     });
   }
@@ -84,26 +83,26 @@ export class DepartmentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Department })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async department(
     @common.Param() params: DepartmentWhereUniqueInput
   ): Promise<Department | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.department({
       where: params,
       select: {
-        allowRequestAdvisors: true,
-        ccEmail: true,
+        name: true,
+        parentSchoolId: true,
+        oraclestring: true,
+        registrationoraclestring: true,
         drank: true,
-        enableFinal: true,
+        ccEmail: true,
         enableRound1: true,
         enableRound2: true,
         enableRound3: true,
         enableRound4: true,
-        id: true,
-        name: true,
-        oraclestring: true,
-        parentSchoolId: true,
-        registrationoraclestring: true,
+        enableFinal: true,
         semiblindReview: true,
+        allowRequestAdvisors: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -117,29 +116,29 @@ export class DepartmentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Department })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDepartment(
     @common.Param() params: DepartmentWhereUniqueInput,
     @common.Body() data: DepartmentUpdateInput
   ): Promise<Department | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDepartment({
         where: params,
         data: data,
         select: {
-          allowRequestAdvisors: true,
-          ccEmail: true,
+          name: true,
+          parentSchoolId: true,
+          oraclestring: true,
+          registrationoraclestring: true,
           drank: true,
-          enableFinal: true,
+          ccEmail: true,
           enableRound1: true,
           enableRound2: true,
           enableRound3: true,
           enableRound4: true,
-          id: true,
-          name: true,
-          oraclestring: true,
-          parentSchoolId: true,
-          registrationoraclestring: true,
+          enableFinal: true,
           semiblindReview: true,
+          allowRequestAdvisors: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -155,27 +154,27 @@ export class DepartmentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Department })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDepartment(
     @common.Param() params: DepartmentWhereUniqueInput
   ): Promise<Department | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDepartment({
         where: params,
         select: {
-          allowRequestAdvisors: true,
-          ccEmail: true,
+          name: true,
+          parentSchoolId: true,
+          oraclestring: true,
+          registrationoraclestring: true,
           drank: true,
-          enableFinal: true,
+          ccEmail: true,
           enableRound1: true,
           enableRound2: true,
           enableRound3: true,
           enableRound4: true,
-          id: true,
-          name: true,
-          oraclestring: true,
-          parentSchoolId: true,
-          registrationoraclestring: true,
+          enableFinal: true,
           semiblindReview: true,
+          allowRequestAdvisors: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -190,7 +189,7 @@ export class DepartmentControllerBase {
 
   @common.Get("/:id/aaDepartment")
   @ApiNestedQuery(AaDepartmentFindManyArgs)
-  async findManyAaDepartment(
+  async findAaDepartment(
     @common.Req() request: Request,
     @common.Param() params: DepartmentWhereUniqueInput
   ): Promise<AaDepartment[]> {
@@ -198,6 +197,12 @@ export class DepartmentControllerBase {
     const results = await this.service.findAaDepartment(params.id, {
       ...query,
       select: {
+        period: {
+          select: {
+            id: true,
+          },
+        },
+
         department: {
           select: {
             id: true,
@@ -205,12 +210,6 @@ export class DepartmentControllerBase {
         },
 
         id: true,
-
-        period: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {
@@ -231,7 +230,7 @@ export class DepartmentControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDepartment({
       where: params,
       data,
       select: { id: true },
@@ -248,7 +247,7 @@ export class DepartmentControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDepartment({
       where: params,
       data,
       select: { id: true },
@@ -265,7 +264,7 @@ export class DepartmentControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDepartment({
       where: params,
       data,
       select: { id: true },

@@ -28,7 +28,7 @@ class MitsSlateSuppinfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  fellowship10Amount?: SortOrder;
+  prefix?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class MitsSlateSuppinfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  fellowship10AppliedDate?: SortOrder;
+  first?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class MitsSlateSuppinfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  fellowship10AwardedDate?: SortOrder;
+  middle?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class MitsSlateSuppinfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  fellowship10Duration?: SortOrder;
+  last?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +72,7 @@ class MitsSlateSuppinfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  fellowship10Name?: SortOrder;
+  videoEssayUrl?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +83,29 @@ class MitsSlateSuppinfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  fellowship10Status?: SortOrder;
+  videoEssayAccessCode?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  learnAboutUs?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  learnAboutOther?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -150,6 +172,72 @@ class MitsSlateSuppinfoOrderByInput {
     nullable: true,
   })
   fellowship1Status?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  fellowship10Amount?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  fellowship10AppliedDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  fellowship10AwardedDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  fellowship10Duration?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  fellowship10Name?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  fellowship10Status?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -688,17 +776,6 @@ class MitsSlateSuppinfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  first?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   hasFellowships?: SortOrder;
 
   @ApiProperty({
@@ -711,83 +788,6 @@ class MitsSlateSuppinfoOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  last?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  learnAboutOther?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  learnAboutUs?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  middle?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  prefix?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  videoEssayAccessCode?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  videoEssayUrl?: SortOrder;
 }
 
 export { MitsSlateSuppinfoOrderByInput as MitsSlateSuppinfoOrderByInput };

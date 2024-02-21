@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuUsersUsertypesHistoryService } from "../luUsersUsertypesHistory.service";
 import { LuUsersUsertypesHistoryCreateInput } from "./LuUsersUsertypesHistoryCreateInput";
-import { LuUsersUsertypesHistoryWhereInput } from "./LuUsersUsertypesHistoryWhereInput";
-import { LuUsersUsertypesHistoryWhereUniqueInput } from "./LuUsersUsertypesHistoryWhereUniqueInput";
-import { LuUsersUsertypesHistoryFindManyArgs } from "./LuUsersUsertypesHistoryFindManyArgs";
-import { LuUsersUsertypesHistoryUpdateInput } from "./LuUsersUsertypesHistoryUpdateInput";
 import { LuUsersUsertypesHistory } from "./LuUsersUsertypesHistory";
+import { LuUsersUsertypesHistoryFindManyArgs } from "./LuUsersUsertypesHistoryFindManyArgs";
+import { LuUsersUsertypesHistoryWhereUniqueInput } from "./LuUsersUsertypesHistoryWhereUniqueInput";
+import { LuUsersUsertypesHistoryUpdateInput } from "./LuUsersUsertypesHistoryUpdateInput";
 
 export class LuUsersUsertypesHistoryControllerBase {
   constructor(protected readonly service: LuUsersUsertypesHistoryService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuUsersUsertypesHistory })
-  async create(
+  async createLuUsersUsertypesHistory(
     @common.Body() data: LuUsersUsertypesHistoryCreateInput
   ): Promise<LuUsersUsertypesHistory> {
-    return await this.service.create({
+    return await this.service.createLuUsersUsertypesHistory({
       data: data,
       select: {
-        deleteTimestamp: true,
-        deleteUsersId: true,
-        id: true,
         userId: true,
         usertypeId: true,
+        deleteUsersId: true,
+        deleteTimestamp: true,
+        id: true,
       },
     });
   }
@@ -46,21 +45,21 @@ export class LuUsersUsertypesHistoryControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuUsersUsertypesHistory] })
   @ApiNestedQuery(LuUsersUsertypesHistoryFindManyArgs)
-  async findMany(
+  async luUsersUsertypesHistories(
     @common.Req() request: Request
   ): Promise<LuUsersUsertypesHistory[]> {
     const args = plainToClass(
       LuUsersUsertypesHistoryFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.luUsersUsertypesHistories({
       ...args,
       select: {
-        deleteTimestamp: true,
-        deleteUsersId: true,
-        id: true,
         userId: true,
         usertypeId: true,
+        deleteUsersId: true,
+        deleteTimestamp: true,
+        id: true,
       },
     });
   }
@@ -68,17 +67,17 @@ export class LuUsersUsertypesHistoryControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertypesHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luUsersUsertypesHistory(
     @common.Param() params: LuUsersUsertypesHistoryWhereUniqueInput
   ): Promise<LuUsersUsertypesHistory | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luUsersUsertypesHistory({
       where: params,
       select: {
-        deleteTimestamp: true,
-        deleteUsersId: true,
-        id: true,
         userId: true,
         usertypeId: true,
+        deleteUsersId: true,
+        deleteTimestamp: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -92,20 +91,20 @@ export class LuUsersUsertypesHistoryControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertypesHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuUsersUsertypesHistory(
     @common.Param() params: LuUsersUsertypesHistoryWhereUniqueInput,
     @common.Body() data: LuUsersUsertypesHistoryUpdateInput
   ): Promise<LuUsersUsertypesHistory | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuUsersUsertypesHistory({
         where: params,
         data: data,
         select: {
-          deleteTimestamp: true,
-          deleteUsersId: true,
-          id: true,
           userId: true,
           usertypeId: true,
+          deleteUsersId: true,
+          deleteTimestamp: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -121,18 +120,18 @@ export class LuUsersUsertypesHistoryControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertypesHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuUsersUsertypesHistory(
     @common.Param() params: LuUsersUsertypesHistoryWhereUniqueInput
   ): Promise<LuUsersUsertypesHistory | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuUsersUsertypesHistory({
         where: params,
         select: {
-          deleteTimestamp: true,
-          deleteUsersId: true,
-          id: true,
           userId: true,
           usertypeId: true,
+          deleteUsersId: true,
+          deleteTimestamp: true,
+          id: true,
         },
       });
     } catch (error) {

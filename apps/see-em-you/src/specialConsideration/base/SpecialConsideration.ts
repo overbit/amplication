@@ -11,28 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, ValidateNested, IsString } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsString, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class SpecialConsideration {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -48,6 +32,22 @@ class SpecialConsideration {
   @IsInt()
   @Field(() => Number)
   specialConsideration!: number;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { SpecialConsideration as SpecialConsideration };

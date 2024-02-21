@@ -12,10 +12,10 @@ export const LegacyEthnicityList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Ethnicity Id" source="ethnicityId" />
-        <TextField label="Id" source="id" />
         <TextField label="Name" source="name" />
         <TextField label="Sortorder" source="sortorder" />
+        <TextField label="Ethnicity Id" source="ethnicityId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

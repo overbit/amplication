@@ -11,21 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, ValidateNested, IsInt } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsString, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
 
 @ObjectType()
 class MlArea {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -36,11 +28,11 @@ class MlArea {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: () => Application,
   })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
 
   @ApiProperty({
     required: true,
@@ -49,6 +41,14 @@ class MlArea {
   @ValidateNested()
   @Type(() => ProgramModel)
   programs?: ProgramModel;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MlArea as MlArea };

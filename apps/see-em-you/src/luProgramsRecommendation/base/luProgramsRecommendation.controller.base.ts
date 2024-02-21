@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuProgramsRecommendationService } from "../luProgramsRecommendation.service";
 import { LuProgramsRecommendationCreateInput } from "./LuProgramsRecommendationCreateInput";
-import { LuProgramsRecommendationWhereInput } from "./LuProgramsRecommendationWhereInput";
-import { LuProgramsRecommendationWhereUniqueInput } from "./LuProgramsRecommendationWhereUniqueInput";
-import { LuProgramsRecommendationFindManyArgs } from "./LuProgramsRecommendationFindManyArgs";
-import { LuProgramsRecommendationUpdateInput } from "./LuProgramsRecommendationUpdateInput";
 import { LuProgramsRecommendation } from "./LuProgramsRecommendation";
+import { LuProgramsRecommendationFindManyArgs } from "./LuProgramsRecommendationFindManyArgs";
+import { LuProgramsRecommendationWhereUniqueInput } from "./LuProgramsRecommendationWhereUniqueInput";
+import { LuProgramsRecommendationUpdateInput } from "./LuProgramsRecommendationUpdateInput";
 
 export class LuProgramsRecommendationControllerBase {
   constructor(protected readonly service: LuProgramsRecommendationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuProgramsRecommendation })
-  async create(
+  async createLuProgramsRecommendation(
     @common.Body() data: LuProgramsRecommendationCreateInput
   ): Promise<LuProgramsRecommendation> {
-    return await this.service.create({
+    return await this.service.createLuProgramsRecommendation({
       data: data,
       select: {
-        id: true,
-        numrequired: true,
         programId: true,
         recommendationtypeId: true,
+        numrequired: true,
+        id: true,
       },
     });
   }
@@ -45,20 +44,20 @@ export class LuProgramsRecommendationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuProgramsRecommendation] })
   @ApiNestedQuery(LuProgramsRecommendationFindManyArgs)
-  async findMany(
+  async luProgramsRecommendations(
     @common.Req() request: Request
   ): Promise<LuProgramsRecommendation[]> {
     const args = plainToClass(
       LuProgramsRecommendationFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.luProgramsRecommendations({
       ...args,
       select: {
-        id: true,
-        numrequired: true,
         programId: true,
         recommendationtypeId: true,
+        numrequired: true,
+        id: true,
       },
     });
   }
@@ -66,16 +65,16 @@ export class LuProgramsRecommendationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsRecommendation })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luProgramsRecommendation(
     @common.Param() params: LuProgramsRecommendationWhereUniqueInput
   ): Promise<LuProgramsRecommendation | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luProgramsRecommendation({
       where: params,
       select: {
-        id: true,
-        numrequired: true,
         programId: true,
         recommendationtypeId: true,
+        numrequired: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -89,19 +88,19 @@ export class LuProgramsRecommendationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsRecommendation })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuProgramsRecommendation(
     @common.Param() params: LuProgramsRecommendationWhereUniqueInput,
     @common.Body() data: LuProgramsRecommendationUpdateInput
   ): Promise<LuProgramsRecommendation | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuProgramsRecommendation({
         where: params,
         data: data,
         select: {
-          id: true,
-          numrequired: true,
           programId: true,
           recommendationtypeId: true,
+          numrequired: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -117,17 +116,17 @@ export class LuProgramsRecommendationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsRecommendation })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuProgramsRecommendation(
     @common.Param() params: LuProgramsRecommendationWhereUniqueInput
   ): Promise<LuProgramsRecommendation | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuProgramsRecommendation({
         where: params,
         select: {
-          id: true,
-          numrequired: true,
           programId: true,
           recommendationtypeId: true,
+          numrequired: true,
+          id: true,
         },
       });
     } catch (error) {

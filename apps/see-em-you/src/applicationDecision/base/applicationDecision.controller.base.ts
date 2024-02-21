@@ -18,34 +18,33 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationDecisionService } from "../applicationDecision.service";
 import { ApplicationDecisionCreateInput } from "./ApplicationDecisionCreateInput";
-import { ApplicationDecisionWhereInput } from "./ApplicationDecisionWhereInput";
-import { ApplicationDecisionWhereUniqueInput } from "./ApplicationDecisionWhereUniqueInput";
-import { ApplicationDecisionFindManyArgs } from "./ApplicationDecisionFindManyArgs";
-import { ApplicationDecisionUpdateInput } from "./ApplicationDecisionUpdateInput";
 import { ApplicationDecision } from "./ApplicationDecision";
+import { ApplicationDecisionFindManyArgs } from "./ApplicationDecisionFindManyArgs";
+import { ApplicationDecisionWhereUniqueInput } from "./ApplicationDecisionWhereUniqueInput";
+import { ApplicationDecisionUpdateInput } from "./ApplicationDecisionUpdateInput";
 
 export class ApplicationDecisionControllerBase {
   constructor(protected readonly service: ApplicationDecisionService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicationDecision })
-  async create(
+  async createApplicationDecision(
     @common.Body() data: ApplicationDecisionCreateInput
   ): Promise<ApplicationDecision> {
-    return await this.service.create({
+    return await this.service.createApplicationDecision({
       data: data,
       select: {
+        applicationId: true,
+        programId: true,
+        periodId: true,
         admissionProgramId: true,
         admissionStatus: true,
-        applicationId: true,
-        attendOtherUniversity: true,
         comments: true,
-        id: true,
+        attendOtherUniversity: true,
         otherChoiceLocation: true,
-        periodId: true,
-        programId: true,
         visitCampus: true,
-        visitComments: true,
         visitHelpful: true,
+        visitComments: true,
+        id: true,
       },
     });
   }
@@ -53,25 +52,25 @@ export class ApplicationDecisionControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicationDecision] })
   @ApiNestedQuery(ApplicationDecisionFindManyArgs)
-  async findMany(
+  async applicationDecisions(
     @common.Req() request: Request
   ): Promise<ApplicationDecision[]> {
     const args = plainToClass(ApplicationDecisionFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.applicationDecisions({
       ...args,
       select: {
+        applicationId: true,
+        programId: true,
+        periodId: true,
         admissionProgramId: true,
         admissionStatus: true,
-        applicationId: true,
-        attendOtherUniversity: true,
         comments: true,
-        id: true,
+        attendOtherUniversity: true,
         otherChoiceLocation: true,
-        periodId: true,
-        programId: true,
         visitCampus: true,
-        visitComments: true,
         visitHelpful: true,
+        visitComments: true,
+        id: true,
       },
     });
   }
@@ -79,24 +78,24 @@ export class ApplicationDecisionControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationDecision(
     @common.Param() params: ApplicationDecisionWhereUniqueInput
   ): Promise<ApplicationDecision | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationDecision({
       where: params,
       select: {
+        applicationId: true,
+        programId: true,
+        periodId: true,
         admissionProgramId: true,
         admissionStatus: true,
-        applicationId: true,
-        attendOtherUniversity: true,
         comments: true,
-        id: true,
+        attendOtherUniversity: true,
         otherChoiceLocation: true,
-        periodId: true,
-        programId: true,
         visitCampus: true,
-        visitComments: true,
         visitHelpful: true,
+        visitComments: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -110,27 +109,27 @@ export class ApplicationDecisionControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationDecision(
     @common.Param() params: ApplicationDecisionWhereUniqueInput,
     @common.Body() data: ApplicationDecisionUpdateInput
   ): Promise<ApplicationDecision | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationDecision({
         where: params,
         data: data,
         select: {
+          applicationId: true,
+          programId: true,
+          periodId: true,
           admissionProgramId: true,
           admissionStatus: true,
-          applicationId: true,
-          attendOtherUniversity: true,
           comments: true,
-          id: true,
+          attendOtherUniversity: true,
           otherChoiceLocation: true,
-          periodId: true,
-          programId: true,
           visitCampus: true,
-          visitComments: true,
           visitHelpful: true,
+          visitComments: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -146,25 +145,25 @@ export class ApplicationDecisionControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationDecision(
     @common.Param() params: ApplicationDecisionWhereUniqueInput
   ): Promise<ApplicationDecision | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationDecision({
         where: params,
         select: {
+          applicationId: true,
+          programId: true,
+          periodId: true,
           admissionProgramId: true,
           admissionStatus: true,
-          applicationId: true,
-          attendOtherUniversity: true,
           comments: true,
-          id: true,
+          attendOtherUniversity: true,
           otherChoiceLocation: true,
-          periodId: true,
-          programId: true,
           visitCampus: true,
-          visitComments: true,
           visitHelpful: true,
+          visitComments: true,
+          id: true,
         },
       });
     } catch (error) {

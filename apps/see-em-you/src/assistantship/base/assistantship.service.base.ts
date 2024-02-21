@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Assistantship } from "@prisma/client";
+import { Prisma, Assistantship as PrismaAssistantship } from "@prisma/client";
 
 export class AssistantshipServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class AssistantshipServiceBase {
     return this.prisma.assistantship.count(args);
   }
 
-  async findMany<T extends Prisma.AssistantshipFindManyArgs>(
+  async assistantships<T extends Prisma.AssistantshipFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AssistantshipFindManyArgs>
-  ): Promise<Assistantship[]> {
+  ): Promise<PrismaAssistantship[]> {
     return this.prisma.assistantship.findMany(args);
   }
-  async findOne<T extends Prisma.AssistantshipFindUniqueArgs>(
+  async assistantship<T extends Prisma.AssistantshipFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AssistantshipFindUniqueArgs>
-  ): Promise<Assistantship | null> {
+  ): Promise<PrismaAssistantship | null> {
     return this.prisma.assistantship.findUnique(args);
   }
-  async create<T extends Prisma.AssistantshipCreateArgs>(
+  async createAssistantship<T extends Prisma.AssistantshipCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AssistantshipCreateArgs>
-  ): Promise<Assistantship> {
+  ): Promise<PrismaAssistantship> {
     return this.prisma.assistantship.create<T>(args);
   }
-  async update<T extends Prisma.AssistantshipUpdateArgs>(
+  async updateAssistantship<T extends Prisma.AssistantshipUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AssistantshipUpdateArgs>
-  ): Promise<Assistantship> {
+  ): Promise<PrismaAssistantship> {
     return this.prisma.assistantship.update<T>(args);
   }
-  async delete<T extends Prisma.AssistantshipDeleteArgs>(
+  async deleteAssistantship<T extends Prisma.AssistantshipDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AssistantshipDeleteArgs>
-  ): Promise<Assistantship> {
+  ): Promise<PrismaAssistantship> {
     return this.prisma.assistantship.delete(args);
   }
 }

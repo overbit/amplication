@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { GrescoreMscsWaiverService } from "../grescoreMscsWaiver.service";
 import { GrescoreMscsWaiverCreateInput } from "./GrescoreMscsWaiverCreateInput";
-import { GrescoreMscsWaiverWhereInput } from "./GrescoreMscsWaiverWhereInput";
-import { GrescoreMscsWaiverWhereUniqueInput } from "./GrescoreMscsWaiverWhereUniqueInput";
-import { GrescoreMscsWaiverFindManyArgs } from "./GrescoreMscsWaiverFindManyArgs";
-import { GrescoreMscsWaiverUpdateInput } from "./GrescoreMscsWaiverUpdateInput";
 import { GrescoreMscsWaiver } from "./GrescoreMscsWaiver";
+import { GrescoreMscsWaiverFindManyArgs } from "./GrescoreMscsWaiverFindManyArgs";
+import { GrescoreMscsWaiverWhereUniqueInput } from "./GrescoreMscsWaiverWhereUniqueInput";
+import { GrescoreMscsWaiverUpdateInput } from "./GrescoreMscsWaiverUpdateInput";
 
 export class GrescoreMscsWaiverControllerBase {
   constructor(protected readonly service: GrescoreMscsWaiverService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: GrescoreMscsWaiver })
-  async create(
+  async createGrescoreMscsWaiver(
     @common.Body() data: GrescoreMscsWaiverCreateInput
   ): Promise<GrescoreMscsWaiver> {
-    return await this.service.create({
+    return await this.service.createGrescoreMscsWaiver({
       data: data,
       select: {
-        id: true,
         waiverAgree: true,
         waiverTime: true,
+        id: true,
       },
     });
   }
@@ -44,16 +43,16 @@ export class GrescoreMscsWaiverControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [GrescoreMscsWaiver] })
   @ApiNestedQuery(GrescoreMscsWaiverFindManyArgs)
-  async findMany(
+  async grescoreMscsWaivers(
     @common.Req() request: Request
   ): Promise<GrescoreMscsWaiver[]> {
     const args = plainToClass(GrescoreMscsWaiverFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.grescoreMscsWaivers({
       ...args,
       select: {
-        id: true,
         waiverAgree: true,
         waiverTime: true,
+        id: true,
       },
     });
   }
@@ -61,15 +60,15 @@ export class GrescoreMscsWaiverControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: GrescoreMscsWaiver })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async grescoreMscsWaiver(
     @common.Param() params: GrescoreMscsWaiverWhereUniqueInput
   ): Promise<GrescoreMscsWaiver | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.grescoreMscsWaiver({
       where: params,
       select: {
-        id: true,
         waiverAgree: true,
         waiverTime: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -83,18 +82,18 @@ export class GrescoreMscsWaiverControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: GrescoreMscsWaiver })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateGrescoreMscsWaiver(
     @common.Param() params: GrescoreMscsWaiverWhereUniqueInput,
     @common.Body() data: GrescoreMscsWaiverUpdateInput
   ): Promise<GrescoreMscsWaiver | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGrescoreMscsWaiver({
         where: params,
         data: data,
         select: {
-          id: true,
           waiverAgree: true,
           waiverTime: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -110,16 +109,16 @@ export class GrescoreMscsWaiverControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: GrescoreMscsWaiver })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteGrescoreMscsWaiver(
     @common.Param() params: GrescoreMscsWaiverWhereUniqueInput
   ): Promise<GrescoreMscsWaiver | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteGrescoreMscsWaiver({
         where: params,
         select: {
-          id: true,
           waiverAgree: true,
           waiverTime: true,
+          id: true,
         },
       });
     } catch (error) {

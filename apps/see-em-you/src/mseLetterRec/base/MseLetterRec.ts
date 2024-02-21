@@ -21,14 +21,6 @@ class MseLetterRec {
   })
   @IsInt()
   @Field(() => Number)
-  algortihms!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   applicationId!: number;
 
   @ApiProperty({
@@ -37,23 +29,7 @@ class MseLetterRec {
   })
   @IsInt()
   @Field(() => Number)
-  dataStructures!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  discrete!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  reviewerId!: number;
 
   @ApiProperty({
     required: true,
@@ -69,7 +45,31 @@ class MseLetterRec {
   })
   @IsInt()
   @Field(() => Number)
-  reviewerId!: number;
+  discrete!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  algortihms!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  dataStructures!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { MseLetterRec as MseLetterRec };

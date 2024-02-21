@@ -18,30 +18,30 @@ import { DegreesallService } from "../degreesall.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   name: "exampleName",
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   name: "exampleName",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     name: "exampleName",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   name: "exampleName",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createDegreesall() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  degreesalls: () => FIND_MANY_RESULT,
+  degreesall: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

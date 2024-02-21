@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCommitteeArgs } from "./CreateCommitteeArgs";
-import { UpdateCommitteeArgs } from "./UpdateCommitteeArgs";
-import { DeleteCommitteeArgs } from "./DeleteCommitteeArgs";
+import { Committee } from "./Committee";
 import { CommitteeCountArgs } from "./CommitteeCountArgs";
 import { CommitteeFindManyArgs } from "./CommitteeFindManyArgs";
 import { CommitteeFindUniqueArgs } from "./CommitteeFindUniqueArgs";
-import { Committee } from "./Committee";
+import { CreateCommitteeArgs } from "./CreateCommitteeArgs";
+import { UpdateCommitteeArgs } from "./UpdateCommitteeArgs";
+import { DeleteCommitteeArgs } from "./DeleteCommitteeArgs";
 import { CommitteeService } from "../committee.service";
 @graphql.Resolver(() => Committee)
 export class CommitteeResolverBase {
@@ -38,14 +38,14 @@ export class CommitteeResolverBase {
   async committees(
     @graphql.Args() args: CommitteeFindManyArgs
   ): Promise<Committee[]> {
-    return this.service.findMany(args);
+    return this.service.committees(args);
   }
 
   @graphql.Query(() => Committee, { nullable: true })
   async committee(
     @graphql.Args() args: CommitteeFindUniqueArgs
   ): Promise<Committee | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.committee(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class CommitteeResolverBase {
   async createCommittee(
     @graphql.Args() args: CreateCommitteeArgs
   ): Promise<Committee> {
-    return await this.service.create({
+    return await this.service.createCommittee({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class CommitteeResolverBase {
     @graphql.Args() args: UpdateCommitteeArgs
   ): Promise<Committee | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCommittee({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class CommitteeResolverBase {
     @graphql.Args() args: DeleteCommitteeArgs
   ): Promise<Committee | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCommittee(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

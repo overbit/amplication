@@ -12,12 +12,12 @@ export const GroupRankCommentList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Comment" source="comment" />
         <TextField label="Group Id" source="groupId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
-        <TextField label="Period Id" source="periodId" />
         <TextField label="Round" source="round" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Comment" source="comment" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

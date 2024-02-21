@@ -1,9 +1,9 @@
 import { MhciSlateAppSchool as TMhciSlateAppSchool } from "../api/mhciSlateAppSchool/MhciSlateAppSchool";
 
-export const MHCISLATEAPPSCHOOL_TITLE_FIELD = "first";
+export const MHCISLATEAPPSCHOOL_TITLE_FIELD = "prefix";
 
 export const MhciSlateAppSchoolTitle = (
   record: TMhciSlateAppSchool
 ): string => {
-  return record.first?.toString() || String(record.id);
+  return record.prefix?.toString() || String(record.id);
 };

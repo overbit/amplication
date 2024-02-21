@@ -12,11 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsString,
-  IsOptional,
   IsInt,
-  IsBoolean,
+  IsOptional,
+  IsString,
   IsDate,
+  IsBoolean,
 } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -24,28 +24,6 @@ import { Type } from "class-transformer";
 class TestusersInfoUpdateInput {
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  additionalinfo?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  addressCurCity?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -53,7 +31,7 @@ class TestusersInfoUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  addressCurCountry?: number | null;
+  userId?: number;
 
   @ApiProperty({
     required: false,
@@ -64,18 +42,18 @@ class TestusersInfoUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  addressCurPcode?: string | null;
+  gender?: string | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
   })
-  @IsInt()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => Date, {
     nullable: true,
   })
-  addressCurState?: number | null;
+  dob?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -130,6 +108,50 @@ class TestusersInfoUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  addressCurCity?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  addressCurState?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  addressCurPcode?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  addressCurCountry?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   addressCurTel?: string | null;
 
   @ApiProperty({
@@ -153,50 +175,6 @@ class TestusersInfoUpdateInput {
     nullable: true,
   })
   addressCurTelWork?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  addressPermCity?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  addressPermCountry?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  addressPermPcode?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  addressPermState?: number | null;
 
   @ApiProperty({
     required: false,
@@ -251,6 +229,50 @@ class TestusersInfoUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  addressPermCity?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  addressPermState?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  addressPermPcode?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  addressPermCountry?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   addressPermTel?: string | null;
 
   @ApiProperty({
@@ -277,61 +299,6 @@ class TestusersInfoUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  buckleyWaive?: boolean | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  citCountry?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  company?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  curPaRes?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  dob?: Date | null;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -354,6 +321,17 @@ class TestusersInfoUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  visastatus?: number | null;
+
+  @ApiProperty({
+    required: false,
     type: String,
   })
   @IsString()
@@ -361,7 +339,18 @@ class TestusersInfoUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  gender?: string | null;
+  company?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  buckleyWaive?: boolean | null;
 
   @ApiProperty({
     required: false,
@@ -383,18 +372,29 @@ class TestusersInfoUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  userId?: number;
+  citCountry?: number | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  visastatus?: number | null;
+  additionalinfo?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  curPaRes?: string | null;
 }
 
 export { TestusersInfoUpdateInput as TestusersInfoUpdateInput };

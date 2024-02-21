@@ -3,10 +3,10 @@ import { SortOrder } from "../../util/SortOrder";
 export type MhciPrereqsConversationCommentOrderByInput = {
   applicationId?: SortOrder;
   comment?: SortOrder;
-  id?: SortOrder;
-  lu_users_usertypes_id?: SortOrder;
-  prereq_id?: SortOrder;
+  timestamp?: SortOrder;
   periodId?: SortOrder;
   programId?: SortOrder;
-  timestamp?: SortOrder;
+  prereq_id?: SortOrder;
+  lu_users_usertypes_id?: SortOrder;
+  id?: SortOrder;
 };

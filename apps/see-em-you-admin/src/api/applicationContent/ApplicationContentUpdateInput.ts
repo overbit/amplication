@@ -1,6 +1,6 @@
 export type ApplicationContentUpdateInput = {
-  desired?: boolean | null;
-  programId?: number | null;
-  required?: boolean | null;
   sectionIdentifier?: string | null;
+  programId?: number | null;
+  desired?: boolean | null;
+  required?: boolean | null;
 };

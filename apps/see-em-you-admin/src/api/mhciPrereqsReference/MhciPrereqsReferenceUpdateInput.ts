@@ -1,23 +1,23 @@
 export type MhciPrereqsReferenceUpdateInput = {
-  anovaComment?: string | null;
+  applicationId?: number;
+  refUserId?: number;
+  content?: string | null;
+  datafileId?: number | null;
+  submitted?: boolean;
+  reminderSentCount?: number;
+  lastReminderSent?: Date | null;
   anova_knowledge?:
     | "No_knowledge"
     | "Not_confident"
     | "Direct_knowledge"
     | null;
-  applicationId?: number;
-  content?: string | null;
-  datafileId?: number | null;
-  lastReminderSent?: Date | null;
-  periodId?: number | null;
-  programId?: number | null;
-  refUserId?: number;
-  regressionComment?: string | null;
+  anovaComment?: string | null;
   regression_knowledge?:
     | "No_knowledge"
     | "Not_confident"
     | "Direct_knowledge"
     | null;
-  reminderSentCount?: number;
-  submitted?: boolean;
+  regressionComment?: string | null;
+  periodId?: number | null;
+  programId?: number | null;
 };

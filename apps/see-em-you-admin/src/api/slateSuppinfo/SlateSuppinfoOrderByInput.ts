@@ -1,18 +1,26 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type SlateSuppinfoOrderByInput = {
-  fellowship10Amount?: SortOrder;
-  fellowship10AppliedDate?: SortOrder;
-  fellowship10AwardedDate?: SortOrder;
-  fellowship10Duration?: SortOrder;
-  fellowship10Name?: SortOrder;
-  fellowship10Status?: SortOrder;
+  prefix?: SortOrder;
+  first?: SortOrder;
+  middle?: SortOrder;
+  last?: SortOrder;
+  videoEssayUrl?: SortOrder;
+  videoEssayAccessCode?: SortOrder;
+  learnAboutUs?: SortOrder;
+  learnAboutOther?: SortOrder;
   fellowship1Amount?: SortOrder;
   fellowship1AppliedDate?: SortOrder;
   fellowship1AwardedDate?: SortOrder;
   fellowship1Duration?: SortOrder;
   fellowship1Name?: SortOrder;
   fellowship1Status?: SortOrder;
+  fellowship10Amount?: SortOrder;
+  fellowship10AppliedDate?: SortOrder;
+  fellowship10AwardedDate?: SortOrder;
+  fellowship10Duration?: SortOrder;
+  fellowship10Name?: SortOrder;
+  fellowship10Status?: SortOrder;
   fellowship2Amount?: SortOrder;
   fellowship2AppliedDate?: SortOrder;
   fellowship2AwardedDate?: SortOrder;
@@ -61,14 +69,6 @@ export type SlateSuppinfoOrderByInput = {
   fellowship9Duration?: SortOrder;
   fellowship9Name?: SortOrder;
   fellowship9Status?: SortOrder;
-  first?: SortOrder;
   hasFellowships?: SortOrder;
   id?: SortOrder;
-  last?: SortOrder;
-  learnAboutOther?: SortOrder;
-  learnAboutUs?: SortOrder;
-  middle?: SortOrder;
-  prefix?: SortOrder;
-  videoEssayAccessCode?: SortOrder;
-  videoEssayUrl?: SortOrder;
 };

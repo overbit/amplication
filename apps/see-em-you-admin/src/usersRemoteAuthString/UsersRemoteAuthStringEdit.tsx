@@ -3,8 +3,8 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const UsersRemoteAuthStringEdit = (
@@ -13,8 +13,8 @@ export const UsersRemoteAuthStringEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Remote Auth String" source="remoteAuthString" />
         <NumberInput step={1} label="Users Id" source="usersId" />
+        <TextInput label="Remote Auth String" source="remoteAuthString" />
       </SimpleForm>
     </Edit>
   );

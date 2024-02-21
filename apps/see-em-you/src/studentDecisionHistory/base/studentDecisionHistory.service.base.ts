@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, StudentDecisionHistory, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  StudentDecisionHistory as PrismaStudentDecisionHistory,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class StudentDecisionHistoryServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,43 @@ export class StudentDecisionHistoryServiceBase {
     return this.prisma.studentDecisionHistory.count(args);
   }
 
-  async findMany<T extends Prisma.StudentDecisionHistoryFindManyArgs>(
+  async studentDecisionHistories<
+    T extends Prisma.StudentDecisionHistoryFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionHistoryFindManyArgs>
-  ): Promise<StudentDecisionHistory[]> {
+  ): Promise<PrismaStudentDecisionHistory[]> {
     return this.prisma.studentDecisionHistory.findMany(args);
   }
-  async findOne<T extends Prisma.StudentDecisionHistoryFindUniqueArgs>(
+  async studentDecisionHistory<
+    T extends Prisma.StudentDecisionHistoryFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionHistoryFindUniqueArgs>
-  ): Promise<StudentDecisionHistory | null> {
+  ): Promise<PrismaStudentDecisionHistory | null> {
     return this.prisma.studentDecisionHistory.findUnique(args);
   }
-  async create<T extends Prisma.StudentDecisionHistoryCreateArgs>(
+  async createStudentDecisionHistory<
+    T extends Prisma.StudentDecisionHistoryCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionHistoryCreateArgs>
-  ): Promise<StudentDecisionHistory> {
+  ): Promise<PrismaStudentDecisionHistory> {
     return this.prisma.studentDecisionHistory.create<T>(args);
   }
-  async update<T extends Prisma.StudentDecisionHistoryUpdateArgs>(
+  async updateStudentDecisionHistory<
+    T extends Prisma.StudentDecisionHistoryUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionHistoryUpdateArgs>
-  ): Promise<StudentDecisionHistory> {
+  ): Promise<PrismaStudentDecisionHistory> {
     return this.prisma.studentDecisionHistory.update<T>(args);
   }
-  async delete<T extends Prisma.StudentDecisionHistoryDeleteArgs>(
+  async deleteStudentDecisionHistory<
+    T extends Prisma.StudentDecisionHistoryDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.StudentDecisionHistoryDeleteArgs>
-  ): Promise<StudentDecisionHistory> {
+  ): Promise<PrismaStudentDecisionHistory> {
     return this.prisma.studentDecisionHistory.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.studentDecisionHistory
       .findUnique({
         where: { id: parentId },

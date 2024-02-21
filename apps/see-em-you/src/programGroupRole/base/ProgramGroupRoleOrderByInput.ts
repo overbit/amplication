@@ -28,7 +28,7 @@ class ProgramGroupRoleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  programGroupId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class ProgramGroupRoleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  programGroupId?: SortOrder;
+  usersId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class ProgramGroupRoleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usersId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ProgramGroupRoleOrderByInput as ProgramGroupRoleOrderByInput };

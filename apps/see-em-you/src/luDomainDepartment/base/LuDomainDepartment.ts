@@ -21,7 +21,7 @@ class LuDomainDepartment {
   })
   @IsInt()
   @Field(() => Number)
-  departmentId!: number;
+  domainId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class LuDomainDepartment {
   })
   @IsInt()
   @Field(() => Number)
-  domainId!: number;
+  departmentId!: number;
 
   @ApiProperty({
     required: true,

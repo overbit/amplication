@@ -11,12 +11,20 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class AttendanceCreateInput {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  status!: number;
+
   @ApiProperty({
     required: true,
     type: () => ApplicationWhereUniqueInput,
@@ -25,14 +33,6 @@ class AttendanceCreateInput {
   @Type(() => ApplicationWhereUniqueInput)
   @Field(() => ApplicationWhereUniqueInput)
   application!: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  status!: number;
 }
 
 export { AttendanceCreateInput as AttendanceCreateInput };

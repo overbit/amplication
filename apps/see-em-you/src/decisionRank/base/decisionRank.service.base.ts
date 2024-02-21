@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DecisionRank } from "@prisma/client";
+import { Prisma, DecisionRank as PrismaDecisionRank } from "@prisma/client";
 
 export class DecisionRankServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DecisionRankServiceBase {
     return this.prisma.decisionRank.count(args);
   }
 
-  async findMany<T extends Prisma.DecisionRankFindManyArgs>(
+  async decisionRanks<T extends Prisma.DecisionRankFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankFindManyArgs>
-  ): Promise<DecisionRank[]> {
+  ): Promise<PrismaDecisionRank[]> {
     return this.prisma.decisionRank.findMany(args);
   }
-  async findOne<T extends Prisma.DecisionRankFindUniqueArgs>(
+  async decisionRank<T extends Prisma.DecisionRankFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankFindUniqueArgs>
-  ): Promise<DecisionRank | null> {
+  ): Promise<PrismaDecisionRank | null> {
     return this.prisma.decisionRank.findUnique(args);
   }
-  async create<T extends Prisma.DecisionRankCreateArgs>(
+  async createDecisionRank<T extends Prisma.DecisionRankCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankCreateArgs>
-  ): Promise<DecisionRank> {
+  ): Promise<PrismaDecisionRank> {
     return this.prisma.decisionRank.create<T>(args);
   }
-  async update<T extends Prisma.DecisionRankUpdateArgs>(
+  async updateDecisionRank<T extends Prisma.DecisionRankUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankUpdateArgs>
-  ): Promise<DecisionRank> {
+  ): Promise<PrismaDecisionRank> {
     return this.prisma.decisionRank.update<T>(args);
   }
-  async delete<T extends Prisma.DecisionRankDeleteArgs>(
+  async deleteDecisionRank<T extends Prisma.DecisionRankDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionRankDeleteArgs>
-  ): Promise<DecisionRank> {
+  ): Promise<PrismaDecisionRank> {
     return this.prisma.decisionRank.delete(args);
   }
 }

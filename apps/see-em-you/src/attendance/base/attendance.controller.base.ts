@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AttendanceService } from "../attendance.service";
 import { AttendanceCreateInput } from "./AttendanceCreateInput";
-import { AttendanceWhereInput } from "./AttendanceWhereInput";
-import { AttendanceWhereUniqueInput } from "./AttendanceWhereUniqueInput";
-import { AttendanceFindManyArgs } from "./AttendanceFindManyArgs";
-import { AttendanceUpdateInput } from "./AttendanceUpdateInput";
 import { Attendance } from "./Attendance";
+import { AttendanceFindManyArgs } from "./AttendanceFindManyArgs";
+import { AttendanceWhereUniqueInput } from "./AttendanceWhereUniqueInput";
+import { AttendanceUpdateInput } from "./AttendanceUpdateInput";
 
 export class AttendanceControllerBase {
   constructor(protected readonly service: AttendanceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Attendance })
-  async create(
+  async createAttendance(
     @common.Body() data: AttendanceCreateInput
   ): Promise<Attendance> {
-    return await this.service.create({
+    return await this.service.createAttendance({
       data: {
         ...data,
 
@@ -40,6 +39,8 @@ export class AttendanceControllerBase {
         },
       },
       select: {
+        status: true,
+
         application: {
           select: {
             id: true,
@@ -47,7 +48,6 @@ export class AttendanceControllerBase {
         },
 
         id: true,
-        status: true,
       },
     });
   }
@@ -55,11 +55,13 @@ export class AttendanceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Attendance] })
   @ApiNestedQuery(AttendanceFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Attendance[]> {
+  async attendances(@common.Req() request: Request): Promise<Attendance[]> {
     const args = plainToClass(AttendanceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.attendances({
       ...args,
       select: {
+        status: true,
+
         application: {
           select: {
             id: true,
@@ -67,7 +69,6 @@ export class AttendanceControllerBase {
         },
 
         id: true,
-        status: true,
       },
     });
   }
@@ -75,12 +76,14 @@ export class AttendanceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Attendance })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async attendance(
     @common.Param() params: AttendanceWhereUniqueInput
   ): Promise<Attendance | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.attendance({
       where: params,
       select: {
+        status: true,
+
         application: {
           select: {
             id: true,
@@ -88,7 +91,6 @@ export class AttendanceControllerBase {
         },
 
         id: true,
-        status: true,
       },
     });
     if (result === null) {
@@ -102,12 +104,12 @@ export class AttendanceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Attendance })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAttendance(
     @common.Param() params: AttendanceWhereUniqueInput,
     @common.Body() data: AttendanceUpdateInput
   ): Promise<Attendance | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAttendance({
         where: params,
         data: {
           ...data,
@@ -117,6 +119,8 @@ export class AttendanceControllerBase {
           },
         },
         select: {
+          status: true,
+
           application: {
             select: {
               id: true,
@@ -124,7 +128,6 @@ export class AttendanceControllerBase {
           },
 
           id: true,
-          status: true,
         },
       });
     } catch (error) {
@@ -140,13 +143,15 @@ export class AttendanceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Attendance })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAttendance(
     @common.Param() params: AttendanceWhereUniqueInput
   ): Promise<Attendance | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAttendance({
         where: params,
         select: {
+          status: true,
+
           application: {
             select: {
               id: true,
@@ -154,7 +159,6 @@ export class AttendanceControllerBase {
           },
 
           id: true,
-          status: true,
         },
       });
     } catch (error) {

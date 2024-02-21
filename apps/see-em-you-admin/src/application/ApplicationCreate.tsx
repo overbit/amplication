@@ -4,14 +4,14 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  NumberInput,
+  TextInput,
+  DateTimeInput,
+  BooleanInput,
   ReferenceInput,
   SelectInput,
   ReferenceArrayInput,
   SelectArrayInput,
-  TextInput,
-  BooleanInput,
-  NumberInput,
-  DateTimeInput,
 } from "react-admin";
 
 import { AcoPalTitle } from "../acoPal/AcoPalTitle";
@@ -54,6 +54,65 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="User Id" source="userId" />
+        <TextInput label="Name" source="name" />
+        <DateTimeInput label="Submitted Date" source="submittedDate" />
+        <BooleanInput label="Submitted" source="submitted" />
+        <DateTimeInput label="Created Date" source="createdDate" />
+        <BooleanInput label="Paid" source="paid" />
+        <DateTimeInput label="Paymentdate" source="paymentdate" />
+        <NumberInput label="Paymentamount" source="paymentamount" />
+        <NumberInput step={1} label="Paymenttype" source="paymenttype" />
+        <BooleanInput label="Waive" source="waive" />
+        <DateTimeInput label="Waivedate" source="waivedate" />
+        <BooleanInput label="Complete" source="complete" />
+        <TextInput label="Statementofpurpose" source="statementofpurpose" />
+        <DateTimeInput label="Notificationsent" source="notificationsent" />
+        <BooleanInput label="Student Commit" source="studentCommit" />
+        <BooleanInput label="Cups" source="cups" />
+        <BooleanInput label="Womenfellowship" source="womenfellowship" />
+        <BooleanInput label="Pier" source="pier" />
+        <NumberInput step={1} label="Cnbc" source="cnbc" />
+        <BooleanInput label="Portfoliosubmitted" source="portfoliosubmitted" />
+        <TextInput label="Portfolio Link" source="portfolioLink" />
+        <TextInput label="Portfolio Password" source="portfolioPassword" />
+        <TextInput label="Area1" source="area1" />
+        <TextInput label="Area2" source="area2" />
+        <TextInput label="Area3" source="area3" />
+        <BooleanInput label="Buckleywaive" source="buckleywaive" />
+        <TextInput label="Referral To Program" source="referralToProgram" />
+        <TextInput label="Recruiting Event" source="recruitingEvent" />
+        <TextInput label="Other Inst" source="otherInst" />
+        <TextInput label="Cross Dept Progs" source="crossDeptProgs" />
+        <TextInput
+          label="Cross Dept Progs Other"
+          source="crossDeptProgsOther"
+        />
+        <TextInput label="Records Permission" source="recordsPermission" />
+        <BooleanInput
+          label="Masters Review Waiver"
+          source="mastersReviewWaiver"
+        />
+        <TextInput label="Sent To Program" source="sentToProgram" />
+        <TextInput label="Cur Enrolled" source="curEnrolled" />
+        <TextInput label="Honors" source="honors" />
+        <TextInput label="Round2" source="round2" />
+        <TextInput label="Round3" source="round3" />
+        <TextInput label="Rejection Sent" source="rejectionSent" />
+        <TextInput label="Waitlist Sent" source="waitlistSent" />
+        <NumberInput
+          step={1}
+          label="Previous Coursework"
+          source="previousCoursework"
+        />
+        <BooleanInput label="Hide" source="hide" />
+        <NumberInput
+          step={1}
+          label="Waive Higher Fee"
+          source="waiveHigherFee"
+        />
+        <TextInput label="Invitation Email Sent" source="invitationEmailSent" />
+        <NumberInput step={1} label="Waive Toefl" source="waiveToefl" />
         <ReferenceInput source="acoPal.id" reference="AcoPal" label="Aco Pal">
           <SelectInput optionText={AcoPalTitle} />
         </ReferenceInput>
@@ -65,9 +124,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={ApplicationAdminNoteTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Area1" source="area1" />
-        <TextInput label="Area2" source="area2" />
-        <TextInput label="Area3" source="area3" />
         <ReferenceArrayInput
           source="attendance"
           reference="Attendance"
@@ -76,7 +132,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={AttendanceTitle} />
         </ReferenceArrayInput>
-        <BooleanInput label="Buckleywaive" source="buckleywaive" />
         <ReferenceArrayInput
           source="cashnetPayment"
           reference="CashnetPayment"
@@ -85,16 +140,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={CashnetPaymentTitle} />
         </ReferenceArrayInput>
-        <NumberInput step={1} label="Cnbc" source="cnbc" />
-        <BooleanInput label="Complete" source="complete" />
-        <DateTimeInput label="Created Date" source="createdDate" />
-        <TextInput label="Cross Dept Progs" source="crossDeptProgs" />
-        <TextInput
-          label="Cross Dept Progs Other"
-          source="crossDeptProgsOther"
-        />
-        <BooleanInput label="Cups" source="cups" />
-        <TextInput label="Cur Enrolled" source="curEnrolled" />
         <ReferenceArrayInput
           source="experience"
           reference="Experience"
@@ -127,8 +172,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={GresubjectscoreTitle} />
         </ReferenceArrayInput>
-        <BooleanInput label="Hide" source="hide" />
-        <TextInput label="Honors" source="honors" />
         <ReferenceArrayInput
           source="ieltsscore"
           reference="Ieltsscore"
@@ -137,7 +180,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={IeltsscoreTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Invitation Email Sent" source="invitationEmailSent" />
         <ReferenceArrayInput
           source="luApplicationAdvisor"
           reference="LuApplicationAdvisor"
@@ -184,10 +226,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectInput optionText={LuApplicationStartSemesterTitle} />
         </ReferenceInput>
-        <BooleanInput
-          label="Masters Review Waiver"
-          source="mastersReviewWaiver"
-        />
         <ReferenceArrayInput
           source="mhciPrereqs"
           reference="MhciPrereq"
@@ -235,10 +273,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectInput optionText={MseCodilityTitle} />
         </ReferenceInput>
-        <TextInput label="Name" source="name" />
-        <DateTimeInput label="Notificationsent" source="notificationsent" />
-        <TextInput label="Other Inst" source="otherInst" />
-        <BooleanInput label="Paid" source="paid" />
         <ReferenceArrayInput
           source="payment"
           reference="Payment"
@@ -247,9 +281,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={PaymentTitle} />
         </ReferenceArrayInput>
-        <NumberInput label="Paymentamount" source="paymentamount" />
-        <DateTimeInput label="Paymentdate" source="paymentdate" />
-        <NumberInput step={1} label="Paymenttype" source="paymenttype" />
         <ReferenceArrayInput
           source="periodApplication"
           reference="PeriodApplication"
@@ -258,15 +289,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={PeriodApplicationTitle} />
         </ReferenceArrayInput>
-        <BooleanInput label="Pier" source="pier" />
-        <TextInput label="Portfolio Link" source="portfolioLink" />
-        <TextInput label="Portfolio Password" source="portfolioPassword" />
-        <BooleanInput label="Portfoliosubmitted" source="portfoliosubmitted" />
-        <NumberInput
-          step={1}
-          label="Previous Coursework"
-          source="previousCoursework"
-        />
         <ReferenceArrayInput
           source="promotionHistory"
           reference="PromotionHistory"
@@ -291,9 +313,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={RecommendTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Records Permission" source="recordsPermission" />
-        <TextInput label="Recruiting Event" source="recruitingEvent" />
-        <TextInput label="Referral To Program" source="referralToProgram" />
         <ReferenceArrayInput
           source="registrationFeePayment"
           reference="RegistrationFeePayment"
@@ -310,7 +329,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={RegistrationFeeStatusTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Rejection Sent" source="rejectionSent" />
         <ReferenceArrayInput
           source="review"
           reference="Review"
@@ -335,9 +353,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={RissMcnairTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Round2" source="round2" />
-        <TextInput label="Round3" source="round3" />
-        <TextInput label="Sent To Program" source="sentToProgram" />
         <ReferenceArrayInput
           source="specialConsideration"
           reference="SpecialConsideration"
@@ -346,8 +361,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={SpecialConsiderationTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Statementofpurpose" source="statementofpurpose" />
-        <BooleanInput label="Student Commit" source="studentCommit" />
         <ReferenceArrayInput
           source="studentDecision"
           reference="StudentDecision"
@@ -364,8 +377,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={StudentDecisionHistoryTitle} />
         </ReferenceArrayInput>
-        <BooleanInput label="Submitted" source="submitted" />
-        <DateTimeInput label="Submitted Date" source="submittedDate" />
         <ReferenceArrayInput
           source="tagMembers"
           reference="TagMember"
@@ -374,17 +385,6 @@ export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={TagMemberTitle} />
         </ReferenceArrayInput>
-        <NumberInput step={1} label="User Id" source="userId" />
-        <TextInput label="Waitlist Sent" source="waitlistSent" />
-        <BooleanInput label="Waive" source="waive" />
-        <DateTimeInput label="Waivedate" source="waivedate" />
-        <NumberInput
-          step={1}
-          label="Waive Higher Fee"
-          source="waiveHigherFee"
-        />
-        <NumberInput step={1} label="Waive Toefl" source="waiveToefl" />
-        <BooleanInput label="Womenfellowship" source="womenfellowship" />
       </SimpleForm>
     </Create>
   );

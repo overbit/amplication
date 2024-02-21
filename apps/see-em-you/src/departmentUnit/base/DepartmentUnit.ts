@@ -25,19 +25,19 @@ class DepartmentUnit {
 
   @ApiProperty({
     required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
   unitId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { DepartmentUnit as DepartmentUnit };

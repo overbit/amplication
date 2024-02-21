@@ -12,12 +12,12 @@ export const TagList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Category" source="category" />
-        <TextField label="Id" source="id" />
         <TextField label="Name" source="name" />
-        <TextField label="Parent" source="parent" />
         <TextField label="Sticky" source="sticky" />
         <TextField label="Type Field" source="typeField" />
+        <TextField label="Category" source="category" />
+        <TextField label="Parent" source="parent" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

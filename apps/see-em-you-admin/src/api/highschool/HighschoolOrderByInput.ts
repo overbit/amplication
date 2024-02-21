@@ -2,15 +2,15 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type HighschoolOrderByInput = {
   appId?: SortOrder;
-  created?: SortOrder;
-  graduated?: SortOrder;
-  hsCeeb?: SortOrder;
-  hsDuration?: SortOrder;
-  hsGradYear?: SortOrder;
   hsName?: SortOrder;
+  hsCeeb?: SortOrder;
   hsNces?: SortOrder;
   hsState?: SortOrder;
   hsZip?: SortOrder;
-  id?: SortOrder;
+  hsGradYear?: SortOrder;
+  hsDuration?: SortOrder;
+  graduated?: SortOrder;
+  created?: SortOrder;
   modified?: SortOrder;
+  id?: SortOrder;
 };

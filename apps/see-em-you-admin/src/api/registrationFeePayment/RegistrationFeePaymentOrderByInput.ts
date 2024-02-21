@@ -1,13 +1,13 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type RegistrationFeePaymentOrderByInput = {
-  application_id?: SortOrder;
   departmentId?: SortOrder;
-  id?: SortOrder;
-  lastModTime?: SortOrder;
-  lastModUserId?: SortOrder;
+  paymentType?: SortOrder;
   paymentAmount?: SortOrder;
   paymentIntentDate?: SortOrder;
   payment_status?: SortOrder;
-  paymentType?: SortOrder;
+  lastModTime?: SortOrder;
+  lastModUserId?: SortOrder;
+  application_id?: SortOrder;
+  id?: SortOrder;
 };

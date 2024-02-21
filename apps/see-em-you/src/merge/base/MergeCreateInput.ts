@@ -25,19 +25,19 @@ class MergeCreateInput {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  errorField!: number;
-
-  @ApiProperty({
-    required: true,
     type: Boolean,
   })
   @IsBoolean()
   @Field(() => Boolean)
   merged!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  errorField!: number;
 
   @ApiProperty({
     required: false,

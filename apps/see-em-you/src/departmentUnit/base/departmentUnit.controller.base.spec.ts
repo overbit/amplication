@@ -19,33 +19,33 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   departmentId: 42,
-  id: "exampleId",
   unitId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
   departmentId: 42,
-  id: "exampleId",
   unitId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     departmentId: 42,
-    id: "exampleId",
     unitId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   departmentId: 42,
-  id: "exampleId",
   unitId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createDepartmentUnit() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  departmentUnits: () => FIND_MANY_RESULT,
+  departmentUnit: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

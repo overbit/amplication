@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DepartmentReplyperiodService } from "../departmentReplyperiod.service";
 import { DepartmentReplyperiodCreateInput } from "./DepartmentReplyperiodCreateInput";
-import { DepartmentReplyperiodWhereInput } from "./DepartmentReplyperiodWhereInput";
-import { DepartmentReplyperiodWhereUniqueInput } from "./DepartmentReplyperiodWhereUniqueInput";
-import { DepartmentReplyperiodFindManyArgs } from "./DepartmentReplyperiodFindManyArgs";
-import { DepartmentReplyperiodUpdateInput } from "./DepartmentReplyperiodUpdateInput";
 import { DepartmentReplyperiod } from "./DepartmentReplyperiod";
+import { DepartmentReplyperiodFindManyArgs } from "./DepartmentReplyperiodFindManyArgs";
+import { DepartmentReplyperiodWhereUniqueInput } from "./DepartmentReplyperiodWhereUniqueInput";
+import { DepartmentReplyperiodUpdateInput } from "./DepartmentReplyperiodUpdateInput";
 
 export class DepartmentReplyperiodControllerBase {
   constructor(protected readonly service: DepartmentReplyperiodService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DepartmentReplyperiod })
-  async create(
+  async createDepartmentReplyperiod(
     @common.Body() data: DepartmentReplyperiodCreateInput
   ): Promise<DepartmentReplyperiod> {
-    return await this.service.create({
+    return await this.service.createDepartmentReplyperiod({
       data: data,
       select: {
         deptId: true,
+        start: true,
         end: true,
         id: true,
-        start: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class DepartmentReplyperiodControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DepartmentReplyperiod] })
   @ApiNestedQuery(DepartmentReplyperiodFindManyArgs)
-  async findMany(
+  async departmentReplyperiods(
     @common.Req() request: Request
   ): Promise<DepartmentReplyperiod[]> {
     const args = plainToClass(DepartmentReplyperiodFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.departmentReplyperiods({
       ...args,
       select: {
         deptId: true,
+        start: true,
         end: true,
         id: true,
-        start: true,
       },
     });
   }
@@ -63,16 +62,16 @@ export class DepartmentReplyperiodControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DepartmentReplyperiod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async departmentReplyperiod(
     @common.Param() params: DepartmentReplyperiodWhereUniqueInput
   ): Promise<DepartmentReplyperiod | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.departmentReplyperiod({
       where: params,
       select: {
         deptId: true,
+        start: true,
         end: true,
         id: true,
-        start: true,
       },
     });
     if (result === null) {
@@ -86,19 +85,19 @@ export class DepartmentReplyperiodControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DepartmentReplyperiod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDepartmentReplyperiod(
     @common.Param() params: DepartmentReplyperiodWhereUniqueInput,
     @common.Body() data: DepartmentReplyperiodUpdateInput
   ): Promise<DepartmentReplyperiod | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDepartmentReplyperiod({
         where: params,
         data: data,
         select: {
           deptId: true,
+          start: true,
           end: true,
           id: true,
-          start: true,
         },
       });
     } catch (error) {
@@ -114,17 +113,17 @@ export class DepartmentReplyperiodControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DepartmentReplyperiod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDepartmentReplyperiod(
     @common.Param() params: DepartmentReplyperiodWhereUniqueInput
   ): Promise<DepartmentReplyperiod | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDepartmentReplyperiod({
         where: params,
         select: {
           deptId: true,
+          start: true,
           end: true,
           id: true,
-          start: true,
         },
       });
     } catch (error) {

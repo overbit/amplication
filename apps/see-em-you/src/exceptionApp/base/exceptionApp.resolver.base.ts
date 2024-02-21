@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateExceptionAppArgs } from "./CreateExceptionAppArgs";
-import { UpdateExceptionAppArgs } from "./UpdateExceptionAppArgs";
-import { DeleteExceptionAppArgs } from "./DeleteExceptionAppArgs";
+import { ExceptionApp } from "./ExceptionApp";
 import { ExceptionAppCountArgs } from "./ExceptionAppCountArgs";
 import { ExceptionAppFindManyArgs } from "./ExceptionAppFindManyArgs";
 import { ExceptionAppFindUniqueArgs } from "./ExceptionAppFindUniqueArgs";
-import { ExceptionApp } from "./ExceptionApp";
+import { CreateExceptionAppArgs } from "./CreateExceptionAppArgs";
+import { UpdateExceptionAppArgs } from "./UpdateExceptionAppArgs";
+import { DeleteExceptionAppArgs } from "./DeleteExceptionAppArgs";
 import { ExceptionAppService } from "../exceptionApp.service";
 @graphql.Resolver(() => ExceptionApp)
 export class ExceptionAppResolverBase {
@@ -38,14 +38,14 @@ export class ExceptionAppResolverBase {
   async exceptionApps(
     @graphql.Args() args: ExceptionAppFindManyArgs
   ): Promise<ExceptionApp[]> {
-    return this.service.findMany(args);
+    return this.service.exceptionApps(args);
   }
 
   @graphql.Query(() => ExceptionApp, { nullable: true })
   async exceptionApp(
     @graphql.Args() args: ExceptionAppFindUniqueArgs
   ): Promise<ExceptionApp | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.exceptionApp(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ExceptionAppResolverBase {
   async createExceptionApp(
     @graphql.Args() args: CreateExceptionAppArgs
   ): Promise<ExceptionApp> {
-    return await this.service.create({
+    return await this.service.createExceptionApp({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ExceptionAppResolverBase {
     @graphql.Args() args: UpdateExceptionAppArgs
   ): Promise<ExceptionApp | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateExceptionApp({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ExceptionAppResolverBase {
     @graphql.Args() args: DeleteExceptionAppArgs
   ): Promise<ExceptionApp | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteExceptionApp(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

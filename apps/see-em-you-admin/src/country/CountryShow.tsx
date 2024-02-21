@@ -5,9 +5,9 @@ export const CountryShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
-        <TextField label="Iso Code" source="isoCode" />
         <TextField label="Name" source="name" />
+        <TextField label="Iso Code" source="isoCode" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

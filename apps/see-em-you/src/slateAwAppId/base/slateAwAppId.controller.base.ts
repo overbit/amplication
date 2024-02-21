@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateAwAppIdService } from "../slateAwAppId.service";
 import { SlateAwAppIdCreateInput } from "./SlateAwAppIdCreateInput";
-import { SlateAwAppIdWhereInput } from "./SlateAwAppIdWhereInput";
-import { SlateAwAppIdWhereUniqueInput } from "./SlateAwAppIdWhereUniqueInput";
-import { SlateAwAppIdFindManyArgs } from "./SlateAwAppIdFindManyArgs";
-import { SlateAwAppIdUpdateInput } from "./SlateAwAppIdUpdateInput";
 import { SlateAwAppId } from "./SlateAwAppId";
+import { SlateAwAppIdFindManyArgs } from "./SlateAwAppIdFindManyArgs";
+import { SlateAwAppIdWhereUniqueInput } from "./SlateAwAppIdWhereUniqueInput";
+import { SlateAwAppIdUpdateInput } from "./SlateAwAppIdUpdateInput";
 
 export class SlateAwAppIdControllerBase {
   constructor(protected readonly service: SlateAwAppIdService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateAwAppId })
-  async create(
+  async createSlateAwAppId(
     @common.Body() data: SlateAwAppIdCreateInput
   ): Promise<SlateAwAppId> {
-    return await this.service.create({
+    return await this.service.createSlateAwAppId({
       data: data,
       select: {
         awAppId: true,
@@ -43,9 +42,9 @@ export class SlateAwAppIdControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateAwAppId] })
   @ApiNestedQuery(SlateAwAppIdFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateAwAppId[]> {
+  async slateAwAppIds(@common.Req() request: Request): Promise<SlateAwAppId[]> {
     const args = plainToClass(SlateAwAppIdFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateAwAppIds({
       ...args,
       select: {
         awAppId: true,
@@ -57,10 +56,10 @@ export class SlateAwAppIdControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateAwAppId })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateAwAppId(
     @common.Param() params: SlateAwAppIdWhereUniqueInput
   ): Promise<SlateAwAppId | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateAwAppId({
       where: params,
       select: {
         awAppId: true,
@@ -78,12 +77,12 @@ export class SlateAwAppIdControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateAwAppId })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateAwAppId(
     @common.Param() params: SlateAwAppIdWhereUniqueInput,
     @common.Body() data: SlateAwAppIdUpdateInput
   ): Promise<SlateAwAppId | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateAwAppId({
         where: params,
         data: data,
         select: {
@@ -104,11 +103,11 @@ export class SlateAwAppIdControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateAwAppId })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateAwAppId(
     @common.Param() params: SlateAwAppIdWhereUniqueInput
   ): Promise<SlateAwAppId | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateAwAppId({
         where: params,
         select: {
           awAppId: true,

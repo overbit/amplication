@@ -1,9 +1,9 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type StudentDecisionUniversityOrderByInput = {
-  accepted?: SortOrder;
   applicationId?: SortOrder;
-  id?: SortOrder;
-  name?: SortOrder;
   programId?: SortOrder;
+  name?: SortOrder;
+  accepted?: SortOrder;
+  id?: SortOrder;
 };

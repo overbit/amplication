@@ -12,51 +12,17 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsString,
-  IsOptional,
-  ValidateNested,
   IsInt,
+  IsOptional,
+  IsString,
   IsDate,
+  ValidateNested,
 } from "class-validator";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { Type } from "class-transformer";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 
 @InputType()
 class ExperienceUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  address?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
-    nullable: true,
-  })
-  application?: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  company?: string | null;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -67,17 +33,6 @@ class ExperienceUpdateInput {
     nullable: true,
   })
   datafileId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  endDate?: string | null;
 
   @ApiProperty({
     required: false,
@@ -92,28 +47,6 @@ class ExperienceUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  jobDescription?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  jobTitle?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -122,6 +55,17 @@ class ExperienceUpdateInput {
     nullable: true,
   })
   orderEntered?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  company?: string | null;
 
   @ApiProperty({
     required: false,
@@ -143,7 +87,63 @@ class ExperienceUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  endDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   yearsExp?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  address?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  jobTitle?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  jobDescription?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationWhereUniqueInput, {
+    nullable: true,
+  })
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { ExperienceUpdateInput as ExperienceUpdateInput };

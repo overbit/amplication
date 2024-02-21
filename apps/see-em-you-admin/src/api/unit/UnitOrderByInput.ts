@@ -1,15 +1,15 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type UnitOrderByInput = {
-  applicationBasePrice?: SortOrder;
-  applicationProgramPrice?: SortOrder;
-  id?: SortOrder;
-  parentUnitId?: SortOrder;
-  unitCcEmail?: SortOrder;
-  unitDescription?: SortOrder;
   unitName?: SortOrder;
   unitNameShort?: SortOrder;
+  unitDescription?: SortOrder;
+  unitUrl?: SortOrder;
   unitOracleString?: SortOrder;
   unitSystemEmail?: SortOrder;
-  unitUrl?: SortOrder;
+  unitCcEmail?: SortOrder;
+  applicationBasePrice?: SortOrder;
+  applicationProgramPrice?: SortOrder;
+  parentUnitId?: SortOrder;
+  id?: SortOrder;
 };

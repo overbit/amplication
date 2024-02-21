@@ -7,8 +7,8 @@ import {
   TextField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
-import { APPLICATIONREQ_TITLE_FIELD } from "../applicationreq/ApplicationreqTitle";
 import { PROGRAMMODEL_TITLE_FIELD } from "../programModel/ProgramModelTitle";
+import { APPLICATIONREQ_TITLE_FIELD } from "../applicationreq/ApplicationreqTitle";
 
 export const ProgramsApplicationreqList = (
   props: ListProps
@@ -23,6 +23,13 @@ export const ProgramsApplicationreqList = (
     >
       <Datagrid rowClick="show">
         <ReferenceField
+          label="Programs"
+          source="programmodel.id"
+          reference="ProgramModel"
+        >
+          <TextField source={PROGRAMMODEL_TITLE_FIELD} />
+        </ReferenceField>
+        <ReferenceField
           label="Applicationreqs"
           source="applicationreq.id"
           reference="Applicationreq"
@@ -30,13 +37,6 @@ export const ProgramsApplicationreqList = (
           <TextField source={APPLICATIONREQ_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Id" source="id" />
-        <ReferenceField
-          label="Programs"
-          source="programmodel.id"
-          reference="ProgramModel"
-        >
-          <TextField source={PROGRAMMODEL_TITLE_FIELD} />
-        </ReferenceField>
       </Datagrid>
     </List>
   );

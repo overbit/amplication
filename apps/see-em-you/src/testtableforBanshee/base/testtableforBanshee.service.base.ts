@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, TesttableforBanshee } from "@prisma/client";
+import {
+  Prisma,
+  TesttableforBanshee as PrismaTesttableforBanshee,
+} from "@prisma/client";
 
 export class TesttableforBansheeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,35 @@ export class TesttableforBansheeServiceBase {
     return this.prisma.testtableforBanshee.count(args);
   }
 
-  async findMany<T extends Prisma.TesttableforBansheeFindManyArgs>(
+  async testtableforBanshees<T extends Prisma.TesttableforBansheeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.TesttableforBansheeFindManyArgs>
-  ): Promise<TesttableforBanshee[]> {
+  ): Promise<PrismaTesttableforBanshee[]> {
     return this.prisma.testtableforBanshee.findMany(args);
   }
-  async findOne<T extends Prisma.TesttableforBansheeFindUniqueArgs>(
+  async testtableforBanshee<T extends Prisma.TesttableforBansheeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.TesttableforBansheeFindUniqueArgs>
-  ): Promise<TesttableforBanshee | null> {
+  ): Promise<PrismaTesttableforBanshee | null> {
     return this.prisma.testtableforBanshee.findUnique(args);
   }
-  async create<T extends Prisma.TesttableforBansheeCreateArgs>(
+  async createTesttableforBanshee<
+    T extends Prisma.TesttableforBansheeCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.TesttableforBansheeCreateArgs>
-  ): Promise<TesttableforBanshee> {
+  ): Promise<PrismaTesttableforBanshee> {
     return this.prisma.testtableforBanshee.create<T>(args);
   }
-  async update<T extends Prisma.TesttableforBansheeUpdateArgs>(
+  async updateTesttableforBanshee<
+    T extends Prisma.TesttableforBansheeUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.TesttableforBansheeUpdateArgs>
-  ): Promise<TesttableforBanshee> {
+  ): Promise<PrismaTesttableforBanshee> {
     return this.prisma.testtableforBanshee.update<T>(args);
   }
-  async delete<T extends Prisma.TesttableforBansheeDeleteArgs>(
+  async deleteTesttableforBanshee<
+    T extends Prisma.TesttableforBansheeDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.TesttableforBansheeDeleteArgs>
-  ): Promise<TesttableforBanshee> {
+  ): Promise<PrismaTesttableforBanshee> {
     return this.prisma.testtableforBanshee.delete(args);
   }
 }

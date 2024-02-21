@@ -18,25 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UnitRoleService } from "../unitRole.service";
 import { UnitRoleCreateInput } from "./UnitRoleCreateInput";
-import { UnitRoleWhereInput } from "./UnitRoleWhereInput";
-import { UnitRoleWhereUniqueInput } from "./UnitRoleWhereUniqueInput";
-import { UnitRoleFindManyArgs } from "./UnitRoleFindManyArgs";
-import { UnitRoleUpdateInput } from "./UnitRoleUpdateInput";
 import { UnitRole } from "./UnitRole";
+import { UnitRoleFindManyArgs } from "./UnitRoleFindManyArgs";
+import { UnitRoleWhereUniqueInput } from "./UnitRoleWhereUniqueInput";
+import { UnitRoleUpdateInput } from "./UnitRoleUpdateInput";
 
 export class UnitRoleControllerBase {
   constructor(protected readonly service: UnitRoleService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: UnitRole })
-  async create(@common.Body() data: UnitRoleCreateInput): Promise<UnitRole> {
-    return await this.service.create({
+  async createUnitRole(
+    @common.Body() data: UnitRoleCreateInput
+  ): Promise<UnitRole> {
+    return await this.service.createUnitRole({
       data: data,
       select: {
-        id: true,
-        luUsersUsertypesId: true,
-        roleId: true,
         unitId: true,
         usersId: true,
+        luUsersUsertypesId: true,
+        roleId: true,
+        id: true,
       },
     });
   }
@@ -44,16 +45,16 @@ export class UnitRoleControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [UnitRole] })
   @ApiNestedQuery(UnitRoleFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<UnitRole[]> {
+  async unitRoles(@common.Req() request: Request): Promise<UnitRole[]> {
     const args = plainToClass(UnitRoleFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.unitRoles({
       ...args,
       select: {
-        id: true,
-        luUsersUsertypesId: true,
-        roleId: true,
         unitId: true,
         usersId: true,
+        luUsersUsertypesId: true,
+        roleId: true,
+        id: true,
       },
     });
   }
@@ -61,17 +62,17 @@ export class UnitRoleControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: UnitRole })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async unitRole(
     @common.Param() params: UnitRoleWhereUniqueInput
   ): Promise<UnitRole | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.unitRole({
       where: params,
       select: {
-        id: true,
-        luUsersUsertypesId: true,
-        roleId: true,
         unitId: true,
         usersId: true,
+        luUsersUsertypesId: true,
+        roleId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -85,20 +86,20 @@ export class UnitRoleControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: UnitRole })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUnitRole(
     @common.Param() params: UnitRoleWhereUniqueInput,
     @common.Body() data: UnitRoleUpdateInput
   ): Promise<UnitRole | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUnitRole({
         where: params,
         data: data,
         select: {
-          id: true,
-          luUsersUsertypesId: true,
-          roleId: true,
           unitId: true,
           usersId: true,
+          luUsersUsertypesId: true,
+          roleId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -114,18 +115,18 @@ export class UnitRoleControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: UnitRole })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUnitRole(
     @common.Param() params: UnitRoleWhereUniqueInput
   ): Promise<UnitRole | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUnitRole({
         where: params,
         select: {
-          id: true,
-          luUsersUsertypesId: true,
-          roleId: true,
           unitId: true,
           usersId: true,
+          luUsersUsertypesId: true,
+          roleId: true,
+          id: true,
         },
       });
     } catch (error) {

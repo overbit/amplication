@@ -1,19 +1,19 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type GrescoreOrderByInput = {
-  analyticalpercentile?: SortOrder;
-  analyticalscore?: SortOrder;
-  analyticalwritingpercentile?: SortOrder;
-  analyticalwritingscore?: SortOrder;
   applicationId?: SortOrder;
-  athome?: SortOrder;
+  testdate?: SortOrder;
+  verbalscore?: SortOrder;
+  verbalpercentile?: SortOrder;
+  quantitativescore?: SortOrder;
+  quantitativepercentile?: SortOrder;
+  analyticalscore?: SortOrder;
+  analyticalpercentile?: SortOrder;
+  analyticalwritingscore?: SortOrder;
+  analyticalwritingpercentile?: SortOrder;
+  scorereceived?: SortOrder;
   datafileId?: SortOrder;
+  athome?: SortOrder;
   greEmail?: SortOrder;
   id?: SortOrder;
-  quantitativepercentile?: SortOrder;
-  quantitativescore?: SortOrder;
-  scorereceived?: SortOrder;
-  testdate?: SortOrder;
-  verbalpercentile?: SortOrder;
-  verbalscore?: SortOrder;
 };

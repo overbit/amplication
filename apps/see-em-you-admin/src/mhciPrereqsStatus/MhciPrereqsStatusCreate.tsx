@@ -4,11 +4,11 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
-  SelectInput,
   NumberInput,
+  SelectInput,
   TextInput,
   DateTimeInput,
+  ReferenceInput,
 } from "react-admin";
 
 import { MhciPrereqTitle } from "../mhciPrereq/MhciPrereqTitle";
@@ -19,15 +19,6 @@ export const MhciPrereqsStatusCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="mhciPrereqs.id"
-          reference="MhciPrereq"
-          label="Mhci Prereqs"
-        >
-          <SelectInput optionText={MhciPrereqTitle} />
-        </ReferenceInput>
-        <NumberInput step={1} label="Program Id" source="programId" />
-        <TextInput label="Reviewer Explanation" source="reviewerExplanation" />
         <NumberInput
           step={1}
           label="Reviewer Lu Users Usertypes Id"
@@ -50,6 +41,7 @@ export const MhciPrereqsStatusCreate = (
           optionText="label"
           optionValue="value"
         />
+        <TextInput label="Reviewer Explanation" source="reviewerExplanation" />
         <DateTimeInput label="Reviewer Timestamp" source="reviewerTimestamp" />
         <SelectInput
           source="status3"
@@ -64,6 +56,14 @@ export const MhciPrereqsStatusCreate = (
           allowEmpty
           optionValue="value"
         />
+        <NumberInput step={1} label="Program Id" source="programId" />
+        <ReferenceInput
+          source="mhciPrereqs.id"
+          reference="MhciPrereq"
+          label="Mhci Prereqs"
+        >
+          <SelectInput optionText={MhciPrereqTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Create>
   );

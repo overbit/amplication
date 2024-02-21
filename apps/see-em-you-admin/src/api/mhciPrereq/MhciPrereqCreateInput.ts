@@ -3,11 +3,10 @@ import { MhciPrereqsConversationCommentCreateNestedManyWithoutMhciPrereqsInput }
 import { MhciPrereqsStatusWhereUniqueInput } from "../mhciPrereqsStatus/MhciPrereqsStatusWhereUniqueInput";
 
 export type MhciPrereqCreateInput = {
-  application: ApplicationWhereUniqueInput;
-  mhciPrereqsConversationComments?: MhciPrereqsConversationCommentCreateNestedManyWithoutMhciPrereqsInput;
-  mhciPrereqsStatus?: MhciPrereqsStatusWhereUniqueInput | null;
-  periodId: number;
+  studentLuUsersUsertypesId: number;
   prereq_type: "design" | "programming" | "statistics";
+  periodId: number;
+  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
   status2?:
     | "Student_Saved"
     | "Not_Submitted"
@@ -15,6 +14,7 @@ export type MhciPrereqCreateInput = {
     | "Student_Edited"
     | "Reviewer_Responded"
     | null;
-  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
-  studentLuUsersUsertypesId: number;
+  application: ApplicationWhereUniqueInput;
+  mhciPrereqsConversationComments?: MhciPrereqsConversationCommentCreateNestedManyWithoutMhciPrereqsInput;
+  mhciPrereqsStatus?: MhciPrereqsStatusWhereUniqueInput | null;
 };

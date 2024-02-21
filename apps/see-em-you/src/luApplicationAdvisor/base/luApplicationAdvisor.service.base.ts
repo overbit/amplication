@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuApplicationAdvisor, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  LuApplicationAdvisor as PrismaLuApplicationAdvisor,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class LuApplicationAdvisorServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,43 @@ export class LuApplicationAdvisorServiceBase {
     return this.prisma.luApplicationAdvisor.count(args);
   }
 
-  async findMany<T extends Prisma.LuApplicationAdvisorFindManyArgs>(
+  async luApplicationAdvisors<
+    T extends Prisma.LuApplicationAdvisorFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationAdvisorFindManyArgs>
-  ): Promise<LuApplicationAdvisor[]> {
+  ): Promise<PrismaLuApplicationAdvisor[]> {
     return this.prisma.luApplicationAdvisor.findMany(args);
   }
-  async findOne<T extends Prisma.LuApplicationAdvisorFindUniqueArgs>(
+  async luApplicationAdvisor<
+    T extends Prisma.LuApplicationAdvisorFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationAdvisorFindUniqueArgs>
-  ): Promise<LuApplicationAdvisor | null> {
+  ): Promise<PrismaLuApplicationAdvisor | null> {
     return this.prisma.luApplicationAdvisor.findUnique(args);
   }
-  async create<T extends Prisma.LuApplicationAdvisorCreateArgs>(
+  async createLuApplicationAdvisor<
+    T extends Prisma.LuApplicationAdvisorCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationAdvisorCreateArgs>
-  ): Promise<LuApplicationAdvisor> {
+  ): Promise<PrismaLuApplicationAdvisor> {
     return this.prisma.luApplicationAdvisor.create<T>(args);
   }
-  async update<T extends Prisma.LuApplicationAdvisorUpdateArgs>(
+  async updateLuApplicationAdvisor<
+    T extends Prisma.LuApplicationAdvisorUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationAdvisorUpdateArgs>
-  ): Promise<LuApplicationAdvisor> {
+  ): Promise<PrismaLuApplicationAdvisor> {
     return this.prisma.luApplicationAdvisor.update<T>(args);
   }
-  async delete<T extends Prisma.LuApplicationAdvisorDeleteArgs>(
+  async deleteLuApplicationAdvisor<
+    T extends Prisma.LuApplicationAdvisorDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationAdvisorDeleteArgs>
-  ): Promise<LuApplicationAdvisor> {
+  ): Promise<PrismaLuApplicationAdvisor> {
     return this.prisma.luApplicationAdvisor.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.luApplicationAdvisor
       .findUnique({
         where: { id: parentId },

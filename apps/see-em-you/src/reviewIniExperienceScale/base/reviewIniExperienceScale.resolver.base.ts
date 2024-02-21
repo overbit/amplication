@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReviewIniExperienceScaleArgs } from "./CreateReviewIniExperienceScaleArgs";
-import { UpdateReviewIniExperienceScaleArgs } from "./UpdateReviewIniExperienceScaleArgs";
-import { DeleteReviewIniExperienceScaleArgs } from "./DeleteReviewIniExperienceScaleArgs";
+import { ReviewIniExperienceScale } from "./ReviewIniExperienceScale";
 import { ReviewIniExperienceScaleCountArgs } from "./ReviewIniExperienceScaleCountArgs";
 import { ReviewIniExperienceScaleFindManyArgs } from "./ReviewIniExperienceScaleFindManyArgs";
 import { ReviewIniExperienceScaleFindUniqueArgs } from "./ReviewIniExperienceScaleFindUniqueArgs";
-import { ReviewIniExperienceScale } from "./ReviewIniExperienceScale";
+import { CreateReviewIniExperienceScaleArgs } from "./CreateReviewIniExperienceScaleArgs";
+import { UpdateReviewIniExperienceScaleArgs } from "./UpdateReviewIniExperienceScaleArgs";
+import { DeleteReviewIniExperienceScaleArgs } from "./DeleteReviewIniExperienceScaleArgs";
 import { ReviewIniExperienceScaleService } from "../reviewIniExperienceScale.service";
 @graphql.Resolver(() => ReviewIniExperienceScale)
 export class ReviewIniExperienceScaleResolverBase {
@@ -38,14 +38,14 @@ export class ReviewIniExperienceScaleResolverBase {
   async reviewIniExperienceScales(
     @graphql.Args() args: ReviewIniExperienceScaleFindManyArgs
   ): Promise<ReviewIniExperienceScale[]> {
-    return this.service.findMany(args);
+    return this.service.reviewIniExperienceScales(args);
   }
 
   @graphql.Query(() => ReviewIniExperienceScale, { nullable: true })
   async reviewIniExperienceScale(
     @graphql.Args() args: ReviewIniExperienceScaleFindUniqueArgs
   ): Promise<ReviewIniExperienceScale | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reviewIniExperienceScale(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ReviewIniExperienceScaleResolverBase {
   async createReviewIniExperienceScale(
     @graphql.Args() args: CreateReviewIniExperienceScaleArgs
   ): Promise<ReviewIniExperienceScale> {
-    return await this.service.create({
+    return await this.service.createReviewIniExperienceScale({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ReviewIniExperienceScaleResolverBase {
     @graphql.Args() args: UpdateReviewIniExperienceScaleArgs
   ): Promise<ReviewIniExperienceScale | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIniExperienceScale({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ReviewIniExperienceScaleResolverBase {
     @graphql.Args() args: DeleteReviewIniExperienceScaleArgs
   ): Promise<ReviewIniExperienceScale | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReviewIniExperienceScale(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

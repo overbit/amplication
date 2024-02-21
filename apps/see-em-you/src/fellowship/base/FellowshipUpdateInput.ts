@@ -14,15 +14,26 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  ValidateNested,
   IsDate,
   IsInt,
+  ValidateNested,
 } from "class-validator";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { Type } from "class-transformer";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 
 @InputType()
 class FellowshipUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  name?: string | null;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -36,15 +47,14 @@ class FellowshipUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput;
+  status?: string | null;
 
   @ApiProperty({
     required: false,
@@ -77,7 +87,7 @@ class FellowshipUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  datafileId?: number | null;
+  duration?: number | null;
 
   @ApiProperty({
     required: false,
@@ -88,18 +98,7 @@ class FellowshipUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  duration?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  name?: string | null;
+  datafileId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -114,14 +113,15 @@ class FellowshipUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsString()
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => ApplicationWhereUniqueInput, {
     nullable: true,
   })
-  status?: string | null;
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { FellowshipUpdateInput as FellowshipUpdateInput };

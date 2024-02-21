@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIniSupportingCourseworkArgs } from "./CreateIniSupportingCourseworkArgs";
-import { UpdateIniSupportingCourseworkArgs } from "./UpdateIniSupportingCourseworkArgs";
-import { DeleteIniSupportingCourseworkArgs } from "./DeleteIniSupportingCourseworkArgs";
+import { IniSupportingCoursework } from "./IniSupportingCoursework";
 import { IniSupportingCourseworkCountArgs } from "./IniSupportingCourseworkCountArgs";
 import { IniSupportingCourseworkFindManyArgs } from "./IniSupportingCourseworkFindManyArgs";
 import { IniSupportingCourseworkFindUniqueArgs } from "./IniSupportingCourseworkFindUniqueArgs";
-import { IniSupportingCoursework } from "./IniSupportingCoursework";
+import { CreateIniSupportingCourseworkArgs } from "./CreateIniSupportingCourseworkArgs";
+import { UpdateIniSupportingCourseworkArgs } from "./UpdateIniSupportingCourseworkArgs";
+import { DeleteIniSupportingCourseworkArgs } from "./DeleteIniSupportingCourseworkArgs";
 import { IniSupportingCourseworkService } from "../iniSupportingCoursework.service";
 @graphql.Resolver(() => IniSupportingCoursework)
 export class IniSupportingCourseworkResolverBase {
@@ -38,14 +38,14 @@ export class IniSupportingCourseworkResolverBase {
   async iniSupportingCourseworks(
     @graphql.Args() args: IniSupportingCourseworkFindManyArgs
   ): Promise<IniSupportingCoursework[]> {
-    return this.service.findMany(args);
+    return this.service.iniSupportingCourseworks(args);
   }
 
   @graphql.Query(() => IniSupportingCoursework, { nullable: true })
   async iniSupportingCoursework(
     @graphql.Args() args: IniSupportingCourseworkFindUniqueArgs
   ): Promise<IniSupportingCoursework | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.iniSupportingCoursework(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class IniSupportingCourseworkResolverBase {
   async createIniSupportingCoursework(
     @graphql.Args() args: CreateIniSupportingCourseworkArgs
   ): Promise<IniSupportingCoursework> {
-    return await this.service.create({
+    return await this.service.createIniSupportingCoursework({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class IniSupportingCourseworkResolverBase {
     @graphql.Args() args: UpdateIniSupportingCourseworkArgs
   ): Promise<IniSupportingCoursework | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniSupportingCoursework({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class IniSupportingCourseworkResolverBase {
     @graphql.Args() args: DeleteIniSupportingCourseworkArgs
   ): Promise<IniSupportingCoursework | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIniSupportingCoursework(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

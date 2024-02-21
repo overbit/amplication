@@ -5,10 +5,10 @@ export const RiskFactorShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Risk Factor" source="riskFactor" />
         <TextField label="Array Index" source="arrayIndex" />
         <TextField label="Department Id" source="departmentId" />
         <TextField label="Id" source="id" />
-        <TextField label="Risk Factor" source="riskFactor" />
       </SimpleShowLayout>
     </Show>
   );

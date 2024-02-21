@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ReviewRiskFactorOther } from "@prisma/client";
+import {
+  Prisma,
+  ReviewRiskFactorOther as PrismaReviewRiskFactorOther,
+} from "@prisma/client";
 
 export class ReviewRiskFactorOtherServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ReviewRiskFactorOtherServiceBase {
     return this.prisma.reviewRiskFactorOther.count(args);
   }
 
-  async findMany<T extends Prisma.ReviewRiskFactorOtherFindManyArgs>(
+  async reviewRiskFactorOthers<
+    T extends Prisma.ReviewRiskFactorOtherFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewRiskFactorOtherFindManyArgs>
-  ): Promise<ReviewRiskFactorOther[]> {
+  ): Promise<PrismaReviewRiskFactorOther[]> {
     return this.prisma.reviewRiskFactorOther.findMany(args);
   }
-  async findOne<T extends Prisma.ReviewRiskFactorOtherFindUniqueArgs>(
+  async reviewRiskFactorOther<
+    T extends Prisma.ReviewRiskFactorOtherFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewRiskFactorOtherFindUniqueArgs>
-  ): Promise<ReviewRiskFactorOther | null> {
+  ): Promise<PrismaReviewRiskFactorOther | null> {
     return this.prisma.reviewRiskFactorOther.findUnique(args);
   }
-  async create<T extends Prisma.ReviewRiskFactorOtherCreateArgs>(
+  async createReviewRiskFactorOther<
+    T extends Prisma.ReviewRiskFactorOtherCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewRiskFactorOtherCreateArgs>
-  ): Promise<ReviewRiskFactorOther> {
+  ): Promise<PrismaReviewRiskFactorOther> {
     return this.prisma.reviewRiskFactorOther.create<T>(args);
   }
-  async update<T extends Prisma.ReviewRiskFactorOtherUpdateArgs>(
+  async updateReviewRiskFactorOther<
+    T extends Prisma.ReviewRiskFactorOtherUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewRiskFactorOtherUpdateArgs>
-  ): Promise<ReviewRiskFactorOther> {
+  ): Promise<PrismaReviewRiskFactorOther> {
     return this.prisma.reviewRiskFactorOther.update<T>(args);
   }
-  async delete<T extends Prisma.ReviewRiskFactorOtherDeleteArgs>(
+  async deleteReviewRiskFactorOther<
+    T extends Prisma.ReviewRiskFactorOtherDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewRiskFactorOtherDeleteArgs>
-  ): Promise<ReviewRiskFactorOther> {
+  ): Promise<PrismaReviewRiskFactorOther> {
     return this.prisma.reviewRiskFactorOther.delete(args);
   }
 }

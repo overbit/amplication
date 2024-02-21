@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ReviewIniOverallScale } from "@prisma/client";
+import {
+  Prisma,
+  ReviewIniOverallScale as PrismaReviewIniOverallScale,
+} from "@prisma/client";
 
 export class ReviewIniOverallScaleServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ReviewIniOverallScaleServiceBase {
     return this.prisma.reviewIniOverallScale.count(args);
   }
 
-  async findMany<T extends Prisma.ReviewIniOverallScaleFindManyArgs>(
+  async reviewIniOverallScales<
+    T extends Prisma.ReviewIniOverallScaleFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniOverallScaleFindManyArgs>
-  ): Promise<ReviewIniOverallScale[]> {
+  ): Promise<PrismaReviewIniOverallScale[]> {
     return this.prisma.reviewIniOverallScale.findMany(args);
   }
-  async findOne<T extends Prisma.ReviewIniOverallScaleFindUniqueArgs>(
+  async reviewIniOverallScale<
+    T extends Prisma.ReviewIniOverallScaleFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniOverallScaleFindUniqueArgs>
-  ): Promise<ReviewIniOverallScale | null> {
+  ): Promise<PrismaReviewIniOverallScale | null> {
     return this.prisma.reviewIniOverallScale.findUnique(args);
   }
-  async create<T extends Prisma.ReviewIniOverallScaleCreateArgs>(
+  async createReviewIniOverallScale<
+    T extends Prisma.ReviewIniOverallScaleCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniOverallScaleCreateArgs>
-  ): Promise<ReviewIniOverallScale> {
+  ): Promise<PrismaReviewIniOverallScale> {
     return this.prisma.reviewIniOverallScale.create<T>(args);
   }
-  async update<T extends Prisma.ReviewIniOverallScaleUpdateArgs>(
+  async updateReviewIniOverallScale<
+    T extends Prisma.ReviewIniOverallScaleUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniOverallScaleUpdateArgs>
-  ): Promise<ReviewIniOverallScale> {
+  ): Promise<PrismaReviewIniOverallScale> {
     return this.prisma.reviewIniOverallScale.update<T>(args);
   }
-  async delete<T extends Prisma.ReviewIniOverallScaleDeleteArgs>(
+  async deleteReviewIniOverallScale<
+    T extends Prisma.ReviewIniOverallScaleDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniOverallScaleDeleteArgs>
-  ): Promise<ReviewIniOverallScale> {
+  ): Promise<PrismaReviewIniOverallScale> {
     return this.prisma.reviewIniOverallScale.delete(args);
   }
 }

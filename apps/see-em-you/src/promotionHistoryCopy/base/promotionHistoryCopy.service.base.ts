@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PromotionHistoryCopy } from "@prisma/client";
+import {
+  Prisma,
+  PromotionHistoryCopy as PrismaPromotionHistoryCopy,
+} from "@prisma/client";
 
 export class PromotionHistoryCopyServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class PromotionHistoryCopyServiceBase {
     return this.prisma.promotionHistoryCopy.count(args);
   }
 
-  async findMany<T extends Prisma.PromotionHistoryCopyFindManyArgs>(
+  async promotionHistoryCopies<
+    T extends Prisma.PromotionHistoryCopyFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryCopyFindManyArgs>
-  ): Promise<PromotionHistoryCopy[]> {
+  ): Promise<PrismaPromotionHistoryCopy[]> {
     return this.prisma.promotionHistoryCopy.findMany(args);
   }
-  async findOne<T extends Prisma.PromotionHistoryCopyFindUniqueArgs>(
+  async promotionHistoryCopy<
+    T extends Prisma.PromotionHistoryCopyFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryCopyFindUniqueArgs>
-  ): Promise<PromotionHistoryCopy | null> {
+  ): Promise<PrismaPromotionHistoryCopy | null> {
     return this.prisma.promotionHistoryCopy.findUnique(args);
   }
-  async create<T extends Prisma.PromotionHistoryCopyCreateArgs>(
+  async createPromotionHistoryCopy<
+    T extends Prisma.PromotionHistoryCopyCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryCopyCreateArgs>
-  ): Promise<PromotionHistoryCopy> {
+  ): Promise<PrismaPromotionHistoryCopy> {
     return this.prisma.promotionHistoryCopy.create<T>(args);
   }
-  async update<T extends Prisma.PromotionHistoryCopyUpdateArgs>(
+  async updatePromotionHistoryCopy<
+    T extends Prisma.PromotionHistoryCopyUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryCopyUpdateArgs>
-  ): Promise<PromotionHistoryCopy> {
+  ): Promise<PrismaPromotionHistoryCopy> {
     return this.prisma.promotionHistoryCopy.update<T>(args);
   }
-  async delete<T extends Prisma.PromotionHistoryCopyDeleteArgs>(
+  async deletePromotionHistoryCopy<
+    T extends Prisma.PromotionHistoryCopyDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryCopyDeleteArgs>
-  ): Promise<PromotionHistoryCopy> {
+  ): Promise<PrismaPromotionHistoryCopy> {
     return this.prisma.promotionHistoryCopy.delete(args);
   }
 }

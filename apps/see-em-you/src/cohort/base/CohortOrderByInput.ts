@@ -28,17 +28,6 @@ class CohortOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  closed?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   cohortId?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,18 @@ class CohortOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  startDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  closed?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +72,7 @@ class CohortOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  startDate?: SortOrder;
+  id?: SortOrder;
 }
 
 export { CohortOrderByInput as CohortOrderByInput };

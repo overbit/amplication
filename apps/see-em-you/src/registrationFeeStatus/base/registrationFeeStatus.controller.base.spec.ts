@@ -18,42 +18,42 @@ import { RegistrationFeeStatusService } from "../registrationFeeStatus.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  amount: 42.424242424,
   departmentId: 42,
-  id: 42,
+  amount: 42.424242424,
   paid: "true",
   waived: "true",
+  id: 42,
 };
 const CREATE_RESULT = {
-  amount: 42.424242424,
   departmentId: 42,
-  id: 42,
+  amount: 42.424242424,
   paid: "true",
   waived: "true",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    amount: 42.424242424,
     departmentId: 42,
-    id: 42,
+    amount: 42.424242424,
     paid: "true",
     waived: "true",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  amount: 42.424242424,
   departmentId: 42,
-  id: 42,
+  amount: 42.424242424,
   paid: "true",
   waived: "true",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createRegistrationFeeStatus() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  registrationFeeStatuses: () => FIND_MANY_RESULT,
+  registrationFeeStatus: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

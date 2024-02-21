@@ -18,22 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MitsSlateCodilityService } from "../mitsSlateCodility.service";
 import { MitsSlateCodilityCreateInput } from "./MitsSlateCodilityCreateInput";
-import { MitsSlateCodilityWhereInput } from "./MitsSlateCodilityWhereInput";
-import { MitsSlateCodilityWhereUniqueInput } from "./MitsSlateCodilityWhereUniqueInput";
-import { MitsSlateCodilityFindManyArgs } from "./MitsSlateCodilityFindManyArgs";
-import { MitsSlateCodilityUpdateInput } from "./MitsSlateCodilityUpdateInput";
 import { MitsSlateCodility } from "./MitsSlateCodility";
+import { MitsSlateCodilityFindManyArgs } from "./MitsSlateCodilityFindManyArgs";
+import { MitsSlateCodilityWhereUniqueInput } from "./MitsSlateCodilityWhereUniqueInput";
+import { MitsSlateCodilityUpdateInput } from "./MitsSlateCodilityUpdateInput";
 
 export class MitsSlateCodilityControllerBase {
   constructor(protected readonly service: MitsSlateCodilityService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MitsSlateCodility })
-  async create(
+  async createMitsSlateCodility(
     @common.Body() data: MitsSlateCodilityCreateInput
   ): Promise<MitsSlateCodility> {
-    return await this.service.create({
+    return await this.service.createMitsSlateCodility({
       data: data,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         codilityCloseDate: true,
         codilityCreateDate: true,
         codilityIpAddresses: true,
@@ -70,11 +73,7 @@ export class MitsSlateCodilityControllerBase {
         codilityTask4Score: true,
         codilityTestName: true,
         codilityTestSession: true,
-        first: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
   }
@@ -82,11 +81,17 @@ export class MitsSlateCodilityControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MitsSlateCodility] })
   @ApiNestedQuery(MitsSlateCodilityFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MitsSlateCodility[]> {
+  async mitsSlateCodilities(
+    @common.Req() request: Request
+  ): Promise<MitsSlateCodility[]> {
     const args = plainToClass(MitsSlateCodilityFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mitsSlateCodilities({
       ...args,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         codilityCloseDate: true,
         codilityCreateDate: true,
         codilityIpAddresses: true,
@@ -123,11 +128,7 @@ export class MitsSlateCodilityControllerBase {
         codilityTask4Score: true,
         codilityTestName: true,
         codilityTestSession: true,
-        first: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
   }
@@ -135,12 +136,16 @@ export class MitsSlateCodilityControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mitsSlateCodility(
     @common.Param() params: MitsSlateCodilityWhereUniqueInput
   ): Promise<MitsSlateCodility | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mitsSlateCodility({
       where: params,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         codilityCloseDate: true,
         codilityCreateDate: true,
         codilityIpAddresses: true,
@@ -177,11 +182,7 @@ export class MitsSlateCodilityControllerBase {
         codilityTask4Score: true,
         codilityTestName: true,
         codilityTestSession: true,
-        first: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
     if (result === null) {
@@ -195,15 +196,19 @@ export class MitsSlateCodilityControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMitsSlateCodility(
     @common.Param() params: MitsSlateCodilityWhereUniqueInput,
     @common.Body() data: MitsSlateCodilityUpdateInput
   ): Promise<MitsSlateCodility | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateCodility({
         where: params,
         data: data,
         select: {
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           codilityCloseDate: true,
           codilityCreateDate: true,
           codilityIpAddresses: true,
@@ -240,11 +245,7 @@ export class MitsSlateCodilityControllerBase {
           codilityTask4Score: true,
           codilityTestName: true,
           codilityTestSession: true,
-          first: true,
           id: true,
-          last: true,
-          middle: true,
-          prefix: true,
         },
       });
     } catch (error) {
@@ -260,13 +261,17 @@ export class MitsSlateCodilityControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMitsSlateCodility(
     @common.Param() params: MitsSlateCodilityWhereUniqueInput
   ): Promise<MitsSlateCodility | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMitsSlateCodility({
         where: params,
         select: {
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           codilityCloseDate: true,
           codilityCreateDate: true,
           codilityIpAddresses: true,
@@ -303,11 +308,7 @@ export class MitsSlateCodilityControllerBase {
           codilityTask4Score: true,
           codilityTestName: true,
           codilityTestSession: true,
-          first: true,
           id: true,
-          last: true,
-          middle: true,
-          prefix: true,
         },
       });
     } catch (error) {

@@ -1,4 +1,4 @@
 export type UsertypeCreateInput = {
-  description?: string | null;
   name: string;
+  description?: string | null;
 };

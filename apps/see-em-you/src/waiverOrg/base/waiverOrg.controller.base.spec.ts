@@ -18,34 +18,34 @@ import { WaiverOrgService } from "../waiverOrg.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  name: "exampleName",
   active: 42,
   id: 42,
-  name: "exampleName",
 };
 const CREATE_RESULT = {
+  name: "exampleName",
   active: 42,
   id: 42,
-  name: "exampleName",
 };
 const FIND_MANY_RESULT = [
   {
+    name: "exampleName",
     active: 42,
     id: 42,
-    name: "exampleName",
   },
 ];
 const FIND_ONE_RESULT = {
+  name: "exampleName",
   active: 42,
   id: 42,
-  name: "exampleName",
 };
 
 const service = {
-  create() {
+  createWaiverOrg() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  waiverOrgs: () => FIND_MANY_RESULT,
+  waiverOrg: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

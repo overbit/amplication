@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDecisionRankArgs } from "./CreateDecisionRankArgs";
-import { UpdateDecisionRankArgs } from "./UpdateDecisionRankArgs";
-import { DeleteDecisionRankArgs } from "./DeleteDecisionRankArgs";
+import { DecisionRank } from "./DecisionRank";
 import { DecisionRankCountArgs } from "./DecisionRankCountArgs";
 import { DecisionRankFindManyArgs } from "./DecisionRankFindManyArgs";
 import { DecisionRankFindUniqueArgs } from "./DecisionRankFindUniqueArgs";
-import { DecisionRank } from "./DecisionRank";
+import { CreateDecisionRankArgs } from "./CreateDecisionRankArgs";
+import { UpdateDecisionRankArgs } from "./UpdateDecisionRankArgs";
+import { DeleteDecisionRankArgs } from "./DeleteDecisionRankArgs";
 import { DecisionRankService } from "../decisionRank.service";
 @graphql.Resolver(() => DecisionRank)
 export class DecisionRankResolverBase {
@@ -38,14 +38,14 @@ export class DecisionRankResolverBase {
   async decisionRanks(
     @graphql.Args() args: DecisionRankFindManyArgs
   ): Promise<DecisionRank[]> {
-    return this.service.findMany(args);
+    return this.service.decisionRanks(args);
   }
 
   @graphql.Query(() => DecisionRank, { nullable: true })
   async decisionRank(
     @graphql.Args() args: DecisionRankFindUniqueArgs
   ): Promise<DecisionRank | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.decisionRank(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DecisionRankResolverBase {
   async createDecisionRank(
     @graphql.Args() args: CreateDecisionRankArgs
   ): Promise<DecisionRank> {
-    return await this.service.create({
+    return await this.service.createDecisionRank({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DecisionRankResolverBase {
     @graphql.Args() args: UpdateDecisionRankArgs
   ): Promise<DecisionRank | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDecisionRank({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DecisionRankResolverBase {
     @graphql.Args() args: DeleteDecisionRankArgs
   ): Promise<DecisionRank | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDecisionRank(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

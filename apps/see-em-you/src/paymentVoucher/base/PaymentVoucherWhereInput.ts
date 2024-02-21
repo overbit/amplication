@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { PaymentWhereUniqueInput } from "../../payment/base/PaymentWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class PaymentVoucherWhereInput {
@@ -28,6 +29,17 @@ class PaymentVoucherWhereInput {
     nullable: true,
   })
   payment?: PaymentWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { PaymentVoucherWhereInput as PaymentVoucherWhereInput };

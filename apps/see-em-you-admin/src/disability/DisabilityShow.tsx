@@ -6,8 +6,8 @@ export const DisabilityShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Disability Type" source="disabilityType" />
         <TextField label="Has Disability" source="hasDisability" />
+        <TextField label="Disability Type" source="disabilityType" />
         <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>

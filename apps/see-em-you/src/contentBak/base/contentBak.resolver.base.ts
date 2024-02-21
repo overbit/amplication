@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateContentBakArgs } from "./CreateContentBakArgs";
-import { UpdateContentBakArgs } from "./UpdateContentBakArgs";
-import { DeleteContentBakArgs } from "./DeleteContentBakArgs";
+import { ContentBak } from "./ContentBak";
 import { ContentBakCountArgs } from "./ContentBakCountArgs";
 import { ContentBakFindManyArgs } from "./ContentBakFindManyArgs";
 import { ContentBakFindUniqueArgs } from "./ContentBakFindUniqueArgs";
-import { ContentBak } from "./ContentBak";
+import { CreateContentBakArgs } from "./CreateContentBakArgs";
+import { UpdateContentBakArgs } from "./UpdateContentBakArgs";
+import { DeleteContentBakArgs } from "./DeleteContentBakArgs";
 import { ContentBakService } from "../contentBak.service";
 @graphql.Resolver(() => ContentBak)
 export class ContentBakResolverBase {
@@ -38,14 +38,14 @@ export class ContentBakResolverBase {
   async contentBaks(
     @graphql.Args() args: ContentBakFindManyArgs
   ): Promise<ContentBak[]> {
-    return this.service.findMany(args);
+    return this.service.contentBaks(args);
   }
 
   @graphql.Query(() => ContentBak, { nullable: true })
   async contentBak(
     @graphql.Args() args: ContentBakFindUniqueArgs
   ): Promise<ContentBak | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.contentBak(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ContentBakResolverBase {
   async createContentBak(
     @graphql.Args() args: CreateContentBakArgs
   ): Promise<ContentBak> {
-    return await this.service.create({
+    return await this.service.createContentBak({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ContentBakResolverBase {
     @graphql.Args() args: UpdateContentBakArgs
   ): Promise<ContentBak | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateContentBak({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ContentBakResolverBase {
     @graphql.Args() args: DeleteContentBakArgs
   ): Promise<ContentBak | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteContentBak(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

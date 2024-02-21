@@ -28,17 +28,6 @@ class ScsUserWebisoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   scsUserId?: SortOrder;
 
   @ApiProperty({
@@ -51,6 +40,17 @@ class ScsUserWebisoOrderByInput {
     nullable: true,
   })
   webiso?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { ScsUserWebisoOrderByInput as ScsUserWebisoOrderByInput };

@@ -4,11 +4,11 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceInput,
-  SelectInput,
   NumberInput,
+  SelectInput,
   TextInput,
   DateTimeInput,
+  ReferenceInput,
 } from "react-admin";
 
 import { MhciPrereqTitle } from "../mhciPrereq/MhciPrereqTitle";
@@ -17,15 +17,6 @@ export const MhciPrereqsStatusEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="mhciPrereqs.id"
-          reference="MhciPrereq"
-          label="Mhci Prereqs"
-        >
-          <SelectInput optionText={MhciPrereqTitle} />
-        </ReferenceInput>
-        <NumberInput step={1} label="Program Id" source="programId" />
-        <TextInput label="Reviewer Explanation" source="reviewerExplanation" />
         <NumberInput
           step={1}
           label="Reviewer Lu Users Usertypes Id"
@@ -48,6 +39,7 @@ export const MhciPrereqsStatusEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
+        <TextInput label="Reviewer Explanation" source="reviewerExplanation" />
         <DateTimeInput label="Reviewer Timestamp" source="reviewerTimestamp" />
         <SelectInput
           source="status3"
@@ -62,6 +54,14 @@ export const MhciPrereqsStatusEdit = (props: EditProps): React.ReactElement => {
           allowEmpty
           optionValue="value"
         />
+        <NumberInput step={1} label="Program Id" source="programId" />
+        <ReferenceInput
+          source="mhciPrereqs.id"
+          reference="MhciPrereq"
+          label="Mhci Prereqs"
+        >
+          <SelectInput optionText={MhciPrereqTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateEtsToeflScoreArgs } from "./CreateEtsToeflScoreArgs";
-import { UpdateEtsToeflScoreArgs } from "./UpdateEtsToeflScoreArgs";
-import { DeleteEtsToeflScoreArgs } from "./DeleteEtsToeflScoreArgs";
+import { EtsToeflScore } from "./EtsToeflScore";
 import { EtsToeflScoreCountArgs } from "./EtsToeflScoreCountArgs";
 import { EtsToeflScoreFindManyArgs } from "./EtsToeflScoreFindManyArgs";
 import { EtsToeflScoreFindUniqueArgs } from "./EtsToeflScoreFindUniqueArgs";
-import { EtsToeflScore } from "./EtsToeflScore";
+import { CreateEtsToeflScoreArgs } from "./CreateEtsToeflScoreArgs";
+import { UpdateEtsToeflScoreArgs } from "./UpdateEtsToeflScoreArgs";
+import { DeleteEtsToeflScoreArgs } from "./DeleteEtsToeflScoreArgs";
 import { EtsToeflScoreService } from "../etsToeflScore.service";
 @graphql.Resolver(() => EtsToeflScore)
 export class EtsToeflScoreResolverBase {
@@ -38,14 +38,14 @@ export class EtsToeflScoreResolverBase {
   async etsToeflScores(
     @graphql.Args() args: EtsToeflScoreFindManyArgs
   ): Promise<EtsToeflScore[]> {
-    return this.service.findMany(args);
+    return this.service.etsToeflScores(args);
   }
 
   @graphql.Query(() => EtsToeflScore, { nullable: true })
   async etsToeflScore(
     @graphql.Args() args: EtsToeflScoreFindUniqueArgs
   ): Promise<EtsToeflScore | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.etsToeflScore(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class EtsToeflScoreResolverBase {
   async createEtsToeflScore(
     @graphql.Args() args: CreateEtsToeflScoreArgs
   ): Promise<EtsToeflScore> {
-    return await this.service.create({
+    return await this.service.createEtsToeflScore({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class EtsToeflScoreResolverBase {
     @graphql.Args() args: UpdateEtsToeflScoreArgs
   ): Promise<EtsToeflScore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEtsToeflScore({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class EtsToeflScoreResolverBase {
     @graphql.Args() args: DeleteEtsToeflScoreArgs
   ): Promise<EtsToeflScore | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteEtsToeflScore(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

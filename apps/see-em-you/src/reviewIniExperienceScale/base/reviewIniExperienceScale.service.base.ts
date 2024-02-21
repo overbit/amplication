@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ReviewIniExperienceScale } from "@prisma/client";
+import {
+  Prisma,
+  ReviewIniExperienceScale as PrismaReviewIniExperienceScale,
+} from "@prisma/client";
 
 export class ReviewIniExperienceScaleServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ReviewIniExperienceScaleServiceBase {
     return this.prisma.reviewIniExperienceScale.count(args);
   }
 
-  async findMany<T extends Prisma.ReviewIniExperienceScaleFindManyArgs>(
+  async reviewIniExperienceScales<
+    T extends Prisma.ReviewIniExperienceScaleFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniExperienceScaleFindManyArgs>
-  ): Promise<ReviewIniExperienceScale[]> {
+  ): Promise<PrismaReviewIniExperienceScale[]> {
     return this.prisma.reviewIniExperienceScale.findMany(args);
   }
-  async findOne<T extends Prisma.ReviewIniExperienceScaleFindUniqueArgs>(
+  async reviewIniExperienceScale<
+    T extends Prisma.ReviewIniExperienceScaleFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniExperienceScaleFindUniqueArgs>
-  ): Promise<ReviewIniExperienceScale | null> {
+  ): Promise<PrismaReviewIniExperienceScale | null> {
     return this.prisma.reviewIniExperienceScale.findUnique(args);
   }
-  async create<T extends Prisma.ReviewIniExperienceScaleCreateArgs>(
+  async createReviewIniExperienceScale<
+    T extends Prisma.ReviewIniExperienceScaleCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniExperienceScaleCreateArgs>
-  ): Promise<ReviewIniExperienceScale> {
+  ): Promise<PrismaReviewIniExperienceScale> {
     return this.prisma.reviewIniExperienceScale.create<T>(args);
   }
-  async update<T extends Prisma.ReviewIniExperienceScaleUpdateArgs>(
+  async updateReviewIniExperienceScale<
+    T extends Prisma.ReviewIniExperienceScaleUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniExperienceScaleUpdateArgs>
-  ): Promise<ReviewIniExperienceScale> {
+  ): Promise<PrismaReviewIniExperienceScale> {
     return this.prisma.reviewIniExperienceScale.update<T>(args);
   }
-  async delete<T extends Prisma.ReviewIniExperienceScaleDeleteArgs>(
+  async deleteReviewIniExperienceScale<
+    T extends Prisma.ReviewIniExperienceScaleDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewIniExperienceScaleDeleteArgs>
-  ): Promise<ReviewIniExperienceScale> {
+  ): Promise<PrismaReviewIniExperienceScale> {
     return this.prisma.reviewIniExperienceScale.delete(args);
   }
 }

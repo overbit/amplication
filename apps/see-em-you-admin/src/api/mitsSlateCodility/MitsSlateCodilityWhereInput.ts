@@ -1,1 +1,5 @@
-export type MitsSlateCodilityWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type MitsSlateCodilityWhereInput = {
+  id?: StringFilter;
+};

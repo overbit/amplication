@@ -11,25 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsOptional, IsInt, IsEnum } from "class-validator";
-import { Type } from "class-transformer";
+import { IsInt, IsOptional, IsEnum, ValidateNested } from "class-validator";
 import { EnumPromotionHistoryPromotionMethod } from "./EnumPromotionHistoryPromotionMethod";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
+import { Type } from "class-transformer";
 
 @InputType()
 class PromotionHistoryUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
-    nullable: true,
-  })
-  application?: ApplicationWhereUniqueInput;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -40,6 +28,17 @@ class PromotionHistoryUpdateInput {
     nullable: true,
   })
   programId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  round?: number;
 
   @ApiProperty({
     required: false,
@@ -61,18 +60,19 @@ class PromotionHistoryUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  round?: number;
+  usersId?: number | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsInt()
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => ApplicationWhereUniqueInput, {
     nullable: true,
   })
-  usersId?: number | null;
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { PromotionHistoryUpdateInput as PromotionHistoryUpdateInput };

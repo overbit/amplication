@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDepartmentReplyperiodArgs } from "./CreateDepartmentReplyperiodArgs";
-import { UpdateDepartmentReplyperiodArgs } from "./UpdateDepartmentReplyperiodArgs";
-import { DeleteDepartmentReplyperiodArgs } from "./DeleteDepartmentReplyperiodArgs";
+import { DepartmentReplyperiod } from "./DepartmentReplyperiod";
 import { DepartmentReplyperiodCountArgs } from "./DepartmentReplyperiodCountArgs";
 import { DepartmentReplyperiodFindManyArgs } from "./DepartmentReplyperiodFindManyArgs";
 import { DepartmentReplyperiodFindUniqueArgs } from "./DepartmentReplyperiodFindUniqueArgs";
-import { DepartmentReplyperiod } from "./DepartmentReplyperiod";
+import { CreateDepartmentReplyperiodArgs } from "./CreateDepartmentReplyperiodArgs";
+import { UpdateDepartmentReplyperiodArgs } from "./UpdateDepartmentReplyperiodArgs";
+import { DeleteDepartmentReplyperiodArgs } from "./DeleteDepartmentReplyperiodArgs";
 import { DepartmentReplyperiodService } from "../departmentReplyperiod.service";
 @graphql.Resolver(() => DepartmentReplyperiod)
 export class DepartmentReplyperiodResolverBase {
@@ -38,14 +38,14 @@ export class DepartmentReplyperiodResolverBase {
   async departmentReplyperiods(
     @graphql.Args() args: DepartmentReplyperiodFindManyArgs
   ): Promise<DepartmentReplyperiod[]> {
-    return this.service.findMany(args);
+    return this.service.departmentReplyperiods(args);
   }
 
   @graphql.Query(() => DepartmentReplyperiod, { nullable: true })
   async departmentReplyperiod(
     @graphql.Args() args: DepartmentReplyperiodFindUniqueArgs
   ): Promise<DepartmentReplyperiod | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.departmentReplyperiod(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DepartmentReplyperiodResolverBase {
   async createDepartmentReplyperiod(
     @graphql.Args() args: CreateDepartmentReplyperiodArgs
   ): Promise<DepartmentReplyperiod> {
-    return await this.service.create({
+    return await this.service.createDepartmentReplyperiod({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DepartmentReplyperiodResolverBase {
     @graphql.Args() args: UpdateDepartmentReplyperiodArgs
   ): Promise<DepartmentReplyperiod | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDepartmentReplyperiod({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DepartmentReplyperiodResolverBase {
     @graphql.Args() args: DeleteDepartmentReplyperiodArgs
   ): Promise<DepartmentReplyperiod | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDepartmentReplyperiod(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

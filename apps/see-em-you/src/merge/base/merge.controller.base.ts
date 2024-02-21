@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MergeService } from "../merge.service";
 import { MergeCreateInput } from "./MergeCreateInput";
-import { MergeWhereInput } from "./MergeWhereInput";
-import { MergeWhereUniqueInput } from "./MergeWhereUniqueInput";
-import { MergeFindManyArgs } from "./MergeFindManyArgs";
-import { MergeUpdateInput } from "./MergeUpdateInput";
 import { Merge } from "./Merge";
+import { MergeFindManyArgs } from "./MergeFindManyArgs";
+import { MergeWhereUniqueInput } from "./MergeWhereUniqueInput";
+import { MergeUpdateInput } from "./MergeUpdateInput";
 
 export class MergeControllerBase {
   constructor(protected readonly service: MergeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Merge })
-  async create(@common.Body() data: MergeCreateInput): Promise<Merge> {
-    return await this.service.create({
+  async createMerge(@common.Body() data: MergeCreateInput): Promise<Merge> {
+    return await this.service.createMerge({
       data: data,
       select: {
-        applicationId: true,
-        errorField: true,
-        id: true,
-        merged: true,
         mergeDate: true,
+        applicationId: true,
+        merged: true,
+        errorField: true,
         message: true,
+        id: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class MergeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Merge] })
   @ApiNestedQuery(MergeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Merge[]> {
+  async merges(@common.Req() request: Request): Promise<Merge[]> {
     const args = plainToClass(MergeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.merges({
       ...args,
       select: {
-        applicationId: true,
-        errorField: true,
-        id: true,
-        merged: true,
         mergeDate: true,
+        applicationId: true,
+        merged: true,
+        errorField: true,
         message: true,
+        id: true,
       },
     });
   }
@@ -63,18 +62,18 @@ export class MergeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Merge })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async merge(
     @common.Param() params: MergeWhereUniqueInput
   ): Promise<Merge | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.merge({
       where: params,
       select: {
-        applicationId: true,
-        errorField: true,
-        id: true,
-        merged: true,
         mergeDate: true,
+        applicationId: true,
+        merged: true,
+        errorField: true,
         message: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -88,21 +87,21 @@ export class MergeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Merge })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMerge(
     @common.Param() params: MergeWhereUniqueInput,
     @common.Body() data: MergeUpdateInput
   ): Promise<Merge | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMerge({
         where: params,
         data: data,
         select: {
-          applicationId: true,
-          errorField: true,
-          id: true,
-          merged: true,
           mergeDate: true,
+          applicationId: true,
+          merged: true,
+          errorField: true,
           message: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -118,19 +117,19 @@ export class MergeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Merge })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMerge(
     @common.Param() params: MergeWhereUniqueInput
   ): Promise<Merge | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMerge({
         where: params,
         select: {
-          applicationId: true,
-          errorField: true,
-          id: true,
-          merged: true,
           mergeDate: true,
+          applicationId: true,
+          merged: true,
+          errorField: true,
           message: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAttendanceStatusArgs } from "./CreateAttendanceStatusArgs";
-import { UpdateAttendanceStatusArgs } from "./UpdateAttendanceStatusArgs";
-import { DeleteAttendanceStatusArgs } from "./DeleteAttendanceStatusArgs";
+import { AttendanceStatus } from "./AttendanceStatus";
 import { AttendanceStatusCountArgs } from "./AttendanceStatusCountArgs";
 import { AttendanceStatusFindManyArgs } from "./AttendanceStatusFindManyArgs";
 import { AttendanceStatusFindUniqueArgs } from "./AttendanceStatusFindUniqueArgs";
-import { AttendanceStatus } from "./AttendanceStatus";
+import { CreateAttendanceStatusArgs } from "./CreateAttendanceStatusArgs";
+import { UpdateAttendanceStatusArgs } from "./UpdateAttendanceStatusArgs";
+import { DeleteAttendanceStatusArgs } from "./DeleteAttendanceStatusArgs";
 import { AttendanceStatusService } from "../attendanceStatus.service";
 @graphql.Resolver(() => AttendanceStatus)
 export class AttendanceStatusResolverBase {
@@ -38,14 +38,14 @@ export class AttendanceStatusResolverBase {
   async attendanceStatuses(
     @graphql.Args() args: AttendanceStatusFindManyArgs
   ): Promise<AttendanceStatus[]> {
-    return this.service.findMany(args);
+    return this.service.attendanceStatuses(args);
   }
 
   @graphql.Query(() => AttendanceStatus, { nullable: true })
   async attendanceStatus(
     @graphql.Args() args: AttendanceStatusFindUniqueArgs
   ): Promise<AttendanceStatus | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.attendanceStatus(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class AttendanceStatusResolverBase {
   async createAttendanceStatus(
     @graphql.Args() args: CreateAttendanceStatusArgs
   ): Promise<AttendanceStatus> {
-    return await this.service.create({
+    return await this.service.createAttendanceStatus({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class AttendanceStatusResolverBase {
     @graphql.Args() args: UpdateAttendanceStatusArgs
   ): Promise<AttendanceStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAttendanceStatus({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class AttendanceStatusResolverBase {
     @graphql.Args() args: DeleteAttendanceStatusArgs
   ): Promise<AttendanceStatus | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAttendanceStatus(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -11,22 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationreqWhereUniqueInput } from "../../applicationreq/base/ApplicationreqWhereUniqueInput";
+import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
 import { ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
+import { ApplicationreqWhereUniqueInput } from "../../applicationreq/base/ApplicationreqWhereUniqueInput";
 
 @InputType()
 class ProgramsApplicationreqCreateInput {
-  @ApiProperty({
-    required: true,
-    type: () => ApplicationreqWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationreqWhereUniqueInput)
-  @Field(() => ApplicationreqWhereUniqueInput)
-  applicationreqs!: ApplicationreqWhereUniqueInput;
-
   @ApiProperty({
     required: true,
     type: () => ProgramModelWhereUniqueInput,
@@ -35,6 +26,15 @@ class ProgramsApplicationreqCreateInput {
   @Type(() => ProgramModelWhereUniqueInput)
   @Field(() => ProgramModelWhereUniqueInput)
   programs!: ProgramModelWhereUniqueInput;
+
+  @ApiProperty({
+    required: true,
+    type: () => ApplicationreqWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationreqWhereUniqueInput)
+  @Field(() => ApplicationreqWhereUniqueInput)
+  applicationreqs!: ApplicationreqWhereUniqueInput;
 }
 
 export { ProgramsApplicationreqCreateInput as ProgramsApplicationreqCreateInput };

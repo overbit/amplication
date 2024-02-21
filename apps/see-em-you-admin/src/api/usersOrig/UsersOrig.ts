@@ -1,14 +1,14 @@
 export type UsersOrig = {
   email: string;
+  username: string | null;
+  password: string;
+  title: string | null;
   firstname: string;
+  middlename: string | null;
+  lastname: string;
+  initials: string | null;
+  signupDate: Date | null;
+  verified: boolean;
   guid: string | null;
   id: number;
-  initials: string | null;
-  lastname: string;
-  middlename: string | null;
-  password: string;
-  signupDate: Date | null;
-  title: string | null;
-  username: string | null;
-  verified: boolean;
 };

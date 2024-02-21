@@ -13,10 +13,10 @@ export const PhoneScreenList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Language Screen" source="languageScreen" />
         <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Technical Screen" source="technicalScreen" />
+        <TextField label="Language Screen" source="languageScreen" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ProgramModelListRelationFilter } from "../../programModel/base/ProgramModelListRelationFilter";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class DegreeWhereInput {
@@ -28,6 +29,17 @@ class DegreeWhereInput {
     nullable: true,
   })
   programs?: ProgramModelListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { DegreeWhereInput as DegreeWhereInput };

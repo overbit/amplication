@@ -13,8 +13,8 @@ export const VoucherTypeList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Description" source="description" />
-        <TextField label="Id" source="id" />
         <TextField label="Prefix" source="prefix" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

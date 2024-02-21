@@ -12,9 +12,9 @@ export const AdvisorList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="User Id" source="userId" />
         <TextField label="Department Id" source="departmentId" />
         <TextField label="Id" source="id" />
-        <TextField label="User Id" source="userId" />
       </Datagrid>
     </List>
   );

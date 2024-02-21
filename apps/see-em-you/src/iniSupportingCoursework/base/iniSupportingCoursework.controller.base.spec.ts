@@ -19,65 +19,65 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  dataStructuresNumber: "exampleDataStructuresNumber",
   dataStructuresTitle: "exampleDataStructuresTitle",
-  id: 42,
-  msitExperience: "exampleMsitExperience",
-  probabilityNumber: "exampleProbabilityNumber",
+  dataStructuresNumber: "exampleDataStructuresNumber",
   probabilityTitle: "exampleProbabilityTitle",
+  probabilityNumber: "exampleProbabilityNumber",
+  statisticsTitle: "exampleStatisticsTitle",
+  statisticsNumber: "exampleStatisticsNumber",
+  msitExperience: "exampleMsitExperience",
   programmingDescription: "exampleProgrammingDescription",
   programmingDescription2: "exampleProgrammingDescription2",
-  statisticsNumber: "exampleStatisticsNumber",
-  statisticsTitle: "exampleStatisticsTitle",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  dataStructuresNumber: "exampleDataStructuresNumber",
   dataStructuresTitle: "exampleDataStructuresTitle",
-  id: 42,
-  msitExperience: "exampleMsitExperience",
-  probabilityNumber: "exampleProbabilityNumber",
+  dataStructuresNumber: "exampleDataStructuresNumber",
   probabilityTitle: "exampleProbabilityTitle",
+  probabilityNumber: "exampleProbabilityNumber",
+  statisticsTitle: "exampleStatisticsTitle",
+  statisticsNumber: "exampleStatisticsNumber",
+  msitExperience: "exampleMsitExperience",
   programmingDescription: "exampleProgrammingDescription",
   programmingDescription2: "exampleProgrammingDescription2",
-  statisticsNumber: "exampleStatisticsNumber",
-  statisticsTitle: "exampleStatisticsTitle",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    dataStructuresNumber: "exampleDataStructuresNumber",
     dataStructuresTitle: "exampleDataStructuresTitle",
-    id: 42,
-    msitExperience: "exampleMsitExperience",
-    probabilityNumber: "exampleProbabilityNumber",
+    dataStructuresNumber: "exampleDataStructuresNumber",
     probabilityTitle: "exampleProbabilityTitle",
+    probabilityNumber: "exampleProbabilityNumber",
+    statisticsTitle: "exampleStatisticsTitle",
+    statisticsNumber: "exampleStatisticsNumber",
+    msitExperience: "exampleMsitExperience",
     programmingDescription: "exampleProgrammingDescription",
     programmingDescription2: "exampleProgrammingDescription2",
-    statisticsNumber: "exampleStatisticsNumber",
-    statisticsTitle: "exampleStatisticsTitle",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  dataStructuresNumber: "exampleDataStructuresNumber",
   dataStructuresTitle: "exampleDataStructuresTitle",
-  id: 42,
-  msitExperience: "exampleMsitExperience",
-  probabilityNumber: "exampleProbabilityNumber",
+  dataStructuresNumber: "exampleDataStructuresNumber",
   probabilityTitle: "exampleProbabilityTitle",
+  probabilityNumber: "exampleProbabilityNumber",
+  statisticsTitle: "exampleStatisticsTitle",
+  statisticsNumber: "exampleStatisticsNumber",
+  msitExperience: "exampleMsitExperience",
   programmingDescription: "exampleProgrammingDescription",
   programmingDescription2: "exampleProgrammingDescription2",
-  statisticsNumber: "exampleStatisticsNumber",
-  statisticsTitle: "exampleStatisticsTitle",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createIniSupportingCoursework() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  iniSupportingCourseworks: () => FIND_MANY_RESULT,
+  iniSupportingCoursework: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

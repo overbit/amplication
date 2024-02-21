@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { TagInstanceService } from "../tagInstance.service";
 import { TagInstanceCreateInput } from "./TagInstanceCreateInput";
-import { TagInstanceWhereInput } from "./TagInstanceWhereInput";
-import { TagInstanceWhereUniqueInput } from "./TagInstanceWhereUniqueInput";
-import { TagInstanceFindManyArgs } from "./TagInstanceFindManyArgs";
-import { TagInstanceUpdateInput } from "./TagInstanceUpdateInput";
 import { TagInstance } from "./TagInstance";
+import { TagInstanceFindManyArgs } from "./TagInstanceFindManyArgs";
+import { TagInstanceWhereUniqueInput } from "./TagInstanceWhereUniqueInput";
+import { TagInstanceUpdateInput } from "./TagInstanceUpdateInput";
 
 export class TagInstanceControllerBase {
   constructor(protected readonly service: TagInstanceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: TagInstance })
-  async create(
+  async createTagInstance(
     @common.Body() data: TagInstanceCreateInput
   ): Promise<TagInstance> {
-    return await this.service.create({
+    return await this.service.createTagInstance({
       data: data,
       select: {
-        department: true,
-        id: true,
+        tagId: true,
         owner: true,
+        department: true,
         period: true,
         status: true,
-        tagId: true,
+        id: true,
       },
     });
   }
@@ -47,17 +46,17 @@ export class TagInstanceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [TagInstance] })
   @ApiNestedQuery(TagInstanceFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<TagInstance[]> {
+  async tagInstances(@common.Req() request: Request): Promise<TagInstance[]> {
     const args = plainToClass(TagInstanceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.tagInstances({
       ...args,
       select: {
-        department: true,
-        id: true,
+        tagId: true,
         owner: true,
+        department: true,
         period: true,
         status: true,
-        tagId: true,
+        id: true,
       },
     });
   }
@@ -65,18 +64,18 @@ export class TagInstanceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: TagInstance })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async tagInstance(
     @common.Param() params: TagInstanceWhereUniqueInput
   ): Promise<TagInstance | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.tagInstance({
       where: params,
       select: {
-        department: true,
-        id: true,
+        tagId: true,
         owner: true,
+        department: true,
         period: true,
         status: true,
-        tagId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -90,21 +89,21 @@ export class TagInstanceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: TagInstance })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateTagInstance(
     @common.Param() params: TagInstanceWhereUniqueInput,
     @common.Body() data: TagInstanceUpdateInput
   ): Promise<TagInstance | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTagInstance({
         where: params,
         data: data,
         select: {
-          department: true,
-          id: true,
+          tagId: true,
           owner: true,
+          department: true,
           period: true,
           status: true,
-          tagId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -120,19 +119,19 @@ export class TagInstanceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: TagInstance })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteTagInstance(
     @common.Param() params: TagInstanceWhereUniqueInput
   ): Promise<TagInstance | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteTagInstance({
         where: params,
         select: {
-          department: true,
-          id: true,
+          tagId: true,
           owner: true,
+          department: true,
           period: true,
           status: true,
-          tagId: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -18,39 +18,38 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ToeflEssentialService } from "../toeflEssential.service";
 import { ToeflEssentialCreateInput } from "./ToeflEssentialCreateInput";
-import { ToeflEssentialWhereInput } from "./ToeflEssentialWhereInput";
-import { ToeflEssentialWhereUniqueInput } from "./ToeflEssentialWhereUniqueInput";
-import { ToeflEssentialFindManyArgs } from "./ToeflEssentialFindManyArgs";
-import { ToeflEssentialUpdateInput } from "./ToeflEssentialUpdateInput";
 import { ToeflEssential } from "./ToeflEssential";
+import { ToeflEssentialFindManyArgs } from "./ToeflEssentialFindManyArgs";
+import { ToeflEssentialWhereUniqueInput } from "./ToeflEssentialWhereUniqueInput";
+import { ToeflEssentialUpdateInput } from "./ToeflEssentialUpdateInput";
 
 export class ToeflEssentialControllerBase {
   constructor(protected readonly service: ToeflEssentialService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ToeflEssential })
-  async create(
+  async createToeflEssential(
     @common.Body() data: ToeflEssentialCreateInput
   ): Promise<ToeflEssential> {
-    return await this.service.create({
+    return await this.service.createToeflEssential({
       data: data,
       select: {
-        applicationId: true,
-        datafileId: true,
-        id: true,
-        listeningscore: true,
-        listeningscoremb: true,
-        overallscore: true,
-        overallscoremb: true,
-        readingscore: true,
-        readingscoremb: true,
-        scorereceived: true,
-        speakingscore: true,
-        speakingscoremb: true,
-        testdate: true,
         testEmail: true,
-        url: true,
+        applicationId: true,
+        testdate: true,
+        listeningscore: true,
+        readingscore: true,
         writingscore: true,
+        speakingscore: true,
+        overallscore: true,
+        url: true,
+        scorereceived: true,
+        datafileId: true,
+        listeningscoremb: true,
+        readingscoremb: true,
         writingscoremb: true,
+        speakingscoremb: true,
+        overallscoremb: true,
+        id: true,
       },
     });
   }
@@ -58,28 +57,30 @@ export class ToeflEssentialControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ToeflEssential] })
   @ApiNestedQuery(ToeflEssentialFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ToeflEssential[]> {
+  async toeflEssentials(
+    @common.Req() request: Request
+  ): Promise<ToeflEssential[]> {
     const args = plainToClass(ToeflEssentialFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.toeflEssentials({
       ...args,
       select: {
-        applicationId: true,
-        datafileId: true,
-        id: true,
-        listeningscore: true,
-        listeningscoremb: true,
-        overallscore: true,
-        overallscoremb: true,
-        readingscore: true,
-        readingscoremb: true,
-        scorereceived: true,
-        speakingscore: true,
-        speakingscoremb: true,
-        testdate: true,
         testEmail: true,
-        url: true,
+        applicationId: true,
+        testdate: true,
+        listeningscore: true,
+        readingscore: true,
         writingscore: true,
+        speakingscore: true,
+        overallscore: true,
+        url: true,
+        scorereceived: true,
+        datafileId: true,
+        listeningscoremb: true,
+        readingscoremb: true,
         writingscoremb: true,
+        speakingscoremb: true,
+        overallscoremb: true,
+        id: true,
       },
     });
   }
@@ -87,29 +88,29 @@ export class ToeflEssentialControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ToeflEssential })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async toeflEssential(
     @common.Param() params: ToeflEssentialWhereUniqueInput
   ): Promise<ToeflEssential | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.toeflEssential({
       where: params,
       select: {
-        applicationId: true,
-        datafileId: true,
-        id: true,
-        listeningscore: true,
-        listeningscoremb: true,
-        overallscore: true,
-        overallscoremb: true,
-        readingscore: true,
-        readingscoremb: true,
-        scorereceived: true,
-        speakingscore: true,
-        speakingscoremb: true,
-        testdate: true,
         testEmail: true,
-        url: true,
+        applicationId: true,
+        testdate: true,
+        listeningscore: true,
+        readingscore: true,
         writingscore: true,
+        speakingscore: true,
+        overallscore: true,
+        url: true,
+        scorereceived: true,
+        datafileId: true,
+        listeningscoremb: true,
+        readingscoremb: true,
         writingscoremb: true,
+        speakingscoremb: true,
+        overallscoremb: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -123,32 +124,32 @@ export class ToeflEssentialControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ToeflEssential })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateToeflEssential(
     @common.Param() params: ToeflEssentialWhereUniqueInput,
     @common.Body() data: ToeflEssentialUpdateInput
   ): Promise<ToeflEssential | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateToeflEssential({
         where: params,
         data: data,
         select: {
-          applicationId: true,
-          datafileId: true,
-          id: true,
-          listeningscore: true,
-          listeningscoremb: true,
-          overallscore: true,
-          overallscoremb: true,
-          readingscore: true,
-          readingscoremb: true,
-          scorereceived: true,
-          speakingscore: true,
-          speakingscoremb: true,
-          testdate: true,
           testEmail: true,
-          url: true,
+          applicationId: true,
+          testdate: true,
+          listeningscore: true,
+          readingscore: true,
           writingscore: true,
+          speakingscore: true,
+          overallscore: true,
+          url: true,
+          scorereceived: true,
+          datafileId: true,
+          listeningscoremb: true,
+          readingscoremb: true,
           writingscoremb: true,
+          speakingscoremb: true,
+          overallscoremb: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -164,30 +165,30 @@ export class ToeflEssentialControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ToeflEssential })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteToeflEssential(
     @common.Param() params: ToeflEssentialWhereUniqueInput
   ): Promise<ToeflEssential | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteToeflEssential({
         where: params,
         select: {
-          applicationId: true,
-          datafileId: true,
-          id: true,
-          listeningscore: true,
-          listeningscoremb: true,
-          overallscore: true,
-          overallscoremb: true,
-          readingscore: true,
-          readingscoremb: true,
-          scorereceived: true,
-          speakingscore: true,
-          speakingscoremb: true,
-          testdate: true,
           testEmail: true,
-          url: true,
+          applicationId: true,
+          testdate: true,
+          listeningscore: true,
+          readingscore: true,
           writingscore: true,
+          speakingscore: true,
+          overallscore: true,
+          url: true,
+          scorereceived: true,
+          datafileId: true,
+          listeningscoremb: true,
+          readingscoremb: true,
           writingscoremb: true,
+          speakingscoremb: true,
+          overallscoremb: true,
+          id: true,
         },
       });
     } catch (error) {

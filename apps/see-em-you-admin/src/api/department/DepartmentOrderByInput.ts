@@ -1,18 +1,18 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type DepartmentOrderByInput = {
-  allowRequestAdvisors?: SortOrder;
-  ccEmail?: SortOrder;
+  name?: SortOrder;
+  parentSchoolId?: SortOrder;
+  oraclestring?: SortOrder;
+  registrationoraclestring?: SortOrder;
   drank?: SortOrder;
-  enableFinal?: SortOrder;
+  ccEmail?: SortOrder;
   enableRound1?: SortOrder;
   enableRound2?: SortOrder;
   enableRound3?: SortOrder;
   enableRound4?: SortOrder;
-  id?: SortOrder;
-  name?: SortOrder;
-  oraclestring?: SortOrder;
-  parentSchoolId?: SortOrder;
-  registrationoraclestring?: SortOrder;
+  enableFinal?: SortOrder;
   semiblindReview?: SortOrder;
+  allowRequestAdvisors?: SortOrder;
+  id?: SortOrder;
 };

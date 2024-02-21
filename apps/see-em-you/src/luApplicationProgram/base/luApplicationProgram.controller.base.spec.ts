@@ -18,74 +18,74 @@ import { LuApplicationProgramService } from "../luApplicationProgram.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  choice: 42,
+  round2: "exampleRound2",
+  decision: "exampleDecision",
   admissionStatus: "exampleAdmissionStatus",
   admit: "exampleAdmit",
   admitComments: "exampleAdmitComments",
-  choice: 42,
-  decision: "exampleDecision",
   faccontact: "exampleFaccontact",
-  id: 42,
-  ltichoice: "exampleLtichoice",
-  msecertchoice: "exampleMsecertchoice",
-  round2: "exampleRound2",
+  stucontact: "exampleStucontact",
   scholarshipAmt: 42.424242424,
   scholarshipComments: "exampleScholarshipComments",
-  stucontact: "exampleStucontact",
+  ltichoice: "exampleLtichoice",
+  msecertchoice: "exampleMsecertchoice",
+  id: 42,
 };
 const CREATE_RESULT = {
+  choice: 42,
+  round2: "exampleRound2",
+  decision: "exampleDecision",
   admissionStatus: "exampleAdmissionStatus",
   admit: "exampleAdmit",
   admitComments: "exampleAdmitComments",
-  choice: 42,
-  decision: "exampleDecision",
   faccontact: "exampleFaccontact",
-  id: 42,
-  ltichoice: "exampleLtichoice",
-  msecertchoice: "exampleMsecertchoice",
-  round2: "exampleRound2",
+  stucontact: "exampleStucontact",
   scholarshipAmt: 42.424242424,
   scholarshipComments: "exampleScholarshipComments",
-  stucontact: "exampleStucontact",
+  ltichoice: "exampleLtichoice",
+  msecertchoice: "exampleMsecertchoice",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    choice: 42,
+    round2: "exampleRound2",
+    decision: "exampleDecision",
     admissionStatus: "exampleAdmissionStatus",
     admit: "exampleAdmit",
     admitComments: "exampleAdmitComments",
-    choice: 42,
-    decision: "exampleDecision",
     faccontact: "exampleFaccontact",
-    id: 42,
-    ltichoice: "exampleLtichoice",
-    msecertchoice: "exampleMsecertchoice",
-    round2: "exampleRound2",
+    stucontact: "exampleStucontact",
     scholarshipAmt: 42.424242424,
     scholarshipComments: "exampleScholarshipComments",
-    stucontact: "exampleStucontact",
+    ltichoice: "exampleLtichoice",
+    msecertchoice: "exampleMsecertchoice",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  choice: 42,
+  round2: "exampleRound2",
+  decision: "exampleDecision",
   admissionStatus: "exampleAdmissionStatus",
   admit: "exampleAdmit",
   admitComments: "exampleAdmitComments",
-  choice: 42,
-  decision: "exampleDecision",
   faccontact: "exampleFaccontact",
-  id: 42,
-  ltichoice: "exampleLtichoice",
-  msecertchoice: "exampleMsecertchoice",
-  round2: "exampleRound2",
+  stucontact: "exampleStucontact",
   scholarshipAmt: 42.424242424,
   scholarshipComments: "exampleScholarshipComments",
-  stucontact: "exampleStucontact",
+  ltichoice: "exampleLtichoice",
+  msecertchoice: "exampleMsecertchoice",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLuApplicationProgram() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luApplicationPrograms: () => FIND_MANY_RESULT,
+  luApplicationProgram: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

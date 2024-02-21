@@ -28,17 +28,6 @@ class VoucherApplicationErrorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  allowMultiple?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   appId?: SortOrder;
 
   @ApiProperty({
@@ -61,6 +50,17 @@ class VoucherApplicationErrorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  vaId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   errMsg?: SortOrder;
 
   @ApiProperty({
@@ -72,7 +72,7 @@ class VoucherApplicationErrorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  allowMultiple?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +83,7 @@ class VoucherApplicationErrorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  vaId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { VoucherApplicationErrorOrderByInput as VoucherApplicationErrorOrderByInput };

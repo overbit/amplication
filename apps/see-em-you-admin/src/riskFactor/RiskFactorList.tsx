@@ -12,10 +12,10 @@ export const RiskFactorList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Risk Factor" source="riskFactor" />
         <TextField label="Array Index" source="arrayIndex" />
         <TextField label="Department Id" source="departmentId" />
         <TextField label="Id" source="id" />
-        <TextField label="Risk Factor" source="riskFactor" />
       </Datagrid>
     </List>
   );

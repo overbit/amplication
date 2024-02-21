@@ -18,33 +18,32 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IniFinancialSupportService } from "../iniFinancialSupport.service";
 import { IniFinancialSupportCreateInput } from "./IniFinancialSupportCreateInput";
-import { IniFinancialSupportWhereInput } from "./IniFinancialSupportWhereInput";
-import { IniFinancialSupportWhereUniqueInput } from "./IniFinancialSupportWhereUniqueInput";
-import { IniFinancialSupportFindManyArgs } from "./IniFinancialSupportFindManyArgs";
-import { IniFinancialSupportUpdateInput } from "./IniFinancialSupportUpdateInput";
 import { IniFinancialSupport } from "./IniFinancialSupport";
+import { IniFinancialSupportFindManyArgs } from "./IniFinancialSupportFindManyArgs";
+import { IniFinancialSupportWhereUniqueInput } from "./IniFinancialSupportWhereUniqueInput";
+import { IniFinancialSupportUpdateInput } from "./IniFinancialSupportUpdateInput";
 
 export class IniFinancialSupportControllerBase {
   constructor(protected readonly service: IniFinancialSupportService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IniFinancialSupport })
-  async create(
+  async createIniFinancialSupport(
     @common.Body() data: IniFinancialSupportCreateInput
   ): Promise<IniFinancialSupport> {
-    return await this.service.create({
+    return await this.service.createIniFinancialSupport({
       data: data,
       select: {
         applicationId: true,
-        applyOutsideSupportSource: true,
-        applyOutsideSupportType: true,
-        attendWithoutSupport: true,
-        familySupportAmount: true,
-        familySupportType: true,
-        id: true,
-        otherSupportSource: true,
-        receiveOutsideSupportSource: true,
-        receiveOutsideSupportType: true,
         requestConsideration: true,
+        attendWithoutSupport: true,
+        receiveOutsideSupportType: true,
+        receiveOutsideSupportSource: true,
+        applyOutsideSupportType: true,
+        applyOutsideSupportSource: true,
+        otherSupportSource: true,
+        familySupportType: true,
+        familySupportAmount: true,
+        id: true,
       },
     });
   }
@@ -52,24 +51,24 @@ export class IniFinancialSupportControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [IniFinancialSupport] })
   @ApiNestedQuery(IniFinancialSupportFindManyArgs)
-  async findMany(
+  async iniFinancialSupports(
     @common.Req() request: Request
   ): Promise<IniFinancialSupport[]> {
     const args = plainToClass(IniFinancialSupportFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.iniFinancialSupports({
       ...args,
       select: {
         applicationId: true,
-        applyOutsideSupportSource: true,
-        applyOutsideSupportType: true,
-        attendWithoutSupport: true,
-        familySupportAmount: true,
-        familySupportType: true,
-        id: true,
-        otherSupportSource: true,
-        receiveOutsideSupportSource: true,
-        receiveOutsideSupportType: true,
         requestConsideration: true,
+        attendWithoutSupport: true,
+        receiveOutsideSupportType: true,
+        receiveOutsideSupportSource: true,
+        applyOutsideSupportType: true,
+        applyOutsideSupportSource: true,
+        otherSupportSource: true,
+        familySupportType: true,
+        familySupportAmount: true,
+        id: true,
       },
     });
   }
@@ -77,23 +76,23 @@ export class IniFinancialSupportControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IniFinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async iniFinancialSupport(
     @common.Param() params: IniFinancialSupportWhereUniqueInput
   ): Promise<IniFinancialSupport | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.iniFinancialSupport({
       where: params,
       select: {
         applicationId: true,
-        applyOutsideSupportSource: true,
-        applyOutsideSupportType: true,
-        attendWithoutSupport: true,
-        familySupportAmount: true,
-        familySupportType: true,
-        id: true,
-        otherSupportSource: true,
-        receiveOutsideSupportSource: true,
-        receiveOutsideSupportType: true,
         requestConsideration: true,
+        attendWithoutSupport: true,
+        receiveOutsideSupportType: true,
+        receiveOutsideSupportSource: true,
+        applyOutsideSupportType: true,
+        applyOutsideSupportSource: true,
+        otherSupportSource: true,
+        familySupportType: true,
+        familySupportAmount: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -107,26 +106,26 @@ export class IniFinancialSupportControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IniFinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIniFinancialSupport(
     @common.Param() params: IniFinancialSupportWhereUniqueInput,
     @common.Body() data: IniFinancialSupportUpdateInput
   ): Promise<IniFinancialSupport | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniFinancialSupport({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          applyOutsideSupportSource: true,
-          applyOutsideSupportType: true,
-          attendWithoutSupport: true,
-          familySupportAmount: true,
-          familySupportType: true,
-          id: true,
-          otherSupportSource: true,
-          receiveOutsideSupportSource: true,
-          receiveOutsideSupportType: true,
           requestConsideration: true,
+          attendWithoutSupport: true,
+          receiveOutsideSupportType: true,
+          receiveOutsideSupportSource: true,
+          applyOutsideSupportType: true,
+          applyOutsideSupportSource: true,
+          otherSupportSource: true,
+          familySupportType: true,
+          familySupportAmount: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -142,24 +141,24 @@ export class IniFinancialSupportControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IniFinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIniFinancialSupport(
     @common.Param() params: IniFinancialSupportWhereUniqueInput
   ): Promise<IniFinancialSupport | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIniFinancialSupport({
         where: params,
         select: {
           applicationId: true,
-          applyOutsideSupportSource: true,
-          applyOutsideSupportType: true,
-          attendWithoutSupport: true,
-          familySupportAmount: true,
-          familySupportType: true,
-          id: true,
-          otherSupportSource: true,
-          receiveOutsideSupportSource: true,
-          receiveOutsideSupportType: true,
           requestConsideration: true,
+          attendWithoutSupport: true,
+          receiveOutsideSupportType: true,
+          receiveOutsideSupportSource: true,
+          applyOutsideSupportType: true,
+          applyOutsideSupportSource: true,
+          otherSupportSource: true,
+          familySupportType: true,
+          familySupportAmount: true,
+          id: true,
         },
       });
     } catch (error) {

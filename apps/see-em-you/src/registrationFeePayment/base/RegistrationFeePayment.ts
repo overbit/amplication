@@ -11,28 +11,20 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
 import {
-  ValidateNested,
   IsInt,
-  IsDate,
   IsNumber,
+  IsDate,
   IsEnum,
+  ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { Decimal } from "decimal.js";
+import { Type } from "class-transformer";
 import { EnumRegistrationFeePaymentPaymentStatus } from "./EnumRegistrationFeePaymentPaymentStatus";
+import { Application } from "../../application/base/Application";
 
 @ObjectType()
 class RegistrationFeePayment {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -47,23 +39,7 @@ class RegistrationFeePayment {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  lastModTime!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  lastModUserId!: number;
+  paymentType!: number;
 
   @ApiProperty({
     required: true,
@@ -93,11 +69,35 @@ class RegistrationFeePayment {
 
   @ApiProperty({
     required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  lastModTime!: Date;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  paymentType!: number;
+  lastModUserId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { RegistrationFeePayment as RegistrationFeePayment };

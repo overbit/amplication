@@ -18,35 +18,34 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CcTransactionSummaryService } from "../ccTransactionSummary.service";
 import { CcTransactionSummaryCreateInput } from "./CcTransactionSummaryCreateInput";
-import { CcTransactionSummaryWhereInput } from "./CcTransactionSummaryWhereInput";
-import { CcTransactionSummaryWhereUniqueInput } from "./CcTransactionSummaryWhereUniqueInput";
-import { CcTransactionSummaryFindManyArgs } from "./CcTransactionSummaryFindManyArgs";
-import { CcTransactionSummaryUpdateInput } from "./CcTransactionSummaryUpdateInput";
 import { CcTransactionSummary } from "./CcTransactionSummary";
+import { CcTransactionSummaryFindManyArgs } from "./CcTransactionSummaryFindManyArgs";
+import { CcTransactionSummaryWhereUniqueInput } from "./CcTransactionSummaryWhereUniqueInput";
+import { CcTransactionSummaryUpdateInput } from "./CcTransactionSummaryUpdateInput";
 
 export class CcTransactionSummaryControllerBase {
   constructor(protected readonly service: CcTransactionSummaryService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CcTransactionSummary })
-  async create(
+  async createCcTransactionSummary(
     @common.Body() data: CcTransactionSummaryCreateInput
   ): Promise<CcTransactionSummary> {
-    return await this.service.create({
+    return await this.service.createCcTransactionSummary({
       data: data,
       select: {
-        authAmount: true,
+        ccId: true,
+        date: true,
+        time: true,
+        reportDate: true,
+        paymentId: true,
         authCode: true,
         authMessage: true,
-        ccId: true,
-        creditAmount: true,
-        date: true,
-        id: true,
-        paymentId: true,
-        reportDate: true,
-        settleAmount: true,
         settleCode: true,
         settleMessage: true,
-        time: true,
+        authAmount: true,
+        settleAmount: true,
+        creditAmount: true,
+        id: true,
       },
     });
   }
@@ -54,26 +53,26 @@ export class CcTransactionSummaryControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CcTransactionSummary] })
   @ApiNestedQuery(CcTransactionSummaryFindManyArgs)
-  async findMany(
+  async ccTransactionSummaries(
     @common.Req() request: Request
   ): Promise<CcTransactionSummary[]> {
     const args = plainToClass(CcTransactionSummaryFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ccTransactionSummaries({
       ...args,
       select: {
-        authAmount: true,
+        ccId: true,
+        date: true,
+        time: true,
+        reportDate: true,
+        paymentId: true,
         authCode: true,
         authMessage: true,
-        ccId: true,
-        creditAmount: true,
-        date: true,
-        id: true,
-        paymentId: true,
-        reportDate: true,
-        settleAmount: true,
         settleCode: true,
         settleMessage: true,
-        time: true,
+        authAmount: true,
+        settleAmount: true,
+        creditAmount: true,
+        id: true,
       },
     });
   }
@@ -81,25 +80,25 @@ export class CcTransactionSummaryControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionSummary })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ccTransactionSummary(
     @common.Param() params: CcTransactionSummaryWhereUniqueInput
   ): Promise<CcTransactionSummary | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ccTransactionSummary({
       where: params,
       select: {
-        authAmount: true,
+        ccId: true,
+        date: true,
+        time: true,
+        reportDate: true,
+        paymentId: true,
         authCode: true,
         authMessage: true,
-        ccId: true,
-        creditAmount: true,
-        date: true,
-        id: true,
-        paymentId: true,
-        reportDate: true,
-        settleAmount: true,
         settleCode: true,
         settleMessage: true,
-        time: true,
+        authAmount: true,
+        settleAmount: true,
+        creditAmount: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -113,28 +112,28 @@ export class CcTransactionSummaryControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionSummary })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCcTransactionSummary(
     @common.Param() params: CcTransactionSummaryWhereUniqueInput,
     @common.Body() data: CcTransactionSummaryUpdateInput
   ): Promise<CcTransactionSummary | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcTransactionSummary({
         where: params,
         data: data,
         select: {
-          authAmount: true,
+          ccId: true,
+          date: true,
+          time: true,
+          reportDate: true,
+          paymentId: true,
           authCode: true,
           authMessage: true,
-          ccId: true,
-          creditAmount: true,
-          date: true,
-          id: true,
-          paymentId: true,
-          reportDate: true,
-          settleAmount: true,
           settleCode: true,
           settleMessage: true,
-          time: true,
+          authAmount: true,
+          settleAmount: true,
+          creditAmount: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -150,26 +149,26 @@ export class CcTransactionSummaryControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionSummary })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCcTransactionSummary(
     @common.Param() params: CcTransactionSummaryWhereUniqueInput
   ): Promise<CcTransactionSummary | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCcTransactionSummary({
         where: params,
         select: {
-          authAmount: true,
+          ccId: true,
+          date: true,
+          time: true,
+          reportDate: true,
+          paymentId: true,
           authCode: true,
           authMessage: true,
-          ccId: true,
-          creditAmount: true,
-          date: true,
-          id: true,
-          paymentId: true,
-          reportDate: true,
-          settleAmount: true,
           settleCode: true,
           settleMessage: true,
-          time: true,
+          authAmount: true,
+          settleAmount: true,
+          creditAmount: true,
+          id: true,
         },
       });
     } catch (error) {

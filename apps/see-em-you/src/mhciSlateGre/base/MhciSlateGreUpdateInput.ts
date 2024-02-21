@@ -24,6 +24,17 @@ class MhciSlateGreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  prefix?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   first?: string | null;
 
   @ApiProperty({
@@ -35,7 +46,7 @@ class MhciSlateGreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  greAnalyticalWriting?: string | null;
+  middle?: string | null;
 
   @ApiProperty({
     required: false,
@@ -46,29 +57,7 @@ class MhciSlateGreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  greAnalyticalWritingPct?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  greQuantitative?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  greQuantitativePct?: string | null;
+  last?: string | null;
 
   @ApiProperty({
     required: false,
@@ -101,7 +90,7 @@ class MhciSlateGreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  last?: string | null;
+  greQuantitative?: string | null;
 
   @ApiProperty({
     required: false,
@@ -112,7 +101,7 @@ class MhciSlateGreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  middle?: string | null;
+  greQuantitativePct?: string | null;
 
   @ApiProperty({
     required: false,
@@ -123,7 +112,18 @@ class MhciSlateGreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  prefix?: string | null;
+  greAnalyticalWriting?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  greAnalyticalWritingPct?: string | null;
 }
 
 export { MhciSlateGreUpdateInput as MhciSlateGreUpdateInput };

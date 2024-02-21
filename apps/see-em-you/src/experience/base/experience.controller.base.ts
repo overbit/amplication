@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ExperienceService } from "../experience.service";
 import { ExperienceCreateInput } from "./ExperienceCreateInput";
-import { ExperienceWhereInput } from "./ExperienceWhereInput";
-import { ExperienceWhereUniqueInput } from "./ExperienceWhereUniqueInput";
-import { ExperienceFindManyArgs } from "./ExperienceFindManyArgs";
-import { ExperienceUpdateInput } from "./ExperienceUpdateInput";
 import { Experience } from "./Experience";
+import { ExperienceFindManyArgs } from "./ExperienceFindManyArgs";
+import { ExperienceWhereUniqueInput } from "./ExperienceWhereUniqueInput";
+import { ExperienceUpdateInput } from "./ExperienceUpdateInput";
 
 export class ExperienceControllerBase {
   constructor(protected readonly service: ExperienceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Experience })
-  async create(
+  async createExperience(
     @common.Body() data: ExperienceCreateInput
   ): Promise<Experience> {
-    return await this.service.create({
+    return await this.service.createExperience({
       data: {
         ...data,
 
@@ -40,7 +39,16 @@ export class ExperienceControllerBase {
         },
       },
       select: {
+        datafileId: true,
+        experiencetype: true,
+        orderEntered: true,
+        company: true,
+        startDate: true,
+        endDate: true,
+        yearsExp: true,
         address: true,
+        jobTitle: true,
+        jobDescription: true,
 
         application: {
           select: {
@@ -48,16 +56,7 @@ export class ExperienceControllerBase {
           },
         },
 
-        company: true,
-        datafileId: true,
-        endDate: true,
-        experiencetype: true,
         id: true,
-        jobDescription: true,
-        jobTitle: true,
-        orderEntered: true,
-        startDate: true,
-        yearsExp: true,
       },
     });
   }
@@ -65,12 +64,21 @@ export class ExperienceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Experience] })
   @ApiNestedQuery(ExperienceFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Experience[]> {
+  async experiences(@common.Req() request: Request): Promise<Experience[]> {
     const args = plainToClass(ExperienceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.experiences({
       ...args,
       select: {
+        datafileId: true,
+        experiencetype: true,
+        orderEntered: true,
+        company: true,
+        startDate: true,
+        endDate: true,
+        yearsExp: true,
         address: true,
+        jobTitle: true,
+        jobDescription: true,
 
         application: {
           select: {
@@ -78,16 +86,7 @@ export class ExperienceControllerBase {
           },
         },
 
-        company: true,
-        datafileId: true,
-        endDate: true,
-        experiencetype: true,
         id: true,
-        jobDescription: true,
-        jobTitle: true,
-        orderEntered: true,
-        startDate: true,
-        yearsExp: true,
       },
     });
   }
@@ -95,13 +94,22 @@ export class ExperienceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Experience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async experience(
     @common.Param() params: ExperienceWhereUniqueInput
   ): Promise<Experience | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.experience({
       where: params,
       select: {
+        datafileId: true,
+        experiencetype: true,
+        orderEntered: true,
+        company: true,
+        startDate: true,
+        endDate: true,
+        yearsExp: true,
         address: true,
+        jobTitle: true,
+        jobDescription: true,
 
         application: {
           select: {
@@ -109,16 +117,7 @@ export class ExperienceControllerBase {
           },
         },
 
-        company: true,
-        datafileId: true,
-        endDate: true,
-        experiencetype: true,
         id: true,
-        jobDescription: true,
-        jobTitle: true,
-        orderEntered: true,
-        startDate: true,
-        yearsExp: true,
       },
     });
     if (result === null) {
@@ -132,12 +131,12 @@ export class ExperienceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Experience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateExperience(
     @common.Param() params: ExperienceWhereUniqueInput,
     @common.Body() data: ExperienceUpdateInput
   ): Promise<Experience | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateExperience({
         where: params,
         data: {
           ...data,
@@ -147,7 +146,16 @@ export class ExperienceControllerBase {
           },
         },
         select: {
+          datafileId: true,
+          experiencetype: true,
+          orderEntered: true,
+          company: true,
+          startDate: true,
+          endDate: true,
+          yearsExp: true,
           address: true,
+          jobTitle: true,
+          jobDescription: true,
 
           application: {
             select: {
@@ -155,16 +163,7 @@ export class ExperienceControllerBase {
             },
           },
 
-          company: true,
-          datafileId: true,
-          endDate: true,
-          experiencetype: true,
           id: true,
-          jobDescription: true,
-          jobTitle: true,
-          orderEntered: true,
-          startDate: true,
-          yearsExp: true,
         },
       });
     } catch (error) {
@@ -180,14 +179,23 @@ export class ExperienceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Experience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteExperience(
     @common.Param() params: ExperienceWhereUniqueInput
   ): Promise<Experience | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteExperience({
         where: params,
         select: {
+          datafileId: true,
+          experiencetype: true,
+          orderEntered: true,
+          company: true,
+          startDate: true,
+          endDate: true,
+          yearsExp: true,
           address: true,
+          jobTitle: true,
+          jobDescription: true,
 
           application: {
             select: {
@@ -195,16 +203,7 @@ export class ExperienceControllerBase {
             },
           },
 
-          company: true,
-          datafileId: true,
-          endDate: true,
-          experiencetype: true,
           id: true,
-          jobDescription: true,
-          jobTitle: true,
-          orderEntered: true,
-          startDate: true,
-          yearsExp: true,
         },
       });
     } catch (error) {

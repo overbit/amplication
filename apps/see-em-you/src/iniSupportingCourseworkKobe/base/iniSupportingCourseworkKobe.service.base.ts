@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, IniSupportingCourseworkKobe } from "@prisma/client";
+import {
+  Prisma,
+  IniSupportingCourseworkKobe as PrismaIniSupportingCourseworkKobe,
+} from "@prisma/client";
 
 export class IniSupportingCourseworkKobeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,32 +24,42 @@ export class IniSupportingCourseworkKobeServiceBase {
     return this.prisma.iniSupportingCourseworkKobe.count(args);
   }
 
-  async findMany<T extends Prisma.IniSupportingCourseworkKobeFindManyArgs>(
+  async iniSupportingCourseworkKobes<
+    T extends Prisma.IniSupportingCourseworkKobeFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkKobeFindManyArgs>
-  ): Promise<IniSupportingCourseworkKobe[]> {
+  ): Promise<PrismaIniSupportingCourseworkKobe[]> {
     return this.prisma.iniSupportingCourseworkKobe.findMany(args);
   }
-  async findOne<T extends Prisma.IniSupportingCourseworkKobeFindUniqueArgs>(
+  async iniSupportingCourseworkKobe<
+    T extends Prisma.IniSupportingCourseworkKobeFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.IniSupportingCourseworkKobeFindUniqueArgs
     >
-  ): Promise<IniSupportingCourseworkKobe | null> {
+  ): Promise<PrismaIniSupportingCourseworkKobe | null> {
     return this.prisma.iniSupportingCourseworkKobe.findUnique(args);
   }
-  async create<T extends Prisma.IniSupportingCourseworkKobeCreateArgs>(
+  async createIniSupportingCourseworkKobe<
+    T extends Prisma.IniSupportingCourseworkKobeCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkKobeCreateArgs>
-  ): Promise<IniSupportingCourseworkKobe> {
+  ): Promise<PrismaIniSupportingCourseworkKobe> {
     return this.prisma.iniSupportingCourseworkKobe.create<T>(args);
   }
-  async update<T extends Prisma.IniSupportingCourseworkKobeUpdateArgs>(
+  async updateIniSupportingCourseworkKobe<
+    T extends Prisma.IniSupportingCourseworkKobeUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkKobeUpdateArgs>
-  ): Promise<IniSupportingCourseworkKobe> {
+  ): Promise<PrismaIniSupportingCourseworkKobe> {
     return this.prisma.iniSupportingCourseworkKobe.update<T>(args);
   }
-  async delete<T extends Prisma.IniSupportingCourseworkKobeDeleteArgs>(
+  async deleteIniSupportingCourseworkKobe<
+    T extends Prisma.IniSupportingCourseworkKobeDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkKobeDeleteArgs>
-  ): Promise<IniSupportingCourseworkKobe> {
+  ): Promise<PrismaIniSupportingCourseworkKobe> {
     return this.prisma.iniSupportingCourseworkKobe.delete(args);
   }
 }

@@ -1,7 +1,7 @@
-import { ApplicationreqWhereUniqueInput } from "../applicationreq/ApplicationreqWhereUniqueInput";
 import { ProgramModelWhereUniqueInput } from "../programModel/ProgramModelWhereUniqueInput";
+import { ApplicationreqWhereUniqueInput } from "../applicationreq/ApplicationreqWhereUniqueInput";
 
 export type ProgramsApplicationreqUpdateInput = {
-  applicationreqs?: ApplicationreqWhereUniqueInput;
   programs?: ProgramModelWhereUniqueInput;
+  applicationreqs?: ApplicationreqWhereUniqueInput;
 };

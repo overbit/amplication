@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { VeteranInfoService } from "../veteranInfo.service";
 import { VeteranInfoCreateInput } from "./VeteranInfoCreateInput";
-import { VeteranInfoWhereInput } from "./VeteranInfoWhereInput";
-import { VeteranInfoWhereUniqueInput } from "./VeteranInfoWhereUniqueInput";
-import { VeteranInfoFindManyArgs } from "./VeteranInfoFindManyArgs";
-import { VeteranInfoUpdateInput } from "./VeteranInfoUpdateInput";
 import { VeteranInfo } from "./VeteranInfo";
+import { VeteranInfoFindManyArgs } from "./VeteranInfoFindManyArgs";
+import { VeteranInfoWhereUniqueInput } from "./VeteranInfoWhereUniqueInput";
+import { VeteranInfoUpdateInput } from "./VeteranInfoUpdateInput";
 
 export class VeteranInfoControllerBase {
   constructor(protected readonly service: VeteranInfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: VeteranInfo })
-  async create(
+  async createVeteranInfo(
     @common.Body() data: VeteranInfoCreateInput
   ): Promise<VeteranInfo> {
-    return await this.service.create({
+    return await this.service.createVeteranInfo({
       data: data,
       select: {
-        branch: true,
-        discharge: true,
-        enddate: true,
-        id: true,
-        startdate: true,
+        userId: true,
         status: true,
         statusEnroll: true,
-        userId: true,
+        branch: true,
+        startdate: true,
+        enddate: true,
+        discharge: true,
+        id: true,
       },
     });
   }
@@ -49,19 +48,19 @@ export class VeteranInfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [VeteranInfo] })
   @ApiNestedQuery(VeteranInfoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<VeteranInfo[]> {
+  async veteranInfos(@common.Req() request: Request): Promise<VeteranInfo[]> {
     const args = plainToClass(VeteranInfoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.veteranInfos({
       ...args,
       select: {
-        branch: true,
-        discharge: true,
-        enddate: true,
-        id: true,
-        startdate: true,
+        userId: true,
         status: true,
         statusEnroll: true,
-        userId: true,
+        branch: true,
+        startdate: true,
+        enddate: true,
+        discharge: true,
+        id: true,
       },
     });
   }
@@ -69,20 +68,20 @@ export class VeteranInfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: VeteranInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async veteranInfo(
     @common.Param() params: VeteranInfoWhereUniqueInput
   ): Promise<VeteranInfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.veteranInfo({
       where: params,
       select: {
-        branch: true,
-        discharge: true,
-        enddate: true,
-        id: true,
-        startdate: true,
+        userId: true,
         status: true,
         statusEnroll: true,
-        userId: true,
+        branch: true,
+        startdate: true,
+        enddate: true,
+        discharge: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -96,23 +95,23 @@ export class VeteranInfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: VeteranInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateVeteranInfo(
     @common.Param() params: VeteranInfoWhereUniqueInput,
     @common.Body() data: VeteranInfoUpdateInput
   ): Promise<VeteranInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVeteranInfo({
         where: params,
         data: data,
         select: {
-          branch: true,
-          discharge: true,
-          enddate: true,
-          id: true,
-          startdate: true,
+          userId: true,
           status: true,
           statusEnroll: true,
-          userId: true,
+          branch: true,
+          startdate: true,
+          enddate: true,
+          discharge: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -128,21 +127,21 @@ export class VeteranInfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: VeteranInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteVeteranInfo(
     @common.Param() params: VeteranInfoWhereUniqueInput
   ): Promise<VeteranInfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteVeteranInfo({
         where: params,
         select: {
-          branch: true,
-          discharge: true,
-          enddate: true,
-          id: true,
-          startdate: true,
+          userId: true,
           status: true,
           statusEnroll: true,
-          userId: true,
+          branch: true,
+          startdate: true,
+          enddate: true,
+          discharge: true,
+          id: true,
         },
       });
     } catch (error) {

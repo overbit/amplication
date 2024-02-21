@@ -28,7 +28,7 @@ class ScsUserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  andrewId?: SortOrder;
+  usersId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class ScsUserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  eceId?: SortOrder;
+  andrewId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +72,7 @@ class ScsUserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  eceId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -94,7 +94,7 @@ class ScsUserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usersId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ScsUserOrderByInput as ScsUserOrderByInput };

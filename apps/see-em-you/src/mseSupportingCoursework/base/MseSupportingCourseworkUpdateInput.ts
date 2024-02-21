@@ -11,43 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsOptional, IsString } from "class-validator";
 
 @InputType()
 class MseSupportingCourseworkUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  algCourseGrade?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  algCourseName?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  algCourseNum?: string;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -58,28 +25,6 @@ class MseSupportingCourseworkUpdateInput {
     nullable: true,
   })
   appId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  dmCourseGrade?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  dmCourseName?: string;
 
   @ApiProperty({
     required: false,
@@ -101,7 +46,7 @@ class MseSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  dsCourseGrade?: string;
+  dmCourseName?: string;
 
   @ApiProperty({
     required: false,
@@ -112,7 +57,7 @@ class MseSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  dsCourseName?: string;
+  dmCourseGrade?: string;
 
   @ApiProperty({
     required: false,
@@ -134,7 +79,7 @@ class MseSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  prog1CourseGrade?: string;
+  dsCourseName?: string;
 
   @ApiProperty({
     required: false,
@@ -145,7 +90,40 @@ class MseSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  prog1CourseName?: string;
+  dsCourseGrade?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  algCourseNum?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  algCourseName?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  algCourseGrade?: string;
 
   @ApiProperty({
     required: false,
@@ -167,7 +145,29 @@ class MseSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  prog2CourseGrade?: string;
+  prog1CourseName?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  prog1CourseGrade?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  prog2CourseNum?: string;
 
   @ApiProperty({
     required: false,
@@ -189,7 +189,7 @@ class MseSupportingCourseworkUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  prog2CourseNum?: string;
+  prog2CourseGrade?: string;
 }
 
 export { MseSupportingCourseworkUpdateInput as MseSupportingCourseworkUpdateInput };

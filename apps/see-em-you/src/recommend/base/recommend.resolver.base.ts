@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRecommendArgs } from "./CreateRecommendArgs";
-import { UpdateRecommendArgs } from "./UpdateRecommendArgs";
-import { DeleteRecommendArgs } from "./DeleteRecommendArgs";
+import { Recommend } from "./Recommend";
 import { RecommendCountArgs } from "./RecommendCountArgs";
 import { RecommendFindManyArgs } from "./RecommendFindManyArgs";
 import { RecommendFindUniqueArgs } from "./RecommendFindUniqueArgs";
-import { Recommend } from "./Recommend";
+import { CreateRecommendArgs } from "./CreateRecommendArgs";
+import { UpdateRecommendArgs } from "./UpdateRecommendArgs";
+import { DeleteRecommendArgs } from "./DeleteRecommendArgs";
 import { Application } from "../../application/base/Application";
 import { RecommendService } from "../recommend.service";
 @graphql.Resolver(() => Recommend)
@@ -39,14 +39,14 @@ export class RecommendResolverBase {
   async recommends(
     @graphql.Args() args: RecommendFindManyArgs
   ): Promise<Recommend[]> {
-    return this.service.findMany(args);
+    return this.service.recommends(args);
   }
 
   @graphql.Query(() => Recommend, { nullable: true })
   async recommend(
     @graphql.Args() args: RecommendFindUniqueArgs
   ): Promise<Recommend | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.recommend(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class RecommendResolverBase {
   async createRecommend(
     @graphql.Args() args: CreateRecommendArgs
   ): Promise<Recommend> {
-    return await this.service.create({
+    return await this.service.createRecommend({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class RecommendResolverBase {
     @graphql.Args() args: UpdateRecommendArgs
   ): Promise<Recommend | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecommend({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class RecommendResolverBase {
     @graphql.Args() args: DeleteRecommendArgs
   ): Promise<Recommend | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRecommend(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class RecommendResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: Recommend
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

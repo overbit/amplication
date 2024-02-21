@@ -28,14 +28,14 @@ class ProgramGroupUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  programGroupDescription?: string | null;
+  unitId?: number;
 
   @ApiProperty({
     required: false,
@@ -61,14 +61,14 @@ class ProgramGroupUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  unitId?: number;
+  programGroupDescription?: string | null;
 }
 
 export { ProgramGroupUpdateInput as ProgramGroupUpdateInput };

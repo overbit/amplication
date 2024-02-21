@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IpedsEthnicityService } from "../ipedsEthnicity.service";
 import { IpedsEthnicityCreateInput } from "./IpedsEthnicityCreateInput";
-import { IpedsEthnicityWhereInput } from "./IpedsEthnicityWhereInput";
-import { IpedsEthnicityWhereUniqueInput } from "./IpedsEthnicityWhereUniqueInput";
-import { IpedsEthnicityFindManyArgs } from "./IpedsEthnicityFindManyArgs";
-import { IpedsEthnicityUpdateInput } from "./IpedsEthnicityUpdateInput";
 import { IpedsEthnicity } from "./IpedsEthnicity";
+import { IpedsEthnicityFindManyArgs } from "./IpedsEthnicityFindManyArgs";
+import { IpedsEthnicityWhereUniqueInput } from "./IpedsEthnicityWhereUniqueInput";
+import { IpedsEthnicityUpdateInput } from "./IpedsEthnicityUpdateInput";
 
 export class IpedsEthnicityControllerBase {
   constructor(protected readonly service: IpedsEthnicityService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IpedsEthnicity })
-  async create(
+  async createIpedsEthnicity(
     @common.Body() data: IpedsEthnicityCreateInput
   ): Promise<IpedsEthnicity> {
-    return await this.service.create({
+    return await this.service.createIpedsEthnicity({
       data: data,
       select: {
-        ethnicityId: true,
-        id: true,
         ipedsEthnicity: true,
         sortOrder: true,
+        ethnicityId: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class IpedsEthnicityControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [IpedsEthnicity] })
   @ApiNestedQuery(IpedsEthnicityFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<IpedsEthnicity[]> {
+  async ipedsEthnicities(
+    @common.Req() request: Request
+  ): Promise<IpedsEthnicity[]> {
     const args = plainToClass(IpedsEthnicityFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ipedsEthnicities({
       ...args,
       select: {
-        ethnicityId: true,
-        id: true,
         ipedsEthnicity: true,
         sortOrder: true,
+        ethnicityId: true,
+        id: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class IpedsEthnicityControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IpedsEthnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ipedsEthnicity(
     @common.Param() params: IpedsEthnicityWhereUniqueInput
   ): Promise<IpedsEthnicity | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ipedsEthnicity({
       where: params,
       select: {
-        ethnicityId: true,
-        id: true,
         ipedsEthnicity: true,
         sortOrder: true,
+        ethnicityId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class IpedsEthnicityControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IpedsEthnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIpedsEthnicity(
     @common.Param() params: IpedsEthnicityWhereUniqueInput,
     @common.Body() data: IpedsEthnicityUpdateInput
   ): Promise<IpedsEthnicity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIpedsEthnicity({
         where: params,
         data: data,
         select: {
-          ethnicityId: true,
-          id: true,
           ipedsEthnicity: true,
           sortOrder: true,
+          ethnicityId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class IpedsEthnicityControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IpedsEthnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIpedsEthnicity(
     @common.Param() params: IpedsEthnicityWhereUniqueInput
   ): Promise<IpedsEthnicity | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIpedsEthnicity({
         where: params,
         select: {
-          ethnicityId: true,
-          id: true,
           ipedsEthnicity: true,
           sortOrder: true,
+          ethnicityId: true,
+          id: true,
         },
       });
     } catch (error) {

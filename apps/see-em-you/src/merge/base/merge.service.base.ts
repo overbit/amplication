@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Merge } from "@prisma/client";
+import { Prisma, Merge as PrismaMerge } from "@prisma/client";
 
 export class MergeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MergeServiceBase {
     return this.prisma.merge.count(args);
   }
 
-  async findMany<T extends Prisma.MergeFindManyArgs>(
+  async merges<T extends Prisma.MergeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeFindManyArgs>
-  ): Promise<Merge[]> {
+  ): Promise<PrismaMerge[]> {
     return this.prisma.merge.findMany(args);
   }
-  async findOne<T extends Prisma.MergeFindUniqueArgs>(
+  async merge<T extends Prisma.MergeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeFindUniqueArgs>
-  ): Promise<Merge | null> {
+  ): Promise<PrismaMerge | null> {
     return this.prisma.merge.findUnique(args);
   }
-  async create<T extends Prisma.MergeCreateArgs>(
+  async createMerge<T extends Prisma.MergeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeCreateArgs>
-  ): Promise<Merge> {
+  ): Promise<PrismaMerge> {
     return this.prisma.merge.create<T>(args);
   }
-  async update<T extends Prisma.MergeUpdateArgs>(
+  async updateMerge<T extends Prisma.MergeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeUpdateArgs>
-  ): Promise<Merge> {
+  ): Promise<PrismaMerge> {
     return this.prisma.merge.update<T>(args);
   }
-  async delete<T extends Prisma.MergeDeleteArgs>(
+  async deleteMerge<T extends Prisma.MergeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeDeleteArgs>
-  ): Promise<Merge> {
+  ): Promise<PrismaMerge> {
     return this.prisma.merge.delete(args);
   }
 }

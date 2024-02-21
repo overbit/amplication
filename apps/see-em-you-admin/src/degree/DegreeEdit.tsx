@@ -16,6 +16,7 @@ export const DegreeEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <TextInput label="Name" source="name" />
+        <TextInput label="Short" source="short" />
         <ReferenceArrayInput
           source="programs"
           reference="ProgramModel"
@@ -24,7 +25,6 @@ export const DegreeEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={ProgramModelTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Short" source="short" />
       </SimpleForm>
     </Edit>
   );

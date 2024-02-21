@@ -12,9 +12,9 @@ export const SlateEmail2AwUserList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Slate Email" source="slateEmail" />
         <TextField label="Aw Luu User Id" source="awLuuUserId" />
         <TextField label="Id" source="id" />
-        <TextField label="Slate Email" source="slateEmail" />
       </Datagrid>
     </List>
   );

@@ -35,7 +35,7 @@ class BlacklistReviewerUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  deny?: number | null;
+  reviewerId?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class BlacklistReviewerUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  reviewerId?: number;
+  deny?: number | null;
 }
 
 export { BlacklistReviewerUpdateInput as BlacklistReviewerUpdateInput };

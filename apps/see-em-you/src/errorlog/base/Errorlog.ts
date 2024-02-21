@@ -25,23 +25,7 @@ class Errorlog {
   @Field(() => Number, {
     nullable: true,
   })
-  applicationId!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  client!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  usersId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -55,12 +39,34 @@ class Errorlog {
   luUsersUsertypesId!: number | null;
 
   @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  usertypeId!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  applicationId!: number | null;
+
+  @ApiProperty({
     required: true,
     type: String,
   })
   @IsString()
   @Field(() => String)
-  message!: string;
+  client!: string;
 
   @ApiProperty({
     required: true,
@@ -71,26 +77,20 @@ class Errorlog {
   timestamp!: Date;
 
   @ApiProperty({
-    required: false,
-    type: Number,
+    required: true,
+    type: String,
   })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usersId!: number | null;
+  @IsString()
+  @Field(() => String)
+  message!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usertypeId!: number | null;
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Errorlog as Errorlog };

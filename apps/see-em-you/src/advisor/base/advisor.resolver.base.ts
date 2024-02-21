@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAdvisorArgs } from "./CreateAdvisorArgs";
-import { UpdateAdvisorArgs } from "./UpdateAdvisorArgs";
-import { DeleteAdvisorArgs } from "./DeleteAdvisorArgs";
+import { Advisor } from "./Advisor";
 import { AdvisorCountArgs } from "./AdvisorCountArgs";
 import { AdvisorFindManyArgs } from "./AdvisorFindManyArgs";
 import { AdvisorFindUniqueArgs } from "./AdvisorFindUniqueArgs";
-import { Advisor } from "./Advisor";
+import { CreateAdvisorArgs } from "./CreateAdvisorArgs";
+import { UpdateAdvisorArgs } from "./UpdateAdvisorArgs";
+import { DeleteAdvisorArgs } from "./DeleteAdvisorArgs";
 import { AdvisorService } from "../advisor.service";
 @graphql.Resolver(() => Advisor)
 export class AdvisorResolverBase {
@@ -38,14 +38,14 @@ export class AdvisorResolverBase {
   async advisors(
     @graphql.Args() args: AdvisorFindManyArgs
   ): Promise<Advisor[]> {
-    return this.service.findMany(args);
+    return this.service.advisors(args);
   }
 
   @graphql.Query(() => Advisor, { nullable: true })
   async advisor(
     @graphql.Args() args: AdvisorFindUniqueArgs
   ): Promise<Advisor | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.advisor(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class AdvisorResolverBase {
   async createAdvisor(
     @graphql.Args() args: CreateAdvisorArgs
   ): Promise<Advisor> {
-    return await this.service.create({
+    return await this.service.createAdvisor({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class AdvisorResolverBase {
     @graphql.Args() args: UpdateAdvisorArgs
   ): Promise<Advisor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAdvisor({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class AdvisorResolverBase {
     @graphql.Args() args: DeleteAdvisorArgs
   ): Promise<Advisor | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAdvisor(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

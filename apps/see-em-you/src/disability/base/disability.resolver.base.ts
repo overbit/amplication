@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDisabilityArgs } from "./CreateDisabilityArgs";
-import { UpdateDisabilityArgs } from "./UpdateDisabilityArgs";
-import { DeleteDisabilityArgs } from "./DeleteDisabilityArgs";
+import { Disability } from "./Disability";
 import { DisabilityCountArgs } from "./DisabilityCountArgs";
 import { DisabilityFindManyArgs } from "./DisabilityFindManyArgs";
 import { DisabilityFindUniqueArgs } from "./DisabilityFindUniqueArgs";
-import { Disability } from "./Disability";
+import { CreateDisabilityArgs } from "./CreateDisabilityArgs";
+import { UpdateDisabilityArgs } from "./UpdateDisabilityArgs";
+import { DeleteDisabilityArgs } from "./DeleteDisabilityArgs";
 import { DisabilityService } from "../disability.service";
 @graphql.Resolver(() => Disability)
 export class DisabilityResolverBase {
@@ -38,14 +38,14 @@ export class DisabilityResolverBase {
   async disabilities(
     @graphql.Args() args: DisabilityFindManyArgs
   ): Promise<Disability[]> {
-    return this.service.findMany(args);
+    return this.service.disabilities(args);
   }
 
   @graphql.Query(() => Disability, { nullable: true })
   async disability(
     @graphql.Args() args: DisabilityFindUniqueArgs
   ): Promise<Disability | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.disability(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DisabilityResolverBase {
   async createDisability(
     @graphql.Args() args: CreateDisabilityArgs
   ): Promise<Disability> {
-    return await this.service.create({
+    return await this.service.createDisability({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DisabilityResolverBase {
     @graphql.Args() args: UpdateDisabilityArgs
   ): Promise<Disability | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDisability({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DisabilityResolverBase {
     @graphql.Args() args: DeleteDisabilityArgs
   ): Promise<Disability | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDisability(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

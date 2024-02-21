@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LegacyEthnicity } from "@prisma/client";
+import {
+  Prisma,
+  LegacyEthnicity as PrismaLegacyEthnicity,
+} from "@prisma/client";
 
 export class LegacyEthnicityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class LegacyEthnicityServiceBase {
     return this.prisma.legacyEthnicity.count(args);
   }
 
-  async findMany<T extends Prisma.LegacyEthnicityFindManyArgs>(
+  async legacyEthnicities<T extends Prisma.LegacyEthnicityFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LegacyEthnicityFindManyArgs>
-  ): Promise<LegacyEthnicity[]> {
+  ): Promise<PrismaLegacyEthnicity[]> {
     return this.prisma.legacyEthnicity.findMany(args);
   }
-  async findOne<T extends Prisma.LegacyEthnicityFindUniqueArgs>(
+  async legacyEthnicity<T extends Prisma.LegacyEthnicityFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LegacyEthnicityFindUniqueArgs>
-  ): Promise<LegacyEthnicity | null> {
+  ): Promise<PrismaLegacyEthnicity | null> {
     return this.prisma.legacyEthnicity.findUnique(args);
   }
-  async create<T extends Prisma.LegacyEthnicityCreateArgs>(
+  async createLegacyEthnicity<T extends Prisma.LegacyEthnicityCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LegacyEthnicityCreateArgs>
-  ): Promise<LegacyEthnicity> {
+  ): Promise<PrismaLegacyEthnicity> {
     return this.prisma.legacyEthnicity.create<T>(args);
   }
-  async update<T extends Prisma.LegacyEthnicityUpdateArgs>(
+  async updateLegacyEthnicity<T extends Prisma.LegacyEthnicityUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LegacyEthnicityUpdateArgs>
-  ): Promise<LegacyEthnicity> {
+  ): Promise<PrismaLegacyEthnicity> {
     return this.prisma.legacyEthnicity.update<T>(args);
   }
-  async delete<T extends Prisma.LegacyEthnicityDeleteArgs>(
+  async deleteLegacyEthnicity<T extends Prisma.LegacyEthnicityDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.LegacyEthnicityDeleteArgs>
-  ): Promise<LegacyEthnicity> {
+  ): Promise<PrismaLegacyEthnicity> {
     return this.prisma.legacyEthnicity.delete(args);
   }
 }

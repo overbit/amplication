@@ -22,6 +22,14 @@ class ApplicationDecisionIniCreateInput {
   })
   @IsInt()
   @Field(() => Number)
+  applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   admissionProgramId!: number;
 
   @ApiProperty({
@@ -33,15 +41,7 @@ class ApplicationDecisionIniCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  admissionStatus?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  applicationId!: number;
+  choice?: number | null;
 
   @ApiProperty({
     required: false,
@@ -52,7 +52,7 @@ class ApplicationDecisionIniCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  choice?: number | null;
+  admissionStatus?: number | null;
 
   @ApiProperty({
     required: false,

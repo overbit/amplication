@@ -7,14 +7,14 @@ export const SlateProgramsMseReviewedShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Prefix" source="prefix" />
         <TextField label="First" source="first" />
-        <TextField label="Id" source="id" />
-        <TextField label="Last" source="last" />
         <TextField label="Middle" source="middle" />
+        <TextField label="Last" source="last" />
         <TextField label="Mse Program1" source="mseProgram1" />
         <TextField label="Mse Program2" source="mseProgram2" />
         <TextField label="Mse Program3" source="mseProgram3" />
-        <TextField label="Prefix" source="prefix" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

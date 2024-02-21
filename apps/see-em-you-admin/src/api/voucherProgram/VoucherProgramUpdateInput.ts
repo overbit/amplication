@@ -1,4 +1,4 @@
 export type VoucherProgramUpdateInput = {
-  programId?: number;
   voucherId?: number;
+  programId?: number;
 };

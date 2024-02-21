@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsReferenceArgs } from "./CreateMhciPrereqsReferenceArgs";
-import { UpdateMhciPrereqsReferenceArgs } from "./UpdateMhciPrereqsReferenceArgs";
-import { DeleteMhciPrereqsReferenceArgs } from "./DeleteMhciPrereqsReferenceArgs";
+import { MhciPrereqsReference } from "./MhciPrereqsReference";
 import { MhciPrereqsReferenceCountArgs } from "./MhciPrereqsReferenceCountArgs";
 import { MhciPrereqsReferenceFindManyArgs } from "./MhciPrereqsReferenceFindManyArgs";
 import { MhciPrereqsReferenceFindUniqueArgs } from "./MhciPrereqsReferenceFindUniqueArgs";
-import { MhciPrereqsReference } from "./MhciPrereqsReference";
+import { CreateMhciPrereqsReferenceArgs } from "./CreateMhciPrereqsReferenceArgs";
+import { UpdateMhciPrereqsReferenceArgs } from "./UpdateMhciPrereqsReferenceArgs";
+import { DeleteMhciPrereqsReferenceArgs } from "./DeleteMhciPrereqsReferenceArgs";
 import { MhciPrereqsReferenceService } from "../mhciPrereqsReference.service";
 @graphql.Resolver(() => MhciPrereqsReference)
 export class MhciPrereqsReferenceResolverBase {
@@ -38,14 +38,14 @@ export class MhciPrereqsReferenceResolverBase {
   async mhciPrereqsReferences(
     @graphql.Args() args: MhciPrereqsReferenceFindManyArgs
   ): Promise<MhciPrereqsReference[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsReferences(args);
   }
 
   @graphql.Query(() => MhciPrereqsReference, { nullable: true })
   async mhciPrereqsReference(
     @graphql.Args() args: MhciPrereqsReferenceFindUniqueArgs
   ): Promise<MhciPrereqsReference | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsReference(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MhciPrereqsReferenceResolverBase {
   async createMhciPrereqsReference(
     @graphql.Args() args: CreateMhciPrereqsReferenceArgs
   ): Promise<MhciPrereqsReference> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsReference({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MhciPrereqsReferenceResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsReferenceArgs
   ): Promise<MhciPrereqsReference | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsReference({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MhciPrereqsReferenceResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsReferenceArgs
   ): Promise<MhciPrereqsReference | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsReference(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

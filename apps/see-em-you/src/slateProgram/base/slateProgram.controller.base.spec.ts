@@ -18,54 +18,54 @@ import { SlateProgramService } from "../slateProgram.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  prefix: "examplePrefix",
   first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
   middle: "exampleMiddle",
+  last: "exampleLast",
   mseProgram1: "exampleMseProgram1",
   mseProgram2: "exampleMseProgram2",
   mseProgram3: "exampleMseProgram3",
-  prefix: "examplePrefix",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
+  prefix: "examplePrefix",
   first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
   middle: "exampleMiddle",
+  last: "exampleLast",
   mseProgram1: "exampleMseProgram1",
   mseProgram2: "exampleMseProgram2",
   mseProgram3: "exampleMseProgram3",
-  prefix: "examplePrefix",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
+    prefix: "examplePrefix",
     first: "exampleFirst",
-    id: "exampleId",
-    last: "exampleLast",
     middle: "exampleMiddle",
+    last: "exampleLast",
     mseProgram1: "exampleMseProgram1",
     mseProgram2: "exampleMseProgram2",
     mseProgram3: "exampleMseProgram3",
-    prefix: "examplePrefix",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
+  prefix: "examplePrefix",
   first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
   middle: "exampleMiddle",
+  last: "exampleLast",
   mseProgram1: "exampleMseProgram1",
   mseProgram2: "exampleMseProgram2",
   mseProgram3: "exampleMseProgram3",
-  prefix: "examplePrefix",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createSlateProgram() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slatePrograms: () => FIND_MANY_RESULT,
+  slateProgram: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

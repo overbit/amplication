@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  DateField,
   TextField,
+  DateField,
 } from "react-admin";
 
 export const CcAuthNotificationShow = (
@@ -13,12 +13,12 @@ export const CcAuthNotificationShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Payment Id" source="paymentId" />
         <DateField
           source="authNotificationTime"
           label="Auth Notification Time"
         />
         <TextField label="Id" source="id" />
-        <TextField label="Payment Id" source="paymentId" />
       </SimpleShowLayout>
     </Show>
   );

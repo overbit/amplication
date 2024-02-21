@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AccesslogApplicationService } from "../accesslogApplication.service";
 import { AccesslogApplicationCreateInput } from "./AccesslogApplicationCreateInput";
-import { AccesslogApplicationWhereInput } from "./AccesslogApplicationWhereInput";
-import { AccesslogApplicationWhereUniqueInput } from "./AccesslogApplicationWhereUniqueInput";
-import { AccesslogApplicationFindManyArgs } from "./AccesslogApplicationFindManyArgs";
-import { AccesslogApplicationUpdateInput } from "./AccesslogApplicationUpdateInput";
 import { AccesslogApplication } from "./AccesslogApplication";
+import { AccesslogApplicationFindManyArgs } from "./AccesslogApplicationFindManyArgs";
+import { AccesslogApplicationWhereUniqueInput } from "./AccesslogApplicationWhereUniqueInput";
+import { AccesslogApplicationUpdateInput } from "./AccesslogApplicationUpdateInput";
 
 export class AccesslogApplicationControllerBase {
   constructor(protected readonly service: AccesslogApplicationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: AccesslogApplication })
-  async create(
+  async createAccesslogApplication(
     @common.Body() data: AccesslogApplicationCreateInput
   ): Promise<AccesslogApplication> {
-    return await this.service.create({
+    return await this.service.createAccesslogApplication({
       data: data,
       select: {
-        active: true,
         appId: true,
+        active: true,
         id: true,
       },
     });
@@ -44,15 +43,15 @@ export class AccesslogApplicationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [AccesslogApplication] })
   @ApiNestedQuery(AccesslogApplicationFindManyArgs)
-  async findMany(
+  async accesslogApplications(
     @common.Req() request: Request
   ): Promise<AccesslogApplication[]> {
     const args = plainToClass(AccesslogApplicationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.accesslogApplications({
       ...args,
       select: {
-        active: true,
         appId: true,
+        active: true,
         id: true,
       },
     });
@@ -61,14 +60,14 @@ export class AccesslogApplicationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: AccesslogApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async accesslogApplication(
     @common.Param() params: AccesslogApplicationWhereUniqueInput
   ): Promise<AccesslogApplication | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.accesslogApplication({
       where: params,
       select: {
-        active: true,
         appId: true,
+        active: true,
         id: true,
       },
     });
@@ -83,17 +82,17 @@ export class AccesslogApplicationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: AccesslogApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAccesslogApplication(
     @common.Param() params: AccesslogApplicationWhereUniqueInput,
     @common.Body() data: AccesslogApplicationUpdateInput
   ): Promise<AccesslogApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAccesslogApplication({
         where: params,
         data: data,
         select: {
-          active: true,
           appId: true,
+          active: true,
           id: true,
         },
       });
@@ -110,15 +109,15 @@ export class AccesslogApplicationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: AccesslogApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAccesslogApplication(
     @common.Param() params: AccesslogApplicationWhereUniqueInput
   ): Promise<AccesslogApplication | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAccesslogApplication({
         where: params,
         select: {
-          active: true,
           appId: true,
+          active: true,
           id: true,
         },
       });

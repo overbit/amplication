@@ -28,7 +28,7 @@ class RecommendformOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  formId?: SortOrder;
+  recommendId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class RecommendformOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  formId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +72,7 @@ class RecommendformOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  recommendId?: SortOrder;
+  response?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +83,7 @@ class RecommendformOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  response?: SortOrder;
+  id?: SortOrder;
 }
 
 export { RecommendformOrderByInput as RecommendformOrderByInput };

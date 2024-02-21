@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuProgramsRecommendationArgs } from "./CreateLuProgramsRecommendationArgs";
-import { UpdateLuProgramsRecommendationArgs } from "./UpdateLuProgramsRecommendationArgs";
-import { DeleteLuProgramsRecommendationArgs } from "./DeleteLuProgramsRecommendationArgs";
+import { LuProgramsRecommendation } from "./LuProgramsRecommendation";
 import { LuProgramsRecommendationCountArgs } from "./LuProgramsRecommendationCountArgs";
 import { LuProgramsRecommendationFindManyArgs } from "./LuProgramsRecommendationFindManyArgs";
 import { LuProgramsRecommendationFindUniqueArgs } from "./LuProgramsRecommendationFindUniqueArgs";
-import { LuProgramsRecommendation } from "./LuProgramsRecommendation";
+import { CreateLuProgramsRecommendationArgs } from "./CreateLuProgramsRecommendationArgs";
+import { UpdateLuProgramsRecommendationArgs } from "./UpdateLuProgramsRecommendationArgs";
+import { DeleteLuProgramsRecommendationArgs } from "./DeleteLuProgramsRecommendationArgs";
 import { LuProgramsRecommendationService } from "../luProgramsRecommendation.service";
 @graphql.Resolver(() => LuProgramsRecommendation)
 export class LuProgramsRecommendationResolverBase {
@@ -38,14 +38,14 @@ export class LuProgramsRecommendationResolverBase {
   async luProgramsRecommendations(
     @graphql.Args() args: LuProgramsRecommendationFindManyArgs
   ): Promise<LuProgramsRecommendation[]> {
-    return this.service.findMany(args);
+    return this.service.luProgramsRecommendations(args);
   }
 
   @graphql.Query(() => LuProgramsRecommendation, { nullable: true })
   async luProgramsRecommendation(
     @graphql.Args() args: LuProgramsRecommendationFindUniqueArgs
   ): Promise<LuProgramsRecommendation | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luProgramsRecommendation(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LuProgramsRecommendationResolverBase {
   async createLuProgramsRecommendation(
     @graphql.Args() args: CreateLuProgramsRecommendationArgs
   ): Promise<LuProgramsRecommendation> {
-    return await this.service.create({
+    return await this.service.createLuProgramsRecommendation({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LuProgramsRecommendationResolverBase {
     @graphql.Args() args: UpdateLuProgramsRecommendationArgs
   ): Promise<LuProgramsRecommendation | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuProgramsRecommendation({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LuProgramsRecommendationResolverBase {
     @graphql.Args() args: DeleteLuProgramsRecommendationArgs
   ): Promise<LuProgramsRecommendation | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuProgramsRecommendation(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

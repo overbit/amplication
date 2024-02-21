@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateVoucherTypeArgs } from "./CreateVoucherTypeArgs";
-import { UpdateVoucherTypeArgs } from "./UpdateVoucherTypeArgs";
-import { DeleteVoucherTypeArgs } from "./DeleteVoucherTypeArgs";
+import { VoucherType } from "./VoucherType";
 import { VoucherTypeCountArgs } from "./VoucherTypeCountArgs";
 import { VoucherTypeFindManyArgs } from "./VoucherTypeFindManyArgs";
 import { VoucherTypeFindUniqueArgs } from "./VoucherTypeFindUniqueArgs";
-import { VoucherType } from "./VoucherType";
+import { CreateVoucherTypeArgs } from "./CreateVoucherTypeArgs";
+import { UpdateVoucherTypeArgs } from "./UpdateVoucherTypeArgs";
+import { DeleteVoucherTypeArgs } from "./DeleteVoucherTypeArgs";
 import { VoucherTypeService } from "../voucherType.service";
 @graphql.Resolver(() => VoucherType)
 export class VoucherTypeResolverBase {
@@ -38,14 +38,14 @@ export class VoucherTypeResolverBase {
   async voucherTypes(
     @graphql.Args() args: VoucherTypeFindManyArgs
   ): Promise<VoucherType[]> {
-    return this.service.findMany(args);
+    return this.service.voucherTypes(args);
   }
 
   @graphql.Query(() => VoucherType, { nullable: true })
   async voucherType(
     @graphql.Args() args: VoucherTypeFindUniqueArgs
   ): Promise<VoucherType | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.voucherType(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class VoucherTypeResolverBase {
   async createVoucherType(
     @graphql.Args() args: CreateVoucherTypeArgs
   ): Promise<VoucherType> {
-    return await this.service.create({
+    return await this.service.createVoucherType({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class VoucherTypeResolverBase {
     @graphql.Args() args: UpdateVoucherTypeArgs
   ): Promise<VoucherType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVoucherType({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class VoucherTypeResolverBase {
     @graphql.Args() args: DeleteVoucherTypeArgs
   ): Promise<VoucherType | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteVoucherType(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

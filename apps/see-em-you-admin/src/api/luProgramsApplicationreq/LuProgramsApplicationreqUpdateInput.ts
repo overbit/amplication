@@ -1,5 +1,5 @@
 export type LuProgramsApplicationreqUpdateInput = {
-  appreqId?: number | null;
   degreeId?: number | null;
+  appreqId?: number | null;
   programId?: number | null;
 };

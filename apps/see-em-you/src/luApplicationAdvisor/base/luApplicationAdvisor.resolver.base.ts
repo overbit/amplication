@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuApplicationAdvisorArgs } from "./CreateLuApplicationAdvisorArgs";
-import { UpdateLuApplicationAdvisorArgs } from "./UpdateLuApplicationAdvisorArgs";
-import { DeleteLuApplicationAdvisorArgs } from "./DeleteLuApplicationAdvisorArgs";
+import { LuApplicationAdvisor } from "./LuApplicationAdvisor";
 import { LuApplicationAdvisorCountArgs } from "./LuApplicationAdvisorCountArgs";
 import { LuApplicationAdvisorFindManyArgs } from "./LuApplicationAdvisorFindManyArgs";
 import { LuApplicationAdvisorFindUniqueArgs } from "./LuApplicationAdvisorFindUniqueArgs";
-import { LuApplicationAdvisor } from "./LuApplicationAdvisor";
+import { CreateLuApplicationAdvisorArgs } from "./CreateLuApplicationAdvisorArgs";
+import { UpdateLuApplicationAdvisorArgs } from "./UpdateLuApplicationAdvisorArgs";
+import { DeleteLuApplicationAdvisorArgs } from "./DeleteLuApplicationAdvisorArgs";
 import { Application } from "../../application/base/Application";
 import { LuApplicationAdvisorService } from "../luApplicationAdvisor.service";
 @graphql.Resolver(() => LuApplicationAdvisor)
@@ -39,14 +39,14 @@ export class LuApplicationAdvisorResolverBase {
   async luApplicationAdvisors(
     @graphql.Args() args: LuApplicationAdvisorFindManyArgs
   ): Promise<LuApplicationAdvisor[]> {
-    return this.service.findMany(args);
+    return this.service.luApplicationAdvisors(args);
   }
 
   @graphql.Query(() => LuApplicationAdvisor, { nullable: true })
   async luApplicationAdvisor(
     @graphql.Args() args: LuApplicationAdvisorFindUniqueArgs
   ): Promise<LuApplicationAdvisor | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luApplicationAdvisor(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class LuApplicationAdvisorResolverBase {
   async createLuApplicationAdvisor(
     @graphql.Args() args: CreateLuApplicationAdvisorArgs
   ): Promise<LuApplicationAdvisor> {
-    return await this.service.create({
+    return await this.service.createLuApplicationAdvisor({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class LuApplicationAdvisorResolverBase {
     @graphql.Args() args: UpdateLuApplicationAdvisorArgs
   ): Promise<LuApplicationAdvisor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationAdvisor({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class LuApplicationAdvisorResolverBase {
     @graphql.Args() args: DeleteLuApplicationAdvisorArgs
   ): Promise<LuApplicationAdvisor | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuApplicationAdvisor(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class LuApplicationAdvisorResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: LuApplicationAdvisor
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

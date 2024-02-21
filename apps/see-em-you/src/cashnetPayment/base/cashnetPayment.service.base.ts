@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, CashnetPayment, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  CashnetPayment as PrismaCashnetPayment,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class CashnetPaymentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,33 @@ export class CashnetPaymentServiceBase {
     return this.prisma.cashnetPayment.count(args);
   }
 
-  async findMany<T extends Prisma.CashnetPaymentFindManyArgs>(
+  async cashnetPayments<T extends Prisma.CashnetPaymentFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentFindManyArgs>
-  ): Promise<CashnetPayment[]> {
+  ): Promise<PrismaCashnetPayment[]> {
     return this.prisma.cashnetPayment.findMany(args);
   }
-  async findOne<T extends Prisma.CashnetPaymentFindUniqueArgs>(
+  async cashnetPayment<T extends Prisma.CashnetPaymentFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentFindUniqueArgs>
-  ): Promise<CashnetPayment | null> {
+  ): Promise<PrismaCashnetPayment | null> {
     return this.prisma.cashnetPayment.findUnique(args);
   }
-  async create<T extends Prisma.CashnetPaymentCreateArgs>(
+  async createCashnetPayment<T extends Prisma.CashnetPaymentCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentCreateArgs>
-  ): Promise<CashnetPayment> {
+  ): Promise<PrismaCashnetPayment> {
     return this.prisma.cashnetPayment.create<T>(args);
   }
-  async update<T extends Prisma.CashnetPaymentUpdateArgs>(
+  async updateCashnetPayment<T extends Prisma.CashnetPaymentUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentUpdateArgs>
-  ): Promise<CashnetPayment> {
+  ): Promise<PrismaCashnetPayment> {
     return this.prisma.cashnetPayment.update<T>(args);
   }
-  async delete<T extends Prisma.CashnetPaymentDeleteArgs>(
+  async deleteCashnetPayment<T extends Prisma.CashnetPaymentDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentDeleteArgs>
-  ): Promise<CashnetPayment> {
+  ): Promise<PrismaCashnetPayment> {
     return this.prisma.cashnetPayment.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.cashnetPayment
       .findUnique({
         where: { id: parentId },

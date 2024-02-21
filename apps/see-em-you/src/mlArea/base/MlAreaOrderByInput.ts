@@ -28,17 +28,6 @@ class MlAreaOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  application_id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   area?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,7 @@ class MlAreaOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  application_id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -62,6 +51,17 @@ class MlAreaOrderByInput {
     nullable: true,
   })
   program_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MlAreaOrderByInput as MlAreaOrderByInput };

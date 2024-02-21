@@ -13,8 +13,8 @@ export const MergeCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Error Field" source="errorField" />
         <BooleanInput label="Merged" source="merged" />
+        <NumberInput step={1} label="Error Field" source="errorField" />
         <TextInput label="Message" source="message" />
       </SimpleForm>
     </Create>

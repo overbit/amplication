@@ -1,7 +1,7 @@
 export type RecommenderInfoCreateInput = {
+  recUserId: number;
+  title: string;
   affiliation: string;
   phone: string;
-  recUserId: number;
   relationshipToApplicant?: string | null;
-  title: string;
 };

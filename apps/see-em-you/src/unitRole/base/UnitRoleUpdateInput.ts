@@ -24,28 +24,6 @@ class UnitRoleUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  luUsersUsertypesId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  roleId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   unitId?: number;
 
   @ApiProperty({
@@ -58,6 +36,28 @@ class UnitRoleUpdateInput {
     nullable: true,
   })
   usersId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  luUsersUsertypesId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  roleId?: number;
 }
 
 export { UnitRoleUpdateInput as UnitRoleUpdateInput };

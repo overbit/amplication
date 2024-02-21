@@ -25,6 +25,17 @@ class ContentBakUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  name?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   content?: string;
 
   @ApiProperty({
@@ -47,29 +58,7 @@ class ContentBakUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  departmentId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   domainId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  modifiedby?: number;
 
   @ApiProperty({
     required: false,
@@ -84,14 +73,25 @@ class ContentBakUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  name?: string;
+  modifiedby?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  departmentId?: number;
 }
 
 export { ContentBakUpdateInput as ContentBakUpdateInput };

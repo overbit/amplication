@@ -23,18 +23,7 @@ class ApplicationDecisionIni {
   })
   @IsInt()
   @Field(() => Number)
-  admissionProgramId!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  admissionStatus!: number | null;
+  applicationId!: number;
 
   @ApiProperty({
     required: true,
@@ -42,7 +31,7 @@ class ApplicationDecisionIni {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
+  admissionProgramId!: number;
 
   @ApiProperty({
     required: false,
@@ -57,6 +46,17 @@ class ApplicationDecisionIni {
 
   @ApiProperty({
     required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  admissionStatus!: number | null;
+
+  @ApiProperty({
+    required: false,
     type: String,
   })
   @IsString()
@@ -65,14 +65,6 @@ class ApplicationDecisionIni {
     nullable: true,
   })
   comments!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
 
   @ApiProperty({
     required: false,
@@ -106,6 +98,14 @@ class ApplicationDecisionIni {
     nullable: true,
   })
   timestamp!: Date | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { ApplicationDecisionIni as ApplicationDecisionIni };

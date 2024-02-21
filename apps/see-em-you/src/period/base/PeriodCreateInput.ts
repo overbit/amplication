@@ -11,20 +11,77 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { AaDepartmentCreateNestedManyWithoutPeriodsInput } from "./AaDepartmentCreateNestedManyWithoutPeriodsInput";
 import {
-  ValidateNested,
-  IsOptional,
-  IsString,
-  IsDate,
   IsInt,
+  IsString,
+  IsOptional,
+  IsDate,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { AaDepartmentCreateNestedManyWithoutPeriodsInput } from "./AaDepartmentCreateNestedManyWithoutPeriodsInput";
 import { CohortCreateNestedManyWithoutPeriodsInput } from "./CohortCreateNestedManyWithoutPeriodsInput";
 import { PeriodApplicationCreateNestedManyWithoutPeriodsInput } from "./PeriodApplicationCreateNestedManyWithoutPeriodsInput";
 
 @InputType()
 class PeriodCreateInput {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  unitId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodTypeId!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  description?: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  startDate!: Date;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  endDate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  parentPeriodId?: number | null;
+
   @ApiProperty({
     required: false,
     type: () => AaDepartmentCreateNestedManyWithoutPeriodsInput,
@@ -51,39 +108,6 @@ class PeriodCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  endDate?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  parentPeriodId?: number | null;
-
-  @ApiProperty({
-    required: false,
     type: () => PeriodApplicationCreateNestedManyWithoutPeriodsInput,
   })
   @ValidateNested()
@@ -93,30 +117,6 @@ class PeriodCreateInput {
     nullable: true,
   })
   periodApplication?: PeriodApplicationCreateNestedManyWithoutPeriodsInput;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodTypeId!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  startDate!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  unitId!: number;
 }
 
 export { PeriodCreateInput as PeriodCreateInput };

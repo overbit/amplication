@@ -28,62 +28,7 @@ class MseSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  algCourseGrade?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  algCourseName?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  algCourseNum?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   appId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  dmCourseGrade?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  dmCourseName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,7 +50,7 @@ class MseSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  dsCourseGrade?: SortOrder;
+  dmCourseName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -116,7 +61,7 @@ class MseSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  dsCourseName?: SortOrder;
+  dmCourseGrade?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -138,7 +83,7 @@ class MseSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  dsCourseName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -149,7 +94,7 @@ class MseSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  prog1CourseGrade?: SortOrder;
+  dsCourseGrade?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -160,7 +105,29 @@ class MseSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  prog1CourseName?: SortOrder;
+  algCourseNum?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  algCourseName?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  algCourseGrade?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -182,7 +149,29 @@ class MseSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  prog2CourseGrade?: SortOrder;
+  prog1CourseName?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  prog1CourseGrade?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  prog2CourseNum?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -204,7 +193,18 @@ class MseSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  prog2CourseNum?: SortOrder;
+  prog2CourseGrade?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MseSupportingCourseworkOrderByInput as MseSupportingCourseworkOrderByInput };

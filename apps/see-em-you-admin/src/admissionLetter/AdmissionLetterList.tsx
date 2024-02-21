@@ -14,8 +14,8 @@ export const AdmissionLetterList = (props: ListProps): React.ReactElement => {
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
         <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
         <TextField label="Sections" source="sections" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

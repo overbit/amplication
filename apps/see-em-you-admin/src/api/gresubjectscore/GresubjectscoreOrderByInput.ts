@@ -1,13 +1,13 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type GresubjectscoreOrderByInput = {
-  application_id?: SortOrder;
+  testdate?: SortOrder;
+  name?: SortOrder;
+  score?: SortOrder;
+  percentile?: SortOrder;
   datafileId?: SortOrder;
   greSubEmail?: SortOrder;
-  id?: SortOrder;
-  name?: SortOrder;
-  percentile?: SortOrder;
-  score?: SortOrder;
   scorereceived?: SortOrder;
-  testdate?: SortOrder;
+  application_id?: SortOrder;
+  id?: SortOrder;
 };

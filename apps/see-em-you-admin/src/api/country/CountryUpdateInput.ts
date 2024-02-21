@@ -1,4 +1,4 @@
 export type CountryUpdateInput = {
-  isoCode?: string | null;
   name?: string | null;
+  isoCode?: string | null;
 };

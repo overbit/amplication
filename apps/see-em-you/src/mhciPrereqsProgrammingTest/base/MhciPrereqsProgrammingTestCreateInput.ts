@@ -11,20 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsDate, IsOptional, ValidateNested } from "class-validator";
+import { IsDate, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 
 @InputType()
 class MhciPrereqsProgrammingTestCreateInput {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  applicationId!: number;
-
   @ApiProperty({
     required: false,
   })
@@ -37,13 +29,23 @@ class MhciPrereqsProgrammingTestCreateInput {
   downloadTimestamp?: Date | null;
 
   @ApiProperty({
-    required: true,
-    type: () => LuUsersUsertypeWhereUniqueInput,
+    required: false,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => LuUsersUsertypeWhereUniqueInput)
-  @Field(() => LuUsersUsertypeWhereUniqueInput)
-  luUsersUsertypes!: LuUsersUsertypeWhereUniqueInput;
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  uploadDatafileinfoId?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  applicationId!: number;
 
   @ApiProperty({
     required: true,
@@ -54,15 +56,13 @@ class MhciPrereqsProgrammingTestCreateInput {
   periodId!: number;
 
   @ApiProperty({
-    required: false,
-    type: Number,
+    required: true,
+    type: () => LuUsersUsertypeWhereUniqueInput,
   })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  uploadDatafileinfoId?: number | null;
+  @ValidateNested()
+  @Type(() => LuUsersUsertypeWhereUniqueInput)
+  @Field(() => LuUsersUsertypeWhereUniqueInput)
+  luUsersUsertypes!: LuUsersUsertypeWhereUniqueInput;
 }
 
 export { MhciPrereqsProgrammingTestCreateInput as MhciPrereqsProgrammingTestCreateInput };

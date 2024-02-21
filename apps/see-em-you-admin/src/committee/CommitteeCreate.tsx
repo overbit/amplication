@@ -5,8 +5,8 @@ export const CommitteeCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Group Id" source="groupId" />
         <NumberInput step={1} label="User Id" source="userId" />
+        <NumberInput step={1} label="Group Id" source="groupId" />
       </SimpleForm>
     </Create>
   );

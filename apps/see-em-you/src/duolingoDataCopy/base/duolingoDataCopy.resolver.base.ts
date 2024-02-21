@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDuolingoDataCopyArgs } from "./CreateDuolingoDataCopyArgs";
-import { UpdateDuolingoDataCopyArgs } from "./UpdateDuolingoDataCopyArgs";
-import { DeleteDuolingoDataCopyArgs } from "./DeleteDuolingoDataCopyArgs";
+import { DuolingoDataCopy } from "./DuolingoDataCopy";
 import { DuolingoDataCopyCountArgs } from "./DuolingoDataCopyCountArgs";
 import { DuolingoDataCopyFindManyArgs } from "./DuolingoDataCopyFindManyArgs";
 import { DuolingoDataCopyFindUniqueArgs } from "./DuolingoDataCopyFindUniqueArgs";
-import { DuolingoDataCopy } from "./DuolingoDataCopy";
+import { CreateDuolingoDataCopyArgs } from "./CreateDuolingoDataCopyArgs";
+import { UpdateDuolingoDataCopyArgs } from "./UpdateDuolingoDataCopyArgs";
+import { DeleteDuolingoDataCopyArgs } from "./DeleteDuolingoDataCopyArgs";
 import { DuolingoDataCopyService } from "../duolingoDataCopy.service";
 @graphql.Resolver(() => DuolingoDataCopy)
 export class DuolingoDataCopyResolverBase {
@@ -38,14 +38,14 @@ export class DuolingoDataCopyResolverBase {
   async duolingoDataCopies(
     @graphql.Args() args: DuolingoDataCopyFindManyArgs
   ): Promise<DuolingoDataCopy[]> {
-    return this.service.findMany(args);
+    return this.service.duolingoDataCopies(args);
   }
 
   @graphql.Query(() => DuolingoDataCopy, { nullable: true })
   async duolingoDataCopy(
     @graphql.Args() args: DuolingoDataCopyFindUniqueArgs
   ): Promise<DuolingoDataCopy | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.duolingoDataCopy(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DuolingoDataCopyResolverBase {
   async createDuolingoDataCopy(
     @graphql.Args() args: CreateDuolingoDataCopyArgs
   ): Promise<DuolingoDataCopy> {
-    return await this.service.create({
+    return await this.service.createDuolingoDataCopy({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DuolingoDataCopyResolverBase {
     @graphql.Args() args: UpdateDuolingoDataCopyArgs
   ): Promise<DuolingoDataCopy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDuolingoDataCopy({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DuolingoDataCopyResolverBase {
     @graphql.Args() args: DeleteDuolingoDataCopyArgs
   ): Promise<DuolingoDataCopy | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDuolingoDataCopy(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

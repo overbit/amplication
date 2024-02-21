@@ -30,7 +30,7 @@ class ApplicationPeriodCreateInput {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  endDate!: Date;
+  startDate!: Date;
 
   @ApiProperty({
     required: true,
@@ -38,7 +38,7 @@ class ApplicationPeriodCreateInput {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  startDate!: Date;
+  endDate!: Date;
 }
 
 export { ApplicationPeriodCreateInput as ApplicationPeriodCreateInput };

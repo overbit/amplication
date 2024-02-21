@@ -18,46 +18,46 @@ import { VoucherApplicationErrorService } from "../voucherApplicationError.servi
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  allowMultiple: 42,
   appId: 42,
   code: "exampleCode",
-  errMsg: "exampleErrMsg",
-  id: 42,
   vaId: 42,
+  errMsg: "exampleErrMsg",
+  allowMultiple: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  allowMultiple: 42,
   appId: 42,
   code: "exampleCode",
-  errMsg: "exampleErrMsg",
-  id: 42,
   vaId: 42,
+  errMsg: "exampleErrMsg",
+  allowMultiple: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    allowMultiple: 42,
     appId: 42,
     code: "exampleCode",
-    errMsg: "exampleErrMsg",
-    id: 42,
     vaId: 42,
+    errMsg: "exampleErrMsg",
+    allowMultiple: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  allowMultiple: 42,
   appId: 42,
   code: "exampleCode",
-  errMsg: "exampleErrMsg",
-  id: 42,
   vaId: 42,
+  errMsg: "exampleErrMsg",
+  allowMultiple: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createVoucherApplicationError() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  voucherApplicationErrors: () => FIND_MANY_RESULT,
+  voucherApplicationError: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

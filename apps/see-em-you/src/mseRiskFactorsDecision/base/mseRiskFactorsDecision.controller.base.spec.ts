@@ -18,54 +18,54 @@ import { MseRiskFactorsDecisionService } from "../mseRiskFactorsDecision.service
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  academic: 42,
-  applicationId: 42,
   experience: 42,
-  id: "exampleId",
+  applicationId: 42,
+  programId: 42,
   language: 42,
+  academic: 42,
   other: 42,
   otherText: "exampleOtherText",
-  programId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  academic: 42,
-  applicationId: 42,
   experience: 42,
-  id: "exampleId",
+  applicationId: 42,
+  programId: 42,
   language: 42,
+  academic: 42,
   other: 42,
   otherText: "exampleOtherText",
-  programId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    academic: 42,
-    applicationId: 42,
     experience: 42,
-    id: "exampleId",
+    applicationId: 42,
+    programId: 42,
     language: 42,
+    academic: 42,
     other: 42,
     otherText: "exampleOtherText",
-    programId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  academic: 42,
-  applicationId: 42,
   experience: 42,
-  id: "exampleId",
+  applicationId: 42,
+  programId: 42,
   language: 42,
+  academic: 42,
   other: 42,
   otherText: "exampleOtherText",
-  programId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createMseRiskFactorsDecision() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mseRiskFactorsDecisions: () => FIND_MANY_RESULT,
+  mseRiskFactorsDecision: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

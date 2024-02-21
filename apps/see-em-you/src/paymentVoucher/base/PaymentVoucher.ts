@@ -27,19 +27,19 @@ class PaymentVoucher {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
     type: () => Payment,
   })
   @ValidateNested()
   @Type(() => Payment)
   payment?: Payment;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { PaymentVoucher as PaymentVoucher };

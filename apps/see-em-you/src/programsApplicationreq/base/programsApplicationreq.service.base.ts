@@ -10,11 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  ProgramsApplicationreq,
-  Applicationreq,
-  ProgramModel,
+  ProgramsApplicationreq as PrismaProgramsApplicationreq,
+  ProgramModel as PrismaProgramModel,
+  Applicationreq as PrismaApplicationreq,
 } from "@prisma/client";
 
 export class ProgramsApplicationreqServiceBase {
@@ -26,45 +27,57 @@ export class ProgramsApplicationreqServiceBase {
     return this.prisma.programsApplicationreq.count(args);
   }
 
-  async findMany<T extends Prisma.ProgramsApplicationreqFindManyArgs>(
+  async programsApplicationreqs<
+    T extends Prisma.ProgramsApplicationreqFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramsApplicationreqFindManyArgs>
-  ): Promise<ProgramsApplicationreq[]> {
+  ): Promise<PrismaProgramsApplicationreq[]> {
     return this.prisma.programsApplicationreq.findMany(args);
   }
-  async findOne<T extends Prisma.ProgramsApplicationreqFindUniqueArgs>(
+  async programsApplicationreq<
+    T extends Prisma.ProgramsApplicationreqFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramsApplicationreqFindUniqueArgs>
-  ): Promise<ProgramsApplicationreq | null> {
+  ): Promise<PrismaProgramsApplicationreq | null> {
     return this.prisma.programsApplicationreq.findUnique(args);
   }
-  async create<T extends Prisma.ProgramsApplicationreqCreateArgs>(
+  async createProgramsApplicationreq<
+    T extends Prisma.ProgramsApplicationreqCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramsApplicationreqCreateArgs>
-  ): Promise<ProgramsApplicationreq> {
+  ): Promise<PrismaProgramsApplicationreq> {
     return this.prisma.programsApplicationreq.create<T>(args);
   }
-  async update<T extends Prisma.ProgramsApplicationreqUpdateArgs>(
+  async updateProgramsApplicationreq<
+    T extends Prisma.ProgramsApplicationreqUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramsApplicationreqUpdateArgs>
-  ): Promise<ProgramsApplicationreq> {
+  ): Promise<PrismaProgramsApplicationreq> {
     return this.prisma.programsApplicationreq.update<T>(args);
   }
-  async delete<T extends Prisma.ProgramsApplicationreqDeleteArgs>(
+  async deleteProgramsApplicationreq<
+    T extends Prisma.ProgramsApplicationreqDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramsApplicationreqDeleteArgs>
-  ): Promise<ProgramsApplicationreq> {
+  ): Promise<PrismaProgramsApplicationreq> {
     return this.prisma.programsApplicationreq.delete(args);
   }
 
-  async getApplicationreqs(parentId: number): Promise<Applicationreq | null> {
-    return this.prisma.programsApplicationreq
-      .findUnique({
-        where: { id: parentId },
-      })
-      .applicationreqs();
-  }
-
-  async getPrograms(parentId: number): Promise<ProgramModel | null> {
+  async getPrograms(parentId: number): Promise<PrismaProgramModel | null> {
     return this.prisma.programsApplicationreq
       .findUnique({
         where: { id: parentId },
       })
       .programs();
+  }
+
+  async getApplicationreqs(
+    parentId: number
+  ): Promise<PrismaApplicationreq | null> {
+    return this.prisma.programsApplicationreq
+      .findUnique({
+        where: { id: parentId },
+      })
+      .applicationreqs();
   }
 }

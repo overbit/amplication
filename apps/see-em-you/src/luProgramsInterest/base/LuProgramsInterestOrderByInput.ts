@@ -28,7 +28,7 @@ class LuProgramsInterestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  programId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class LuProgramsInterestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  programId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { LuProgramsInterestOrderByInput as LuProgramsInterestOrderByInput };

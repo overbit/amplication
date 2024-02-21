@@ -24,15 +24,7 @@ class MitsSlateRecommend3 {
   @Field(() => String, {
     nullable: true,
   })
-  first!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  prefix!: string | null;
 
   @ApiProperty({
     required: false,
@@ -43,7 +35,7 @@ class MitsSlateRecommend3 {
   @Field(() => String, {
     nullable: true,
   })
-  last!: string | null;
+  first!: string | null;
 
   @ApiProperty({
     required: false,
@@ -65,7 +57,7 @@ class MitsSlateRecommend3 {
   @Field(() => String, {
     nullable: true,
   })
-  prefix!: string | null;
+  last!: string | null;
 
   @ApiProperty({
     required: false,
@@ -76,62 +68,7 @@ class MitsSlateRecommend3 {
   @Field(() => String, {
     nullable: true,
   })
-  reference3Email!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference3First!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference3Industry!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference3Last!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference3Organization!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference3Phone!: string | null;
+  reference3Type!: string | null;
 
   @ApiProperty({
     required: false,
@@ -153,6 +90,50 @@ class MitsSlateRecommend3 {
   @Field(() => String, {
     nullable: true,
   })
+  reference3First!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reference3Last!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reference3Industry!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reference3Organization!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   reference3Title!: string | null;
 
   @ApiProperty({
@@ -164,7 +145,18 @@ class MitsSlateRecommend3 {
   @Field(() => String, {
     nullable: true,
   })
-  reference3Type!: string | null;
+  reference3Email!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reference3Phone!: string | null;
 
   @ApiProperty({
     required: false,
@@ -473,6 +465,14 @@ class MitsSlateRecommend3 {
     nullable: true,
   })
   referenceNum3RecommenderScore8!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { MitsSlateRecommend3 as MitsSlateRecommend3 };

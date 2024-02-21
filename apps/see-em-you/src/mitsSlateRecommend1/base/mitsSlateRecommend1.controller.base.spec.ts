@@ -18,20 +18,19 @@ import { MitsSlateRecommend1Service } from "../mitsSlateRecommend1.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
-  reference1Email: "exampleReference1Email",
-  reference1First: "exampleReference1First",
-  reference1Industry: "exampleReference1Industry",
-  reference1Last: "exampleReference1Last",
-  reference1Organization: "exampleReference1Organization",
-  reference1Phone: "exampleReference1Phone",
-  reference1Submitted: "exampleReference1Submitted",
-  reference1Title: "exampleReference1Title",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   reference1Type: "exampleReference1Type",
+  reference1Submitted: "exampleReference1Submitted",
+  reference1First: "exampleReference1First",
+  reference1Last: "exampleReference1Last",
+  reference1Industry: "exampleReference1Industry",
+  reference1Organization: "exampleReference1Organization",
+  reference1Title: "exampleReference1Title",
+  reference1Email: "exampleReference1Email",
+  reference1Phone: "exampleReference1Phone",
   referenceNum1IsrmsRecommenderScore1:
     "exampleReferenceNum1IsrmsRecommenderScore1",
   referenceNum1IsrmsRecommenderScore10:
@@ -80,22 +79,22 @@ const CREATE_INPUT = {
   referenceNum1RecommenderScore6: "exampleReferenceNum1RecommenderScore6",
   referenceNum1RecommenderScore7: "exampleReferenceNum1RecommenderScore7",
   referenceNum1RecommenderScore8: "exampleReferenceNum1RecommenderScore8",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
-  reference1Email: "exampleReference1Email",
-  reference1First: "exampleReference1First",
-  reference1Industry: "exampleReference1Industry",
-  reference1Last: "exampleReference1Last",
-  reference1Organization: "exampleReference1Organization",
-  reference1Phone: "exampleReference1Phone",
-  reference1Submitted: "exampleReference1Submitted",
-  reference1Title: "exampleReference1Title",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   reference1Type: "exampleReference1Type",
+  reference1Submitted: "exampleReference1Submitted",
+  reference1First: "exampleReference1First",
+  reference1Last: "exampleReference1Last",
+  reference1Industry: "exampleReference1Industry",
+  reference1Organization: "exampleReference1Organization",
+  reference1Title: "exampleReference1Title",
+  reference1Email: "exampleReference1Email",
+  reference1Phone: "exampleReference1Phone",
   referenceNum1IsrmsRecommenderScore1:
     "exampleReferenceNum1IsrmsRecommenderScore1",
   referenceNum1IsrmsRecommenderScore10:
@@ -144,23 +143,23 @@ const CREATE_RESULT = {
   referenceNum1RecommenderScore6: "exampleReferenceNum1RecommenderScore6",
   referenceNum1RecommenderScore7: "exampleReferenceNum1RecommenderScore7",
   referenceNum1RecommenderScore8: "exampleReferenceNum1RecommenderScore8",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    first: "exampleFirst",
-    id: "exampleId",
-    last: "exampleLast",
-    middle: "exampleMiddle",
     prefix: "examplePrefix",
-    reference1Email: "exampleReference1Email",
-    reference1First: "exampleReference1First",
-    reference1Industry: "exampleReference1Industry",
-    reference1Last: "exampleReference1Last",
-    reference1Organization: "exampleReference1Organization",
-    reference1Phone: "exampleReference1Phone",
-    reference1Submitted: "exampleReference1Submitted",
-    reference1Title: "exampleReference1Title",
+    first: "exampleFirst",
+    middle: "exampleMiddle",
+    last: "exampleLast",
     reference1Type: "exampleReference1Type",
+    reference1Submitted: "exampleReference1Submitted",
+    reference1First: "exampleReference1First",
+    reference1Last: "exampleReference1Last",
+    reference1Industry: "exampleReference1Industry",
+    reference1Organization: "exampleReference1Organization",
+    reference1Title: "exampleReference1Title",
+    reference1Email: "exampleReference1Email",
+    reference1Phone: "exampleReference1Phone",
     referenceNum1IsrmsRecommenderScore1:
       "exampleReferenceNum1IsrmsRecommenderScore1",
     referenceNum1IsrmsRecommenderScore10:
@@ -209,23 +208,23 @@ const FIND_MANY_RESULT = [
     referenceNum1RecommenderScore6: "exampleReferenceNum1RecommenderScore6",
     referenceNum1RecommenderScore7: "exampleReferenceNum1RecommenderScore7",
     referenceNum1RecommenderScore8: "exampleReferenceNum1RecommenderScore8",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
-  reference1Email: "exampleReference1Email",
-  reference1First: "exampleReference1First",
-  reference1Industry: "exampleReference1Industry",
-  reference1Last: "exampleReference1Last",
-  reference1Organization: "exampleReference1Organization",
-  reference1Phone: "exampleReference1Phone",
-  reference1Submitted: "exampleReference1Submitted",
-  reference1Title: "exampleReference1Title",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   reference1Type: "exampleReference1Type",
+  reference1Submitted: "exampleReference1Submitted",
+  reference1First: "exampleReference1First",
+  reference1Last: "exampleReference1Last",
+  reference1Industry: "exampleReference1Industry",
+  reference1Organization: "exampleReference1Organization",
+  reference1Title: "exampleReference1Title",
+  reference1Email: "exampleReference1Email",
+  reference1Phone: "exampleReference1Phone",
   referenceNum1IsrmsRecommenderScore1:
     "exampleReferenceNum1IsrmsRecommenderScore1",
   referenceNum1IsrmsRecommenderScore10:
@@ -274,14 +273,15 @@ const FIND_ONE_RESULT = {
   referenceNum1RecommenderScore6: "exampleReferenceNum1RecommenderScore6",
   referenceNum1RecommenderScore7: "exampleReferenceNum1RecommenderScore7",
   referenceNum1RecommenderScore8: "exampleReferenceNum1RecommenderScore8",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createMitsSlateRecommend1() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mitsSlateRecommend1s: () => FIND_MANY_RESULT,
+  mitsSlateRecommend1: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

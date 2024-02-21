@@ -1,1 +1,5 @@
-export type MitsSlateAppSchoolWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type MitsSlateAppSchoolWhereInput = {
+  id?: StringFilter;
+};

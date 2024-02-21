@@ -18,22 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ProgramService } from "../program.service";
 import { ProgramCreateInput } from "./ProgramCreateInput";
-import { ProgramWhereInput } from "./ProgramWhereInput";
-import { ProgramWhereUniqueInput } from "./ProgramWhereUniqueInput";
-import { ProgramFindManyArgs } from "./ProgramFindManyArgs";
-import { ProgramUpdateInput } from "./ProgramUpdateInput";
 import { Program } from "./Program";
+import { ProgramFindManyArgs } from "./ProgramFindManyArgs";
+import { ProgramWhereUniqueInput } from "./ProgramWhereUniqueInput";
+import { ProgramUpdateInput } from "./ProgramUpdateInput";
 
 export class ProgramControllerBase {
   constructor(protected readonly service: ProgramService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Program })
-  async create(@common.Body() data: ProgramCreateInput): Promise<Program> {
-    return await this.service.create({
+  async createProgram(
+    @common.Body() data: ProgramCreateInput
+  ): Promise<Program> {
+    return await this.service.createProgram({
       data: data,
       select: {
-        id: true,
         programTypeId: true,
+        id: true,
       },
     });
   }
@@ -41,13 +42,13 @@ export class ProgramControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Program] })
   @ApiNestedQuery(ProgramFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Program[]> {
+  async programs(@common.Req() request: Request): Promise<Program[]> {
     const args = plainToClass(ProgramFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.programs({
       ...args,
       select: {
-        id: true,
         programTypeId: true,
+        id: true,
       },
     });
   }
@@ -55,14 +56,14 @@ export class ProgramControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Program })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async program(
     @common.Param() params: ProgramWhereUniqueInput
   ): Promise<Program | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.program({
       where: params,
       select: {
-        id: true,
         programTypeId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -76,17 +77,17 @@ export class ProgramControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Program })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateProgram(
     @common.Param() params: ProgramWhereUniqueInput,
     @common.Body() data: ProgramUpdateInput
   ): Promise<Program | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgram({
         where: params,
         data: data,
         select: {
-          id: true,
           programTypeId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -102,15 +103,15 @@ export class ProgramControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Program })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteProgram(
     @common.Param() params: ProgramWhereUniqueInput
   ): Promise<Program | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteProgram({
         where: params,
         select: {
-          id: true,
           programTypeId: true,
+          id: true,
         },
       });
     } catch (error) {

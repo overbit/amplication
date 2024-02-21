@@ -2,6 +2,6 @@ import { ProgramModelCreateNestedManyWithoutDegreesInput } from "./ProgramModelC
 
 export type DegreeCreateInput = {
   name: string;
-  programs?: ProgramModelCreateNestedManyWithoutDegreesInput;
   short: string;
+  programs?: ProgramModelCreateNestedManyWithoutDegreesInput;
 };

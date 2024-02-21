@@ -24,6 +24,14 @@ class PaymentItemCreateInput {
   })
   @IsInt()
   @Field(() => Number)
+  paymentItemId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   paymentId!: number;
 
   @ApiProperty({
@@ -36,14 +44,6 @@ class PaymentItemCreateInput {
     nullable: true,
   })
   paymentItemAmount?: Decimal | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  paymentItemId!: number;
 
   @ApiProperty({
     required: false,

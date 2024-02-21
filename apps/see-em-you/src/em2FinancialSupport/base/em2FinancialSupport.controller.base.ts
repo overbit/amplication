@@ -18,34 +18,33 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { Em2FinancialSupportService } from "../em2FinancialSupport.service";
 import { Em2FinancialSupportCreateInput } from "./Em2FinancialSupportCreateInput";
-import { Em2FinancialSupportWhereInput } from "./Em2FinancialSupportWhereInput";
-import { Em2FinancialSupportWhereUniqueInput } from "./Em2FinancialSupportWhereUniqueInput";
-import { Em2FinancialSupportFindManyArgs } from "./Em2FinancialSupportFindManyArgs";
-import { Em2FinancialSupportUpdateInput } from "./Em2FinancialSupportUpdateInput";
 import { Em2FinancialSupport } from "./Em2FinancialSupport";
+import { Em2FinancialSupportFindManyArgs } from "./Em2FinancialSupportFindManyArgs";
+import { Em2FinancialSupportWhereUniqueInput } from "./Em2FinancialSupportWhereUniqueInput";
+import { Em2FinancialSupportUpdateInput } from "./Em2FinancialSupportUpdateInput";
 
 export class Em2FinancialSupportControllerBase {
   constructor(protected readonly service: Em2FinancialSupportService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Em2FinancialSupport })
-  async create(
+  async createEm2FinancialSupport(
     @common.Body() data: Em2FinancialSupportCreateInput
   ): Promise<Em2FinancialSupport> {
-    return await this.service.create({
+    return await this.service.createEm2FinancialSupport({
       data: data,
       select: {
         applicationId: true,
-        applyOutsideSupportSource: true,
-        applyOutsideSupportType: true,
-        attendWithoutSupport: true,
-        familySupportAmount: true,
-        familySupportType: true,
-        id: true,
-        otherSupportSource: true,
-        receiveOutsideSupportSource: true,
-        receiveOutsideSupportType: true,
-        requestAssistantship: true,
         requestConsideration: true,
+        requestAssistantship: true,
+        attendWithoutSupport: true,
+        receiveOutsideSupportType: true,
+        receiveOutsideSupportSource: true,
+        applyOutsideSupportType: true,
+        applyOutsideSupportSource: true,
+        otherSupportSource: true,
+        familySupportType: true,
+        familySupportAmount: true,
+        id: true,
       },
     });
   }
@@ -53,25 +52,25 @@ export class Em2FinancialSupportControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Em2FinancialSupport] })
   @ApiNestedQuery(Em2FinancialSupportFindManyArgs)
-  async findMany(
+  async em2FinancialSupports(
     @common.Req() request: Request
   ): Promise<Em2FinancialSupport[]> {
     const args = plainToClass(Em2FinancialSupportFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.em2FinancialSupports({
       ...args,
       select: {
         applicationId: true,
-        applyOutsideSupportSource: true,
-        applyOutsideSupportType: true,
-        attendWithoutSupport: true,
-        familySupportAmount: true,
-        familySupportType: true,
-        id: true,
-        otherSupportSource: true,
-        receiveOutsideSupportSource: true,
-        receiveOutsideSupportType: true,
-        requestAssistantship: true,
         requestConsideration: true,
+        requestAssistantship: true,
+        attendWithoutSupport: true,
+        receiveOutsideSupportType: true,
+        receiveOutsideSupportSource: true,
+        applyOutsideSupportType: true,
+        applyOutsideSupportSource: true,
+        otherSupportSource: true,
+        familySupportType: true,
+        familySupportAmount: true,
+        id: true,
       },
     });
   }
@@ -79,24 +78,24 @@ export class Em2FinancialSupportControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Em2FinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async em2FinancialSupport(
     @common.Param() params: Em2FinancialSupportWhereUniqueInput
   ): Promise<Em2FinancialSupport | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.em2FinancialSupport({
       where: params,
       select: {
         applicationId: true,
-        applyOutsideSupportSource: true,
-        applyOutsideSupportType: true,
-        attendWithoutSupport: true,
-        familySupportAmount: true,
-        familySupportType: true,
-        id: true,
-        otherSupportSource: true,
-        receiveOutsideSupportSource: true,
-        receiveOutsideSupportType: true,
-        requestAssistantship: true,
         requestConsideration: true,
+        requestAssistantship: true,
+        attendWithoutSupport: true,
+        receiveOutsideSupportType: true,
+        receiveOutsideSupportSource: true,
+        applyOutsideSupportType: true,
+        applyOutsideSupportSource: true,
+        otherSupportSource: true,
+        familySupportType: true,
+        familySupportAmount: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -110,27 +109,27 @@ export class Em2FinancialSupportControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Em2FinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateEm2FinancialSupport(
     @common.Param() params: Em2FinancialSupportWhereUniqueInput,
     @common.Body() data: Em2FinancialSupportUpdateInput
   ): Promise<Em2FinancialSupport | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEm2FinancialSupport({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          applyOutsideSupportSource: true,
-          applyOutsideSupportType: true,
-          attendWithoutSupport: true,
-          familySupportAmount: true,
-          familySupportType: true,
-          id: true,
-          otherSupportSource: true,
-          receiveOutsideSupportSource: true,
-          receiveOutsideSupportType: true,
-          requestAssistantship: true,
           requestConsideration: true,
+          requestAssistantship: true,
+          attendWithoutSupport: true,
+          receiveOutsideSupportType: true,
+          receiveOutsideSupportSource: true,
+          applyOutsideSupportType: true,
+          applyOutsideSupportSource: true,
+          otherSupportSource: true,
+          familySupportType: true,
+          familySupportAmount: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -146,25 +145,25 @@ export class Em2FinancialSupportControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Em2FinancialSupport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteEm2FinancialSupport(
     @common.Param() params: Em2FinancialSupportWhereUniqueInput
   ): Promise<Em2FinancialSupport | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteEm2FinancialSupport({
         where: params,
         select: {
           applicationId: true,
-          applyOutsideSupportSource: true,
-          applyOutsideSupportType: true,
-          attendWithoutSupport: true,
-          familySupportAmount: true,
-          familySupportType: true,
-          id: true,
-          otherSupportSource: true,
-          receiveOutsideSupportSource: true,
-          receiveOutsideSupportType: true,
-          requestAssistantship: true,
           requestConsideration: true,
+          requestAssistantship: true,
+          attendWithoutSupport: true,
+          receiveOutsideSupportType: true,
+          receiveOutsideSupportSource: true,
+          applyOutsideSupportType: true,
+          applyOutsideSupportSource: true,
+          otherSupportSource: true,
+          familySupportType: true,
+          familySupportAmount: true,
+          id: true,
         },
       });
     } catch (error) {

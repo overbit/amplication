@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuDegreesApplicationreqArgs } from "./CreateLuDegreesApplicationreqArgs";
-import { UpdateLuDegreesApplicationreqArgs } from "./UpdateLuDegreesApplicationreqArgs";
-import { DeleteLuDegreesApplicationreqArgs } from "./DeleteLuDegreesApplicationreqArgs";
+import { LuDegreesApplicationreq } from "./LuDegreesApplicationreq";
 import { LuDegreesApplicationreqCountArgs } from "./LuDegreesApplicationreqCountArgs";
 import { LuDegreesApplicationreqFindManyArgs } from "./LuDegreesApplicationreqFindManyArgs";
 import { LuDegreesApplicationreqFindUniqueArgs } from "./LuDegreesApplicationreqFindUniqueArgs";
-import { LuDegreesApplicationreq } from "./LuDegreesApplicationreq";
+import { CreateLuDegreesApplicationreqArgs } from "./CreateLuDegreesApplicationreqArgs";
+import { UpdateLuDegreesApplicationreqArgs } from "./UpdateLuDegreesApplicationreqArgs";
+import { DeleteLuDegreesApplicationreqArgs } from "./DeleteLuDegreesApplicationreqArgs";
 import { LuDegreesApplicationreqService } from "../luDegreesApplicationreq.service";
 @graphql.Resolver(() => LuDegreesApplicationreq)
 export class LuDegreesApplicationreqResolverBase {
@@ -38,14 +38,14 @@ export class LuDegreesApplicationreqResolverBase {
   async luDegreesApplicationreqs(
     @graphql.Args() args: LuDegreesApplicationreqFindManyArgs
   ): Promise<LuDegreesApplicationreq[]> {
-    return this.service.findMany(args);
+    return this.service.luDegreesApplicationreqs(args);
   }
 
   @graphql.Query(() => LuDegreesApplicationreq, { nullable: true })
   async luDegreesApplicationreq(
     @graphql.Args() args: LuDegreesApplicationreqFindUniqueArgs
   ): Promise<LuDegreesApplicationreq | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luDegreesApplicationreq(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LuDegreesApplicationreqResolverBase {
   async createLuDegreesApplicationreq(
     @graphql.Args() args: CreateLuDegreesApplicationreqArgs
   ): Promise<LuDegreesApplicationreq> {
-    return await this.service.create({
+    return await this.service.createLuDegreesApplicationreq({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LuDegreesApplicationreqResolverBase {
     @graphql.Args() args: UpdateLuDegreesApplicationreqArgs
   ): Promise<LuDegreesApplicationreq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuDegreesApplicationreq({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LuDegreesApplicationreqResolverBase {
     @graphql.Args() args: DeleteLuDegreesApplicationreqArgs
   ): Promise<LuDegreesApplicationreq | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuDegreesApplicationreq(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

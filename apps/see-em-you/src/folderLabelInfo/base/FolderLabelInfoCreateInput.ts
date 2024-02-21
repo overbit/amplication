@@ -11,11 +11,30 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsDate } from "class-validator";
+import { IsInt, IsDate, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class FolderLabelInfoCreateInput {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  lastRanTime?: Date | null;
+
   @ApiProperty({
     required: false,
     type: Number,
@@ -37,25 +56,6 @@ class FolderLabelInfoCreateInput {
     nullable: true,
   })
   lastLabelRow?: number | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  lastRanTime?: Date | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
 }
 
 export { FolderLabelInfoCreateInput as FolderLabelInfoCreateInput };

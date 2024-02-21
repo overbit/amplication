@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsOptional, IsInt, IsString } from "class-validator";
+import { IsInt, IsOptional, IsString, IsBoolean } from "class-validator";
 
 @ObjectType()
 class ApplicationDecisionSchool {
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  accepted!: boolean | null;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -38,23 +27,15 @@ class ApplicationDecisionSchool {
   applicationId!: number | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  name!: string | null;
+  programId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -69,14 +50,33 @@ class ApplicationDecisionSchool {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  name!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  accepted!: boolean | null;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programId!: number | null;
+  @Field(() => Number)
+  id!: number;
 }
 
 export { ApplicationDecisionSchool as ApplicationDecisionSchool };

@@ -21,6 +21,14 @@ class LuProgramsDepartment {
   })
   @IsInt()
   @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   departmentId!: number;
 
   @ApiProperty({
@@ -30,14 +38,6 @@ class LuProgramsDepartment {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
 }
 
 export { LuProgramsDepartment as LuProgramsDepartment };

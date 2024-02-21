@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuReviewerGroupService } from "../luReviewerGroup.service";
 import { LuReviewerGroupCreateInput } from "./LuReviewerGroupCreateInput";
-import { LuReviewerGroupWhereInput } from "./LuReviewerGroupWhereInput";
-import { LuReviewerGroupWhereUniqueInput } from "./LuReviewerGroupWhereUniqueInput";
-import { LuReviewerGroupFindManyArgs } from "./LuReviewerGroupFindManyArgs";
-import { LuReviewerGroupUpdateInput } from "./LuReviewerGroupUpdateInput";
 import { LuReviewerGroup } from "./LuReviewerGroup";
+import { LuReviewerGroupFindManyArgs } from "./LuReviewerGroupFindManyArgs";
+import { LuReviewerGroupWhereUniqueInput } from "./LuReviewerGroupWhereUniqueInput";
+import { LuReviewerGroupUpdateInput } from "./LuReviewerGroupUpdateInput";
 
 export class LuReviewerGroupControllerBase {
   constructor(protected readonly service: LuReviewerGroupService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuReviewerGroup })
-  async create(
+  async createLuReviewerGroup(
     @common.Body() data: LuReviewerGroupCreateInput
   ): Promise<LuReviewerGroup> {
-    return await this.service.create({
+    return await this.service.createLuReviewerGroup({
       data: data,
       select: {
+        reviewerId: true,
         departmentId: true,
         groupId: true,
-        id: true,
-        reviewerId: true,
         round: true,
+        id: true,
       },
     });
   }
@@ -46,16 +45,18 @@ export class LuReviewerGroupControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuReviewerGroup] })
   @ApiNestedQuery(LuReviewerGroupFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<LuReviewerGroup[]> {
+  async luReviewerGroups(
+    @common.Req() request: Request
+  ): Promise<LuReviewerGroup[]> {
     const args = plainToClass(LuReviewerGroupFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luReviewerGroups({
       ...args,
       select: {
+        reviewerId: true,
         departmentId: true,
         groupId: true,
-        id: true,
-        reviewerId: true,
         round: true,
+        id: true,
       },
     });
   }
@@ -63,17 +64,17 @@ export class LuReviewerGroupControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuReviewerGroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luReviewerGroup(
     @common.Param() params: LuReviewerGroupWhereUniqueInput
   ): Promise<LuReviewerGroup | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luReviewerGroup({
       where: params,
       select: {
+        reviewerId: true,
         departmentId: true,
         groupId: true,
-        id: true,
-        reviewerId: true,
         round: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -87,20 +88,20 @@ export class LuReviewerGroupControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuReviewerGroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuReviewerGroup(
     @common.Param() params: LuReviewerGroupWhereUniqueInput,
     @common.Body() data: LuReviewerGroupUpdateInput
   ): Promise<LuReviewerGroup | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuReviewerGroup({
         where: params,
         data: data,
         select: {
+          reviewerId: true,
           departmentId: true,
           groupId: true,
-          id: true,
-          reviewerId: true,
           round: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -116,18 +117,18 @@ export class LuReviewerGroupControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuReviewerGroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuReviewerGroup(
     @common.Param() params: LuReviewerGroupWhereUniqueInput
   ): Promise<LuReviewerGroup | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuReviewerGroup({
         where: params,
         select: {
+          reviewerId: true,
           departmentId: true,
           groupId: true,
-          id: true,
-          reviewerId: true,
           round: true,
+          id: true,
         },
       });
     } catch (error) {

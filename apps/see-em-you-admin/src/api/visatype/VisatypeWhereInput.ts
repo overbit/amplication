@@ -1,1 +1,5 @@
-export type VisatypeWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type VisatypeWhereInput = {
+  id?: IntFilter;
+};

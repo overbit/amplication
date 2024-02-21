@@ -24,6 +24,28 @@ class MergeApplication {
   @Field(() => Number, {
     nullable: true,
   })
+  baseWriteError!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  baseWriteMessage!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   baseConvertError!: number | null;
 
   @ApiProperty({
@@ -46,36 +68,6 @@ class MergeApplication {
   @Field(() => Number, {
     nullable: true,
   })
-  baseWriteError!: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  baseWriteMessage!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   searchTextWriteError!: number | null;
 
   @ApiProperty({
@@ -88,6 +80,14 @@ class MergeApplication {
     nullable: true,
   })
   searchTextWriteMessage!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MergeApplication as MergeApplication };

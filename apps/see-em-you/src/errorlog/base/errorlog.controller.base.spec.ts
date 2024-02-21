@@ -18,54 +18,54 @@ import { ErrorlogService } from "../errorlog.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  usersId: 42,
+  luUsersUsertypesId: 42,
+  usertypeId: 42,
   applicationId: 42,
   client: "exampleClient",
-  id: 42,
-  luUsersUsertypesId: 42,
-  message: "exampleMessage",
   timestamp: new Date(),
-  usersId: 42,
-  usertypeId: 42,
+  message: "exampleMessage",
+  id: 42,
 };
 const CREATE_RESULT = {
+  usersId: 42,
+  luUsersUsertypesId: 42,
+  usertypeId: 42,
   applicationId: 42,
   client: "exampleClient",
-  id: 42,
-  luUsersUsertypesId: 42,
-  message: "exampleMessage",
   timestamp: new Date(),
-  usersId: 42,
-  usertypeId: 42,
+  message: "exampleMessage",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    usersId: 42,
+    luUsersUsertypesId: 42,
+    usertypeId: 42,
     applicationId: 42,
     client: "exampleClient",
-    id: 42,
-    luUsersUsertypesId: 42,
-    message: "exampleMessage",
     timestamp: new Date(),
-    usersId: 42,
-    usertypeId: 42,
+    message: "exampleMessage",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  usersId: 42,
+  luUsersUsertypesId: 42,
+  usertypeId: 42,
   applicationId: 42,
   client: "exampleClient",
-  id: 42,
-  luUsersUsertypesId: 42,
-  message: "exampleMessage",
   timestamp: new Date(),
-  usersId: 42,
-  usertypeId: 42,
+  message: "exampleMessage",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createErrorlog() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  errorlogs: () => FIND_MANY_RESULT,
+  errorlog: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

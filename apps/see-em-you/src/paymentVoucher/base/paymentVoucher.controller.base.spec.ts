@@ -37,11 +37,11 @@ const FIND_ONE_RESULT = {
 };
 
 const service = {
-  create() {
+  createPaymentVoucher() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  paymentVouchers: () => FIND_MANY_RESULT,
+  paymentVoucher: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -50,7 +50,7 @@ class IniYearsExperienceOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  relevantIndustry?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class IniYearsExperienceOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  relevantIndustry?: SortOrder;
+  id?: SortOrder;
 }
 
 export { IniYearsExperienceOrderByInput as IniYearsExperienceOrderByInput };

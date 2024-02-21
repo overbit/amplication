@@ -1,12 +1,12 @@
 export type CashnetPaymentCopy = {
-  amount: number | null;
   appId: number;
-  applicantEmail: string;
+  transactionId: number;
   applicantName: string;
-  id: number;
+  applicantEmail: string;
   merchant: number;
   status: string;
-  transactionId: number;
   transactionTime: Date;
   transactionType: string;
+  amount: number | null;
+  id: number;
 };

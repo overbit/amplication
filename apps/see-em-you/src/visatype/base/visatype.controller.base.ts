@@ -18,25 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { VisatypeService } from "../visatype.service";
 import { VisatypeCreateInput } from "./VisatypeCreateInput";
-import { VisatypeWhereInput } from "./VisatypeWhereInput";
-import { VisatypeWhereUniqueInput } from "./VisatypeWhereUniqueInput";
-import { VisatypeFindManyArgs } from "./VisatypeFindManyArgs";
-import { VisatypeUpdateInput } from "./VisatypeUpdateInput";
 import { Visatype } from "./Visatype";
+import { VisatypeFindManyArgs } from "./VisatypeFindManyArgs";
+import { VisatypeWhereUniqueInput } from "./VisatypeWhereUniqueInput";
+import { VisatypeUpdateInput } from "./VisatypeUpdateInput";
 
 export class VisatypeControllerBase {
   constructor(protected readonly service: VisatypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Visatype })
-  async create(@common.Body() data: VisatypeCreateInput): Promise<Visatype> {
-    return await this.service.create({
+  async createVisatype(
+    @common.Body() data: VisatypeCreateInput
+  ): Promise<Visatype> {
+    return await this.service.createVisatype({
       data: data,
       select: {
-        addedFor: true,
-        description: true,
-        id: true,
         name: true,
         short: true,
+        description: true,
+        addedFor: true,
+        id: true,
       },
     });
   }
@@ -44,16 +45,16 @@ export class VisatypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Visatype] })
   @ApiNestedQuery(VisatypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Visatype[]> {
+  async visatypes(@common.Req() request: Request): Promise<Visatype[]> {
     const args = plainToClass(VisatypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.visatypes({
       ...args,
       select: {
-        addedFor: true,
-        description: true,
-        id: true,
         name: true,
         short: true,
+        description: true,
+        addedFor: true,
+        id: true,
       },
     });
   }
@@ -61,17 +62,17 @@ export class VisatypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Visatype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async visatype(
     @common.Param() params: VisatypeWhereUniqueInput
   ): Promise<Visatype | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.visatype({
       where: params,
       select: {
-        addedFor: true,
-        description: true,
-        id: true,
         name: true,
         short: true,
+        description: true,
+        addedFor: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -85,20 +86,20 @@ export class VisatypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Visatype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateVisatype(
     @common.Param() params: VisatypeWhereUniqueInput,
     @common.Body() data: VisatypeUpdateInput
   ): Promise<Visatype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVisatype({
         where: params,
         data: data,
         select: {
-          addedFor: true,
-          description: true,
-          id: true,
           name: true,
           short: true,
+          description: true,
+          addedFor: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -114,18 +115,18 @@ export class VisatypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Visatype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteVisatype(
     @common.Param() params: VisatypeWhereUniqueInput
   ): Promise<Visatype | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteVisatype({
         where: params,
         select: {
-          addedFor: true,
-          description: true,
-          id: true,
           name: true,
           short: true,
+          description: true,
+          addedFor: true,
+          id: true,
         },
       });
     } catch (error) {

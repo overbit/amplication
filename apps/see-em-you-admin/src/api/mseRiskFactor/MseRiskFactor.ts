@@ -1,10 +1,10 @@
 export type MseRiskFactor = {
-  academic: number;
   applicationId: number;
-  experience: number;
-  id: string;
+  reviewerId: number;
   language: number;
+  experience: number;
+  academic: number;
   other: number;
   otherText: string | null;
-  reviewerId: number;
+  id: string;
 };

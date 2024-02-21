@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MergeDatafile } from "@prisma/client";
+import { Prisma, MergeDatafile as PrismaMergeDatafile } from "@prisma/client";
 
 export class MergeDatafileServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MergeDatafileServiceBase {
     return this.prisma.mergeDatafile.count(args);
   }
 
-  async findMany<T extends Prisma.MergeDatafileFindManyArgs>(
+  async mergeDatafiles<T extends Prisma.MergeDatafileFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeDatafileFindManyArgs>
-  ): Promise<MergeDatafile[]> {
+  ): Promise<PrismaMergeDatafile[]> {
     return this.prisma.mergeDatafile.findMany(args);
   }
-  async findOne<T extends Prisma.MergeDatafileFindUniqueArgs>(
+  async mergeDatafile<T extends Prisma.MergeDatafileFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeDatafileFindUniqueArgs>
-  ): Promise<MergeDatafile | null> {
+  ): Promise<PrismaMergeDatafile | null> {
     return this.prisma.mergeDatafile.findUnique(args);
   }
-  async create<T extends Prisma.MergeDatafileCreateArgs>(
+  async createMergeDatafile<T extends Prisma.MergeDatafileCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeDatafileCreateArgs>
-  ): Promise<MergeDatafile> {
+  ): Promise<PrismaMergeDatafile> {
     return this.prisma.mergeDatafile.create<T>(args);
   }
-  async update<T extends Prisma.MergeDatafileUpdateArgs>(
+  async updateMergeDatafile<T extends Prisma.MergeDatafileUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeDatafileUpdateArgs>
-  ): Promise<MergeDatafile> {
+  ): Promise<PrismaMergeDatafile> {
     return this.prisma.mergeDatafile.update<T>(args);
   }
-  async delete<T extends Prisma.MergeDatafileDeleteArgs>(
+  async deleteMergeDatafile<T extends Prisma.MergeDatafileDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeDatafileDeleteArgs>
-  ): Promise<MergeDatafile> {
+  ): Promise<PrismaMergeDatafile> {
     return this.prisma.mergeDatafile.delete(args);
   }
 }

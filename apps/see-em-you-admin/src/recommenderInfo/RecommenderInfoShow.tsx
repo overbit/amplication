@@ -5,15 +5,15 @@ export const RecommenderInfoShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Affiliation" source="affiliation" />
-        <TextField label="Id" source="id" />
-        <TextField label="Phone" source="phone" />
         <TextField label="Rec User Id" source="recUserId" />
+        <TextField label="Title" source="title" />
+        <TextField label="Affiliation" source="affiliation" />
+        <TextField label="Phone" source="phone" />
         <TextField
           label="Relationship To Applicant"
           source="relationshipToApplicant"
         />
-        <TextField label="Title" source="title" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

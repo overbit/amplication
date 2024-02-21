@@ -44,12 +44,15 @@ class PeriodUmbrella {
   higherFeeDate!: Date | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  umbrellaName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -63,15 +66,12 @@ class PeriodUmbrella {
   lastPaymentDate!: Date | null;
 
   @ApiProperty({
-    required: false,
-    type: String,
+    required: true,
+    type: Number,
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  umbrellaName!: string | null;
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { PeriodUmbrella as PeriodUmbrella };

@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationService } from "../application.service";
 import { ApplicationCreateInput } from "./ApplicationCreateInput";
-import { ApplicationWhereInput } from "./ApplicationWhereInput";
-import { ApplicationWhereUniqueInput } from "./ApplicationWhereUniqueInput";
-import { ApplicationFindManyArgs } from "./ApplicationFindManyArgs";
-import { ApplicationUpdateInput } from "./ApplicationUpdateInput";
 import { Application } from "./Application";
+import { ApplicationFindManyArgs } from "./ApplicationFindManyArgs";
+import { ApplicationWhereUniqueInput } from "./ApplicationWhereUniqueInput";
+import { ApplicationUpdateInput } from "./ApplicationUpdateInput";
 import { ApplicationAdminNoteFindManyArgs } from "../../applicationAdminNote/base/ApplicationAdminNoteFindManyArgs";
 import { ApplicationAdminNote } from "../../applicationAdminNote/base/ApplicationAdminNote";
 import { ApplicationAdminNoteWhereUniqueInput } from "../../applicationAdminNote/base/ApplicationAdminNoteWhereUniqueInput";
@@ -121,10 +120,10 @@ export class ApplicationControllerBase {
   constructor(protected readonly service: ApplicationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Application })
-  async create(
+  async createApplication(
     @common.Body() data: ApplicationCreateInput
   ): Promise<Application> {
-    return await this.service.create({
+    return await this.service.createApplication({
       data: {
         ...data,
 
@@ -153,27 +152,57 @@ export class ApplicationControllerBase {
           : undefined,
       },
       select: {
+        userId: true,
+        name: true,
+        submittedDate: true,
+        submitted: true,
+        createdDate: true,
+        paid: true,
+        paymentdate: true,
+        paymentamount: true,
+        paymenttype: true,
+        waive: true,
+        waivedate: true,
+        complete: true,
+        statementofpurpose: true,
+        notificationsent: true,
+        studentCommit: true,
+        cups: true,
+        womenfellowship: true,
+        pier: true,
+        cnbc: true,
+        portfoliosubmitted: true,
+        portfolioLink: true,
+        portfolioPassword: true,
+        area1: true,
+        area2: true,
+        area3: true,
+        buckleywaive: true,
+        referralToProgram: true,
+        recruitingEvent: true,
+        otherInst: true,
+        crossDeptProgs: true,
+        crossDeptProgsOther: true,
+        recordsPermission: true,
+        mastersReviewWaiver: true,
+        sentToProgram: true,
+        curEnrolled: true,
+        honors: true,
+        round2: true,
+        round3: true,
+        rejectionSent: true,
+        waitlistSent: true,
+        previousCoursework: true,
+        hide: true,
+        waiveHigherFee: true,
+        invitationEmailSent: true,
+        waiveToefl: true,
+
         acoPal: {
           select: {
             id: true,
           },
         },
-
-        area1: true,
-        area2: true,
-        area3: true,
-        buckleywaive: true,
-        cnbc: true,
-        complete: true,
-        createdDate: true,
-        crossDeptProgs: true,
-        crossDeptProgsOther: true,
-        cups: true,
-        curEnrolled: true,
-        hide: true,
-        honors: true,
-        id: true,
-        invitationEmailSent: true,
 
         luApplicationCohort: {
           select: {
@@ -187,44 +216,13 @@ export class ApplicationControllerBase {
           },
         },
 
-        mastersReviewWaiver: true,
-
         mseCodility: {
           select: {
             id: true,
           },
         },
 
-        name: true,
-        notificationsent: true,
-        otherInst: true,
-        paid: true,
-        paymentamount: true,
-        paymentdate: true,
-        paymenttype: true,
-        pier: true,
-        portfolioLink: true,
-        portfolioPassword: true,
-        portfoliosubmitted: true,
-        previousCoursework: true,
-        recordsPermission: true,
-        recruitingEvent: true,
-        referralToProgram: true,
-        rejectionSent: true,
-        round2: true,
-        round3: true,
-        sentToProgram: true,
-        statementofpurpose: true,
-        studentCommit: true,
-        submitted: true,
-        submittedDate: true,
-        userId: true,
-        waitlistSent: true,
-        waive: true,
-        waivedate: true,
-        waiveHigherFee: true,
-        waiveToefl: true,
-        womenfellowship: true,
+        id: true,
       },
     });
   }
@@ -232,32 +230,62 @@ export class ApplicationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Application] })
   @ApiNestedQuery(ApplicationFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Application[]> {
+  async applications(@common.Req() request: Request): Promise<Application[]> {
     const args = plainToClass(ApplicationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.applications({
       ...args,
       select: {
+        userId: true,
+        name: true,
+        submittedDate: true,
+        submitted: true,
+        createdDate: true,
+        paid: true,
+        paymentdate: true,
+        paymentamount: true,
+        paymenttype: true,
+        waive: true,
+        waivedate: true,
+        complete: true,
+        statementofpurpose: true,
+        notificationsent: true,
+        studentCommit: true,
+        cups: true,
+        womenfellowship: true,
+        pier: true,
+        cnbc: true,
+        portfoliosubmitted: true,
+        portfolioLink: true,
+        portfolioPassword: true,
+        area1: true,
+        area2: true,
+        area3: true,
+        buckleywaive: true,
+        referralToProgram: true,
+        recruitingEvent: true,
+        otherInst: true,
+        crossDeptProgs: true,
+        crossDeptProgsOther: true,
+        recordsPermission: true,
+        mastersReviewWaiver: true,
+        sentToProgram: true,
+        curEnrolled: true,
+        honors: true,
+        round2: true,
+        round3: true,
+        rejectionSent: true,
+        waitlistSent: true,
+        previousCoursework: true,
+        hide: true,
+        waiveHigherFee: true,
+        invitationEmailSent: true,
+        waiveToefl: true,
+
         acoPal: {
           select: {
             id: true,
           },
         },
-
-        area1: true,
-        area2: true,
-        area3: true,
-        buckleywaive: true,
-        cnbc: true,
-        complete: true,
-        createdDate: true,
-        crossDeptProgs: true,
-        crossDeptProgsOther: true,
-        cups: true,
-        curEnrolled: true,
-        hide: true,
-        honors: true,
-        id: true,
-        invitationEmailSent: true,
 
         luApplicationCohort: {
           select: {
@@ -271,44 +299,13 @@ export class ApplicationControllerBase {
           },
         },
 
-        mastersReviewWaiver: true,
-
         mseCodility: {
           select: {
             id: true,
           },
         },
 
-        name: true,
-        notificationsent: true,
-        otherInst: true,
-        paid: true,
-        paymentamount: true,
-        paymentdate: true,
-        paymenttype: true,
-        pier: true,
-        portfolioLink: true,
-        portfolioPassword: true,
-        portfoliosubmitted: true,
-        previousCoursework: true,
-        recordsPermission: true,
-        recruitingEvent: true,
-        referralToProgram: true,
-        rejectionSent: true,
-        round2: true,
-        round3: true,
-        sentToProgram: true,
-        statementofpurpose: true,
-        studentCommit: true,
-        submitted: true,
-        submittedDate: true,
-        userId: true,
-        waitlistSent: true,
-        waive: true,
-        waivedate: true,
-        waiveHigherFee: true,
-        waiveToefl: true,
-        womenfellowship: true,
+        id: true,
       },
     });
   }
@@ -316,33 +313,63 @@ export class ApplicationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Application })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async application(
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Application | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.application({
       where: params,
       select: {
+        userId: true,
+        name: true,
+        submittedDate: true,
+        submitted: true,
+        createdDate: true,
+        paid: true,
+        paymentdate: true,
+        paymentamount: true,
+        paymenttype: true,
+        waive: true,
+        waivedate: true,
+        complete: true,
+        statementofpurpose: true,
+        notificationsent: true,
+        studentCommit: true,
+        cups: true,
+        womenfellowship: true,
+        pier: true,
+        cnbc: true,
+        portfoliosubmitted: true,
+        portfolioLink: true,
+        portfolioPassword: true,
+        area1: true,
+        area2: true,
+        area3: true,
+        buckleywaive: true,
+        referralToProgram: true,
+        recruitingEvent: true,
+        otherInst: true,
+        crossDeptProgs: true,
+        crossDeptProgsOther: true,
+        recordsPermission: true,
+        mastersReviewWaiver: true,
+        sentToProgram: true,
+        curEnrolled: true,
+        honors: true,
+        round2: true,
+        round3: true,
+        rejectionSent: true,
+        waitlistSent: true,
+        previousCoursework: true,
+        hide: true,
+        waiveHigherFee: true,
+        invitationEmailSent: true,
+        waiveToefl: true,
+
         acoPal: {
           select: {
             id: true,
           },
         },
-
-        area1: true,
-        area2: true,
-        area3: true,
-        buckleywaive: true,
-        cnbc: true,
-        complete: true,
-        createdDate: true,
-        crossDeptProgs: true,
-        crossDeptProgsOther: true,
-        cups: true,
-        curEnrolled: true,
-        hide: true,
-        honors: true,
-        id: true,
-        invitationEmailSent: true,
 
         luApplicationCohort: {
           select: {
@@ -356,44 +383,13 @@ export class ApplicationControllerBase {
           },
         },
 
-        mastersReviewWaiver: true,
-
         mseCodility: {
           select: {
             id: true,
           },
         },
 
-        name: true,
-        notificationsent: true,
-        otherInst: true,
-        paid: true,
-        paymentamount: true,
-        paymentdate: true,
-        paymenttype: true,
-        pier: true,
-        portfolioLink: true,
-        portfolioPassword: true,
-        portfoliosubmitted: true,
-        previousCoursework: true,
-        recordsPermission: true,
-        recruitingEvent: true,
-        referralToProgram: true,
-        rejectionSent: true,
-        round2: true,
-        round3: true,
-        sentToProgram: true,
-        statementofpurpose: true,
-        studentCommit: true,
-        submitted: true,
-        submittedDate: true,
-        userId: true,
-        waitlistSent: true,
-        waive: true,
-        waivedate: true,
-        waiveHigherFee: true,
-        waiveToefl: true,
-        womenfellowship: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -407,12 +403,12 @@ export class ApplicationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Application })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplication(
     @common.Param() params: ApplicationWhereUniqueInput,
     @common.Body() data: ApplicationUpdateInput
   ): Promise<Application | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplication({
         where: params,
         data: {
           ...data,
@@ -442,27 +438,57 @@ export class ApplicationControllerBase {
             : undefined,
         },
         select: {
+          userId: true,
+          name: true,
+          submittedDate: true,
+          submitted: true,
+          createdDate: true,
+          paid: true,
+          paymentdate: true,
+          paymentamount: true,
+          paymenttype: true,
+          waive: true,
+          waivedate: true,
+          complete: true,
+          statementofpurpose: true,
+          notificationsent: true,
+          studentCommit: true,
+          cups: true,
+          womenfellowship: true,
+          pier: true,
+          cnbc: true,
+          portfoliosubmitted: true,
+          portfolioLink: true,
+          portfolioPassword: true,
+          area1: true,
+          area2: true,
+          area3: true,
+          buckleywaive: true,
+          referralToProgram: true,
+          recruitingEvent: true,
+          otherInst: true,
+          crossDeptProgs: true,
+          crossDeptProgsOther: true,
+          recordsPermission: true,
+          mastersReviewWaiver: true,
+          sentToProgram: true,
+          curEnrolled: true,
+          honors: true,
+          round2: true,
+          round3: true,
+          rejectionSent: true,
+          waitlistSent: true,
+          previousCoursework: true,
+          hide: true,
+          waiveHigherFee: true,
+          invitationEmailSent: true,
+          waiveToefl: true,
+
           acoPal: {
             select: {
               id: true,
             },
           },
-
-          area1: true,
-          area2: true,
-          area3: true,
-          buckleywaive: true,
-          cnbc: true,
-          complete: true,
-          createdDate: true,
-          crossDeptProgs: true,
-          crossDeptProgsOther: true,
-          cups: true,
-          curEnrolled: true,
-          hide: true,
-          honors: true,
-          id: true,
-          invitationEmailSent: true,
 
           luApplicationCohort: {
             select: {
@@ -476,44 +502,13 @@ export class ApplicationControllerBase {
             },
           },
 
-          mastersReviewWaiver: true,
-
           mseCodility: {
             select: {
               id: true,
             },
           },
 
-          name: true,
-          notificationsent: true,
-          otherInst: true,
-          paid: true,
-          paymentamount: true,
-          paymentdate: true,
-          paymenttype: true,
-          pier: true,
-          portfolioLink: true,
-          portfolioPassword: true,
-          portfoliosubmitted: true,
-          previousCoursework: true,
-          recordsPermission: true,
-          recruitingEvent: true,
-          referralToProgram: true,
-          rejectionSent: true,
-          round2: true,
-          round3: true,
-          sentToProgram: true,
-          statementofpurpose: true,
-          studentCommit: true,
-          submitted: true,
-          submittedDate: true,
-          userId: true,
-          waitlistSent: true,
-          waive: true,
-          waivedate: true,
-          waiveHigherFee: true,
-          waiveToefl: true,
-          womenfellowship: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -529,34 +524,64 @@ export class ApplicationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Application })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplication(
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Application | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplication({
         where: params,
         select: {
+          userId: true,
+          name: true,
+          submittedDate: true,
+          submitted: true,
+          createdDate: true,
+          paid: true,
+          paymentdate: true,
+          paymentamount: true,
+          paymenttype: true,
+          waive: true,
+          waivedate: true,
+          complete: true,
+          statementofpurpose: true,
+          notificationsent: true,
+          studentCommit: true,
+          cups: true,
+          womenfellowship: true,
+          pier: true,
+          cnbc: true,
+          portfoliosubmitted: true,
+          portfolioLink: true,
+          portfolioPassword: true,
+          area1: true,
+          area2: true,
+          area3: true,
+          buckleywaive: true,
+          referralToProgram: true,
+          recruitingEvent: true,
+          otherInst: true,
+          crossDeptProgs: true,
+          crossDeptProgsOther: true,
+          recordsPermission: true,
+          mastersReviewWaiver: true,
+          sentToProgram: true,
+          curEnrolled: true,
+          honors: true,
+          round2: true,
+          round3: true,
+          rejectionSent: true,
+          waitlistSent: true,
+          previousCoursework: true,
+          hide: true,
+          waiveHigherFee: true,
+          invitationEmailSent: true,
+          waiveToefl: true,
+
           acoPal: {
             select: {
               id: true,
             },
           },
-
-          area1: true,
-          area2: true,
-          area3: true,
-          buckleywaive: true,
-          cnbc: true,
-          complete: true,
-          createdDate: true,
-          crossDeptProgs: true,
-          crossDeptProgsOther: true,
-          cups: true,
-          curEnrolled: true,
-          hide: true,
-          honors: true,
-          id: true,
-          invitationEmailSent: true,
 
           luApplicationCohort: {
             select: {
@@ -570,44 +595,13 @@ export class ApplicationControllerBase {
             },
           },
 
-          mastersReviewWaiver: true,
-
           mseCodility: {
             select: {
               id: true,
             },
           },
 
-          name: true,
-          notificationsent: true,
-          otherInst: true,
-          paid: true,
-          paymentamount: true,
-          paymentdate: true,
-          paymenttype: true,
-          pier: true,
-          portfolioLink: true,
-          portfolioPassword: true,
-          portfoliosubmitted: true,
-          previousCoursework: true,
-          recordsPermission: true,
-          recruitingEvent: true,
-          referralToProgram: true,
-          rejectionSent: true,
-          round2: true,
-          round3: true,
-          sentToProgram: true,
-          statementofpurpose: true,
-          studentCommit: true,
-          submitted: true,
-          submittedDate: true,
-          userId: true,
-          waitlistSent: true,
-          waive: true,
-          waivedate: true,
-          waiveHigherFee: true,
-          waiveToefl: true,
-          womenfellowship: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -622,7 +616,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/applicationAdminNote")
   @ApiNestedQuery(ApplicationAdminNoteFindManyArgs)
-  async findManyApplicationAdminNote(
+  async findApplicationAdminNote(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<ApplicationAdminNote[]> {
@@ -630,21 +624,22 @@ export class ApplicationControllerBase {
     const results = await this.service.findApplicationAdminNote(params.id, {
       ...query,
       select: {
+        insertTime: true,
+        note: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        insertTime: true,
-        note: true,
-
         users: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -665,7 +660,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -682,7 +677,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -699,7 +694,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -708,7 +703,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/attendance")
   @ApiNestedQuery(AttendanceFindManyArgs)
-  async findManyAttendance(
+  async findAttendance(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Attendance[]> {
@@ -716,6 +711,8 @@ export class ApplicationControllerBase {
     const results = await this.service.findAttendance(params.id, {
       ...query,
       select: {
+        status: true,
+
         application: {
           select: {
             id: true,
@@ -723,7 +720,6 @@ export class ApplicationControllerBase {
         },
 
         id: true,
-        status: true,
       },
     });
     if (results === null) {
@@ -744,7 +740,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -761,7 +757,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -778,7 +774,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -787,7 +783,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/cashnetPayment")
   @ApiNestedQuery(CashnetPaymentFindManyArgs)
-  async findManyCashnetPayment(
+  async findCashnetPayment(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<CashnetPayment[]> {
@@ -795,9 +791,14 @@ export class ApplicationControllerBase {
     const results = await this.service.findCashnetPayment(params.id, {
       ...query,
       select: {
-        amount: true,
-        applicantEmail: true,
+        transactionId: true,
         applicantName: true,
+        applicantEmail: true,
+        merchant: true,
+        status: true,
+        transactionTime: true,
+        transactionType: true,
+        amount: true,
 
         application: {
           select: {
@@ -806,11 +807,6 @@ export class ApplicationControllerBase {
         },
 
         id: true,
-        merchant: true,
-        status: true,
-        transactionId: true,
-        transactionTime: true,
-        transactionType: true,
       },
     });
     if (results === null) {
@@ -831,7 +827,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -848,7 +844,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -865,7 +861,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -874,7 +870,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/experience")
   @ApiNestedQuery(ExperienceFindManyArgs)
-  async findManyExperience(
+  async findExperience(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Experience[]> {
@@ -882,7 +878,16 @@ export class ApplicationControllerBase {
     const results = await this.service.findExperience(params.id, {
       ...query,
       select: {
+        datafileId: true,
+        experiencetype: true,
+        orderEntered: true,
+        company: true,
+        startDate: true,
+        endDate: true,
+        yearsExp: true,
         address: true,
+        jobTitle: true,
+        jobDescription: true,
 
         application: {
           select: {
@@ -890,16 +895,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        company: true,
-        datafileId: true,
-        endDate: true,
-        experiencetype: true,
         id: true,
-        jobDescription: true,
-        jobTitle: true,
-        orderEntered: true,
-        startDate: true,
-        yearsExp: true,
       },
     });
     if (results === null) {
@@ -920,7 +916,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -937,7 +933,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -954,7 +950,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -963,7 +959,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/fellowships")
   @ApiNestedQuery(FellowshipFindManyArgs)
-  async findManyFellowships(
+  async findFellowships(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Fellowship[]> {
@@ -971,7 +967,14 @@ export class ApplicationControllerBase {
     const results = await this.service.findFellowships(params.id, {
       ...query,
       select: {
+        name: true,
         amount: true,
+        status: true,
+        appliedDate: true,
+        awardDate: true,
+        duration: true,
+        datafileId: true,
+        short: true,
 
         application: {
           select: {
@@ -979,14 +982,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        appliedDate: true,
-        awardDate: true,
-        datafileId: true,
-        duration: true,
         id: true,
-        name: true,
-        short: true,
-        status: true,
       },
     });
     if (results === null) {
@@ -1007,7 +1003,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1024,7 +1020,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1041,7 +1037,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1050,7 +1046,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/gmatscore")
   @ApiNestedQuery(GmatscoreFindManyArgs)
-  async findManyGmatscore(
+  async findGmatscore(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Gmatscore[]> {
@@ -1058,8 +1054,17 @@ export class ApplicationControllerBase {
     const results = await this.service.findGmatscore(params.id, {
       ...query,
       select: {
-        analyticalwritingpercentile: true,
+        scorereceived: true,
+        testdate: true,
+        verbalscore: true,
+        verbalpercentile: true,
+        quantitativescore: true,
+        quantitativepercentile: true,
+        totalscore: true,
+        totalpercentile: true,
         analyticalwritingscore: true,
+        analyticalwritingpercentile: true,
+        datafileId: true,
 
         application: {
           select: {
@@ -1067,16 +1072,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        datafileId: true,
         id: true,
-        quantitativepercentile: true,
-        quantitativescore: true,
-        scorereceived: true,
-        testdate: true,
-        totalpercentile: true,
-        totalscore: true,
-        verbalpercentile: true,
-        verbalscore: true,
       },
     });
     if (results === null) {
@@ -1097,7 +1093,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1114,7 +1110,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1131,7 +1127,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1140,7 +1136,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/gresubjectscore")
   @ApiNestedQuery(GresubjectscoreFindManyArgs)
-  async findManyGresubjectscore(
+  async findGresubjectscore(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Gresubjectscore[]> {
@@ -1148,20 +1144,21 @@ export class ApplicationControllerBase {
     const results = await this.service.findGresubjectscore(params.id, {
       ...query,
       select: {
+        testdate: true,
+        name: true,
+        score: true,
+        percentile: true,
+        datafileId: true,
+        greSubEmail: true,
+        scorereceived: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        datafileId: true,
-        greSubEmail: true,
         id: true,
-        name: true,
-        percentile: true,
-        score: true,
-        scorereceived: true,
-        testdate: true,
       },
     });
     if (results === null) {
@@ -1182,7 +1179,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1199,7 +1196,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1216,7 +1213,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1225,7 +1222,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/ieltsscore")
   @ApiNestedQuery(IeltsscoreFindManyArgs)
-  async findManyIeltsscore(
+  async findIeltsscore(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Ieltsscore[]> {
@@ -1233,22 +1230,23 @@ export class ApplicationControllerBase {
     const results = await this.service.findIeltsscore(params.id, {
       ...query,
       select: {
+        testdate: true,
+        listeningscore: true,
+        readingscore: true,
+        writingscore: true,
+        speakingscore: true,
+        overallscore: true,
+        scorereceived: true,
+        datafileId: true,
+        testEmail: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        datafileId: true,
         id: true,
-        listeningscore: true,
-        overallscore: true,
-        readingscore: true,
-        scorereceived: true,
-        speakingscore: true,
-        testdate: true,
-        testEmail: true,
-        writingscore: true,
       },
     });
     if (results === null) {
@@ -1269,7 +1267,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1286,7 +1284,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1303,7 +1301,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1312,7 +1310,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/luApplicationAdvisor")
   @ApiNestedQuery(LuApplicationAdvisorFindManyArgs)
-  async findManyLuApplicationAdvisor(
+  async findLuApplicationAdvisor(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<LuApplicationAdvisor[]> {
@@ -1320,8 +1318,11 @@ export class ApplicationControllerBase {
     const results = await this.service.findLuApplicationAdvisor(params.id, {
       ...query,
       select: {
-        advisorType: true,
         advisorUserId: true,
+        advisorType: true,
+        name: true,
+        programId: true,
+        choice: true,
 
         application: {
           select: {
@@ -1329,10 +1330,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        choice: true,
         id: true,
-        name: true,
-        programId: true,
       },
     });
     if (results === null) {
@@ -1353,7 +1351,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1370,7 +1368,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1387,7 +1385,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1396,7 +1394,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/luApplicationAppreqs")
   @ApiNestedQuery(LuApplicationAppreqFindManyArgs)
-  async findManyLuApplicationAppreqs(
+  async findLuApplicationAppreqs(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<LuApplicationAppreq[]> {
@@ -1404,16 +1402,17 @@ export class ApplicationControllerBase {
     const results = await this.service.findLuApplicationAppreqs(params.id, {
       ...query,
       select: {
+        reqId: true,
+        lastModified: true,
+        completed: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        completed: true,
         id: true,
-        lastModified: true,
-        reqId: true,
       },
     });
     if (results === null) {
@@ -1434,7 +1433,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1451,7 +1450,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1468,7 +1467,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1477,7 +1476,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/luApplicationGroups")
   @ApiNestedQuery(LuApplicationGroupFindManyArgs)
-  async findManyLuApplicationGroups(
+  async findLuApplicationGroups(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<LuApplicationGroup[]> {
@@ -1485,15 +1484,16 @@ export class ApplicationControllerBase {
     const results = await this.service.findLuApplicationGroups(params.id, {
       ...query,
       select: {
+        groupId: true,
+        round: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        groupId: true,
         id: true,
-        round: true,
       },
     });
     if (results === null) {
@@ -1514,7 +1514,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1531,7 +1531,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1548,7 +1548,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1557,7 +1557,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/luApplicationPrograms")
   @ApiNestedQuery(LuApplicationProgramFindManyArgs)
-  async findManyLuApplicationPrograms(
+  async findLuApplicationPrograms(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<LuApplicationProgram[]> {
@@ -1565,9 +1565,18 @@ export class ApplicationControllerBase {
     const results = await this.service.findLuApplicationPrograms(params.id, {
       ...query,
       select: {
+        choice: true,
+        round2: true,
+        decision: true,
         admissionStatus: true,
         admit: true,
         admitComments: true,
+        faccontact: true,
+        stucontact: true,
+        scholarshipAmt: true,
+        scholarshipComments: true,
+        ltichoice: true,
+        msecertchoice: true,
 
         application: {
           select: {
@@ -1575,23 +1584,13 @@ export class ApplicationControllerBase {
           },
         },
 
-        choice: true,
-        decision: true,
-        faccontact: true,
-        id: true,
-        ltichoice: true,
-        msecertchoice: true,
-
         programs: {
           select: {
             id: true,
           },
         },
 
-        round2: true,
-        scholarshipAmt: true,
-        scholarshipComments: true,
-        stucontact: true,
+        id: true,
       },
     });
     if (results === null) {
@@ -1612,7 +1611,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1629,7 +1628,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1646,7 +1645,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1655,7 +1654,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/mhciPrereqs")
   @ApiNestedQuery(MhciPrereqFindManyArgs)
-  async findManyMhciPrereqs(
+  async findMhciPrereqs(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<MhciPrereq[]> {
@@ -1663,13 +1662,18 @@ export class ApplicationControllerBase {
     const results = await this.service.findMhciPrereqs(params.id, {
       ...query,
       select: {
+        studentLuUsersUsertypesId: true,
+        prereq_type: true,
+        periodId: true,
+        student_assessment: true,
+        status2: true,
+        timestamp: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        id: true,
 
         mhciPrereqsStatus: {
           select: {
@@ -1677,12 +1681,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        periodId: true,
-        prereq_type: true,
-        status2: true,
-        student_assessment: true,
-        studentLuUsersUsertypesId: true,
-        timestamp: true,
+        id: true,
       },
     });
     if (results === null) {
@@ -1703,7 +1702,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1720,7 +1719,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1737,7 +1736,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1746,7 +1745,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/mhciPrereqsCourses")
   @ApiNestedQuery(MhciPrereqsCourseFindManyArgs)
-  async findManyMhciPrereqsCourses(
+  async findMhciPrereqsCourses(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<MhciPrereqsCourse[]> {
@@ -1754,14 +1753,20 @@ export class ApplicationControllerBase {
     const results = await this.service.findMhciPrereqsCourses(params.id, {
       ...query,
       select: {
+        course_type: true,
+        studentCourseName: true,
+        studentCourseTime: true,
+        studentCourseInstitution: true,
+        studentCourseGrade: true,
+        submittedToReviewer: true,
+        periodId: true,
+        programId: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        course_type: true,
-        id: true,
 
         luUsersUsertypes: {
           select: {
@@ -1769,13 +1774,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        studentCourseGrade: true,
-        studentCourseInstitution: true,
-        studentCourseName: true,
-        studentCourseTime: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
     if (results === null) {
@@ -1796,7 +1795,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1813,7 +1812,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1830,7 +1829,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1839,7 +1838,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/mlArea")
   @ApiNestedQuery(MlAreaFindManyArgs)
-  async findManyMlArea(
+  async findMlArea(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<MlArea[]> {
@@ -1847,20 +1846,21 @@ export class ApplicationControllerBase {
     const results = await this.service.findMlArea(params.id, {
       ...query,
       select: {
+        area: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        area: true,
-        id: true,
-
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -1881,7 +1881,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1898,7 +1898,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1915,7 +1915,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1924,7 +1924,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/mlSupportingCoursework")
   @ApiNestedQuery(MlSupportingCourseworkFindManyArgs)
-  async findManyMlSupportingCoursework(
+  async findMlSupportingCoursework(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<MlSupportingCoursework[]> {
@@ -1935,6 +1935,19 @@ export class ApplicationControllerBase {
     const results = await this.service.findMlSupportingCoursework(params.id, {
       ...query,
       select: {
+        introCourseNum: true,
+        introCourseSemester: true,
+        introCourseGrade: true,
+        introCourse2Num: true,
+        introCourse2Semester: true,
+        introCourse2Grade: true,
+        ml1CourseNum: true,
+        ml1CourseSemester: true,
+        ml1CourseGrade: true,
+        ml2CourseNum: true,
+        ml2CourseSemester: true,
+        ml2CourseGrade: true,
+
         application: {
           select: {
             id: true,
@@ -1942,18 +1955,6 @@ export class ApplicationControllerBase {
         },
 
         id: true,
-        introCourse2Grade: true,
-        introCourse2Num: true,
-        introCourse2Semester: true,
-        introCourseGrade: true,
-        introCourseNum: true,
-        introCourseSemester: true,
-        ml1CourseGrade: true,
-        ml1CourseNum: true,
-        ml1CourseSemester: true,
-        ml2CourseGrade: true,
-        ml2CourseNum: true,
-        ml2CourseSemester: true,
       },
     });
     if (results === null) {
@@ -1974,7 +1975,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -1991,7 +1992,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2008,7 +2009,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2017,7 +2018,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/mseAqa")
   @ApiNestedQuery(MseAqaFindManyArgs)
-  async findManyMseAqa(
+  async findMseAqa(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<MseAqa[]> {
@@ -2025,26 +2026,27 @@ export class ApplicationControllerBase {
     const results = await this.service.findMseAqa(params.id, {
       ...query,
       select: {
+        reviewerId: true,
+        englishComments: true,
+        programmingComments: true,
+        foundationalComments: true,
+        maturityComments: true,
+        understandingComments: true,
+        experienceComments: true,
+        englishRating: true,
+        programmingRating: true,
+        foundationalRating: true,
+        maturityRating: true,
+        understandingRating: true,
+        experienceRating: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        englishComments: true,
-        englishRating: true,
-        experienceComments: true,
-        experienceRating: true,
-        foundationalComments: true,
-        foundationalRating: true,
         id: true,
-        maturityComments: true,
-        maturityRating: true,
-        programmingComments: true,
-        programmingRating: true,
-        reviewerId: true,
-        understandingComments: true,
-        understandingRating: true,
       },
     });
     if (results === null) {
@@ -2065,7 +2067,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2082,7 +2084,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2099,7 +2101,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2108,7 +2110,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/payment")
   @ApiNestedQuery(PaymentFindManyArgs)
-  async findManyPayment(
+  async findPayment(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Payment[]> {
@@ -2116,26 +2118,27 @@ export class ApplicationControllerBase {
     const results = await this.service.findPayment(params.id, {
       ...query,
       select: {
+        paymentId: true,
+        paymentType: true,
+        paymentAmount: true,
+        paymentIntentDate: true,
+        payment_status: true,
+        lastModTime: true,
+        lastModUserId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
-        paymentId: true,
-        paymentIntentDate: true,
-        payment_status: true,
-        paymentType: true,
-
         paymentVoucher: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -2156,7 +2159,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2173,7 +2176,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2190,7 +2193,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2199,7 +2202,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/periodApplication")
   @ApiNestedQuery(PeriodApplicationFindManyArgs)
-  async findManyPeriodApplication(
+  async findPeriodApplication(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<PeriodApplication[]> {
@@ -2213,13 +2216,13 @@ export class ApplicationControllerBase {
           },
         },
 
-        id: true,
-
         period: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -2240,7 +2243,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2257,7 +2260,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2274,7 +2277,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2283,7 +2286,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/promotionHistory")
   @ApiNestedQuery(PromotionHistoryFindManyArgs)
-  async findManyPromotionHistory(
+  async findPromotionHistory(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<PromotionHistory[]> {
@@ -2291,6 +2294,12 @@ export class ApplicationControllerBase {
     const results = await this.service.findPromotionHistory(params.id, {
       ...query,
       select: {
+        programId: true,
+        statusTime: true,
+        round: true,
+        promotion_method: true,
+        usersId: true,
+
         application: {
           select: {
             id: true,
@@ -2298,11 +2307,6 @@ export class ApplicationControllerBase {
         },
 
         id: true,
-        programId: true,
-        promotion_method: true,
-        round: true,
-        statusTime: true,
-        usersId: true,
       },
     });
     if (results === null) {
@@ -2323,7 +2327,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2340,7 +2344,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2357,7 +2361,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2366,7 +2370,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/publication")
   @ApiNestedQuery(PublicationFindManyArgs)
-  async findManyPublication(
+  async findPublication(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Publication[]> {
@@ -2374,22 +2378,23 @@ export class ApplicationControllerBase {
     const results = await this.service.findPublication(params.id, {
       ...query,
       select: {
+        title: true,
+        author: true,
+        forum: true,
+        citation: true,
+        url: true,
+        status: true,
+        typeField: true,
+        typeOther: true,
+        datafileId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        author: true,
-        citation: true,
-        datafileId: true,
-        forum: true,
         id: true,
-        status: true,
-        title: true,
-        typeField: true,
-        typeOther: true,
-        url: true,
       },
     });
     if (results === null) {
@@ -2410,7 +2415,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2427,7 +2432,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2444,7 +2449,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2453,7 +2458,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/recommend")
   @ApiNestedQuery(RecommendFindManyArgs)
-  async findManyRecommend(
+  async findRecommend(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Recommend[]> {
@@ -2461,22 +2466,23 @@ export class ApplicationControllerBase {
     const results = await this.service.findRecommend(params.id, {
       ...query,
       select: {
+        recUserId: true,
+        recommendtype: true,
+        content: true,
+        datafileId: true,
+        submitted: true,
+        reminderSentCount: true,
+        lastReminderSent: true,
+        cmuAffiliation: true,
+        buckleyatupload: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        buckleyatupload: true,
-        cmuAffiliation: true,
-        content: true,
-        datafileId: true,
         id: true,
-        lastReminderSent: true,
-        recommendtype: true,
-        recUserId: true,
-        reminderSentCount: true,
-        submitted: true,
       },
     });
     if (results === null) {
@@ -2497,7 +2503,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2514,7 +2520,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2531,7 +2537,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2540,7 +2546,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/registrationFeePayment")
   @ApiNestedQuery(RegistrationFeePaymentFindManyArgs)
-  async findManyRegistrationFeePayment(
+  async findRegistrationFeePayment(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<RegistrationFeePayment[]> {
@@ -2551,20 +2557,21 @@ export class ApplicationControllerBase {
     const results = await this.service.findRegistrationFeePayment(params.id, {
       ...query,
       select: {
+        departmentId: true,
+        paymentType: true,
+        paymentAmount: true,
+        paymentIntentDate: true,
+        payment_status: true,
+        lastModTime: true,
+        lastModUserId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        departmentId: true,
         id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
-        paymentIntentDate: true,
-        payment_status: true,
-        paymentType: true,
       },
     });
     if (results === null) {
@@ -2585,7 +2592,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2602,7 +2609,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2619,7 +2626,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2628,7 +2635,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/registrationFeeStatus")
   @ApiNestedQuery(RegistrationFeeStatusFindManyArgs)
-  async findManyRegistrationFeeStatus(
+  async findRegistrationFeeStatus(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<RegistrationFeeStatus[]> {
@@ -2639,7 +2646,10 @@ export class ApplicationControllerBase {
     const results = await this.service.findRegistrationFeeStatus(params.id, {
       ...query,
       select: {
+        departmentId: true,
         amount: true,
+        paid: true,
+        waived: true,
 
         application: {
           select: {
@@ -2647,10 +2657,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        departmentId: true,
         id: true,
-        paid: true,
-        waived: true,
       },
     });
     if (results === null) {
@@ -2671,7 +2678,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2688,7 +2695,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2705,7 +2712,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2714,7 +2721,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/review")
   @ApiNestedQuery(ReviewFindManyArgs)
-  async findManyReview(
+  async findReview(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<Review[]> {
@@ -2722,8 +2729,40 @@ export class ApplicationControllerBase {
     const results = await this.service.findReview(params.id, {
       ...query,
       select: {
+        reviewerId: true,
+        background: true,
+        grades: true,
+        statement: true,
+        comments: true,
+        point: true,
+        pointCertainty: true,
+        point2: true,
+        point2Certainty: true,
+        privateComments: true,
+        round2: true,
+        round3: true,
+        touched: true,
         admitVote: true,
+        recruited: true,
+        gradName: true,
+        pertinentInfo: true,
         adviseTime: true,
+        commitMoney: true,
+        fundSource: true,
+        round: true,
+        interview: true,
+        recommendations: true,
+        publications: true,
+        brilliance: true,
+        otherInterest: true,
+        supplementalReview: true,
+        facVote: true,
+        committeeVote: true,
+        rrank: true,
+        departmentId: true,
+        mseExperienceLen: true,
+        impressed: true,
+        updated: true,
 
         application: {
           select: {
@@ -2731,39 +2770,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        background: true,
-        brilliance: true,
-        comments: true,
-        commitMoney: true,
-        committeeVote: true,
-        departmentId: true,
-        facVote: true,
-        fundSource: true,
-        grades: true,
-        gradName: true,
         id: true,
-        impressed: true,
-        interview: true,
-        mseExperienceLen: true,
-        otherInterest: true,
-        pertinentInfo: true,
-        point: true,
-        point2: true,
-        point2Certainty: true,
-        pointCertainty: true,
-        privateComments: true,
-        publications: true,
-        recommendations: true,
-        recruited: true,
-        reviewerId: true,
-        round: true,
-        round2: true,
-        round3: true,
-        rrank: true,
-        statement: true,
-        supplementalReview: true,
-        touched: true,
-        updated: true,
       },
     });
     if (results === null) {
@@ -2784,7 +2791,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2801,7 +2808,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2818,7 +2825,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2827,7 +2834,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/rissFunding")
   @ApiNestedQuery(RissFundingFindManyArgs)
-  async findManyRissFunding(
+  async findRissFunding(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<RissFunding[]> {
@@ -2835,18 +2842,19 @@ export class ApplicationControllerBase {
     const results = await this.service.findRissFunding(params.id, {
       ...query,
       select: {
+        externalFunding: true,
+        externalSource: true,
+        externalAmount: true,
+        reuScholarship: true,
+        directFunding: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        directFunding: true,
-        externalAmount: true,
-        externalFunding: true,
-        externalSource: true,
         id: true,
-        reuScholarship: true,
       },
     });
     if (results === null) {
@@ -2867,7 +2875,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2884,7 +2892,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2901,7 +2909,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2910,7 +2918,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/rissMcnair")
   @ApiNestedQuery(RissMcnairFindManyArgs)
-  async findManyRissMcnair(
+  async findRissMcnair(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<RissMcnair[]> {
@@ -2918,15 +2926,16 @@ export class ApplicationControllerBase {
     const results = await this.service.findRissMcnair(params.id, {
       ...query,
       select: {
+        site: true,
+        contact: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        contact: true,
         id: true,
-        site: true,
       },
     });
     if (results === null) {
@@ -2947,7 +2956,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2964,7 +2973,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2981,7 +2990,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -2990,7 +2999,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/specialConsideration")
   @ApiNestedQuery(SpecialConsiderationFindManyArgs)
-  async findManySpecialConsideration(
+  async findSpecialConsideration(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<SpecialConsideration[]> {
@@ -2998,6 +3007,9 @@ export class ApplicationControllerBase {
     const results = await this.service.findSpecialConsideration(params.id, {
       ...query,
       select: {
+        reviewerId: true,
+        specialConsideration: true,
+
         application: {
           select: {
             id: true,
@@ -3005,8 +3017,6 @@ export class ApplicationControllerBase {
         },
 
         id: true,
-        reviewerId: true,
-        specialConsideration: true,
       },
     });
     if (results === null) {
@@ -3027,7 +3037,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3044,7 +3054,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3061,7 +3071,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3070,7 +3080,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/studentDecision")
   @ApiNestedQuery(StudentDecisionFindManyArgs)
-  async findManyStudentDecision(
+  async findStudentDecision(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<StudentDecision[]> {
@@ -3078,9 +3088,55 @@ export class ApplicationControllerBase {
     const results = await this.service.findStudentDecision(params.id, {
       ...query,
       select: {
+        programId: true,
+        decision: true,
         acceptReasons: true,
-        admin: true,
+        otherChoice: true,
+        otherChoiceLocation: true,
+        decisionReasons: true,
+        visit: true,
+        visitComments: true,
+        otherSchoolsApplied: true,
+        otherSchoolsAccepted: true,
+        submitted: true,
+        submittedDate: true,
+        visitHelpful: true,
+        maritalStatus: true,
+        maritalOther: true,
         affiliatedCmu: true,
+        progLength: true,
+        attendAcc: true,
+        legalName: true,
+        prefName: true,
+        prefEmail: true,
+        dob: true,
+        gender: true,
+        genderOther: true,
+        telMobile: true,
+        streetP1: true,
+        streetP2: true,
+        streetP3: true,
+        streetP4: true,
+        cityP: true,
+        stateP: true,
+        postalP: true,
+        countryP: true,
+        citCountry: true,
+        hispanic: true,
+        natAm: true,
+        black: true,
+        asian: true,
+        hpi: true,
+        cau: true,
+        doneDiff: true,
+        admin: true,
+        optComm: true,
+        errors: true,
+        deferralReasons: true,
+        deferralSemester: true,
+        deferralYear: true,
+        pronoun: true,
+        pronounOther: true,
         affiliatedCmutxt: true,
 
         application: {
@@ -3089,53 +3145,7 @@ export class ApplicationControllerBase {
           },
         },
 
-        asian: true,
-        attendAcc: true,
-        black: true,
-        cau: true,
-        citCountry: true,
-        cityP: true,
-        countryP: true,
-        decision: true,
-        decisionReasons: true,
-        deferralReasons: true,
-        deferralSemester: true,
-        deferralYear: true,
-        dob: true,
-        doneDiff: true,
-        errors: true,
-        gender: true,
-        genderOther: true,
-        hispanic: true,
-        hpi: true,
         id: true,
-        legalName: true,
-        maritalOther: true,
-        maritalStatus: true,
-        natAm: true,
-        optComm: true,
-        otherChoice: true,
-        otherChoiceLocation: true,
-        otherSchoolsAccepted: true,
-        otherSchoolsApplied: true,
-        postalP: true,
-        prefEmail: true,
-        prefName: true,
-        progLength: true,
-        programId: true,
-        pronoun: true,
-        pronounOther: true,
-        stateP: true,
-        streetP1: true,
-        streetP2: true,
-        streetP3: true,
-        streetP4: true,
-        submitted: true,
-        submittedDate: true,
-        telMobile: true,
-        visit: true,
-        visitComments: true,
-        visitHelpful: true,
       },
     });
     if (results === null) {
@@ -3156,7 +3166,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3173,7 +3183,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3190,7 +3200,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3199,7 +3209,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/studentDecisionHistory")
   @ApiNestedQuery(StudentDecisionHistoryFindManyArgs)
-  async findManyStudentDecisionHistory(
+  async findStudentDecisionHistory(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<StudentDecisionHistory[]> {
@@ -3210,18 +3220,19 @@ export class ApplicationControllerBase {
     const results = await this.service.findStudentDecisionHistory(params.id, {
       ...query,
       select: {
+        programId: true,
+        decision: true,
+        deferralSemester: true,
+        deferralYear: true,
+        insertDate: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        decision: true,
-        deferralSemester: true,
-        deferralYear: true,
         id: true,
-        insertDate: true,
-        programId: true,
       },
     });
     if (results === null) {
@@ -3242,7 +3253,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3259,7 +3270,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3276,7 +3287,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3285,7 +3296,7 @@ export class ApplicationControllerBase {
 
   @common.Get("/:id/tagMembers")
   @ApiNestedQuery(TagMemberFindManyArgs)
-  async findManyTagMembers(
+  async findTagMembers(
     @common.Req() request: Request,
     @common.Param() params: ApplicationWhereUniqueInput
   ): Promise<TagMember[]> {
@@ -3293,6 +3304,8 @@ export class ApplicationControllerBase {
     const results = await this.service.findTagMembers(params.id, {
       ...query,
       select: {
+        tagInstanceId: true,
+
         application: {
           select: {
             id: true,
@@ -3300,7 +3313,6 @@ export class ApplicationControllerBase {
         },
 
         id: true,
-        tagInstanceId: true,
       },
     });
     if (results === null) {
@@ -3321,7 +3333,7 @@ export class ApplicationControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3338,7 +3350,7 @@ export class ApplicationControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },
@@ -3355,7 +3367,7 @@ export class ApplicationControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplication({
       where: params,
       data,
       select: { id: true },

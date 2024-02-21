@@ -1,7 +1,7 @@
 export type ProgramGroupUpdateInput = {
   periodId?: number;
-  programGroupDescription?: string | null;
+  unitId?: number;
   programGroupName?: string;
   programGroupNameShort?: string;
-  unitId?: number;
+  programGroupDescription?: string | null;
 };

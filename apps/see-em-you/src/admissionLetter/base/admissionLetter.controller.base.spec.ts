@@ -20,36 +20,36 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
   departmentId: 42,
-  id: "exampleId",
   sections: "exampleSections",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
   applicationId: 42,
   departmentId: 42,
-  id: "exampleId",
   sections: "exampleSections",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
     departmentId: 42,
-    id: "exampleId",
     sections: "exampleSections",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
   departmentId: 42,
-  id: "exampleId",
   sections: "exampleSections",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createAdmissionLetter() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  admissionLetters: () => FIND_MANY_RESULT,
+  admissionLetter: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

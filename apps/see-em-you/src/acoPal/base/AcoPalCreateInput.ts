@@ -29,15 +29,6 @@ class AcoPalCreateInput {
   aco?: boolean | null;
 
   @ApiProperty({
-    required: true,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
     required: false,
     type: Boolean,
   })
@@ -47,6 +38,15 @@ class AcoPalCreateInput {
     nullable: true,
   })
   pal?: boolean | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { AcoPalCreateInput as AcoPalCreateInput };

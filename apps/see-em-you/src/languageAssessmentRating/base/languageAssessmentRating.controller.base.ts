@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LanguageAssessmentRatingService } from "../languageAssessmentRating.service";
 import { LanguageAssessmentRatingCreateInput } from "./LanguageAssessmentRatingCreateInput";
-import { LanguageAssessmentRatingWhereInput } from "./LanguageAssessmentRatingWhereInput";
-import { LanguageAssessmentRatingWhereUniqueInput } from "./LanguageAssessmentRatingWhereUniqueInput";
-import { LanguageAssessmentRatingFindManyArgs } from "./LanguageAssessmentRatingFindManyArgs";
-import { LanguageAssessmentRatingUpdateInput } from "./LanguageAssessmentRatingUpdateInput";
 import { LanguageAssessmentRating } from "./LanguageAssessmentRating";
+import { LanguageAssessmentRatingFindManyArgs } from "./LanguageAssessmentRatingFindManyArgs";
+import { LanguageAssessmentRatingWhereUniqueInput } from "./LanguageAssessmentRatingWhereUniqueInput";
+import { LanguageAssessmentRatingUpdateInput } from "./LanguageAssessmentRatingUpdateInput";
 
 export class LanguageAssessmentRatingControllerBase {
   constructor(protected readonly service: LanguageAssessmentRatingService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LanguageAssessmentRating })
-  async create(
+  async createLanguageAssessmentRating(
     @common.Body() data: LanguageAssessmentRatingCreateInput
   ): Promise<LanguageAssessmentRating> {
-    return await this.service.create({
+    return await this.service.createLanguageAssessmentRating({
       data: data,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -43,18 +42,18 @@ export class LanguageAssessmentRatingControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LanguageAssessmentRating] })
   @ApiNestedQuery(LanguageAssessmentRatingFindManyArgs)
-  async findMany(
+  async languageAssessmentRatings(
     @common.Req() request: Request
   ): Promise<LanguageAssessmentRating[]> {
     const args = plainToClass(
       LanguageAssessmentRatingFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.languageAssessmentRatings({
       ...args,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -62,14 +61,14 @@ export class LanguageAssessmentRatingControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessmentRating })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async languageAssessmentRating(
     @common.Param() params: LanguageAssessmentRatingWhereUniqueInput
   ): Promise<LanguageAssessmentRating | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.languageAssessmentRating({
       where: params,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -83,17 +82,17 @@ export class LanguageAssessmentRatingControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessmentRating })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLanguageAssessmentRating(
     @common.Param() params: LanguageAssessmentRatingWhereUniqueInput,
     @common.Body() data: LanguageAssessmentRatingUpdateInput
   ): Promise<LanguageAssessmentRating | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLanguageAssessmentRating({
         where: params,
         data: data,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -109,15 +108,15 @@ export class LanguageAssessmentRatingControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LanguageAssessmentRating })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLanguageAssessmentRating(
     @common.Param() params: LanguageAssessmentRatingWhereUniqueInput
   ): Promise<LanguageAssessmentRating | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLanguageAssessmentRating({
         where: params,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {

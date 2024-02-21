@@ -29,7 +29,7 @@ class DepartmentEnableRecyclingCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  enableRecycling!: number;
+  periodId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class DepartmentEnableRecyclingCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  periodId!: number;
+  enableRecycling!: number;
 
   @ApiProperty({
     required: true,

@@ -18,32 +18,33 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UsersOrigService } from "../usersOrig.service";
 import { UsersOrigCreateInput } from "./UsersOrigCreateInput";
-import { UsersOrigWhereInput } from "./UsersOrigWhereInput";
-import { UsersOrigWhereUniqueInput } from "./UsersOrigWhereUniqueInput";
-import { UsersOrigFindManyArgs } from "./UsersOrigFindManyArgs";
-import { UsersOrigUpdateInput } from "./UsersOrigUpdateInput";
 import { UsersOrig } from "./UsersOrig";
+import { UsersOrigFindManyArgs } from "./UsersOrigFindManyArgs";
+import { UsersOrigWhereUniqueInput } from "./UsersOrigWhereUniqueInput";
+import { UsersOrigUpdateInput } from "./UsersOrigUpdateInput";
 
 export class UsersOrigControllerBase {
   constructor(protected readonly service: UsersOrigService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: UsersOrig })
-  async create(@common.Body() data: UsersOrigCreateInput): Promise<UsersOrig> {
-    return await this.service.create({
+  async createUsersOrig(
+    @common.Body() data: UsersOrigCreateInput
+  ): Promise<UsersOrig> {
+    return await this.service.createUsersOrig({
       data: data,
       select: {
         email: true,
+        username: true,
+        password: true,
+        title: true,
         firstname: true,
+        middlename: true,
+        lastname: true,
+        initials: true,
+        signupDate: true,
+        verified: true,
         guid: true,
         id: true,
-        initials: true,
-        lastname: true,
-        middlename: true,
-        password: true,
-        signupDate: true,
-        title: true,
-        username: true,
-        verified: true,
       },
     });
   }
@@ -51,23 +52,23 @@ export class UsersOrigControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [UsersOrig] })
   @ApiNestedQuery(UsersOrigFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<UsersOrig[]> {
+  async usersOrigs(@common.Req() request: Request): Promise<UsersOrig[]> {
     const args = plainToClass(UsersOrigFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.usersOrigs({
       ...args,
       select: {
         email: true,
+        username: true,
+        password: true,
+        title: true,
         firstname: true,
+        middlename: true,
+        lastname: true,
+        initials: true,
+        signupDate: true,
+        verified: true,
         guid: true,
         id: true,
-        initials: true,
-        lastname: true,
-        middlename: true,
-        password: true,
-        signupDate: true,
-        title: true,
-        username: true,
-        verified: true,
       },
     });
   }
@@ -75,24 +76,24 @@ export class UsersOrigControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: UsersOrig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async usersOrig(
     @common.Param() params: UsersOrigWhereUniqueInput
   ): Promise<UsersOrig | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.usersOrig({
       where: params,
       select: {
         email: true,
+        username: true,
+        password: true,
+        title: true,
         firstname: true,
+        middlename: true,
+        lastname: true,
+        initials: true,
+        signupDate: true,
+        verified: true,
         guid: true,
         id: true,
-        initials: true,
-        lastname: true,
-        middlename: true,
-        password: true,
-        signupDate: true,
-        title: true,
-        username: true,
-        verified: true,
       },
     });
     if (result === null) {
@@ -106,27 +107,27 @@ export class UsersOrigControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: UsersOrig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUsersOrig(
     @common.Param() params: UsersOrigWhereUniqueInput,
     @common.Body() data: UsersOrigUpdateInput
   ): Promise<UsersOrig | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsersOrig({
         where: params,
         data: data,
         select: {
           email: true,
+          username: true,
+          password: true,
+          title: true,
           firstname: true,
+          middlename: true,
+          lastname: true,
+          initials: true,
+          signupDate: true,
+          verified: true,
           guid: true,
           id: true,
-          initials: true,
-          lastname: true,
-          middlename: true,
-          password: true,
-          signupDate: true,
-          title: true,
-          username: true,
-          verified: true,
         },
       });
     } catch (error) {
@@ -142,25 +143,25 @@ export class UsersOrigControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: UsersOrig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUsersOrig(
     @common.Param() params: UsersOrigWhereUniqueInput
   ): Promise<UsersOrig | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUsersOrig({
         where: params,
         select: {
           email: true,
+          username: true,
+          password: true,
+          title: true,
           firstname: true,
+          middlename: true,
+          lastname: true,
+          initials: true,
+          signupDate: true,
+          verified: true,
           guid: true,
           id: true,
-          initials: true,
-          lastname: true,
-          middlename: true,
-          password: true,
-          signupDate: true,
-          title: true,
-          username: true,
-          verified: true,
         },
       });
     } catch (error) {

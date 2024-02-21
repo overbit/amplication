@@ -18,54 +18,53 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DuolingoDatumService } from "../duolingoDatum.service";
 import { DuolingoDatumCreateInput } from "./DuolingoDatumCreateInput";
-import { DuolingoDatumWhereInput } from "./DuolingoDatumWhereInput";
-import { DuolingoDatumWhereUniqueInput } from "./DuolingoDatumWhereUniqueInput";
-import { DuolingoDatumFindManyArgs } from "./DuolingoDatumFindManyArgs";
-import { DuolingoDatumUpdateInput } from "./DuolingoDatumUpdateInput";
 import { DuolingoDatum } from "./DuolingoDatum";
+import { DuolingoDatumFindManyArgs } from "./DuolingoDatumFindManyArgs";
+import { DuolingoDatumWhereUniqueInput } from "./DuolingoDatumWhereUniqueInput";
+import { DuolingoDatumUpdateInput } from "./DuolingoDatumUpdateInput";
 
 export class DuolingoDatumControllerBase {
   constructor(protected readonly service: DuolingoDatumService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DuolingoDatum })
-  async create(
+  async createDuolingoDatum(
     @common.Body() data: DuolingoDatumCreateInput
   ): Promise<DuolingoDatum> {
-    return await this.service.create({
+    return await this.service.createDuolingoDatum({
       data: data,
       select: {
-        applicantId: true,
-        applicationId: true,
-        birthdate: true,
-        certificateUrl: true,
-        certified: true,
-        comprehensionSubscore: true,
-        conversationSubscore: true,
-        country: true,
+        lastName: true,
+        givenNames: true,
         couponId: true,
-        domain: true,
+        sessionId: true,
+        fullName: true,
+        firstName: true,
+        userId: true,
+        certificateUrl: true,
+        middleNames: true,
+        applicantId: true,
+        surnames: true,
         email: true,
         embedUrl: true,
-        firstName: true,
-        fullName: true,
-        givenNames: true,
-        id: true,
-        insertDate: true,
         interviewUrl: true,
         language: true,
-        lastName: true,
-        literacySubscore: true,
-        middleNames: true,
-        overallScore: true,
-        percentScore: true,
-        productionSubscore: true,
-        scale: true,
-        school: true,
-        sessionId: true,
-        surnames: true,
+        country: true,
+        birthdate: true,
         testDate: true,
-        userId: true,
         verificationDate: true,
+        overallScore: true,
+        scale: true,
+        conversationSubscore: true,
+        productionSubscore: true,
+        literacySubscore: true,
+        certified: true,
+        comprehensionSubscore: true,
+        percentScore: true,
+        applicationId: true,
+        school: true,
+        domain: true,
+        insertDate: true,
+        id: true,
       },
     });
   }
@@ -73,43 +72,43 @@ export class DuolingoDatumControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DuolingoDatum] })
   @ApiNestedQuery(DuolingoDatumFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DuolingoDatum[]> {
+  async duolingoData(@common.Req() request: Request): Promise<DuolingoDatum[]> {
     const args = plainToClass(DuolingoDatumFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.duolingoData({
       ...args,
       select: {
-        applicantId: true,
-        applicationId: true,
-        birthdate: true,
-        certificateUrl: true,
-        certified: true,
-        comprehensionSubscore: true,
-        conversationSubscore: true,
-        country: true,
+        lastName: true,
+        givenNames: true,
         couponId: true,
-        domain: true,
+        sessionId: true,
+        fullName: true,
+        firstName: true,
+        userId: true,
+        certificateUrl: true,
+        middleNames: true,
+        applicantId: true,
+        surnames: true,
         email: true,
         embedUrl: true,
-        firstName: true,
-        fullName: true,
-        givenNames: true,
-        id: true,
-        insertDate: true,
         interviewUrl: true,
         language: true,
-        lastName: true,
-        literacySubscore: true,
-        middleNames: true,
-        overallScore: true,
-        percentScore: true,
-        productionSubscore: true,
-        scale: true,
-        school: true,
-        sessionId: true,
-        surnames: true,
+        country: true,
+        birthdate: true,
         testDate: true,
-        userId: true,
         verificationDate: true,
+        overallScore: true,
+        scale: true,
+        conversationSubscore: true,
+        productionSubscore: true,
+        literacySubscore: true,
+        certified: true,
+        comprehensionSubscore: true,
+        percentScore: true,
+        applicationId: true,
+        school: true,
+        domain: true,
+        insertDate: true,
+        id: true,
       },
     });
   }
@@ -117,44 +116,44 @@ export class DuolingoDatumControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DuolingoDatum })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async duolingoDatum(
     @common.Param() params: DuolingoDatumWhereUniqueInput
   ): Promise<DuolingoDatum | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.duolingoDatum({
       where: params,
       select: {
-        applicantId: true,
-        applicationId: true,
-        birthdate: true,
-        certificateUrl: true,
-        certified: true,
-        comprehensionSubscore: true,
-        conversationSubscore: true,
-        country: true,
+        lastName: true,
+        givenNames: true,
         couponId: true,
-        domain: true,
+        sessionId: true,
+        fullName: true,
+        firstName: true,
+        userId: true,
+        certificateUrl: true,
+        middleNames: true,
+        applicantId: true,
+        surnames: true,
         email: true,
         embedUrl: true,
-        firstName: true,
-        fullName: true,
-        givenNames: true,
-        id: true,
-        insertDate: true,
         interviewUrl: true,
         language: true,
-        lastName: true,
-        literacySubscore: true,
-        middleNames: true,
-        overallScore: true,
-        percentScore: true,
-        productionSubscore: true,
-        scale: true,
-        school: true,
-        sessionId: true,
-        surnames: true,
+        country: true,
+        birthdate: true,
         testDate: true,
-        userId: true,
         verificationDate: true,
+        overallScore: true,
+        scale: true,
+        conversationSubscore: true,
+        productionSubscore: true,
+        literacySubscore: true,
+        certified: true,
+        comprehensionSubscore: true,
+        percentScore: true,
+        applicationId: true,
+        school: true,
+        domain: true,
+        insertDate: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -168,47 +167,47 @@ export class DuolingoDatumControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DuolingoDatum })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDuolingoDatum(
     @common.Param() params: DuolingoDatumWhereUniqueInput,
     @common.Body() data: DuolingoDatumUpdateInput
   ): Promise<DuolingoDatum | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDuolingoDatum({
         where: params,
         data: data,
         select: {
-          applicantId: true,
-          applicationId: true,
-          birthdate: true,
-          certificateUrl: true,
-          certified: true,
-          comprehensionSubscore: true,
-          conversationSubscore: true,
-          country: true,
+          lastName: true,
+          givenNames: true,
           couponId: true,
-          domain: true,
+          sessionId: true,
+          fullName: true,
+          firstName: true,
+          userId: true,
+          certificateUrl: true,
+          middleNames: true,
+          applicantId: true,
+          surnames: true,
           email: true,
           embedUrl: true,
-          firstName: true,
-          fullName: true,
-          givenNames: true,
-          id: true,
-          insertDate: true,
           interviewUrl: true,
           language: true,
-          lastName: true,
-          literacySubscore: true,
-          middleNames: true,
-          overallScore: true,
-          percentScore: true,
-          productionSubscore: true,
-          scale: true,
-          school: true,
-          sessionId: true,
-          surnames: true,
+          country: true,
+          birthdate: true,
           testDate: true,
-          userId: true,
           verificationDate: true,
+          overallScore: true,
+          scale: true,
+          conversationSubscore: true,
+          productionSubscore: true,
+          literacySubscore: true,
+          certified: true,
+          comprehensionSubscore: true,
+          percentScore: true,
+          applicationId: true,
+          school: true,
+          domain: true,
+          insertDate: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -224,45 +223,45 @@ export class DuolingoDatumControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DuolingoDatum })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDuolingoDatum(
     @common.Param() params: DuolingoDatumWhereUniqueInput
   ): Promise<DuolingoDatum | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDuolingoDatum({
         where: params,
         select: {
-          applicantId: true,
-          applicationId: true,
-          birthdate: true,
-          certificateUrl: true,
-          certified: true,
-          comprehensionSubscore: true,
-          conversationSubscore: true,
-          country: true,
+          lastName: true,
+          givenNames: true,
           couponId: true,
-          domain: true,
+          sessionId: true,
+          fullName: true,
+          firstName: true,
+          userId: true,
+          certificateUrl: true,
+          middleNames: true,
+          applicantId: true,
+          surnames: true,
           email: true,
           embedUrl: true,
-          firstName: true,
-          fullName: true,
-          givenNames: true,
-          id: true,
-          insertDate: true,
           interviewUrl: true,
           language: true,
-          lastName: true,
-          literacySubscore: true,
-          middleNames: true,
-          overallScore: true,
-          percentScore: true,
-          productionSubscore: true,
-          scale: true,
-          school: true,
-          sessionId: true,
-          surnames: true,
+          country: true,
+          birthdate: true,
           testDate: true,
-          userId: true,
           verificationDate: true,
+          overallScore: true,
+          scale: true,
+          conversationSubscore: true,
+          productionSubscore: true,
+          literacySubscore: true,
+          certified: true,
+          comprehensionSubscore: true,
+          percentScore: true,
+          applicationId: true,
+          school: true,
+          domain: true,
+          insertDate: true,
+          id: true,
         },
       });
     } catch (error) {

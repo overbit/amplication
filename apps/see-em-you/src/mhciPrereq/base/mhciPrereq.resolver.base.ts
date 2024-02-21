@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqArgs } from "./CreateMhciPrereqArgs";
-import { UpdateMhciPrereqArgs } from "./UpdateMhciPrereqArgs";
-import { DeleteMhciPrereqArgs } from "./DeleteMhciPrereqArgs";
+import { MhciPrereq } from "./MhciPrereq";
 import { MhciPrereqCountArgs } from "./MhciPrereqCountArgs";
 import { MhciPrereqFindManyArgs } from "./MhciPrereqFindManyArgs";
 import { MhciPrereqFindUniqueArgs } from "./MhciPrereqFindUniqueArgs";
-import { MhciPrereq } from "./MhciPrereq";
+import { CreateMhciPrereqArgs } from "./CreateMhciPrereqArgs";
+import { UpdateMhciPrereqArgs } from "./UpdateMhciPrereqArgs";
+import { DeleteMhciPrereqArgs } from "./DeleteMhciPrereqArgs";
 import { MhciPrereqsConversationCommentFindManyArgs } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentFindManyArgs";
 import { MhciPrereqsConversationComment } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationComment";
 import { Application } from "../../application/base/Application";
@@ -42,14 +42,14 @@ export class MhciPrereqResolverBase {
   async mhciPrereqs(
     @graphql.Args() args: MhciPrereqFindManyArgs
   ): Promise<MhciPrereq[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqs(args);
   }
 
   @graphql.Query(() => MhciPrereq, { nullable: true })
   async mhciPrereq(
     @graphql.Args() args: MhciPrereqFindUniqueArgs
   ): Promise<MhciPrereq | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereq(args);
     if (result === null) {
       return null;
     }
@@ -60,7 +60,7 @@ export class MhciPrereqResolverBase {
   async createMhciPrereq(
     @graphql.Args() args: CreateMhciPrereqArgs
   ): Promise<MhciPrereq> {
-    return await this.service.create({
+    return await this.service.createMhciPrereq({
       ...args,
       data: {
         ...args.data,
@@ -83,7 +83,7 @@ export class MhciPrereqResolverBase {
     @graphql.Args() args: UpdateMhciPrereqArgs
   ): Promise<MhciPrereq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereq({
         ...args,
         data: {
           ...args.data,
@@ -114,7 +114,7 @@ export class MhciPrereqResolverBase {
     @graphql.Args() args: DeleteMhciPrereqArgs
   ): Promise<MhciPrereq | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereq(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -128,7 +128,7 @@ export class MhciPrereqResolverBase {
   @graphql.ResolveField(() => [MhciPrereqsConversationComment], {
     name: "mhciPrereqsConversationComments",
   })
-  async resolveFieldMhciPrereqsConversationComments(
+  async findMhciPrereqsConversationComments(
     @graphql.Parent() parent: MhciPrereq,
     @graphql.Args() args: MhciPrereqsConversationCommentFindManyArgs
   ): Promise<MhciPrereqsConversationComment[]> {
@@ -148,7 +148,7 @@ export class MhciPrereqResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: MhciPrereq
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);
@@ -163,7 +163,7 @@ export class MhciPrereqResolverBase {
     nullable: true,
     name: "mhciPrereqsStatus",
   })
-  async resolveFieldMhciPrereqsStatus(
+  async getMhciPrereqsStatus(
     @graphql.Parent() parent: MhciPrereq
   ): Promise<MhciPrereqsStatus | null> {
     const result = await this.service.getMhciPrereqsStatus(parent.id);

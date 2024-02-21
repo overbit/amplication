@@ -3,8 +3,8 @@ import {
   List,
   Datagrid,
   ListProps,
-  BooleanField,
   TextField,
+  BooleanField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 
@@ -18,10 +18,10 @@ export const InstituteList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <BooleanField label="Hide" source="hide" />
-        <TextField label="Id" source="id" />
         <TextField label="Name" source="name" />
         <TextField label="Users Id" source="usersId" />
+        <BooleanField label="Hide" source="hide" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

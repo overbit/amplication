@@ -39,7 +39,7 @@ class CmuAffiliationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  cmuEmployee?: SortOrder;
+  cmuStudentOrAlumnus?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class CmuAffiliationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  cmuStudentOrAlumnus?: SortOrder;
+  cmuEmployee?: SortOrder;
 
   @ApiProperty({
     required: false,

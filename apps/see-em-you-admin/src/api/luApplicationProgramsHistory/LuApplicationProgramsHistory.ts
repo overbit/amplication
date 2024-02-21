@@ -1,9 +1,9 @@
 export type LuApplicationProgramsHistory = {
-  applicationId: number;
-  choice: number;
-  createdDate: Date;
-  deletedBy: number;
-  id: number;
   lapId: number;
+  applicationId: number;
   programId: number;
+  choice: number;
+  deletedBy: number;
+  createdDate: Date;
+  id: number;
 };

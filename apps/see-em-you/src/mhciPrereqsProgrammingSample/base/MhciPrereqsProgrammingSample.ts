@@ -13,10 +13,10 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
-  IsOptional,
-  ValidateNested,
-  IsBoolean,
   IsString,
+  IsOptional,
+  IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 import { Type } from "class-transformer";
@@ -24,47 +24,12 @@ import { Type } from "class-transformer";
 @ObjectType()
 class MhciPrereqsProgrammingSample {
   @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  applicationId!: number | null;
-
-  @ApiProperty({
     required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
   datafileinfoId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: () => LuUsersUsertype,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertype)
-  luUsersUsertypes?: LuUsersUsertype;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  newFileUploaded!: boolean;
 
   @ApiProperty({
     required: false,
@@ -76,6 +41,33 @@ class MhciPrereqsProgrammingSample {
     nullable: true,
   })
   note!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  submittedToReviewer!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  newFileUploaded!: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  applicationId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -101,11 +93,19 @@ class MhciPrereqsProgrammingSample {
 
   @ApiProperty({
     required: true,
-    type: Boolean,
+    type: () => LuUsersUsertype,
   })
-  @IsBoolean()
-  @Field(() => Boolean)
-  submittedToReviewer!: boolean;
+  @ValidateNested()
+  @Type(() => LuUsersUsertype)
+  luUsersUsertypes?: LuUsersUsertype;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MhciPrereqsProgrammingSample as MhciPrereqsProgrammingSample };

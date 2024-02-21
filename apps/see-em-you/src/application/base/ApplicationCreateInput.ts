@@ -11,17 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { AcoPalWhereUniqueInput } from "../../acoPal/base/AcoPalWhereUniqueInput";
 import {
-  ValidateNested,
-  IsOptional,
-  IsString,
-  IsBoolean,
   IsInt,
+  IsString,
   IsDate,
+  IsOptional,
+  IsBoolean,
   IsNumber,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { Decimal } from "decimal.js";
+import { AcoPalWhereUniqueInput } from "../../acoPal/base/AcoPalWhereUniqueInput";
 import { ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput } from "./ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput";
 import { AttendanceCreateNestedManyWithoutApplicationsInput } from "./AttendanceCreateNestedManyWithoutApplicationsInput";
 import { CashnetPaymentCreateNestedManyWithoutApplicationsInput } from "./CashnetPaymentCreateNestedManyWithoutApplicationsInput";
@@ -43,7 +44,6 @@ import { MlSupportingCourseworkCreateNestedManyWithoutApplicationsInput } from "
 import { MseAqaCreateNestedManyWithoutApplicationsInput } from "./MseAqaCreateNestedManyWithoutApplicationsInput";
 import { MseCodilityWhereUniqueInput } from "../../mseCodility/base/MseCodilityWhereUniqueInput";
 import { PaymentCreateNestedManyWithoutApplicationsInput } from "./PaymentCreateNestedManyWithoutApplicationsInput";
-import { Decimal } from "decimal.js";
 import { PeriodApplicationCreateNestedManyWithoutApplicationsInput } from "./PeriodApplicationCreateNestedManyWithoutApplicationsInput";
 import { PromotionHistoryCreateNestedManyWithoutApplicationsInput } from "./PromotionHistoryCreateNestedManyWithoutApplicationsInput";
 import { PublicationCreateNestedManyWithoutApplicationsInput } from "./PublicationCreateNestedManyWithoutApplicationsInput";
@@ -61,28 +61,216 @@ import { TagMemberCreateNestedManyWithoutApplicationsInput } from "./TagMemberCr
 @InputType()
 class ApplicationCreateInput {
   @ApiProperty({
-    required: false,
-    type: () => AcoPalWhereUniqueInput,
+    required: true,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => AcoPalWhereUniqueInput)
-  @IsOptional()
-  @Field(() => AcoPalWhereUniqueInput, {
-    nullable: true,
+  @IsInt()
+  @Field(() => Number)
+  userId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
   })
-  acoPal?: AcoPalWhereUniqueInput | null;
+  @IsString()
+  @Field(() => String)
+  name!: string;
 
   @ApiProperty({
     required: false,
-    type: () => ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput,
   })
-  @ValidateNested()
-  @Type(() => ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput)
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput, {
+  @Field(() => Date, {
     nullable: true,
   })
-  applicationAdminNote?: ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput;
+  submittedDate?: Date | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  submitted!: boolean;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  createdDate?: Date | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  paid!: boolean;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  paymentdate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  paymentamount?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  paymenttype?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  waive!: boolean;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  waivedate?: Date | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  complete!: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  statementofpurpose?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  notificationsent?: Date | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  studentCommit!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  cups!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  womenfellowship!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  pier!: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  cnbc?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  portfoliosubmitted?: boolean | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  portfolioLink?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  portfolioPassword?: string | null;
 
   @ApiProperty({
     required: false,
@@ -119,18 +307,6 @@ class ApplicationCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => AttendanceCreateNestedManyWithoutApplicationsInput,
-  })
-  @ValidateNested()
-  @Type(() => AttendanceCreateNestedManyWithoutApplicationsInput)
-  @IsOptional()
-  @Field(() => AttendanceCreateNestedManyWithoutApplicationsInput, {
-    nullable: true,
-  })
-  attendance?: AttendanceCreateNestedManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
     type: Boolean,
   })
   @IsBoolean()
@@ -142,45 +318,36 @@ class ApplicationCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => CashnetPaymentCreateNestedManyWithoutApplicationsInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => CashnetPaymentCreateNestedManyWithoutApplicationsInput)
+  @IsString()
   @IsOptional()
-  @Field(() => CashnetPaymentCreateNestedManyWithoutApplicationsInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  cashnetPayment?: CashnetPaymentCreateNestedManyWithoutApplicationsInput;
+  referralToProgram?: string | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  cnbc?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  complete!: boolean;
+  recruitingEvent?: string | null;
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => String, {
     nullable: true,
   })
-  createdDate?: Date | null;
+  otherInst?: string | null;
 
   @ApiProperty({
     required: false,
@@ -205,12 +372,31 @@ class ApplicationCreateInput {
   crossDeptProgsOther?: string | null;
 
   @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  recordsPermission?: string | null;
+
+  @ApiProperty({
     required: true,
     type: Boolean,
   })
   @IsBoolean()
   @Field(() => Boolean)
-  cups!: boolean;
+  mastersReviewWaiver!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  sentToProgram!: string;
 
   @ApiProperty({
     required: true,
@@ -219,6 +405,158 @@ class ApplicationCreateInput {
   @IsString()
   @Field(() => String)
   curEnrolled!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  honors?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  round2?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  round3?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  rejectionSent?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  waitlistSent?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  previousCoursework?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  hide!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  waiveHigherFee!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  invitationEmailSent?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  waiveToefl?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => AcoPalWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => AcoPalWhereUniqueInput)
+  @IsOptional()
+  @Field(() => AcoPalWhereUniqueInput, {
+    nullable: true,
+  })
+  acoPal?: AcoPalWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput)
+  @IsOptional()
+  @Field(() => ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput, {
+    nullable: true,
+  })
+  applicationAdminNote?: ApplicationAdminNoteCreateNestedManyWithoutApplicationsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => AttendanceCreateNestedManyWithoutApplicationsInput,
+  })
+  @ValidateNested()
+  @Type(() => AttendanceCreateNestedManyWithoutApplicationsInput)
+  @IsOptional()
+  @Field(() => AttendanceCreateNestedManyWithoutApplicationsInput, {
+    nullable: true,
+  })
+  attendance?: AttendanceCreateNestedManyWithoutApplicationsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => CashnetPaymentCreateNestedManyWithoutApplicationsInput,
+  })
+  @ValidateNested()
+  @Type(() => CashnetPaymentCreateNestedManyWithoutApplicationsInput)
+  @IsOptional()
+  @Field(() => CashnetPaymentCreateNestedManyWithoutApplicationsInput, {
+    nullable: true,
+  })
+  cashnetPayment?: CashnetPaymentCreateNestedManyWithoutApplicationsInput;
 
   @ApiProperty({
     required: false,
@@ -269,25 +607,6 @@ class ApplicationCreateInput {
   gresubjectscore?: GresubjectscoreCreateNestedManyWithoutApplicationsInput;
 
   @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  hide!: boolean;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  honors?: string | null;
-
-  @ApiProperty({
     required: false,
     type: () => IeltsscoreCreateNestedManyWithoutApplicationsInput,
   })
@@ -298,17 +617,6 @@ class ApplicationCreateInput {
     nullable: true,
   })
   ieltsscore?: IeltsscoreCreateNestedManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  invitationEmailSent?: string | null;
 
   @ApiProperty({
     required: false,
@@ -383,14 +691,6 @@ class ApplicationCreateInput {
   luApplicationStartSemester?: LuApplicationStartSemesterWhereUniqueInput | null;
 
   @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  mastersReviewWaiver!: boolean;
-
-  @ApiProperty({
     required: false,
     type: () => MhciPrereqCreateNestedManyWithoutApplicationsInput,
   })
@@ -463,44 +763,6 @@ class ApplicationCreateInput {
   mseCodility?: MseCodilityWhereUniqueInput | null;
 
   @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  notificationsent?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  otherInst?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  paid!: boolean;
-
-  @ApiProperty({
     required: false,
     type: () => PaymentCreateNestedManyWithoutApplicationsInput,
   })
@@ -514,39 +776,6 @@ class ApplicationCreateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  paymentamount?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  paymentdate?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  paymenttype?: number | null;
-
-  @ApiProperty({
-    required: false,
     type: () => PeriodApplicationCreateNestedManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -556,58 +785,6 @@ class ApplicationCreateInput {
     nullable: true,
   })
   periodApplication?: PeriodApplicationCreateNestedManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  pier!: boolean;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  portfolioLink?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  portfolioPassword?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  portfoliosubmitted?: boolean | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  previousCoursework?: number | null;
 
   @ApiProperty({
     required: false,
@@ -647,39 +824,6 @@ class ApplicationCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  recordsPermission?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  recruitingEvent?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  referralToProgram?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: () => RegistrationFeePaymentCreateNestedManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -701,17 +845,6 @@ class ApplicationCreateInput {
     nullable: true,
   })
   registrationFeeStatus?: RegistrationFeeStatusCreateNestedManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  rejectionSent?: string | null;
 
   @ApiProperty({
     required: false,
@@ -751,36 +884,6 @@ class ApplicationCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  round2?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  round3?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  sentToProgram!: string;
-
-  @ApiProperty({
-    required: false,
     type: () => SpecialConsiderationCreateNestedManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -790,25 +893,6 @@ class ApplicationCreateInput {
     nullable: true,
   })
   specialConsideration?: SpecialConsiderationCreateNestedManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  statementofpurpose?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  studentCommit!: boolean;
 
   @ApiProperty({
     required: false,
@@ -835,25 +919,6 @@ class ApplicationCreateInput {
   studentDecisionHistory?: StudentDecisionHistoryCreateNestedManyWithoutApplicationsInput;
 
   @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  submitted!: boolean;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  submittedDate?: Date | null;
-
-  @ApiProperty({
     required: false,
     type: () => TagMemberCreateNestedManyWithoutApplicationsInput,
   })
@@ -864,71 +929,6 @@ class ApplicationCreateInput {
     nullable: true,
   })
   tagMembers?: TagMemberCreateNestedManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  userId!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  waitlistSent?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  waive!: boolean;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  waivedate?: Date | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  waiveHigherFee!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  waiveToefl?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  womenfellowship!: boolean;
 }
 
 export { ApplicationCreateInput as ApplicationCreateInput };

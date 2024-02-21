@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, UsHsStatus } from "@prisma/client";
+import { Prisma, UsHsStatus as PrismaUsHsStatus } from "@prisma/client";
 
 export class UsHsStatusServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class UsHsStatusServiceBase {
     return this.prisma.usHsStatus.count(args);
   }
 
-  async findMany<T extends Prisma.UsHsStatusFindManyArgs>(
+  async usHsStatuses<T extends Prisma.UsHsStatusFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsHsStatusFindManyArgs>
-  ): Promise<UsHsStatus[]> {
+  ): Promise<PrismaUsHsStatus[]> {
     return this.prisma.usHsStatus.findMany(args);
   }
-  async findOne<T extends Prisma.UsHsStatusFindUniqueArgs>(
+  async usHsStatus<T extends Prisma.UsHsStatusFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsHsStatusFindUniqueArgs>
-  ): Promise<UsHsStatus | null> {
+  ): Promise<PrismaUsHsStatus | null> {
     return this.prisma.usHsStatus.findUnique(args);
   }
-  async create<T extends Prisma.UsHsStatusCreateArgs>(
+  async createUsHsStatus<T extends Prisma.UsHsStatusCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsHsStatusCreateArgs>
-  ): Promise<UsHsStatus> {
+  ): Promise<PrismaUsHsStatus> {
     return this.prisma.usHsStatus.create<T>(args);
   }
-  async update<T extends Prisma.UsHsStatusUpdateArgs>(
+  async updateUsHsStatus<T extends Prisma.UsHsStatusUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsHsStatusUpdateArgs>
-  ): Promise<UsHsStatus> {
+  ): Promise<PrismaUsHsStatus> {
     return this.prisma.usHsStatus.update<T>(args);
   }
-  async delete<T extends Prisma.UsHsStatusDeleteArgs>(
+  async deleteUsHsStatus<T extends Prisma.UsHsStatusDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsHsStatusDeleteArgs>
-  ): Promise<UsHsStatus> {
+  ): Promise<PrismaUsHsStatus> {
     return this.prisma.usHsStatus.delete(args);
   }
 }

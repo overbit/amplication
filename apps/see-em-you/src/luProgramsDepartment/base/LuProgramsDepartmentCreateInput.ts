@@ -21,7 +21,7 @@ class LuProgramsDepartmentCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  departmentId!: number;
+  programId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class LuProgramsDepartmentCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
+  departmentId!: number;
 }
 
 export { LuProgramsDepartmentCreateInput as LuProgramsDepartmentCreateInput };

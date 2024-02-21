@@ -24,17 +24,6 @@ class LuUsersUsertypesHistoryUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  deleteUsersId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   userId?: number;
 
   @ApiProperty({
@@ -47,6 +36,17 @@ class LuUsersUsertypesHistoryUpdateInput {
     nullable: true,
   })
   usertypeId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  deleteUsersId?: number | null;
 }
 
 export { LuUsersUsertypesHistoryUpdateInput as LuUsersUsertypesHistoryUpdateInput };

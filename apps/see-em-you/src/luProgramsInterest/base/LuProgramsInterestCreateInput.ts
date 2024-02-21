@@ -21,7 +21,7 @@ class LuProgramsInterestCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  interestId!: number;
+  programId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class LuProgramsInterestCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
+  interestId!: number;
 }
 
 export { LuProgramsInterestCreateInput as LuProgramsInterestCreateInput };

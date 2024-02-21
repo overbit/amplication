@@ -18,38 +18,38 @@ import { LuProgramsApplicationreqService } from "../luProgramsApplicationreq.ser
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  appreqId: 42,
   degreeId: 42,
-  id: 42,
+  appreqId: 42,
   programId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  appreqId: 42,
   degreeId: 42,
-  id: 42,
+  appreqId: 42,
   programId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    appreqId: 42,
     degreeId: 42,
-    id: 42,
+    appreqId: 42,
     programId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  appreqId: 42,
   degreeId: 42,
-  id: 42,
+  appreqId: 42,
   programId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLuProgramsApplicationreq() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luProgramsApplicationreqs: () => FIND_MANY_RESULT,
+  luProgramsApplicationreq: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

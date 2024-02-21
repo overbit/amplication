@@ -28,17 +28,6 @@ class PaymentAuditOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   id?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,7 @@ class PaymentAuditOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  lastModTime?: SortOrder;
+  paymentId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +50,18 @@ class PaymentAuditOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  lastModUserId?: SortOrder;
+  applicationId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  paymentType?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -73,17 +73,6 @@ class PaymentAuditOrderByInput {
     nullable: true,
   })
   paymentAmount?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  paymentId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -116,7 +105,18 @@ class PaymentAuditOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  paymentType?: SortOrder;
+  lastModTime?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  lastModUserId?: SortOrder;
 
   @ApiProperty({
     required: false,

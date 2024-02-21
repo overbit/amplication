@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateRecommend2 } from "@prisma/client";
+import {
+  Prisma,
+  SlateRecommend2 as PrismaSlateRecommend2,
+} from "@prisma/client";
 
 export class SlateRecommend2ServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class SlateRecommend2ServiceBase {
     return this.prisma.slateRecommend2.count(args);
   }
 
-  async findMany<T extends Prisma.SlateRecommend2FindManyArgs>(
+  async slateRecommend2s<T extends Prisma.SlateRecommend2FindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend2FindManyArgs>
-  ): Promise<SlateRecommend2[]> {
+  ): Promise<PrismaSlateRecommend2[]> {
     return this.prisma.slateRecommend2.findMany(args);
   }
-  async findOne<T extends Prisma.SlateRecommend2FindUniqueArgs>(
+  async slateRecommend2<T extends Prisma.SlateRecommend2FindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend2FindUniqueArgs>
-  ): Promise<SlateRecommend2 | null> {
+  ): Promise<PrismaSlateRecommend2 | null> {
     return this.prisma.slateRecommend2.findUnique(args);
   }
-  async create<T extends Prisma.SlateRecommend2CreateArgs>(
+  async createSlateRecommend2<T extends Prisma.SlateRecommend2CreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend2CreateArgs>
-  ): Promise<SlateRecommend2> {
+  ): Promise<PrismaSlateRecommend2> {
     return this.prisma.slateRecommend2.create<T>(args);
   }
-  async update<T extends Prisma.SlateRecommend2UpdateArgs>(
+  async updateSlateRecommend2<T extends Prisma.SlateRecommend2UpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend2UpdateArgs>
-  ): Promise<SlateRecommend2> {
+  ): Promise<PrismaSlateRecommend2> {
     return this.prisma.slateRecommend2.update<T>(args);
   }
-  async delete<T extends Prisma.SlateRecommend2DeleteArgs>(
+  async deleteSlateRecommend2<T extends Prisma.SlateRecommend2DeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend2DeleteArgs>
-  ): Promise<SlateRecommend2> {
+  ): Promise<PrismaSlateRecommend2> {
     return this.prisma.slateRecommend2.delete(args);
   }
 }

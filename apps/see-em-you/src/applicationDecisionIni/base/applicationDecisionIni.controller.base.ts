@@ -18,31 +18,30 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationDecisionIniService } from "../applicationDecisionIni.service";
 import { ApplicationDecisionIniCreateInput } from "./ApplicationDecisionIniCreateInput";
-import { ApplicationDecisionIniWhereInput } from "./ApplicationDecisionIniWhereInput";
-import { ApplicationDecisionIniWhereUniqueInput } from "./ApplicationDecisionIniWhereUniqueInput";
-import { ApplicationDecisionIniFindManyArgs } from "./ApplicationDecisionIniFindManyArgs";
-import { ApplicationDecisionIniUpdateInput } from "./ApplicationDecisionIniUpdateInput";
 import { ApplicationDecisionIni } from "./ApplicationDecisionIni";
+import { ApplicationDecisionIniFindManyArgs } from "./ApplicationDecisionIniFindManyArgs";
+import { ApplicationDecisionIniWhereUniqueInput } from "./ApplicationDecisionIniWhereUniqueInput";
+import { ApplicationDecisionIniUpdateInput } from "./ApplicationDecisionIniUpdateInput";
 
 export class ApplicationDecisionIniControllerBase {
   constructor(protected readonly service: ApplicationDecisionIniService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicationDecisionIni })
-  async create(
+  async createApplicationDecisionIni(
     @common.Body() data: ApplicationDecisionIniCreateInput
   ): Promise<ApplicationDecisionIni> {
-    return await this.service.create({
+    return await this.service.createApplicationDecisionIni({
       data: data,
       select: {
-        admissionProgramId: true,
-        admissionStatus: true,
         applicationId: true,
+        admissionProgramId: true,
         choice: true,
+        admissionStatus: true,
         comments: true,
-        id: true,
         scholarshipAmt: true,
         scholarshipComments: true,
         timestamp: true,
+        id: true,
       },
     });
   }
@@ -50,25 +49,25 @@ export class ApplicationDecisionIniControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicationDecisionIni] })
   @ApiNestedQuery(ApplicationDecisionIniFindManyArgs)
-  async findMany(
+  async applicationDecisionInis(
     @common.Req() request: Request
   ): Promise<ApplicationDecisionIni[]> {
     const args = plainToClass(
       ApplicationDecisionIniFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.applicationDecisionInis({
       ...args,
       select: {
-        admissionProgramId: true,
-        admissionStatus: true,
         applicationId: true,
+        admissionProgramId: true,
         choice: true,
+        admissionStatus: true,
         comments: true,
-        id: true,
         scholarshipAmt: true,
         scholarshipComments: true,
         timestamp: true,
+        id: true,
       },
     });
   }
@@ -76,21 +75,21 @@ export class ApplicationDecisionIniControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecisionIni })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationDecisionIni(
     @common.Param() params: ApplicationDecisionIniWhereUniqueInput
   ): Promise<ApplicationDecisionIni | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationDecisionIni({
       where: params,
       select: {
-        admissionProgramId: true,
-        admissionStatus: true,
         applicationId: true,
+        admissionProgramId: true,
         choice: true,
+        admissionStatus: true,
         comments: true,
-        id: true,
         scholarshipAmt: true,
         scholarshipComments: true,
         timestamp: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -104,24 +103,24 @@ export class ApplicationDecisionIniControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecisionIni })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationDecisionIni(
     @common.Param() params: ApplicationDecisionIniWhereUniqueInput,
     @common.Body() data: ApplicationDecisionIniUpdateInput
   ): Promise<ApplicationDecisionIni | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationDecisionIni({
         where: params,
         data: data,
         select: {
-          admissionProgramId: true,
-          admissionStatus: true,
           applicationId: true,
+          admissionProgramId: true,
           choice: true,
+          admissionStatus: true,
           comments: true,
-          id: true,
           scholarshipAmt: true,
           scholarshipComments: true,
           timestamp: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -137,22 +136,22 @@ export class ApplicationDecisionIniControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicationDecisionIni })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationDecisionIni(
     @common.Param() params: ApplicationDecisionIniWhereUniqueInput
   ): Promise<ApplicationDecisionIni | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationDecisionIni({
         where: params,
         select: {
-          admissionProgramId: true,
-          admissionStatus: true,
           applicationId: true,
+          admissionProgramId: true,
           choice: true,
+          admissionStatus: true,
           comments: true,
-          id: true,
           scholarshipAmt: true,
           scholarshipComments: true,
           timestamp: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationAdminNoteService } from "../applicationAdminNote.service";
 import { ApplicationAdminNoteCreateInput } from "./ApplicationAdminNoteCreateInput";
-import { ApplicationAdminNoteWhereInput } from "./ApplicationAdminNoteWhereInput";
-import { ApplicationAdminNoteWhereUniqueInput } from "./ApplicationAdminNoteWhereUniqueInput";
-import { ApplicationAdminNoteFindManyArgs } from "./ApplicationAdminNoteFindManyArgs";
-import { ApplicationAdminNoteUpdateInput } from "./ApplicationAdminNoteUpdateInput";
 import { ApplicationAdminNote } from "./ApplicationAdminNote";
+import { ApplicationAdminNoteFindManyArgs } from "./ApplicationAdminNoteFindManyArgs";
+import { ApplicationAdminNoteWhereUniqueInput } from "./ApplicationAdminNoteWhereUniqueInput";
+import { ApplicationAdminNoteUpdateInput } from "./ApplicationAdminNoteUpdateInput";
 
 export class ApplicationAdminNoteControllerBase {
   constructor(protected readonly service: ApplicationAdminNoteService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicationAdminNote })
-  async create(
+  async createApplicationAdminNote(
     @common.Body() data: ApplicationAdminNoteCreateInput
   ): Promise<ApplicationAdminNote> {
-    return await this.service.create({
+    return await this.service.createApplicationAdminNote({
       data: {
         ...data,
 
@@ -44,21 +43,22 @@ export class ApplicationAdminNoteControllerBase {
         },
       },
       select: {
+        insertTime: true,
+        note: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        insertTime: true,
-        note: true,
-
         users: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -66,28 +66,29 @@ export class ApplicationAdminNoteControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicationAdminNote] })
   @ApiNestedQuery(ApplicationAdminNoteFindManyArgs)
-  async findMany(
+  async applicationAdminNotes(
     @common.Req() request: Request
   ): Promise<ApplicationAdminNote[]> {
     const args = plainToClass(ApplicationAdminNoteFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.applicationAdminNotes({
       ...args,
       select: {
+        insertTime: true,
+        note: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        insertTime: true,
-        note: true,
-
         users: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -95,27 +96,28 @@ export class ApplicationAdminNoteControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicationAdminNote })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationAdminNote(
     @common.Param() params: ApplicationAdminNoteWhereUniqueInput
   ): Promise<ApplicationAdminNote | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationAdminNote({
       where: params,
       select: {
+        insertTime: true,
+        note: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        id: true,
-        insertTime: true,
-        note: true,
-
         users: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -129,12 +131,12 @@ export class ApplicationAdminNoteControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicationAdminNote })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationAdminNote(
     @common.Param() params: ApplicationAdminNoteWhereUniqueInput,
     @common.Body() data: ApplicationAdminNoteUpdateInput
   ): Promise<ApplicationAdminNote | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationAdminNote({
         where: params,
         data: {
           ...data,
@@ -148,21 +150,22 @@ export class ApplicationAdminNoteControllerBase {
           },
         },
         select: {
+          insertTime: true,
+          note: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          id: true,
-          insertTime: true,
-          note: true,
-
           users: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -178,28 +181,29 @@ export class ApplicationAdminNoteControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicationAdminNote })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationAdminNote(
     @common.Param() params: ApplicationAdminNoteWhereUniqueInput
   ): Promise<ApplicationAdminNote | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationAdminNote({
         where: params,
         select: {
+          insertTime: true,
+          note: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          id: true,
-          insertTime: true,
-          note: true,
-
           users: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {

@@ -18,23 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { WaiverOrgService } from "../waiverOrg.service";
 import { WaiverOrgCreateInput } from "./WaiverOrgCreateInput";
-import { WaiverOrgWhereInput } from "./WaiverOrgWhereInput";
-import { WaiverOrgWhereUniqueInput } from "./WaiverOrgWhereUniqueInput";
-import { WaiverOrgFindManyArgs } from "./WaiverOrgFindManyArgs";
-import { WaiverOrgUpdateInput } from "./WaiverOrgUpdateInput";
 import { WaiverOrg } from "./WaiverOrg";
+import { WaiverOrgFindManyArgs } from "./WaiverOrgFindManyArgs";
+import { WaiverOrgWhereUniqueInput } from "./WaiverOrgWhereUniqueInput";
+import { WaiverOrgUpdateInput } from "./WaiverOrgUpdateInput";
 
 export class WaiverOrgControllerBase {
   constructor(protected readonly service: WaiverOrgService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: WaiverOrg })
-  async create(@common.Body() data: WaiverOrgCreateInput): Promise<WaiverOrg> {
-    return await this.service.create({
+  async createWaiverOrg(
+    @common.Body() data: WaiverOrgCreateInput
+  ): Promise<WaiverOrg> {
+    return await this.service.createWaiverOrg({
       data: data,
       select: {
+        name: true,
         active: true,
         id: true,
-        name: true,
       },
     });
   }
@@ -42,14 +43,14 @@ export class WaiverOrgControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [WaiverOrg] })
   @ApiNestedQuery(WaiverOrgFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<WaiverOrg[]> {
+  async waiverOrgs(@common.Req() request: Request): Promise<WaiverOrg[]> {
     const args = plainToClass(WaiverOrgFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.waiverOrgs({
       ...args,
       select: {
+        name: true,
         active: true,
         id: true,
-        name: true,
       },
     });
   }
@@ -57,15 +58,15 @@ export class WaiverOrgControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: WaiverOrg })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async waiverOrg(
     @common.Param() params: WaiverOrgWhereUniqueInput
   ): Promise<WaiverOrg | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.waiverOrg({
       where: params,
       select: {
+        name: true,
         active: true,
         id: true,
-        name: true,
       },
     });
     if (result === null) {
@@ -79,18 +80,18 @@ export class WaiverOrgControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: WaiverOrg })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateWaiverOrg(
     @common.Param() params: WaiverOrgWhereUniqueInput,
     @common.Body() data: WaiverOrgUpdateInput
   ): Promise<WaiverOrg | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateWaiverOrg({
         where: params,
         data: data,
         select: {
+          name: true,
           active: true,
           id: true,
-          name: true,
         },
       });
     } catch (error) {
@@ -106,16 +107,16 @@ export class WaiverOrgControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: WaiverOrg })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteWaiverOrg(
     @common.Param() params: WaiverOrgWhereUniqueInput
   ): Promise<WaiverOrg | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteWaiverOrg({
         where: params,
         select: {
+          name: true,
           active: true,
           id: true,
-          name: true,
         },
       });
     } catch (error) {

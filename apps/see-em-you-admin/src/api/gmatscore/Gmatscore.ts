@@ -2,17 +2,17 @@ import { Decimal } from "decimal.js";
 import { Application } from "../application/Application";
 
 export type Gmatscore = {
-  analyticalwritingpercentile: number | null;
-  analyticalwritingscore: Decimal | null;
-  application?: Application;
-  datafileId: number | null;
-  id: number;
-  quantitativepercentile: number | null;
-  quantitativescore: number | null;
   scorereceived: boolean;
   testdate: Date | null;
-  totalpercentile: number | null;
-  totalscore: number | null;
-  verbalpercentile: number | null;
   verbalscore: number | null;
+  verbalpercentile: number | null;
+  quantitativescore: number | null;
+  quantitativepercentile: number | null;
+  totalscore: number | null;
+  totalpercentile: number | null;
+  analyticalwritingscore: Decimal | null;
+  analyticalwritingpercentile: number | null;
+  datafileId: number | null;
+  application?: Application;
+  id: number;
 };

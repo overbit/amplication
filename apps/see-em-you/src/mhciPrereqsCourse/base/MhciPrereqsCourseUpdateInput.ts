@@ -11,33 +11,21 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import {
-  ValidateNested,
-  IsOptional,
-  IsEnum,
-  IsInt,
-  IsString,
-} from "class-validator";
-import { Type } from "class-transformer";
 import { EnumMhciPrereqsCourseCourseType } from "./EnumMhciPrereqsCourseCourseType";
+import {
+  IsEnum,
+  IsOptional,
+  IsString,
+  IsInt,
+  ValidateNested,
+} from "class-validator";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
+import { Type } from "class-transformer";
 import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 import { MhciPrereqsCourseDatafileUpdateManyWithoutMhciPrereqsCoursesInput } from "./MhciPrereqsCourseDatafileUpdateManyWithoutMhciPrereqsCoursesInput";
 
 @InputType()
 class MhciPrereqsCourseUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
-    nullable: true,
-  })
-  application?: ApplicationWhereUniqueInput;
-
   @ApiProperty({
     required: false,
     enum: EnumMhciPrereqsCourseCourseType,
@@ -54,6 +42,95 @@ class MhciPrereqsCourseUpdateInput {
     | "Single_way_ANOVA"
     | "Multi_factor_regression"
     | "Single_factor_regression";
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  studentCourseName?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  studentCourseTime?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  studentCourseInstitution?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  studentCourseGrade?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  submittedToReviewer?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  periodId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  programId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationWhereUniqueInput, {
+    nullable: true,
+  })
+  application?: ApplicationWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -82,83 +159,6 @@ class MhciPrereqsCourseUpdateInput {
     }
   )
   mhciPrereqsCourseDatafiles?: MhciPrereqsCourseDatafileUpdateManyWithoutMhciPrereqsCoursesInput;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  periodId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  studentCourseGrade?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  studentCourseInstitution?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  studentCourseName?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  studentCourseTime?: string;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  submittedToReviewer?: number;
 }
 
 export { MhciPrereqsCourseUpdateInput as MhciPrereqsCourseUpdateInput };

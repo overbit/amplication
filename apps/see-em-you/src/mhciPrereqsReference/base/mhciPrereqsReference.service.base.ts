@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MhciPrereqsReference } from "@prisma/client";
+import {
+  Prisma,
+  MhciPrereqsReference as PrismaMhciPrereqsReference,
+} from "@prisma/client";
 
 export class MhciPrereqsReferenceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class MhciPrereqsReferenceServiceBase {
     return this.prisma.mhciPrereqsReference.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsReferenceFindManyArgs>(
+  async mhciPrereqsReferences<
+    T extends Prisma.MhciPrereqsReferenceFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReferenceFindManyArgs>
-  ): Promise<MhciPrereqsReference[]> {
+  ): Promise<PrismaMhciPrereqsReference[]> {
     return this.prisma.mhciPrereqsReference.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsReferenceFindUniqueArgs>(
+  async mhciPrereqsReference<
+    T extends Prisma.MhciPrereqsReferenceFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReferenceFindUniqueArgs>
-  ): Promise<MhciPrereqsReference | null> {
+  ): Promise<PrismaMhciPrereqsReference | null> {
     return this.prisma.mhciPrereqsReference.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsReferenceCreateArgs>(
+  async createMhciPrereqsReference<
+    T extends Prisma.MhciPrereqsReferenceCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReferenceCreateArgs>
-  ): Promise<MhciPrereqsReference> {
+  ): Promise<PrismaMhciPrereqsReference> {
     return this.prisma.mhciPrereqsReference.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsReferenceUpdateArgs>(
+  async updateMhciPrereqsReference<
+    T extends Prisma.MhciPrereqsReferenceUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReferenceUpdateArgs>
-  ): Promise<MhciPrereqsReference> {
+  ): Promise<PrismaMhciPrereqsReference> {
     return this.prisma.mhciPrereqsReference.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsReferenceDeleteArgs>(
+  async deleteMhciPrereqsReference<
+    T extends Prisma.MhciPrereqsReferenceDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReferenceDeleteArgs>
-  ): Promise<MhciPrereqsReference> {
+  ): Promise<PrismaMhciPrereqsReference> {
     return this.prisma.mhciPrereqsReference.delete(args);
   }
 }

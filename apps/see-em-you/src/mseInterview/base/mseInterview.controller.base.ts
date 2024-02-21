@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MseInterviewService } from "../mseInterview.service";
 import { MseInterviewCreateInput } from "./MseInterviewCreateInput";
-import { MseInterviewWhereInput } from "./MseInterviewWhereInput";
-import { MseInterviewWhereUniqueInput } from "./MseInterviewWhereUniqueInput";
-import { MseInterviewFindManyArgs } from "./MseInterviewFindManyArgs";
-import { MseInterviewUpdateInput } from "./MseInterviewUpdateInput";
 import { MseInterview } from "./MseInterview";
+import { MseInterviewFindManyArgs } from "./MseInterviewFindManyArgs";
+import { MseInterviewWhereUniqueInput } from "./MseInterviewWhereUniqueInput";
+import { MseInterviewUpdateInput } from "./MseInterviewUpdateInput";
 
 export class MseInterviewControllerBase {
   constructor(protected readonly service: MseInterviewService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MseInterview })
-  async create(
+  async createMseInterview(
     @common.Body() data: MseInterviewCreateInput
   ): Promise<MseInterview> {
-    return await this.service.create({
+    return await this.service.createMseInterview({
       data: data,
       select: {
         applicationId: true,
-        id: true,
-        interviewComments: true,
+        reviewerId: true,
         interviewDate: true,
         interviewType: true,
         interviewTypeOther: true,
-        reviewerId: true,
+        interviewComments: true,
+        id: true,
       },
     });
   }
@@ -48,18 +47,18 @@ export class MseInterviewControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MseInterview] })
   @ApiNestedQuery(MseInterviewFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MseInterview[]> {
+  async mseInterviews(@common.Req() request: Request): Promise<MseInterview[]> {
     const args = plainToClass(MseInterviewFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mseInterviews({
       ...args,
       select: {
         applicationId: true,
-        id: true,
-        interviewComments: true,
+        reviewerId: true,
         interviewDate: true,
         interviewType: true,
         interviewTypeOther: true,
-        reviewerId: true,
+        interviewComments: true,
+        id: true,
       },
     });
   }
@@ -67,19 +66,19 @@ export class MseInterviewControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MseInterview })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mseInterview(
     @common.Param() params: MseInterviewWhereUniqueInput
   ): Promise<MseInterview | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mseInterview({
       where: params,
       select: {
         applicationId: true,
-        id: true,
-        interviewComments: true,
+        reviewerId: true,
         interviewDate: true,
         interviewType: true,
         interviewTypeOther: true,
-        reviewerId: true,
+        interviewComments: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -93,22 +92,22 @@ export class MseInterviewControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MseInterview })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMseInterview(
     @common.Param() params: MseInterviewWhereUniqueInput,
     @common.Body() data: MseInterviewUpdateInput
   ): Promise<MseInterview | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseInterview({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          id: true,
-          interviewComments: true,
+          reviewerId: true,
           interviewDate: true,
           interviewType: true,
           interviewTypeOther: true,
-          reviewerId: true,
+          interviewComments: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -124,20 +123,20 @@ export class MseInterviewControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MseInterview })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMseInterview(
     @common.Param() params: MseInterviewWhereUniqueInput
   ): Promise<MseInterview | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMseInterview({
         where: params,
         select: {
           applicationId: true,
-          id: true,
-          interviewComments: true,
+          reviewerId: true,
           interviewDate: true,
           interviewType: true,
           interviewTypeOther: true,
-          reviewerId: true,
+          interviewComments: true,
+          id: true,
         },
       });
     } catch (error) {

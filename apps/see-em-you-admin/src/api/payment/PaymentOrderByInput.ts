@@ -1,14 +1,14 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type PaymentOrderByInput = {
-  application_id?: SortOrder;
-  id?: SortOrder;
-  lastModTime?: SortOrder;
-  lastModUserId?: SortOrder;
-  paymentAmount?: SortOrder;
   paymentId?: SortOrder;
+  paymentType?: SortOrder;
+  paymentAmount?: SortOrder;
   paymentIntentDate?: SortOrder;
   payment_status?: SortOrder;
-  paymentType?: SortOrder;
+  lastModTime?: SortOrder;
+  lastModUserId?: SortOrder;
+  application_id?: SortOrder;
   paymentVoucherId?: SortOrder;
+  id?: SortOrder;
 };

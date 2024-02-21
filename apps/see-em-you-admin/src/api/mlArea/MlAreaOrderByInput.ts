@@ -1,8 +1,8 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MlAreaOrderByInput = {
-  application_id?: SortOrder;
   area?: SortOrder;
-  id?: SortOrder;
+  application_id?: SortOrder;
   program_id?: SortOrder;
+  id?: SortOrder;
 };

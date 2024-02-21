@@ -19,45 +19,45 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  id: "exampleId",
   programId: 42,
-  round: 42,
   statusTime: new Date(),
+  round: 42,
   usersId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  id: "exampleId",
   programId: 42,
-  round: 42,
   statusTime: new Date(),
+  round: 42,
   usersId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    id: "exampleId",
     programId: 42,
-    round: 42,
     statusTime: new Date(),
+    round: 42,
     usersId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  id: "exampleId",
   programId: 42,
-  round: 42,
   statusTime: new Date(),
+  round: 42,
   usersId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createPromotionHistoryCopy() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  promotionHistoryCopies: () => FIND_MANY_RESULT,
+  promotionHistoryCopy: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

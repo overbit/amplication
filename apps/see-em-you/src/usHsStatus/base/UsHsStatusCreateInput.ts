@@ -16,6 +16,25 @@ import { IsInt, IsOptional } from "class-validator";
 @InputType()
 class UsHsStatusCreateInput {
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  appId!: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  usHSGrad?: number | null;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -27,12 +46,37 @@ class UsHsStatusCreateInput {
   anyUsHs?: number | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsInt()
-  @Field(() => Number)
-  appId!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  pell?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  ugFedWorkStudy?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  permZipGrad?: number | null;
 
   @ApiProperty({
     required: false,
@@ -55,50 +99,6 @@ class UsHsStatusCreateInput {
     nullable: true,
   })
   firstGenGrad?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  pell?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  permZipGrad?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  ugFedWorkStudy?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usHSGrad?: number | null;
 }
 
 export { UsHsStatusCreateInput as UsHsStatusCreateInput };

@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ProgramModelService } from "../programModel.service";
 import { ProgramModelCreateInput } from "./ProgramModelCreateInput";
-import { ProgramModelWhereInput } from "./ProgramModelWhereInput";
-import { ProgramModelWhereUniqueInput } from "./ProgramModelWhereUniqueInput";
-import { ProgramModelFindManyArgs } from "./ProgramModelFindManyArgs";
-import { ProgramModelUpdateInput } from "./ProgramModelUpdateInput";
 import { ProgramModel } from "./ProgramModel";
+import { ProgramModelFindManyArgs } from "./ProgramModelFindManyArgs";
+import { ProgramModelWhereUniqueInput } from "./ProgramModelWhereUniqueInput";
+import { ProgramModelUpdateInput } from "./ProgramModelUpdateInput";
 import { LuApplicationProgramFindManyArgs } from "../../luApplicationProgram/base/LuApplicationProgramFindManyArgs";
 import { LuApplicationProgram } from "../../luApplicationProgram/base/LuApplicationProgram";
 import { LuApplicationProgramWhereUniqueInput } from "../../luApplicationProgram/base/LuApplicationProgramWhereUniqueInput";
@@ -40,10 +39,10 @@ export class ProgramModelControllerBase {
   constructor(protected readonly service: ProgramModelService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ProgramModel })
-  async create(
+  async createProgramModel(
     @common.Body() data: ProgramModelCreateInput
   ): Promise<ProgramModel> {
-    return await this.service.create({
+    return await this.service.createProgramModel({
       data: {
         ...data,
 
@@ -56,8 +55,18 @@ export class ProgramModelControllerBase {
         },
       },
       select: {
+        id: true,
+        linkword: true,
+        programprice: true,
+        programpriceLate: true,
+        description: true,
+        url: true,
+        oraclestring: true,
+        registrationoraclestring: true,
         baseprice: true,
         basepriceLate: true,
+        prank: true,
+        enabled: true,
 
         degree: {
           select: {
@@ -65,23 +74,11 @@ export class ProgramModelControllerBase {
           },
         },
 
-        description: true,
-        enabled: true,
-
         fieldsofstudy: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        linkword: true,
-        oraclestring: true,
-        prank: true,
-        programprice: true,
-        programpriceLate: true,
-        registrationoraclestring: true,
-        url: true,
       },
     });
   }
@@ -89,13 +86,23 @@ export class ProgramModelControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ProgramModel] })
   @ApiNestedQuery(ProgramModelFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ProgramModel[]> {
+  async programModels(@common.Req() request: Request): Promise<ProgramModel[]> {
     const args = plainToClass(ProgramModelFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.programModels({
       ...args,
       select: {
+        id: true,
+        linkword: true,
+        programprice: true,
+        programpriceLate: true,
+        description: true,
+        url: true,
+        oraclestring: true,
+        registrationoraclestring: true,
         baseprice: true,
         basepriceLate: true,
+        prank: true,
+        enabled: true,
 
         degree: {
           select: {
@@ -103,23 +110,11 @@ export class ProgramModelControllerBase {
           },
         },
 
-        description: true,
-        enabled: true,
-
         fieldsofstudy: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        linkword: true,
-        oraclestring: true,
-        prank: true,
-        programprice: true,
-        programpriceLate: true,
-        registrationoraclestring: true,
-        url: true,
       },
     });
   }
@@ -127,14 +122,24 @@ export class ProgramModelControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ProgramModel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async programModel(
     @common.Param() params: ProgramModelWhereUniqueInput
   ): Promise<ProgramModel | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.programModel({
       where: params,
       select: {
+        id: true,
+        linkword: true,
+        programprice: true,
+        programpriceLate: true,
+        description: true,
+        url: true,
+        oraclestring: true,
+        registrationoraclestring: true,
         baseprice: true,
         basepriceLate: true,
+        prank: true,
+        enabled: true,
 
         degree: {
           select: {
@@ -142,23 +147,11 @@ export class ProgramModelControllerBase {
           },
         },
 
-        description: true,
-        enabled: true,
-
         fieldsofstudy: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        linkword: true,
-        oraclestring: true,
-        prank: true,
-        programprice: true,
-        programpriceLate: true,
-        registrationoraclestring: true,
-        url: true,
       },
     });
     if (result === null) {
@@ -172,12 +165,12 @@ export class ProgramModelControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ProgramModel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateProgramModel(
     @common.Param() params: ProgramModelWhereUniqueInput,
     @common.Body() data: ProgramModelUpdateInput
   ): Promise<ProgramModel | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramModel({
         where: params,
         data: {
           ...data,
@@ -191,8 +184,18 @@ export class ProgramModelControllerBase {
           },
         },
         select: {
+          id: true,
+          linkword: true,
+          programprice: true,
+          programpriceLate: true,
+          description: true,
+          url: true,
+          oraclestring: true,
+          registrationoraclestring: true,
           baseprice: true,
           basepriceLate: true,
+          prank: true,
+          enabled: true,
 
           degree: {
             select: {
@@ -200,23 +203,11 @@ export class ProgramModelControllerBase {
             },
           },
 
-          description: true,
-          enabled: true,
-
           fieldsofstudy: {
             select: {
               id: true,
             },
           },
-
-          id: true,
-          linkword: true,
-          oraclestring: true,
-          prank: true,
-          programprice: true,
-          programpriceLate: true,
-          registrationoraclestring: true,
-          url: true,
         },
       });
     } catch (error) {
@@ -232,15 +223,25 @@ export class ProgramModelControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ProgramModel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteProgramModel(
     @common.Param() params: ProgramModelWhereUniqueInput
   ): Promise<ProgramModel | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteProgramModel({
         where: params,
         select: {
+          id: true,
+          linkword: true,
+          programprice: true,
+          programpriceLate: true,
+          description: true,
+          url: true,
+          oraclestring: true,
+          registrationoraclestring: true,
           baseprice: true,
           basepriceLate: true,
+          prank: true,
+          enabled: true,
 
           degree: {
             select: {
@@ -248,23 +249,11 @@ export class ProgramModelControllerBase {
             },
           },
 
-          description: true,
-          enabled: true,
-
           fieldsofstudy: {
             select: {
               id: true,
             },
           },
-
-          id: true,
-          linkword: true,
-          oraclestring: true,
-          prank: true,
-          programprice: true,
-          programpriceLate: true,
-          registrationoraclestring: true,
-          url: true,
         },
       });
     } catch (error) {
@@ -279,7 +268,7 @@ export class ProgramModelControllerBase {
 
   @common.Get("/:id/luApplicationPrograms")
   @ApiNestedQuery(LuApplicationProgramFindManyArgs)
-  async findManyLuApplicationPrograms(
+  async findLuApplicationPrograms(
     @common.Req() request: Request,
     @common.Param() params: ProgramModelWhereUniqueInput
   ): Promise<LuApplicationProgram[]> {
@@ -287,9 +276,18 @@ export class ProgramModelControllerBase {
     const results = await this.service.findLuApplicationPrograms(params.id, {
       ...query,
       select: {
+        choice: true,
+        round2: true,
+        decision: true,
         admissionStatus: true,
         admit: true,
         admitComments: true,
+        faccontact: true,
+        stucontact: true,
+        scholarshipAmt: true,
+        scholarshipComments: true,
+        ltichoice: true,
+        msecertchoice: true,
 
         application: {
           select: {
@@ -297,23 +295,13 @@ export class ProgramModelControllerBase {
           },
         },
 
-        choice: true,
-        decision: true,
-        faccontact: true,
-        id: true,
-        ltichoice: true,
-        msecertchoice: true,
-
         programs: {
           select: {
             id: true,
           },
         },
 
-        round2: true,
-        scholarshipAmt: true,
-        scholarshipComments: true,
-        stucontact: true,
+        id: true,
       },
     });
     if (results === null) {
@@ -334,7 +322,7 @@ export class ProgramModelControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -351,7 +339,7 @@ export class ProgramModelControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -368,7 +356,7 @@ export class ProgramModelControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -377,7 +365,7 @@ export class ProgramModelControllerBase {
 
   @common.Get("/:id/mlArea")
   @ApiNestedQuery(MlAreaFindManyArgs)
-  async findManyMlArea(
+  async findMlArea(
     @common.Req() request: Request,
     @common.Param() params: ProgramModelWhereUniqueInput
   ): Promise<MlArea[]> {
@@ -385,20 +373,21 @@ export class ProgramModelControllerBase {
     const results = await this.service.findMlArea(params.id, {
       ...query,
       select: {
+        area: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        area: true,
-        id: true,
-
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -419,7 +408,7 @@ export class ProgramModelControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -436,7 +425,7 @@ export class ProgramModelControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -453,7 +442,7 @@ export class ProgramModelControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -462,7 +451,7 @@ export class ProgramModelControllerBase {
 
   @common.Get("/:id/paymentItem")
   @ApiNestedQuery(PaymentItemFindManyArgs)
-  async findManyPaymentItem(
+  async findPaymentItem(
     @common.Req() request: Request,
     @common.Param() params: ProgramModelWhereUniqueInput
   ): Promise<PaymentItem[]> {
@@ -470,16 +459,17 @@ export class ProgramModelControllerBase {
     const results = await this.service.findPaymentItem(params.id, {
       ...query,
       select: {
-        id: true,
+        paymentItemId: true,
         paymentId: true,
         paymentItemAmount: true,
-        paymentItemId: true,
 
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -500,7 +490,7 @@ export class ProgramModelControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -517,7 +507,7 @@ export class ProgramModelControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -534,7 +524,7 @@ export class ProgramModelControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -543,7 +533,7 @@ export class ProgramModelControllerBase {
 
   @common.Get("/:id/programsApplicationreqs")
   @ApiNestedQuery(ProgramsApplicationreqFindManyArgs)
-  async findManyProgramsApplicationreqs(
+  async findProgramsApplicationreqs(
     @common.Req() request: Request,
     @common.Param() params: ProgramModelWhereUniqueInput
   ): Promise<ProgramsApplicationreq[]> {
@@ -554,6 +544,12 @@ export class ProgramModelControllerBase {
     const results = await this.service.findProgramsApplicationreqs(params.id, {
       ...query,
       select: {
+        programs: {
+          select: {
+            id: true,
+          },
+        },
+
         applicationreqs: {
           select: {
             id: true,
@@ -561,12 +557,6 @@ export class ProgramModelControllerBase {
         },
 
         id: true,
-
-        programs: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {
@@ -587,7 +577,7 @@ export class ProgramModelControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -604,7 +594,7 @@ export class ProgramModelControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },
@@ -621,7 +611,7 @@ export class ProgramModelControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateProgramModel({
       where: params,
       data,
       select: { id: true },

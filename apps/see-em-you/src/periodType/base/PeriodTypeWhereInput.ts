@@ -9,5 +9,24 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-class PeriodTypeWhereInput {}
+import { InputType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
+import { IntFilter } from "../../util/IntFilter";
+import { Type } from "class-transformer";
+import { IsOptional } from "class-validator";
+
+@InputType()
+class PeriodTypeWhereInput {
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
+}
+
 export { PeriodTypeWhereInput as PeriodTypeWhereInput };

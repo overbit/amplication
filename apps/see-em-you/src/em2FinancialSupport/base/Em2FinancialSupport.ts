@@ -24,26 +24,20 @@ class Em2FinancialSupport {
   applicationId!: number;
 
   @ApiProperty({
-    required: false,
-    type: String,
+    required: true,
+    type: Number,
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  applyOutsideSupportSource!: string | null;
+  @IsInt()
+  @Field(() => Number)
+  requestConsideration!: number;
 
   @ApiProperty({
-    required: false,
-    type: String,
+    required: true,
+    type: Number,
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  applyOutsideSupportType!: string | null;
+  @IsInt()
+  @Field(() => Number)
+  requestAssistantship!: number;
 
   @ApiProperty({
     required: true,
@@ -62,37 +56,7 @@ class Em2FinancialSupport {
   @Field(() => String, {
     nullable: true,
   })
-  familySupportAmount!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  familySupportType!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  otherSupportSource!: string | null;
+  receiveOutsideSupportType!: string | null;
 
   @ApiProperty({
     required: false,
@@ -114,7 +78,51 @@ class Em2FinancialSupport {
   @Field(() => String, {
     nullable: true,
   })
-  receiveOutsideSupportType!: string | null;
+  applyOutsideSupportType!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  applyOutsideSupportSource!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  otherSupportSource!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  familySupportType!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  familySupportAmount!: string | null;
 
   @ApiProperty({
     required: true,
@@ -122,15 +130,7 @@ class Em2FinancialSupport {
   })
   @IsInt()
   @Field(() => Number)
-  requestAssistantship!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  requestConsideration!: number;
+  id!: number;
 }
 
 export { Em2FinancialSupport as Em2FinancialSupport };

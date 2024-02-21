@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MseLetterRecService } from "../mseLetterRec.service";
 import { MseLetterRecCreateInput } from "./MseLetterRecCreateInput";
-import { MseLetterRecWhereInput } from "./MseLetterRecWhereInput";
-import { MseLetterRecWhereUniqueInput } from "./MseLetterRecWhereUniqueInput";
-import { MseLetterRecFindManyArgs } from "./MseLetterRecFindManyArgs";
-import { MseLetterRecUpdateInput } from "./MseLetterRecUpdateInput";
 import { MseLetterRec } from "./MseLetterRec";
+import { MseLetterRecFindManyArgs } from "./MseLetterRecFindManyArgs";
+import { MseLetterRecWhereUniqueInput } from "./MseLetterRecWhereUniqueInput";
+import { MseLetterRecUpdateInput } from "./MseLetterRecUpdateInput";
 
 export class MseLetterRecControllerBase {
   constructor(protected readonly service: MseLetterRecService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MseLetterRec })
-  async create(
+  async createMseLetterRec(
     @common.Body() data: MseLetterRecCreateInput
   ): Promise<MseLetterRec> {
-    return await this.service.create({
+    return await this.service.createMseLetterRec({
       data: data,
       select: {
-        algortihms: true,
         applicationId: true,
-        dataStructures: true,
-        discrete: true,
-        id: true,
-        java: true,
         reviewerId: true,
+        java: true,
+        discrete: true,
+        algortihms: true,
+        dataStructures: true,
+        id: true,
       },
     });
   }
@@ -48,18 +47,18 @@ export class MseLetterRecControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MseLetterRec] })
   @ApiNestedQuery(MseLetterRecFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MseLetterRec[]> {
+  async mseLetterRecs(@common.Req() request: Request): Promise<MseLetterRec[]> {
     const args = plainToClass(MseLetterRecFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mseLetterRecs({
       ...args,
       select: {
-        algortihms: true,
         applicationId: true,
-        dataStructures: true,
-        discrete: true,
-        id: true,
-        java: true,
         reviewerId: true,
+        java: true,
+        discrete: true,
+        algortihms: true,
+        dataStructures: true,
+        id: true,
       },
     });
   }
@@ -67,19 +66,19 @@ export class MseLetterRecControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MseLetterRec })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mseLetterRec(
     @common.Param() params: MseLetterRecWhereUniqueInput
   ): Promise<MseLetterRec | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mseLetterRec({
       where: params,
       select: {
-        algortihms: true,
         applicationId: true,
-        dataStructures: true,
-        discrete: true,
-        id: true,
-        java: true,
         reviewerId: true,
+        java: true,
+        discrete: true,
+        algortihms: true,
+        dataStructures: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -93,22 +92,22 @@ export class MseLetterRecControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MseLetterRec })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMseLetterRec(
     @common.Param() params: MseLetterRecWhereUniqueInput,
     @common.Body() data: MseLetterRecUpdateInput
   ): Promise<MseLetterRec | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseLetterRec({
         where: params,
         data: data,
         select: {
-          algortihms: true,
           applicationId: true,
-          dataStructures: true,
-          discrete: true,
-          id: true,
-          java: true,
           reviewerId: true,
+          java: true,
+          discrete: true,
+          algortihms: true,
+          dataStructures: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -124,20 +123,20 @@ export class MseLetterRecControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MseLetterRec })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMseLetterRec(
     @common.Param() params: MseLetterRecWhereUniqueInput
   ): Promise<MseLetterRec | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMseLetterRec({
         where: params,
         select: {
-          algortihms: true,
           applicationId: true,
-          dataStructures: true,
-          discrete: true,
-          id: true,
-          java: true,
           reviewerId: true,
+          java: true,
+          discrete: true,
+          algortihms: true,
+          dataStructures: true,
+          id: true,
         },
       });
     } catch (error) {

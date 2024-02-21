@@ -28,29 +28,18 @@ class MergeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  mergeDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   applicationId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  errorField?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +61,7 @@ class MergeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mergeDate?: SortOrder;
+  errorField?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -84,6 +73,17 @@ class MergeOrderByInput {
     nullable: true,
   })
   message?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MergeOrderByInput as MergeOrderByInput };

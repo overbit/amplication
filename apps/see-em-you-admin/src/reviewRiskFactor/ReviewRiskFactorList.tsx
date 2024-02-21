@@ -12,9 +12,9 @@ export const ReviewRiskFactorList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Review Id" source="reviewId" />
         <TextField label="Risk Factor Id" source="riskFactorId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

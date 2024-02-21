@@ -3,11 +3,10 @@ import { MhciPrereqsConversationCommentUpdateManyWithoutMhciPrereqsInput } from 
 import { MhciPrereqsStatusWhereUniqueInput } from "../mhciPrereqsStatus/MhciPrereqsStatusWhereUniqueInput";
 
 export type MhciPrereqUpdateInput = {
-  application?: ApplicationWhereUniqueInput;
-  mhciPrereqsConversationComments?: MhciPrereqsConversationCommentUpdateManyWithoutMhciPrereqsInput;
-  mhciPrereqsStatus?: MhciPrereqsStatusWhereUniqueInput | null;
-  periodId?: number;
+  studentLuUsersUsertypesId?: number;
   prereq_type?: "design" | "programming" | "statistics";
+  periodId?: number;
+  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
   status2?:
     | "Student_Saved"
     | "Not_Submitted"
@@ -15,6 +14,7 @@ export type MhciPrereqUpdateInput = {
     | "Student_Edited"
     | "Reviewer_Responded"
     | null;
-  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
-  studentLuUsersUsertypesId?: number;
+  application?: ApplicationWhereUniqueInput;
+  mhciPrereqsConversationComments?: MhciPrereqsConversationCommentUpdateManyWithoutMhciPrereqsInput;
+  mhciPrereqsStatus?: MhciPrereqsStatusWhereUniqueInput | null;
 };

@@ -28,7 +28,7 @@ class PaymentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  application_id?: SortOrder;
+  paymentId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,29 +39,7 @@ class PaymentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  lastModTime?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  lastModUserId?: SortOrder;
+  paymentType?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -73,17 +51,6 @@ class PaymentOrderByInput {
     nullable: true,
   })
   paymentAmount?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  paymentId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -116,7 +83,29 @@ class PaymentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  paymentType?: SortOrder;
+  lastModTime?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  lastModUserId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  application_id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -128,6 +117,17 @@ class PaymentOrderByInput {
     nullable: true,
   })
   paymentVoucherId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { PaymentOrderByInput as PaymentOrderByInput };

@@ -14,10 +14,10 @@ export const VoucherApplicationList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="App Id" source="appId" />
-        <TextField label="Date Used" source="dateUsed" />
-        <TextField label="Id" source="id" />
         <TextField label="Voucher Id" source="voucherId" />
+        <TextField label="Date Used" source="dateUsed" />
+        <TextField label="App Id" source="appId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

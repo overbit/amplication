@@ -20,44 +20,44 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
   comment: "exampleComment",
-  id: 42,
+  timestamp: new Date(),
   periodId: 42,
   programId: 42,
-  timestamp: new Date(),
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
   comment: "exampleComment",
-  id: 42,
+  timestamp: new Date(),
   periodId: 42,
   programId: 42,
-  timestamp: new Date(),
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
     comment: "exampleComment",
-    id: 42,
+    timestamp: new Date(),
     periodId: 42,
     programId: 42,
-    timestamp: new Date(),
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
   comment: "exampleComment",
-  id: 42,
+  timestamp: new Date(),
   periodId: 42,
   programId: 42,
-  timestamp: new Date(),
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMhciPrereqsConversationComment() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mhciPrereqsConversationComments: () => FIND_MANY_RESULT,
+  mhciPrereqsConversationComment: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

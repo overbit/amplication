@@ -12,10 +12,10 @@ export const VideoEssayList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Access Code" source="accessCode" />
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
         <TextField label="Url" source="url" />
+        <TextField label="Access Code" source="accessCode" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

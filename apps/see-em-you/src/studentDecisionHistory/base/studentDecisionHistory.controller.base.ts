@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { StudentDecisionHistoryService } from "../studentDecisionHistory.service";
 import { StudentDecisionHistoryCreateInput } from "./StudentDecisionHistoryCreateInput";
-import { StudentDecisionHistoryWhereInput } from "./StudentDecisionHistoryWhereInput";
-import { StudentDecisionHistoryWhereUniqueInput } from "./StudentDecisionHistoryWhereUniqueInput";
-import { StudentDecisionHistoryFindManyArgs } from "./StudentDecisionHistoryFindManyArgs";
-import { StudentDecisionHistoryUpdateInput } from "./StudentDecisionHistoryUpdateInput";
 import { StudentDecisionHistory } from "./StudentDecisionHistory";
+import { StudentDecisionHistoryFindManyArgs } from "./StudentDecisionHistoryFindManyArgs";
+import { StudentDecisionHistoryWhereUniqueInput } from "./StudentDecisionHistoryWhereUniqueInput";
+import { StudentDecisionHistoryUpdateInput } from "./StudentDecisionHistoryUpdateInput";
 
 export class StudentDecisionHistoryControllerBase {
   constructor(protected readonly service: StudentDecisionHistoryService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: StudentDecisionHistory })
-  async create(
+  async createStudentDecisionHistory(
     @common.Body() data: StudentDecisionHistoryCreateInput
   ): Promise<StudentDecisionHistory> {
-    return await this.service.create({
+    return await this.service.createStudentDecisionHistory({
       data: {
         ...data,
 
@@ -42,18 +41,19 @@ export class StudentDecisionHistoryControllerBase {
           : undefined,
       },
       select: {
+        programId: true,
+        decision: true,
+        deferralSemester: true,
+        deferralYear: true,
+        insertDate: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        decision: true,
-        deferralSemester: true,
-        deferralYear: true,
         id: true,
-        insertDate: true,
-        programId: true,
       },
     });
   }
@@ -61,28 +61,29 @@ export class StudentDecisionHistoryControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [StudentDecisionHistory] })
   @ApiNestedQuery(StudentDecisionHistoryFindManyArgs)
-  async findMany(
+  async studentDecisionHistories(
     @common.Req() request: Request
   ): Promise<StudentDecisionHistory[]> {
     const args = plainToClass(
       StudentDecisionHistoryFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.studentDecisionHistories({
       ...args,
       select: {
+        programId: true,
+        decision: true,
+        deferralSemester: true,
+        deferralYear: true,
+        insertDate: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        decision: true,
-        deferralSemester: true,
-        deferralYear: true,
         id: true,
-        insertDate: true,
-        programId: true,
       },
     });
   }
@@ -90,24 +91,25 @@ export class StudentDecisionHistoryControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: StudentDecisionHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async studentDecisionHistory(
     @common.Param() params: StudentDecisionHistoryWhereUniqueInput
   ): Promise<StudentDecisionHistory | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.studentDecisionHistory({
       where: params,
       select: {
+        programId: true,
+        decision: true,
+        deferralSemester: true,
+        deferralYear: true,
+        insertDate: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        decision: true,
-        deferralSemester: true,
-        deferralYear: true,
         id: true,
-        insertDate: true,
-        programId: true,
       },
     });
     if (result === null) {
@@ -121,12 +123,12 @@ export class StudentDecisionHistoryControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: StudentDecisionHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateStudentDecisionHistory(
     @common.Param() params: StudentDecisionHistoryWhereUniqueInput,
     @common.Body() data: StudentDecisionHistoryUpdateInput
   ): Promise<StudentDecisionHistory | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateStudentDecisionHistory({
         where: params,
         data: {
           ...data,
@@ -138,18 +140,19 @@ export class StudentDecisionHistoryControllerBase {
             : undefined,
         },
         select: {
+          programId: true,
+          decision: true,
+          deferralSemester: true,
+          deferralYear: true,
+          insertDate: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          decision: true,
-          deferralSemester: true,
-          deferralYear: true,
           id: true,
-          insertDate: true,
-          programId: true,
         },
       });
     } catch (error) {
@@ -165,25 +168,26 @@ export class StudentDecisionHistoryControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: StudentDecisionHistory })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteStudentDecisionHistory(
     @common.Param() params: StudentDecisionHistoryWhereUniqueInput
   ): Promise<StudentDecisionHistory | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteStudentDecisionHistory({
         where: params,
         select: {
+          programId: true,
+          decision: true,
+          deferralSemester: true,
+          deferralYear: true,
+          insertDate: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          decision: true,
-          deferralSemester: true,
-          deferralYear: true,
           id: true,
-          insertDate: true,
-          programId: true,
         },
       });
     } catch (error) {

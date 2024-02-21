@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested, IsInt } from "class-validator";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput } from "./ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput";
 import { Type } from "class-transformer";
 
@@ -26,30 +26,7 @@ class ApplicationreqUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  linkname?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   name?: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput,
-  })
-  @ValidateNested()
-  @Type(() => ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput)
-  @IsOptional()
-  @Field(() => ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput, {
-    nullable: true,
-  })
-  programsApplicationreqs?: ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput;
 
   @ApiProperty({
     required: false,
@@ -64,6 +41,17 @@ class ApplicationreqUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  linkname?: string;
+
+  @ApiProperty({
+    required: false,
     type: Number,
   })
   @IsInt()
@@ -72,6 +60,18 @@ class ApplicationreqUpdateInput {
     nullable: true,
   })
   sortorder?: number;
+
+  @ApiProperty({
+    required: false,
+    type: () => ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput,
+  })
+  @ValidateNested()
+  @Type(() => ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput)
+  @IsOptional()
+  @Field(() => ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput, {
+    nullable: true,
+  })
+  programsApplicationreqs?: ProgramsApplicationreqUpdateManyWithoutApplicationreqsInput;
 }
 
 export { ApplicationreqUpdateInput as ApplicationreqUpdateInput };

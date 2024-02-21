@@ -11,20 +11,42 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsOptional, IsString } from "class-validator";
 
 @InputType()
 class AccesslogUpdateInput {
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  activity?: string | null;
+  usersId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  luUsersUsertypesId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  usertypeId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -50,17 +72,6 @@ class AccesslogUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  domain?: number | null;
-
-  @ApiProperty({
-    required: false,
     type: String,
   })
   @IsString()
@@ -68,7 +79,7 @@ class AccesslogUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  lastsrv?: string | null;
+  activity?: string | null;
 
   @ApiProperty({
     required: false,
@@ -79,18 +90,7 @@ class AccesslogUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  luUsersUsertypesId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  ra?: string | null;
+  domain?: number | null;
 
   @ApiProperty({
     required: false,
@@ -112,29 +112,7 @@ class AccesslogUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  sa?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usersId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usertypeId?: number | null;
+  xforward?: string | null;
 
   @ApiProperty({
     required: false,
@@ -145,7 +123,29 @@ class AccesslogUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  xforward?: string | null;
+  sa?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  ra?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  lastsrv?: string | null;
 }
 
 export { AccesslogUpdateInput as AccesslogUpdateInput };

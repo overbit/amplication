@@ -1,1 +1,5 @@
-export type InstituteWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type InstituteWhereInput = {
+  id?: IntFilter;
+};

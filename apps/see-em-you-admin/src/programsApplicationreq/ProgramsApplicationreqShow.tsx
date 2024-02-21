@@ -6,8 +6,8 @@ import {
   ReferenceField,
   TextField,
 } from "react-admin";
-import { APPLICATIONREQ_TITLE_FIELD } from "../applicationreq/ApplicationreqTitle";
 import { PROGRAMMODEL_TITLE_FIELD } from "../programModel/ProgramModelTitle";
+import { APPLICATIONREQ_TITLE_FIELD } from "../applicationreq/ApplicationreqTitle";
 
 export const ProgramsApplicationreqShow = (
   props: ShowProps
@@ -16,6 +16,13 @@ export const ProgramsApplicationreqShow = (
     <Show {...props}>
       <SimpleShowLayout>
         <ReferenceField
+          label="Programs"
+          source="programmodel.id"
+          reference="ProgramModel"
+        >
+          <TextField source={PROGRAMMODEL_TITLE_FIELD} />
+        </ReferenceField>
+        <ReferenceField
           label="Applicationreqs"
           source="applicationreq.id"
           reference="Applicationreq"
@@ -23,13 +30,6 @@ export const ProgramsApplicationreqShow = (
           <TextField source={APPLICATIONREQ_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Id" source="id" />
-        <ReferenceField
-          label="Programs"
-          source="programmodel.id"
-          reference="ProgramModel"
-        >
-          <TextField source={PROGRAMMODEL_TITLE_FIELD} />
-        </ReferenceField>
       </SimpleShowLayout>
     </Show>
   );

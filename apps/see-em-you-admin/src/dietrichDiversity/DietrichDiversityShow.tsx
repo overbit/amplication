@@ -7,8 +7,8 @@ export const DietrichDiversityShow = (props: ShowProps): React.ReactElement => {
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
         <TextField label="Background" source="background" />
-        <TextField label="Id" source="id" />
         <TextField label="Life Experience" source="lifeExperience" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

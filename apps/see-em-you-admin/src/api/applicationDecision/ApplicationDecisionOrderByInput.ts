@@ -1,16 +1,16 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type ApplicationDecisionOrderByInput = {
+  applicationId?: SortOrder;
+  programId?: SortOrder;
+  periodId?: SortOrder;
   admissionProgramId?: SortOrder;
   admissionStatus?: SortOrder;
-  applicationId?: SortOrder;
-  attendOtherUniversity?: SortOrder;
   comments?: SortOrder;
-  id?: SortOrder;
+  attendOtherUniversity?: SortOrder;
   otherChoiceLocation?: SortOrder;
-  periodId?: SortOrder;
-  programId?: SortOrder;
   visitCampus?: SortOrder;
-  visitComments?: SortOrder;
   visitHelpful?: SortOrder;
+  visitComments?: SortOrder;
+  id?: SortOrder;
 };

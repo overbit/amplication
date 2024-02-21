@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlatePub } from "@prisma/client";
+import { Prisma, MitsSlatePub as PrismaMitsSlatePub } from "@prisma/client";
 
 export class MitsSlatePubServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MitsSlatePubServiceBase {
     return this.prisma.mitsSlatePub.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlatePubFindManyArgs>(
+  async mitsSlatePubs<T extends Prisma.MitsSlatePubFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlatePubFindManyArgs>
-  ): Promise<MitsSlatePub[]> {
+  ): Promise<PrismaMitsSlatePub[]> {
     return this.prisma.mitsSlatePub.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlatePubFindUniqueArgs>(
+  async mitsSlatePub<T extends Prisma.MitsSlatePubFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlatePubFindUniqueArgs>
-  ): Promise<MitsSlatePub | null> {
+  ): Promise<PrismaMitsSlatePub | null> {
     return this.prisma.mitsSlatePub.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlatePubCreateArgs>(
+  async createMitsSlatePub<T extends Prisma.MitsSlatePubCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlatePubCreateArgs>
-  ): Promise<MitsSlatePub> {
+  ): Promise<PrismaMitsSlatePub> {
     return this.prisma.mitsSlatePub.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlatePubUpdateArgs>(
+  async updateMitsSlatePub<T extends Prisma.MitsSlatePubUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlatePubUpdateArgs>
-  ): Promise<MitsSlatePub> {
+  ): Promise<PrismaMitsSlatePub> {
     return this.prisma.mitsSlatePub.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlatePubDeleteArgs>(
+  async deleteMitsSlatePub<T extends Prisma.MitsSlatePubDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlatePubDeleteArgs>
-  ): Promise<MitsSlatePub> {
+  ): Promise<PrismaMitsSlatePub> {
     return this.prisma.mitsSlatePub.delete(args);
   }
 }

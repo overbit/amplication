@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Usersinst } from "@prisma/client";
+import { Prisma, Usersinst as PrismaUsersinst } from "@prisma/client";
 
 export class UsersinstServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class UsersinstServiceBase {
     return this.prisma.usersinst.count(args);
   }
 
-  async findMany<T extends Prisma.UsersinstFindManyArgs>(
+  async usersinsts<T extends Prisma.UsersinstFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsersinstFindManyArgs>
-  ): Promise<Usersinst[]> {
+  ): Promise<PrismaUsersinst[]> {
     return this.prisma.usersinst.findMany(args);
   }
-  async findOne<T extends Prisma.UsersinstFindUniqueArgs>(
+  async usersinst<T extends Prisma.UsersinstFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsersinstFindUniqueArgs>
-  ): Promise<Usersinst | null> {
+  ): Promise<PrismaUsersinst | null> {
     return this.prisma.usersinst.findUnique(args);
   }
-  async create<T extends Prisma.UsersinstCreateArgs>(
+  async createUsersinst<T extends Prisma.UsersinstCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsersinstCreateArgs>
-  ): Promise<Usersinst> {
+  ): Promise<PrismaUsersinst> {
     return this.prisma.usersinst.create<T>(args);
   }
-  async update<T extends Prisma.UsersinstUpdateArgs>(
+  async updateUsersinst<T extends Prisma.UsersinstUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsersinstUpdateArgs>
-  ): Promise<Usersinst> {
+  ): Promise<PrismaUsersinst> {
     return this.prisma.usersinst.update<T>(args);
   }
-  async delete<T extends Prisma.UsersinstDeleteArgs>(
+  async deleteUsersinst<T extends Prisma.UsersinstDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsersinstDeleteArgs>
-  ): Promise<Usersinst> {
+  ): Promise<PrismaUsersinst> {
     return this.prisma.usersinst.delete(args);
   }
 }

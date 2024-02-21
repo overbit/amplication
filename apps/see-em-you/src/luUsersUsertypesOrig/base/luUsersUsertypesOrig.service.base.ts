@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuUsersUsertypesOrig } from "@prisma/client";
+import {
+  Prisma,
+  LuUsersUsertypesOrig as PrismaLuUsersUsertypesOrig,
+} from "@prisma/client";
 
 export class LuUsersUsertypesOrigServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class LuUsersUsertypesOrigServiceBase {
     return this.prisma.luUsersUsertypesOrig.count(args);
   }
 
-  async findMany<T extends Prisma.LuUsersUsertypesOrigFindManyArgs>(
+  async luUsersUsertypesOrigs<
+    T extends Prisma.LuUsersUsertypesOrigFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypesOrigFindManyArgs>
-  ): Promise<LuUsersUsertypesOrig[]> {
+  ): Promise<PrismaLuUsersUsertypesOrig[]> {
     return this.prisma.luUsersUsertypesOrig.findMany(args);
   }
-  async findOne<T extends Prisma.LuUsersUsertypesOrigFindUniqueArgs>(
+  async luUsersUsertypesOrig<
+    T extends Prisma.LuUsersUsertypesOrigFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypesOrigFindUniqueArgs>
-  ): Promise<LuUsersUsertypesOrig | null> {
+  ): Promise<PrismaLuUsersUsertypesOrig | null> {
     return this.prisma.luUsersUsertypesOrig.findUnique(args);
   }
-  async create<T extends Prisma.LuUsersUsertypesOrigCreateArgs>(
+  async createLuUsersUsertypesOrig<
+    T extends Prisma.LuUsersUsertypesOrigCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypesOrigCreateArgs>
-  ): Promise<LuUsersUsertypesOrig> {
+  ): Promise<PrismaLuUsersUsertypesOrig> {
     return this.prisma.luUsersUsertypesOrig.create<T>(args);
   }
-  async update<T extends Prisma.LuUsersUsertypesOrigUpdateArgs>(
+  async updateLuUsersUsertypesOrig<
+    T extends Prisma.LuUsersUsertypesOrigUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypesOrigUpdateArgs>
-  ): Promise<LuUsersUsertypesOrig> {
+  ): Promise<PrismaLuUsersUsertypesOrig> {
     return this.prisma.luUsersUsertypesOrig.update<T>(args);
   }
-  async delete<T extends Prisma.LuUsersUsertypesOrigDeleteArgs>(
+  async deleteLuUsersUsertypesOrig<
+    T extends Prisma.LuUsersUsertypesOrigDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypesOrigDeleteArgs>
-  ): Promise<LuUsersUsertypesOrig> {
+  ): Promise<PrismaLuUsersUsertypesOrig> {
     return this.prisma.luUsersUsertypesOrig.delete(args);
   }
 }

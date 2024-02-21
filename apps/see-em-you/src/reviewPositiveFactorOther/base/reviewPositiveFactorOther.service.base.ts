@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ReviewPositiveFactorOther } from "@prisma/client";
+import {
+  Prisma,
+  ReviewPositiveFactorOther as PrismaReviewPositiveFactorOther,
+} from "@prisma/client";
 
 export class ReviewPositiveFactorOtherServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ReviewPositiveFactorOtherServiceBase {
     return this.prisma.reviewPositiveFactorOther.count(args);
   }
 
-  async findMany<T extends Prisma.ReviewPositiveFactorOtherFindManyArgs>(
+  async reviewPositiveFactorOthers<
+    T extends Prisma.ReviewPositiveFactorOtherFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewPositiveFactorOtherFindManyArgs>
-  ): Promise<ReviewPositiveFactorOther[]> {
+  ): Promise<PrismaReviewPositiveFactorOther[]> {
     return this.prisma.reviewPositiveFactorOther.findMany(args);
   }
-  async findOne<T extends Prisma.ReviewPositiveFactorOtherFindUniqueArgs>(
+  async reviewPositiveFactorOther<
+    T extends Prisma.ReviewPositiveFactorOtherFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewPositiveFactorOtherFindUniqueArgs>
-  ): Promise<ReviewPositiveFactorOther | null> {
+  ): Promise<PrismaReviewPositiveFactorOther | null> {
     return this.prisma.reviewPositiveFactorOther.findUnique(args);
   }
-  async create<T extends Prisma.ReviewPositiveFactorOtherCreateArgs>(
+  async createReviewPositiveFactorOther<
+    T extends Prisma.ReviewPositiveFactorOtherCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewPositiveFactorOtherCreateArgs>
-  ): Promise<ReviewPositiveFactorOther> {
+  ): Promise<PrismaReviewPositiveFactorOther> {
     return this.prisma.reviewPositiveFactorOther.create<T>(args);
   }
-  async update<T extends Prisma.ReviewPositiveFactorOtherUpdateArgs>(
+  async updateReviewPositiveFactorOther<
+    T extends Prisma.ReviewPositiveFactorOtherUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewPositiveFactorOtherUpdateArgs>
-  ): Promise<ReviewPositiveFactorOther> {
+  ): Promise<PrismaReviewPositiveFactorOther> {
     return this.prisma.reviewPositiveFactorOther.update<T>(args);
   }
-  async delete<T extends Prisma.ReviewPositiveFactorOtherDeleteArgs>(
+  async deleteReviewPositiveFactorOther<
+    T extends Prisma.ReviewPositiveFactorOtherDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ReviewPositiveFactorOtherDeleteArgs>
-  ): Promise<ReviewPositiveFactorOther> {
+  ): Promise<PrismaReviewPositiveFactorOther> {
     return this.prisma.reviewPositiveFactorOther.delete(args);
   }
 }

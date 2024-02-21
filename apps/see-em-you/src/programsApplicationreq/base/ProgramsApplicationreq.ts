@@ -11,13 +11,21 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Applicationreq } from "../../applicationreq/base/Applicationreq";
+import { ProgramModel } from "../../programModel/base/ProgramModel";
 import { ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
-import { ProgramModel } from "../../programModel/base/ProgramModel";
+import { Applicationreq } from "../../applicationreq/base/Applicationreq";
 
 @ObjectType()
 class ProgramsApplicationreq {
+  @ApiProperty({
+    required: true,
+    type: () => ProgramModel,
+  })
+  @ValidateNested()
+  @Type(() => ProgramModel)
+  programs?: ProgramModel;
+
   @ApiProperty({
     required: true,
     type: () => Applicationreq,
@@ -33,14 +41,6 @@ class ProgramsApplicationreq {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: () => ProgramModel,
-  })
-  @ValidateNested()
-  @Type(() => ProgramModel)
-  programs?: ProgramModel;
 }
 
 export { ProgramsApplicationreq as ProgramsApplicationreq };

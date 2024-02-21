@@ -18,62 +18,62 @@ import { IeltsscoreService } from "../ieltsscore.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  datafileId: 42,
-  id: 42,
-  listeningscore: 42.424242424,
-  overallscore: 42.424242424,
-  readingscore: 42.424242424,
-  scorereceived: 42,
-  speakingscore: 42.424242424,
   testdate: new Date(),
-  testEmail: "exampleTestEmail",
+  listeningscore: 42.424242424,
+  readingscore: 42.424242424,
   writingscore: 42.424242424,
+  speakingscore: 42.424242424,
+  overallscore: 42.424242424,
+  scorereceived: 42,
+  datafileId: 42,
+  testEmail: "exampleTestEmail",
+  id: 42,
 };
 const CREATE_RESULT = {
-  datafileId: 42,
-  id: 42,
-  listeningscore: 42.424242424,
-  overallscore: 42.424242424,
-  readingscore: 42.424242424,
-  scorereceived: 42,
-  speakingscore: 42.424242424,
   testdate: new Date(),
-  testEmail: "exampleTestEmail",
+  listeningscore: 42.424242424,
+  readingscore: 42.424242424,
   writingscore: 42.424242424,
+  speakingscore: 42.424242424,
+  overallscore: 42.424242424,
+  scorereceived: 42,
+  datafileId: 42,
+  testEmail: "exampleTestEmail",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    datafileId: 42,
-    id: 42,
-    listeningscore: 42.424242424,
-    overallscore: 42.424242424,
-    readingscore: 42.424242424,
-    scorereceived: 42,
-    speakingscore: 42.424242424,
     testdate: new Date(),
-    testEmail: "exampleTestEmail",
+    listeningscore: 42.424242424,
+    readingscore: 42.424242424,
     writingscore: 42.424242424,
+    speakingscore: 42.424242424,
+    overallscore: 42.424242424,
+    scorereceived: 42,
+    datafileId: 42,
+    testEmail: "exampleTestEmail",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  datafileId: 42,
-  id: 42,
-  listeningscore: 42.424242424,
-  overallscore: 42.424242424,
-  readingscore: 42.424242424,
-  scorereceived: 42,
-  speakingscore: 42.424242424,
   testdate: new Date(),
-  testEmail: "exampleTestEmail",
+  listeningscore: 42.424242424,
+  readingscore: 42.424242424,
   writingscore: 42.424242424,
+  speakingscore: 42.424242424,
+  overallscore: 42.424242424,
+  scorereceived: 42,
+  datafileId: 42,
+  testEmail: "exampleTestEmail",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createIeltsscore() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ieltsscores: () => FIND_MANY_RESULT,
+  ieltsscore: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

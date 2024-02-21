@@ -18,46 +18,46 @@ import { RecommendformService } from "../recommendform.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  recommendId: 42,
   formId: 42,
-  id: 42,
   questionId: 42,
   questionKey: 42,
-  recommendId: 42,
   response: "exampleResponse",
+  id: 42,
 };
 const CREATE_RESULT = {
+  recommendId: 42,
   formId: 42,
-  id: 42,
   questionId: 42,
   questionKey: 42,
-  recommendId: 42,
   response: "exampleResponse",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    recommendId: 42,
     formId: 42,
-    id: 42,
     questionId: 42,
     questionKey: 42,
-    recommendId: 42,
     response: "exampleResponse",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  recommendId: 42,
   formId: 42,
-  id: 42,
   questionId: 42,
   questionKey: 42,
-  recommendId: 42,
   response: "exampleResponse",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createRecommendform() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  recommendforms: () => FIND_MANY_RESULT,
+  recommendform: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

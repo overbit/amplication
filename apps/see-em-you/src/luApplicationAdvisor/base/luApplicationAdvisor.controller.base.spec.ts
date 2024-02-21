@@ -18,46 +18,46 @@ import { LuApplicationAdvisorService } from "../luApplicationAdvisor.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  advisorType: 42,
   advisorUserId: 42,
-  choice: 42,
-  id: 42,
+  advisorType: 42,
   name: "exampleName",
   programId: 42,
+  choice: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  advisorType: 42,
   advisorUserId: 42,
-  choice: 42,
-  id: 42,
+  advisorType: 42,
   name: "exampleName",
   programId: 42,
+  choice: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    advisorType: 42,
     advisorUserId: 42,
-    choice: 42,
-    id: 42,
+    advisorType: 42,
     name: "exampleName",
     programId: 42,
+    choice: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  advisorType: 42,
   advisorUserId: 42,
-  choice: 42,
-  id: 42,
+  advisorType: 42,
   name: "exampleName",
   programId: 42,
+  choice: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLuApplicationAdvisor() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luApplicationAdvisors: () => FIND_MANY_RESULT,
+  luApplicationAdvisor: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

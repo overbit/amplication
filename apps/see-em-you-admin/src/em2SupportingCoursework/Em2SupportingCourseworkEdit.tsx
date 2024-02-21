@@ -14,19 +14,13 @@ export const Em2SupportingCourseworkEdit = (
     <Edit {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
+        <TextInput label="Data Structures Title" source="dataStructuresTitle" />
         <TextInput
           label="Data Structures Number"
           source="dataStructuresNumber"
         />
-        <TextInput label="Data Structures Title" source="dataStructuresTitle" />
-        <TextInput
-          label="Makerkits Description"
-          source="makerkitsDescription"
-        />
-        <TextInput
-          label="Makerkits Description2"
-          source="makerkitsDescription2"
-        />
+        <TextInput label="Statistics Title" source="statisticsTitle" />
+        <TextInput label="Statistics Number" source="statisticsNumber" />
         <TextInput label="Msit Experience" source="msitExperience" />
         <TextInput
           label="Programming Description"
@@ -36,8 +30,14 @@ export const Em2SupportingCourseworkEdit = (
           label="Programming Description2"
           source="programmingDescription2"
         />
-        <TextInput label="Statistics Number" source="statisticsNumber" />
-        <TextInput label="Statistics Title" source="statisticsTitle" />
+        <TextInput
+          label="Makerkits Description"
+          source="makerkitsDescription"
+        />
+        <TextInput
+          label="Makerkits Description2"
+          source="makerkitsDescription2"
+        />
       </SimpleForm>
     </Edit>
   );

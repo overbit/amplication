@@ -39,6 +39,17 @@ class LuApplicationInterestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  interestId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   choice?: SortOrder;
 
   @ApiProperty({
@@ -51,17 +62,6 @@ class LuApplicationInterestOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  interestId?: SortOrder;
 }
 
 export { LuApplicationInterestOrderByInput as LuApplicationInterestOrderByInput };

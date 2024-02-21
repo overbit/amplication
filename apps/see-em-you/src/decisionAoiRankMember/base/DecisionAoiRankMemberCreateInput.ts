@@ -21,7 +21,7 @@ class DecisionAoiRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
+  departmentId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,15 @@ class DecisionAoiRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  arank!: number;
+  periodId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  interestId!: number;
 
   @ApiProperty({
     required: true,
@@ -45,7 +53,7 @@ class DecisionAoiRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  departmentId!: number;
+  applicationId!: number;
 
   @ApiProperty({
     required: true,
@@ -53,15 +61,7 @@ class DecisionAoiRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  interestId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
+  arank!: number;
 }
 
 export { DecisionAoiRankMemberCreateInput as DecisionAoiRankMemberCreateInput };

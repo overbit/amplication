@@ -14,8 +14,8 @@ export const ReviewerPreferenceList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="View Mode" source="viewMode" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

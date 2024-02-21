@@ -12,13 +12,13 @@ export const RejectionWaiverList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField
           label="Lu Application Programs Id"
           source="luApplicationProgramsId"
         />
-        <TextField label="Permitted Program Id" source="permittedProgramId" />
         <TextField label="Waived" source="waived" />
+        <TextField label="Permitted Program Id" source="permittedProgramId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

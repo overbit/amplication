@@ -35,7 +35,7 @@ class RejectionWaiverUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  permittedProgramId?: number;
+  waived?: number | null;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class RejectionWaiverUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  waived?: number | null;
+  permittedProgramId?: number;
 }
 
 export { RejectionWaiverUpdateInput as RejectionWaiverUpdateInput };

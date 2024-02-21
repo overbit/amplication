@@ -7,21 +7,21 @@ import { PaymentItemCreateNestedManyWithoutProgramModelsInput } from "./PaymentI
 import { ProgramsApplicationreqCreateNestedManyWithoutProgramModelsInput } from "./ProgramsApplicationreqCreateNestedManyWithoutProgramModelsInput";
 
 export type ProgramModelCreateInput = {
-  baseprice: Decimal;
-  basepriceLate?: Decimal | null;
-  degree: DegreeWhereUniqueInput;
-  description?: string | null;
-  enabled?: string | null;
-  fieldsofstudy: FieldsofstudyWhereUniqueInput;
   linkword: string;
-  luApplicationPrograms?: LuApplicationProgramCreateNestedManyWithoutProgramModelsInput;
-  mlArea?: MlAreaCreateNestedManyWithoutProgramModelsInput;
-  oraclestring?: string | null;
-  paymentItem?: PaymentItemCreateNestedManyWithoutProgramModelsInput;
-  prank: number;
   programprice: Decimal;
   programpriceLate?: Decimal | null;
-  programsApplicationreqs?: ProgramsApplicationreqCreateNestedManyWithoutProgramModelsInput;
-  registrationoraclestring?: string | null;
+  description?: string | null;
   url?: string | null;
+  oraclestring?: string | null;
+  registrationoraclestring?: string | null;
+  baseprice: Decimal;
+  basepriceLate?: Decimal | null;
+  prank: number;
+  enabled?: string | null;
+  degree: DegreeWhereUniqueInput;
+  fieldsofstudy: FieldsofstudyWhereUniqueInput;
+  luApplicationPrograms?: LuApplicationProgramCreateNestedManyWithoutProgramModelsInput;
+  mlArea?: MlAreaCreateNestedManyWithoutProgramModelsInput;
+  paymentItem?: PaymentItemCreateNestedManyWithoutProgramModelsInput;
+  programsApplicationreqs?: ProgramsApplicationreqCreateNestedManyWithoutProgramModelsInput;
 };

@@ -18,39 +18,38 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MitsSlateEmployService } from "../mitsSlateEmploy.service";
 import { MitsSlateEmployCreateInput } from "./MitsSlateEmployCreateInput";
-import { MitsSlateEmployWhereInput } from "./MitsSlateEmployWhereInput";
-import { MitsSlateEmployWhereUniqueInput } from "./MitsSlateEmployWhereUniqueInput";
-import { MitsSlateEmployFindManyArgs } from "./MitsSlateEmployFindManyArgs";
-import { MitsSlateEmployUpdateInput } from "./MitsSlateEmployUpdateInput";
 import { MitsSlateEmploy } from "./MitsSlateEmploy";
+import { MitsSlateEmployFindManyArgs } from "./MitsSlateEmployFindManyArgs";
+import { MitsSlateEmployWhereUniqueInput } from "./MitsSlateEmployWhereUniqueInput";
+import { MitsSlateEmployUpdateInput } from "./MitsSlateEmployUpdateInput";
 
 export class MitsSlateEmployControllerBase {
   constructor(protected readonly service: MitsSlateEmployService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MitsSlateEmploy })
-  async create(
+  async createMitsSlateEmploy(
     @common.Body() data: MitsSlateEmployCreateInput
   ): Promise<MitsSlateEmploy> {
-    return await this.service.create({
+    return await this.service.createMitsSlateEmploy({
       data: data,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        job1From: true,
+        middle: true,
+        last: true,
         job1Organization: true,
+        jobNum1YearsOfExperience: true,
+        job1From: true,
         job1To: true,
         job2From: true,
-        job2Organization: true,
         job2To: true,
-        job3From: true,
-        job3Organization: true,
-        job3To: true,
-        jobNum1YearsOfExperience: true,
+        job2Organization: true,
         jobNum2YearsOfExperience: true,
+        job3Organization: true,
+        job3From: true,
+        job3To: true,
         jobNum3YearsOfExperience: true,
-        last: true,
-        middle: true,
-        prefix: true,
+        id: true,
       },
     });
   }
@@ -58,28 +57,30 @@ export class MitsSlateEmployControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MitsSlateEmploy] })
   @ApiNestedQuery(MitsSlateEmployFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MitsSlateEmploy[]> {
+  async mitsSlateEmploys(
+    @common.Req() request: Request
+  ): Promise<MitsSlateEmploy[]> {
     const args = plainToClass(MitsSlateEmployFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mitsSlateEmploys({
       ...args,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        job1From: true,
+        middle: true,
+        last: true,
         job1Organization: true,
+        jobNum1YearsOfExperience: true,
+        job1From: true,
         job1To: true,
         job2From: true,
-        job2Organization: true,
         job2To: true,
-        job3From: true,
-        job3Organization: true,
-        job3To: true,
-        jobNum1YearsOfExperience: true,
+        job2Organization: true,
         jobNum2YearsOfExperience: true,
+        job3Organization: true,
+        job3From: true,
+        job3To: true,
         jobNum3YearsOfExperience: true,
-        last: true,
-        middle: true,
-        prefix: true,
+        id: true,
       },
     });
   }
@@ -87,29 +88,29 @@ export class MitsSlateEmployControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateEmploy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mitsSlateEmploy(
     @common.Param() params: MitsSlateEmployWhereUniqueInput
   ): Promise<MitsSlateEmploy | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mitsSlateEmploy({
       where: params,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        job1From: true,
+        middle: true,
+        last: true,
         job1Organization: true,
+        jobNum1YearsOfExperience: true,
+        job1From: true,
         job1To: true,
         job2From: true,
-        job2Organization: true,
         job2To: true,
-        job3From: true,
-        job3Organization: true,
-        job3To: true,
-        jobNum1YearsOfExperience: true,
+        job2Organization: true,
         jobNum2YearsOfExperience: true,
+        job3Organization: true,
+        job3From: true,
+        job3To: true,
         jobNum3YearsOfExperience: true,
-        last: true,
-        middle: true,
-        prefix: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -123,32 +124,32 @@ export class MitsSlateEmployControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateEmploy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMitsSlateEmploy(
     @common.Param() params: MitsSlateEmployWhereUniqueInput,
     @common.Body() data: MitsSlateEmployUpdateInput
   ): Promise<MitsSlateEmploy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateEmploy({
         where: params,
         data: data,
         select: {
+          prefix: true,
           first: true,
-          id: true,
-          job1From: true,
+          middle: true,
+          last: true,
           job1Organization: true,
+          jobNum1YearsOfExperience: true,
+          job1From: true,
           job1To: true,
           job2From: true,
-          job2Organization: true,
           job2To: true,
-          job3From: true,
-          job3Organization: true,
-          job3To: true,
-          jobNum1YearsOfExperience: true,
+          job2Organization: true,
           jobNum2YearsOfExperience: true,
+          job3Organization: true,
+          job3From: true,
+          job3To: true,
           jobNum3YearsOfExperience: true,
-          last: true,
-          middle: true,
-          prefix: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -164,30 +165,30 @@ export class MitsSlateEmployControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateEmploy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMitsSlateEmploy(
     @common.Param() params: MitsSlateEmployWhereUniqueInput
   ): Promise<MitsSlateEmploy | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMitsSlateEmploy({
         where: params,
         select: {
+          prefix: true,
           first: true,
-          id: true,
-          job1From: true,
+          middle: true,
+          last: true,
           job1Organization: true,
+          jobNum1YearsOfExperience: true,
+          job1From: true,
           job1To: true,
           job2From: true,
-          job2Organization: true,
           job2To: true,
-          job3From: true,
-          job3Organization: true,
-          job3To: true,
-          jobNum1YearsOfExperience: true,
+          job2Organization: true,
           jobNum2YearsOfExperience: true,
+          job3Organization: true,
+          job3From: true,
+          job3To: true,
           jobNum3YearsOfExperience: true,
-          last: true,
-          middle: true,
-          prefix: true,
+          id: true,
         },
       });
     } catch (error) {

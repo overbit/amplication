@@ -18,62 +18,62 @@ import { SlateToeflService } from "../slateToefl.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
+  toeflTotal: "exampleToeflTotal",
   toeflListening: "exampleToeflListening",
   toeflReading: "exampleToeflReading",
-  toeflSpeaking: "exampleToeflSpeaking",
   toeflStructureWrittenExpression: "exampleToeflStructureWrittenExpression",
-  toeflTotal: "exampleToeflTotal",
+  toeflSpeaking: "exampleToeflSpeaking",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
+  toeflTotal: "exampleToeflTotal",
   toeflListening: "exampleToeflListening",
   toeflReading: "exampleToeflReading",
-  toeflSpeaking: "exampleToeflSpeaking",
   toeflStructureWrittenExpression: "exampleToeflStructureWrittenExpression",
-  toeflTotal: "exampleToeflTotal",
+  toeflSpeaking: "exampleToeflSpeaking",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    first: "exampleFirst",
-    id: "exampleId",
-    last: "exampleLast",
-    middle: "exampleMiddle",
     prefix: "examplePrefix",
+    first: "exampleFirst",
+    middle: "exampleMiddle",
+    last: "exampleLast",
+    toeflTotal: "exampleToeflTotal",
     toeflListening: "exampleToeflListening",
     toeflReading: "exampleToeflReading",
-    toeflSpeaking: "exampleToeflSpeaking",
     toeflStructureWrittenExpression: "exampleToeflStructureWrittenExpression",
-    toeflTotal: "exampleToeflTotal",
+    toeflSpeaking: "exampleToeflSpeaking",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  first: "exampleFirst",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
+  toeflTotal: "exampleToeflTotal",
   toeflListening: "exampleToeflListening",
   toeflReading: "exampleToeflReading",
-  toeflSpeaking: "exampleToeflSpeaking",
   toeflStructureWrittenExpression: "exampleToeflStructureWrittenExpression",
-  toeflTotal: "exampleToeflTotal",
+  toeflSpeaking: "exampleToeflSpeaking",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createSlateToefl() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slateToefls: () => FIND_MANY_RESULT,
+  slateToefl: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

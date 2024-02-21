@@ -18,34 +18,41 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MitsSlateSuppinfoService } from "../mitsSlateSuppinfo.service";
 import { MitsSlateSuppinfoCreateInput } from "./MitsSlateSuppinfoCreateInput";
-import { MitsSlateSuppinfoWhereInput } from "./MitsSlateSuppinfoWhereInput";
-import { MitsSlateSuppinfoWhereUniqueInput } from "./MitsSlateSuppinfoWhereUniqueInput";
-import { MitsSlateSuppinfoFindManyArgs } from "./MitsSlateSuppinfoFindManyArgs";
-import { MitsSlateSuppinfoUpdateInput } from "./MitsSlateSuppinfoUpdateInput";
 import { MitsSlateSuppinfo } from "./MitsSlateSuppinfo";
+import { MitsSlateSuppinfoFindManyArgs } from "./MitsSlateSuppinfoFindManyArgs";
+import { MitsSlateSuppinfoWhereUniqueInput } from "./MitsSlateSuppinfoWhereUniqueInput";
+import { MitsSlateSuppinfoUpdateInput } from "./MitsSlateSuppinfoUpdateInput";
 
 export class MitsSlateSuppinfoControllerBase {
   constructor(protected readonly service: MitsSlateSuppinfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MitsSlateSuppinfo })
-  async create(
+  async createMitsSlateSuppinfo(
     @common.Body() data: MitsSlateSuppinfoCreateInput
   ): Promise<MitsSlateSuppinfo> {
-    return await this.service.create({
+    return await this.service.createMitsSlateSuppinfo({
       data: data,
       select: {
-        fellowship10Amount: true,
-        fellowship10AppliedDate: true,
-        fellowship10AwardedDate: true,
-        fellowship10Duration: true,
-        fellowship10Name: true,
-        fellowship10Status: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        videoEssayUrl: true,
+        videoEssayAccessCode: true,
+        learnAboutUs: true,
+        learnAboutOther: true,
         fellowship1Amount: true,
         fellowship1AppliedDate: true,
         fellowship1AwardedDate: true,
         fellowship1Duration: true,
         fellowship1Name: true,
         fellowship1Status: true,
+        fellowship10Amount: true,
+        fellowship10AppliedDate: true,
+        fellowship10AwardedDate: true,
+        fellowship10Duration: true,
+        fellowship10Name: true,
+        fellowship10Status: true,
         fellowship2Amount: true,
         fellowship2AppliedDate: true,
         fellowship2AwardedDate: true,
@@ -94,16 +101,8 @@ export class MitsSlateSuppinfoControllerBase {
         fellowship9Duration: true,
         fellowship9Name: true,
         fellowship9Status: true,
-        first: true,
         hasFellowships: true,
         id: true,
-        last: true,
-        learnAboutOther: true,
-        learnAboutUs: true,
-        middle: true,
-        prefix: true,
-        videoEssayAccessCode: true,
-        videoEssayUrl: true,
       },
     });
   }
@@ -111,23 +110,33 @@ export class MitsSlateSuppinfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MitsSlateSuppinfo] })
   @ApiNestedQuery(MitsSlateSuppinfoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MitsSlateSuppinfo[]> {
+  async mitsSlateSuppinfos(
+    @common.Req() request: Request
+  ): Promise<MitsSlateSuppinfo[]> {
     const args = plainToClass(MitsSlateSuppinfoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mitsSlateSuppinfos({
       ...args,
       select: {
-        fellowship10Amount: true,
-        fellowship10AppliedDate: true,
-        fellowship10AwardedDate: true,
-        fellowship10Duration: true,
-        fellowship10Name: true,
-        fellowship10Status: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        videoEssayUrl: true,
+        videoEssayAccessCode: true,
+        learnAboutUs: true,
+        learnAboutOther: true,
         fellowship1Amount: true,
         fellowship1AppliedDate: true,
         fellowship1AwardedDate: true,
         fellowship1Duration: true,
         fellowship1Name: true,
         fellowship1Status: true,
+        fellowship10Amount: true,
+        fellowship10AppliedDate: true,
+        fellowship10AwardedDate: true,
+        fellowship10Duration: true,
+        fellowship10Name: true,
+        fellowship10Status: true,
         fellowship2Amount: true,
         fellowship2AppliedDate: true,
         fellowship2AwardedDate: true,
@@ -176,16 +185,8 @@ export class MitsSlateSuppinfoControllerBase {
         fellowship9Duration: true,
         fellowship9Name: true,
         fellowship9Status: true,
-        first: true,
         hasFellowships: true,
         id: true,
-        last: true,
-        learnAboutOther: true,
-        learnAboutUs: true,
-        middle: true,
-        prefix: true,
-        videoEssayAccessCode: true,
-        videoEssayUrl: true,
       },
     });
   }
@@ -193,24 +194,32 @@ export class MitsSlateSuppinfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateSuppinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mitsSlateSuppinfo(
     @common.Param() params: MitsSlateSuppinfoWhereUniqueInput
   ): Promise<MitsSlateSuppinfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mitsSlateSuppinfo({
       where: params,
       select: {
-        fellowship10Amount: true,
-        fellowship10AppliedDate: true,
-        fellowship10AwardedDate: true,
-        fellowship10Duration: true,
-        fellowship10Name: true,
-        fellowship10Status: true,
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        videoEssayUrl: true,
+        videoEssayAccessCode: true,
+        learnAboutUs: true,
+        learnAboutOther: true,
         fellowship1Amount: true,
         fellowship1AppliedDate: true,
         fellowship1AwardedDate: true,
         fellowship1Duration: true,
         fellowship1Name: true,
         fellowship1Status: true,
+        fellowship10Amount: true,
+        fellowship10AppliedDate: true,
+        fellowship10AwardedDate: true,
+        fellowship10Duration: true,
+        fellowship10Name: true,
+        fellowship10Status: true,
         fellowship2Amount: true,
         fellowship2AppliedDate: true,
         fellowship2AwardedDate: true,
@@ -259,16 +268,8 @@ export class MitsSlateSuppinfoControllerBase {
         fellowship9Duration: true,
         fellowship9Name: true,
         fellowship9Status: true,
-        first: true,
         hasFellowships: true,
         id: true,
-        last: true,
-        learnAboutOther: true,
-        learnAboutUs: true,
-        middle: true,
-        prefix: true,
-        videoEssayAccessCode: true,
-        videoEssayUrl: true,
       },
     });
     if (result === null) {
@@ -282,27 +283,35 @@ export class MitsSlateSuppinfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateSuppinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMitsSlateSuppinfo(
     @common.Param() params: MitsSlateSuppinfoWhereUniqueInput,
     @common.Body() data: MitsSlateSuppinfoUpdateInput
   ): Promise<MitsSlateSuppinfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateSuppinfo({
         where: params,
         data: data,
         select: {
-          fellowship10Amount: true,
-          fellowship10AppliedDate: true,
-          fellowship10AwardedDate: true,
-          fellowship10Duration: true,
-          fellowship10Name: true,
-          fellowship10Status: true,
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          videoEssayUrl: true,
+          videoEssayAccessCode: true,
+          learnAboutUs: true,
+          learnAboutOther: true,
           fellowship1Amount: true,
           fellowship1AppliedDate: true,
           fellowship1AwardedDate: true,
           fellowship1Duration: true,
           fellowship1Name: true,
           fellowship1Status: true,
+          fellowship10Amount: true,
+          fellowship10AppliedDate: true,
+          fellowship10AwardedDate: true,
+          fellowship10Duration: true,
+          fellowship10Name: true,
+          fellowship10Status: true,
           fellowship2Amount: true,
           fellowship2AppliedDate: true,
           fellowship2AwardedDate: true,
@@ -351,16 +360,8 @@ export class MitsSlateSuppinfoControllerBase {
           fellowship9Duration: true,
           fellowship9Name: true,
           fellowship9Status: true,
-          first: true,
           hasFellowships: true,
           id: true,
-          last: true,
-          learnAboutOther: true,
-          learnAboutUs: true,
-          middle: true,
-          prefix: true,
-          videoEssayAccessCode: true,
-          videoEssayUrl: true,
         },
       });
     } catch (error) {
@@ -376,25 +377,33 @@ export class MitsSlateSuppinfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateSuppinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMitsSlateSuppinfo(
     @common.Param() params: MitsSlateSuppinfoWhereUniqueInput
   ): Promise<MitsSlateSuppinfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMitsSlateSuppinfo({
         where: params,
         select: {
-          fellowship10Amount: true,
-          fellowship10AppliedDate: true,
-          fellowship10AwardedDate: true,
-          fellowship10Duration: true,
-          fellowship10Name: true,
-          fellowship10Status: true,
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          videoEssayUrl: true,
+          videoEssayAccessCode: true,
+          learnAboutUs: true,
+          learnAboutOther: true,
           fellowship1Amount: true,
           fellowship1AppliedDate: true,
           fellowship1AwardedDate: true,
           fellowship1Duration: true,
           fellowship1Name: true,
           fellowship1Status: true,
+          fellowship10Amount: true,
+          fellowship10AppliedDate: true,
+          fellowship10AwardedDate: true,
+          fellowship10Duration: true,
+          fellowship10Name: true,
+          fellowship10Status: true,
           fellowship2Amount: true,
           fellowship2AppliedDate: true,
           fellowship2AwardedDate: true,
@@ -443,16 +452,8 @@ export class MitsSlateSuppinfoControllerBase {
           fellowship9Duration: true,
           fellowship9Name: true,
           fellowship9Status: true,
-          first: true,
           hasFellowships: true,
           id: true,
-          last: true,
-          learnAboutOther: true,
-          learnAboutUs: true,
-          middle: true,
-          prefix: true,
-          videoEssayAccessCode: true,
-          videoEssayUrl: true,
         },
       });
     } catch (error) {

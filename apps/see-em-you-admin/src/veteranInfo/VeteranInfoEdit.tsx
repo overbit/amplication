@@ -3,22 +3,22 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  NumberInput,
   TextInput,
   DateTimeInput,
-  NumberInput,
 } from "react-admin";
 
 export const VeteranInfoEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Branch" source="branch" />
-        <TextInput label="Discharge" source="discharge" />
-        <DateTimeInput label="Enddate" source="enddate" />
-        <DateTimeInput label="Startdate" source="startdate" />
+        <NumberInput step={1} label="User Id" source="userId" />
         <TextInput label="Status" source="status" />
         <TextInput label="Status Enroll" source="statusEnroll" />
-        <NumberInput step={1} label="User Id" source="userId" />
+        <TextInput label="Branch" source="branch" />
+        <DateTimeInput label="Startdate" source="startdate" />
+        <DateTimeInput label="Enddate" source="enddate" />
+        <TextInput label="Discharge" source="discharge" />
       </SimpleForm>
     </Edit>
   );

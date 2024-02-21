@@ -4,8 +4,8 @@ import {
   Datagrid,
   ListProps,
   TextField,
-  ReferenceField,
   BooleanField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { MHCIPREREQSCOURSE_TITLE_FIELD } from "../mhciPrereqsCourse/MhciPrereqsCourseTitle";
@@ -23,7 +23,12 @@ export const MhciPrereqsCourseDatafileList = (
     >
       <Datagrid rowClick="show">
         <TextField label="Datafileinfo Id" source="datafileinfoId" />
-        <TextField label="Id" source="id" />
+        <TextField label="Note" source="note" />
+        <BooleanField
+          label="Submitted To Reviewer"
+          source="submittedToReviewer"
+        />
+        <BooleanField label="New File Uploaded" source="newFileUploaded" />
         <ReferenceField
           label="Mhci Prereqs Courses"
           source="mhciprereqscourse.id"
@@ -31,12 +36,7 @@ export const MhciPrereqsCourseDatafileList = (
         >
           <TextField source={MHCIPREREQSCOURSE_TITLE_FIELD} />
         </ReferenceField>
-        <BooleanField label="New File Uploaded" source="newFileUploaded" />
-        <TextField label="Note" source="note" />
-        <BooleanField
-          label="Submitted To Reviewer"
-          source="submittedToReviewer"
-        />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

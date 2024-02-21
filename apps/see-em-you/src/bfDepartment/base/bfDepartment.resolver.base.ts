@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateBfDepartmentArgs } from "./CreateBfDepartmentArgs";
-import { UpdateBfDepartmentArgs } from "./UpdateBfDepartmentArgs";
-import { DeleteBfDepartmentArgs } from "./DeleteBfDepartmentArgs";
+import { BfDepartment } from "./BfDepartment";
 import { BfDepartmentCountArgs } from "./BfDepartmentCountArgs";
 import { BfDepartmentFindManyArgs } from "./BfDepartmentFindManyArgs";
 import { BfDepartmentFindUniqueArgs } from "./BfDepartmentFindUniqueArgs";
-import { BfDepartment } from "./BfDepartment";
+import { CreateBfDepartmentArgs } from "./CreateBfDepartmentArgs";
+import { UpdateBfDepartmentArgs } from "./UpdateBfDepartmentArgs";
+import { DeleteBfDepartmentArgs } from "./DeleteBfDepartmentArgs";
 import { BfDepartmentService } from "../bfDepartment.service";
 @graphql.Resolver(() => BfDepartment)
 export class BfDepartmentResolverBase {
@@ -38,14 +38,14 @@ export class BfDepartmentResolverBase {
   async bfDepartments(
     @graphql.Args() args: BfDepartmentFindManyArgs
   ): Promise<BfDepartment[]> {
-    return this.service.findMany(args);
+    return this.service.bfDepartments(args);
   }
 
   @graphql.Query(() => BfDepartment, { nullable: true })
   async bfDepartment(
     @graphql.Args() args: BfDepartmentFindUniqueArgs
   ): Promise<BfDepartment | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.bfDepartment(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class BfDepartmentResolverBase {
   async createBfDepartment(
     @graphql.Args() args: CreateBfDepartmentArgs
   ): Promise<BfDepartment> {
-    return await this.service.create({
+    return await this.service.createBfDepartment({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class BfDepartmentResolverBase {
     @graphql.Args() args: UpdateBfDepartmentArgs
   ): Promise<BfDepartment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateBfDepartment({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class BfDepartmentResolverBase {
     @graphql.Args() args: DeleteBfDepartmentArgs
   ): Promise<BfDepartment | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteBfDepartment(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

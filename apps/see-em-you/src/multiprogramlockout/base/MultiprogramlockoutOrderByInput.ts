@@ -28,17 +28,6 @@ class MultiprogramlockoutOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   programId1?: SortOrder;
 
   @ApiProperty({
@@ -51,6 +40,17 @@ class MultiprogramlockoutOrderByInput {
     nullable: true,
   })
   programId2?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MultiprogramlockoutOrderByInput as MultiprogramlockoutOrderByInput };

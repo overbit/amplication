@@ -28,6 +28,17 @@ class VoucherOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  code?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   active?: SortOrder;
 
   @ApiProperty({
@@ -50,28 +61,6 @@ class VoucherOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  code?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   prettyCode?: SortOrder;
 
   @ApiProperty({
@@ -84,6 +73,17 @@ class VoucherOrderByInput {
     nullable: true,
   })
   prog?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { VoucherOrderByInput as VoucherOrderByInput };

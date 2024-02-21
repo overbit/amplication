@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateProgramGroupArgs } from "./CreateProgramGroupArgs";
-import { UpdateProgramGroupArgs } from "./UpdateProgramGroupArgs";
-import { DeleteProgramGroupArgs } from "./DeleteProgramGroupArgs";
+import { ProgramGroup } from "./ProgramGroup";
 import { ProgramGroupCountArgs } from "./ProgramGroupCountArgs";
 import { ProgramGroupFindManyArgs } from "./ProgramGroupFindManyArgs";
 import { ProgramGroupFindUniqueArgs } from "./ProgramGroupFindUniqueArgs";
-import { ProgramGroup } from "./ProgramGroup";
+import { CreateProgramGroupArgs } from "./CreateProgramGroupArgs";
+import { UpdateProgramGroupArgs } from "./UpdateProgramGroupArgs";
+import { DeleteProgramGroupArgs } from "./DeleteProgramGroupArgs";
 import { ProgramGroupService } from "../programGroup.service";
 @graphql.Resolver(() => ProgramGroup)
 export class ProgramGroupResolverBase {
@@ -38,14 +38,14 @@ export class ProgramGroupResolverBase {
   async programGroups(
     @graphql.Args() args: ProgramGroupFindManyArgs
   ): Promise<ProgramGroup[]> {
-    return this.service.findMany(args);
+    return this.service.programGroups(args);
   }
 
   @graphql.Query(() => ProgramGroup, { nullable: true })
   async programGroup(
     @graphql.Args() args: ProgramGroupFindUniqueArgs
   ): Promise<ProgramGroup | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.programGroup(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ProgramGroupResolverBase {
   async createProgramGroup(
     @graphql.Args() args: CreateProgramGroupArgs
   ): Promise<ProgramGroup> {
-    return await this.service.create({
+    return await this.service.createProgramGroup({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ProgramGroupResolverBase {
     @graphql.Args() args: UpdateProgramGroupArgs
   ): Promise<ProgramGroup | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramGroup({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ProgramGroupResolverBase {
     @graphql.Args() args: DeleteProgramGroupArgs
   ): Promise<ProgramGroup | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteProgramGroup(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

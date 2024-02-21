@@ -24,7 +24,29 @@ class LuApplicationProgramsHistoryUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  lapId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   applicationId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  programId?: number;
 
   @ApiProperty({
     required: false,
@@ -47,28 +69,6 @@ class LuApplicationProgramsHistoryUpdateInput {
     nullable: true,
   })
   deletedBy?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  lapId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programId?: number;
 }
 
 export { LuApplicationProgramsHistoryUpdateInput as LuApplicationProgramsHistoryUpdateInput };

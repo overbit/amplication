@@ -7,9 +7,9 @@ export const UsersRemoteAuthStringShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
-        <TextField label="Remote Auth String" source="remoteAuthString" />
         <TextField label="Users Id" source="usersId" />
+        <TextField label="Remote Auth String" source="remoteAuthString" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

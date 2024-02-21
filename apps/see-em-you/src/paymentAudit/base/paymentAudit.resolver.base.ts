@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePaymentAuditArgs } from "./CreatePaymentAuditArgs";
-import { UpdatePaymentAuditArgs } from "./UpdatePaymentAuditArgs";
-import { DeletePaymentAuditArgs } from "./DeletePaymentAuditArgs";
+import { PaymentAudit } from "./PaymentAudit";
 import { PaymentAuditCountArgs } from "./PaymentAuditCountArgs";
 import { PaymentAuditFindManyArgs } from "./PaymentAuditFindManyArgs";
 import { PaymentAuditFindUniqueArgs } from "./PaymentAuditFindUniqueArgs";
-import { PaymentAudit } from "./PaymentAudit";
+import { CreatePaymentAuditArgs } from "./CreatePaymentAuditArgs";
+import { UpdatePaymentAuditArgs } from "./UpdatePaymentAuditArgs";
+import { DeletePaymentAuditArgs } from "./DeletePaymentAuditArgs";
 import { PaymentAuditService } from "../paymentAudit.service";
 @graphql.Resolver(() => PaymentAudit)
 export class PaymentAuditResolverBase {
@@ -38,14 +38,14 @@ export class PaymentAuditResolverBase {
   async paymentAudits(
     @graphql.Args() args: PaymentAuditFindManyArgs
   ): Promise<PaymentAudit[]> {
-    return this.service.findMany(args);
+    return this.service.paymentAudits(args);
   }
 
   @graphql.Query(() => PaymentAudit, { nullable: true })
   async paymentAudit(
     @graphql.Args() args: PaymentAuditFindUniqueArgs
   ): Promise<PaymentAudit | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.paymentAudit(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PaymentAuditResolverBase {
   async createPaymentAudit(
     @graphql.Args() args: CreatePaymentAuditArgs
   ): Promise<PaymentAudit> {
-    return await this.service.create({
+    return await this.service.createPaymentAudit({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PaymentAuditResolverBase {
     @graphql.Args() args: UpdatePaymentAuditArgs
   ): Promise<PaymentAudit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePaymentAudit({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PaymentAuditResolverBase {
     @graphql.Args() args: DeletePaymentAuditArgs
   ): Promise<PaymentAudit | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePaymentAudit(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

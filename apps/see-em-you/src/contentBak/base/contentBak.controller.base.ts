@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ContentBakService } from "../contentBak.service";
 import { ContentBakCreateInput } from "./ContentBakCreateInput";
-import { ContentBakWhereInput } from "./ContentBakWhereInput";
-import { ContentBakWhereUniqueInput } from "./ContentBakWhereUniqueInput";
-import { ContentBakFindManyArgs } from "./ContentBakFindManyArgs";
-import { ContentBakUpdateInput } from "./ContentBakUpdateInput";
 import { ContentBak } from "./ContentBak";
+import { ContentBakFindManyArgs } from "./ContentBakFindManyArgs";
+import { ContentBakWhereUniqueInput } from "./ContentBakWhereUniqueInput";
+import { ContentBakUpdateInput } from "./ContentBakUpdateInput";
 
 export class ContentBakControllerBase {
   constructor(protected readonly service: ContentBakService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ContentBak })
-  async create(
+  async createContentBak(
     @common.Body() data: ContentBakCreateInput
   ): Promise<ContentBak> {
-    return await this.service.create({
+    return await this.service.createContentBak({
       data: data,
       select: {
+        name: true,
         content: true,
         contenttypeId: true,
-        departmentId: true,
         domainId: true,
-        id: true,
-        modifiedby: true,
         modifieddate: true,
-        name: true,
+        modifiedby: true,
+        departmentId: true,
+        id: true,
       },
     });
   }
@@ -49,19 +48,19 @@ export class ContentBakControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ContentBak] })
   @ApiNestedQuery(ContentBakFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ContentBak[]> {
+  async contentBaks(@common.Req() request: Request): Promise<ContentBak[]> {
     const args = plainToClass(ContentBakFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.contentBaks({
       ...args,
       select: {
+        name: true,
         content: true,
         contenttypeId: true,
-        departmentId: true,
         domainId: true,
-        id: true,
-        modifiedby: true,
         modifieddate: true,
-        name: true,
+        modifiedby: true,
+        departmentId: true,
+        id: true,
       },
     });
   }
@@ -69,20 +68,20 @@ export class ContentBakControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ContentBak })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async contentBak(
     @common.Param() params: ContentBakWhereUniqueInput
   ): Promise<ContentBak | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.contentBak({
       where: params,
       select: {
+        name: true,
         content: true,
         contenttypeId: true,
-        departmentId: true,
         domainId: true,
-        id: true,
-        modifiedby: true,
         modifieddate: true,
-        name: true,
+        modifiedby: true,
+        departmentId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -96,23 +95,23 @@ export class ContentBakControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ContentBak })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateContentBak(
     @common.Param() params: ContentBakWhereUniqueInput,
     @common.Body() data: ContentBakUpdateInput
   ): Promise<ContentBak | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateContentBak({
         where: params,
         data: data,
         select: {
+          name: true,
           content: true,
           contenttypeId: true,
-          departmentId: true,
           domainId: true,
-          id: true,
-          modifiedby: true,
           modifieddate: true,
-          name: true,
+          modifiedby: true,
+          departmentId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -128,21 +127,21 @@ export class ContentBakControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ContentBak })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteContentBak(
     @common.Param() params: ContentBakWhereUniqueInput
   ): Promise<ContentBak | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteContentBak({
         where: params,
         select: {
+          name: true,
           content: true,
           contenttypeId: true,
-          departmentId: true,
           domainId: true,
-          id: true,
-          modifiedby: true,
           modifieddate: true,
-          name: true,
+          modifiedby: true,
+          departmentId: true,
+          id: true,
         },
       });
     } catch (error) {

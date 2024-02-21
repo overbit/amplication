@@ -19,65 +19,65 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  competencyEvidence: "exampleCompetencyEvidence",
-  id: 42,
   language: "exampleLanguage",
   listening: 42,
-  nativeSpeaker: 42,
-  reading: 42,
   speaking: 42,
-  studyLevel: 42,
+  reading: 42,
   writing: 42,
+  nativeSpeaker: 42,
   yearsStudy: 42,
+  studyLevel: 42,
+  competencyEvidence: "exampleCompetencyEvidence",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  competencyEvidence: "exampleCompetencyEvidence",
-  id: 42,
   language: "exampleLanguage",
   listening: 42,
-  nativeSpeaker: 42,
-  reading: 42,
   speaking: 42,
-  studyLevel: 42,
+  reading: 42,
   writing: 42,
+  nativeSpeaker: 42,
   yearsStudy: 42,
+  studyLevel: 42,
+  competencyEvidence: "exampleCompetencyEvidence",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    competencyEvidence: "exampleCompetencyEvidence",
-    id: 42,
     language: "exampleLanguage",
     listening: 42,
-    nativeSpeaker: 42,
-    reading: 42,
     speaking: 42,
-    studyLevel: 42,
+    reading: 42,
     writing: 42,
+    nativeSpeaker: 42,
     yearsStudy: 42,
+    studyLevel: 42,
+    competencyEvidence: "exampleCompetencyEvidence",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  competencyEvidence: "exampleCompetencyEvidence",
-  id: 42,
   language: "exampleLanguage",
   listening: 42,
-  nativeSpeaker: 42,
-  reading: 42,
   speaking: 42,
-  studyLevel: 42,
+  reading: 42,
   writing: 42,
+  nativeSpeaker: 42,
   yearsStudy: 42,
+  studyLevel: 42,
+  competencyEvidence: "exampleCompetencyEvidence",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLanguageAssessment() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  languageAssessments: () => FIND_MANY_RESULT,
+  languageAssessment: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

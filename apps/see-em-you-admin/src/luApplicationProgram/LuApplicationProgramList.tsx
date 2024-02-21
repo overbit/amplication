@@ -22,9 +22,18 @@ export const LuApplicationProgramList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Choice" source="choice" />
+        <TextField label="Round2" source="round2" />
+        <TextField label="Decision" source="decision" />
         <TextField label="Admission Status" source="admissionStatus" />
         <TextField label="Admit" source="admit" />
         <TextField label="Admit Comments" source="admitComments" />
+        <TextField label="Faccontact" source="faccontact" />
+        <TextField label="Stucontact" source="stucontact" />
+        <TextField label="Scholarship Amt" source="scholarshipAmt" />
+        <TextField label="Scholarship Comments" source="scholarshipComments" />
+        <TextField label="Ltichoice" source="ltichoice" />
+        <TextField label="Msecertchoice" source="msecertchoice" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -32,12 +41,6 @@ export const LuApplicationProgramList = (
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Choice" source="choice" />
-        <TextField label="Decision" source="decision" />
-        <TextField label="Faccontact" source="faccontact" />
-        <TextField label="Id" source="id" />
-        <TextField label="Ltichoice" source="ltichoice" />
-        <TextField label="Msecertchoice" source="msecertchoice" />
         <ReferenceField
           label="Programs"
           source="programmodel.id"
@@ -45,10 +48,7 @@ export const LuApplicationProgramList = (
         >
           <TextField source={PROGRAMMODEL_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Round2" source="round2" />
-        <TextField label="Scholarship Amt" source="scholarshipAmt" />
-        <TextField label="Scholarship Comments" source="scholarshipComments" />
-        <TextField label="Stucontact" source="stucontact" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

@@ -11,34 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsDate, IsString, IsOptional } from "class-validator";
+import { IsString, IsInt, IsDate, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class DuolingoDatumCreateInput {
   @ApiProperty({
     required: true,
-    type: Number,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  applicantId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  applicationId!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  birthdate!: Date;
+  @IsString()
+  @Field(() => String)
+  lastName!: string;
 
   @ApiProperty({
     required: true,
@@ -46,39 +30,7 @@ class DuolingoDatumCreateInput {
   })
   @IsString()
   @Field(() => String)
-  certificateUrl!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  certified!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  comprehensionSubscore!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  conversationSubscore!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  country!: string;
+  givenNames!: string;
 
   @ApiProperty({
     required: true,
@@ -94,7 +46,63 @@ class DuolingoDatumCreateInput {
   })
   @IsString()
   @Field(() => String)
-  domain!: string;
+  sessionId!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  fullName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  firstName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  userId!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  certificateUrl!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  middleNames!: string;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  applicantId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  surnames!: string;
 
   @ApiProperty({
     required: true,
@@ -118,30 +126,6 @@ class DuolingoDatumCreateInput {
   })
   @IsString()
   @Field(() => String)
-  firstName!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  fullName!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  givenNames!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
   interviewUrl!: string;
 
   @ApiProperty({
@@ -158,23 +142,31 @@ class DuolingoDatumCreateInput {
   })
   @IsString()
   @Field(() => String)
-  lastName!: string;
+  country!: string;
 
   @ApiProperty({
     required: true,
-    type: Number,
   })
-  @IsInt()
-  @Field(() => Number)
-  literacySubscore!: number;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  birthdate!: Date;
 
   @ApiProperty({
     required: true,
-    type: String,
   })
-  @IsString()
-  @Field(() => String)
-  middleNames!: string;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  testDate!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  verificationDate!: Date;
 
   @ApiProperty({
     required: true,
@@ -190,7 +182,15 @@ class DuolingoDatumCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  percentScore!: number;
+  scale!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  conversationSubscore!: number;
 
   @ApiProperty({
     required: true,
@@ -206,7 +206,39 @@ class DuolingoDatumCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  scale!: number;
+  literacySubscore!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  certified!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  comprehensionSubscore!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  percentScore!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  applicationId!: number;
 
   @ApiProperty({
     required: false,
@@ -225,39 +257,7 @@ class DuolingoDatumCreateInput {
   })
   @IsString()
   @Field(() => String)
-  sessionId!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  surnames!: string;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  testDate!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  userId!: string;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  verificationDate!: Date;
+  domain!: string;
 }
 
 export { DuolingoDatumCreateInput as DuolingoDatumCreateInput };

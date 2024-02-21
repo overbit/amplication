@@ -28,7 +28,7 @@ class AccesslogApplicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  active?: SortOrder;
+  appId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class AccesslogApplicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  appId?: SortOrder;
+  active?: SortOrder;
 
   @ApiProperty({
     required: false,

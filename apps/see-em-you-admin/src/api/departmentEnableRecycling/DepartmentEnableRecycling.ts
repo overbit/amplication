@@ -1,7 +1,7 @@
 export type DepartmentEnableRecycling = {
   departmentId: number;
-  enableRecycling: number;
-  id: string;
   periodId: number;
+  enableRecycling: number;
   usersId: number;
+  id: string;
 };

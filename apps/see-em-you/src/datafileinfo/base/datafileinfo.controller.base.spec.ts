@@ -18,54 +18,54 @@ import { DatafileinfoService } from "../datafileinfo.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  extension: "exampleExtension",
-  id: 42,
-  moddate: new Date(),
-  section: 42,
-  size: 42,
   typeField: "exampleTypeField",
-  userdata: "exampleUserdata",
+  extension: "exampleExtension",
+  size: 42,
   userId: 42,
+  section: 42,
+  moddate: new Date(),
+  userdata: "exampleUserdata",
+  id: 42,
 };
 const CREATE_RESULT = {
-  extension: "exampleExtension",
-  id: 42,
-  moddate: new Date(),
-  section: 42,
-  size: 42,
   typeField: "exampleTypeField",
-  userdata: "exampleUserdata",
+  extension: "exampleExtension",
+  size: 42,
   userId: 42,
+  section: 42,
+  moddate: new Date(),
+  userdata: "exampleUserdata",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    extension: "exampleExtension",
-    id: 42,
-    moddate: new Date(),
-    section: 42,
-    size: 42,
     typeField: "exampleTypeField",
-    userdata: "exampleUserdata",
+    extension: "exampleExtension",
+    size: 42,
     userId: 42,
+    section: 42,
+    moddate: new Date(),
+    userdata: "exampleUserdata",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  extension: "exampleExtension",
-  id: 42,
-  moddate: new Date(),
-  section: 42,
-  size: 42,
   typeField: "exampleTypeField",
-  userdata: "exampleUserdata",
+  extension: "exampleExtension",
+  size: 42,
   userId: 42,
+  section: 42,
+  moddate: new Date(),
+  userdata: "exampleUserdata",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createDatafileinfo() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  datafileinfos: () => FIND_MANY_RESULT,
+  datafileinfo: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

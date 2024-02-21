@@ -6,8 +6,8 @@ import {
   ReferenceInput,
   SelectInput,
 } from "react-admin";
-import { ApplicationreqTitle } from "../applicationreq/ApplicationreqTitle";
 import { ProgramModelTitle } from "../programModel/ProgramModelTitle";
+import { ApplicationreqTitle } from "../applicationreq/ApplicationreqTitle";
 
 export const ProgramsApplicationreqCreate = (
   props: CreateProps
@@ -16,18 +16,18 @@ export const ProgramsApplicationreqCreate = (
     <Create {...props}>
       <SimpleForm>
         <ReferenceInput
-          source="applicationreqs.id"
-          reference="Applicationreq"
-          label="Applicationreqs"
-        >
-          <SelectInput optionText={ApplicationreqTitle} />
-        </ReferenceInput>
-        <ReferenceInput
           source="programs.id"
           reference="ProgramModel"
           label="Programs"
         >
           <SelectInput optionText={ProgramModelTitle} />
+        </ReferenceInput>
+        <ReferenceInput
+          source="applicationreqs.id"
+          reference="Applicationreq"
+          label="Applicationreqs"
+        >
+          <SelectInput optionText={ApplicationreqTitle} />
         </ReferenceInput>
       </SimpleForm>
     </Create>

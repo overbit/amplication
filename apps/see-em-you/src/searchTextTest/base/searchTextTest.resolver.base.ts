@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSearchTextTestArgs } from "./CreateSearchTextTestArgs";
-import { UpdateSearchTextTestArgs } from "./UpdateSearchTextTestArgs";
-import { DeleteSearchTextTestArgs } from "./DeleteSearchTextTestArgs";
+import { SearchTextTest } from "./SearchTextTest";
 import { SearchTextTestCountArgs } from "./SearchTextTestCountArgs";
 import { SearchTextTestFindManyArgs } from "./SearchTextTestFindManyArgs";
 import { SearchTextTestFindUniqueArgs } from "./SearchTextTestFindUniqueArgs";
-import { SearchTextTest } from "./SearchTextTest";
+import { CreateSearchTextTestArgs } from "./CreateSearchTextTestArgs";
+import { UpdateSearchTextTestArgs } from "./UpdateSearchTextTestArgs";
+import { DeleteSearchTextTestArgs } from "./DeleteSearchTextTestArgs";
 import { SearchTextTestService } from "../searchTextTest.service";
 @graphql.Resolver(() => SearchTextTest)
 export class SearchTextTestResolverBase {
@@ -38,14 +38,14 @@ export class SearchTextTestResolverBase {
   async searchTextTests(
     @graphql.Args() args: SearchTextTestFindManyArgs
   ): Promise<SearchTextTest[]> {
-    return this.service.findMany(args);
+    return this.service.searchTextTests(args);
   }
 
   @graphql.Query(() => SearchTextTest, { nullable: true })
   async searchTextTest(
     @graphql.Args() args: SearchTextTestFindUniqueArgs
   ): Promise<SearchTextTest | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.searchTextTest(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SearchTextTestResolverBase {
   async createSearchTextTest(
     @graphql.Args() args: CreateSearchTextTestArgs
   ): Promise<SearchTextTest> {
-    return await this.service.create({
+    return await this.service.createSearchTextTest({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SearchTextTestResolverBase {
     @graphql.Args() args: UpdateSearchTextTestArgs
   ): Promise<SearchTextTest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSearchTextTest({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SearchTextTestResolverBase {
     @graphql.Args() args: DeleteSearchTextTestArgs
   ): Promise<SearchTextTest | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSearchTextTest(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

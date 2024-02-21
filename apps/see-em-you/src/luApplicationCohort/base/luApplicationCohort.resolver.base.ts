@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuApplicationCohortArgs } from "./CreateLuApplicationCohortArgs";
-import { UpdateLuApplicationCohortArgs } from "./UpdateLuApplicationCohortArgs";
-import { DeleteLuApplicationCohortArgs } from "./DeleteLuApplicationCohortArgs";
+import { LuApplicationCohort } from "./LuApplicationCohort";
 import { LuApplicationCohortCountArgs } from "./LuApplicationCohortCountArgs";
 import { LuApplicationCohortFindManyArgs } from "./LuApplicationCohortFindManyArgs";
 import { LuApplicationCohortFindUniqueArgs } from "./LuApplicationCohortFindUniqueArgs";
-import { LuApplicationCohort } from "./LuApplicationCohort";
+import { CreateLuApplicationCohortArgs } from "./CreateLuApplicationCohortArgs";
+import { UpdateLuApplicationCohortArgs } from "./UpdateLuApplicationCohortArgs";
+import { DeleteLuApplicationCohortArgs } from "./DeleteLuApplicationCohortArgs";
 import { Application } from "../../application/base/Application";
 import { LuApplicationCohortService } from "../luApplicationCohort.service";
 @graphql.Resolver(() => LuApplicationCohort)
@@ -39,14 +39,14 @@ export class LuApplicationCohortResolverBase {
   async luApplicationCohorts(
     @graphql.Args() args: LuApplicationCohortFindManyArgs
   ): Promise<LuApplicationCohort[]> {
-    return this.service.findMany(args);
+    return this.service.luApplicationCohorts(args);
   }
 
   @graphql.Query(() => LuApplicationCohort, { nullable: true })
   async luApplicationCohort(
     @graphql.Args() args: LuApplicationCohortFindUniqueArgs
   ): Promise<LuApplicationCohort | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luApplicationCohort(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class LuApplicationCohortResolverBase {
   async createLuApplicationCohort(
     @graphql.Args() args: CreateLuApplicationCohortArgs
   ): Promise<LuApplicationCohort> {
-    return await this.service.create({
+    return await this.service.createLuApplicationCohort({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class LuApplicationCohortResolverBase {
     @graphql.Args() args: UpdateLuApplicationCohortArgs
   ): Promise<LuApplicationCohort | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationCohort({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class LuApplicationCohortResolverBase {
     @graphql.Args() args: DeleteLuApplicationCohortArgs
   ): Promise<LuApplicationCohort | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuApplicationCohort(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class LuApplicationCohortResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: LuApplicationCohort
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

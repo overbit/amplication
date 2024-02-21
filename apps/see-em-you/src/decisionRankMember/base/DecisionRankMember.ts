@@ -21,7 +21,15 @@ class DecisionRankMember {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
+  departmentId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +45,7 @@ class DecisionRankMember {
   })
   @IsInt()
   @Field(() => Number)
-  departmentId!: number;
+  applicationId!: number;
 
   @ApiProperty({
     required: true,
@@ -54,14 +62,6 @@ class DecisionRankMember {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
 }
 
 export { DecisionRankMember as DecisionRankMember };

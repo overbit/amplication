@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DegreeLevelService } from "../degreeLevel.service";
 import { DegreeLevelCreateInput } from "./DegreeLevelCreateInput";
-import { DegreeLevelWhereInput } from "./DegreeLevelWhereInput";
-import { DegreeLevelWhereUniqueInput } from "./DegreeLevelWhereUniqueInput";
-import { DegreeLevelFindManyArgs } from "./DegreeLevelFindManyArgs";
-import { DegreeLevelUpdateInput } from "./DegreeLevelUpdateInput";
 import { DegreeLevel } from "./DegreeLevel";
+import { DegreeLevelFindManyArgs } from "./DegreeLevelFindManyArgs";
+import { DegreeLevelWhereUniqueInput } from "./DegreeLevelWhereUniqueInput";
+import { DegreeLevelUpdateInput } from "./DegreeLevelUpdateInput";
 
 export class DegreeLevelControllerBase {
   constructor(protected readonly service: DegreeLevelService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DegreeLevel })
-  async create(
+  async createDegreeLevel(
     @common.Body() data: DegreeLevelCreateInput
   ): Promise<DegreeLevel> {
-    return await this.service.create({
+    return await this.service.createDegreeLevel({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -43,13 +42,13 @@ export class DegreeLevelControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DegreeLevel] })
   @ApiNestedQuery(DegreeLevelFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DegreeLevel[]> {
+  async degreeLevels(@common.Req() request: Request): Promise<DegreeLevel[]> {
     const args = plainToClass(DegreeLevelFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.degreeLevels({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -57,14 +56,14 @@ export class DegreeLevelControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DegreeLevel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async degreeLevel(
     @common.Param() params: DegreeLevelWhereUniqueInput
   ): Promise<DegreeLevel | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.degreeLevel({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -78,17 +77,17 @@ export class DegreeLevelControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DegreeLevel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDegreeLevel(
     @common.Param() params: DegreeLevelWhereUniqueInput,
     @common.Body() data: DegreeLevelUpdateInput
   ): Promise<DegreeLevel | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDegreeLevel({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -104,15 +103,15 @@ export class DegreeLevelControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DegreeLevel })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDegreeLevel(
     @common.Param() params: DegreeLevelWhereUniqueInput
   ): Promise<DegreeLevel | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDegreeLevel({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {

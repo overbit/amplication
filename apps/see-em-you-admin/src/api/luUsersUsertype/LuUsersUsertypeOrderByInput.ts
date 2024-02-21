@@ -1,9 +1,9 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type LuUsersUsertypeOrderByInput = {
-  domain?: SortOrder;
-  id?: SortOrder;
-  mhciPrereqsProgrammingSamplesId?: SortOrder;
-  user_id?: SortOrder;
   usertypeId?: SortOrder;
+  domain?: SortOrder;
+  user_id?: SortOrder;
+  mhciPrereqsProgrammingSamplesId?: SortOrder;
+  id?: SortOrder;
 };

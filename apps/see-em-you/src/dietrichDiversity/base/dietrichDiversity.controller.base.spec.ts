@@ -20,36 +20,36 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
   background: "exampleBackground",
-  id: 42,
   lifeExperience: "exampleLifeExperience",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
   background: "exampleBackground",
-  id: 42,
   lifeExperience: "exampleLifeExperience",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
     background: "exampleBackground",
-    id: 42,
     lifeExperience: "exampleLifeExperience",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
   background: "exampleBackground",
-  id: 42,
   lifeExperience: "exampleLifeExperience",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createDietrichDiversity() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  dietrichDiversities: () => FIND_MANY_RESULT,
+  dietrichDiversity: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

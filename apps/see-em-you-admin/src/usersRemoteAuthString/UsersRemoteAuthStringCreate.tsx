@@ -3,8 +3,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const UsersRemoteAuthStringCreate = (
@@ -13,8 +13,8 @@ export const UsersRemoteAuthStringCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Remote Auth String" source="remoteAuthString" />
         <NumberInput step={1} label="Users Id" source="usersId" />
+        <TextInput label="Remote Auth String" source="remoteAuthString" />
       </SimpleForm>
     </Create>
   );

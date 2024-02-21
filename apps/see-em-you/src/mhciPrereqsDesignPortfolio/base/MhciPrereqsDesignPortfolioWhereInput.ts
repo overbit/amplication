@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class MhciPrereqsDesignPortfolioWhereInput {
@@ -28,6 +29,17 @@ class MhciPrereqsDesignPortfolioWhereInput {
     nullable: true,
   })
   luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { MhciPrereqsDesignPortfolioWhereInput as MhciPrereqsDesignPortfolioWhereInput };

@@ -1,6 +1,6 @@
 export type VoucherApplication = {
-  appId: number;
-  dateUsed: Date;
-  id: number;
   voucherId: number;
+  dateUsed: Date;
+  appId: number;
+  id: number;
 };

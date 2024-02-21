@@ -28,7 +28,7 @@ class MhciPrereqsDesignPortfolioOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationId?: SortOrder;
+  url?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,29 +50,7 @@ class MhciPrereqsDesignPortfolioOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  student_lu_users_usertypes_id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  periodId?: SortOrder;
+  applicationId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -94,7 +72,29 @@ class MhciPrereqsDesignPortfolioOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  url?: SortOrder;
+  periodId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  student_lu_users_usertypes_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MhciPrereqsDesignPortfolioOrderByInput as MhciPrereqsDesignPortfolioOrderByInput };

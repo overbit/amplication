@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LtiMastersAdmit } from "@prisma/client";
+import {
+  Prisma,
+  LtiMastersAdmit as PrismaLtiMastersAdmit,
+} from "@prisma/client";
 
 export class LtiMastersAdmitServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class LtiMastersAdmitServiceBase {
     return this.prisma.ltiMastersAdmit.count(args);
   }
 
-  async findMany<T extends Prisma.LtiMastersAdmitFindManyArgs>(
+  async ltiMastersAdmits<T extends Prisma.LtiMastersAdmitFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LtiMastersAdmitFindManyArgs>
-  ): Promise<LtiMastersAdmit[]> {
+  ): Promise<PrismaLtiMastersAdmit[]> {
     return this.prisma.ltiMastersAdmit.findMany(args);
   }
-  async findOne<T extends Prisma.LtiMastersAdmitFindUniqueArgs>(
+  async ltiMastersAdmit<T extends Prisma.LtiMastersAdmitFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LtiMastersAdmitFindUniqueArgs>
-  ): Promise<LtiMastersAdmit | null> {
+  ): Promise<PrismaLtiMastersAdmit | null> {
     return this.prisma.ltiMastersAdmit.findUnique(args);
   }
-  async create<T extends Prisma.LtiMastersAdmitCreateArgs>(
+  async createLtiMastersAdmit<T extends Prisma.LtiMastersAdmitCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LtiMastersAdmitCreateArgs>
-  ): Promise<LtiMastersAdmit> {
+  ): Promise<PrismaLtiMastersAdmit> {
     return this.prisma.ltiMastersAdmit.create<T>(args);
   }
-  async update<T extends Prisma.LtiMastersAdmitUpdateArgs>(
+  async updateLtiMastersAdmit<T extends Prisma.LtiMastersAdmitUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LtiMastersAdmitUpdateArgs>
-  ): Promise<LtiMastersAdmit> {
+  ): Promise<PrismaLtiMastersAdmit> {
     return this.prisma.ltiMastersAdmit.update<T>(args);
   }
-  async delete<T extends Prisma.LtiMastersAdmitDeleteArgs>(
+  async deleteLtiMastersAdmit<T extends Prisma.LtiMastersAdmitDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.LtiMastersAdmitDeleteArgs>
-  ): Promise<LtiMastersAdmit> {
+  ): Promise<PrismaLtiMastersAdmit> {
     return this.prisma.ltiMastersAdmit.delete(args);
   }
 }

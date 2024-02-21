@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DomainUnit, Domain, Unit } from "@prisma/client";
+
+import {
+  Prisma,
+  DomainUnit as PrismaDomainUnit,
+  Domain as PrismaDomain,
+  Unit as PrismaUnit,
+} from "@prisma/client";
 
 export class DomainUnitServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +27,33 @@ export class DomainUnitServiceBase {
     return this.prisma.domainUnit.count(args);
   }
 
-  async findMany<T extends Prisma.DomainUnitFindManyArgs>(
+  async domainUnits<T extends Prisma.DomainUnitFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainUnitFindManyArgs>
-  ): Promise<DomainUnit[]> {
+  ): Promise<PrismaDomainUnit[]> {
     return this.prisma.domainUnit.findMany(args);
   }
-  async findOne<T extends Prisma.DomainUnitFindUniqueArgs>(
+  async domainUnit<T extends Prisma.DomainUnitFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainUnitFindUniqueArgs>
-  ): Promise<DomainUnit | null> {
+  ): Promise<PrismaDomainUnit | null> {
     return this.prisma.domainUnit.findUnique(args);
   }
-  async create<T extends Prisma.DomainUnitCreateArgs>(
+  async createDomainUnit<T extends Prisma.DomainUnitCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainUnitCreateArgs>
-  ): Promise<DomainUnit> {
+  ): Promise<PrismaDomainUnit> {
     return this.prisma.domainUnit.create<T>(args);
   }
-  async update<T extends Prisma.DomainUnitUpdateArgs>(
+  async updateDomainUnit<T extends Prisma.DomainUnitUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainUnitUpdateArgs>
-  ): Promise<DomainUnit> {
+  ): Promise<PrismaDomainUnit> {
     return this.prisma.domainUnit.update<T>(args);
   }
-  async delete<T extends Prisma.DomainUnitDeleteArgs>(
+  async deleteDomainUnit<T extends Prisma.DomainUnitDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainUnitDeleteArgs>
-  ): Promise<DomainUnit> {
+  ): Promise<PrismaDomainUnit> {
     return this.prisma.domainUnit.delete(args);
   }
 
-  async getDomain(parentId: string): Promise<Domain | null> {
+  async getDomain(parentId: string): Promise<PrismaDomain | null> {
     return this.prisma.domainUnit
       .findUnique({
         where: { id: parentId },
@@ -55,7 +61,7 @@ export class DomainUnitServiceBase {
       .domain();
   }
 
-  async getUnit(parentId: string): Promise<Unit | null> {
+  async getUnit(parentId: string): Promise<PrismaUnit | null> {
     return this.prisma.domainUnit
       .findUnique({
         where: { id: parentId },

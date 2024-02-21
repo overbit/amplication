@@ -18,34 +18,34 @@ import { ProgramGroupProgramService } from "../programGroupProgram.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
   programGroupId: 42,
   unitId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
   programGroupId: 42,
   unitId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
     programGroupId: 42,
     unitId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
   programGroupId: 42,
   unitId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createProgramGroupProgram() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  programGroupPrograms: () => FIND_MANY_RESULT,
+  programGroupProgram: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -19,8 +19,8 @@ export const IniYearsExperienceList = (
           label="Full Time Professional"
           source="fullTimeProfessional"
         />
-        <TextField label="Id" source="id" />
         <TextField label="Relevant Industry" source="relevantIndustry" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

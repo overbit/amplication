@@ -13,10 +13,10 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
-  IsOptional,
-  ValidateNested,
-  IsBoolean,
   IsString,
+  IsOptional,
+  IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -24,40 +24,12 @@ import { Type } from "class-transformer";
 @InputType()
 class MhciPrereqsProgrammingSampleCreateInput {
   @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  applicationId?: number | null;
-
-  @ApiProperty({
     required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
   datafileinfoId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: () => LuUsersUsertypeWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertypeWhereUniqueInput)
-  @Field(() => LuUsersUsertypeWhereUniqueInput)
-  luUsersUsertypes!: LuUsersUsertypeWhereUniqueInput;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  newFileUploaded!: boolean;
 
   @ApiProperty({
     required: false,
@@ -69,6 +41,33 @@ class MhciPrereqsProgrammingSampleCreateInput {
     nullable: true,
   })
   note?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  submittedToReviewer!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  newFileUploaded!: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  applicationId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -94,11 +93,12 @@ class MhciPrereqsProgrammingSampleCreateInput {
 
   @ApiProperty({
     required: true,
-    type: Boolean,
+    type: () => LuUsersUsertypeWhereUniqueInput,
   })
-  @IsBoolean()
-  @Field(() => Boolean)
-  submittedToReviewer!: boolean;
+  @ValidateNested()
+  @Type(() => LuUsersUsertypeWhereUniqueInput)
+  @Field(() => LuUsersUsertypeWhereUniqueInput)
+  luUsersUsertypes!: LuUsersUsertypeWhereUniqueInput;
 }
 
 export { MhciPrereqsProgrammingSampleCreateInput as MhciPrereqsProgrammingSampleCreateInput };

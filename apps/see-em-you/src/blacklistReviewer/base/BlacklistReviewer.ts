@@ -24,6 +24,14 @@ class BlacklistReviewer {
   appId!: number;
 
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  reviewerId!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -41,14 +49,6 @@ class BlacklistReviewer {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reviewerId!: number;
 }
 
 export { BlacklistReviewer as BlacklistReviewer };

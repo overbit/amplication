@@ -7,8 +7,8 @@ export const LuDomainDepartmentShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Department Id" source="departmentId" />
         <TextField label="Domain Id" source="domainId" />
+        <TextField label="Department Id" source="departmentId" />
         <TextField label="Drank" source="drank" />
         <TextField label="Id" source="id" />
       </SimpleShowLayout>

@@ -1,1 +1,5 @@
-export type ErrorlogWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type ErrorlogWhereInput = {
+  id?: IntFilter;
+};

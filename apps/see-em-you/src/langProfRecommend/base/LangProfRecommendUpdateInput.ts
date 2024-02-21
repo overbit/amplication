@@ -15,8 +15,8 @@ import {
   IsInt,
   IsOptional,
   IsString,
-  IsDate,
   IsBoolean,
+  IsDate,
 } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -32,6 +32,17 @@ class LangProfRecommendUpdateInput {
     nullable: true,
   })
   applicationId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  recUserId?: number;
 
   @ApiProperty({
     required: false,
@@ -68,36 +79,14 @@ class LangProfRecommendUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Boolean,
   })
-  @IsString()
+  @IsBoolean()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Boolean, {
     nullable: true,
   })
-  languageSpecialization?: string;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  lastReminderSent?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  recUserId?: number;
+  submitted?: boolean;
 
   @ApiProperty({
     required: false,
@@ -112,14 +101,25 @@ class LangProfRecommendUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Boolean,
   })
-  @IsBoolean()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Boolean, {
+  @Field(() => Date, {
     nullable: true,
   })
-  submitted?: boolean;
+  lastReminderSent?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  languageSpecialization?: string;
 }
 
 export { LangProfRecommendUpdateInput as LangProfRecommendUpdateInput };

@@ -1,1 +1,5 @@
-export type MitsSlateToeflWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type MitsSlateToeflWhereInput = {
+  id?: StringFilter;
+};

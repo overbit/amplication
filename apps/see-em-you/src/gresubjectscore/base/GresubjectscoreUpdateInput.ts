@@ -11,30 +11,62 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import {
-  ValidateNested,
-  IsOptional,
-  IsInt,
-  IsString,
-  IsBoolean,
   IsDate,
+  IsOptional,
+  IsString,
+  IsInt,
+  IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 
 @InputType()
 class GresubjectscoreUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => Date, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput;
+  testdate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  name?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  score?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  percentile?: string | null;
 
   @ApiProperty({
     required: false,
@@ -60,39 +92,6 @@ class GresubjectscoreUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  name?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  percentile?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  score?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: Boolean,
   })
   @IsBoolean()
@@ -104,14 +103,15 @@ class GresubjectscoreUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsDate()
-  @Type(() => Date)
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => ApplicationWhereUniqueInput, {
     nullable: true,
   })
-  testdate?: Date | null;
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { GresubjectscoreUpdateInput as GresubjectscoreUpdateInput };

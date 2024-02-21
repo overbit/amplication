@@ -33,11 +33,11 @@ const FIND_ONE_RESULT = {
 };
 
 const service = {
-  create() {
+  createLtiMastersAdmit() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ltiMastersAdmits: () => FIND_MANY_RESULT,
+  ltiMastersAdmit: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

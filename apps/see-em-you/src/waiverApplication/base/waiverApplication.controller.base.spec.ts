@@ -18,46 +18,46 @@ import { WaiverApplicationService } from "../waiverApplication.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationId: 42,
-  createDate: new Date(),
-  datafileId: 42,
   id: 42,
+  applicationId: 42,
   orgId: 42,
+  datafileId: 42,
+  createDate: new Date(),
   updateDate: new Date(),
 };
 const CREATE_RESULT = {
-  applicationId: 42,
-  createDate: new Date(),
-  datafileId: 42,
   id: 42,
+  applicationId: 42,
   orgId: 42,
+  datafileId: 42,
+  createDate: new Date(),
   updateDate: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
-    applicationId: 42,
-    createDate: new Date(),
-    datafileId: 42,
     id: 42,
+    applicationId: 42,
     orgId: 42,
+    datafileId: 42,
+    createDate: new Date(),
     updateDate: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationId: 42,
-  createDate: new Date(),
-  datafileId: 42,
   id: 42,
+  applicationId: 42,
   orgId: 42,
+  datafileId: 42,
+  createDate: new Date(),
   updateDate: new Date(),
 };
 
 const service = {
-  create() {
+  createWaiverApplication() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  waiverApplications: () => FIND_MANY_RESULT,
+  waiverApplication: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

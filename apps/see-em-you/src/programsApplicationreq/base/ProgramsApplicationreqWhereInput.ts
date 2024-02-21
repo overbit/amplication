@@ -11,13 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationreqWhereUniqueInput } from "../../applicationreq/base/ApplicationreqWhereUniqueInput";
+import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
+import { ApplicationreqWhereUniqueInput } from "../../applicationreq/base/ApplicationreqWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class ProgramsApplicationreqWhereInput {
+  @ApiProperty({
+    required: false,
+    type: () => ProgramModelWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ProgramModelWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ProgramModelWhereUniqueInput, {
+    nullable: true,
+  })
+  programs?: ProgramModelWhereUniqueInput;
+
   @ApiProperty({
     required: false,
     type: () => ApplicationreqWhereUniqueInput,
@@ -32,15 +45,14 @@ class ProgramsApplicationreqWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => ProgramModelWhereUniqueInput,
+    type: IntFilter,
   })
-  @ValidateNested()
-  @Type(() => ProgramModelWhereUniqueInput)
+  @Type(() => IntFilter)
   @IsOptional()
-  @Field(() => ProgramModelWhereUniqueInput, {
+  @Field(() => IntFilter, {
     nullable: true,
   })
-  programs?: ProgramModelWhereUniqueInput;
+  id?: IntFilter;
 }
 
 export { ProgramsApplicationreqWhereInput as ProgramsApplicationreqWhereInput };

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Gender } from "@prisma/client";
+import { Prisma, Gender as PrismaGender } from "@prisma/client";
 
 export class GenderServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class GenderServiceBase {
     return this.prisma.gender.count(args);
   }
 
-  async findMany<T extends Prisma.GenderFindManyArgs>(
+  async genders<T extends Prisma.GenderFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.GenderFindManyArgs>
-  ): Promise<Gender[]> {
+  ): Promise<PrismaGender[]> {
     return this.prisma.gender.findMany(args);
   }
-  async findOne<T extends Prisma.GenderFindUniqueArgs>(
+  async gender<T extends Prisma.GenderFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.GenderFindUniqueArgs>
-  ): Promise<Gender | null> {
+  ): Promise<PrismaGender | null> {
     return this.prisma.gender.findUnique(args);
   }
-  async create<T extends Prisma.GenderCreateArgs>(
+  async createGender<T extends Prisma.GenderCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GenderCreateArgs>
-  ): Promise<Gender> {
+  ): Promise<PrismaGender> {
     return this.prisma.gender.create<T>(args);
   }
-  async update<T extends Prisma.GenderUpdateArgs>(
+  async updateGender<T extends Prisma.GenderUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GenderUpdateArgs>
-  ): Promise<Gender> {
+  ): Promise<PrismaGender> {
     return this.prisma.gender.update<T>(args);
   }
-  async delete<T extends Prisma.GenderDeleteArgs>(
+  async deleteGender<T extends Prisma.GenderDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.GenderDeleteArgs>
-  ): Promise<Gender> {
+  ): Promise<PrismaGender> {
     return this.prisma.gender.delete(args);
   }
 }

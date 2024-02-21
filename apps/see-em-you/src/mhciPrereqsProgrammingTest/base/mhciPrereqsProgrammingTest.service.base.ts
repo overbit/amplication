@@ -10,10 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  MhciPrereqsProgrammingTest,
-  LuUsersUsertype,
+  MhciPrereqsProgrammingTest as PrismaMhciPrereqsProgrammingTest,
+  LuUsersUsertype as PrismaLuUsersUsertype,
 } from "@prisma/client";
 
 export class MhciPrereqsProgrammingTestServiceBase {
@@ -25,36 +26,48 @@ export class MhciPrereqsProgrammingTestServiceBase {
     return this.prisma.mhciPrereqsProgrammingTest.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsProgrammingTestFindManyArgs>(
+  async mhciPrereqsProgrammingTests<
+    T extends Prisma.MhciPrereqsProgrammingTestFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsProgrammingTestFindManyArgs>
-  ): Promise<MhciPrereqsProgrammingTest[]> {
+  ): Promise<PrismaMhciPrereqsProgrammingTest[]> {
     return this.prisma.mhciPrereqsProgrammingTest.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsProgrammingTestFindUniqueArgs>(
+  async mhciPrereqsProgrammingTest<
+    T extends Prisma.MhciPrereqsProgrammingTestFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsProgrammingTestFindUniqueArgs
     >
-  ): Promise<MhciPrereqsProgrammingTest | null> {
+  ): Promise<PrismaMhciPrereqsProgrammingTest | null> {
     return this.prisma.mhciPrereqsProgrammingTest.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsProgrammingTestCreateArgs>(
+  async createMhciPrereqsProgrammingTest<
+    T extends Prisma.MhciPrereqsProgrammingTestCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsProgrammingTestCreateArgs>
-  ): Promise<MhciPrereqsProgrammingTest> {
+  ): Promise<PrismaMhciPrereqsProgrammingTest> {
     return this.prisma.mhciPrereqsProgrammingTest.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsProgrammingTestUpdateArgs>(
+  async updateMhciPrereqsProgrammingTest<
+    T extends Prisma.MhciPrereqsProgrammingTestUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsProgrammingTestUpdateArgs>
-  ): Promise<MhciPrereqsProgrammingTest> {
+  ): Promise<PrismaMhciPrereqsProgrammingTest> {
     return this.prisma.mhciPrereqsProgrammingTest.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsProgrammingTestDeleteArgs>(
+  async deleteMhciPrereqsProgrammingTest<
+    T extends Prisma.MhciPrereqsProgrammingTestDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsProgrammingTestDeleteArgs>
-  ): Promise<MhciPrereqsProgrammingTest> {
+  ): Promise<PrismaMhciPrereqsProgrammingTest> {
     return this.prisma.mhciPrereqsProgrammingTest.delete(args);
   }
 
-  async getLuUsersUsertypes(parentId: number): Promise<LuUsersUsertype | null> {
+  async getLuUsersUsertypes(
+    parentId: number
+  ): Promise<PrismaLuUsersUsertype | null> {
     return this.prisma.mhciPrereqsProgrammingTest
       .findUnique({
         where: { id: parentId },

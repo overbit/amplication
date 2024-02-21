@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuApplicationProgramsHistoryArgs } from "./CreateLuApplicationProgramsHistoryArgs";
-import { UpdateLuApplicationProgramsHistoryArgs } from "./UpdateLuApplicationProgramsHistoryArgs";
-import { DeleteLuApplicationProgramsHistoryArgs } from "./DeleteLuApplicationProgramsHistoryArgs";
+import { LuApplicationProgramsHistory } from "./LuApplicationProgramsHistory";
 import { LuApplicationProgramsHistoryCountArgs } from "./LuApplicationProgramsHistoryCountArgs";
 import { LuApplicationProgramsHistoryFindManyArgs } from "./LuApplicationProgramsHistoryFindManyArgs";
 import { LuApplicationProgramsHistoryFindUniqueArgs } from "./LuApplicationProgramsHistoryFindUniqueArgs";
-import { LuApplicationProgramsHistory } from "./LuApplicationProgramsHistory";
+import { CreateLuApplicationProgramsHistoryArgs } from "./CreateLuApplicationProgramsHistoryArgs";
+import { UpdateLuApplicationProgramsHistoryArgs } from "./UpdateLuApplicationProgramsHistoryArgs";
+import { DeleteLuApplicationProgramsHistoryArgs } from "./DeleteLuApplicationProgramsHistoryArgs";
 import { LuApplicationProgramsHistoryService } from "../luApplicationProgramsHistory.service";
 @graphql.Resolver(() => LuApplicationProgramsHistory)
 export class LuApplicationProgramsHistoryResolverBase {
@@ -40,14 +40,14 @@ export class LuApplicationProgramsHistoryResolverBase {
   async luApplicationProgramsHistories(
     @graphql.Args() args: LuApplicationProgramsHistoryFindManyArgs
   ): Promise<LuApplicationProgramsHistory[]> {
-    return this.service.findMany(args);
+    return this.service.luApplicationProgramsHistories(args);
   }
 
   @graphql.Query(() => LuApplicationProgramsHistory, { nullable: true })
   async luApplicationProgramsHistory(
     @graphql.Args() args: LuApplicationProgramsHistoryFindUniqueArgs
   ): Promise<LuApplicationProgramsHistory | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luApplicationProgramsHistory(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class LuApplicationProgramsHistoryResolverBase {
   async createLuApplicationProgramsHistory(
     @graphql.Args() args: CreateLuApplicationProgramsHistoryArgs
   ): Promise<LuApplicationProgramsHistory> {
-    return await this.service.create({
+    return await this.service.createLuApplicationProgramsHistory({
       ...args,
       data: args.data,
     });
@@ -69,7 +69,7 @@ export class LuApplicationProgramsHistoryResolverBase {
     @graphql.Args() args: UpdateLuApplicationProgramsHistoryArgs
   ): Promise<LuApplicationProgramsHistory | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationProgramsHistory({
         ...args,
         data: args.data,
       });
@@ -88,7 +88,7 @@ export class LuApplicationProgramsHistoryResolverBase {
     @graphql.Args() args: DeleteLuApplicationProgramsHistoryArgs
   ): Promise<LuApplicationProgramsHistory | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuApplicationProgramsHistory(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

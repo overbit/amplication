@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateFolderLabelInfoArgs } from "./CreateFolderLabelInfoArgs";
-import { UpdateFolderLabelInfoArgs } from "./UpdateFolderLabelInfoArgs";
-import { DeleteFolderLabelInfoArgs } from "./DeleteFolderLabelInfoArgs";
+import { FolderLabelInfo } from "./FolderLabelInfo";
 import { FolderLabelInfoCountArgs } from "./FolderLabelInfoCountArgs";
 import { FolderLabelInfoFindManyArgs } from "./FolderLabelInfoFindManyArgs";
 import { FolderLabelInfoFindUniqueArgs } from "./FolderLabelInfoFindUniqueArgs";
-import { FolderLabelInfo } from "./FolderLabelInfo";
+import { CreateFolderLabelInfoArgs } from "./CreateFolderLabelInfoArgs";
+import { UpdateFolderLabelInfoArgs } from "./UpdateFolderLabelInfoArgs";
+import { DeleteFolderLabelInfoArgs } from "./DeleteFolderLabelInfoArgs";
 import { FolderLabelInfoService } from "../folderLabelInfo.service";
 @graphql.Resolver(() => FolderLabelInfo)
 export class FolderLabelInfoResolverBase {
@@ -38,14 +38,14 @@ export class FolderLabelInfoResolverBase {
   async folderLabelInfos(
     @graphql.Args() args: FolderLabelInfoFindManyArgs
   ): Promise<FolderLabelInfo[]> {
-    return this.service.findMany(args);
+    return this.service.folderLabelInfos(args);
   }
 
   @graphql.Query(() => FolderLabelInfo, { nullable: true })
   async folderLabelInfo(
     @graphql.Args() args: FolderLabelInfoFindUniqueArgs
   ): Promise<FolderLabelInfo | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.folderLabelInfo(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class FolderLabelInfoResolverBase {
   async createFolderLabelInfo(
     @graphql.Args() args: CreateFolderLabelInfoArgs
   ): Promise<FolderLabelInfo> {
-    return await this.service.create({
+    return await this.service.createFolderLabelInfo({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class FolderLabelInfoResolverBase {
     @graphql.Args() args: UpdateFolderLabelInfoArgs
   ): Promise<FolderLabelInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateFolderLabelInfo({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class FolderLabelInfoResolverBase {
     @graphql.Args() args: DeleteFolderLabelInfoArgs
   ): Promise<FolderLabelInfo | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteFolderLabelInfo(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

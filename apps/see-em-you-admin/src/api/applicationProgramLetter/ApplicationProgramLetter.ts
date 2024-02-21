@@ -1,9 +1,9 @@
 export type ApplicationProgramLetter = {
-  admitSent: boolean | null;
-  admitSentDate: Date | null;
-  id: number;
   rejectionSent: boolean | null;
   rejectionSentDate: Date | null;
+  admitSent: boolean | null;
+  admitSentDate: Date | null;
   waitlistSent: boolean | null;
   waitlistSentDate: Date | null;
+  id: number;
 };

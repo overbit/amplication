@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReviewIniAlternativeProgramArgs } from "./CreateReviewIniAlternativeProgramArgs";
-import { UpdateReviewIniAlternativeProgramArgs } from "./UpdateReviewIniAlternativeProgramArgs";
-import { DeleteReviewIniAlternativeProgramArgs } from "./DeleteReviewIniAlternativeProgramArgs";
+import { ReviewIniAlternativeProgram } from "./ReviewIniAlternativeProgram";
 import { ReviewIniAlternativeProgramCountArgs } from "./ReviewIniAlternativeProgramCountArgs";
 import { ReviewIniAlternativeProgramFindManyArgs } from "./ReviewIniAlternativeProgramFindManyArgs";
 import { ReviewIniAlternativeProgramFindUniqueArgs } from "./ReviewIniAlternativeProgramFindUniqueArgs";
-import { ReviewIniAlternativeProgram } from "./ReviewIniAlternativeProgram";
+import { CreateReviewIniAlternativeProgramArgs } from "./CreateReviewIniAlternativeProgramArgs";
+import { UpdateReviewIniAlternativeProgramArgs } from "./UpdateReviewIniAlternativeProgramArgs";
+import { DeleteReviewIniAlternativeProgramArgs } from "./DeleteReviewIniAlternativeProgramArgs";
 import { ReviewIniAlternativeProgramService } from "../reviewIniAlternativeProgram.service";
 @graphql.Resolver(() => ReviewIniAlternativeProgram)
 export class ReviewIniAlternativeProgramResolverBase {
@@ -38,14 +38,14 @@ export class ReviewIniAlternativeProgramResolverBase {
   async reviewIniAlternativePrograms(
     @graphql.Args() args: ReviewIniAlternativeProgramFindManyArgs
   ): Promise<ReviewIniAlternativeProgram[]> {
-    return this.service.findMany(args);
+    return this.service.reviewIniAlternativePrograms(args);
   }
 
   @graphql.Query(() => ReviewIniAlternativeProgram, { nullable: true })
   async reviewIniAlternativeProgram(
     @graphql.Args() args: ReviewIniAlternativeProgramFindUniqueArgs
   ): Promise<ReviewIniAlternativeProgram | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reviewIniAlternativeProgram(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ReviewIniAlternativeProgramResolverBase {
   async createReviewIniAlternativeProgram(
     @graphql.Args() args: CreateReviewIniAlternativeProgramArgs
   ): Promise<ReviewIniAlternativeProgram> {
-    return await this.service.create({
+    return await this.service.createReviewIniAlternativeProgram({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ReviewIniAlternativeProgramResolverBase {
     @graphql.Args() args: UpdateReviewIniAlternativeProgramArgs
   ): Promise<ReviewIniAlternativeProgram | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIniAlternativeProgram({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ReviewIniAlternativeProgramResolverBase {
     @graphql.Args() args: DeleteReviewIniAlternativeProgramArgs
   ): Promise<ReviewIniAlternativeProgram | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReviewIniAlternativeProgram(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

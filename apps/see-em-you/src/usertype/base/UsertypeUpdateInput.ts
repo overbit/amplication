@@ -24,7 +24,7 @@ class UsertypeUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  description?: string | null;
+  name?: string;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class UsertypeUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  name?: string;
+  description?: string | null;
 }
 
 export { UsertypeUpdateInput as UsertypeUpdateInput };

@@ -39,7 +39,7 @@ class DomainUnitOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  unit_id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class DomainUnitOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  unit_id?: SortOrder;
+  id?: SortOrder;
 }
 
 export { DomainUnitOrderByInput as DomainUnitOrderByInput };

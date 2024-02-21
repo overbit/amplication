@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { MhciPrereqsCourseWhereUniqueInput } from "../../mhciPrereqsCourse/base/MhciPrereqsCourseWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class MhciPrereqsCourseDatafileWhereInput {
@@ -28,6 +29,17 @@ class MhciPrereqsCourseDatafileWhereInput {
     nullable: true,
   })
   mhciPrereqsCourses?: MhciPrereqsCourseWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { MhciPrereqsCourseDatafileWhereInput as MhciPrereqsCourseDatafileWhereInput };

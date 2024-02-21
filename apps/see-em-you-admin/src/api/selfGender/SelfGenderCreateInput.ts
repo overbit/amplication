@@ -1,4 +1,4 @@
 export type SelfGenderCreateInput = {
-  genderIndex?: number | null;
   userId: number;
+  genderIndex?: number | null;
 };

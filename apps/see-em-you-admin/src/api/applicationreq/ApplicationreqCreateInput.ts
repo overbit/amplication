@@ -1,9 +1,9 @@
 import { ProgramsApplicationreqCreateNestedManyWithoutApplicationreqsInput } from "./ProgramsApplicationreqCreateNestedManyWithoutApplicationreqsInput";
 
 export type ApplicationreqCreateInput = {
-  linkname: string;
   name: string;
-  programsApplicationreqs?: ProgramsApplicationreqCreateNestedManyWithoutApplicationreqsInput;
   short?: string | null;
+  linkname: string;
   sortorder: number;
+  programsApplicationreqs?: ProgramsApplicationreqCreateNestedManyWithoutApplicationreqsInput;
 };

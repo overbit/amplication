@@ -16,6 +16,7 @@ import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 import { MhciPrereqsCourseDatafileListRelationFilter } from "../../mhciPrereqsCourseDatafile/base/MhciPrereqsCourseDatafileListRelationFilter";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class MhciPrereqsCourseWhereInput {
@@ -54,6 +55,17 @@ class MhciPrereqsCourseWhereInput {
     nullable: true,
   })
   mhciPrereqsCourseDatafiles?: MhciPrereqsCourseDatafileListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { MhciPrereqsCourseWhereInput as MhciPrereqsCourseWhereInput };

@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Gmatscore, Application } from "@prisma/client";
+import {
+  Prisma,
+  Gmatscore as PrismaGmatscore,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class GmatscoreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class GmatscoreServiceBase {
     return this.prisma.gmatscore.count(args);
   }
 
-  async findMany<T extends Prisma.GmatscoreFindManyArgs>(
+  async gmatscores<T extends Prisma.GmatscoreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.GmatscoreFindManyArgs>
-  ): Promise<Gmatscore[]> {
+  ): Promise<PrismaGmatscore[]> {
     return this.prisma.gmatscore.findMany(args);
   }
-  async findOne<T extends Prisma.GmatscoreFindUniqueArgs>(
+  async gmatscore<T extends Prisma.GmatscoreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.GmatscoreFindUniqueArgs>
-  ): Promise<Gmatscore | null> {
+  ): Promise<PrismaGmatscore | null> {
     return this.prisma.gmatscore.findUnique(args);
   }
-  async create<T extends Prisma.GmatscoreCreateArgs>(
+  async createGmatscore<T extends Prisma.GmatscoreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GmatscoreCreateArgs>
-  ): Promise<Gmatscore> {
+  ): Promise<PrismaGmatscore> {
     return this.prisma.gmatscore.create<T>(args);
   }
-  async update<T extends Prisma.GmatscoreUpdateArgs>(
+  async updateGmatscore<T extends Prisma.GmatscoreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GmatscoreUpdateArgs>
-  ): Promise<Gmatscore> {
+  ): Promise<PrismaGmatscore> {
     return this.prisma.gmatscore.update<T>(args);
   }
-  async delete<T extends Prisma.GmatscoreDeleteArgs>(
+  async deleteGmatscore<T extends Prisma.GmatscoreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.GmatscoreDeleteArgs>
-  ): Promise<Gmatscore> {
+  ): Promise<PrismaGmatscore> {
     return this.prisma.gmatscore.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.gmatscore
       .findUnique({
         where: { id: parentId },

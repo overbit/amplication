@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Campus } from "@prisma/client";
+import { Prisma, Campus as PrismaCampus } from "@prisma/client";
 
 export class CampusServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class CampusServiceBase {
     return this.prisma.campus.count(args);
   }
 
-  async findMany<T extends Prisma.CampusFindManyArgs>(
+  async campuses<T extends Prisma.CampusFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CampusFindManyArgs>
-  ): Promise<Campus[]> {
+  ): Promise<PrismaCampus[]> {
     return this.prisma.campus.findMany(args);
   }
-  async findOne<T extends Prisma.CampusFindUniqueArgs>(
+  async campus<T extends Prisma.CampusFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CampusFindUniqueArgs>
-  ): Promise<Campus | null> {
+  ): Promise<PrismaCampus | null> {
     return this.prisma.campus.findUnique(args);
   }
-  async create<T extends Prisma.CampusCreateArgs>(
+  async createCampus<T extends Prisma.CampusCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CampusCreateArgs>
-  ): Promise<Campus> {
+  ): Promise<PrismaCampus> {
     return this.prisma.campus.create<T>(args);
   }
-  async update<T extends Prisma.CampusUpdateArgs>(
+  async updateCampus<T extends Prisma.CampusUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CampusUpdateArgs>
-  ): Promise<Campus> {
+  ): Promise<PrismaCampus> {
     return this.prisma.campus.update<T>(args);
   }
-  async delete<T extends Prisma.CampusDeleteArgs>(
+  async deleteCampus<T extends Prisma.CampusDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CampusDeleteArgs>
-  ): Promise<Campus> {
+  ): Promise<PrismaCampus> {
     return this.prisma.campus.delete(args);
   }
 }

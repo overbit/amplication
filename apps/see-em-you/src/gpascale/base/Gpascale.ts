@@ -16,6 +16,14 @@ import { IsString, IsOptional, IsInt } from "class-validator";
 @ObjectType()
 class Gpascale {
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -32,15 +40,7 @@ class Gpascale {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
+  sortorder!: number;
 
   @ApiProperty({
     required: true,
@@ -48,7 +48,7 @@ class Gpascale {
   })
   @IsInt()
   @Field(() => Number)
-  sortorder!: number;
+  id!: number;
 }
 
 export { Gpascale as Gpascale };

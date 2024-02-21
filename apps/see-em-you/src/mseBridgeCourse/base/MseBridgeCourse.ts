@@ -29,6 +29,14 @@ class MseBridgeCourse {
   })
   @IsInt()
   @Field(() => Number)
+  reviewerId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   courseId!: number;
 
   @ApiProperty({
@@ -38,14 +46,6 @@ class MseBridgeCourse {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reviewerId!: number;
 }
 
 export { MseBridgeCourse as MseBridgeCourse };

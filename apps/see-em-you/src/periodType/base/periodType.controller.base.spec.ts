@@ -18,30 +18,30 @@ import { PeriodTypeService } from "../periodType.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   periodType: "examplePeriodType",
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   periodType: "examplePeriodType",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     periodType: "examplePeriodType",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   periodType: "examplePeriodType",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createPeriodType() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  periodTypes: () => FIND_MANY_RESULT,
+  periodType: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

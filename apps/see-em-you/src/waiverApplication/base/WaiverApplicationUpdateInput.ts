@@ -35,7 +35,7 @@ class WaiverApplicationUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  datafileId?: number | null;
+  orgId?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class WaiverApplicationUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  orgId?: number;
+  datafileId?: number | null;
 }
 
 export { WaiverApplicationUpdateInput as WaiverApplicationUpdateInput };

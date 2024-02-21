@@ -28,7 +28,7 @@ class ApplicantIpedsRaceOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  luUsersUsertypesId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class ApplicantIpedsRaceOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  luUsersUsertypesId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ApplicantIpedsRaceOrderByInput as ApplicantIpedsRaceOrderByInput };

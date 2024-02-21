@@ -1,6 +1,6 @@
 export type RejectionWaiver = {
-  id: string;
   luApplicationProgramsId: number;
-  permittedProgramId: number;
   waived: number | null;
+  permittedProgramId: number;
+  id: string;
 };

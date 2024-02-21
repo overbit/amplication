@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateApplicationMergeFileArgs } from "./CreateApplicationMergeFileArgs";
-import { UpdateApplicationMergeFileArgs } from "./UpdateApplicationMergeFileArgs";
-import { DeleteApplicationMergeFileArgs } from "./DeleteApplicationMergeFileArgs";
+import { ApplicationMergeFile } from "./ApplicationMergeFile";
 import { ApplicationMergeFileCountArgs } from "./ApplicationMergeFileCountArgs";
 import { ApplicationMergeFileFindManyArgs } from "./ApplicationMergeFileFindManyArgs";
 import { ApplicationMergeFileFindUniqueArgs } from "./ApplicationMergeFileFindUniqueArgs";
-import { ApplicationMergeFile } from "./ApplicationMergeFile";
+import { CreateApplicationMergeFileArgs } from "./CreateApplicationMergeFileArgs";
+import { UpdateApplicationMergeFileArgs } from "./UpdateApplicationMergeFileArgs";
+import { DeleteApplicationMergeFileArgs } from "./DeleteApplicationMergeFileArgs";
 import { ApplicationMergeFileService } from "../applicationMergeFile.service";
 @graphql.Resolver(() => ApplicationMergeFile)
 export class ApplicationMergeFileResolverBase {
@@ -38,14 +38,14 @@ export class ApplicationMergeFileResolverBase {
   async applicationMergeFiles(
     @graphql.Args() args: ApplicationMergeFileFindManyArgs
   ): Promise<ApplicationMergeFile[]> {
-    return this.service.findMany(args);
+    return this.service.applicationMergeFiles(args);
   }
 
   @graphql.Query(() => ApplicationMergeFile, { nullable: true })
   async applicationMergeFile(
     @graphql.Args() args: ApplicationMergeFileFindUniqueArgs
   ): Promise<ApplicationMergeFile | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.applicationMergeFile(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ApplicationMergeFileResolverBase {
   async createApplicationMergeFile(
     @graphql.Args() args: CreateApplicationMergeFileArgs
   ): Promise<ApplicationMergeFile> {
-    return await this.service.create({
+    return await this.service.createApplicationMergeFile({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ApplicationMergeFileResolverBase {
     @graphql.Args() args: UpdateApplicationMergeFileArgs
   ): Promise<ApplicationMergeFile | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationMergeFile({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ApplicationMergeFileResolverBase {
     @graphql.Args() args: DeleteApplicationMergeFileArgs
   ): Promise<ApplicationMergeFile | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteApplicationMergeFile(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

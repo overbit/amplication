@@ -32,6 +32,17 @@ class Em2SupportingCoursework {
   @Field(() => String, {
     nullable: true,
   })
+  dataStructuresTitle!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   dataStructuresNumber!: string | null;
 
   @ApiProperty({
@@ -43,15 +54,7 @@ class Em2SupportingCoursework {
   @Field(() => String, {
     nullable: true,
   })
-  dataStructuresTitle!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  statisticsTitle!: string | null;
 
   @ApiProperty({
     required: false,
@@ -62,18 +65,7 @@ class Em2SupportingCoursework {
   @Field(() => String, {
     nullable: true,
   })
-  makerkitsDescription!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  makerkitsDescription2!: string | null;
+  statisticsNumber!: string | null;
 
   @ApiProperty({
     required: false,
@@ -111,7 +103,7 @@ class Em2SupportingCoursework {
   @Field(() => String, {
     nullable: true,
   })
-  statisticsNumber!: string | null;
+  makerkitsDescription!: string | null;
 
   @ApiProperty({
     required: false,
@@ -122,7 +114,15 @@ class Em2SupportingCoursework {
   @Field(() => String, {
     nullable: true,
   })
-  statisticsTitle!: string | null;
+  makerkitsDescription2!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Em2SupportingCoursework as Em2SupportingCoursework };

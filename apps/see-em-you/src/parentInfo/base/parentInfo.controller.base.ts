@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ParentInfoService } from "../parentInfo.service";
 import { ParentInfoCreateInput } from "./ParentInfoCreateInput";
-import { ParentInfoWhereInput } from "./ParentInfoWhereInput";
-import { ParentInfoWhereUniqueInput } from "./ParentInfoWhereUniqueInput";
-import { ParentInfoFindManyArgs } from "./ParentInfoFindManyArgs";
-import { ParentInfoUpdateInput } from "./ParentInfoUpdateInput";
 import { ParentInfo } from "./ParentInfo";
+import { ParentInfoFindManyArgs } from "./ParentInfoFindManyArgs";
+import { ParentInfoWhereUniqueInput } from "./ParentInfoWhereUniqueInput";
+import { ParentInfoUpdateInput } from "./ParentInfoUpdateInput";
 
 export class ParentInfoControllerBase {
   constructor(protected readonly service: ParentInfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ParentInfo })
-  async create(
+  async createParentInfo(
     @common.Body() data: ParentInfoCreateInput
   ): Promise<ParentInfo> {
-    return await this.service.create({
+    return await this.service.createParentInfo({
       data: data,
       select: {
         appId: true,
-        created: true,
-        id: true,
-        modified: true,
-        p1EdLevel: true,
         p1Profession: true,
-        p2EdLevel: true,
+        p1EdLevel: true,
         p2Profession: true,
+        p2EdLevel: true,
+        created: true,
+        modified: true,
+        id: true,
       },
     });
   }
@@ -49,19 +48,19 @@ export class ParentInfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ParentInfo] })
   @ApiNestedQuery(ParentInfoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ParentInfo[]> {
+  async parentInfos(@common.Req() request: Request): Promise<ParentInfo[]> {
     const args = plainToClass(ParentInfoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.parentInfos({
       ...args,
       select: {
         appId: true,
-        created: true,
-        id: true,
-        modified: true,
-        p1EdLevel: true,
         p1Profession: true,
-        p2EdLevel: true,
+        p1EdLevel: true,
         p2Profession: true,
+        p2EdLevel: true,
+        created: true,
+        modified: true,
+        id: true,
       },
     });
   }
@@ -69,20 +68,20 @@ export class ParentInfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ParentInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async parentInfo(
     @common.Param() params: ParentInfoWhereUniqueInput
   ): Promise<ParentInfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.parentInfo({
       where: params,
       select: {
         appId: true,
-        created: true,
-        id: true,
-        modified: true,
-        p1EdLevel: true,
         p1Profession: true,
-        p2EdLevel: true,
+        p1EdLevel: true,
         p2Profession: true,
+        p2EdLevel: true,
+        created: true,
+        modified: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -96,23 +95,23 @@ export class ParentInfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ParentInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateParentInfo(
     @common.Param() params: ParentInfoWhereUniqueInput,
     @common.Body() data: ParentInfoUpdateInput
   ): Promise<ParentInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateParentInfo({
         where: params,
         data: data,
         select: {
           appId: true,
-          created: true,
-          id: true,
-          modified: true,
-          p1EdLevel: true,
           p1Profession: true,
-          p2EdLevel: true,
+          p1EdLevel: true,
           p2Profession: true,
+          p2EdLevel: true,
+          created: true,
+          modified: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -128,21 +127,21 @@ export class ParentInfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ParentInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteParentInfo(
     @common.Param() params: ParentInfoWhereUniqueInput
   ): Promise<ParentInfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteParentInfo({
         where: params,
         select: {
           appId: true,
-          created: true,
-          id: true,
-          modified: true,
-          p1EdLevel: true,
           p1Profession: true,
-          p2EdLevel: true,
+          p1EdLevel: true,
           p2Profession: true,
+          p2EdLevel: true,
+          created: true,
+          modified: true,
+          id: true,
         },
       });
     } catch (error) {

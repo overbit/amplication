@@ -11,25 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DepartmentWhereUniqueInput } from "../../department/base/DepartmentWhereUniqueInput";
+import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
+import { DepartmentWhereUniqueInput } from "../../department/base/DepartmentWhereUniqueInput";
 
 @InputType()
 class AaDepartmentUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: () => DepartmentWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => DepartmentWhereUniqueInput)
-  @IsOptional()
-  @Field(() => DepartmentWhereUniqueInput, {
-    nullable: true,
-  })
-  department?: DepartmentWhereUniqueInput;
-
   @ApiProperty({
     required: false,
     type: () => PeriodWhereUniqueInput,
@@ -41,6 +29,18 @@ class AaDepartmentUpdateInput {
     nullable: true,
   })
   period?: PeriodWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => DepartmentWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => DepartmentWhereUniqueInput)
+  @IsOptional()
+  @Field(() => DepartmentWhereUniqueInput, {
+    nullable: true,
+  })
+  department?: DepartmentWhereUniqueInput;
 }
 
 export { AaDepartmentUpdateInput as AaDepartmentUpdateInput };

@@ -1,10 +1,10 @@
 import { DomainUnitUpdateManyWithoutDomainsInput } from "./DomainUnitUpdateManyWithoutDomainsInput";
 
 export type DomainUpdateInput = {
+  name?: string;
+  description?: string | null;
+  path?: string;
   active?: boolean;
   banner?: string;
-  description?: string | null;
   domainUnit?: DomainUnitUpdateManyWithoutDomainsInput;
-  name?: string;
-  path?: string;
 };

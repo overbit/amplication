@@ -24,17 +24,6 @@ class MseLetterRecsDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  algorithms?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   applicationId?: number;
 
   @ApiProperty({
@@ -46,18 +35,7 @@ class MseLetterRecsDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  dataStructures?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  discrete?: number;
+  programId?: number;
 
   @ApiProperty({
     required: false,
@@ -79,7 +57,29 @@ class MseLetterRecsDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  programId?: number;
+  discrete?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  algorithms?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  dataStructures?: number;
 }
 
 export { MseLetterRecsDecisionUpdateInput as MseLetterRecsDecisionUpdateInput };

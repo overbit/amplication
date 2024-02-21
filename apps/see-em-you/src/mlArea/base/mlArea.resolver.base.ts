@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMlAreaArgs } from "./CreateMlAreaArgs";
-import { UpdateMlAreaArgs } from "./UpdateMlAreaArgs";
-import { DeleteMlAreaArgs } from "./DeleteMlAreaArgs";
+import { MlArea } from "./MlArea";
 import { MlAreaCountArgs } from "./MlAreaCountArgs";
 import { MlAreaFindManyArgs } from "./MlAreaFindManyArgs";
 import { MlAreaFindUniqueArgs } from "./MlAreaFindUniqueArgs";
-import { MlArea } from "./MlArea";
+import { CreateMlAreaArgs } from "./CreateMlAreaArgs";
+import { UpdateMlAreaArgs } from "./UpdateMlAreaArgs";
+import { DeleteMlAreaArgs } from "./DeleteMlAreaArgs";
 import { Application } from "../../application/base/Application";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
 import { MlAreaService } from "../mlArea.service";
@@ -38,14 +38,14 @@ export class MlAreaResolverBase {
 
   @graphql.Query(() => [MlArea])
   async mlAreas(@graphql.Args() args: MlAreaFindManyArgs): Promise<MlArea[]> {
-    return this.service.findMany(args);
+    return this.service.mlAreas(args);
   }
 
   @graphql.Query(() => MlArea, { nullable: true })
   async mlArea(
     @graphql.Args() args: MlAreaFindUniqueArgs
   ): Promise<MlArea | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mlArea(args);
     if (result === null) {
       return null;
     }
@@ -54,7 +54,7 @@ export class MlAreaResolverBase {
 
   @graphql.Mutation(() => MlArea)
   async createMlArea(@graphql.Args() args: CreateMlAreaArgs): Promise<MlArea> {
-    return await this.service.create({
+    return await this.service.createMlArea({
       ...args,
       data: {
         ...args.data,
@@ -75,7 +75,7 @@ export class MlAreaResolverBase {
     @graphql.Args() args: UpdateMlAreaArgs
   ): Promise<MlArea | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMlArea({
         ...args,
         data: {
           ...args.data,
@@ -104,7 +104,7 @@ export class MlAreaResolverBase {
     @graphql.Args() args: DeleteMlAreaArgs
   ): Promise<MlArea | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMlArea(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -119,7 +119,7 @@ export class MlAreaResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: MlArea
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);
@@ -134,7 +134,7 @@ export class MlAreaResolverBase {
     nullable: true,
     name: "programs",
   })
-  async resolveFieldPrograms(
+  async getPrograms(
     @graphql.Parent() parent: MlArea
   ): Promise<ProgramModel | null> {
     const result = await this.service.getPrograms(parent.id);

@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CcPaymentStatusService } from "../ccPaymentStatus.service";
 import { CcPaymentStatusCreateInput } from "./CcPaymentStatusCreateInput";
-import { CcPaymentStatusWhereInput } from "./CcPaymentStatusWhereInput";
-import { CcPaymentStatusWhereUniqueInput } from "./CcPaymentStatusWhereUniqueInput";
-import { CcPaymentStatusFindManyArgs } from "./CcPaymentStatusFindManyArgs";
-import { CcPaymentStatusUpdateInput } from "./CcPaymentStatusUpdateInput";
 import { CcPaymentStatus } from "./CcPaymentStatus";
+import { CcPaymentStatusFindManyArgs } from "./CcPaymentStatusFindManyArgs";
+import { CcPaymentStatusWhereUniqueInput } from "./CcPaymentStatusWhereUniqueInput";
+import { CcPaymentStatusUpdateInput } from "./CcPaymentStatusUpdateInput";
 
 export class CcPaymentStatusControllerBase {
   constructor(protected readonly service: CcPaymentStatusService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CcPaymentStatus })
-  async create(
+  async createCcPaymentStatus(
     @common.Body() data: CcPaymentStatusCreateInput
   ): Promise<CcPaymentStatus> {
-    return await this.service.create({
+    return await this.service.createCcPaymentStatus({
       data: data,
       select: {
+        statusDate: true,
         authTotal: true,
+        settleTotal: true,
         creditTotal: true,
         id: true,
-        settleTotal: true,
-        statusDate: true,
       },
     });
   }
@@ -46,16 +45,18 @@ export class CcPaymentStatusControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CcPaymentStatus] })
   @ApiNestedQuery(CcPaymentStatusFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<CcPaymentStatus[]> {
+  async ccPaymentStatuses(
+    @common.Req() request: Request
+  ): Promise<CcPaymentStatus[]> {
     const args = plainToClass(CcPaymentStatusFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ccPaymentStatuses({
       ...args,
       select: {
+        statusDate: true,
         authTotal: true,
+        settleTotal: true,
         creditTotal: true,
         id: true,
-        settleTotal: true,
-        statusDate: true,
       },
     });
   }
@@ -63,17 +64,17 @@ export class CcPaymentStatusControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CcPaymentStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ccPaymentStatus(
     @common.Param() params: CcPaymentStatusWhereUniqueInput
   ): Promise<CcPaymentStatus | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ccPaymentStatus({
       where: params,
       select: {
+        statusDate: true,
         authTotal: true,
+        settleTotal: true,
         creditTotal: true,
         id: true,
-        settleTotal: true,
-        statusDate: true,
       },
     });
     if (result === null) {
@@ -87,20 +88,20 @@ export class CcPaymentStatusControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CcPaymentStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCcPaymentStatus(
     @common.Param() params: CcPaymentStatusWhereUniqueInput,
     @common.Body() data: CcPaymentStatusUpdateInput
   ): Promise<CcPaymentStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcPaymentStatus({
         where: params,
         data: data,
         select: {
+          statusDate: true,
           authTotal: true,
+          settleTotal: true,
           creditTotal: true,
           id: true,
-          settleTotal: true,
-          statusDate: true,
         },
       });
     } catch (error) {
@@ -116,18 +117,18 @@ export class CcPaymentStatusControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CcPaymentStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCcPaymentStatus(
     @common.Param() params: CcPaymentStatusWhereUniqueInput
   ): Promise<CcPaymentStatus | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCcPaymentStatus({
         where: params,
         select: {
+          statusDate: true,
           authTotal: true,
+          settleTotal: true,
           creditTotal: true,
           id: true,
-          settleTotal: true,
-          statusDate: true,
         },
       });
     } catch (error) {

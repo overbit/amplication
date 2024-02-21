@@ -1,1 +1,5 @@
-export type ReviewPositiveFactorWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type ReviewPositiveFactorWhereInput = {
+  id?: StringFilter;
+};

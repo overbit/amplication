@@ -3,8 +3,8 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const LangProfRecommenderInfoEdit = (
@@ -13,14 +13,14 @@ export const LangProfRecommenderInfoEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Rec User Id" source="recUserId" />
+        <TextInput label="Title" source="title" />
         <TextInput label="Affiliation" source="affiliation" />
+        <TextInput label="Phone" source="phone" />
         <TextInput
           label="Language Specialization"
           source="languageSpecialization"
         />
-        <TextInput label="Phone" source="phone" />
-        <NumberInput step={1} label="Rec User Id" source="recUserId" />
-        <TextInput label="Title" source="title" />
       </SimpleForm>
     </Edit>
   );

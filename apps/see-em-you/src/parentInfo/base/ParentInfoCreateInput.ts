@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsDate, IsOptional, IsString } from "class-validator";
+import { IsInt, IsString, IsOptional, IsDate } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -23,25 +23,6 @@ class ParentInfoCreateInput {
   @IsInt()
   @Field(() => Number)
   appId!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  modified!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  p1EdLevel?: number | null;
 
   @ApiProperty({
     required: false,
@@ -63,7 +44,7 @@ class ParentInfoCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  p2EdLevel?: number | null;
+  p1EdLevel?: number | null;
 
   @ApiProperty({
     required: false,
@@ -75,6 +56,25 @@ class ParentInfoCreateInput {
     nullable: true,
   })
   p2Profession?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  p2EdLevel?: number | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  modified!: Date;
 }
 
 export { ParentInfoCreateInput as ParentInfoCreateInput };

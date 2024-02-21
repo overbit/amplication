@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Degree, ProgramModel } from "@prisma/client";
+import {
+  Prisma,
+  Degree as PrismaDegree,
+  ProgramModel as PrismaProgramModel,
+} from "@prisma/client";
 
 export class DegreeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,36 +25,36 @@ export class DegreeServiceBase {
     return this.prisma.degree.count(args);
   }
 
-  async findMany<T extends Prisma.DegreeFindManyArgs>(
+  async degrees<T extends Prisma.DegreeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeFindManyArgs>
-  ): Promise<Degree[]> {
+  ): Promise<PrismaDegree[]> {
     return this.prisma.degree.findMany(args);
   }
-  async findOne<T extends Prisma.DegreeFindUniqueArgs>(
+  async degree<T extends Prisma.DegreeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeFindUniqueArgs>
-  ): Promise<Degree | null> {
+  ): Promise<PrismaDegree | null> {
     return this.prisma.degree.findUnique(args);
   }
-  async create<T extends Prisma.DegreeCreateArgs>(
+  async createDegree<T extends Prisma.DegreeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeCreateArgs>
-  ): Promise<Degree> {
+  ): Promise<PrismaDegree> {
     return this.prisma.degree.create<T>(args);
   }
-  async update<T extends Prisma.DegreeUpdateArgs>(
+  async updateDegree<T extends Prisma.DegreeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeUpdateArgs>
-  ): Promise<Degree> {
+  ): Promise<PrismaDegree> {
     return this.prisma.degree.update<T>(args);
   }
-  async delete<T extends Prisma.DegreeDeleteArgs>(
+  async deleteDegree<T extends Prisma.DegreeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeDeleteArgs>
-  ): Promise<Degree> {
+  ): Promise<PrismaDegree> {
     return this.prisma.degree.delete(args);
   }
 
   async findPrograms(
     parentId: number,
     args: Prisma.ProgramModelFindManyArgs
-  ): Promise<ProgramModel[]> {
+  ): Promise<PrismaProgramModel[]> {
     return this.prisma.degree
       .findUniqueOrThrow({
         where: { id: parentId },

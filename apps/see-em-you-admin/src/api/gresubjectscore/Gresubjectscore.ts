@@ -1,13 +1,13 @@
 import { Application } from "../application/Application";
 
 export type Gresubjectscore = {
-  application?: Application;
+  testdate: Date | null;
+  name: string | null;
+  score: string | null;
+  percentile: string | null;
   datafileId: number | null;
   greSubEmail: string | null;
-  id: number;
-  name: string | null;
-  percentile: string | null;
-  score: string | null;
   scorereceived: boolean;
-  testdate: Date | null;
+  application?: Application;
+  id: number;
 };

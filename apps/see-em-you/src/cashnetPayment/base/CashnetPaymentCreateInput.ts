@@ -12,11 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
+  IsInt,
+  IsString,
   IsNumber,
   IsOptional,
-  IsString,
   ValidateNested,
-  IsInt,
 } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -24,23 +24,12 @@ import { Type } from "class-transformer";
 @InputType()
 class CashnetPaymentCreateInput {
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  amount?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  applicantEmail!: string;
+  @IsInt()
+  @Field(() => Number)
+  transactionId!: number;
 
   @ApiProperty({
     required: true,
@@ -52,12 +41,11 @@ class CashnetPaymentCreateInput {
 
   @ApiProperty({
     required: true,
-    type: () => ApplicationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
+  @IsString()
+  @Field(() => String)
+  applicantEmail!: string;
 
   @ApiProperty({
     required: true,
@@ -77,19 +65,31 @@ class CashnetPaymentCreateInput {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  transactionId!: number;
-
-  @ApiProperty({
-    required: true,
     type: String,
   })
   @IsString()
   @Field(() => String)
   transactionType!: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  amount?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { CashnetPaymentCreateInput as CashnetPaymentCreateInput };

@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @ObjectType()
 class VoucherApplicationError {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  allowMultiple!: number | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -44,6 +33,17 @@ class VoucherApplicationError {
 
   @ApiProperty({
     required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  vaId!: number | null;
+
+  @ApiProperty({
+    required: false,
     type: String,
   })
   @IsString()
@@ -54,14 +54,6 @@ class VoucherApplicationError {
   errMsg!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -70,7 +62,15 @@ class VoucherApplicationError {
   @Field(() => Number, {
     nullable: true,
   })
-  vaId!: number | null;
+  allowMultiple!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { VoucherApplicationError as VoucherApplicationError };

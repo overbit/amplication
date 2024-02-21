@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, ValidateNested, IsInt, IsBoolean } from "class-validator";
+import { IsInt, IsNumber, IsBoolean, ValidateNested } from "class-validator";
 import { Decimal } from "decimal.js";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -22,26 +22,17 @@ class RegistrationFeeStatusCreateInput {
     required: true,
     type: Number,
   })
-  @IsNumber()
-  @Field(() => Float)
-  amount!: Decimal;
-
-  @ApiProperty({
-    required: true,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
+  @IsInt()
+  @Field(() => Number)
+  departmentId!: number;
 
   @ApiProperty({
     required: true,
     type: Number,
   })
-  @IsInt()
-  @Field(() => Number)
-  departmentId!: number;
+  @IsNumber()
+  @Field(() => Float)
+  amount!: Decimal;
 
   @ApiProperty({
     required: true,
@@ -58,6 +49,15 @@ class RegistrationFeeStatusCreateInput {
   @IsBoolean()
   @Field(() => Boolean)
   waived!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { RegistrationFeeStatusCreateInput as RegistrationFeeStatusCreateInput };

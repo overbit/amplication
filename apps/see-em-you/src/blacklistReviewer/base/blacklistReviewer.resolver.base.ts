@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateBlacklistReviewerArgs } from "./CreateBlacklistReviewerArgs";
-import { UpdateBlacklistReviewerArgs } from "./UpdateBlacklistReviewerArgs";
-import { DeleteBlacklistReviewerArgs } from "./DeleteBlacklistReviewerArgs";
+import { BlacklistReviewer } from "./BlacklistReviewer";
 import { BlacklistReviewerCountArgs } from "./BlacklistReviewerCountArgs";
 import { BlacklistReviewerFindManyArgs } from "./BlacklistReviewerFindManyArgs";
 import { BlacklistReviewerFindUniqueArgs } from "./BlacklistReviewerFindUniqueArgs";
-import { BlacklistReviewer } from "./BlacklistReviewer";
+import { CreateBlacklistReviewerArgs } from "./CreateBlacklistReviewerArgs";
+import { UpdateBlacklistReviewerArgs } from "./UpdateBlacklistReviewerArgs";
+import { DeleteBlacklistReviewerArgs } from "./DeleteBlacklistReviewerArgs";
 import { BlacklistReviewerService } from "../blacklistReviewer.service";
 @graphql.Resolver(() => BlacklistReviewer)
 export class BlacklistReviewerResolverBase {
@@ -38,14 +38,14 @@ export class BlacklistReviewerResolverBase {
   async blacklistReviewers(
     @graphql.Args() args: BlacklistReviewerFindManyArgs
   ): Promise<BlacklistReviewer[]> {
-    return this.service.findMany(args);
+    return this.service.blacklistReviewers(args);
   }
 
   @graphql.Query(() => BlacklistReviewer, { nullable: true })
   async blacklistReviewer(
     @graphql.Args() args: BlacklistReviewerFindUniqueArgs
   ): Promise<BlacklistReviewer | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.blacklistReviewer(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class BlacklistReviewerResolverBase {
   async createBlacklistReviewer(
     @graphql.Args() args: CreateBlacklistReviewerArgs
   ): Promise<BlacklistReviewer> {
-    return await this.service.create({
+    return await this.service.createBlacklistReviewer({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class BlacklistReviewerResolverBase {
     @graphql.Args() args: UpdateBlacklistReviewerArgs
   ): Promise<BlacklistReviewer | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateBlacklistReviewer({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class BlacklistReviewerResolverBase {
     @graphql.Args() args: DeleteBlacklistReviewerArgs
   ): Promise<BlacklistReviewer | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteBlacklistReviewer(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

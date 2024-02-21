@@ -19,69 +19,69 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   email: "exampleEmail",
+  username: "exampleUsername",
+  password: "examplePassword",
+  title: "exampleTitle",
   firstname: "exampleFirstname",
+  middlename: "exampleMiddlename",
+  lastname: "exampleLastname",
+  initials: "exampleInitials",
+  signupDate: new Date(),
+  verified: "true",
   guid: "exampleGuid",
   id: 42,
-  initials: "exampleInitials",
-  lastname: "exampleLastname",
-  middlename: "exampleMiddlename",
-  password: "examplePassword",
-  signupDate: new Date(),
-  title: "exampleTitle",
-  username: "exampleUsername",
-  verified: "true",
 };
 const CREATE_RESULT = {
   email: "exampleEmail",
+  username: "exampleUsername",
+  password: "examplePassword",
+  title: "exampleTitle",
   firstname: "exampleFirstname",
+  middlename: "exampleMiddlename",
+  lastname: "exampleLastname",
+  initials: "exampleInitials",
+  signupDate: new Date(),
+  verified: "true",
   guid: "exampleGuid",
   id: 42,
-  initials: "exampleInitials",
-  lastname: "exampleLastname",
-  middlename: "exampleMiddlename",
-  password: "examplePassword",
-  signupDate: new Date(),
-  title: "exampleTitle",
-  username: "exampleUsername",
-  verified: "true",
 };
 const FIND_MANY_RESULT = [
   {
     email: "exampleEmail",
+    username: "exampleUsername",
+    password: "examplePassword",
+    title: "exampleTitle",
     firstname: "exampleFirstname",
+    middlename: "exampleMiddlename",
+    lastname: "exampleLastname",
+    initials: "exampleInitials",
+    signupDate: new Date(),
+    verified: "true",
     guid: "exampleGuid",
     id: 42,
-    initials: "exampleInitials",
-    lastname: "exampleLastname",
-    middlename: "exampleMiddlename",
-    password: "examplePassword",
-    signupDate: new Date(),
-    title: "exampleTitle",
-    username: "exampleUsername",
-    verified: "true",
   },
 ];
 const FIND_ONE_RESULT = {
   email: "exampleEmail",
+  username: "exampleUsername",
+  password: "examplePassword",
+  title: "exampleTitle",
   firstname: "exampleFirstname",
+  middlename: "exampleMiddlename",
+  lastname: "exampleLastname",
+  initials: "exampleInitials",
+  signupDate: new Date(),
+  verified: "true",
   guid: "exampleGuid",
   id: 42,
-  initials: "exampleInitials",
-  lastname: "exampleLastname",
-  middlename: "exampleMiddlename",
-  password: "examplePassword",
-  signupDate: new Date(),
-  title: "exampleTitle",
-  username: "exampleUsername",
-  verified: "true",
 };
 
 const service = {
-  create() {
+  createUsersOrig() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  usersOrigs: () => FIND_MANY_RESULT,
+  usersOrig: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

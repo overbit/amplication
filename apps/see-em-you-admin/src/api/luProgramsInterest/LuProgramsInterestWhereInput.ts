@@ -1,1 +1,5 @@
-export type LuProgramsInterestWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type LuProgramsInterestWhereInput = {
+  id?: IntFilter;
+};

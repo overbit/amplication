@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateApplicationAdminNoteArgs } from "./CreateApplicationAdminNoteArgs";
-import { UpdateApplicationAdminNoteArgs } from "./UpdateApplicationAdminNoteArgs";
-import { DeleteApplicationAdminNoteArgs } from "./DeleteApplicationAdminNoteArgs";
+import { ApplicationAdminNote } from "./ApplicationAdminNote";
 import { ApplicationAdminNoteCountArgs } from "./ApplicationAdminNoteCountArgs";
 import { ApplicationAdminNoteFindManyArgs } from "./ApplicationAdminNoteFindManyArgs";
 import { ApplicationAdminNoteFindUniqueArgs } from "./ApplicationAdminNoteFindUniqueArgs";
-import { ApplicationAdminNote } from "./ApplicationAdminNote";
+import { CreateApplicationAdminNoteArgs } from "./CreateApplicationAdminNoteArgs";
+import { UpdateApplicationAdminNoteArgs } from "./UpdateApplicationAdminNoteArgs";
+import { DeleteApplicationAdminNoteArgs } from "./DeleteApplicationAdminNoteArgs";
 import { Application } from "../../application/base/Application";
 import { User } from "../../user/base/User";
 import { ApplicationAdminNoteService } from "../applicationAdminNote.service";
@@ -40,14 +40,14 @@ export class ApplicationAdminNoteResolverBase {
   async applicationAdminNotes(
     @graphql.Args() args: ApplicationAdminNoteFindManyArgs
   ): Promise<ApplicationAdminNote[]> {
-    return this.service.findMany(args);
+    return this.service.applicationAdminNotes(args);
   }
 
   @graphql.Query(() => ApplicationAdminNote, { nullable: true })
   async applicationAdminNote(
     @graphql.Args() args: ApplicationAdminNoteFindUniqueArgs
   ): Promise<ApplicationAdminNote | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.applicationAdminNote(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class ApplicationAdminNoteResolverBase {
   async createApplicationAdminNote(
     @graphql.Args() args: CreateApplicationAdminNoteArgs
   ): Promise<ApplicationAdminNote> {
-    return await this.service.create({
+    return await this.service.createApplicationAdminNote({
       ...args,
       data: {
         ...args.data,
@@ -79,7 +79,7 @@ export class ApplicationAdminNoteResolverBase {
     @graphql.Args() args: UpdateApplicationAdminNoteArgs
   ): Promise<ApplicationAdminNote | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationAdminNote({
         ...args,
         data: {
           ...args.data,
@@ -108,7 +108,7 @@ export class ApplicationAdminNoteResolverBase {
     @graphql.Args() args: DeleteApplicationAdminNoteArgs
   ): Promise<ApplicationAdminNote | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteApplicationAdminNote(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -123,7 +123,7 @@ export class ApplicationAdminNoteResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: ApplicationAdminNote
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);
@@ -138,7 +138,7 @@ export class ApplicationAdminNoteResolverBase {
     nullable: true,
     name: "users",
   })
-  async resolveFieldUsers(
+  async getUsers(
     @graphql.Parent() parent: ApplicationAdminNote
   ): Promise<User | null> {
     const result = await this.service.getUsers(parent.id);

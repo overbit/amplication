@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, IsDate, IsOptional } from "class-validator";
+import { IsInt, IsDate, IsString, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -26,19 +26,11 @@ class MseInterview {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  interviewComments!: string;
+  @IsInt()
+  @Field(() => Number)
+  reviewerId!: number;
 
   @ApiProperty({
     required: true,
@@ -69,11 +61,19 @@ class MseInterview {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  reviewerId!: number;
+  @IsString()
+  @Field(() => String)
+  interviewComments!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { MseInterview as MseInterview };

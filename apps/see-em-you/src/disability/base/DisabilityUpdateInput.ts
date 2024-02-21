@@ -35,7 +35,7 @@ class DisabilityUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  disabilityType?: number | null;
+  hasDisability?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class DisabilityUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  hasDisability?: number;
+  disabilityType?: number | null;
 }
 
 export { DisabilityUpdateInput as DisabilityUpdateInput };

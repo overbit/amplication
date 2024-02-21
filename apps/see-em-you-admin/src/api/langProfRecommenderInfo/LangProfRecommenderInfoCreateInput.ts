@@ -1,7 +1,7 @@
 export type LangProfRecommenderInfoCreateInput = {
-  affiliation: string;
-  languageSpecialization?: string | null;
-  phone: string;
   recUserId: number;
   title: string;
+  affiliation: string;
+  phone: string;
+  languageSpecialization?: string | null;
 };

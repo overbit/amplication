@@ -1,12 +1,12 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type ErrorlogOrderByInput = {
+  usersId?: SortOrder;
+  luUsersUsertypesId?: SortOrder;
+  usertypeId?: SortOrder;
   applicationId?: SortOrder;
   client?: SortOrder;
-  id?: SortOrder;
-  luUsersUsertypesId?: SortOrder;
-  message?: SortOrder;
   timestamp?: SortOrder;
-  usersId?: SortOrder;
-  usertypeId?: SortOrder;
+  message?: SortOrder;
+  id?: SortOrder;
 };

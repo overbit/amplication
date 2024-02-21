@@ -19,7 +19,14 @@ export const FellowshipList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Name" source="name" />
         <TextField label="Amount" source="amount" />
+        <TextField label="Status" source="status" />
+        <TextField label="Applied Date" source="appliedDate" />
+        <TextField label="Award Date" source="awardDate" />
+        <TextField label="Duration" source="duration" />
+        <TextField label="Datafile Id" source="datafileId" />
+        <TextField label="Short" source="short" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -27,14 +34,7 @@ export const FellowshipList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Applied Date" source="appliedDate" />
-        <TextField label="Award Date" source="awardDate" />
-        <TextField label="Datafile Id" source="datafileId" />
-        <TextField label="Duration" source="duration" />
         <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
-        <TextField label="Short" source="short" />
-        <TextField label="Status" source="status" />
       </Datagrid>
     </List>
   );

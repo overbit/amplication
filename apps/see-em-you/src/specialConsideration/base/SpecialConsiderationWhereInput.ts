@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { StringFilter } from "../../util/StringFilter";
 
 @InputType()
 class SpecialConsiderationWhereInput {
@@ -28,6 +29,17 @@ class SpecialConsiderationWhereInput {
     nullable: true,
   })
   application?: ApplicationWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  id?: StringFilter;
 }
 
 export { SpecialConsiderationWhereInput as SpecialConsiderationWhereInput };

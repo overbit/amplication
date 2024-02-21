@@ -28,7 +28,7 @@ class CcTransactionReportOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  size?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class CcTransactionReportOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  size?: SortOrder;
+  statusTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class CcTransactionReportOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  statusTime?: SortOrder;
+  id?: SortOrder;
 }
 
 export { CcTransactionReportOrderByInput as CcTransactionReportOrderByInput };

@@ -18,23 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AdvisorService } from "../advisor.service";
 import { AdvisorCreateInput } from "./AdvisorCreateInput";
-import { AdvisorWhereInput } from "./AdvisorWhereInput";
-import { AdvisorWhereUniqueInput } from "./AdvisorWhereUniqueInput";
-import { AdvisorFindManyArgs } from "./AdvisorFindManyArgs";
-import { AdvisorUpdateInput } from "./AdvisorUpdateInput";
 import { Advisor } from "./Advisor";
+import { AdvisorFindManyArgs } from "./AdvisorFindManyArgs";
+import { AdvisorWhereUniqueInput } from "./AdvisorWhereUniqueInput";
+import { AdvisorUpdateInput } from "./AdvisorUpdateInput";
 
 export class AdvisorControllerBase {
   constructor(protected readonly service: AdvisorService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Advisor })
-  async create(@common.Body() data: AdvisorCreateInput): Promise<Advisor> {
-    return await this.service.create({
+  async createAdvisor(
+    @common.Body() data: AdvisorCreateInput
+  ): Promise<Advisor> {
+    return await this.service.createAdvisor({
       data: data,
       select: {
+        userId: true,
         departmentId: true,
         id: true,
-        userId: true,
       },
     });
   }
@@ -42,14 +43,14 @@ export class AdvisorControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Advisor] })
   @ApiNestedQuery(AdvisorFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Advisor[]> {
+  async advisors(@common.Req() request: Request): Promise<Advisor[]> {
     const args = plainToClass(AdvisorFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.advisors({
       ...args,
       select: {
+        userId: true,
         departmentId: true,
         id: true,
-        userId: true,
       },
     });
   }
@@ -57,15 +58,15 @@ export class AdvisorControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Advisor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async advisor(
     @common.Param() params: AdvisorWhereUniqueInput
   ): Promise<Advisor | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.advisor({
       where: params,
       select: {
+        userId: true,
         departmentId: true,
         id: true,
-        userId: true,
       },
     });
     if (result === null) {
@@ -79,18 +80,18 @@ export class AdvisorControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Advisor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAdvisor(
     @common.Param() params: AdvisorWhereUniqueInput,
     @common.Body() data: AdvisorUpdateInput
   ): Promise<Advisor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAdvisor({
         where: params,
         data: data,
         select: {
+          userId: true,
           departmentId: true,
           id: true,
-          userId: true,
         },
       });
     } catch (error) {
@@ -106,16 +107,16 @@ export class AdvisorControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Advisor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAdvisor(
     @common.Param() params: AdvisorWhereUniqueInput
   ): Promise<Advisor | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAdvisor({
         where: params,
         select: {
+          userId: true,
           departmentId: true,
           id: true,
-          userId: true,
         },
       });
     } catch (error) {

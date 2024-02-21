@@ -11,20 +11,17 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @InputType()
 class ScsUserCreateInput {
   @ApiProperty({
-    required: false,
-    type: String,
+    required: true,
+    type: Number,
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  andrewId?: string | null;
+  @IsInt()
+  @Field(() => Number)
+  usersId!: number;
 
   @ApiProperty({
     required: false,
@@ -57,6 +54,17 @@ class ScsUserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
+  andrewId?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   eceId?: string | null;
 
   @ApiProperty({
@@ -69,14 +77,6 @@ class ScsUserCreateInput {
     nullable: true,
   })
   qatarId?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  usersId!: number;
 }
 
 export { ScsUserCreateInput as ScsUserCreateInput };

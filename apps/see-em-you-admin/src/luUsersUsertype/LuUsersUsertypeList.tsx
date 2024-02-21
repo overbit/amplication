@@ -7,8 +7,8 @@ import {
   ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
-import { MHCIPREREQSPROGRAMMINGSAMPLE_TITLE_FIELD } from "../mhciPrereqsProgrammingSample/MhciPrereqsProgrammingSampleTitle";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
+import { MHCIPREREQSPROGRAMMINGSAMPLE_TITLE_FIELD } from "../mhciPrereqsProgrammingSample/MhciPrereqsProgrammingSampleTitle";
 
 export const LuUsersUsertypeList = (props: ListProps): React.ReactElement => {
   return (
@@ -20,8 +20,11 @@ export const LuUsersUsertypeList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Usertype Id" source="usertypeId" />
         <TextField label="Domain" source="domain" />
-        <TextField label="Id" source="id" />
+        <ReferenceField label="Users" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
         <ReferenceField
           label="Mhci Prereqs Programming Samples"
           source="mhciprereqsprogrammingsample.id"
@@ -29,10 +32,7 @@ export const LuUsersUsertypeList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={MHCIPREREQSPROGRAMMINGSAMPLE_TITLE_FIELD} />
         </ReferenceField>
-        <ReferenceField label="Users" source="user.id" reference="User">
-          <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
-        <TextField label="Usertype Id" source="usertypeId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

@@ -13,8 +13,8 @@ export const UnitPeriodList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Id" source="id" />
-        <TextField label="Period Id" source="periodId" />
         <TextField label="Unit Id" source="unitId" />
+        <TextField label="Period Id" source="periodId" />
       </Datagrid>
     </List>
   );

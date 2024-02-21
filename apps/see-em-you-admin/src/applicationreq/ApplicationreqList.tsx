@@ -12,11 +12,11 @@ export const ApplicationreqList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
-        <TextField label="Linkname" source="linkname" />
         <TextField label="Name" source="name" />
         <TextField label="Short" source="short" />
+        <TextField label="Linkname" source="linkname" />
         <TextField label="Sortorder" source="sortorder" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

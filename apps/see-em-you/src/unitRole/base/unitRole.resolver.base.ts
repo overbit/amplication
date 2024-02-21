@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUnitRoleArgs } from "./CreateUnitRoleArgs";
-import { UpdateUnitRoleArgs } from "./UpdateUnitRoleArgs";
-import { DeleteUnitRoleArgs } from "./DeleteUnitRoleArgs";
+import { UnitRole } from "./UnitRole";
 import { UnitRoleCountArgs } from "./UnitRoleCountArgs";
 import { UnitRoleFindManyArgs } from "./UnitRoleFindManyArgs";
 import { UnitRoleFindUniqueArgs } from "./UnitRoleFindUniqueArgs";
-import { UnitRole } from "./UnitRole";
+import { CreateUnitRoleArgs } from "./CreateUnitRoleArgs";
+import { UpdateUnitRoleArgs } from "./UpdateUnitRoleArgs";
+import { DeleteUnitRoleArgs } from "./DeleteUnitRoleArgs";
 import { UnitRoleService } from "../unitRole.service";
 @graphql.Resolver(() => UnitRole)
 export class UnitRoleResolverBase {
@@ -38,14 +38,14 @@ export class UnitRoleResolverBase {
   async unitRoles(
     @graphql.Args() args: UnitRoleFindManyArgs
   ): Promise<UnitRole[]> {
-    return this.service.findMany(args);
+    return this.service.unitRoles(args);
   }
 
   @graphql.Query(() => UnitRole, { nullable: true })
   async unitRole(
     @graphql.Args() args: UnitRoleFindUniqueArgs
   ): Promise<UnitRole | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.unitRole(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class UnitRoleResolverBase {
   async createUnitRole(
     @graphql.Args() args: CreateUnitRoleArgs
   ): Promise<UnitRole> {
-    return await this.service.create({
+    return await this.service.createUnitRole({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class UnitRoleResolverBase {
     @graphql.Args() args: UpdateUnitRoleArgs
   ): Promise<UnitRole | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUnitRole({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class UnitRoleResolverBase {
     @graphql.Args() args: DeleteUnitRoleArgs
   ): Promise<UnitRole | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUnitRole(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -18,50 +18,50 @@ import { DecisionAoiRankMemberService } from "../decisionAoiRankMember.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  departmentId: 42,
+  periodId: 42,
+  interestId: 42,
+  decision: "exampleDecision",
   applicationId: 42,
   arank: 42,
-  decision: "exampleDecision",
-  departmentId: 42,
   id: "exampleId",
-  interestId: 42,
-  periodId: 42,
 };
 const CREATE_RESULT = {
+  departmentId: 42,
+  periodId: 42,
+  interestId: 42,
+  decision: "exampleDecision",
   applicationId: 42,
   arank: 42,
-  decision: "exampleDecision",
-  departmentId: 42,
   id: "exampleId",
-  interestId: 42,
-  periodId: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    departmentId: 42,
+    periodId: 42,
+    interestId: 42,
+    decision: "exampleDecision",
     applicationId: 42,
     arank: 42,
-    decision: "exampleDecision",
-    departmentId: 42,
     id: "exampleId",
-    interestId: 42,
-    periodId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  departmentId: 42,
+  periodId: 42,
+  interestId: 42,
+  decision: "exampleDecision",
   applicationId: 42,
   arank: 42,
-  decision: "exampleDecision",
-  departmentId: 42,
   id: "exampleId",
-  interestId: 42,
-  periodId: 42,
 };
 
 const service = {
-  create() {
+  createDecisionAoiRankMember() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  decisionAoiRankMembers: () => FIND_MANY_RESULT,
+  decisionAoiRankMember: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

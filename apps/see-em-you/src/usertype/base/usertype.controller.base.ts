@@ -18,23 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UsertypeService } from "../usertype.service";
 import { UsertypeCreateInput } from "./UsertypeCreateInput";
-import { UsertypeWhereInput } from "./UsertypeWhereInput";
-import { UsertypeWhereUniqueInput } from "./UsertypeWhereUniqueInput";
-import { UsertypeFindManyArgs } from "./UsertypeFindManyArgs";
-import { UsertypeUpdateInput } from "./UsertypeUpdateInput";
 import { Usertype } from "./Usertype";
+import { UsertypeFindManyArgs } from "./UsertypeFindManyArgs";
+import { UsertypeWhereUniqueInput } from "./UsertypeWhereUniqueInput";
+import { UsertypeUpdateInput } from "./UsertypeUpdateInput";
 
 export class UsertypeControllerBase {
   constructor(protected readonly service: UsertypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Usertype })
-  async create(@common.Body() data: UsertypeCreateInput): Promise<Usertype> {
-    return await this.service.create({
+  async createUsertype(
+    @common.Body() data: UsertypeCreateInput
+  ): Promise<Usertype> {
+    return await this.service.createUsertype({
       data: data,
       select: {
+        name: true,
         description: true,
         id: true,
-        name: true,
       },
     });
   }
@@ -42,14 +43,14 @@ export class UsertypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Usertype] })
   @ApiNestedQuery(UsertypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Usertype[]> {
+  async usertypes(@common.Req() request: Request): Promise<Usertype[]> {
     const args = plainToClass(UsertypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.usertypes({
       ...args,
       select: {
+        name: true,
         description: true,
         id: true,
-        name: true,
       },
     });
   }
@@ -57,15 +58,15 @@ export class UsertypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Usertype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async usertype(
     @common.Param() params: UsertypeWhereUniqueInput
   ): Promise<Usertype | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.usertype({
       where: params,
       select: {
+        name: true,
         description: true,
         id: true,
-        name: true,
       },
     });
     if (result === null) {
@@ -79,18 +80,18 @@ export class UsertypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Usertype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUsertype(
     @common.Param() params: UsertypeWhereUniqueInput,
     @common.Body() data: UsertypeUpdateInput
   ): Promise<Usertype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsertype({
         where: params,
         data: data,
         select: {
+          name: true,
           description: true,
           id: true,
-          name: true,
         },
       });
     } catch (error) {
@@ -106,16 +107,16 @@ export class UsertypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Usertype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUsertype(
     @common.Param() params: UsertypeWhereUniqueInput
   ): Promise<Usertype | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUsertype({
         where: params,
         select: {
+          name: true,
           description: true,
           id: true,
-          name: true,
         },
       });
     } catch (error) {

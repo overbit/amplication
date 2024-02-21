@@ -18,22 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { InterestService } from "../interest.service";
 import { InterestCreateInput } from "./InterestCreateInput";
-import { InterestWhereInput } from "./InterestWhereInput";
-import { InterestWhereUniqueInput } from "./InterestWhereUniqueInput";
-import { InterestFindManyArgs } from "./InterestFindManyArgs";
-import { InterestUpdateInput } from "./InterestUpdateInput";
 import { Interest } from "./Interest";
+import { InterestFindManyArgs } from "./InterestFindManyArgs";
+import { InterestWhereUniqueInput } from "./InterestWhereUniqueInput";
+import { InterestUpdateInput } from "./InterestUpdateInput";
 
 export class InterestControllerBase {
   constructor(protected readonly service: InterestService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Interest })
-  async create(@common.Body() data: InterestCreateInput): Promise<Interest> {
-    return await this.service.create({
+  async createInterest(
+    @common.Body() data: InterestCreateInput
+  ): Promise<Interest> {
+    return await this.service.createInterest({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -41,13 +42,13 @@ export class InterestControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Interest] })
   @ApiNestedQuery(InterestFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Interest[]> {
+  async interests(@common.Req() request: Request): Promise<Interest[]> {
     const args = plainToClass(InterestFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.interests({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -55,14 +56,14 @@ export class InterestControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Interest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async interest(
     @common.Param() params: InterestWhereUniqueInput
   ): Promise<Interest | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.interest({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -76,17 +77,17 @@ export class InterestControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Interest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateInterest(
     @common.Param() params: InterestWhereUniqueInput,
     @common.Body() data: InterestUpdateInput
   ): Promise<Interest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateInterest({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -102,15 +103,15 @@ export class InterestControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Interest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteInterest(
     @common.Param() params: InterestWhereUniqueInput
   ): Promise<Interest | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteInterest({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {

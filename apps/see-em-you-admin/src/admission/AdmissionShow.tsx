@@ -6,9 +6,9 @@ export const AdmissionShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
+        <TextField label="Program Id" source="programId" />
         <TextField label="Code" source="code" />
         <TextField label="Id" source="id" />
-        <TextField label="Program Id" source="programId" />
       </SimpleShowLayout>
     </Show>
   );

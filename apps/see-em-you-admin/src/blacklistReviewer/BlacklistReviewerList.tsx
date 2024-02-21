@@ -13,9 +13,9 @@ export const BlacklistReviewerList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="App Id" source="appId" />
+        <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Deny" source="deny" />
         <TextField label="Id" source="id" />
-        <TextField label="Reviewer Id" source="reviewerId" />
       </Datagrid>
     </List>
   );

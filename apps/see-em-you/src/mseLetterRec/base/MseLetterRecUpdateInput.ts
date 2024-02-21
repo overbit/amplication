@@ -24,17 +24,6 @@ class MseLetterRecUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  algortihms?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   applicationId?: number;
 
   @ApiProperty({
@@ -46,18 +35,7 @@ class MseLetterRecUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  dataStructures?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  discrete?: number;
+  reviewerId?: number;
 
   @ApiProperty({
     required: false,
@@ -79,7 +57,29 @@ class MseLetterRecUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  reviewerId?: number;
+  discrete?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  algortihms?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  dataStructures?: number;
 }
 
 export { MseLetterRecUpdateInput as MseLetterRecUpdateInput };

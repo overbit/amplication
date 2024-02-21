@@ -3,9 +3,9 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  NumberInput,
   ReferenceInput,
   SelectInput,
-  NumberInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -15,6 +15,8 @@ export const LuApplicationGroupCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Group Id" source="groupId" />
+        <NumberInput step={1} label="Round" source="round" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -22,8 +24,6 @@ export const LuApplicationGroupCreate = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Group Id" source="groupId" />
-        <NumberInput step={1} label="Round" source="round" />
       </SimpleForm>
     </Create>
   );

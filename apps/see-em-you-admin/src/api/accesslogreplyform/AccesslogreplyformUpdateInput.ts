@@ -1,8 +1,8 @@
 export type AccesslogreplyformUpdateInput = {
-  activity?: string | null;
+  usersId?: number | null;
+  luUsersUsertypesId?: number | null;
+  usertypeId?: number | null;
   applicationId?: number | null;
   client?: string | null;
-  luUsersUsertypesId?: number | null;
-  usersId?: number | null;
-  usertypeId?: number | null;
+  activity?: string | null;
 };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateApplicationArgs } from "./CreateApplicationArgs";
-import { UpdateApplicationArgs } from "./UpdateApplicationArgs";
-import { DeleteApplicationArgs } from "./DeleteApplicationArgs";
+import { Application } from "./Application";
 import { ApplicationCountArgs } from "./ApplicationCountArgs";
 import { ApplicationFindManyArgs } from "./ApplicationFindManyArgs";
 import { ApplicationFindUniqueArgs } from "./ApplicationFindUniqueArgs";
-import { Application } from "./Application";
+import { CreateApplicationArgs } from "./CreateApplicationArgs";
+import { UpdateApplicationArgs } from "./UpdateApplicationArgs";
+import { DeleteApplicationArgs } from "./DeleteApplicationArgs";
 import { ApplicationAdminNoteFindManyArgs } from "../../applicationAdminNote/base/ApplicationAdminNoteFindManyArgs";
 import { ApplicationAdminNote } from "../../applicationAdminNote/base/ApplicationAdminNote";
 import { AttendanceFindManyArgs } from "../../attendance/base/AttendanceFindManyArgs";
@@ -104,14 +104,14 @@ export class ApplicationResolverBase {
   async applications(
     @graphql.Args() args: ApplicationFindManyArgs
   ): Promise<Application[]> {
-    return this.service.findMany(args);
+    return this.service.applications(args);
   }
 
   @graphql.Query(() => Application, { nullable: true })
   async application(
     @graphql.Args() args: ApplicationFindUniqueArgs
   ): Promise<Application | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.application(args);
     if (result === null) {
       return null;
     }
@@ -122,7 +122,7 @@ export class ApplicationResolverBase {
   async createApplication(
     @graphql.Args() args: CreateApplicationArgs
   ): Promise<Application> {
-    return await this.service.create({
+    return await this.service.createApplication({
       ...args,
       data: {
         ...args.data,
@@ -159,7 +159,7 @@ export class ApplicationResolverBase {
     @graphql.Args() args: UpdateApplicationArgs
   ): Promise<Application | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplication({
         ...args,
         data: {
           ...args.data,
@@ -204,7 +204,7 @@ export class ApplicationResolverBase {
     @graphql.Args() args: DeleteApplicationArgs
   ): Promise<Application | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteApplication(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -218,7 +218,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [ApplicationAdminNote], {
     name: "applicationAdminNote",
   })
-  async resolveFieldApplicationAdminNote(
+  async findApplicationAdminNote(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: ApplicationAdminNoteFindManyArgs
   ): Promise<ApplicationAdminNote[]> {
@@ -235,7 +235,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Attendance], { name: "attendance" })
-  async resolveFieldAttendance(
+  async findAttendance(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: AttendanceFindManyArgs
   ): Promise<Attendance[]> {
@@ -249,7 +249,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [CashnetPayment], { name: "cashnetPayment" })
-  async resolveFieldCashnetPayment(
+  async findCashnetPayment(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: CashnetPaymentFindManyArgs
   ): Promise<CashnetPayment[]> {
@@ -263,7 +263,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Experience], { name: "experience" })
-  async resolveFieldExperience(
+  async findExperience(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: ExperienceFindManyArgs
   ): Promise<Experience[]> {
@@ -277,7 +277,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Fellowship], { name: "fellowships" })
-  async resolveFieldFellowships(
+  async findFellowships(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: FellowshipFindManyArgs
   ): Promise<Fellowship[]> {
@@ -291,7 +291,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Gmatscore], { name: "gmatscore" })
-  async resolveFieldGmatscore(
+  async findGmatscore(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: GmatscoreFindManyArgs
   ): Promise<Gmatscore[]> {
@@ -305,7 +305,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Gresubjectscore], { name: "gresubjectscore" })
-  async resolveFieldGresubjectscore(
+  async findGresubjectscore(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: GresubjectscoreFindManyArgs
   ): Promise<Gresubjectscore[]> {
@@ -319,7 +319,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Ieltsscore], { name: "ieltsscore" })
-  async resolveFieldIeltsscore(
+  async findIeltsscore(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: IeltsscoreFindManyArgs
   ): Promise<Ieltsscore[]> {
@@ -335,7 +335,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [LuApplicationAdvisor], {
     name: "luApplicationAdvisor",
   })
-  async resolveFieldLuApplicationAdvisor(
+  async findLuApplicationAdvisor(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: LuApplicationAdvisorFindManyArgs
   ): Promise<LuApplicationAdvisor[]> {
@@ -354,7 +354,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [LuApplicationAppreq], {
     name: "luApplicationAppreqs",
   })
-  async resolveFieldLuApplicationAppreqs(
+  async findLuApplicationAppreqs(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: LuApplicationAppreqFindManyArgs
   ): Promise<LuApplicationAppreq[]> {
@@ -373,7 +373,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [LuApplicationGroup], {
     name: "luApplicationGroups",
   })
-  async resolveFieldLuApplicationGroups(
+  async findLuApplicationGroups(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: LuApplicationGroupFindManyArgs
   ): Promise<LuApplicationGroup[]> {
@@ -389,7 +389,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [LuApplicationProgram], {
     name: "luApplicationPrograms",
   })
-  async resolveFieldLuApplicationPrograms(
+  async findLuApplicationPrograms(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: LuApplicationProgramFindManyArgs
   ): Promise<LuApplicationProgram[]> {
@@ -406,7 +406,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [MhciPrereq], { name: "mhciPrereqs" })
-  async resolveFieldMhciPrereqs(
+  async findMhciPrereqs(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: MhciPrereqFindManyArgs
   ): Promise<MhciPrereq[]> {
@@ -422,7 +422,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [MhciPrereqsCourse], {
     name: "mhciPrereqsCourses",
   })
-  async resolveFieldMhciPrereqsCourses(
+  async findMhciPrereqsCourses(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: MhciPrereqsCourseFindManyArgs
   ): Promise<MhciPrereqsCourse[]> {
@@ -436,7 +436,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [MlArea], { name: "mlArea" })
-  async resolveFieldMlArea(
+  async findMlArea(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: MlAreaFindManyArgs
   ): Promise<MlArea[]> {
@@ -452,7 +452,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [MlSupportingCoursework], {
     name: "mlSupportingCoursework",
   })
-  async resolveFieldMlSupportingCoursework(
+  async findMlSupportingCoursework(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: MlSupportingCourseworkFindManyArgs
   ): Promise<MlSupportingCoursework[]> {
@@ -469,7 +469,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [MseAqa], { name: "mseAqa" })
-  async resolveFieldMseAqa(
+  async findMseAqa(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: MseAqaFindManyArgs
   ): Promise<MseAqa[]> {
@@ -483,7 +483,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Payment], { name: "payment" })
-  async resolveFieldPayment(
+  async findPayment(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: PaymentFindManyArgs
   ): Promise<Payment[]> {
@@ -499,7 +499,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [PeriodApplication], {
     name: "periodApplication",
   })
-  async resolveFieldPeriodApplication(
+  async findPeriodApplication(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: PeriodApplicationFindManyArgs
   ): Promise<PeriodApplication[]> {
@@ -513,7 +513,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [PromotionHistory], { name: "promotionHistory" })
-  async resolveFieldPromotionHistory(
+  async findPromotionHistory(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: PromotionHistoryFindManyArgs
   ): Promise<PromotionHistory[]> {
@@ -527,7 +527,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Publication], { name: "publication" })
-  async resolveFieldPublication(
+  async findPublication(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: PublicationFindManyArgs
   ): Promise<Publication[]> {
@@ -541,7 +541,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Recommend], { name: "recommend" })
-  async resolveFieldRecommend(
+  async findRecommend(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: RecommendFindManyArgs
   ): Promise<Recommend[]> {
@@ -557,7 +557,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [RegistrationFeePayment], {
     name: "registrationFeePayment",
   })
-  async resolveFieldRegistrationFeePayment(
+  async findRegistrationFeePayment(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: RegistrationFeePaymentFindManyArgs
   ): Promise<RegistrationFeePayment[]> {
@@ -576,7 +576,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [RegistrationFeeStatus], {
     name: "registrationFeeStatus",
   })
-  async resolveFieldRegistrationFeeStatus(
+  async findRegistrationFeeStatus(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: RegistrationFeeStatusFindManyArgs
   ): Promise<RegistrationFeeStatus[]> {
@@ -593,7 +593,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [Review], { name: "review" })
-  async resolveFieldReview(
+  async findReview(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: ReviewFindManyArgs
   ): Promise<Review[]> {
@@ -607,7 +607,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [RissFunding], { name: "rissFunding" })
-  async resolveFieldRissFunding(
+  async findRissFunding(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: RissFundingFindManyArgs
   ): Promise<RissFunding[]> {
@@ -621,7 +621,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [RissMcnair], { name: "rissMcnair" })
-  async resolveFieldRissMcnair(
+  async findRissMcnair(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: RissMcnairFindManyArgs
   ): Promise<RissMcnair[]> {
@@ -637,7 +637,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [SpecialConsideration], {
     name: "specialConsideration",
   })
-  async resolveFieldSpecialConsideration(
+  async findSpecialConsideration(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: SpecialConsiderationFindManyArgs
   ): Promise<SpecialConsideration[]> {
@@ -654,7 +654,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [StudentDecision], { name: "studentDecision" })
-  async resolveFieldStudentDecision(
+  async findStudentDecision(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: StudentDecisionFindManyArgs
   ): Promise<StudentDecision[]> {
@@ -670,7 +670,7 @@ export class ApplicationResolverBase {
   @graphql.ResolveField(() => [StudentDecisionHistory], {
     name: "studentDecisionHistory",
   })
-  async resolveFieldStudentDecisionHistory(
+  async findStudentDecisionHistory(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: StudentDecisionHistoryFindManyArgs
   ): Promise<StudentDecisionHistory[]> {
@@ -687,7 +687,7 @@ export class ApplicationResolverBase {
   }
 
   @graphql.ResolveField(() => [TagMember], { name: "tagMembers" })
-  async resolveFieldTagMembers(
+  async findTagMembers(
     @graphql.Parent() parent: Application,
     @graphql.Args() args: TagMemberFindManyArgs
   ): Promise<TagMember[]> {
@@ -704,7 +704,7 @@ export class ApplicationResolverBase {
     nullable: true,
     name: "acoPal",
   })
-  async resolveFieldAcoPal(
+  async getAcoPal(
     @graphql.Parent() parent: Application
   ): Promise<AcoPal | null> {
     const result = await this.service.getAcoPal(parent.id);
@@ -719,7 +719,7 @@ export class ApplicationResolverBase {
     nullable: true,
     name: "luApplicationCohort",
   })
-  async resolveFieldLuApplicationCohort(
+  async getLuApplicationCohort(
     @graphql.Parent() parent: Application
   ): Promise<LuApplicationCohort | null> {
     const result = await this.service.getLuApplicationCohort(parent.id);
@@ -734,7 +734,7 @@ export class ApplicationResolverBase {
     nullable: true,
     name: "luApplicationStartSemester",
   })
-  async resolveFieldLuApplicationStartSemester(
+  async getLuApplicationStartSemester(
     @graphql.Parent() parent: Application
   ): Promise<LuApplicationStartSemester | null> {
     const result = await this.service.getLuApplicationStartSemester(parent.id);
@@ -749,7 +749,7 @@ export class ApplicationResolverBase {
     nullable: true,
     name: "mseCodility",
   })
-  async resolveFieldMseCodility(
+  async getMseCodility(
     @graphql.Parent() parent: Application
   ): Promise<MseCodility | null> {
     const result = await this.service.getMseCodility(parent.id);

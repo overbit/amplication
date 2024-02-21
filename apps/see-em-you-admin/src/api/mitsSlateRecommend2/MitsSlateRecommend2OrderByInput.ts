@@ -1,20 +1,19 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MitsSlateRecommend2OrderByInput = {
-  first?: SortOrder;
-  id?: SortOrder;
-  last?: SortOrder;
-  middle?: SortOrder;
   prefix?: SortOrder;
-  reference2Email?: SortOrder;
-  reference2First?: SortOrder;
-  reference2Industry?: SortOrder;
-  reference2Last?: SortOrder;
-  reference2Organization?: SortOrder;
-  reference2Phone?: SortOrder;
-  reference2Submitted?: SortOrder;
-  reference2Title?: SortOrder;
+  first?: SortOrder;
+  middle?: SortOrder;
+  last?: SortOrder;
   reference2Type?: SortOrder;
+  reference2Submitted?: SortOrder;
+  reference2First?: SortOrder;
+  reference2Last?: SortOrder;
+  reference2Industry?: SortOrder;
+  reference2Organization?: SortOrder;
+  reference2Title?: SortOrder;
+  reference2Email?: SortOrder;
+  reference2Phone?: SortOrder;
   referenceNum2IsrmsRecommenderScore1?: SortOrder;
   referenceNum2IsrmsRecommenderScore10?: SortOrder;
   referenceNum2IsrmsRecommenderScore11?: SortOrder;
@@ -43,4 +42,5 @@ export type MitsSlateRecommend2OrderByInput = {
   referenceNum2RecommenderScore6?: SortOrder;
   referenceNum2RecommenderScore7?: SortOrder;
   referenceNum2RecommenderScore8?: SortOrder;
+  id?: SortOrder;
 };

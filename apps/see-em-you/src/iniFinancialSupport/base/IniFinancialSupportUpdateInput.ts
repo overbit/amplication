@@ -28,25 +28,14 @@ class IniFinancialSupportUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  applyOutsideSupportSource?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  applyOutsideSupportType?: string | null;
+  requestConsideration?: number;
 
   @ApiProperty({
     required: false,
@@ -68,29 +57,7 @@ class IniFinancialSupportUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  familySupportAmount?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  familySupportType?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  otherSupportSource?: string | null;
+  receiveOutsideSupportType?: string | null;
 
   @ApiProperty({
     required: false,
@@ -112,18 +79,51 @@ class IniFinancialSupportUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  receiveOutsideSupportType?: string | null;
+  applyOutsideSupportType?: string | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  requestConsideration?: number;
+  applyOutsideSupportSource?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  otherSupportSource?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  familySupportType?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  familySupportAmount?: string | null;
 }
 
 export { IniFinancialSupportUpdateInput as IniFinancialSupportUpdateInput };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSpecialConsiderationArgs } from "./CreateSpecialConsiderationArgs";
-import { UpdateSpecialConsiderationArgs } from "./UpdateSpecialConsiderationArgs";
-import { DeleteSpecialConsiderationArgs } from "./DeleteSpecialConsiderationArgs";
+import { SpecialConsideration } from "./SpecialConsideration";
 import { SpecialConsiderationCountArgs } from "./SpecialConsiderationCountArgs";
 import { SpecialConsiderationFindManyArgs } from "./SpecialConsiderationFindManyArgs";
 import { SpecialConsiderationFindUniqueArgs } from "./SpecialConsiderationFindUniqueArgs";
-import { SpecialConsideration } from "./SpecialConsideration";
+import { CreateSpecialConsiderationArgs } from "./CreateSpecialConsiderationArgs";
+import { UpdateSpecialConsiderationArgs } from "./UpdateSpecialConsiderationArgs";
+import { DeleteSpecialConsiderationArgs } from "./DeleteSpecialConsiderationArgs";
 import { Application } from "../../application/base/Application";
 import { SpecialConsiderationService } from "../specialConsideration.service";
 @graphql.Resolver(() => SpecialConsideration)
@@ -39,14 +39,14 @@ export class SpecialConsiderationResolverBase {
   async specialConsiderations(
     @graphql.Args() args: SpecialConsiderationFindManyArgs
   ): Promise<SpecialConsideration[]> {
-    return this.service.findMany(args);
+    return this.service.specialConsiderations(args);
   }
 
   @graphql.Query(() => SpecialConsideration, { nullable: true })
   async specialConsideration(
     @graphql.Args() args: SpecialConsiderationFindUniqueArgs
   ): Promise<SpecialConsideration | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.specialConsideration(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class SpecialConsiderationResolverBase {
   async createSpecialConsideration(
     @graphql.Args() args: CreateSpecialConsiderationArgs
   ): Promise<SpecialConsideration> {
-    return await this.service.create({
+    return await this.service.createSpecialConsideration({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class SpecialConsiderationResolverBase {
     @graphql.Args() args: UpdateSpecialConsiderationArgs
   ): Promise<SpecialConsideration | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSpecialConsideration({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class SpecialConsiderationResolverBase {
     @graphql.Args() args: DeleteSpecialConsiderationArgs
   ): Promise<SpecialConsideration | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSpecialConsideration(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class SpecialConsiderationResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: SpecialConsideration
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

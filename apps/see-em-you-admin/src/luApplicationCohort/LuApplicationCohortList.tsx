@@ -3,8 +3,8 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
@@ -21,6 +21,7 @@ export const LuApplicationCohortList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Cohort Id" source="cohortId" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -28,7 +29,6 @@ export const LuApplicationCohortList = (
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Cohort Id" source="cohortId" />
         <TextField label="Id" source="id" />
       </Datagrid>
     </List>

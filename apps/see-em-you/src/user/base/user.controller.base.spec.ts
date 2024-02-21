@@ -19,69 +19,69 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   email: "exampleEmail",
-  firstname: "exampleFirstname",
-  firstNamePref: "exampleFirstNamePref",
-  guid: "exampleGuid",
-  id: 42,
-  initials: "exampleInitials",
-  lastname: "exampleLastname",
-  middlename: "exampleMiddlename",
-  signupDate: new Date(),
-  suffix: "exampleSuffix",
   title: "exampleTitle",
+  firstname: "exampleFirstname",
+  middlename: "exampleMiddlename",
+  lastname: "exampleLastname",
+  suffix: "exampleSuffix",
+  initials: "exampleInitials",
+  signupDate: new Date(),
   verified: "true",
+  guid: "exampleGuid",
+  firstNamePref: "exampleFirstNamePref",
+  id: 42,
 };
 const CREATE_RESULT = {
   email: "exampleEmail",
-  firstname: "exampleFirstname",
-  firstNamePref: "exampleFirstNamePref",
-  guid: "exampleGuid",
-  id: 42,
-  initials: "exampleInitials",
-  lastname: "exampleLastname",
-  middlename: "exampleMiddlename",
-  signupDate: new Date(),
-  suffix: "exampleSuffix",
   title: "exampleTitle",
+  firstname: "exampleFirstname",
+  middlename: "exampleMiddlename",
+  lastname: "exampleLastname",
+  suffix: "exampleSuffix",
+  initials: "exampleInitials",
+  signupDate: new Date(),
   verified: "true",
+  guid: "exampleGuid",
+  firstNamePref: "exampleFirstNamePref",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     email: "exampleEmail",
-    firstname: "exampleFirstname",
-    firstNamePref: "exampleFirstNamePref",
-    guid: "exampleGuid",
-    id: 42,
-    initials: "exampleInitials",
-    lastname: "exampleLastname",
-    middlename: "exampleMiddlename",
-    signupDate: new Date(),
-    suffix: "exampleSuffix",
     title: "exampleTitle",
+    firstname: "exampleFirstname",
+    middlename: "exampleMiddlename",
+    lastname: "exampleLastname",
+    suffix: "exampleSuffix",
+    initials: "exampleInitials",
+    signupDate: new Date(),
     verified: "true",
+    guid: "exampleGuid",
+    firstNamePref: "exampleFirstNamePref",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   email: "exampleEmail",
-  firstname: "exampleFirstname",
-  firstNamePref: "exampleFirstNamePref",
-  guid: "exampleGuid",
-  id: 42,
-  initials: "exampleInitials",
-  lastname: "exampleLastname",
-  middlename: "exampleMiddlename",
-  signupDate: new Date(),
-  suffix: "exampleSuffix",
   title: "exampleTitle",
+  firstname: "exampleFirstname",
+  middlename: "exampleMiddlename",
+  lastname: "exampleLastname",
+  suffix: "exampleSuffix",
+  initials: "exampleInitials",
+  signupDate: new Date(),
   verified: "true",
+  guid: "exampleGuid",
+  firstNamePref: "exampleFirstNamePref",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createUser() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  users: () => FIND_MANY_RESULT,
+  user: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DecisionRankService } from "../decisionRank.service";
 import { DecisionRankCreateInput } from "./DecisionRankCreateInput";
-import { DecisionRankWhereInput } from "./DecisionRankWhereInput";
-import { DecisionRankWhereUniqueInput } from "./DecisionRankWhereUniqueInput";
-import { DecisionRankFindManyArgs } from "./DecisionRankFindManyArgs";
-import { DecisionRankUpdateInput } from "./DecisionRankUpdateInput";
 import { DecisionRank } from "./DecisionRank";
+import { DecisionRankFindManyArgs } from "./DecisionRankFindManyArgs";
+import { DecisionRankWhereUniqueInput } from "./DecisionRankWhereUniqueInput";
+import { DecisionRankUpdateInput } from "./DecisionRankUpdateInput";
 
 export class DecisionRankControllerBase {
   constructor(protected readonly service: DecisionRankService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DecisionRank })
-  async create(
+  async createDecisionRank(
     @common.Body() data: DecisionRankCreateInput
   ): Promise<DecisionRank> {
-    return await this.service.create({
+    return await this.service.createDecisionRank({
       data: data,
       select: {
-        decision: true,
         departmentId: true,
-        id: true,
-        luUsersUsertypesId: true,
         periodId: true,
-        ranking: true,
+        decision: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        ranking: true,
+        id: true,
       },
     });
   }
@@ -48,18 +47,18 @@ export class DecisionRankControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DecisionRank] })
   @ApiNestedQuery(DecisionRankFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DecisionRank[]> {
+  async decisionRanks(@common.Req() request: Request): Promise<DecisionRank[]> {
     const args = plainToClass(DecisionRankFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.decisionRanks({
       ...args,
       select: {
-        decision: true,
         departmentId: true,
-        id: true,
-        luUsersUsertypesId: true,
         periodId: true,
-        ranking: true,
+        decision: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        ranking: true,
+        id: true,
       },
     });
   }
@@ -67,19 +66,19 @@ export class DecisionRankControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DecisionRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async decisionRank(
     @common.Param() params: DecisionRankWhereUniqueInput
   ): Promise<DecisionRank | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.decisionRank({
       where: params,
       select: {
-        decision: true,
         departmentId: true,
-        id: true,
-        luUsersUsertypesId: true,
         periodId: true,
-        ranking: true,
+        decision: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        ranking: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -93,22 +92,22 @@ export class DecisionRankControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DecisionRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDecisionRank(
     @common.Param() params: DecisionRankWhereUniqueInput,
     @common.Body() data: DecisionRankUpdateInput
   ): Promise<DecisionRank | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDecisionRank({
         where: params,
         data: data,
         select: {
-          decision: true,
           departmentId: true,
-          id: true,
-          luUsersUsertypesId: true,
           periodId: true,
-          ranking: true,
+          decision: true,
           timestamp: true,
+          luUsersUsertypesId: true,
+          ranking: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -124,20 +123,20 @@ export class DecisionRankControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DecisionRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDecisionRank(
     @common.Param() params: DecisionRankWhereUniqueInput
   ): Promise<DecisionRank | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDecisionRank({
         where: params,
         select: {
-          decision: true,
           departmentId: true,
-          id: true,
-          luUsersUsertypesId: true,
           periodId: true,
-          ranking: true,
+          decision: true,
           timestamp: true,
+          luUsersUsertypesId: true,
+          ranking: true,
+          id: true,
         },
       });
     } catch (error) {

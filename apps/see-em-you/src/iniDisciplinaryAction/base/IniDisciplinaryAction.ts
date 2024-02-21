@@ -29,7 +29,18 @@ class IniDisciplinaryAction {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  sanction!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  sanctionDescription!: string | null;
 
   @ApiProperty({
     required: true,
@@ -56,18 +67,7 @@ class IniDisciplinaryAction {
   })
   @IsInt()
   @Field(() => Number)
-  sanction!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  sanctionDescription!: string | null;
+  id!: number;
 }
 
 export { IniDisciplinaryAction as IniDisciplinaryAction };

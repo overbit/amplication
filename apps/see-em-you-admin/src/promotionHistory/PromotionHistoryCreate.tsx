@@ -3,9 +3,9 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
-  SelectInput,
   NumberInput,
+  SelectInput,
+  ReferenceInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -15,14 +15,8 @@ export const PromotionHistoryCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="application.id"
-          reference="Application"
-          label="Application"
-        >
-          <SelectInput optionText={ApplicationTitle} />
-        </ReferenceInput>
         <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Round" source="round" />
         <SelectInput
           source="promotion_method"
           label="Promotion Method"
@@ -35,8 +29,14 @@ export const PromotionHistoryCreate = (
           optionText="label"
           optionValue="value"
         />
-        <NumberInput step={1} label="Round" source="round" />
         <NumberInput step={1} label="Users Id" source="usersId" />
+        <ReferenceInput
+          source="application.id"
+          reference="Application"
+          label="Application"
+        >
+          <SelectInput optionText={ApplicationTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Create>
   );

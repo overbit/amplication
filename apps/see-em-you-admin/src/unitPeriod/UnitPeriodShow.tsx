@@ -6,8 +6,8 @@ export const UnitPeriodShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Id" source="id" />
-        <TextField label="Period Id" source="periodId" />
         <TextField label="Unit Id" source="unitId" />
+        <TextField label="Period Id" source="periodId" />
       </SimpleShowLayout>
     </Show>
   );

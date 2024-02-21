@@ -27,6 +27,17 @@ class PaymentAuditUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  paymentId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   applicationId?: number;
 
   @ApiProperty({
@@ -38,7 +49,7 @@ class PaymentAuditUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  lastModUserId?: number;
+  paymentType?: number;
 
   @ApiProperty({
     required: false,
@@ -50,17 +61,6 @@ class PaymentAuditUpdateInput {
     nullable: true,
   })
   paymentAmount?: Decimal;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  paymentId?: number;
 
   @ApiProperty({
     required: false,
@@ -93,7 +93,7 @@ class PaymentAuditUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  paymentType?: number;
+  lastModUserId?: number;
 }
 
 export { PaymentAuditUpdateInput as PaymentAuditUpdateInput };

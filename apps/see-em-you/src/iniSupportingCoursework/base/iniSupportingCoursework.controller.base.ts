@@ -18,33 +18,32 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IniSupportingCourseworkService } from "../iniSupportingCoursework.service";
 import { IniSupportingCourseworkCreateInput } from "./IniSupportingCourseworkCreateInput";
-import { IniSupportingCourseworkWhereInput } from "./IniSupportingCourseworkWhereInput";
-import { IniSupportingCourseworkWhereUniqueInput } from "./IniSupportingCourseworkWhereUniqueInput";
-import { IniSupportingCourseworkFindManyArgs } from "./IniSupportingCourseworkFindManyArgs";
-import { IniSupportingCourseworkUpdateInput } from "./IniSupportingCourseworkUpdateInput";
 import { IniSupportingCoursework } from "./IniSupportingCoursework";
+import { IniSupportingCourseworkFindManyArgs } from "./IniSupportingCourseworkFindManyArgs";
+import { IniSupportingCourseworkWhereUniqueInput } from "./IniSupportingCourseworkWhereUniqueInput";
+import { IniSupportingCourseworkUpdateInput } from "./IniSupportingCourseworkUpdateInput";
 
 export class IniSupportingCourseworkControllerBase {
   constructor(protected readonly service: IniSupportingCourseworkService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IniSupportingCoursework })
-  async create(
+  async createIniSupportingCoursework(
     @common.Body() data: IniSupportingCourseworkCreateInput
   ): Promise<IniSupportingCoursework> {
-    return await this.service.create({
+    return await this.service.createIniSupportingCoursework({
       data: data,
       select: {
         applicationId: true,
-        dataStructuresNumber: true,
         dataStructuresTitle: true,
-        id: true,
-        msitExperience: true,
-        probabilityNumber: true,
+        dataStructuresNumber: true,
         probabilityTitle: true,
+        probabilityNumber: true,
+        statisticsTitle: true,
+        statisticsNumber: true,
+        msitExperience: true,
         programmingDescription: true,
         programmingDescription2: true,
-        statisticsNumber: true,
-        statisticsTitle: true,
+        id: true,
       },
     });
   }
@@ -52,27 +51,27 @@ export class IniSupportingCourseworkControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [IniSupportingCoursework] })
   @ApiNestedQuery(IniSupportingCourseworkFindManyArgs)
-  async findMany(
+  async iniSupportingCourseworks(
     @common.Req() request: Request
   ): Promise<IniSupportingCoursework[]> {
     const args = plainToClass(
       IniSupportingCourseworkFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.iniSupportingCourseworks({
       ...args,
       select: {
         applicationId: true,
-        dataStructuresNumber: true,
         dataStructuresTitle: true,
-        id: true,
-        msitExperience: true,
-        probabilityNumber: true,
+        dataStructuresNumber: true,
         probabilityTitle: true,
+        probabilityNumber: true,
+        statisticsTitle: true,
+        statisticsNumber: true,
+        msitExperience: true,
         programmingDescription: true,
         programmingDescription2: true,
-        statisticsNumber: true,
-        statisticsTitle: true,
+        id: true,
       },
     });
   }
@@ -80,23 +79,23 @@ export class IniSupportingCourseworkControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IniSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async iniSupportingCoursework(
     @common.Param() params: IniSupportingCourseworkWhereUniqueInput
   ): Promise<IniSupportingCoursework | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.iniSupportingCoursework({
       where: params,
       select: {
         applicationId: true,
-        dataStructuresNumber: true,
         dataStructuresTitle: true,
-        id: true,
-        msitExperience: true,
-        probabilityNumber: true,
+        dataStructuresNumber: true,
         probabilityTitle: true,
+        probabilityNumber: true,
+        statisticsTitle: true,
+        statisticsNumber: true,
+        msitExperience: true,
         programmingDescription: true,
         programmingDescription2: true,
-        statisticsNumber: true,
-        statisticsTitle: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -110,26 +109,26 @@ export class IniSupportingCourseworkControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IniSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIniSupportingCoursework(
     @common.Param() params: IniSupportingCourseworkWhereUniqueInput,
     @common.Body() data: IniSupportingCourseworkUpdateInput
   ): Promise<IniSupportingCoursework | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniSupportingCoursework({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          dataStructuresNumber: true,
           dataStructuresTitle: true,
-          id: true,
-          msitExperience: true,
-          probabilityNumber: true,
+          dataStructuresNumber: true,
           probabilityTitle: true,
+          probabilityNumber: true,
+          statisticsTitle: true,
+          statisticsNumber: true,
+          msitExperience: true,
           programmingDescription: true,
           programmingDescription2: true,
-          statisticsNumber: true,
-          statisticsTitle: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -145,24 +144,24 @@ export class IniSupportingCourseworkControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IniSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIniSupportingCoursework(
     @common.Param() params: IniSupportingCourseworkWhereUniqueInput
   ): Promise<IniSupportingCoursework | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIniSupportingCoursework({
         where: params,
         select: {
           applicationId: true,
-          dataStructuresNumber: true,
           dataStructuresTitle: true,
-          id: true,
-          msitExperience: true,
-          probabilityNumber: true,
+          dataStructuresNumber: true,
           probabilityTitle: true,
+          probabilityNumber: true,
+          statisticsTitle: true,
+          statisticsNumber: true,
+          msitExperience: true,
           programmingDescription: true,
           programmingDescription2: true,
-          statisticsNumber: true,
-          statisticsTitle: true,
+          id: true,
         },
       });
     } catch (error) {

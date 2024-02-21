@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, CmuAffiliation } from "@prisma/client";
+import { Prisma, CmuAffiliation as PrismaCmuAffiliation } from "@prisma/client";
 
 export class CmuAffiliationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class CmuAffiliationServiceBase {
     return this.prisma.cmuAffiliation.count(args);
   }
 
-  async findMany<T extends Prisma.CmuAffiliationFindManyArgs>(
+  async cmuAffiliations<T extends Prisma.CmuAffiliationFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CmuAffiliationFindManyArgs>
-  ): Promise<CmuAffiliation[]> {
+  ): Promise<PrismaCmuAffiliation[]> {
     return this.prisma.cmuAffiliation.findMany(args);
   }
-  async findOne<T extends Prisma.CmuAffiliationFindUniqueArgs>(
+  async cmuAffiliation<T extends Prisma.CmuAffiliationFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CmuAffiliationFindUniqueArgs>
-  ): Promise<CmuAffiliation | null> {
+  ): Promise<PrismaCmuAffiliation | null> {
     return this.prisma.cmuAffiliation.findUnique(args);
   }
-  async create<T extends Prisma.CmuAffiliationCreateArgs>(
+  async createCmuAffiliation<T extends Prisma.CmuAffiliationCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CmuAffiliationCreateArgs>
-  ): Promise<CmuAffiliation> {
+  ): Promise<PrismaCmuAffiliation> {
     return this.prisma.cmuAffiliation.create<T>(args);
   }
-  async update<T extends Prisma.CmuAffiliationUpdateArgs>(
+  async updateCmuAffiliation<T extends Prisma.CmuAffiliationUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CmuAffiliationUpdateArgs>
-  ): Promise<CmuAffiliation> {
+  ): Promise<PrismaCmuAffiliation> {
     return this.prisma.cmuAffiliation.update<T>(args);
   }
-  async delete<T extends Prisma.CmuAffiliationDeleteArgs>(
+  async deleteCmuAffiliation<T extends Prisma.CmuAffiliationDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CmuAffiliationDeleteArgs>
-  ): Promise<CmuAffiliation> {
+  ): Promise<PrismaCmuAffiliation> {
     return this.prisma.cmuAffiliation.delete(args);
   }
 }

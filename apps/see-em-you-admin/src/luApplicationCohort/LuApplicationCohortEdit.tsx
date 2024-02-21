@@ -3,9 +3,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  NumberInput,
   ReferenceInput,
   SelectInput,
-  NumberInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -15,6 +15,7 @@ export const LuApplicationCohortEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Cohort Id" source="cohortId" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -22,7 +23,6 @@ export const LuApplicationCohortEdit = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Cohort Id" source="cohortId" />
       </SimpleForm>
     </Edit>
   );

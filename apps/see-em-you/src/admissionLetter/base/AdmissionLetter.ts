@@ -37,7 +37,7 @@ class AdmissionLetter {
   })
   @IsString()
   @Field(() => String)
-  id!: string;
+  sections!: string;
 
   @ApiProperty({
     required: true,
@@ -45,7 +45,7 @@ class AdmissionLetter {
   })
   @IsString()
   @Field(() => String)
-  sections!: string;
+  id!: string;
 }
 
 export { AdmissionLetter as AdmissionLetter };

@@ -3,8 +3,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  NumberInput,
   TextInput,
+  NumberInput,
 } from "react-admin";
 
 export const IpedsEthnicityCreate = (
@@ -13,9 +13,9 @@ export const IpedsEthnicityCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Ethnicity Id" source="ethnicityId" />
         <TextInput label="Ipeds Ethnicity" source="ipedsEthnicity" />
         <NumberInput step={1} label="Sort Order" source="sortOrder" />
+        <NumberInput step={1} label="Ethnicity Id" source="ethnicityId" />
       </SimpleForm>
     </Create>
   );

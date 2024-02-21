@@ -18,58 +18,58 @@ import { PaymentAuditService } from "../paymentAudit.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationId: 42,
   id: 42,
+  paymentId: 42,
+  applicationId: 42,
+  paymentType: 42,
+  paymentAmount: 42.424242424,
+  paymentIntentDate: new Date(),
   lastModTime: new Date(),
   lastModUserId: 42,
-  paymentAmount: 42.424242424,
-  paymentId: 42,
-  paymentIntentDate: new Date(),
-  paymentType: 42,
   timeDeleted: new Date(),
 };
 const CREATE_RESULT = {
-  applicationId: 42,
   id: 42,
+  paymentId: 42,
+  applicationId: 42,
+  paymentType: 42,
+  paymentAmount: 42.424242424,
+  paymentIntentDate: new Date(),
   lastModTime: new Date(),
   lastModUserId: 42,
-  paymentAmount: 42.424242424,
-  paymentId: 42,
-  paymentIntentDate: new Date(),
-  paymentType: 42,
   timeDeleted: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
-    applicationId: 42,
     id: 42,
+    paymentId: 42,
+    applicationId: 42,
+    paymentType: 42,
+    paymentAmount: 42.424242424,
+    paymentIntentDate: new Date(),
     lastModTime: new Date(),
     lastModUserId: 42,
-    paymentAmount: 42.424242424,
-    paymentId: 42,
-    paymentIntentDate: new Date(),
-    paymentType: 42,
     timeDeleted: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationId: 42,
   id: 42,
+  paymentId: 42,
+  applicationId: 42,
+  paymentType: 42,
+  paymentAmount: 42.424242424,
+  paymentIntentDate: new Date(),
   lastModTime: new Date(),
   lastModUserId: 42,
-  paymentAmount: 42.424242424,
-  paymentId: 42,
-  paymentIntentDate: new Date(),
-  paymentType: 42,
   timeDeleted: new Date(),
 };
 
 const service = {
-  create() {
+  createPaymentAudit() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  paymentAudits: () => FIND_MANY_RESULT,
+  paymentAudit: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -146,8 +146,8 @@ describe("PaymentAudit", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        lastModTime: CREATE_RESULT.lastModTime.toISOString(),
         paymentIntentDate: CREATE_RESULT.paymentIntentDate.toISOString(),
+        lastModTime: CREATE_RESULT.lastModTime.toISOString(),
         timeDeleted: CREATE_RESULT.timeDeleted.toISOString(),
       });
   });
@@ -159,9 +159,9 @@ describe("PaymentAudit", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          lastModTime: FIND_MANY_RESULT[0].lastModTime.toISOString(),
           paymentIntentDate:
             FIND_MANY_RESULT[0].paymentIntentDate.toISOString(),
+          lastModTime: FIND_MANY_RESULT[0].lastModTime.toISOString(),
           timeDeleted: FIND_MANY_RESULT[0].timeDeleted.toISOString(),
         },
       ]);
@@ -184,8 +184,8 @@ describe("PaymentAudit", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        lastModTime: FIND_ONE_RESULT.lastModTime.toISOString(),
         paymentIntentDate: FIND_ONE_RESULT.paymentIntentDate.toISOString(),
+        lastModTime: FIND_ONE_RESULT.lastModTime.toISOString(),
         timeDeleted: FIND_ONE_RESULT.timeDeleted.toISOString(),
       });
   });
@@ -198,8 +198,8 @@ describe("PaymentAudit", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        lastModTime: CREATE_RESULT.lastModTime.toISOString(),
         paymentIntentDate: CREATE_RESULT.paymentIntentDate.toISOString(),
+        lastModTime: CREATE_RESULT.lastModTime.toISOString(),
         timeDeleted: CREATE_RESULT.timeDeleted.toISOString(),
       })
       .then(function () {

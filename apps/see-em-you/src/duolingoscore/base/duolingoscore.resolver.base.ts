@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDuolingoscoreArgs } from "./CreateDuolingoscoreArgs";
-import { UpdateDuolingoscoreArgs } from "./UpdateDuolingoscoreArgs";
-import { DeleteDuolingoscoreArgs } from "./DeleteDuolingoscoreArgs";
+import { Duolingoscore } from "./Duolingoscore";
 import { DuolingoscoreCountArgs } from "./DuolingoscoreCountArgs";
 import { DuolingoscoreFindManyArgs } from "./DuolingoscoreFindManyArgs";
 import { DuolingoscoreFindUniqueArgs } from "./DuolingoscoreFindUniqueArgs";
-import { Duolingoscore } from "./Duolingoscore";
+import { CreateDuolingoscoreArgs } from "./CreateDuolingoscoreArgs";
+import { UpdateDuolingoscoreArgs } from "./UpdateDuolingoscoreArgs";
+import { DeleteDuolingoscoreArgs } from "./DeleteDuolingoscoreArgs";
 import { DuolingoscoreService } from "../duolingoscore.service";
 @graphql.Resolver(() => Duolingoscore)
 export class DuolingoscoreResolverBase {
@@ -38,14 +38,14 @@ export class DuolingoscoreResolverBase {
   async duolingoscores(
     @graphql.Args() args: DuolingoscoreFindManyArgs
   ): Promise<Duolingoscore[]> {
-    return this.service.findMany(args);
+    return this.service.duolingoscores(args);
   }
 
   @graphql.Query(() => Duolingoscore, { nullable: true })
   async duolingoscore(
     @graphql.Args() args: DuolingoscoreFindUniqueArgs
   ): Promise<Duolingoscore | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.duolingoscore(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DuolingoscoreResolverBase {
   async createDuolingoscore(
     @graphql.Args() args: CreateDuolingoscoreArgs
   ): Promise<Duolingoscore> {
-    return await this.service.create({
+    return await this.service.createDuolingoscore({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DuolingoscoreResolverBase {
     @graphql.Args() args: UpdateDuolingoscoreArgs
   ): Promise<Duolingoscore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDuolingoscore({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DuolingoscoreResolverBase {
     @graphql.Args() args: DeleteDuolingoscoreArgs
   ): Promise<Duolingoscore | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDuolingoscore(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ProgramGroupTypeService } from "../programGroupType.service";
 import { ProgramGroupTypeCreateInput } from "./ProgramGroupTypeCreateInput";
-import { ProgramGroupTypeWhereInput } from "./ProgramGroupTypeWhereInput";
-import { ProgramGroupTypeWhereUniqueInput } from "./ProgramGroupTypeWhereUniqueInput";
-import { ProgramGroupTypeFindManyArgs } from "./ProgramGroupTypeFindManyArgs";
-import { ProgramGroupTypeUpdateInput } from "./ProgramGroupTypeUpdateInput";
 import { ProgramGroupType } from "./ProgramGroupType";
+import { ProgramGroupTypeFindManyArgs } from "./ProgramGroupTypeFindManyArgs";
+import { ProgramGroupTypeWhereUniqueInput } from "./ProgramGroupTypeWhereUniqueInput";
+import { ProgramGroupTypeUpdateInput } from "./ProgramGroupTypeUpdateInput";
 
 export class ProgramGroupTypeControllerBase {
   constructor(protected readonly service: ProgramGroupTypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ProgramGroupType })
-  async create(
+  async createProgramGroupType(
     @common.Body() data: ProgramGroupTypeCreateInput
   ): Promise<ProgramGroupType> {
-    return await this.service.create({
+    return await this.service.createProgramGroupType({
       data: data,
       select: {
-        id: true,
-        programGroupTypeDescription: true,
         programGroupTypeName: true,
+        programGroupTypeDescription: true,
+        id: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class ProgramGroupTypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ProgramGroupType] })
   @ApiNestedQuery(ProgramGroupTypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ProgramGroupType[]> {
+  async programGroupTypes(
+    @common.Req() request: Request
+  ): Promise<ProgramGroupType[]> {
     const args = plainToClass(ProgramGroupTypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.programGroupTypes({
       ...args,
       select: {
-        id: true,
-        programGroupTypeDescription: true,
         programGroupTypeName: true,
+        programGroupTypeDescription: true,
+        id: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class ProgramGroupTypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ProgramGroupType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async programGroupType(
     @common.Param() params: ProgramGroupTypeWhereUniqueInput
   ): Promise<ProgramGroupType | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.programGroupType({
       where: params,
       select: {
-        id: true,
-        programGroupTypeDescription: true,
         programGroupTypeName: true,
+        programGroupTypeDescription: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class ProgramGroupTypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ProgramGroupType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateProgramGroupType(
     @common.Param() params: ProgramGroupTypeWhereUniqueInput,
     @common.Body() data: ProgramGroupTypeUpdateInput
   ): Promise<ProgramGroupType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramGroupType({
         where: params,
         data: data,
         select: {
-          id: true,
-          programGroupTypeDescription: true,
           programGroupTypeName: true,
+          programGroupTypeDescription: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class ProgramGroupTypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ProgramGroupType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteProgramGroupType(
     @common.Param() params: ProgramGroupTypeWhereUniqueInput
   ): Promise<ProgramGroupType | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteProgramGroupType({
         where: params,
         select: {
-          id: true,
-          programGroupTypeDescription: true,
           programGroupTypeName: true,
+          programGroupTypeDescription: true,
+          id: true,
         },
       });
     } catch (error) {

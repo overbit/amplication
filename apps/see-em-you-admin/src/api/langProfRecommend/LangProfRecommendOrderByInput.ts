@@ -2,13 +2,13 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type LangProfRecommendOrderByInput = {
   applicationId?: SortOrder;
+  recUserId?: SortOrder;
   content?: SortOrder;
   datafileId?: SortOrder;
-  id?: SortOrder;
   langProfRecId?: SortOrder;
-  languageSpecialization?: SortOrder;
-  lastReminderSent?: SortOrder;
-  recUserId?: SortOrder;
-  reminderSentCount?: SortOrder;
   submitted?: SortOrder;
+  reminderSentCount?: SortOrder;
+  lastReminderSent?: SortOrder;
+  languageSpecialization?: SortOrder;
+  id?: SortOrder;
 };

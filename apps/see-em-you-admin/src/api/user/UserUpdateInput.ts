@@ -2,17 +2,17 @@ import { ApplicationAdminNoteUpdateManyWithoutUsersInput } from "./ApplicationAd
 import { LuUsersUsertypeUpdateManyWithoutUsersInput } from "./LuUsersUsertypeUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
-  applicationAdminNote?: ApplicationAdminNoteUpdateManyWithoutUsersInput;
   email?: string;
-  firstname?: string;
-  firstNamePref?: string | null;
-  guid?: string;
-  initials?: string | null;
-  lastname?: string;
-  luUsersUsertypes?: LuUsersUsertypeUpdateManyWithoutUsersInput;
-  middlename?: string | null;
-  signupDate?: Date;
-  suffix?: string | null;
   title?: string | null;
+  firstname?: string;
+  middlename?: string | null;
+  lastname?: string;
+  suffix?: string | null;
+  initials?: string | null;
+  signupDate?: Date;
   verified?: boolean;
+  guid?: string;
+  firstNamePref?: string | null;
+  applicationAdminNote?: ApplicationAdminNoteUpdateManyWithoutUsersInput;
+  luUsersUsertypes?: LuUsersUsertypeUpdateManyWithoutUsersInput;
 };

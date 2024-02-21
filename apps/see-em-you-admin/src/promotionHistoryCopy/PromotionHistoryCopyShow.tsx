@@ -14,12 +14,12 @@ export const PromotionHistoryCopyShow = (
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
         <TextField label="Program Id" source="programId" />
-        <TextField label="Promotion Method" source="promotion_method" />
-        <TextField label="Round" source="round" />
         <DateField source="statusTime" label="Status Time" />
+        <TextField label="Round" source="round" />
+        <TextField label="Promotion Method" source="promotion_method" />
         <TextField label="Users Id" source="usersId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

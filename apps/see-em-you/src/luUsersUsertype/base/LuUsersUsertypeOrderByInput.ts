@@ -28,29 +28,18 @@ class LuUsersUsertypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  usertypeId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   domain?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  mhciPrereqsProgrammingSamplesId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +61,18 @@ class LuUsersUsertypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usertypeId?: SortOrder;
+  mhciPrereqsProgrammingSamplesId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { LuUsersUsertypeOrderByInput as LuUsersUsertypeOrderByInput };

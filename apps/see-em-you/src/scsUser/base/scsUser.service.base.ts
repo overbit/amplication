@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ScsUser } from "@prisma/client";
+import { Prisma, ScsUser as PrismaScsUser } from "@prisma/client";
 
 export class ScsUserServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ScsUserServiceBase {
     return this.prisma.scsUser.count(args);
   }
 
-  async findMany<T extends Prisma.ScsUserFindManyArgs>(
+  async scsUsers<T extends Prisma.ScsUserFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserFindManyArgs>
-  ): Promise<ScsUser[]> {
+  ): Promise<PrismaScsUser[]> {
     return this.prisma.scsUser.findMany(args);
   }
-  async findOne<T extends Prisma.ScsUserFindUniqueArgs>(
+  async scsUser<T extends Prisma.ScsUserFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserFindUniqueArgs>
-  ): Promise<ScsUser | null> {
+  ): Promise<PrismaScsUser | null> {
     return this.prisma.scsUser.findUnique(args);
   }
-  async create<T extends Prisma.ScsUserCreateArgs>(
+  async createScsUser<T extends Prisma.ScsUserCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserCreateArgs>
-  ): Promise<ScsUser> {
+  ): Promise<PrismaScsUser> {
     return this.prisma.scsUser.create<T>(args);
   }
-  async update<T extends Prisma.ScsUserUpdateArgs>(
+  async updateScsUser<T extends Prisma.ScsUserUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserUpdateArgs>
-  ): Promise<ScsUser> {
+  ): Promise<PrismaScsUser> {
     return this.prisma.scsUser.update<T>(args);
   }
-  async delete<T extends Prisma.ScsUserDeleteArgs>(
+  async deleteScsUser<T extends Prisma.ScsUserDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserDeleteArgs>
-  ): Promise<ScsUser> {
+  ): Promise<PrismaScsUser> {
     return this.prisma.scsUser.delete(args);
   }
 }

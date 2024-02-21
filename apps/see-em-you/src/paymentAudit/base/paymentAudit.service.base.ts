@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PaymentAudit } from "@prisma/client";
+import { Prisma, PaymentAudit as PrismaPaymentAudit } from "@prisma/client";
 
 export class PaymentAuditServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class PaymentAuditServiceBase {
     return this.prisma.paymentAudit.count(args);
   }
 
-  async findMany<T extends Prisma.PaymentAuditFindManyArgs>(
+  async paymentAudits<T extends Prisma.PaymentAuditFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentAuditFindManyArgs>
-  ): Promise<PaymentAudit[]> {
+  ): Promise<PrismaPaymentAudit[]> {
     return this.prisma.paymentAudit.findMany(args);
   }
-  async findOne<T extends Prisma.PaymentAuditFindUniqueArgs>(
+  async paymentAudit<T extends Prisma.PaymentAuditFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentAuditFindUniqueArgs>
-  ): Promise<PaymentAudit | null> {
+  ): Promise<PrismaPaymentAudit | null> {
     return this.prisma.paymentAudit.findUnique(args);
   }
-  async create<T extends Prisma.PaymentAuditCreateArgs>(
+  async createPaymentAudit<T extends Prisma.PaymentAuditCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentAuditCreateArgs>
-  ): Promise<PaymentAudit> {
+  ): Promise<PrismaPaymentAudit> {
     return this.prisma.paymentAudit.create<T>(args);
   }
-  async update<T extends Prisma.PaymentAuditUpdateArgs>(
+  async updatePaymentAudit<T extends Prisma.PaymentAuditUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentAuditUpdateArgs>
-  ): Promise<PaymentAudit> {
+  ): Promise<PrismaPaymentAudit> {
     return this.prisma.paymentAudit.update<T>(args);
   }
-  async delete<T extends Prisma.PaymentAuditDeleteArgs>(
+  async deletePaymentAudit<T extends Prisma.PaymentAuditDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentAuditDeleteArgs>
-  ): Promise<PaymentAudit> {
+  ): Promise<PrismaPaymentAudit> {
     return this.prisma.paymentAudit.delete(args);
   }
 }

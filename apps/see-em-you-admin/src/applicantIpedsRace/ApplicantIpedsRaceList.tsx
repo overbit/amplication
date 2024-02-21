@@ -14,9 +14,9 @@ export const ApplicantIpedsRaceList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
-        <TextField label="Ipeds Race Id" source="ipedsRaceId" />
         <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Ipeds Race Id" source="ipedsRaceId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

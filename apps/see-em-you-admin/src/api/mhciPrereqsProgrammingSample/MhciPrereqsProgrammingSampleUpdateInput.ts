@@ -1,12 +1,12 @@
 import { LuUsersUsertypeWhereUniqueInput } from "../luUsersUsertype/LuUsersUsertypeWhereUniqueInput";
 
 export type MhciPrereqsProgrammingSampleUpdateInput = {
-  applicationId?: number | null;
   datafileinfoId?: number;
-  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
-  newFileUploaded?: boolean;
   note?: string | null;
+  submittedToReviewer?: boolean;
+  newFileUploaded?: boolean;
+  applicationId?: number | null;
   periodId?: number | null;
   programId?: number | null;
-  submittedToReviewer?: boolean;
+  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
 };

@@ -21,7 +21,7 @@ class VoucherProgramCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
+  voucherId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class VoucherProgramCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  voucherId!: number;
+  programId!: number;
 }
 
 export { VoucherProgramCreateInput as VoucherProgramCreateInput };

@@ -21,22 +21,6 @@ class UnitRoleCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  luUsersUsertypesId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  roleId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   unitId!: number;
 
   @ApiProperty({
@@ -46,6 +30,22 @@ class UnitRoleCreateInput {
   @IsInt()
   @Field(() => Number)
   usersId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  luUsersUsertypesId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  roleId!: number;
 }
 
 export { UnitRoleCreateInput as UnitRoleCreateInput };

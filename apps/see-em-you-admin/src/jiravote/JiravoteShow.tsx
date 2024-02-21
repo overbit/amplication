@@ -12,10 +12,10 @@ export const JiravoteShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <DateField source="created" label="Created" />
-        <TextField label="Id" source="id" />
-        <TextField label="Jira Name" source="jiraName" />
         <DateField source="updatedAt" label="Updated At" />
+        <TextField label="Jira Name" source="jiraName" />
         <TextField label="User" source="user" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

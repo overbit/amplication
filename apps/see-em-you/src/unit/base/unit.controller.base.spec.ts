@@ -18,66 +18,66 @@ import { UnitService } from "../unit.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationBasePrice: 42.424242424,
-  applicationProgramPrice: 42.424242424,
-  id: 42,
-  parentUnitId: 42,
-  unitCcEmail: "exampleUnitCcEmail",
-  unitDescription: "exampleUnitDescription",
   unitName: "exampleUnitName",
   unitNameShort: "exampleUnitNameShort",
+  unitDescription: "exampleUnitDescription",
+  unitUrl: "exampleUnitUrl",
   unitOracleString: "exampleUnitOracleString",
   unitSystemEmail: "exampleUnitSystemEmail",
-  unitUrl: "exampleUnitUrl",
+  unitCcEmail: "exampleUnitCcEmail",
+  applicationBasePrice: 42.424242424,
+  applicationProgramPrice: 42.424242424,
+  parentUnitId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  applicationBasePrice: 42.424242424,
-  applicationProgramPrice: 42.424242424,
-  id: 42,
-  parentUnitId: 42,
-  unitCcEmail: "exampleUnitCcEmail",
-  unitDescription: "exampleUnitDescription",
   unitName: "exampleUnitName",
   unitNameShort: "exampleUnitNameShort",
+  unitDescription: "exampleUnitDescription",
+  unitUrl: "exampleUnitUrl",
   unitOracleString: "exampleUnitOracleString",
   unitSystemEmail: "exampleUnitSystemEmail",
-  unitUrl: "exampleUnitUrl",
+  unitCcEmail: "exampleUnitCcEmail",
+  applicationBasePrice: 42.424242424,
+  applicationProgramPrice: 42.424242424,
+  parentUnitId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    applicationBasePrice: 42.424242424,
-    applicationProgramPrice: 42.424242424,
-    id: 42,
-    parentUnitId: 42,
-    unitCcEmail: "exampleUnitCcEmail",
-    unitDescription: "exampleUnitDescription",
     unitName: "exampleUnitName",
     unitNameShort: "exampleUnitNameShort",
+    unitDescription: "exampleUnitDescription",
+    unitUrl: "exampleUnitUrl",
     unitOracleString: "exampleUnitOracleString",
     unitSystemEmail: "exampleUnitSystemEmail",
-    unitUrl: "exampleUnitUrl",
+    unitCcEmail: "exampleUnitCcEmail",
+    applicationBasePrice: 42.424242424,
+    applicationProgramPrice: 42.424242424,
+    parentUnitId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationBasePrice: 42.424242424,
-  applicationProgramPrice: 42.424242424,
-  id: 42,
-  parentUnitId: 42,
-  unitCcEmail: "exampleUnitCcEmail",
-  unitDescription: "exampleUnitDescription",
   unitName: "exampleUnitName",
   unitNameShort: "exampleUnitNameShort",
+  unitDescription: "exampleUnitDescription",
+  unitUrl: "exampleUnitUrl",
   unitOracleString: "exampleUnitOracleString",
   unitSystemEmail: "exampleUnitSystemEmail",
-  unitUrl: "exampleUnitUrl",
+  unitCcEmail: "exampleUnitCcEmail",
+  applicationBasePrice: 42.424242424,
+  applicationProgramPrice: 42.424242424,
+  parentUnitId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createUnit() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  units: () => FIND_MANY_RESULT,
+  unit: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

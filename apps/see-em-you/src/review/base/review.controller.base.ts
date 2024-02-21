@@ -18,18 +18,17 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewService } from "../review.service";
 import { ReviewCreateInput } from "./ReviewCreateInput";
-import { ReviewWhereInput } from "./ReviewWhereInput";
-import { ReviewWhereUniqueInput } from "./ReviewWhereUniqueInput";
-import { ReviewFindManyArgs } from "./ReviewFindManyArgs";
-import { ReviewUpdateInput } from "./ReviewUpdateInput";
 import { Review } from "./Review";
+import { ReviewFindManyArgs } from "./ReviewFindManyArgs";
+import { ReviewWhereUniqueInput } from "./ReviewWhereUniqueInput";
+import { ReviewUpdateInput } from "./ReviewUpdateInput";
 
 export class ReviewControllerBase {
   constructor(protected readonly service: ReviewService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Review })
-  async create(@common.Body() data: ReviewCreateInput): Promise<Review> {
-    return await this.service.create({
+  async createReview(@common.Body() data: ReviewCreateInput): Promise<Review> {
+    return await this.service.createReview({
       data: {
         ...data,
 
@@ -38,8 +37,40 @@ export class ReviewControllerBase {
         },
       },
       select: {
+        reviewerId: true,
+        background: true,
+        grades: true,
+        statement: true,
+        comments: true,
+        point: true,
+        pointCertainty: true,
+        point2: true,
+        point2Certainty: true,
+        privateComments: true,
+        round2: true,
+        round3: true,
+        touched: true,
         admitVote: true,
+        recruited: true,
+        gradName: true,
+        pertinentInfo: true,
         adviseTime: true,
+        commitMoney: true,
+        fundSource: true,
+        round: true,
+        interview: true,
+        recommendations: true,
+        publications: true,
+        brilliance: true,
+        otherInterest: true,
+        supplementalReview: true,
+        facVote: true,
+        committeeVote: true,
+        rrank: true,
+        departmentId: true,
+        mseExperienceLen: true,
+        impressed: true,
+        updated: true,
 
         application: {
           select: {
@@ -47,39 +78,7 @@ export class ReviewControllerBase {
           },
         },
 
-        background: true,
-        brilliance: true,
-        comments: true,
-        commitMoney: true,
-        committeeVote: true,
-        departmentId: true,
-        facVote: true,
-        fundSource: true,
-        grades: true,
-        gradName: true,
         id: true,
-        impressed: true,
-        interview: true,
-        mseExperienceLen: true,
-        otherInterest: true,
-        pertinentInfo: true,
-        point: true,
-        point2: true,
-        point2Certainty: true,
-        pointCertainty: true,
-        privateComments: true,
-        publications: true,
-        recommendations: true,
-        recruited: true,
-        reviewerId: true,
-        round: true,
-        round2: true,
-        round3: true,
-        rrank: true,
-        statement: true,
-        supplementalReview: true,
-        touched: true,
-        updated: true,
       },
     });
   }
@@ -87,13 +86,45 @@ export class ReviewControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Review] })
   @ApiNestedQuery(ReviewFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Review[]> {
+  async reviews(@common.Req() request: Request): Promise<Review[]> {
     const args = plainToClass(ReviewFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.reviews({
       ...args,
       select: {
+        reviewerId: true,
+        background: true,
+        grades: true,
+        statement: true,
+        comments: true,
+        point: true,
+        pointCertainty: true,
+        point2: true,
+        point2Certainty: true,
+        privateComments: true,
+        round2: true,
+        round3: true,
+        touched: true,
         admitVote: true,
+        recruited: true,
+        gradName: true,
+        pertinentInfo: true,
         adviseTime: true,
+        commitMoney: true,
+        fundSource: true,
+        round: true,
+        interview: true,
+        recommendations: true,
+        publications: true,
+        brilliance: true,
+        otherInterest: true,
+        supplementalReview: true,
+        facVote: true,
+        committeeVote: true,
+        rrank: true,
+        departmentId: true,
+        mseExperienceLen: true,
+        impressed: true,
+        updated: true,
 
         application: {
           select: {
@@ -101,39 +132,7 @@ export class ReviewControllerBase {
           },
         },
 
-        background: true,
-        brilliance: true,
-        comments: true,
-        commitMoney: true,
-        committeeVote: true,
-        departmentId: true,
-        facVote: true,
-        fundSource: true,
-        grades: true,
-        gradName: true,
         id: true,
-        impressed: true,
-        interview: true,
-        mseExperienceLen: true,
-        otherInterest: true,
-        pertinentInfo: true,
-        point: true,
-        point2: true,
-        point2Certainty: true,
-        pointCertainty: true,
-        privateComments: true,
-        publications: true,
-        recommendations: true,
-        recruited: true,
-        reviewerId: true,
-        round: true,
-        round2: true,
-        round3: true,
-        rrank: true,
-        statement: true,
-        supplementalReview: true,
-        touched: true,
-        updated: true,
       },
     });
   }
@@ -141,14 +140,46 @@ export class ReviewControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Review })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async review(
     @common.Param() params: ReviewWhereUniqueInput
   ): Promise<Review | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.review({
       where: params,
       select: {
+        reviewerId: true,
+        background: true,
+        grades: true,
+        statement: true,
+        comments: true,
+        point: true,
+        pointCertainty: true,
+        point2: true,
+        point2Certainty: true,
+        privateComments: true,
+        round2: true,
+        round3: true,
+        touched: true,
         admitVote: true,
+        recruited: true,
+        gradName: true,
+        pertinentInfo: true,
         adviseTime: true,
+        commitMoney: true,
+        fundSource: true,
+        round: true,
+        interview: true,
+        recommendations: true,
+        publications: true,
+        brilliance: true,
+        otherInterest: true,
+        supplementalReview: true,
+        facVote: true,
+        committeeVote: true,
+        rrank: true,
+        departmentId: true,
+        mseExperienceLen: true,
+        impressed: true,
+        updated: true,
 
         application: {
           select: {
@@ -156,39 +187,7 @@ export class ReviewControllerBase {
           },
         },
 
-        background: true,
-        brilliance: true,
-        comments: true,
-        commitMoney: true,
-        committeeVote: true,
-        departmentId: true,
-        facVote: true,
-        fundSource: true,
-        grades: true,
-        gradName: true,
         id: true,
-        impressed: true,
-        interview: true,
-        mseExperienceLen: true,
-        otherInterest: true,
-        pertinentInfo: true,
-        point: true,
-        point2: true,
-        point2Certainty: true,
-        pointCertainty: true,
-        privateComments: true,
-        publications: true,
-        recommendations: true,
-        recruited: true,
-        reviewerId: true,
-        round: true,
-        round2: true,
-        round3: true,
-        rrank: true,
-        statement: true,
-        supplementalReview: true,
-        touched: true,
-        updated: true,
       },
     });
     if (result === null) {
@@ -202,12 +201,12 @@ export class ReviewControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Review })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReview(
     @common.Param() params: ReviewWhereUniqueInput,
     @common.Body() data: ReviewUpdateInput
   ): Promise<Review | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReview({
         where: params,
         data: {
           ...data,
@@ -217,8 +216,40 @@ export class ReviewControllerBase {
           },
         },
         select: {
+          reviewerId: true,
+          background: true,
+          grades: true,
+          statement: true,
+          comments: true,
+          point: true,
+          pointCertainty: true,
+          point2: true,
+          point2Certainty: true,
+          privateComments: true,
+          round2: true,
+          round3: true,
+          touched: true,
           admitVote: true,
+          recruited: true,
+          gradName: true,
+          pertinentInfo: true,
           adviseTime: true,
+          commitMoney: true,
+          fundSource: true,
+          round: true,
+          interview: true,
+          recommendations: true,
+          publications: true,
+          brilliance: true,
+          otherInterest: true,
+          supplementalReview: true,
+          facVote: true,
+          committeeVote: true,
+          rrank: true,
+          departmentId: true,
+          mseExperienceLen: true,
+          impressed: true,
+          updated: true,
 
           application: {
             select: {
@@ -226,39 +257,7 @@ export class ReviewControllerBase {
             },
           },
 
-          background: true,
-          brilliance: true,
-          comments: true,
-          commitMoney: true,
-          committeeVote: true,
-          departmentId: true,
-          facVote: true,
-          fundSource: true,
-          grades: true,
-          gradName: true,
           id: true,
-          impressed: true,
-          interview: true,
-          mseExperienceLen: true,
-          otherInterest: true,
-          pertinentInfo: true,
-          point: true,
-          point2: true,
-          point2Certainty: true,
-          pointCertainty: true,
-          privateComments: true,
-          publications: true,
-          recommendations: true,
-          recruited: true,
-          reviewerId: true,
-          round: true,
-          round2: true,
-          round3: true,
-          rrank: true,
-          statement: true,
-          supplementalReview: true,
-          touched: true,
-          updated: true,
         },
       });
     } catch (error) {
@@ -274,15 +273,47 @@ export class ReviewControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Review })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReview(
     @common.Param() params: ReviewWhereUniqueInput
   ): Promise<Review | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReview({
         where: params,
         select: {
+          reviewerId: true,
+          background: true,
+          grades: true,
+          statement: true,
+          comments: true,
+          point: true,
+          pointCertainty: true,
+          point2: true,
+          point2Certainty: true,
+          privateComments: true,
+          round2: true,
+          round3: true,
+          touched: true,
           admitVote: true,
+          recruited: true,
+          gradName: true,
+          pertinentInfo: true,
           adviseTime: true,
+          commitMoney: true,
+          fundSource: true,
+          round: true,
+          interview: true,
+          recommendations: true,
+          publications: true,
+          brilliance: true,
+          otherInterest: true,
+          supplementalReview: true,
+          facVote: true,
+          committeeVote: true,
+          rrank: true,
+          departmentId: true,
+          mseExperienceLen: true,
+          impressed: true,
+          updated: true,
 
           application: {
             select: {
@@ -290,39 +321,7 @@ export class ReviewControllerBase {
             },
           },
 
-          background: true,
-          brilliance: true,
-          comments: true,
-          commitMoney: true,
-          committeeVote: true,
-          departmentId: true,
-          facVote: true,
-          fundSource: true,
-          grades: true,
-          gradName: true,
           id: true,
-          impressed: true,
-          interview: true,
-          mseExperienceLen: true,
-          otherInterest: true,
-          pertinentInfo: true,
-          point: true,
-          point2: true,
-          point2Certainty: true,
-          pointCertainty: true,
-          privateComments: true,
-          publications: true,
-          recommendations: true,
-          recruited: true,
-          reviewerId: true,
-          round: true,
-          round2: true,
-          round3: true,
-          rrank: true,
-          statement: true,
-          supplementalReview: true,
-          touched: true,
-          updated: true,
         },
       });
     } catch (error) {

@@ -1,6 +1,6 @@
 export type Disability = {
   applicationId: number;
-  disabilityType: number | null;
   hasDisability: number;
+  disabilityType: number | null;
   id: number;
 };

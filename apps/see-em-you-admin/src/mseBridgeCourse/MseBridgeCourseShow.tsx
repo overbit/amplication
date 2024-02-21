@@ -6,9 +6,9 @@ export const MseBridgeCourseShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
+        <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Course Id" source="courseId" />
         <TextField label="Id" source="id" />
-        <TextField label="Reviewer Id" source="reviewerId" />
       </SimpleShowLayout>
     </Show>
   );

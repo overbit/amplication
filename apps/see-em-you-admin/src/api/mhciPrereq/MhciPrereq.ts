@@ -3,12 +3,10 @@ import { MhciPrereqsConversationComment } from "../mhciPrereqsConversationCommen
 import { MhciPrereqsStatus } from "../mhciPrereqsStatus/MhciPrereqsStatus";
 
 export type MhciPrereq = {
-  application?: Application;
-  id: number;
-  mhciPrereqsConversationComments?: Array<MhciPrereqsConversationComment>;
-  mhciPrereqsStatus?: MhciPrereqsStatus | null;
-  periodId: number;
+  studentLuUsersUsertypesId: number;
   prereq_type?: "design" | "programming" | "statistics";
+  periodId: number;
+  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
   status2?:
     | "Student_Saved"
     | "Not_Submitted"
@@ -16,7 +14,9 @@ export type MhciPrereq = {
     | "Student_Edited"
     | "Reviewer_Responded"
     | null;
-  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
-  studentLuUsersUsertypesId: number;
   timestamp: Date;
+  application?: Application;
+  mhciPrereqsConversationComments?: Array<MhciPrereqsConversationComment>;
+  mhciPrereqsStatus?: MhciPrereqsStatus | null;
+  id: number;
 };

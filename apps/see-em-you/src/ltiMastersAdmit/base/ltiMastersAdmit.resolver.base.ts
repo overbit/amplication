@@ -13,11 +13,11 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { DeleteLtiMastersAdmitArgs } from "./DeleteLtiMastersAdmitArgs";
+import { LtiMastersAdmit } from "./LtiMastersAdmit";
 import { LtiMastersAdmitCountArgs } from "./LtiMastersAdmitCountArgs";
 import { LtiMastersAdmitFindManyArgs } from "./LtiMastersAdmitFindManyArgs";
 import { LtiMastersAdmitFindUniqueArgs } from "./LtiMastersAdmitFindUniqueArgs";
-import { LtiMastersAdmit } from "./LtiMastersAdmit";
+import { DeleteLtiMastersAdmitArgs } from "./DeleteLtiMastersAdmitArgs";
 import { LtiMastersAdmitService } from "../ltiMastersAdmit.service";
 @graphql.Resolver(() => LtiMastersAdmit)
 export class LtiMastersAdmitResolverBase {
@@ -36,14 +36,14 @@ export class LtiMastersAdmitResolverBase {
   async ltiMastersAdmits(
     @graphql.Args() args: LtiMastersAdmitFindManyArgs
   ): Promise<LtiMastersAdmit[]> {
-    return this.service.findMany(args);
+    return this.service.ltiMastersAdmits(args);
   }
 
   @graphql.Query(() => LtiMastersAdmit, { nullable: true })
   async ltiMastersAdmit(
     @graphql.Args() args: LtiMastersAdmitFindUniqueArgs
   ): Promise<LtiMastersAdmit | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.ltiMastersAdmit(args);
     if (result === null) {
       return null;
     }
@@ -55,7 +55,7 @@ export class LtiMastersAdmitResolverBase {
     @graphql.Args() args: DeleteLtiMastersAdmitArgs
   ): Promise<LtiMastersAdmit | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLtiMastersAdmit(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

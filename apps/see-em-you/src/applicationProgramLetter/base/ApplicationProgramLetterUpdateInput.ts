@@ -25,28 +25,6 @@ class ApplicationProgramLetterUpdateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
-  admitSent?: boolean | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  admitSentDate?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
   rejectionSent?: boolean | null;
 
   @ApiProperty({
@@ -59,6 +37,28 @@ class ApplicationProgramLetterUpdateInput {
     nullable: true,
   })
   rejectionSentDate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  admitSent?: boolean | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  admitSentDate?: Date | null;
 
   @ApiProperty({
     required: false,

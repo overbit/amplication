@@ -11,18 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, IsOptional } from "class-validator";
+import { IsString, IsOptional, IsInt } from "class-validator";
 
 @ObjectType()
 class DegreeLevel {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
   @ApiProperty({
     required: false,
     type: String,
@@ -33,6 +25,14 @@ class DegreeLevel {
     nullable: true,
   })
   name!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { DegreeLevel as DegreeLevel };

@@ -39,7 +39,7 @@ class PaymentVoucherOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  payment_id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class PaymentVoucherOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  payment_id?: SortOrder;
+  id?: SortOrder;
 }
 
 export { PaymentVoucherOrderByInput as PaymentVoucherOrderByInput };

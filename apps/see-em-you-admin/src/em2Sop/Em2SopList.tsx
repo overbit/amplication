@@ -12,13 +12,13 @@ export const Em2SopList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Additional Info" source="additionalInfo" />
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Background" source="background" />
-        <TextField label="Id" source="id" />
         <TextField label="Objective" source="objective" />
+        <TextField label="Background" source="background" />
         <TextField label="Research Experience" source="researchExperience" />
         <TextField label="Ta Interest" source="taInterest" />
+        <TextField label="Additional Info" source="additionalInfo" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

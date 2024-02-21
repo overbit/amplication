@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateTagMemberArgs } from "./CreateTagMemberArgs";
-import { UpdateTagMemberArgs } from "./UpdateTagMemberArgs";
-import { DeleteTagMemberArgs } from "./DeleteTagMemberArgs";
+import { TagMember } from "./TagMember";
 import { TagMemberCountArgs } from "./TagMemberCountArgs";
 import { TagMemberFindManyArgs } from "./TagMemberFindManyArgs";
 import { TagMemberFindUniqueArgs } from "./TagMemberFindUniqueArgs";
-import { TagMember } from "./TagMember";
+import { CreateTagMemberArgs } from "./CreateTagMemberArgs";
+import { UpdateTagMemberArgs } from "./UpdateTagMemberArgs";
+import { DeleteTagMemberArgs } from "./DeleteTagMemberArgs";
 import { Application } from "../../application/base/Application";
 import { TagMemberService } from "../tagMember.service";
 @graphql.Resolver(() => TagMember)
@@ -39,14 +39,14 @@ export class TagMemberResolverBase {
   async tagMembers(
     @graphql.Args() args: TagMemberFindManyArgs
   ): Promise<TagMember[]> {
-    return this.service.findMany(args);
+    return this.service.tagMembers(args);
   }
 
   @graphql.Query(() => TagMember, { nullable: true })
   async tagMember(
     @graphql.Args() args: TagMemberFindUniqueArgs
   ): Promise<TagMember | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.tagMember(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class TagMemberResolverBase {
   async createTagMember(
     @graphql.Args() args: CreateTagMemberArgs
   ): Promise<TagMember> {
-    return await this.service.create({
+    return await this.service.createTagMember({
       ...args,
       data: {
         ...args.data,
@@ -76,7 +76,7 @@ export class TagMemberResolverBase {
     @graphql.Args() args: UpdateTagMemberArgs
   ): Promise<TagMember | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTagMember({
         ...args,
         data: {
           ...args.data,
@@ -103,7 +103,7 @@ export class TagMemberResolverBase {
     @graphql.Args() args: DeleteTagMemberArgs
   ): Promise<TagMember | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteTagMember(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -118,7 +118,7 @@ export class TagMemberResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: TagMember
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

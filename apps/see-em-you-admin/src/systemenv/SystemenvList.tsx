@@ -12,13 +12,13 @@ export const SystemenvList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Appbaseprice" source="appbaseprice" />
-        <TextField label="Coorduser Id" source="coorduserId" />
         <TextField label="Domain Id" source="domainId" />
+        <TextField label="Coorduser Id" source="coorduserId" />
         <TextField label="Expdate" source="expdate" />
         <TextField label="Expdate2" source="expdate2" />
-        <TextField label="Id" source="id" />
+        <TextField label="Appbaseprice" source="appbaseprice" />
         <TextField label="Sysemail" source="sysemail" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

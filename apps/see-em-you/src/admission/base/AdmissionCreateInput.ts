@@ -29,7 +29,7 @@ class AdmissionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  code!: number;
+  programId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class AdmissionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
+  code!: number;
 }
 
 export { AdmissionCreateInput as AdmissionCreateInput };

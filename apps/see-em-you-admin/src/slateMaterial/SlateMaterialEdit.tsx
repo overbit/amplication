@@ -9,11 +9,11 @@ export const SlateMaterialEdit = (props: EditProps): React.ReactElement => {
           label="Application Slate Guid"
           source="applicationSlateGuid"
         />
-        <TextInput label="Email" source="email" />
-        <TextInput label="File Name" source="fileName" />
         <TextInput label="Material Export1" source="materialExport1" />
+        <TextInput label="File Name" source="fileName" />
         <TextInput label="Material Name" source="materialName" />
         <TextInput label="Name" source="name" />
+        <TextInput label="Email" source="email" />
       </SimpleForm>
     </Edit>
   );

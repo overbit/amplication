@@ -3,13 +3,13 @@ import { CohortCreateNestedManyWithoutPeriodsInput } from "./CohortCreateNestedM
 import { PeriodApplicationCreateNestedManyWithoutPeriodsInput } from "./PeriodApplicationCreateNestedManyWithoutPeriodsInput";
 
 export type PeriodCreateInput = {
-  aaDepartment?: AaDepartmentCreateNestedManyWithoutPeriodsInput;
-  cohort?: CohortCreateNestedManyWithoutPeriodsInput;
+  unitId: number;
+  periodTypeId: number;
   description?: string | null;
+  startDate: Date;
   endDate?: Date | null;
   parentPeriodId?: number | null;
+  aaDepartment?: AaDepartmentCreateNestedManyWithoutPeriodsInput;
+  cohort?: CohortCreateNestedManyWithoutPeriodsInput;
   periodApplication?: PeriodApplicationCreateNestedManyWithoutPeriodsInput;
-  periodTypeId: number;
-  startDate: Date;
-  unitId: number;
 };

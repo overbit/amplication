@@ -1,5 +1,5 @@
 export type LuDomainDepartmentCreateInput = {
-  departmentId: number;
   domainId: number;
+  departmentId: number;
   drank: number;
 };

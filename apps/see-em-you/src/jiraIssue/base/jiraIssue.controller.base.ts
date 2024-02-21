@@ -18,26 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { JiraIssueService } from "../jiraIssue.service";
 import { JiraIssueCreateInput } from "./JiraIssueCreateInput";
-import { JiraIssueWhereInput } from "./JiraIssueWhereInput";
-import { JiraIssueWhereUniqueInput } from "./JiraIssueWhereUniqueInput";
-import { JiraIssueFindManyArgs } from "./JiraIssueFindManyArgs";
-import { JiraIssueUpdateInput } from "./JiraIssueUpdateInput";
 import { JiraIssue } from "./JiraIssue";
+import { JiraIssueFindManyArgs } from "./JiraIssueFindManyArgs";
+import { JiraIssueWhereUniqueInput } from "./JiraIssueWhereUniqueInput";
+import { JiraIssueUpdateInput } from "./JiraIssueUpdateInput";
 
 export class JiraIssueControllerBase {
   constructor(protected readonly service: JiraIssueService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: JiraIssue })
-  async create(@common.Body() data: JiraIssueCreateInput): Promise<JiraIssue> {
-    return await this.service.create({
+  async createJiraIssue(
+    @common.Body() data: JiraIssueCreateInput
+  ): Promise<JiraIssue> {
+    return await this.service.createJiraIssue({
       data: data,
       select: {
-        created: true,
-        id: true,
-        jiraId: true,
         jiraIssueId: true,
         jiraProject: true,
+        jiraId: true,
+        created: true,
         updatedAt: true,
+        id: true,
       },
     });
   }
@@ -45,17 +46,17 @@ export class JiraIssueControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [JiraIssue] })
   @ApiNestedQuery(JiraIssueFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<JiraIssue[]> {
+  async jiraIssues(@common.Req() request: Request): Promise<JiraIssue[]> {
     const args = plainToClass(JiraIssueFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.jiraIssues({
       ...args,
       select: {
-        created: true,
-        id: true,
-        jiraId: true,
         jiraIssueId: true,
         jiraProject: true,
+        jiraId: true,
+        created: true,
         updatedAt: true,
+        id: true,
       },
     });
   }
@@ -63,18 +64,18 @@ export class JiraIssueControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: JiraIssue })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async jiraIssue(
     @common.Param() params: JiraIssueWhereUniqueInput
   ): Promise<JiraIssue | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.jiraIssue({
       where: params,
       select: {
-        created: true,
-        id: true,
-        jiraId: true,
         jiraIssueId: true,
         jiraProject: true,
+        jiraId: true,
+        created: true,
         updatedAt: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -88,21 +89,21 @@ export class JiraIssueControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: JiraIssue })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateJiraIssue(
     @common.Param() params: JiraIssueWhereUniqueInput,
     @common.Body() data: JiraIssueUpdateInput
   ): Promise<JiraIssue | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateJiraIssue({
         where: params,
         data: data,
         select: {
-          created: true,
-          id: true,
-          jiraId: true,
           jiraIssueId: true,
           jiraProject: true,
+          jiraId: true,
+          created: true,
           updatedAt: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -118,19 +119,19 @@ export class JiraIssueControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: JiraIssue })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteJiraIssue(
     @common.Param() params: JiraIssueWhereUniqueInput
   ): Promise<JiraIssue | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteJiraIssue({
         where: params,
         select: {
-          created: true,
-          id: true,
-          jiraId: true,
           jiraIssueId: true,
           jiraProject: true,
+          jiraId: true,
+          created: true,
           updatedAt: true,
+          id: true,
         },
       });
     } catch (error) {

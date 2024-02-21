@@ -15,6 +15,7 @@ import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationW
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class ApplicationAdminNoteWhereInput {
@@ -41,6 +42,17 @@ class ApplicationAdminNoteWhereInput {
     nullable: true,
   })
   users?: UserWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { ApplicationAdminNoteWhereInput as ApplicationAdminNoteWhereInput };

@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PaymentItemService } from "../paymentItem.service";
 import { PaymentItemCreateInput } from "./PaymentItemCreateInput";
-import { PaymentItemWhereInput } from "./PaymentItemWhereInput";
-import { PaymentItemWhereUniqueInput } from "./PaymentItemWhereUniqueInput";
-import { PaymentItemFindManyArgs } from "./PaymentItemFindManyArgs";
-import { PaymentItemUpdateInput } from "./PaymentItemUpdateInput";
 import { PaymentItem } from "./PaymentItem";
+import { PaymentItemFindManyArgs } from "./PaymentItemFindManyArgs";
+import { PaymentItemWhereUniqueInput } from "./PaymentItemWhereUniqueInput";
+import { PaymentItemUpdateInput } from "./PaymentItemUpdateInput";
 
 export class PaymentItemControllerBase {
   constructor(protected readonly service: PaymentItemService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PaymentItem })
-  async create(
+  async createPaymentItem(
     @common.Body() data: PaymentItemCreateInput
   ): Promise<PaymentItem> {
-    return await this.service.create({
+    return await this.service.createPaymentItem({
       data: {
         ...data,
 
@@ -42,16 +41,17 @@ export class PaymentItemControllerBase {
           : undefined,
       },
       select: {
-        id: true,
+        paymentItemId: true,
         paymentId: true,
         paymentItemAmount: true,
-        paymentItemId: true,
 
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -59,21 +59,22 @@ export class PaymentItemControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PaymentItem] })
   @ApiNestedQuery(PaymentItemFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PaymentItem[]> {
+  async paymentItems(@common.Req() request: Request): Promise<PaymentItem[]> {
     const args = plainToClass(PaymentItemFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.paymentItems({
       ...args,
       select: {
-        id: true,
+        paymentItemId: true,
         paymentId: true,
         paymentItemAmount: true,
-        paymentItemId: true,
 
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -81,22 +82,23 @@ export class PaymentItemControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PaymentItem })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async paymentItem(
     @common.Param() params: PaymentItemWhereUniqueInput
   ): Promise<PaymentItem | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.paymentItem({
       where: params,
       select: {
-        id: true,
+        paymentItemId: true,
         paymentId: true,
         paymentItemAmount: true,
-        paymentItemId: true,
 
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -110,12 +112,12 @@ export class PaymentItemControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PaymentItem })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePaymentItem(
     @common.Param() params: PaymentItemWhereUniqueInput,
     @common.Body() data: PaymentItemUpdateInput
   ): Promise<PaymentItem | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePaymentItem({
         where: params,
         data: {
           ...data,
@@ -127,16 +129,17 @@ export class PaymentItemControllerBase {
             : undefined,
         },
         select: {
-          id: true,
+          paymentItemId: true,
           paymentId: true,
           paymentItemAmount: true,
-          paymentItemId: true,
 
           programs: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -152,23 +155,24 @@ export class PaymentItemControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PaymentItem })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePaymentItem(
     @common.Param() params: PaymentItemWhereUniqueInput
   ): Promise<PaymentItem | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePaymentItem({
         where: params,
         select: {
-          id: true,
+          paymentItemId: true,
           paymentId: true,
           paymentItemAmount: true,
-          paymentItemId: true,
 
           programs: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {

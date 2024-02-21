@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateJiravoteArgs } from "./CreateJiravoteArgs";
-import { UpdateJiravoteArgs } from "./UpdateJiravoteArgs";
-import { DeleteJiravoteArgs } from "./DeleteJiravoteArgs";
+import { Jiravote } from "./Jiravote";
 import { JiravoteCountArgs } from "./JiravoteCountArgs";
 import { JiravoteFindManyArgs } from "./JiravoteFindManyArgs";
 import { JiravoteFindUniqueArgs } from "./JiravoteFindUniqueArgs";
-import { Jiravote } from "./Jiravote";
+import { CreateJiravoteArgs } from "./CreateJiravoteArgs";
+import { UpdateJiravoteArgs } from "./UpdateJiravoteArgs";
+import { DeleteJiravoteArgs } from "./DeleteJiravoteArgs";
 import { JiravoteService } from "../jiravote.service";
 @graphql.Resolver(() => Jiravote)
 export class JiravoteResolverBase {
@@ -38,14 +38,14 @@ export class JiravoteResolverBase {
   async jiravotes(
     @graphql.Args() args: JiravoteFindManyArgs
   ): Promise<Jiravote[]> {
-    return this.service.findMany(args);
+    return this.service.jiravotes(args);
   }
 
   @graphql.Query(() => Jiravote, { nullable: true })
   async jiravote(
     @graphql.Args() args: JiravoteFindUniqueArgs
   ): Promise<Jiravote | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.jiravote(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class JiravoteResolverBase {
   async createJiravote(
     @graphql.Args() args: CreateJiravoteArgs
   ): Promise<Jiravote> {
-    return await this.service.create({
+    return await this.service.createJiravote({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class JiravoteResolverBase {
     @graphql.Args() args: UpdateJiravoteArgs
   ): Promise<Jiravote | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateJiravote({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class JiravoteResolverBase {
     @graphql.Args() args: DeleteJiravoteArgs
   ): Promise<Jiravote | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteJiravote(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

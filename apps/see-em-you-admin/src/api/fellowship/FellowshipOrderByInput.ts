@@ -1,14 +1,14 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type FellowshipOrderByInput = {
+  name?: SortOrder;
   amount?: SortOrder;
-  application_id?: SortOrder;
+  status?: SortOrder;
   appliedDate?: SortOrder;
   awardDate?: SortOrder;
-  datafileId?: SortOrder;
   duration?: SortOrder;
-  id?: SortOrder;
-  name?: SortOrder;
+  datafileId?: SortOrder;
   short?: SortOrder;
-  status?: SortOrder;
+  application_id?: SortOrder;
+  id?: SortOrder;
 };

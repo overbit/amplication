@@ -11,10 +11,34 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsOptional, IsInt, IsString } from "class-validator";
+import { IsInt, IsString, IsBoolean, IsOptional } from "class-validator";
 
 @ObjectType()
 class StudentDecisionUniversity {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
   @ApiProperty({
     required: false,
     type: Boolean,
@@ -32,31 +56,7 @@ class StudentDecisionUniversity {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
 }
 
 export { StudentDecisionUniversity as StudentDecisionUniversity };

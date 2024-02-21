@@ -1,11 +1,11 @@
-import { LuUsersUsertypeWhereUniqueInput } from "../luUsersUsertype/LuUsersUsertypeWhereUniqueInput";
 import { MhciPrereqWhereUniqueInput } from "../mhciPrereq/MhciPrereqWhereUniqueInput";
+import { LuUsersUsertypeWhereUniqueInput } from "../luUsersUsertype/LuUsersUsertypeWhereUniqueInput";
 
 export type MhciPrereqsConversationCommentUpdateInput = {
   applicationId?: number;
   comment?: string;
-  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
-  mhciPrereqs?: MhciPrereqWhereUniqueInput;
   periodId?: number | null;
   programId?: number | null;
+  mhciPrereqs?: MhciPrereqWhereUniqueInput;
+  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
 };

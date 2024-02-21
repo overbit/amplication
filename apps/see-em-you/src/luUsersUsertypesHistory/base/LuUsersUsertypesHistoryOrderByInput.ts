@@ -28,7 +28,18 @@ class LuUsersUsertypesHistoryOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  deleteTimestamp?: SortOrder;
+  userId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  usertypeId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,29 +61,18 @@ class LuUsersUsertypesHistoryOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  deleteTimestamp?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  userId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  usertypeId?: SortOrder;
 }
 
 export { LuUsersUsertypesHistoryOrderByInput as LuUsersUsertypesHistoryOrderByInput };

@@ -12,11 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsNumber,
+  IsInt,
   IsOptional,
   IsString,
+  IsNumber,
   ValidateNested,
-  IsInt,
 } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -27,23 +27,12 @@ class CashnetPaymentUpdateInput {
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
   })
-  amount?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  applicantEmail?: string;
+  transactionId?: number;
 
   @ApiProperty({
     required: false,
@@ -58,15 +47,14 @@ class CashnetPaymentUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput;
+  applicantEmail?: string;
 
   @ApiProperty({
     required: false,
@@ -92,17 +80,6 @@ class CashnetPaymentUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  transactionId?: number;
-
-  @ApiProperty({
-    required: false,
     type: String,
   })
   @IsString()
@@ -111,6 +88,29 @@ class CashnetPaymentUpdateInput {
     nullable: true,
   })
   transactionType?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  amount?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationWhereUniqueInput, {
+    nullable: true,
+  })
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { CashnetPaymentUpdateInput as CashnetPaymentUpdateInput };

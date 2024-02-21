@@ -18,31 +18,30 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PaymentAuditService } from "../paymentAudit.service";
 import { PaymentAuditCreateInput } from "./PaymentAuditCreateInput";
-import { PaymentAuditWhereInput } from "./PaymentAuditWhereInput";
-import { PaymentAuditWhereUniqueInput } from "./PaymentAuditWhereUniqueInput";
-import { PaymentAuditFindManyArgs } from "./PaymentAuditFindManyArgs";
-import { PaymentAuditUpdateInput } from "./PaymentAuditUpdateInput";
 import { PaymentAudit } from "./PaymentAudit";
+import { PaymentAuditFindManyArgs } from "./PaymentAuditFindManyArgs";
+import { PaymentAuditWhereUniqueInput } from "./PaymentAuditWhereUniqueInput";
+import { PaymentAuditUpdateInput } from "./PaymentAuditUpdateInput";
 
 export class PaymentAuditControllerBase {
   constructor(protected readonly service: PaymentAuditService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PaymentAudit })
-  async create(
+  async createPaymentAudit(
     @common.Body() data: PaymentAuditCreateInput
   ): Promise<PaymentAudit> {
-    return await this.service.create({
+    return await this.service.createPaymentAudit({
       data: data,
       select: {
-        applicationId: true,
         id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
         paymentId: true,
+        applicationId: true,
+        paymentType: true,
+        paymentAmount: true,
         paymentIntentDate: true,
         payment_status: true,
-        paymentType: true,
+        lastModTime: true,
+        lastModUserId: true,
         timeDeleted: true,
       },
     });
@@ -51,20 +50,20 @@ export class PaymentAuditControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PaymentAudit] })
   @ApiNestedQuery(PaymentAuditFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PaymentAudit[]> {
+  async paymentAudits(@common.Req() request: Request): Promise<PaymentAudit[]> {
     const args = plainToClass(PaymentAuditFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.paymentAudits({
       ...args,
       select: {
-        applicationId: true,
         id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
         paymentId: true,
+        applicationId: true,
+        paymentType: true,
+        paymentAmount: true,
         paymentIntentDate: true,
         payment_status: true,
-        paymentType: true,
+        lastModTime: true,
+        lastModUserId: true,
         timeDeleted: true,
       },
     });
@@ -73,21 +72,21 @@ export class PaymentAuditControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PaymentAudit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async paymentAudit(
     @common.Param() params: PaymentAuditWhereUniqueInput
   ): Promise<PaymentAudit | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.paymentAudit({
       where: params,
       select: {
-        applicationId: true,
         id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
         paymentId: true,
+        applicationId: true,
+        paymentType: true,
+        paymentAmount: true,
         paymentIntentDate: true,
         payment_status: true,
-        paymentType: true,
+        lastModTime: true,
+        lastModUserId: true,
         timeDeleted: true,
       },
     });
@@ -102,24 +101,24 @@ export class PaymentAuditControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PaymentAudit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePaymentAudit(
     @common.Param() params: PaymentAuditWhereUniqueInput,
     @common.Body() data: PaymentAuditUpdateInput
   ): Promise<PaymentAudit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePaymentAudit({
         where: params,
         data: data,
         select: {
-          applicationId: true,
           id: true,
-          lastModTime: true,
-          lastModUserId: true,
-          paymentAmount: true,
           paymentId: true,
+          applicationId: true,
+          paymentType: true,
+          paymentAmount: true,
           paymentIntentDate: true,
           payment_status: true,
-          paymentType: true,
+          lastModTime: true,
+          lastModUserId: true,
           timeDeleted: true,
         },
       });
@@ -136,22 +135,22 @@ export class PaymentAuditControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PaymentAudit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePaymentAudit(
     @common.Param() params: PaymentAuditWhereUniqueInput
   ): Promise<PaymentAudit | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePaymentAudit({
         where: params,
         select: {
-          applicationId: true,
           id: true,
-          lastModTime: true,
-          lastModUserId: true,
-          paymentAmount: true,
           paymentId: true,
+          applicationId: true,
+          paymentType: true,
+          paymentAmount: true,
           paymentIntentDate: true,
           payment_status: true,
-          paymentType: true,
+          lastModTime: true,
+          lastModUserId: true,
           timeDeleted: true,
         },
       });

@@ -1,9 +1,9 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type PaymentItemOrderByInput = {
-  id?: SortOrder;
+  paymentItemId?: SortOrder;
   paymentId?: SortOrder;
   paymentItemAmount?: SortOrder;
-  paymentItemId?: SortOrder;
   program_id?: SortOrder;
+  id?: SortOrder;
 };

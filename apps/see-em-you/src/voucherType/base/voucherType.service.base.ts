@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, VoucherType } from "@prisma/client";
+import { Prisma, VoucherType as PrismaVoucherType } from "@prisma/client";
 
 export class VoucherTypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class VoucherTypeServiceBase {
     return this.prisma.voucherType.count(args);
   }
 
-  async findMany<T extends Prisma.VoucherTypeFindManyArgs>(
+  async voucherTypes<T extends Prisma.VoucherTypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherTypeFindManyArgs>
-  ): Promise<VoucherType[]> {
+  ): Promise<PrismaVoucherType[]> {
     return this.prisma.voucherType.findMany(args);
   }
-  async findOne<T extends Prisma.VoucherTypeFindUniqueArgs>(
+  async voucherType<T extends Prisma.VoucherTypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherTypeFindUniqueArgs>
-  ): Promise<VoucherType | null> {
+  ): Promise<PrismaVoucherType | null> {
     return this.prisma.voucherType.findUnique(args);
   }
-  async create<T extends Prisma.VoucherTypeCreateArgs>(
+  async createVoucherType<T extends Prisma.VoucherTypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherTypeCreateArgs>
-  ): Promise<VoucherType> {
+  ): Promise<PrismaVoucherType> {
     return this.prisma.voucherType.create<T>(args);
   }
-  async update<T extends Prisma.VoucherTypeUpdateArgs>(
+  async updateVoucherType<T extends Prisma.VoucherTypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherTypeUpdateArgs>
-  ): Promise<VoucherType> {
+  ): Promise<PrismaVoucherType> {
     return this.prisma.voucherType.update<T>(args);
   }
-  async delete<T extends Prisma.VoucherTypeDeleteArgs>(
+  async deleteVoucherType<T extends Prisma.VoucherTypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherTypeDeleteArgs>
-  ): Promise<VoucherType> {
+  ): Promise<PrismaVoucherType> {
     return this.prisma.voucherType.delete(args);
   }
 }

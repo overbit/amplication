@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Revgroup } from "@prisma/client";
+import { Prisma, Revgroup as PrismaRevgroup } from "@prisma/client";
 
 export class RevgroupServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class RevgroupServiceBase {
     return this.prisma.revgroup.count(args);
   }
 
-  async findMany<T extends Prisma.RevgroupFindManyArgs>(
+  async revgroups<T extends Prisma.RevgroupFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RevgroupFindManyArgs>
-  ): Promise<Revgroup[]> {
+  ): Promise<PrismaRevgroup[]> {
     return this.prisma.revgroup.findMany(args);
   }
-  async findOne<T extends Prisma.RevgroupFindUniqueArgs>(
+  async revgroup<T extends Prisma.RevgroupFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RevgroupFindUniqueArgs>
-  ): Promise<Revgroup | null> {
+  ): Promise<PrismaRevgroup | null> {
     return this.prisma.revgroup.findUnique(args);
   }
-  async create<T extends Prisma.RevgroupCreateArgs>(
+  async createRevgroup<T extends Prisma.RevgroupCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RevgroupCreateArgs>
-  ): Promise<Revgroup> {
+  ): Promise<PrismaRevgroup> {
     return this.prisma.revgroup.create<T>(args);
   }
-  async update<T extends Prisma.RevgroupUpdateArgs>(
+  async updateRevgroup<T extends Prisma.RevgroupUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RevgroupUpdateArgs>
-  ): Promise<Revgroup> {
+  ): Promise<PrismaRevgroup> {
     return this.prisma.revgroup.update<T>(args);
   }
-  async delete<T extends Prisma.RevgroupDeleteArgs>(
+  async deleteRevgroup<T extends Prisma.RevgroupDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RevgroupDeleteArgs>
-  ): Promise<Revgroup> {
+  ): Promise<PrismaRevgroup> {
     return this.prisma.revgroup.delete(args);
   }
 }

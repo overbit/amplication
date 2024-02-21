@@ -18,22 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MitsSlatePubService } from "../mitsSlatePub.service";
 import { MitsSlatePubCreateInput } from "./MitsSlatePubCreateInput";
-import { MitsSlatePubWhereInput } from "./MitsSlatePubWhereInput";
-import { MitsSlatePubWhereUniqueInput } from "./MitsSlatePubWhereUniqueInput";
-import { MitsSlatePubFindManyArgs } from "./MitsSlatePubFindManyArgs";
-import { MitsSlatePubUpdateInput } from "./MitsSlatePubUpdateInput";
 import { MitsSlatePub } from "./MitsSlatePub";
+import { MitsSlatePubFindManyArgs } from "./MitsSlatePubFindManyArgs";
+import { MitsSlatePubWhereUniqueInput } from "./MitsSlatePubWhereUniqueInput";
+import { MitsSlatePubUpdateInput } from "./MitsSlatePubUpdateInput";
 
 export class MitsSlatePubControllerBase {
   constructor(protected readonly service: MitsSlatePubService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MitsSlatePub })
-  async create(
+  async createMitsSlatePub(
     @common.Body() data: MitsSlatePubCreateInput
   ): Promise<MitsSlatePub> {
-    return await this.service.create({
+    return await this.service.createMitsSlatePub({
       data: data,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -52,18 +55,13 @@ export class MitsSlatePubControllerBase {
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -88,6 +86,7 @@ export class MitsSlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
   }
@@ -95,11 +94,15 @@ export class MitsSlatePubControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MitsSlatePub] })
   @ApiNestedQuery(MitsSlatePubFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MitsSlatePub[]> {
+  async mitsSlatePubs(@common.Req() request: Request): Promise<MitsSlatePub[]> {
     const args = plainToClass(MitsSlatePubFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mitsSlatePubs({
       ...args,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -118,18 +121,13 @@ export class MitsSlatePubControllerBase {
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -154,6 +152,7 @@ export class MitsSlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
   }
@@ -161,12 +160,16 @@ export class MitsSlatePubControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MitsSlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mitsSlatePub(
     @common.Param() params: MitsSlatePubWhereUniqueInput
   ): Promise<MitsSlatePub | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mitsSlatePub({
       where: params,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -185,18 +188,13 @@ export class MitsSlatePubControllerBase {
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -221,6 +219,7 @@ export class MitsSlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -234,15 +233,19 @@ export class MitsSlatePubControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MitsSlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMitsSlatePub(
     @common.Param() params: MitsSlatePubWhereUniqueInput,
     @common.Body() data: MitsSlatePubUpdateInput
   ): Promise<MitsSlatePub | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlatePub({
         where: params,
         data: data,
         select: {
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           authorsPub1: true,
           authorsPub2: true,
           authorsPub3: true,
@@ -261,18 +264,13 @@ export class MitsSlatePubControllerBase {
           destinationPub4: true,
           destinationPub5: true,
           destinationPub6: true,
-          first: true,
           hasPublications: true,
-          id: true,
-          last: true,
-          middle: true,
           otherTypeOfPublication1: true,
           otherTypeOfPublication2: true,
           otherTypeOfPublication3: true,
           otherTypeOfPublication4: true,
           otherTypeOfPublication5: true,
           otherTypeOfPublication6: true,
-          prefix: true,
           statusOfPublication1: true,
           statusOfPublication2: true,
           statusOfPublication3: true,
@@ -297,6 +295,7 @@ export class MitsSlatePubControllerBase {
           urlPub4: true,
           urlPub5: true,
           urlPub6: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -312,13 +311,17 @@ export class MitsSlatePubControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MitsSlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMitsSlatePub(
     @common.Param() params: MitsSlatePubWhereUniqueInput
   ): Promise<MitsSlatePub | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMitsSlatePub({
         where: params,
         select: {
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           authorsPub1: true,
           authorsPub2: true,
           authorsPub3: true,
@@ -337,18 +340,13 @@ export class MitsSlatePubControllerBase {
           destinationPub4: true,
           destinationPub5: true,
           destinationPub6: true,
-          first: true,
           hasPublications: true,
-          id: true,
-          last: true,
-          middle: true,
           otherTypeOfPublication1: true,
           otherTypeOfPublication2: true,
           otherTypeOfPublication3: true,
           otherTypeOfPublication4: true,
           otherTypeOfPublication5: true,
           otherTypeOfPublication6: true,
-          prefix: true,
           statusOfPublication1: true,
           statusOfPublication2: true,
           statusOfPublication3: true,
@@ -373,6 +371,7 @@ export class MitsSlatePubControllerBase {
           urlPub4: true,
           urlPub5: true,
           urlPub6: true,
+          id: true,
         },
       });
     } catch (error) {

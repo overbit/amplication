@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, RegistrationFeePayment, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  RegistrationFeePayment as PrismaRegistrationFeePayment,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class RegistrationFeePaymentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,43 @@ export class RegistrationFeePaymentServiceBase {
     return this.prisma.registrationFeePayment.count(args);
   }
 
-  async findMany<T extends Prisma.RegistrationFeePaymentFindManyArgs>(
+  async registrationFeePayments<
+    T extends Prisma.RegistrationFeePaymentFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.RegistrationFeePaymentFindManyArgs>
-  ): Promise<RegistrationFeePayment[]> {
+  ): Promise<PrismaRegistrationFeePayment[]> {
     return this.prisma.registrationFeePayment.findMany(args);
   }
-  async findOne<T extends Prisma.RegistrationFeePaymentFindUniqueArgs>(
+  async registrationFeePayment<
+    T extends Prisma.RegistrationFeePaymentFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.RegistrationFeePaymentFindUniqueArgs>
-  ): Promise<RegistrationFeePayment | null> {
+  ): Promise<PrismaRegistrationFeePayment | null> {
     return this.prisma.registrationFeePayment.findUnique(args);
   }
-  async create<T extends Prisma.RegistrationFeePaymentCreateArgs>(
+  async createRegistrationFeePayment<
+    T extends Prisma.RegistrationFeePaymentCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.RegistrationFeePaymentCreateArgs>
-  ): Promise<RegistrationFeePayment> {
+  ): Promise<PrismaRegistrationFeePayment> {
     return this.prisma.registrationFeePayment.create<T>(args);
   }
-  async update<T extends Prisma.RegistrationFeePaymentUpdateArgs>(
+  async updateRegistrationFeePayment<
+    T extends Prisma.RegistrationFeePaymentUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.RegistrationFeePaymentUpdateArgs>
-  ): Promise<RegistrationFeePayment> {
+  ): Promise<PrismaRegistrationFeePayment> {
     return this.prisma.registrationFeePayment.update<T>(args);
   }
-  async delete<T extends Prisma.RegistrationFeePaymentDeleteArgs>(
+  async deleteRegistrationFeePayment<
+    T extends Prisma.RegistrationFeePaymentDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.RegistrationFeePaymentDeleteArgs>
-  ): Promise<RegistrationFeePayment> {
+  ): Promise<PrismaRegistrationFeePayment> {
     return this.prisma.registrationFeePayment.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.registrationFeePayment
       .findUnique({
         where: { id: parentId },

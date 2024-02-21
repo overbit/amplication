@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCcAuthNotificationArgs } from "./CreateCcAuthNotificationArgs";
-import { UpdateCcAuthNotificationArgs } from "./UpdateCcAuthNotificationArgs";
-import { DeleteCcAuthNotificationArgs } from "./DeleteCcAuthNotificationArgs";
+import { CcAuthNotification } from "./CcAuthNotification";
 import { CcAuthNotificationCountArgs } from "./CcAuthNotificationCountArgs";
 import { CcAuthNotificationFindManyArgs } from "./CcAuthNotificationFindManyArgs";
 import { CcAuthNotificationFindUniqueArgs } from "./CcAuthNotificationFindUniqueArgs";
-import { CcAuthNotification } from "./CcAuthNotification";
+import { CreateCcAuthNotificationArgs } from "./CreateCcAuthNotificationArgs";
+import { UpdateCcAuthNotificationArgs } from "./UpdateCcAuthNotificationArgs";
+import { DeleteCcAuthNotificationArgs } from "./DeleteCcAuthNotificationArgs";
 import { CcAuthNotificationService } from "../ccAuthNotification.service";
 @graphql.Resolver(() => CcAuthNotification)
 export class CcAuthNotificationResolverBase {
@@ -38,14 +38,14 @@ export class CcAuthNotificationResolverBase {
   async ccAuthNotifications(
     @graphql.Args() args: CcAuthNotificationFindManyArgs
   ): Promise<CcAuthNotification[]> {
-    return this.service.findMany(args);
+    return this.service.ccAuthNotifications(args);
   }
 
   @graphql.Query(() => CcAuthNotification, { nullable: true })
   async ccAuthNotification(
     @graphql.Args() args: CcAuthNotificationFindUniqueArgs
   ): Promise<CcAuthNotification | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.ccAuthNotification(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class CcAuthNotificationResolverBase {
   async createCcAuthNotification(
     @graphql.Args() args: CreateCcAuthNotificationArgs
   ): Promise<CcAuthNotification> {
-    return await this.service.create({
+    return await this.service.createCcAuthNotification({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class CcAuthNotificationResolverBase {
     @graphql.Args() args: UpdateCcAuthNotificationArgs
   ): Promise<CcAuthNotification | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcAuthNotification({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class CcAuthNotificationResolverBase {
     @graphql.Args() args: DeleteCcAuthNotificationArgs
   ): Promise<CcAuthNotification | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCcAuthNotification(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

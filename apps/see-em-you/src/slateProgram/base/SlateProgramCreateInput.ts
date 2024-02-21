@@ -24,6 +24,17 @@ class SlateProgramCreateInput {
   @Field(() => String, {
     nullable: true,
   })
+  prefix?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   first?: string | null;
 
   @ApiProperty({
@@ -35,7 +46,7 @@ class SlateProgramCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  last?: string | null;
+  middle?: string | null;
 
   @ApiProperty({
     required: false,
@@ -46,7 +57,7 @@ class SlateProgramCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  middle?: string | null;
+  last?: string | null;
 
   @ApiProperty({
     required: false,
@@ -80,17 +91,6 @@ class SlateProgramCreateInput {
     nullable: true,
   })
   mseProgram3?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  prefix?: string | null;
 }
 
 export { SlateProgramCreateInput as SlateProgramCreateInput };

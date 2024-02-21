@@ -24,14 +24,6 @@ class RejectionWaiverCreateInput {
   luApplicationProgramsId!: number;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  permittedProgramId!: number;
-
-  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -41,6 +33,14 @@ class RejectionWaiverCreateInput {
     nullable: true,
   })
   waived?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  permittedProgramId!: number;
 }
 
 export { RejectionWaiverCreateInput as RejectionWaiverCreateInput };

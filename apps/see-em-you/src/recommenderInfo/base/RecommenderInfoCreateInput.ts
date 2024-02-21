@@ -11,10 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt, IsOptional } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @InputType()
 class RecommenderInfoCreateInput {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  recUserId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  title!: string;
+
   @ApiProperty({
     required: true,
     type: String,
@@ -32,14 +48,6 @@ class RecommenderInfoCreateInput {
   phone!: string;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  recUserId!: number;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -49,14 +57,6 @@ class RecommenderInfoCreateInput {
     nullable: true,
   })
   relationshipToApplicant?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  title!: string;
 }
 
 export { RecommenderInfoCreateInput as RecommenderInfoCreateInput };

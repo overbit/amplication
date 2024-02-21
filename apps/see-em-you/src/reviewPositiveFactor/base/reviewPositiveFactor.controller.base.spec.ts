@@ -18,34 +18,34 @@ import { ReviewPositiveFactorService } from "../reviewPositiveFactor.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
-  positiveFactorId: 42,
   reviewId: 42,
+  positiveFactorId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
-  positiveFactorId: 42,
   reviewId: 42,
+  positiveFactorId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
-    positiveFactorId: 42,
     reviewId: 42,
+    positiveFactorId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
-  positiveFactorId: 42,
   reviewId: 42,
+  positiveFactorId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createReviewPositiveFactor() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  reviewPositiveFactors: () => FIND_MANY_RESULT,
+  reviewPositiveFactor: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

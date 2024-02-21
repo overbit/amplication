@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMultiprogramlockoutArgs } from "./CreateMultiprogramlockoutArgs";
-import { UpdateMultiprogramlockoutArgs } from "./UpdateMultiprogramlockoutArgs";
-import { DeleteMultiprogramlockoutArgs } from "./DeleteMultiprogramlockoutArgs";
+import { Multiprogramlockout } from "./Multiprogramlockout";
 import { MultiprogramlockoutCountArgs } from "./MultiprogramlockoutCountArgs";
 import { MultiprogramlockoutFindManyArgs } from "./MultiprogramlockoutFindManyArgs";
 import { MultiprogramlockoutFindUniqueArgs } from "./MultiprogramlockoutFindUniqueArgs";
-import { Multiprogramlockout } from "./Multiprogramlockout";
+import { CreateMultiprogramlockoutArgs } from "./CreateMultiprogramlockoutArgs";
+import { UpdateMultiprogramlockoutArgs } from "./UpdateMultiprogramlockoutArgs";
+import { DeleteMultiprogramlockoutArgs } from "./DeleteMultiprogramlockoutArgs";
 import { MultiprogramlockoutService } from "../multiprogramlockout.service";
 @graphql.Resolver(() => Multiprogramlockout)
 export class MultiprogramlockoutResolverBase {
@@ -38,14 +38,14 @@ export class MultiprogramlockoutResolverBase {
   async multiprogramlockouts(
     @graphql.Args() args: MultiprogramlockoutFindManyArgs
   ): Promise<Multiprogramlockout[]> {
-    return this.service.findMany(args);
+    return this.service.multiprogramlockouts(args);
   }
 
   @graphql.Query(() => Multiprogramlockout, { nullable: true })
   async multiprogramlockout(
     @graphql.Args() args: MultiprogramlockoutFindUniqueArgs
   ): Promise<Multiprogramlockout | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.multiprogramlockout(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MultiprogramlockoutResolverBase {
   async createMultiprogramlockout(
     @graphql.Args() args: CreateMultiprogramlockoutArgs
   ): Promise<Multiprogramlockout> {
-    return await this.service.create({
+    return await this.service.createMultiprogramlockout({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MultiprogramlockoutResolverBase {
     @graphql.Args() args: UpdateMultiprogramlockoutArgs
   ): Promise<Multiprogramlockout | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMultiprogramlockout({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MultiprogramlockoutResolverBase {
     @graphql.Args() args: DeleteMultiprogramlockoutArgs
   ): Promise<Multiprogramlockout | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMultiprogramlockout(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

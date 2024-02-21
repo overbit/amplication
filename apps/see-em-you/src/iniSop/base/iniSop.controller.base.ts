@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IniSopService } from "../iniSop.service";
 import { IniSopCreateInput } from "./IniSopCreateInput";
-import { IniSopWhereInput } from "./IniSopWhereInput";
-import { IniSopWhereUniqueInput } from "./IniSopWhereUniqueInput";
-import { IniSopFindManyArgs } from "./IniSopFindManyArgs";
-import { IniSopUpdateInput } from "./IniSopUpdateInput";
 import { IniSop } from "./IniSop";
+import { IniSopFindManyArgs } from "./IniSopFindManyArgs";
+import { IniSopWhereUniqueInput } from "./IniSopWhereUniqueInput";
+import { IniSopUpdateInput } from "./IniSopUpdateInput";
 
 export class IniSopControllerBase {
   constructor(protected readonly service: IniSopService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IniSop })
-  async create(@common.Body() data: IniSopCreateInput): Promise<IniSop> {
-    return await this.service.create({
+  async createIniSop(@common.Body() data: IniSopCreateInput): Promise<IniSop> {
+    return await this.service.createIniSop({
       data: data,
       select: {
-        additionalInfo: true,
         applicationId: true,
-        background: true,
-        id: true,
-        leadershipExperience: true,
         objective: true,
+        background: true,
         researchExperience: true,
+        leadershipExperience: true,
         sfsInterest: true,
+        additionalInfo: true,
+        id: true,
       },
     });
   }
@@ -47,19 +46,19 @@ export class IniSopControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [IniSop] })
   @ApiNestedQuery(IniSopFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<IniSop[]> {
+  async iniSops(@common.Req() request: Request): Promise<IniSop[]> {
     const args = plainToClass(IniSopFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.iniSops({
       ...args,
       select: {
-        additionalInfo: true,
         applicationId: true,
-        background: true,
-        id: true,
-        leadershipExperience: true,
         objective: true,
+        background: true,
         researchExperience: true,
+        leadershipExperience: true,
         sfsInterest: true,
+        additionalInfo: true,
+        id: true,
       },
     });
   }
@@ -67,20 +66,20 @@ export class IniSopControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IniSop })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async iniSop(
     @common.Param() params: IniSopWhereUniqueInput
   ): Promise<IniSop | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.iniSop({
       where: params,
       select: {
-        additionalInfo: true,
         applicationId: true,
-        background: true,
-        id: true,
-        leadershipExperience: true,
         objective: true,
+        background: true,
         researchExperience: true,
+        leadershipExperience: true,
         sfsInterest: true,
+        additionalInfo: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -94,23 +93,23 @@ export class IniSopControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IniSop })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIniSop(
     @common.Param() params: IniSopWhereUniqueInput,
     @common.Body() data: IniSopUpdateInput
   ): Promise<IniSop | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniSop({
         where: params,
         data: data,
         select: {
-          additionalInfo: true,
           applicationId: true,
-          background: true,
-          id: true,
-          leadershipExperience: true,
           objective: true,
+          background: true,
           researchExperience: true,
+          leadershipExperience: true,
           sfsInterest: true,
+          additionalInfo: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -126,21 +125,21 @@ export class IniSopControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IniSop })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIniSop(
     @common.Param() params: IniSopWhereUniqueInput
   ): Promise<IniSop | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIniSop({
         where: params,
         select: {
-          additionalInfo: true,
           applicationId: true,
-          background: true,
-          id: true,
-          leadershipExperience: true,
           objective: true,
+          background: true,
           researchExperience: true,
+          leadershipExperience: true,
           sfsInterest: true,
+          additionalInfo: true,
+          id: true,
         },
       });
     } catch (error) {

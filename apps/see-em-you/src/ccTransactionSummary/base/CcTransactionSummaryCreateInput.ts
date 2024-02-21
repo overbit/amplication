@@ -11,21 +11,50 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsOptional, IsString, IsInt, IsDate } from "class-validator";
+import { IsInt, IsDate, IsString, IsOptional, IsNumber } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class CcTransactionSummaryCreateInput {
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
+  @IsInt()
+  @Field(() => Number)
+  ccId!: number;
+
+  @ApiProperty({
+    required: true,
   })
-  authAmount?: number | null;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  date!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  time!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  reportDate!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  paymentId!: number;
 
   @ApiProperty({
     required: false,
@@ -50,60 +79,6 @@ class CcTransactionSummaryCreateInput {
   authMessage?: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  ccId!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  creditAmount?: number | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  date!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  paymentId!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  reportDate!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  settleAmount?: number | null;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -126,12 +101,37 @@ class CcTransactionSummaryCreateInput {
   settleMessage?: string | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  time!: Date;
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  authAmount?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  settleAmount?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  creditAmount?: number | null;
 }
 
 export { CcTransactionSummaryCreateInput as CcTransactionSummaryCreateInput };

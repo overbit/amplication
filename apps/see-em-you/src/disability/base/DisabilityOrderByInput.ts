@@ -39,7 +39,7 @@ class DisabilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  disabilityType?: SortOrder;
+  hasDisability?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class DisabilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  hasDisability?: SortOrder;
+  disabilityType?: SortOrder;
 
   @ApiProperty({
     required: false,

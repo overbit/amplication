@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIniSupportingCourseworkKobeArgs } from "./CreateIniSupportingCourseworkKobeArgs";
-import { UpdateIniSupportingCourseworkKobeArgs } from "./UpdateIniSupportingCourseworkKobeArgs";
-import { DeleteIniSupportingCourseworkKobeArgs } from "./DeleteIniSupportingCourseworkKobeArgs";
+import { IniSupportingCourseworkKobe } from "./IniSupportingCourseworkKobe";
 import { IniSupportingCourseworkKobeCountArgs } from "./IniSupportingCourseworkKobeCountArgs";
 import { IniSupportingCourseworkKobeFindManyArgs } from "./IniSupportingCourseworkKobeFindManyArgs";
 import { IniSupportingCourseworkKobeFindUniqueArgs } from "./IniSupportingCourseworkKobeFindUniqueArgs";
-import { IniSupportingCourseworkKobe } from "./IniSupportingCourseworkKobe";
+import { CreateIniSupportingCourseworkKobeArgs } from "./CreateIniSupportingCourseworkKobeArgs";
+import { UpdateIniSupportingCourseworkKobeArgs } from "./UpdateIniSupportingCourseworkKobeArgs";
+import { DeleteIniSupportingCourseworkKobeArgs } from "./DeleteIniSupportingCourseworkKobeArgs";
 import { IniSupportingCourseworkKobeService } from "../iniSupportingCourseworkKobe.service";
 @graphql.Resolver(() => IniSupportingCourseworkKobe)
 export class IniSupportingCourseworkKobeResolverBase {
@@ -38,14 +38,14 @@ export class IniSupportingCourseworkKobeResolverBase {
   async iniSupportingCourseworkKobes(
     @graphql.Args() args: IniSupportingCourseworkKobeFindManyArgs
   ): Promise<IniSupportingCourseworkKobe[]> {
-    return this.service.findMany(args);
+    return this.service.iniSupportingCourseworkKobes(args);
   }
 
   @graphql.Query(() => IniSupportingCourseworkKobe, { nullable: true })
   async iniSupportingCourseworkKobe(
     @graphql.Args() args: IniSupportingCourseworkKobeFindUniqueArgs
   ): Promise<IniSupportingCourseworkKobe | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.iniSupportingCourseworkKobe(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class IniSupportingCourseworkKobeResolverBase {
   async createIniSupportingCourseworkKobe(
     @graphql.Args() args: CreateIniSupportingCourseworkKobeArgs
   ): Promise<IniSupportingCourseworkKobe> {
-    return await this.service.create({
+    return await this.service.createIniSupportingCourseworkKobe({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class IniSupportingCourseworkKobeResolverBase {
     @graphql.Args() args: UpdateIniSupportingCourseworkKobeArgs
   ): Promise<IniSupportingCourseworkKobe | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniSupportingCourseworkKobe({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class IniSupportingCourseworkKobeResolverBase {
     @graphql.Args() args: DeleteIniSupportingCourseworkKobeArgs
   ): Promise<IniSupportingCourseworkKobe | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIniSupportingCourseworkKobe(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

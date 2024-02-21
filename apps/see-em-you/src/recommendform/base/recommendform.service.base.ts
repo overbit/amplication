@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Recommendform } from "@prisma/client";
+import { Prisma, Recommendform as PrismaRecommendform } from "@prisma/client";
 
 export class RecommendformServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class RecommendformServiceBase {
     return this.prisma.recommendform.count(args);
   }
 
-  async findMany<T extends Prisma.RecommendformFindManyArgs>(
+  async recommendforms<T extends Prisma.RecommendformFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendformFindManyArgs>
-  ): Promise<Recommendform[]> {
+  ): Promise<PrismaRecommendform[]> {
     return this.prisma.recommendform.findMany(args);
   }
-  async findOne<T extends Prisma.RecommendformFindUniqueArgs>(
+  async recommendform<T extends Prisma.RecommendformFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendformFindUniqueArgs>
-  ): Promise<Recommendform | null> {
+  ): Promise<PrismaRecommendform | null> {
     return this.prisma.recommendform.findUnique(args);
   }
-  async create<T extends Prisma.RecommendformCreateArgs>(
+  async createRecommendform<T extends Prisma.RecommendformCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendformCreateArgs>
-  ): Promise<Recommendform> {
+  ): Promise<PrismaRecommendform> {
     return this.prisma.recommendform.create<T>(args);
   }
-  async update<T extends Prisma.RecommendformUpdateArgs>(
+  async updateRecommendform<T extends Prisma.RecommendformUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendformUpdateArgs>
-  ): Promise<Recommendform> {
+  ): Promise<PrismaRecommendform> {
     return this.prisma.recommendform.update<T>(args);
   }
-  async delete<T extends Prisma.RecommendformDeleteArgs>(
+  async deleteRecommendform<T extends Prisma.RecommendformDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendformDeleteArgs>
-  ): Promise<Recommendform> {
+  ): Promise<PrismaRecommendform> {
     return this.prisma.recommendform.delete(args);
   }
 }

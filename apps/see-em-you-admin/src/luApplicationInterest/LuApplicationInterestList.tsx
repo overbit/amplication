@@ -15,9 +15,9 @@ export const LuApplicationInterestList = (
     >
       <Datagrid rowClick="show">
         <TextField label="App Program Id" source="appProgramId" />
+        <TextField label="Interest Id" source="interestId" />
         <TextField label="Choice" source="choice" />
         <TextField label="Id" source="id" />
-        <TextField label="Interest Id" source="interestId" />
       </Datagrid>
     </List>
   );

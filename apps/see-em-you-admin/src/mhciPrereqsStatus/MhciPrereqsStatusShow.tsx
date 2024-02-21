@@ -12,7 +12,15 @@ export const MhciPrereqsStatusShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
+        <TextField
+          label="Reviewer Lu Users Usertypes Id"
+          source="reviewerLuUsersUsertypesId"
+        />
+        <TextField label="Reviewer Status" source="reviewer_status" />
+        <TextField label="Reviewer Explanation" source="reviewerExplanation" />
+        <TextField label="Reviewer Timestamp" source="reviewerTimestamp" />
+        <TextField label="Status3" source="status3" />
+        <TextField label="Program Id" source="programId" />
         <ReferenceField
           label="Mhci Prereqs"
           source="mhciprereq.id"
@@ -20,15 +28,7 @@ export const MhciPrereqsStatusShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={MHCIPREREQ_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Program Id" source="programId" />
-        <TextField label="Reviewer Explanation" source="reviewerExplanation" />
-        <TextField
-          label="Reviewer Lu Users Usertypes Id"
-          source="reviewerLuUsersUsertypesId"
-        />
-        <TextField label="Reviewer Status" source="reviewer_status" />
-        <TextField label="Reviewer Timestamp" source="reviewerTimestamp" />
-        <TextField label="Status3" source="status3" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

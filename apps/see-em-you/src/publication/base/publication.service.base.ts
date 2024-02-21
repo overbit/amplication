@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Publication, Application } from "@prisma/client";
+import {
+  Prisma,
+  Publication as PrismaPublication,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class PublicationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class PublicationServiceBase {
     return this.prisma.publication.count(args);
   }
 
-  async findMany<T extends Prisma.PublicationFindManyArgs>(
+  async publications<T extends Prisma.PublicationFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PublicationFindManyArgs>
-  ): Promise<Publication[]> {
+  ): Promise<PrismaPublication[]> {
     return this.prisma.publication.findMany(args);
   }
-  async findOne<T extends Prisma.PublicationFindUniqueArgs>(
+  async publication<T extends Prisma.PublicationFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PublicationFindUniqueArgs>
-  ): Promise<Publication | null> {
+  ): Promise<PrismaPublication | null> {
     return this.prisma.publication.findUnique(args);
   }
-  async create<T extends Prisma.PublicationCreateArgs>(
+  async createPublication<T extends Prisma.PublicationCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PublicationCreateArgs>
-  ): Promise<Publication> {
+  ): Promise<PrismaPublication> {
     return this.prisma.publication.create<T>(args);
   }
-  async update<T extends Prisma.PublicationUpdateArgs>(
+  async updatePublication<T extends Prisma.PublicationUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PublicationUpdateArgs>
-  ): Promise<Publication> {
+  ): Promise<PrismaPublication> {
     return this.prisma.publication.update<T>(args);
   }
-  async delete<T extends Prisma.PublicationDeleteArgs>(
+  async deletePublication<T extends Prisma.PublicationDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PublicationDeleteArgs>
-  ): Promise<Publication> {
+  ): Promise<PrismaPublication> {
     return this.prisma.publication.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.publication
       .findUnique({
         where: { id: parentId },

@@ -4,8 +4,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  NumberInput,
   DateTimeInput,
+  NumberInput,
   ReferenceInput,
   SelectInput,
 } from "react-admin";
@@ -18,8 +18,14 @@ export const MhciPrereqsProgrammingTestCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Application Id" source="applicationId" />
         <DateTimeInput label="Download Timestamp" source="downloadTimestamp" />
+        <NumberInput
+          step={1}
+          label="Upload Datafileinfo Id"
+          source="uploadDatafileinfoId"
+        />
+        <NumberInput step={1} label="Application Id" source="applicationId" />
+        <NumberInput step={1} label="Period Id" source="periodId" />
         <ReferenceInput
           source="luUsersUsertypes.id"
           reference="LuUsersUsertype"
@@ -27,12 +33,6 @@ export const MhciPrereqsProgrammingTestCreate = (
         >
           <SelectInput optionText={LuUsersUsertypeTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Period Id" source="periodId" />
-        <NumberInput
-          step={1}
-          label="Upload Datafileinfo Id"
-          source="uploadDatafileinfoId"
-        />
       </SimpleForm>
     </Create>
   );

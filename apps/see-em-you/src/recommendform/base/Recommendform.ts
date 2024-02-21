@@ -21,7 +21,7 @@ class Recommendform {
   })
   @IsInt()
   @Field(() => Number)
-  formId!: number;
+  recommendId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class Recommendform {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  formId!: number;
 
   @ApiProperty({
     required: true,
@@ -51,14 +51,6 @@ class Recommendform {
   questionKey!: number | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  recommendId!: number;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -68,6 +60,14 @@ class Recommendform {
     nullable: true,
   })
   response!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Recommendform as Recommendform };

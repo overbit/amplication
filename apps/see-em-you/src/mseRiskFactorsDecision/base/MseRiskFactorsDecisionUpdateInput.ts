@@ -24,7 +24,7 @@ class MseRiskFactorsDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  academic?: number;
+  experience?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class MseRiskFactorsDecisionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  experience?: number;
+  programId?: number;
 
   @ApiProperty({
     required: false,
@@ -58,6 +58,17 @@ class MseRiskFactorsDecisionUpdateInput {
     nullable: true,
   })
   language?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  academic?: number;
 
   @ApiProperty({
     required: false,
@@ -80,17 +91,6 @@ class MseRiskFactorsDecisionUpdateInput {
     nullable: true,
   })
   otherText?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programId?: number;
 }
 
 export { MseRiskFactorsDecisionUpdateInput as MseRiskFactorsDecisionUpdateInput };

@@ -13,10 +13,10 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  MhciPrereqsCourse,
-  MhciPrereqsCourseDatafile,
-  Application,
-  LuUsersUsertype,
+  MhciPrereqsCourse as PrismaMhciPrereqsCourse,
+  MhciPrereqsCourseDatafile as PrismaMhciPrereqsCourseDatafile,
+  Application as PrismaApplication,
+  LuUsersUsertype as PrismaLuUsersUsertype,
 } from "@prisma/client";
 
 export class MhciPrereqsCourseServiceBase {
@@ -28,36 +28,36 @@ export class MhciPrereqsCourseServiceBase {
     return this.prisma.mhciPrereqsCourse.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsCourseFindManyArgs>(
+  async mhciPrereqsCourses<T extends Prisma.MhciPrereqsCourseFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseFindManyArgs>
-  ): Promise<MhciPrereqsCourse[]> {
+  ): Promise<PrismaMhciPrereqsCourse[]> {
     return this.prisma.mhciPrereqsCourse.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsCourseFindUniqueArgs>(
+  async mhciPrereqsCourse<T extends Prisma.MhciPrereqsCourseFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseFindUniqueArgs>
-  ): Promise<MhciPrereqsCourse | null> {
+  ): Promise<PrismaMhciPrereqsCourse | null> {
     return this.prisma.mhciPrereqsCourse.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsCourseCreateArgs>(
+  async createMhciPrereqsCourse<T extends Prisma.MhciPrereqsCourseCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseCreateArgs>
-  ): Promise<MhciPrereqsCourse> {
+  ): Promise<PrismaMhciPrereqsCourse> {
     return this.prisma.mhciPrereqsCourse.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsCourseUpdateArgs>(
+  async updateMhciPrereqsCourse<T extends Prisma.MhciPrereqsCourseUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseUpdateArgs>
-  ): Promise<MhciPrereqsCourse> {
+  ): Promise<PrismaMhciPrereqsCourse> {
     return this.prisma.mhciPrereqsCourse.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsCourseDeleteArgs>(
+  async deleteMhciPrereqsCourse<T extends Prisma.MhciPrereqsCourseDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseDeleteArgs>
-  ): Promise<MhciPrereqsCourse> {
+  ): Promise<PrismaMhciPrereqsCourse> {
     return this.prisma.mhciPrereqsCourse.delete(args);
   }
 
   async findMhciPrereqsCourseDatafiles(
     parentId: number,
     args: Prisma.MhciPrereqsCourseDatafileFindManyArgs
-  ): Promise<MhciPrereqsCourseDatafile[]> {
+  ): Promise<PrismaMhciPrereqsCourseDatafile[]> {
     return this.prisma.mhciPrereqsCourse
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -65,7 +65,7 @@ export class MhciPrereqsCourseServiceBase {
       .mhciPrereqsCourseDatafiles(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.mhciPrereqsCourse
       .findUnique({
         where: { id: parentId },
@@ -73,7 +73,9 @@ export class MhciPrereqsCourseServiceBase {
       .application();
   }
 
-  async getLuUsersUsertypes(parentId: number): Promise<LuUsersUsertype | null> {
+  async getLuUsersUsertypes(
+    parentId: number
+  ): Promise<PrismaLuUsersUsertype | null> {
     return this.prisma.mhciPrereqsCourse
       .findUnique({
         where: { id: parentId },

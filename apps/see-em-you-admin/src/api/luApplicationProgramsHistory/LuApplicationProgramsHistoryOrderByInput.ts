@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type LuApplicationProgramsHistoryOrderByInput = {
-  applicationId?: SortOrder;
-  choice?: SortOrder;
-  createdDate?: SortOrder;
-  deletedBy?: SortOrder;
-  id?: SortOrder;
   lapId?: SortOrder;
+  applicationId?: SortOrder;
   programId?: SortOrder;
+  choice?: SortOrder;
+  deletedBy?: SortOrder;
+  createdDate?: SortOrder;
+  id?: SortOrder;
 };

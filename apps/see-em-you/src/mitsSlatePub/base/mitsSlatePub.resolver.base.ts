@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMitsSlatePubArgs } from "./CreateMitsSlatePubArgs";
-import { UpdateMitsSlatePubArgs } from "./UpdateMitsSlatePubArgs";
-import { DeleteMitsSlatePubArgs } from "./DeleteMitsSlatePubArgs";
+import { MitsSlatePub } from "./MitsSlatePub";
 import { MitsSlatePubCountArgs } from "./MitsSlatePubCountArgs";
 import { MitsSlatePubFindManyArgs } from "./MitsSlatePubFindManyArgs";
 import { MitsSlatePubFindUniqueArgs } from "./MitsSlatePubFindUniqueArgs";
-import { MitsSlatePub } from "./MitsSlatePub";
+import { CreateMitsSlatePubArgs } from "./CreateMitsSlatePubArgs";
+import { UpdateMitsSlatePubArgs } from "./UpdateMitsSlatePubArgs";
+import { DeleteMitsSlatePubArgs } from "./DeleteMitsSlatePubArgs";
 import { MitsSlatePubService } from "../mitsSlatePub.service";
 @graphql.Resolver(() => MitsSlatePub)
 export class MitsSlatePubResolverBase {
@@ -38,14 +38,14 @@ export class MitsSlatePubResolverBase {
   async mitsSlatePubs(
     @graphql.Args() args: MitsSlatePubFindManyArgs
   ): Promise<MitsSlatePub[]> {
-    return this.service.findMany(args);
+    return this.service.mitsSlatePubs(args);
   }
 
   @graphql.Query(() => MitsSlatePub, { nullable: true })
   async mitsSlatePub(
     @graphql.Args() args: MitsSlatePubFindUniqueArgs
   ): Promise<MitsSlatePub | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mitsSlatePub(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MitsSlatePubResolverBase {
   async createMitsSlatePub(
     @graphql.Args() args: CreateMitsSlatePubArgs
   ): Promise<MitsSlatePub> {
-    return await this.service.create({
+    return await this.service.createMitsSlatePub({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MitsSlatePubResolverBase {
     @graphql.Args() args: UpdateMitsSlatePubArgs
   ): Promise<MitsSlatePub | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlatePub({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MitsSlatePubResolverBase {
     @graphql.Args() args: DeleteMitsSlatePubArgs
   ): Promise<MitsSlatePub | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMitsSlatePub(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCashnetPaymentCopyArgs } from "./CreateCashnetPaymentCopyArgs";
-import { UpdateCashnetPaymentCopyArgs } from "./UpdateCashnetPaymentCopyArgs";
-import { DeleteCashnetPaymentCopyArgs } from "./DeleteCashnetPaymentCopyArgs";
+import { CashnetPaymentCopy } from "./CashnetPaymentCopy";
 import { CashnetPaymentCopyCountArgs } from "./CashnetPaymentCopyCountArgs";
 import { CashnetPaymentCopyFindManyArgs } from "./CashnetPaymentCopyFindManyArgs";
 import { CashnetPaymentCopyFindUniqueArgs } from "./CashnetPaymentCopyFindUniqueArgs";
-import { CashnetPaymentCopy } from "./CashnetPaymentCopy";
+import { CreateCashnetPaymentCopyArgs } from "./CreateCashnetPaymentCopyArgs";
+import { UpdateCashnetPaymentCopyArgs } from "./UpdateCashnetPaymentCopyArgs";
+import { DeleteCashnetPaymentCopyArgs } from "./DeleteCashnetPaymentCopyArgs";
 import { CashnetPaymentCopyService } from "../cashnetPaymentCopy.service";
 @graphql.Resolver(() => CashnetPaymentCopy)
 export class CashnetPaymentCopyResolverBase {
@@ -38,14 +38,14 @@ export class CashnetPaymentCopyResolverBase {
   async cashnetPaymentCopies(
     @graphql.Args() args: CashnetPaymentCopyFindManyArgs
   ): Promise<CashnetPaymentCopy[]> {
-    return this.service.findMany(args);
+    return this.service.cashnetPaymentCopies(args);
   }
 
   @graphql.Query(() => CashnetPaymentCopy, { nullable: true })
   async cashnetPaymentCopy(
     @graphql.Args() args: CashnetPaymentCopyFindUniqueArgs
   ): Promise<CashnetPaymentCopy | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.cashnetPaymentCopy(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class CashnetPaymentCopyResolverBase {
   async createCashnetPaymentCopy(
     @graphql.Args() args: CreateCashnetPaymentCopyArgs
   ): Promise<CashnetPaymentCopy> {
-    return await this.service.create({
+    return await this.service.createCashnetPaymentCopy({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class CashnetPaymentCopyResolverBase {
     @graphql.Args() args: UpdateCashnetPaymentCopyArgs
   ): Promise<CashnetPaymentCopy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCashnetPaymentCopy({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class CashnetPaymentCopyResolverBase {
     @graphql.Args() args: DeleteCashnetPaymentCopyArgs
   ): Promise<CashnetPaymentCopy | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCashnetPaymentCopy(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

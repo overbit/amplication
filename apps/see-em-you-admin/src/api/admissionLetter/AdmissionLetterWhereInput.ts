@@ -1,1 +1,5 @@
-export type AdmissionLetterWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type AdmissionLetterWhereInput = {
+  id?: StringFilter;
+};

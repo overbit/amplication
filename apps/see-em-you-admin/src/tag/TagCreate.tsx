@@ -11,9 +11,7 @@ export const TagCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Category" source="category" />
         <TextInput label="Name" source="name" />
-        <TextInput label="Parent" source="parent" />
         <SelectInput
           source="sticky"
           label="Sticky"
@@ -26,6 +24,8 @@ export const TagCreate = (props: CreateProps): React.ReactElement => {
           optionValue="value"
         />
         <TextInput label="Type Field" source="typeField" />
+        <TextInput label="Category" source="category" />
+        <TextInput label="Parent" source="parent" />
       </SimpleForm>
     </Create>
   );

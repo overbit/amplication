@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateToefl } from "@prisma/client";
+import { Prisma, MitsSlateToefl as PrismaMitsSlateToefl } from "@prisma/client";
 
 export class MitsSlateToeflServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MitsSlateToeflServiceBase {
     return this.prisma.mitsSlateToefl.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateToeflFindManyArgs>(
+  async mitsSlateToefls<T extends Prisma.MitsSlateToeflFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateToeflFindManyArgs>
-  ): Promise<MitsSlateToefl[]> {
+  ): Promise<PrismaMitsSlateToefl[]> {
     return this.prisma.mitsSlateToefl.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateToeflFindUniqueArgs>(
+  async mitsSlateToefl<T extends Prisma.MitsSlateToeflFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateToeflFindUniqueArgs>
-  ): Promise<MitsSlateToefl | null> {
+  ): Promise<PrismaMitsSlateToefl | null> {
     return this.prisma.mitsSlateToefl.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateToeflCreateArgs>(
+  async createMitsSlateToefl<T extends Prisma.MitsSlateToeflCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateToeflCreateArgs>
-  ): Promise<MitsSlateToefl> {
+  ): Promise<PrismaMitsSlateToefl> {
     return this.prisma.mitsSlateToefl.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateToeflUpdateArgs>(
+  async updateMitsSlateToefl<T extends Prisma.MitsSlateToeflUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateToeflUpdateArgs>
-  ): Promise<MitsSlateToefl> {
+  ): Promise<PrismaMitsSlateToefl> {
     return this.prisma.mitsSlateToefl.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateToeflDeleteArgs>(
+  async deleteMitsSlateToefl<T extends Prisma.MitsSlateToeflDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateToeflDeleteArgs>
-  ): Promise<MitsSlateToefl> {
+  ): Promise<PrismaMitsSlateToefl> {
     return this.prisma.mitsSlateToefl.delete(args);
   }
 }

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateEthnicityArgs } from "./CreateEthnicityArgs";
-import { UpdateEthnicityArgs } from "./UpdateEthnicityArgs";
-import { DeleteEthnicityArgs } from "./DeleteEthnicityArgs";
+import { Ethnicity } from "./Ethnicity";
 import { EthnicityCountArgs } from "./EthnicityCountArgs";
 import { EthnicityFindManyArgs } from "./EthnicityFindManyArgs";
 import { EthnicityFindUniqueArgs } from "./EthnicityFindUniqueArgs";
-import { Ethnicity } from "./Ethnicity";
+import { CreateEthnicityArgs } from "./CreateEthnicityArgs";
+import { UpdateEthnicityArgs } from "./UpdateEthnicityArgs";
+import { DeleteEthnicityArgs } from "./DeleteEthnicityArgs";
 import { EthnicityService } from "../ethnicity.service";
 @graphql.Resolver(() => Ethnicity)
 export class EthnicityResolverBase {
@@ -38,14 +38,14 @@ export class EthnicityResolverBase {
   async ethnicities(
     @graphql.Args() args: EthnicityFindManyArgs
   ): Promise<Ethnicity[]> {
-    return this.service.findMany(args);
+    return this.service.ethnicities(args);
   }
 
   @graphql.Query(() => Ethnicity, { nullable: true })
   async ethnicity(
     @graphql.Args() args: EthnicityFindUniqueArgs
   ): Promise<Ethnicity | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.ethnicity(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class EthnicityResolverBase {
   async createEthnicity(
     @graphql.Args() args: CreateEthnicityArgs
   ): Promise<Ethnicity> {
-    return await this.service.create({
+    return await this.service.createEthnicity({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class EthnicityResolverBase {
     @graphql.Args() args: UpdateEthnicityArgs
   ): Promise<Ethnicity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEthnicity({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class EthnicityResolverBase {
     @graphql.Args() args: DeleteEthnicityArgs
   ): Promise<Ethnicity | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteEthnicity(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

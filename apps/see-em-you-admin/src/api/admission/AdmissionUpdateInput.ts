@@ -1,5 +1,5 @@
 export type AdmissionUpdateInput = {
   applicationId?: number;
-  code?: number;
   programId?: number;
+  code?: number;
 };

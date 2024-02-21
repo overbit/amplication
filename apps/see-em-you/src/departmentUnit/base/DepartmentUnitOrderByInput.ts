@@ -39,7 +39,7 @@ class DepartmentUnitOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  unitId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class DepartmentUnitOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  unitId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { DepartmentUnitOrderByInput as DepartmentUnitOrderByInput };

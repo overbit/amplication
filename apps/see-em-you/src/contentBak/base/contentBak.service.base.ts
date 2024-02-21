@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ContentBak } from "@prisma/client";
+import { Prisma, ContentBak as PrismaContentBak } from "@prisma/client";
 
 export class ContentBakServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ContentBakServiceBase {
     return this.prisma.contentBak.count(args);
   }
 
-  async findMany<T extends Prisma.ContentBakFindManyArgs>(
+  async contentBaks<T extends Prisma.ContentBakFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentBakFindManyArgs>
-  ): Promise<ContentBak[]> {
+  ): Promise<PrismaContentBak[]> {
     return this.prisma.contentBak.findMany(args);
   }
-  async findOne<T extends Prisma.ContentBakFindUniqueArgs>(
+  async contentBak<T extends Prisma.ContentBakFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentBakFindUniqueArgs>
-  ): Promise<ContentBak | null> {
+  ): Promise<PrismaContentBak | null> {
     return this.prisma.contentBak.findUnique(args);
   }
-  async create<T extends Prisma.ContentBakCreateArgs>(
+  async createContentBak<T extends Prisma.ContentBakCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentBakCreateArgs>
-  ): Promise<ContentBak> {
+  ): Promise<PrismaContentBak> {
     return this.prisma.contentBak.create<T>(args);
   }
-  async update<T extends Prisma.ContentBakUpdateArgs>(
+  async updateContentBak<T extends Prisma.ContentBakUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentBakUpdateArgs>
-  ): Promise<ContentBak> {
+  ): Promise<PrismaContentBak> {
     return this.prisma.contentBak.update<T>(args);
   }
-  async delete<T extends Prisma.ContentBakDeleteArgs>(
+  async deleteContentBak<T extends Prisma.ContentBakDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentBakDeleteArgs>
-  ): Promise<ContentBak> {
+  ): Promise<PrismaContentBak> {
     return this.prisma.contentBak.delete(args);
   }
 }

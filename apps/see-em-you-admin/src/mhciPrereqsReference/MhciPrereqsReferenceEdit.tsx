@@ -4,11 +4,11 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  TextInput,
-  SelectInput,
   NumberInput,
-  DateTimeInput,
+  TextInput,
   BooleanInput,
+  DateTimeInput,
+  SelectInput,
 } from "react-admin";
 
 export const MhciPrereqsReferenceEdit = (
@@ -17,7 +17,17 @@ export const MhciPrereqsReferenceEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Anova Comment" source="anovaComment" />
+        <NumberInput step={1} label="Application Id" source="applicationId" />
+        <NumberInput step={1} label="Ref User Id" source="refUserId" />
+        <TextInput label="Content" source="content" />
+        <NumberInput step={1} label="Datafile Id" source="datafileId" />
+        <BooleanInput label="Submitted" source="submitted" />
+        <NumberInput
+          step={1}
+          label="Reminder Sent Count"
+          source="reminderSentCount"
+        />
+        <DateTimeInput label="Last Reminder Sent" source="lastReminderSent" />
         <SelectInput
           source="anova_knowledge"
           label="Anova Knowledge"
@@ -30,14 +40,7 @@ export const MhciPrereqsReferenceEdit = (
           allowEmpty
           optionValue="value"
         />
-        <NumberInput step={1} label="Application Id" source="applicationId" />
-        <TextInput label="Content" source="content" />
-        <NumberInput step={1} label="Datafile Id" source="datafileId" />
-        <DateTimeInput label="Last Reminder Sent" source="lastReminderSent" />
-        <NumberInput step={1} label="Period Id" source="periodId" />
-        <NumberInput step={1} label="Program Id" source="programId" />
-        <NumberInput step={1} label="Ref User Id" source="refUserId" />
-        <TextInput label="Regression Comment" source="regressionComment" />
+        <TextInput label="Anova Comment" source="anovaComment" />
         <SelectInput
           source="regression_knowledge"
           label="Regression Knowledge"
@@ -50,12 +53,9 @@ export const MhciPrereqsReferenceEdit = (
           allowEmpty
           optionValue="value"
         />
-        <NumberInput
-          step={1}
-          label="Reminder Sent Count"
-          source="reminderSentCount"
-        />
-        <BooleanInput label="Submitted" source="submitted" />
+        <TextInput label="Regression Comment" source="regressionComment" />
+        <NumberInput step={1} label="Period Id" source="periodId" />
+        <NumberInput step={1} label="Program Id" source="programId" />
       </SimpleForm>
     </Edit>
   );

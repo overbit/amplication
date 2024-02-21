@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePublicationArgs } from "./CreatePublicationArgs";
-import { UpdatePublicationArgs } from "./UpdatePublicationArgs";
-import { DeletePublicationArgs } from "./DeletePublicationArgs";
+import { Publication } from "./Publication";
 import { PublicationCountArgs } from "./PublicationCountArgs";
 import { PublicationFindManyArgs } from "./PublicationFindManyArgs";
 import { PublicationFindUniqueArgs } from "./PublicationFindUniqueArgs";
-import { Publication } from "./Publication";
+import { CreatePublicationArgs } from "./CreatePublicationArgs";
+import { UpdatePublicationArgs } from "./UpdatePublicationArgs";
+import { DeletePublicationArgs } from "./DeletePublicationArgs";
 import { Application } from "../../application/base/Application";
 import { PublicationService } from "../publication.service";
 @graphql.Resolver(() => Publication)
@@ -39,14 +39,14 @@ export class PublicationResolverBase {
   async publications(
     @graphql.Args() args: PublicationFindManyArgs
   ): Promise<Publication[]> {
-    return this.service.findMany(args);
+    return this.service.publications(args);
   }
 
   @graphql.Query(() => Publication, { nullable: true })
   async publication(
     @graphql.Args() args: PublicationFindUniqueArgs
   ): Promise<Publication | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.publication(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class PublicationResolverBase {
   async createPublication(
     @graphql.Args() args: CreatePublicationArgs
   ): Promise<Publication> {
-    return await this.service.create({
+    return await this.service.createPublication({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class PublicationResolverBase {
     @graphql.Args() args: UpdatePublicationArgs
   ): Promise<Publication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePublication({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class PublicationResolverBase {
     @graphql.Args() args: DeletePublicationArgs
   ): Promise<Publication | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePublication(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class PublicationResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: Publication
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

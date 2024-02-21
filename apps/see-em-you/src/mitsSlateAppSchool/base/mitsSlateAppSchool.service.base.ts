@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateAppSchool } from "@prisma/client";
+import {
+  Prisma,
+  MitsSlateAppSchool as PrismaMitsSlateAppSchool,
+} from "@prisma/client";
 
 export class MitsSlateAppSchoolServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class MitsSlateAppSchoolServiceBase {
     return this.prisma.mitsSlateAppSchool.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateAppSchoolFindManyArgs>(
+  async mitsSlateAppSchools<T extends Prisma.MitsSlateAppSchoolFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateAppSchoolFindManyArgs>
-  ): Promise<MitsSlateAppSchool[]> {
+  ): Promise<PrismaMitsSlateAppSchool[]> {
     return this.prisma.mitsSlateAppSchool.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateAppSchoolFindUniqueArgs>(
+  async mitsSlateAppSchool<T extends Prisma.MitsSlateAppSchoolFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateAppSchoolFindUniqueArgs>
-  ): Promise<MitsSlateAppSchool | null> {
+  ): Promise<PrismaMitsSlateAppSchool | null> {
     return this.prisma.mitsSlateAppSchool.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateAppSchoolCreateArgs>(
+  async createMitsSlateAppSchool<T extends Prisma.MitsSlateAppSchoolCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateAppSchoolCreateArgs>
-  ): Promise<MitsSlateAppSchool> {
+  ): Promise<PrismaMitsSlateAppSchool> {
     return this.prisma.mitsSlateAppSchool.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateAppSchoolUpdateArgs>(
+  async updateMitsSlateAppSchool<T extends Prisma.MitsSlateAppSchoolUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateAppSchoolUpdateArgs>
-  ): Promise<MitsSlateAppSchool> {
+  ): Promise<PrismaMitsSlateAppSchool> {
     return this.prisma.mitsSlateAppSchool.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateAppSchoolDeleteArgs>(
+  async deleteMitsSlateAppSchool<T extends Prisma.MitsSlateAppSchoolDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateAppSchoolDeleteArgs>
-  ): Promise<MitsSlateAppSchool> {
+  ): Promise<PrismaMitsSlateAppSchool> {
     return this.prisma.mitsSlateAppSchool.delete(args);
   }
 }

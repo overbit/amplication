@@ -18,42 +18,42 @@ import { TagInstanceService } from "../tagInstance.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  department: 42,
-  id: 42,
-  owner: 42,
-  period: 42,
   tagId: 42,
+  owner: 42,
+  department: 42,
+  period: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  department: 42,
-  id: 42,
-  owner: 42,
-  period: 42,
   tagId: 42,
+  owner: 42,
+  department: 42,
+  period: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    department: 42,
-    id: 42,
-    owner: 42,
-    period: 42,
     tagId: 42,
+    owner: 42,
+    department: 42,
+    period: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  department: 42,
-  id: 42,
-  owner: 42,
-  period: 42,
   tagId: 42,
+  owner: 42,
+  department: 42,
+  period: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createTagInstance() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  tagInstances: () => FIND_MANY_RESULT,
+  tagInstance: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

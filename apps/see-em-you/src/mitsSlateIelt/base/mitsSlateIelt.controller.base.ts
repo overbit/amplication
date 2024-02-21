@@ -18,32 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MitsSlateIeltService } from "../mitsSlateIelt.service";
 import { MitsSlateIeltCreateInput } from "./MitsSlateIeltCreateInput";
-import { MitsSlateIeltWhereInput } from "./MitsSlateIeltWhereInput";
-import { MitsSlateIeltWhereUniqueInput } from "./MitsSlateIeltWhereUniqueInput";
-import { MitsSlateIeltFindManyArgs } from "./MitsSlateIeltFindManyArgs";
-import { MitsSlateIeltUpdateInput } from "./MitsSlateIeltUpdateInput";
 import { MitsSlateIelt } from "./MitsSlateIelt";
+import { MitsSlateIeltFindManyArgs } from "./MitsSlateIeltFindManyArgs";
+import { MitsSlateIeltWhereUniqueInput } from "./MitsSlateIeltWhereUniqueInput";
+import { MitsSlateIeltUpdateInput } from "./MitsSlateIeltUpdateInput";
 
 export class MitsSlateIeltControllerBase {
   constructor(protected readonly service: MitsSlateIeltService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MitsSlateIelt })
-  async create(
+  async createMitsSlateIelt(
     @common.Body() data: MitsSlateIeltCreateInput
   ): Promise<MitsSlateIelt> {
-    return await this.service.create({
+    return await this.service.createMitsSlateIelt({
       data: data,
       select: {
-        first: true,
-        id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
+        id: true,
       },
     });
   }
@@ -51,21 +50,23 @@ export class MitsSlateIeltControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MitsSlateIelt] })
   @ApiNestedQuery(MitsSlateIeltFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MitsSlateIelt[]> {
+  async mitsSlateIelts(
+    @common.Req() request: Request
+  ): Promise<MitsSlateIelt[]> {
     const args = plainToClass(MitsSlateIeltFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mitsSlateIelts({
       ...args,
       select: {
-        first: true,
-        id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
+        id: true,
       },
     });
   }
@@ -73,22 +74,22 @@ export class MitsSlateIeltControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mitsSlateIelt(
     @common.Param() params: MitsSlateIeltWhereUniqueInput
   ): Promise<MitsSlateIelt | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mitsSlateIelt({
       where: params,
       select: {
-        first: true,
-        id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -102,25 +103,25 @@ export class MitsSlateIeltControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMitsSlateIelt(
     @common.Param() params: MitsSlateIeltWhereUniqueInput,
     @common.Body() data: MitsSlateIeltUpdateInput
   ): Promise<MitsSlateIelt | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateIelt({
         where: params,
         data: data,
         select: {
-          first: true,
-          id: true,
-          ieltsListening: true,
-          ieltsOverallBandScore: true,
-          ieltsReading: true,
-          ieltsSpeaking: true,
-          ieltsWriting: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          ieltsOverallBandScore: true,
+          ieltsListening: true,
+          ieltsReading: true,
+          ieltsWriting: true,
+          ieltsSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -136,23 +137,23 @@ export class MitsSlateIeltControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMitsSlateIelt(
     @common.Param() params: MitsSlateIeltWhereUniqueInput
   ): Promise<MitsSlateIelt | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMitsSlateIelt({
         where: params,
         select: {
-          first: true,
-          id: true,
-          ieltsListening: true,
-          ieltsOverallBandScore: true,
-          ieltsReading: true,
-          ieltsSpeaking: true,
-          ieltsWriting: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          ieltsOverallBandScore: true,
+          ieltsListening: true,
+          ieltsReading: true,
+          ieltsWriting: true,
+          ieltsSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {

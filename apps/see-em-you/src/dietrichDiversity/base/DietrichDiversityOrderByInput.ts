@@ -50,7 +50,7 @@ class DietrichDiversityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  lifeExperience?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class DietrichDiversityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  lifeExperience?: SortOrder;
+  id?: SortOrder;
 }
 
 export { DietrichDiversityOrderByInput as DietrichDiversityOrderByInput };

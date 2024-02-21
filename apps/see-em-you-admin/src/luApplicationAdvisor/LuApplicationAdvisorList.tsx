@@ -21,8 +21,11 @@ export const LuApplicationAdvisorList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Advisor Type" source="advisorType" />
         <TextField label="Advisor User Id" source="advisorUserId" />
+        <TextField label="Advisor Type" source="advisorType" />
+        <TextField label="Name" source="name" />
+        <TextField label="Program Id" source="programId" />
+        <TextField label="Choice" source="choice" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -30,10 +33,7 @@ export const LuApplicationAdvisorList = (
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Choice" source="choice" />
         <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
-        <TextField label="Program Id" source="programId" />
       </Datagrid>
     </List>
   );

@@ -18,30 +18,30 @@ import { ReviewRiskFactorOtherService } from "../reviewRiskFactorOther.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   riskFactorOther: "exampleRiskFactorOther",
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   riskFactorOther: "exampleRiskFactorOther",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     riskFactorOther: "exampleRiskFactorOther",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   riskFactorOther: "exampleRiskFactorOther",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createReviewRiskFactorOther() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  reviewRiskFactorOthers: () => FIND_MANY_RESULT,
+  reviewRiskFactorOther: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

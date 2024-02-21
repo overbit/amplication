@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIpedsRaceArgs } from "./CreateIpedsRaceArgs";
-import { UpdateIpedsRaceArgs } from "./UpdateIpedsRaceArgs";
-import { DeleteIpedsRaceArgs } from "./DeleteIpedsRaceArgs";
+import { IpedsRace } from "./IpedsRace";
 import { IpedsRaceCountArgs } from "./IpedsRaceCountArgs";
 import { IpedsRaceFindManyArgs } from "./IpedsRaceFindManyArgs";
 import { IpedsRaceFindUniqueArgs } from "./IpedsRaceFindUniqueArgs";
-import { IpedsRace } from "./IpedsRace";
+import { CreateIpedsRaceArgs } from "./CreateIpedsRaceArgs";
+import { UpdateIpedsRaceArgs } from "./UpdateIpedsRaceArgs";
+import { DeleteIpedsRaceArgs } from "./DeleteIpedsRaceArgs";
 import { IpedsRaceService } from "../ipedsRace.service";
 @graphql.Resolver(() => IpedsRace)
 export class IpedsRaceResolverBase {
@@ -38,14 +38,14 @@ export class IpedsRaceResolverBase {
   async ipedsRaces(
     @graphql.Args() args: IpedsRaceFindManyArgs
   ): Promise<IpedsRace[]> {
-    return this.service.findMany(args);
+    return this.service.ipedsRaces(args);
   }
 
   @graphql.Query(() => IpedsRace, { nullable: true })
   async ipedsRace(
     @graphql.Args() args: IpedsRaceFindUniqueArgs
   ): Promise<IpedsRace | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.ipedsRace(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class IpedsRaceResolverBase {
   async createIpedsRace(
     @graphql.Args() args: CreateIpedsRaceArgs
   ): Promise<IpedsRace> {
-    return await this.service.create({
+    return await this.service.createIpedsRace({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class IpedsRaceResolverBase {
     @graphql.Args() args: UpdateIpedsRaceArgs
   ): Promise<IpedsRace | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIpedsRace({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class IpedsRaceResolverBase {
     @graphql.Args() args: DeleteIpedsRaceArgs
   ): Promise<IpedsRace | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIpedsRace(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

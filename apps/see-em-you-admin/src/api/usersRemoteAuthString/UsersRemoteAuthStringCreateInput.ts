@@ -1,4 +1,4 @@
 export type UsersRemoteAuthStringCreateInput = {
-  remoteAuthString: string;
   usersId: number;
+  remoteAuthString: string;
 };

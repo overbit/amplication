@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsDate, IsString } from "class-validator";
+import { IsInt, IsOptional, IsString, IsDate } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -26,28 +26,6 @@ class ParentInfoUpdateInput {
     nullable: true,
   })
   appId?: number;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  modified?: Date;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  p1EdLevel?: number | null;
 
   @ApiProperty({
     required: false,
@@ -69,7 +47,7 @@ class ParentInfoUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  p2EdLevel?: number | null;
+  p1EdLevel?: number | null;
 
   @ApiProperty({
     required: false,
@@ -81,6 +59,28 @@ class ParentInfoUpdateInput {
     nullable: true,
   })
   p2Profession?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  p2EdLevel?: number | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  modified?: Date;
 }
 
 export { ParentInfoUpdateInput as ParentInfoUpdateInput };

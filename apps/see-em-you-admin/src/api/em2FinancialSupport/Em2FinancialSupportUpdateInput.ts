@@ -1,13 +1,13 @@
 export type Em2FinancialSupportUpdateInput = {
   applicationId?: number;
-  applyOutsideSupportSource?: string | null;
-  applyOutsideSupportType?: string | null;
-  attendWithoutSupport?: number;
-  familySupportAmount?: string | null;
-  familySupportType?: string | null;
-  otherSupportSource?: string | null;
-  receiveOutsideSupportSource?: string | null;
-  receiveOutsideSupportType?: string | null;
-  requestAssistantship?: number;
   requestConsideration?: number;
+  requestAssistantship?: number;
+  attendWithoutSupport?: number;
+  receiveOutsideSupportType?: string | null;
+  receiveOutsideSupportSource?: string | null;
+  applyOutsideSupportType?: string | null;
+  applyOutsideSupportSource?: string | null;
+  otherSupportSource?: string | null;
+  familySupportType?: string | null;
+  familySupportAmount?: string | null;
 };

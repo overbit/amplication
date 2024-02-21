@@ -3,8 +3,8 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
@@ -21,6 +21,8 @@ export const LuApplicationStartSemesterList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Semester" source="semester" />
+        <TextField label="Year" source="year" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -29,8 +31,6 @@ export const LuApplicationStartSemesterList = (
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Id" source="id" />
-        <TextField label="Semester" source="semester" />
-        <TextField label="Year" source="year" />
       </Datagrid>
     </List>
   );

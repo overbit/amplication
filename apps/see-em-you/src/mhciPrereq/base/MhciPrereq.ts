@@ -11,30 +11,40 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
 import {
-  ValidateNested,
   IsInt,
-  IsOptional,
   IsEnum,
+  IsOptional,
   IsDate,
+  ValidateNested,
 } from "class-validator";
+import { EnumMhciPrereqPrereqType } from "./EnumMhciPrereqPrereqType";
+import { EnumMhciPrereqStudentAssessment } from "./EnumMhciPrereqStudentAssessment";
+import { EnumMhciPrereqStatus2 } from "./EnumMhciPrereqStatus2";
 import { Type } from "class-transformer";
+import { Application } from "../../application/base/Application";
 import { MhciPrereqsConversationComment } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationComment";
 import { MhciPrereqsStatus } from "../../mhciPrereqsStatus/base/MhciPrereqsStatus";
-import { EnumMhciPrereqPrereqType } from "./EnumMhciPrereqPrereqType";
-import { EnumMhciPrereqStatus2 } from "./EnumMhciPrereqStatus2";
-import { EnumMhciPrereqStudentAssessment } from "./EnumMhciPrereqStudentAssessment";
 
 @ObjectType()
 class MhciPrereq {
   @ApiProperty({
     required: true,
-    type: () => Application,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
+  @IsInt()
+  @Field(() => Number)
+  studentLuUsersUsertypesId!: number;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumMhciPrereqPrereqType,
+  })
+  @IsEnum(EnumMhciPrereqPrereqType)
+  @Field(() => EnumMhciPrereqPrereqType, {
+    nullable: true,
+  })
+  prereq_type?: "design" | "programming" | "statistics";
 
   @ApiProperty({
     required: true,
@@ -42,7 +52,51 @@ class MhciPrereq {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  periodId!: number;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumMhciPrereqStudentAssessment,
+  })
+  @IsEnum(EnumMhciPrereqStudentAssessment)
+  @IsOptional()
+  @Field(() => EnumMhciPrereqStudentAssessment, {
+    nullable: true,
+  })
+  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumMhciPrereqStatus2,
+  })
+  @IsEnum(EnumMhciPrereqStatus2)
+  @IsOptional()
+  @Field(() => EnumMhciPrereqStatus2, {
+    nullable: true,
+  })
+  status2?:
+    | "Student_Saved"
+    | "Not_Submitted"
+    | "Student_Submitted"
+    | "Student_Edited"
+    | "Reviewer_Responded"
+    | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  timestamp!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
 
   @ApiProperty({
     required: false,
@@ -68,61 +122,7 @@ class MhciPrereq {
   })
   @IsInt()
   @Field(() => Number)
-  periodId!: number;
-
-  @ApiProperty({
-    required: true,
-    enum: EnumMhciPrereqPrereqType,
-  })
-  @IsEnum(EnumMhciPrereqPrereqType)
-  @Field(() => EnumMhciPrereqPrereqType, {
-    nullable: true,
-  })
-  prereq_type?: "design" | "programming" | "statistics";
-
-  @ApiProperty({
-    required: false,
-    enum: EnumMhciPrereqStatus2,
-  })
-  @IsEnum(EnumMhciPrereqStatus2)
-  @IsOptional()
-  @Field(() => EnumMhciPrereqStatus2, {
-    nullable: true,
-  })
-  status2?:
-    | "Student_Saved"
-    | "Not_Submitted"
-    | "Student_Submitted"
-    | "Student_Edited"
-    | "Reviewer_Responded"
-    | null;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumMhciPrereqStudentAssessment,
-  })
-  @IsEnum(EnumMhciPrereqStudentAssessment)
-  @IsOptional()
-  @Field(() => EnumMhciPrereqStudentAssessment, {
-    nullable: true,
-  })
-  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  studentLuUsersUsertypesId!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  timestamp!: Date;
+  id!: number;
 }
 
 export { MhciPrereq as MhciPrereq };

@@ -1,1 +1,5 @@
-export type StateWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type StateWhereInput = {
+  id?: IntFilter;
+};

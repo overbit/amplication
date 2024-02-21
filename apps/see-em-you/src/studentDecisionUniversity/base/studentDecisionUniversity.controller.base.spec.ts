@@ -18,42 +18,42 @@ import { StudentDecisionUniversityService } from "../studentDecisionUniversity.s
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  accepted: "true",
   applicationId: 42,
-  id: 42,
-  name: "exampleName",
   programId: 42,
+  name: "exampleName",
+  accepted: "true",
+  id: 42,
 };
 const CREATE_RESULT = {
-  accepted: "true",
   applicationId: 42,
-  id: 42,
-  name: "exampleName",
   programId: 42,
+  name: "exampleName",
+  accepted: "true",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    accepted: "true",
     applicationId: 42,
-    id: 42,
-    name: "exampleName",
     programId: 42,
+    name: "exampleName",
+    accepted: "true",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  accepted: "true",
   applicationId: 42,
-  id: 42,
-  name: "exampleName",
   programId: 42,
+  name: "exampleName",
+  accepted: "true",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createStudentDecisionUniversity() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  studentDecisionUniversities: () => FIND_MANY_RESULT,
+  studentDecisionUniversity: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

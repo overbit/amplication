@@ -11,49 +11,34 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import {
-  ValidateNested,
   IsInt,
-  IsOptional,
   IsString,
-  IsDate,
+  IsOptional,
   IsBoolean,
+  IsDate,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 
 @InputType()
 class RecommendCreateInput {
   @ApiProperty({
     required: true,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  buckleyatupload?: number | null;
+  @Field(() => Number)
+  recUserId!: number;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  cmuAffiliation?: number | null;
+  @Field(() => Number)
+  recommendtype!: number;
 
   @ApiProperty({
     required: false,
@@ -78,6 +63,22 @@ class RecommendCreateInput {
   datafileId?: number | null;
 
   @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  submitted!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  reminderSentCount!: number;
+
+  @ApiProperty({
     required: false,
   })
   @IsDate()
@@ -89,36 +90,35 @@ class RecommendCreateInput {
   lastReminderSent?: Date | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsInt()
-  @Field(() => Number)
-  recommendtype!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  cmuAffiliation?: number | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsInt()
-  @Field(() => Number)
-  recUserId!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  buckleyatupload?: number | null;
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsInt()
-  @Field(() => Number)
-  reminderSentCount!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  submitted!: boolean;
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { RecommendCreateInput as RecommendCreateInput };

@@ -18,9 +18,13 @@ export const CashnetPaymentCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput label="Amount" source="amount" />
-        <TextInput label="Applicant Email" source="applicantEmail" />
+        <NumberInput step={1} label="Transaction Id" source="transactionId" />
         <TextInput label="Applicant Name" source="applicantName" />
+        <TextInput label="Applicant Email" source="applicantEmail" />
+        <NumberInput step={1} label="Merchant" source="merchant" />
+        <TextInput label="Status" source="status" />
+        <TextInput label="Transaction Type" source="transactionType" />
+        <NumberInput label="Amount" source="amount" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -28,10 +32,6 @@ export const CashnetPaymentCreate = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Merchant" source="merchant" />
-        <TextInput label="Status" source="status" />
-        <NumberInput step={1} label="Transaction Id" source="transactionId" />
-        <TextInput label="Transaction Type" source="transactionType" />
       </SimpleForm>
     </Create>
   );

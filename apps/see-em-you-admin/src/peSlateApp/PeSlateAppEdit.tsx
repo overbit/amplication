@@ -5,22 +5,70 @@ export const PeSlateAppEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Application Status" source="applicationStatus" />
+        <TextInput label="Prefix" source="prefix" />
+        <TextInput label="First" source="first" />
+        <TextInput label="Middle" source="middle" />
+        <TextInput label="Last" source="last" />
+        <TextInput label="Suffix" source="suffix" />
+        <TextInput label="Email" source="email" />
         <TextInput label="App Submitted Date" source="appSubmittedDate" />
-        <TextInput label="Birthdate" source="birthdate" />
-        <TextInput label="Citizenship Status" source="citizenshipStatus" />
+        <TextInput label="Application Status" source="applicationStatus" />
+        <TextInput label="Round Export Code" source="roundExportCode" />
         <TextInput
           label="Decision Confirmed Export Code"
           source="decisionConfirmedExportCode"
         />
-        <TextInput label="Email" source="email" />
-        <TextInput label="Email Address" source="emailAddress" />
-        <TextInput label="First" source="first" />
-        <TextInput label="Hispanic" source="hispanic" />
+        <TextInput label="Birthdate" source="birthdate" />
+        <TextInput label="Sex" source="sex" />
         <TextInput label="Ipeds Classification" source="ipedsClassification" />
-        <TextInput label="Language" source="language" />
-        <TextInput label="Last" source="last" />
+        <TextInput label="Hispanic" source="hispanic" />
+        <TextInput label="Race" source="race" />
+        <TextInput label="Citizenship Status" source="citizenshipStatus" />
+        <TextInput label="Primary Citizenship" source="primaryCitizenship" />
+        <TextInput
+          label="Secondary Citizenship"
+          source="secondaryCitizenship"
+        />
+        <TextInput label="Email Address" source="emailAddress" />
+        <TextInput label="Phone Number" source="phoneNumber" />
+        <TextInput label="Mobile Phone Number" source="mobilePhoneNumber" />
+        <TextInput
+          label="Mailing Address Street1"
+          source="mailingAddressStreet1"
+        />
+        <TextInput
+          label="Mailing Address Street2"
+          source="mailingAddressStreet2"
+        />
+        <TextInput
+          label="Mailing Address Street3"
+          source="mailingAddressStreet3"
+        />
         <TextInput label="Mailing Address City" source="mailingAddressCity" />
+        <TextInput
+          label="Mailing Address Region"
+          source="mailingAddressRegion"
+        />
+        <TextInput
+          label="Mailing Address Postal Code"
+          source="mailingAddressPostalCode"
+        />
+        <TextInput
+          label="Mailing Address Country Name"
+          source="mailingAddressCountryName"
+        />
+        <TextInput
+          label="Mailing Address Geomarket"
+          source="mailingAddressGeomarket"
+        />
+        <TextInput
+          label="Mailing Address Valid From Date"
+          source="mailingAddressValidFromDate"
+        />
+        <TextInput
+          label="Mailing Address Valid To Date"
+          source="mailingAddressValidToDate"
+        />
         <TextInput
           label="Mailing Address Country Fips Code"
           source="mailingAddressCountryFipsCode"
@@ -34,54 +82,40 @@ export const PeSlateAppEdit = (props: EditProps): React.ReactElement => {
           source="mailingAddressCountryIso3Code"
         />
         <TextInput
-          label="Mailing Address Country Name"
-          source="mailingAddressCountryName"
-        />
-        <TextInput
           label="Mailing Address Country Sis Export"
           source="mailingAddressCountrySisExport"
         />
         <TextInput
-          label="Mailing Address Geomarket"
-          source="mailingAddressGeomarket"
+          label="Permanent Address Street1"
+          source="permanentAddressStreet1"
         />
         <TextInput
-          label="Mailing Address Postal Code"
-          source="mailingAddressPostalCode"
+          label="Permanent Address Street2"
+          source="permanentAddressStreet2"
         />
         <TextInput
-          label="Mailing Address Region"
-          source="mailingAddressRegion"
+          label="Permanent Address Street3"
+          source="permanentAddressStreet3"
         />
-        <TextInput
-          label="Mailing Address Street1"
-          source="mailingAddressStreet1"
-        />
-        <TextInput
-          label="Mailing Address Street2"
-          source="mailingAddressStreet2"
-        />
-        <TextInput
-          label="Mailing Address Street3"
-          source="mailingAddressStreet3"
-        />
-        <TextInput
-          label="Mailing Address Valid From Date"
-          source="mailingAddressValidFromDate"
-        />
-        <TextInput
-          label="Mailing Address Valid To Date"
-          source="mailingAddressValidToDate"
-        />
-        <TextInput label="Middle" source="middle" />
-        <TextInput label="Mobile Phone Number" source="mobilePhoneNumber" />
         <TextInput
           label="Permanent Address City"
           source="permanentAddressCity"
         />
         <TextInput
+          label="Permanent Address Region"
+          source="permanentAddressRegion"
+        />
+        <TextInput
+          label="Permanent Address Postal Code"
+          source="permanentAddressPostalCode"
+        />
+        <TextInput
           label="Permanent Address Country"
           source="permanentAddressCountry"
+        />
+        <TextInput
+          label="Permanent Address Geomarket"
+          source="permanentAddressGeomarket"
         />
         <TextInput
           label="Permanent Address Country Fips Code"
@@ -99,45 +133,11 @@ export const PeSlateAppEdit = (props: EditProps): React.ReactElement => {
           label="Permanent Address Country Sis Export"
           source="permanentAddressCountrySisExport"
         />
-        <TextInput
-          label="Permanent Address Geomarket"
-          source="permanentAddressGeomarket"
-        />
-        <TextInput
-          label="Permanent Address Postal Code"
-          source="permanentAddressPostalCode"
-        />
-        <TextInput
-          label="Permanent Address Region"
-          source="permanentAddressRegion"
-        />
-        <TextInput
-          label="Permanent Address Street1"
-          source="permanentAddressStreet1"
-        />
-        <TextInput
-          label="Permanent Address Street2"
-          source="permanentAddressStreet2"
-        />
-        <TextInput
-          label="Permanent Address Street3"
-          source="permanentAddressStreet3"
-        />
+        <TextInput label="Language" source="language" />
         <TextInput label="Personal Web Site" source="personalWebSite" />
-        <TextInput label="Phone Number" source="phoneNumber" />
-        <TextInput label="Prefix" source="prefix" />
-        <TextInput label="Primary Citizenship" source="primaryCitizenship" />
-        <TextInput label="Race" source="race" />
         <TextInput label="Reference1 Waiver" source="reference1Waiver" />
         <TextInput label="Reference2 Waiver" source="reference2Waiver" />
         <TextInput label="Reference3 Waiver" source="reference3Waiver" />
-        <TextInput label="Round Export Code" source="roundExportCode" />
-        <TextInput
-          label="Secondary Citizenship"
-          source="secondaryCitizenship"
-        />
-        <TextInput label="Sex" source="sex" />
-        <TextInput label="Suffix" source="suffix" />
       </SimpleForm>
     </Edit>
   );

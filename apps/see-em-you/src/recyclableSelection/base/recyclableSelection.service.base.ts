@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, RecyclableSelection } from "@prisma/client";
+import {
+  Prisma,
+  RecyclableSelection as PrismaRecyclableSelection,
+} from "@prisma/client";
 
 export class RecyclableSelectionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,35 @@ export class RecyclableSelectionServiceBase {
     return this.prisma.recyclableSelection.count(args);
   }
 
-  async findMany<T extends Prisma.RecyclableSelectionFindManyArgs>(
+  async recyclableSelections<T extends Prisma.RecyclableSelectionFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecyclableSelectionFindManyArgs>
-  ): Promise<RecyclableSelection[]> {
+  ): Promise<PrismaRecyclableSelection[]> {
     return this.prisma.recyclableSelection.findMany(args);
   }
-  async findOne<T extends Prisma.RecyclableSelectionFindUniqueArgs>(
+  async recyclableSelection<T extends Prisma.RecyclableSelectionFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecyclableSelectionFindUniqueArgs>
-  ): Promise<RecyclableSelection | null> {
+  ): Promise<PrismaRecyclableSelection | null> {
     return this.prisma.recyclableSelection.findUnique(args);
   }
-  async create<T extends Prisma.RecyclableSelectionCreateArgs>(
+  async createRecyclableSelection<
+    T extends Prisma.RecyclableSelectionCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.RecyclableSelectionCreateArgs>
-  ): Promise<RecyclableSelection> {
+  ): Promise<PrismaRecyclableSelection> {
     return this.prisma.recyclableSelection.create<T>(args);
   }
-  async update<T extends Prisma.RecyclableSelectionUpdateArgs>(
+  async updateRecyclableSelection<
+    T extends Prisma.RecyclableSelectionUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.RecyclableSelectionUpdateArgs>
-  ): Promise<RecyclableSelection> {
+  ): Promise<PrismaRecyclableSelection> {
     return this.prisma.recyclableSelection.update<T>(args);
   }
-  async delete<T extends Prisma.RecyclableSelectionDeleteArgs>(
+  async deleteRecyclableSelection<
+    T extends Prisma.RecyclableSelectionDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.RecyclableSelectionDeleteArgs>
-  ): Promise<RecyclableSelection> {
+  ): Promise<PrismaRecyclableSelection> {
     return this.prisma.recyclableSelection.delete(args);
   }
 }

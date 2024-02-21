@@ -12,14 +12,14 @@ export const ErrorlogList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Users Id" source="usersId" />
+        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Usertype Id" source="usertypeId" />
         <TextField label="Application Id" source="applicationId" />
         <TextField label="Client" source="client" />
-        <TextField label="Id" source="id" />
-        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
-        <TextField label="Message" source="message" />
         <DateField source="timestamp" label="Timestamp" />
-        <TextField label="Users Id" source="usersId" />
-        <TextField label="Usertype Id" source="usertypeId" />
+        <TextField label="Message" source="message" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

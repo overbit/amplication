@@ -4,8 +4,8 @@ import {
   SimpleShowLayout,
   ShowProps,
   TextField,
-  ReferenceField,
   BooleanField,
+  ReferenceField,
 } from "react-admin";
 import { LUUSERSUSERTYPE_TITLE_FIELD } from "../luUsersUsertype/LuUsersUsertypeTitle";
 
@@ -15,9 +15,16 @@ export const MhciPrereqsProgrammingSampleShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Application Id" source="applicationId" />
         <TextField label="Datafileinfo Id" source="datafileinfoId" />
-        <TextField label="Id" source="id" />
+        <TextField label="Note" source="note" />
+        <BooleanField
+          label="Submitted To Reviewer"
+          source="submittedToReviewer"
+        />
+        <BooleanField label="New File Uploaded" source="newFileUploaded" />
+        <TextField label="Application Id" source="applicationId" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Program Id" source="programId" />
         <ReferenceField
           label="Lu Users Usertypes"
           source="luusersusertype.id"
@@ -25,14 +32,7 @@ export const MhciPrereqsProgrammingSampleShow = (
         >
           <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
         </ReferenceField>
-        <BooleanField label="New File Uploaded" source="newFileUploaded" />
-        <TextField label="Note" source="note" />
-        <TextField label="Period Id" source="periodId" />
-        <TextField label="Program Id" source="programId" />
-        <BooleanField
-          label="Submitted To Reviewer"
-          source="submittedToReviewer"
-        />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

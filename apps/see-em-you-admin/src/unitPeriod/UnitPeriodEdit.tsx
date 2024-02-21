@@ -5,8 +5,8 @@ export const UnitPeriodEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Period Id" source="periodId" />
         <NumberInput step={1} label="Unit Id" source="unitId" />
+        <NumberInput step={1} label="Period Id" source="periodId" />
       </SimpleForm>
     </Edit>
   );

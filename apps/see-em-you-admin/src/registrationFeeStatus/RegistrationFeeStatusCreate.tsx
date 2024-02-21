@@ -5,9 +5,9 @@ import {
   SimpleForm,
   CreateProps,
   NumberInput,
+  BooleanInput,
   ReferenceInput,
   SelectInput,
-  BooleanInput,
 } from "react-admin";
 
 import { ApplicationTitle } from "../application/ApplicationTitle";
@@ -18,7 +18,10 @@ export const RegistrationFeeStatusCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Department Id" source="departmentId" />
         <NumberInput label="Amount" source="amount" />
+        <BooleanInput label="Paid" source="paid" />
+        <BooleanInput label="Waived" source="waived" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -26,9 +29,6 @@ export const RegistrationFeeStatusCreate = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Department Id" source="departmentId" />
-        <BooleanInput label="Paid" source="paid" />
-        <BooleanInput label="Waived" source="waived" />
       </SimpleForm>
     </Create>
   );

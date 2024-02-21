@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuUserDepartmentArgs } from "./CreateLuUserDepartmentArgs";
-import { UpdateLuUserDepartmentArgs } from "./UpdateLuUserDepartmentArgs";
-import { DeleteLuUserDepartmentArgs } from "./DeleteLuUserDepartmentArgs";
+import { LuUserDepartment } from "./LuUserDepartment";
 import { LuUserDepartmentCountArgs } from "./LuUserDepartmentCountArgs";
 import { LuUserDepartmentFindManyArgs } from "./LuUserDepartmentFindManyArgs";
 import { LuUserDepartmentFindUniqueArgs } from "./LuUserDepartmentFindUniqueArgs";
-import { LuUserDepartment } from "./LuUserDepartment";
+import { CreateLuUserDepartmentArgs } from "./CreateLuUserDepartmentArgs";
+import { UpdateLuUserDepartmentArgs } from "./UpdateLuUserDepartmentArgs";
+import { DeleteLuUserDepartmentArgs } from "./DeleteLuUserDepartmentArgs";
 import { LuUserDepartmentService } from "../luUserDepartment.service";
 @graphql.Resolver(() => LuUserDepartment)
 export class LuUserDepartmentResolverBase {
@@ -38,14 +38,14 @@ export class LuUserDepartmentResolverBase {
   async luUserDepartments(
     @graphql.Args() args: LuUserDepartmentFindManyArgs
   ): Promise<LuUserDepartment[]> {
-    return this.service.findMany(args);
+    return this.service.luUserDepartments(args);
   }
 
   @graphql.Query(() => LuUserDepartment, { nullable: true })
   async luUserDepartment(
     @graphql.Args() args: LuUserDepartmentFindUniqueArgs
   ): Promise<LuUserDepartment | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luUserDepartment(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LuUserDepartmentResolverBase {
   async createLuUserDepartment(
     @graphql.Args() args: CreateLuUserDepartmentArgs
   ): Promise<LuUserDepartment> {
-    return await this.service.create({
+    return await this.service.createLuUserDepartment({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LuUserDepartmentResolverBase {
     @graphql.Args() args: UpdateLuUserDepartmentArgs
   ): Promise<LuUserDepartment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuUserDepartment({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LuUserDepartmentResolverBase {
     @graphql.Args() args: DeleteLuUserDepartmentArgs
   ): Promise<LuUserDepartment | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuUserDepartment(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

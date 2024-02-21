@@ -8,8 +8,8 @@ export const LuApplicationInterestEdit = (
     <Edit {...props}>
       <SimpleForm>
         <NumberInput step={1} label="App Program Id" source="appProgramId" />
-        <NumberInput step={1} label="Choice" source="choice" />
         <NumberInput step={1} label="Interest Id" source="interestId" />
+        <NumberInput step={1} label="Choice" source="choice" />
       </SimpleForm>
     </Edit>
   );

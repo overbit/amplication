@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, TagInstance } from "@prisma/client";
+import { Prisma, TagInstance as PrismaTagInstance } from "@prisma/client";
 
 export class TagInstanceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class TagInstanceServiceBase {
     return this.prisma.tagInstance.count(args);
   }
 
-  async findMany<T extends Prisma.TagInstanceFindManyArgs>(
+  async tagInstances<T extends Prisma.TagInstanceFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagInstanceFindManyArgs>
-  ): Promise<TagInstance[]> {
+  ): Promise<PrismaTagInstance[]> {
     return this.prisma.tagInstance.findMany(args);
   }
-  async findOne<T extends Prisma.TagInstanceFindUniqueArgs>(
+  async tagInstance<T extends Prisma.TagInstanceFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagInstanceFindUniqueArgs>
-  ): Promise<TagInstance | null> {
+  ): Promise<PrismaTagInstance | null> {
     return this.prisma.tagInstance.findUnique(args);
   }
-  async create<T extends Prisma.TagInstanceCreateArgs>(
+  async createTagInstance<T extends Prisma.TagInstanceCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagInstanceCreateArgs>
-  ): Promise<TagInstance> {
+  ): Promise<PrismaTagInstance> {
     return this.prisma.tagInstance.create<T>(args);
   }
-  async update<T extends Prisma.TagInstanceUpdateArgs>(
+  async updateTagInstance<T extends Prisma.TagInstanceUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagInstanceUpdateArgs>
-  ): Promise<TagInstance> {
+  ): Promise<PrismaTagInstance> {
     return this.prisma.tagInstance.update<T>(args);
   }
-  async delete<T extends Prisma.TagInstanceDeleteArgs>(
+  async deleteTagInstance<T extends Prisma.TagInstanceDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagInstanceDeleteArgs>
-  ): Promise<TagInstance> {
+  ): Promise<PrismaTagInstance> {
     return this.prisma.tagInstance.delete(args);
   }
 }

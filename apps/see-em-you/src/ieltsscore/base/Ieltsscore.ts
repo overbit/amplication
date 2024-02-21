@@ -11,46 +11,30 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
 import {
-  ValidateNested,
-  IsInt,
+  IsDate,
   IsOptional,
   IsNumber,
-  IsDate,
+  IsInt,
   IsString,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { Decimal } from "decimal.js";
+import { Application } from "../../application/base/Application";
 
 @ObjectType()
 class Ieltsscore {
   @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
     required: false,
-    type: Number,
   })
-  @IsInt()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => Date, {
     nullable: true,
   })
-  datafileId!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  testdate!: Date | null;
 
   @ApiProperty({
     required: false,
@@ -72,7 +56,7 @@ class Ieltsscore {
   @Field(() => Float, {
     nullable: true,
   })
-  overallscore!: Decimal | null;
+  readingscore!: Decimal | null;
 
   @ApiProperty({
     required: false,
@@ -83,7 +67,29 @@ class Ieltsscore {
   @Field(() => Float, {
     nullable: true,
   })
-  readingscore!: Decimal | null;
+  writingscore!: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  speakingscore!: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  overallscore!: Decimal | null;
 
   @ApiProperty({
     required: false,
@@ -100,23 +106,12 @@ class Ieltsscore {
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
-  @Field(() => Float, {
+  @Field(() => Number, {
     nullable: true,
   })
-  speakingscore!: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  testdate!: Date | null;
+  datafileId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -130,15 +125,20 @@ class Ieltsscore {
   testEmail!: string | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  writingscore!: Decimal | null;
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Ieltsscore as Ieltsscore };

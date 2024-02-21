@@ -15,6 +15,7 @@ import { DomainWhereUniqueInput } from "../../domain/base/DomainWhereUniqueInput
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { UnitWhereUniqueInput } from "../../unit/base/UnitWhereUniqueInput";
+import { StringFilter } from "../../util/StringFilter";
 
 @InputType()
 class DomainUnitWhereInput {
@@ -41,6 +42,17 @@ class DomainUnitWhereInput {
     nullable: true,
   })
   unit?: UnitWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  id?: StringFilter;
 }
 
 export { DomainUnitWhereInput as DomainUnitWhereInput };

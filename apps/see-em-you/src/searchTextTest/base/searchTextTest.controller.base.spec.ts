@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: "exampleApplicationId",
-  applicationText: "exampleApplicationText",
   guid: 42,
+  applicationText: "exampleApplicationText",
   id: "exampleId",
 };
 const CREATE_RESULT = {
   applicationId: "exampleApplicationId",
-  applicationText: "exampleApplicationText",
   guid: 42,
+  applicationText: "exampleApplicationText",
   id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: "exampleApplicationId",
-    applicationText: "exampleApplicationText",
     guid: 42,
+    applicationText: "exampleApplicationText",
     id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: "exampleApplicationId",
-  applicationText: "exampleApplicationText",
   guid: 42,
+  applicationText: "exampleApplicationText",
   id: "exampleId",
 };
 
 const service = {
-  create() {
+  createSearchTextTest() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  searchTextTests: () => FIND_MANY_RESULT,
+  searchTextTest: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

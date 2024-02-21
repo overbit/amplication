@@ -1,10 +1,10 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type DomainOrderByInput = {
+  name?: SortOrder;
+  description?: SortOrder;
+  path?: SortOrder;
   active?: SortOrder;
   banner?: SortOrder;
-  description?: SortOrder;
   id?: SortOrder;
-  name?: SortOrder;
-  path?: SortOrder;
 };

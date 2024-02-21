@@ -21,14 +21,6 @@ class MseLetterRecCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  algortihms!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   applicationId!: number;
 
   @ApiProperty({
@@ -37,15 +29,7 @@ class MseLetterRecCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  dataStructures!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  discrete!: number;
+  reviewerId!: number;
 
   @ApiProperty({
     required: true,
@@ -61,7 +45,23 @@ class MseLetterRecCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  reviewerId!: number;
+  discrete!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  algortihms!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  dataStructures!: number;
 }
 
 export { MseLetterRecCreateInput as MseLetterRecCreateInput };

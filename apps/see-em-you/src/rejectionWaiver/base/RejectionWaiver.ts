@@ -11,18 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt, IsOptional } from "class-validator";
+import { IsInt, IsOptional, IsString } from "class-validator";
 
 @ObjectType()
 class RejectionWaiver {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -30,14 +22,6 @@ class RejectionWaiver {
   @IsInt()
   @Field(() => Number)
   luApplicationProgramsId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  permittedProgramId!: number;
 
   @ApiProperty({
     required: false,
@@ -49,6 +33,22 @@ class RejectionWaiver {
     nullable: true,
   })
   waived!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  permittedProgramId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { RejectionWaiver as RejectionWaiver };

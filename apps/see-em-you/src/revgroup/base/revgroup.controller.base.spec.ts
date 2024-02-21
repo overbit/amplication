@@ -18,38 +18,38 @@ import { RevgroupService } from "../revgroup.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  name: "exampleName",
   departmentId: 42,
   groupType: 42,
   id: 42,
-  name: "exampleName",
 };
 const CREATE_RESULT = {
+  name: "exampleName",
   departmentId: 42,
   groupType: 42,
   id: 42,
-  name: "exampleName",
 };
 const FIND_MANY_RESULT = [
   {
+    name: "exampleName",
     departmentId: 42,
     groupType: 42,
     id: 42,
-    name: "exampleName",
   },
 ];
 const FIND_ONE_RESULT = {
+  name: "exampleName",
   departmentId: 42,
   groupType: 42,
   id: 42,
-  name: "exampleName",
 };
 
 const service = {
-  create() {
+  createRevgroup() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  revgroups: () => FIND_MANY_RESULT,
+  revgroup: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { StateService } from "../state.service";
 import { StateCreateInput } from "./StateCreateInput";
-import { StateWhereInput } from "./StateWhereInput";
-import { StateWhereUniqueInput } from "./StateWhereUniqueInput";
-import { StateFindManyArgs } from "./StateFindManyArgs";
-import { StateUpdateInput } from "./StateUpdateInput";
 import { State } from "./State";
+import { StateFindManyArgs } from "./StateFindManyArgs";
+import { StateWhereUniqueInput } from "./StateWhereUniqueInput";
+import { StateUpdateInput } from "./StateUpdateInput";
 
 export class StateControllerBase {
   constructor(protected readonly service: StateService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: State })
-  async create(@common.Body() data: StateCreateInput): Promise<State> {
-    return await this.service.create({
+  async createState(@common.Body() data: StateCreateInput): Promise<State> {
+    return await this.service.createState({
       data: data,
       select: {
         abbrev: true,
+        name: true,
         countryId: true,
         id: true,
-        name: true,
       },
     });
   }
@@ -43,15 +42,15 @@ export class StateControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [State] })
   @ApiNestedQuery(StateFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<State[]> {
+  async states(@common.Req() request: Request): Promise<State[]> {
     const args = plainToClass(StateFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.states({
       ...args,
       select: {
         abbrev: true,
+        name: true,
         countryId: true,
         id: true,
-        name: true,
       },
     });
   }
@@ -59,16 +58,16 @@ export class StateControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: State })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async state(
     @common.Param() params: StateWhereUniqueInput
   ): Promise<State | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.state({
       where: params,
       select: {
         abbrev: true,
+        name: true,
         countryId: true,
         id: true,
-        name: true,
       },
     });
     if (result === null) {
@@ -82,19 +81,19 @@ export class StateControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: State })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateState(
     @common.Param() params: StateWhereUniqueInput,
     @common.Body() data: StateUpdateInput
   ): Promise<State | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateState({
         where: params,
         data: data,
         select: {
           abbrev: true,
+          name: true,
           countryId: true,
           id: true,
-          name: true,
         },
       });
     } catch (error) {
@@ -110,17 +109,17 @@ export class StateControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: State })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteState(
     @common.Param() params: StateWhereUniqueInput
   ): Promise<State | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteState({
         where: params,
         select: {
           abbrev: true,
+          name: true,
           countryId: true,
           id: true,
-          name: true,
         },
       });
     } catch (error) {

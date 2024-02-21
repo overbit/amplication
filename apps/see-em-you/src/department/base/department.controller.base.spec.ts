@@ -18,78 +18,78 @@ import { DepartmentService } from "../department.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  allowRequestAdvisors: 42,
-  ccEmail: "exampleCcEmail",
+  name: "exampleName",
+  parentSchoolId: 42,
+  oraclestring: "exampleOraclestring",
+  registrationoraclestring: "exampleRegistrationoraclestring",
   drank: 42,
-  enableFinal: "exampleEnableFinal",
+  ccEmail: "exampleCcEmail",
   enableRound1: "exampleEnableRound1",
   enableRound2: "exampleEnableRound2",
   enableRound3: "exampleEnableRound3",
   enableRound4: "exampleEnableRound4",
-  id: 42,
-  name: "exampleName",
-  oraclestring: "exampleOraclestring",
-  parentSchoolId: 42,
-  registrationoraclestring: "exampleRegistrationoraclestring",
+  enableFinal: "exampleEnableFinal",
   semiblindReview: "exampleSemiblindReview",
+  allowRequestAdvisors: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  allowRequestAdvisors: 42,
-  ccEmail: "exampleCcEmail",
+  name: "exampleName",
+  parentSchoolId: 42,
+  oraclestring: "exampleOraclestring",
+  registrationoraclestring: "exampleRegistrationoraclestring",
   drank: 42,
-  enableFinal: "exampleEnableFinal",
+  ccEmail: "exampleCcEmail",
   enableRound1: "exampleEnableRound1",
   enableRound2: "exampleEnableRound2",
   enableRound3: "exampleEnableRound3",
   enableRound4: "exampleEnableRound4",
-  id: 42,
-  name: "exampleName",
-  oraclestring: "exampleOraclestring",
-  parentSchoolId: 42,
-  registrationoraclestring: "exampleRegistrationoraclestring",
+  enableFinal: "exampleEnableFinal",
   semiblindReview: "exampleSemiblindReview",
+  allowRequestAdvisors: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    allowRequestAdvisors: 42,
-    ccEmail: "exampleCcEmail",
+    name: "exampleName",
+    parentSchoolId: 42,
+    oraclestring: "exampleOraclestring",
+    registrationoraclestring: "exampleRegistrationoraclestring",
     drank: 42,
-    enableFinal: "exampleEnableFinal",
+    ccEmail: "exampleCcEmail",
     enableRound1: "exampleEnableRound1",
     enableRound2: "exampleEnableRound2",
     enableRound3: "exampleEnableRound3",
     enableRound4: "exampleEnableRound4",
-    id: 42,
-    name: "exampleName",
-    oraclestring: "exampleOraclestring",
-    parentSchoolId: 42,
-    registrationoraclestring: "exampleRegistrationoraclestring",
+    enableFinal: "exampleEnableFinal",
     semiblindReview: "exampleSemiblindReview",
+    allowRequestAdvisors: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  allowRequestAdvisors: 42,
-  ccEmail: "exampleCcEmail",
+  name: "exampleName",
+  parentSchoolId: 42,
+  oraclestring: "exampleOraclestring",
+  registrationoraclestring: "exampleRegistrationoraclestring",
   drank: 42,
-  enableFinal: "exampleEnableFinal",
+  ccEmail: "exampleCcEmail",
   enableRound1: "exampleEnableRound1",
   enableRound2: "exampleEnableRound2",
   enableRound3: "exampleEnableRound3",
   enableRound4: "exampleEnableRound4",
-  id: 42,
-  name: "exampleName",
-  oraclestring: "exampleOraclestring",
-  parentSchoolId: 42,
-  registrationoraclestring: "exampleRegistrationoraclestring",
+  enableFinal: "exampleEnableFinal",
   semiblindReview: "exampleSemiblindReview",
+  allowRequestAdvisors: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createDepartment() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  departments: () => FIND_MANY_RESULT,
+  department: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

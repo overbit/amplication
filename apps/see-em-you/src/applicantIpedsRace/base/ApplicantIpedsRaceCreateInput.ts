@@ -21,7 +21,7 @@ class ApplicantIpedsRaceCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  ipedsRaceId!: number;
+  luUsersUsertypesId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class ApplicantIpedsRaceCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  luUsersUsertypesId!: number;
+  ipedsRaceId!: number;
 }
 
 export { ApplicantIpedsRaceCreateInput as ApplicantIpedsRaceCreateInput };

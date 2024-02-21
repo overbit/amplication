@@ -19,65 +19,65 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  datafileId: 42,
-  id: 42,
-  listeningscore: 42,
-  overallscore: 42,
-  readingscore: 42,
-  scorereceived: 42,
   testdate: new Date(),
-  testEmail: "exampleTestEmail",
-  url: "exampleUrl",
+  listeningscore: 42,
+  readingscore: 42,
   writingscore: 42,
+  overallscore: 42,
+  url: "exampleUrl",
+  scorereceived: 42,
+  datafileId: 42,
+  testEmail: "exampleTestEmail",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  datafileId: 42,
-  id: 42,
-  listeningscore: 42,
-  overallscore: 42,
-  readingscore: 42,
-  scorereceived: 42,
   testdate: new Date(),
-  testEmail: "exampleTestEmail",
-  url: "exampleUrl",
+  listeningscore: 42,
+  readingscore: 42,
   writingscore: 42,
+  overallscore: 42,
+  url: "exampleUrl",
+  scorereceived: 42,
+  datafileId: 42,
+  testEmail: "exampleTestEmail",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    datafileId: 42,
-    id: 42,
-    listeningscore: 42,
-    overallscore: 42,
-    readingscore: 42,
-    scorereceived: 42,
     testdate: new Date(),
-    testEmail: "exampleTestEmail",
-    url: "exampleUrl",
+    listeningscore: 42,
+    readingscore: 42,
     writingscore: 42,
+    overallscore: 42,
+    url: "exampleUrl",
+    scorereceived: 42,
+    datafileId: 42,
+    testEmail: "exampleTestEmail",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  datafileId: 42,
-  id: 42,
-  listeningscore: 42,
-  overallscore: 42,
-  readingscore: 42,
-  scorereceived: 42,
   testdate: new Date(),
-  testEmail: "exampleTestEmail",
-  url: "exampleUrl",
+  listeningscore: 42,
+  readingscore: 42,
   writingscore: 42,
+  overallscore: 42,
+  url: "exampleUrl",
+  scorereceived: 42,
+  datafileId: 42,
+  testEmail: "exampleTestEmail",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createToeflItpPlus() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  toeflItpPluses: () => FIND_MANY_RESULT,
+  toeflItpPlus: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

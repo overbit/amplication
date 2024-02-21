@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Accesslogreplyform } from "@prisma/client";
+import {
+  Prisma,
+  Accesslogreplyform as PrismaAccesslogreplyform,
+} from "@prisma/client";
 
 export class AccesslogreplyformServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class AccesslogreplyformServiceBase {
     return this.prisma.accesslogreplyform.count(args);
   }
 
-  async findMany<T extends Prisma.AccesslogreplyformFindManyArgs>(
+  async accesslogreplyforms<T extends Prisma.AccesslogreplyformFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogreplyformFindManyArgs>
-  ): Promise<Accesslogreplyform[]> {
+  ): Promise<PrismaAccesslogreplyform[]> {
     return this.prisma.accesslogreplyform.findMany(args);
   }
-  async findOne<T extends Prisma.AccesslogreplyformFindUniqueArgs>(
+  async accesslogreplyform<T extends Prisma.AccesslogreplyformFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogreplyformFindUniqueArgs>
-  ): Promise<Accesslogreplyform | null> {
+  ): Promise<PrismaAccesslogreplyform | null> {
     return this.prisma.accesslogreplyform.findUnique(args);
   }
-  async create<T extends Prisma.AccesslogreplyformCreateArgs>(
+  async createAccesslogreplyform<T extends Prisma.AccesslogreplyformCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogreplyformCreateArgs>
-  ): Promise<Accesslogreplyform> {
+  ): Promise<PrismaAccesslogreplyform> {
     return this.prisma.accesslogreplyform.create<T>(args);
   }
-  async update<T extends Prisma.AccesslogreplyformUpdateArgs>(
+  async updateAccesslogreplyform<T extends Prisma.AccesslogreplyformUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogreplyformUpdateArgs>
-  ): Promise<Accesslogreplyform> {
+  ): Promise<PrismaAccesslogreplyform> {
     return this.prisma.accesslogreplyform.update<T>(args);
   }
-  async delete<T extends Prisma.AccesslogreplyformDeleteArgs>(
+  async deleteAccesslogreplyform<T extends Prisma.AccesslogreplyformDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AccesslogreplyformDeleteArgs>
-  ): Promise<Accesslogreplyform> {
+  ): Promise<PrismaAccesslogreplyform> {
     return this.prisma.accesslogreplyform.delete(args);
   }
 }

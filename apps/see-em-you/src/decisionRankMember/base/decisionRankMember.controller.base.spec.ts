@@ -18,46 +18,46 @@ import { DecisionRankMemberService } from "../decisionRankMember.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationId: 42,
-  decision: "exampleDecision",
   departmentId: 42,
+  periodId: 42,
+  decision: "exampleDecision",
+  applicationId: 42,
   drank: 42,
   id: "exampleId",
-  periodId: 42,
 };
 const CREATE_RESULT = {
-  applicationId: 42,
-  decision: "exampleDecision",
   departmentId: 42,
+  periodId: 42,
+  decision: "exampleDecision",
+  applicationId: 42,
   drank: 42,
   id: "exampleId",
-  periodId: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    applicationId: 42,
-    decision: "exampleDecision",
     departmentId: 42,
+    periodId: 42,
+    decision: "exampleDecision",
+    applicationId: 42,
     drank: 42,
     id: "exampleId",
-    periodId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationId: 42,
-  decision: "exampleDecision",
   departmentId: 42,
+  periodId: 42,
+  decision: "exampleDecision",
+  applicationId: 42,
   drank: 42,
   id: "exampleId",
-  periodId: 42,
 };
 
 const service = {
-  create() {
+  createDecisionRankMember() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  decisionRankMembers: () => FIND_MANY_RESULT,
+  decisionRankMember: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

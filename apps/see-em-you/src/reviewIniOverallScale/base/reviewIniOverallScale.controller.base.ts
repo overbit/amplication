@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewIniOverallScaleService } from "../reviewIniOverallScale.service";
 import { ReviewIniOverallScaleCreateInput } from "./ReviewIniOverallScaleCreateInput";
-import { ReviewIniOverallScaleWhereInput } from "./ReviewIniOverallScaleWhereInput";
-import { ReviewIniOverallScaleWhereUniqueInput } from "./ReviewIniOverallScaleWhereUniqueInput";
-import { ReviewIniOverallScaleFindManyArgs } from "./ReviewIniOverallScaleFindManyArgs";
-import { ReviewIniOverallScaleUpdateInput } from "./ReviewIniOverallScaleUpdateInput";
 import { ReviewIniOverallScale } from "./ReviewIniOverallScale";
+import { ReviewIniOverallScaleFindManyArgs } from "./ReviewIniOverallScaleFindManyArgs";
+import { ReviewIniOverallScaleWhereUniqueInput } from "./ReviewIniOverallScaleWhereUniqueInput";
+import { ReviewIniOverallScaleUpdateInput } from "./ReviewIniOverallScaleUpdateInput";
 
 export class ReviewIniOverallScaleControllerBase {
   constructor(protected readonly service: ReviewIniOverallScaleService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewIniOverallScale })
-  async create(
+  async createReviewIniOverallScale(
     @common.Body() data: ReviewIniOverallScaleCreateInput
   ): Promise<ReviewIniOverallScale> {
-    return await this.service.create({
+    return await this.service.createReviewIniOverallScale({
       data: data,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -43,15 +42,15 @@ export class ReviewIniOverallScaleControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewIniOverallScale] })
   @ApiNestedQuery(ReviewIniOverallScaleFindManyArgs)
-  async findMany(
+  async reviewIniOverallScales(
     @common.Req() request: Request
   ): Promise<ReviewIniOverallScale[]> {
     const args = plainToClass(ReviewIniOverallScaleFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.reviewIniOverallScales({
       ...args,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -59,14 +58,14 @@ export class ReviewIniOverallScaleControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniOverallScale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewIniOverallScale(
     @common.Param() params: ReviewIniOverallScaleWhereUniqueInput
   ): Promise<ReviewIniOverallScale | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewIniOverallScale({
       where: params,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -80,17 +79,17 @@ export class ReviewIniOverallScaleControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniOverallScale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewIniOverallScale(
     @common.Param() params: ReviewIniOverallScaleWhereUniqueInput,
     @common.Body() data: ReviewIniOverallScaleUpdateInput
   ): Promise<ReviewIniOverallScale | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIniOverallScale({
         where: params,
         data: data,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -106,15 +105,15 @@ export class ReviewIniOverallScaleControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewIniOverallScale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewIniOverallScale(
     @common.Param() params: ReviewIniOverallScaleWhereUniqueInput
   ): Promise<ReviewIniOverallScale | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewIniOverallScale({
         where: params,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {

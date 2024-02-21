@@ -13,11 +13,11 @@ export const ReviewIniAdminList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Comments" source="comments" />
-        <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
         <TextField label="Reviewer Id" source="reviewerId" />
+        <TextField label="Department Id" source="departmentId" />
         <TextField label="Round" source="round" />
+        <TextField label="Comments" source="comments" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

@@ -28,7 +28,7 @@ class RecommenderInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  affiliation?: SortOrder;
+  recUserId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,18 @@ class RecommenderInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  title?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  affiliation?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,17 +72,6 @@ class RecommenderInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  recUserId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   relationshipToApplicant?: SortOrder;
 
   @ApiProperty({
@@ -83,7 +83,7 @@ class RecommenderInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  title?: SortOrder;
+  id?: SortOrder;
 }
 
 export { RecommenderInfoOrderByInput as RecommenderInfoOrderByInput };

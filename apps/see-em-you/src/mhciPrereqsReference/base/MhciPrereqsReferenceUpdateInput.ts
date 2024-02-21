@@ -12,45 +12,19 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsString,
-  IsOptional,
-  IsEnum,
   IsInt,
-  IsDate,
+  IsOptional,
+  IsString,
   IsBoolean,
+  IsDate,
+  IsEnum,
 } from "class-validator";
-import { EnumMhciPrereqsReferenceAnovaKnowledge } from "./EnumMhciPrereqsReferenceAnovaKnowledge";
 import { Type } from "class-transformer";
+import { EnumMhciPrereqsReferenceAnovaKnowledge } from "./EnumMhciPrereqsReferenceAnovaKnowledge";
 import { EnumMhciPrereqsReferenceRegressionKnowledge } from "./EnumMhciPrereqsReferenceRegressionKnowledge";
 
 @InputType()
 class MhciPrereqsReferenceUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  anovaComment?: string | null;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumMhciPrereqsReferenceAnovaKnowledge,
-  })
-  @IsEnum(EnumMhciPrereqsReferenceAnovaKnowledge)
-  @IsOptional()
-  @Field(() => EnumMhciPrereqsReferenceAnovaKnowledge, {
-    nullable: true,
-  })
-  anova_knowledge?:
-    | "No_knowledge"
-    | "Not_confident"
-    | "Direct_knowledge"
-    | null;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -61,6 +35,17 @@ class MhciPrereqsReferenceUpdateInput {
     nullable: true,
   })
   applicationId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  refUserId?: number;
 
   @ApiProperty({
     required: false,
@@ -86,6 +71,28 @@ class MhciPrereqsReferenceUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  submitted?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  reminderSentCount?: number;
+
+  @ApiProperty({
+    required: false,
   })
   @IsDate()
   @Type(() => Date)
@@ -94,6 +101,58 @@ class MhciPrereqsReferenceUpdateInput {
     nullable: true,
   })
   lastReminderSent?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumMhciPrereqsReferenceAnovaKnowledge,
+  })
+  @IsEnum(EnumMhciPrereqsReferenceAnovaKnowledge)
+  @IsOptional()
+  @Field(() => EnumMhciPrereqsReferenceAnovaKnowledge, {
+    nullable: true,
+  })
+  anova_knowledge?:
+    | "No_knowledge"
+    | "Not_confident"
+    | "Direct_knowledge"
+    | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  anovaComment?: string | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumMhciPrereqsReferenceRegressionKnowledge,
+  })
+  @IsEnum(EnumMhciPrereqsReferenceRegressionKnowledge)
+  @IsOptional()
+  @Field(() => EnumMhciPrereqsReferenceRegressionKnowledge, {
+    nullable: true,
+  })
+  regression_knowledge?:
+    | "No_knowledge"
+    | "Not_confident"
+    | "Direct_knowledge"
+    | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  regressionComment?: string | null;
 
   @ApiProperty({
     required: false,
@@ -116,65 +175,6 @@ class MhciPrereqsReferenceUpdateInput {
     nullable: true,
   })
   programId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  refUserId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  regressionComment?: string | null;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumMhciPrereqsReferenceRegressionKnowledge,
-  })
-  @IsEnum(EnumMhciPrereqsReferenceRegressionKnowledge)
-  @IsOptional()
-  @Field(() => EnumMhciPrereqsReferenceRegressionKnowledge, {
-    nullable: true,
-  })
-  regression_knowledge?:
-    | "No_knowledge"
-    | "Not_confident"
-    | "Direct_knowledge"
-    | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  reminderSentCount?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  submitted?: boolean;
 }
 
 export { MhciPrereqsReferenceUpdateInput as MhciPrereqsReferenceUpdateInput };

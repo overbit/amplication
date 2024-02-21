@@ -18,38 +18,38 @@ import { CcTransactionReportService } from "../ccTransactionReport.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
-  lastModDate: new Date(),
   size: 42,
+  lastModDate: new Date(),
   statusTime: new Date(),
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
-  lastModDate: new Date(),
   size: 42,
+  lastModDate: new Date(),
   statusTime: new Date(),
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
-    lastModDate: new Date(),
     size: 42,
+    lastModDate: new Date(),
     statusTime: new Date(),
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
-  lastModDate: new Date(),
   size: 42,
+  lastModDate: new Date(),
   statusTime: new Date(),
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createCcTransactionReport() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ccTransactionReports: () => FIND_MANY_RESULT,
+  ccTransactionReport: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

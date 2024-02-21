@@ -5,10 +5,10 @@ export const IpedsEthnicityShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Ethnicity Id" source="ethnicityId" />
-        <TextField label="Id" source="id" />
         <TextField label="Ipeds Ethnicity" source="ipedsEthnicity" />
         <TextField label="Sort Order" source="sortOrder" />
+        <TextField label="Ethnicity Id" source="ethnicityId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

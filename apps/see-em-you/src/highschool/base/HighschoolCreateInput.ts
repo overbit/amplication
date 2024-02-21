@@ -11,9 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsNumber, IsString } from "class-validator";
-import { Decimal } from "decimal.js";
+import { IsInt, IsString, IsOptional, IsNumber } from "class-validator";
 import { GraphQLBigInt } from "../../util/GraphQLBigInt";
+import { Decimal } from "decimal.js";
 
 @InputType()
 class HighschoolCreateInput {
@@ -27,14 +27,14 @@ class HighschoolCreateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  graduated?: number | null;
+  hsName?: string | null;
 
   @ApiProperty({
     required: false,
@@ -46,39 +46,6 @@ class HighschoolCreateInput {
     nullable: true,
   })
   hsCeeb?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  hsDuration?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  hsGradYear?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  hsName?: string | null;
 
   @ApiProperty({
     required: false,
@@ -112,6 +79,39 @@ class HighschoolCreateInput {
     nullable: true,
   })
   hsZip?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  hsGradYear?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  hsDuration?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  graduated?: number | null;
 }
 
 export { HighschoolCreateInput as HighschoolCreateInput };

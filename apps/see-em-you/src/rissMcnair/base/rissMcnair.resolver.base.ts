@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRissMcnairArgs } from "./CreateRissMcnairArgs";
-import { UpdateRissMcnairArgs } from "./UpdateRissMcnairArgs";
-import { DeleteRissMcnairArgs } from "./DeleteRissMcnairArgs";
+import { RissMcnair } from "./RissMcnair";
 import { RissMcnairCountArgs } from "./RissMcnairCountArgs";
 import { RissMcnairFindManyArgs } from "./RissMcnairFindManyArgs";
 import { RissMcnairFindUniqueArgs } from "./RissMcnairFindUniqueArgs";
-import { RissMcnair } from "./RissMcnair";
+import { CreateRissMcnairArgs } from "./CreateRissMcnairArgs";
+import { UpdateRissMcnairArgs } from "./UpdateRissMcnairArgs";
+import { DeleteRissMcnairArgs } from "./DeleteRissMcnairArgs";
 import { Application } from "../../application/base/Application";
 import { RissMcnairService } from "../rissMcnair.service";
 @graphql.Resolver(() => RissMcnair)
@@ -39,14 +39,14 @@ export class RissMcnairResolverBase {
   async rissMcnairs(
     @graphql.Args() args: RissMcnairFindManyArgs
   ): Promise<RissMcnair[]> {
-    return this.service.findMany(args);
+    return this.service.rissMcnairs(args);
   }
 
   @graphql.Query(() => RissMcnair, { nullable: true })
   async rissMcnair(
     @graphql.Args() args: RissMcnairFindUniqueArgs
   ): Promise<RissMcnair | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.rissMcnair(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class RissMcnairResolverBase {
   async createRissMcnair(
     @graphql.Args() args: CreateRissMcnairArgs
   ): Promise<RissMcnair> {
-    return await this.service.create({
+    return await this.service.createRissMcnair({
       ...args,
       data: {
         ...args.data,
@@ -76,7 +76,7 @@ export class RissMcnairResolverBase {
     @graphql.Args() args: UpdateRissMcnairArgs
   ): Promise<RissMcnair | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRissMcnair({
         ...args,
         data: {
           ...args.data,
@@ -103,7 +103,7 @@ export class RissMcnairResolverBase {
     @graphql.Args() args: DeleteRissMcnairArgs
   ): Promise<RissMcnair | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRissMcnair(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -118,7 +118,7 @@ export class RissMcnairResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: RissMcnair
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

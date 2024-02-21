@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { TagService } from "../tag.service";
 import { TagCreateInput } from "./TagCreateInput";
-import { TagWhereInput } from "./TagWhereInput";
-import { TagWhereUniqueInput } from "./TagWhereUniqueInput";
-import { TagFindManyArgs } from "./TagFindManyArgs";
-import { TagUpdateInput } from "./TagUpdateInput";
 import { Tag } from "./Tag";
+import { TagFindManyArgs } from "./TagFindManyArgs";
+import { TagWhereUniqueInput } from "./TagWhereUniqueInput";
+import { TagUpdateInput } from "./TagUpdateInput";
 
 export class TagControllerBase {
   constructor(protected readonly service: TagService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Tag })
-  async create(@common.Body() data: TagCreateInput): Promise<Tag> {
-    return await this.service.create({
+  async createTag(@common.Body() data: TagCreateInput): Promise<Tag> {
+    return await this.service.createTag({
       data: data,
       select: {
-        category: true,
-        id: true,
         name: true,
-        parent: true,
         sticky: true,
         typeField: true,
+        category: true,
+        parent: true,
+        id: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class TagControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Tag] })
   @ApiNestedQuery(TagFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Tag[]> {
+  async tags(@common.Req() request: Request): Promise<Tag[]> {
     const args = plainToClass(TagFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.tags({
       ...args,
       select: {
-        category: true,
-        id: true,
         name: true,
-        parent: true,
         sticky: true,
         typeField: true,
+        category: true,
+        parent: true,
+        id: true,
       },
     });
   }
@@ -63,18 +62,16 @@ export class TagControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Tag })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
-    @common.Param() params: TagWhereUniqueInput
-  ): Promise<Tag | null> {
-    const result = await this.service.findOne({
+  async tag(@common.Param() params: TagWhereUniqueInput): Promise<Tag | null> {
+    const result = await this.service.tag({
       where: params,
       select: {
-        category: true,
-        id: true,
         name: true,
-        parent: true,
         sticky: true,
         typeField: true,
+        category: true,
+        parent: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -88,21 +85,21 @@ export class TagControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Tag })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateTag(
     @common.Param() params: TagWhereUniqueInput,
     @common.Body() data: TagUpdateInput
   ): Promise<Tag | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTag({
         where: params,
         data: data,
         select: {
-          category: true,
-          id: true,
           name: true,
-          parent: true,
           sticky: true,
           typeField: true,
+          category: true,
+          parent: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -118,19 +115,19 @@ export class TagControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Tag })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteTag(
     @common.Param() params: TagWhereUniqueInput
   ): Promise<Tag | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteTag({
         where: params,
         select: {
-          category: true,
-          id: true,
           name: true,
-          parent: true,
           sticky: true,
           typeField: true,
+          category: true,
+          parent: true,
+          id: true,
         },
       });
     } catch (error) {

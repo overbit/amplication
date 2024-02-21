@@ -24,28 +24,6 @@ class GroupRankMemberUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  applicationId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  grank?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   groupId?: number;
 
   @ApiProperty({
@@ -57,7 +35,7 @@ class GroupRankMemberUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  luUsersUsertypesId?: number;
+  round?: number;
 
   @ApiProperty({
     required: false,
@@ -79,7 +57,29 @@ class GroupRankMemberUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  round?: number;
+  applicationId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  luUsersUsertypesId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  grank?: number;
 }
 
 export { GroupRankMemberUpdateInput as GroupRankMemberUpdateInput };

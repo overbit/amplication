@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateAppsMseReviewedArgs } from "./CreateSlateAppsMseReviewedArgs";
-import { UpdateSlateAppsMseReviewedArgs } from "./UpdateSlateAppsMseReviewedArgs";
-import { DeleteSlateAppsMseReviewedArgs } from "./DeleteSlateAppsMseReviewedArgs";
+import { SlateAppsMseReviewed } from "./SlateAppsMseReviewed";
 import { SlateAppsMseReviewedCountArgs } from "./SlateAppsMseReviewedCountArgs";
 import { SlateAppsMseReviewedFindManyArgs } from "./SlateAppsMseReviewedFindManyArgs";
 import { SlateAppsMseReviewedFindUniqueArgs } from "./SlateAppsMseReviewedFindUniqueArgs";
-import { SlateAppsMseReviewed } from "./SlateAppsMseReviewed";
+import { CreateSlateAppsMseReviewedArgs } from "./CreateSlateAppsMseReviewedArgs";
+import { UpdateSlateAppsMseReviewedArgs } from "./UpdateSlateAppsMseReviewedArgs";
+import { DeleteSlateAppsMseReviewedArgs } from "./DeleteSlateAppsMseReviewedArgs";
 import { SlateAppsMseReviewedService } from "../slateAppsMseReviewed.service";
 @graphql.Resolver(() => SlateAppsMseReviewed)
 export class SlateAppsMseReviewedResolverBase {
@@ -38,14 +38,14 @@ export class SlateAppsMseReviewedResolverBase {
   async slateAppsMseRevieweds(
     @graphql.Args() args: SlateAppsMseReviewedFindManyArgs
   ): Promise<SlateAppsMseReviewed[]> {
-    return this.service.findMany(args);
+    return this.service.slateAppsMseRevieweds(args);
   }
 
   @graphql.Query(() => SlateAppsMseReviewed, { nullable: true })
   async slateAppsMseReviewed(
     @graphql.Args() args: SlateAppsMseReviewedFindUniqueArgs
   ): Promise<SlateAppsMseReviewed | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateAppsMseReviewed(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateAppsMseReviewedResolverBase {
   async createSlateAppsMseReviewed(
     @graphql.Args() args: CreateSlateAppsMseReviewedArgs
   ): Promise<SlateAppsMseReviewed> {
-    return await this.service.create({
+    return await this.service.createSlateAppsMseReviewed({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateAppsMseReviewedResolverBase {
     @graphql.Args() args: UpdateSlateAppsMseReviewedArgs
   ): Promise<SlateAppsMseReviewed | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateAppsMseReviewed({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateAppsMseReviewedResolverBase {
     @graphql.Args() args: DeleteSlateAppsMseReviewedArgs
   ): Promise<SlateAppsMseReviewed | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateAppsMseReviewed(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

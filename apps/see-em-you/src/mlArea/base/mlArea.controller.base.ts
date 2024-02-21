@@ -18,18 +18,17 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MlAreaService } from "../mlArea.service";
 import { MlAreaCreateInput } from "./MlAreaCreateInput";
-import { MlAreaWhereInput } from "./MlAreaWhereInput";
-import { MlAreaWhereUniqueInput } from "./MlAreaWhereUniqueInput";
-import { MlAreaFindManyArgs } from "./MlAreaFindManyArgs";
-import { MlAreaUpdateInput } from "./MlAreaUpdateInput";
 import { MlArea } from "./MlArea";
+import { MlAreaFindManyArgs } from "./MlAreaFindManyArgs";
+import { MlAreaWhereUniqueInput } from "./MlAreaWhereUniqueInput";
+import { MlAreaUpdateInput } from "./MlAreaUpdateInput";
 
 export class MlAreaControllerBase {
   constructor(protected readonly service: MlAreaService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MlArea })
-  async create(@common.Body() data: MlAreaCreateInput): Promise<MlArea> {
-    return await this.service.create({
+  async createMlArea(@common.Body() data: MlAreaCreateInput): Promise<MlArea> {
+    return await this.service.createMlArea({
       data: {
         ...data,
 
@@ -42,20 +41,21 @@ export class MlAreaControllerBase {
         },
       },
       select: {
+        area: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        area: true,
-        id: true,
-
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -63,25 +63,26 @@ export class MlAreaControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MlArea] })
   @ApiNestedQuery(MlAreaFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MlArea[]> {
+  async mlAreas(@common.Req() request: Request): Promise<MlArea[]> {
     const args = plainToClass(MlAreaFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mlAreas({
       ...args,
       select: {
+        area: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        area: true,
-        id: true,
-
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -89,26 +90,27 @@ export class MlAreaControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MlArea })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mlArea(
     @common.Param() params: MlAreaWhereUniqueInput
   ): Promise<MlArea | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mlArea({
       where: params,
       select: {
+        area: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        area: true,
-        id: true,
-
         programs: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -122,12 +124,12 @@ export class MlAreaControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MlArea })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMlArea(
     @common.Param() params: MlAreaWhereUniqueInput,
     @common.Body() data: MlAreaUpdateInput
   ): Promise<MlArea | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMlArea({
         where: params,
         data: {
           ...data,
@@ -141,20 +143,21 @@ export class MlAreaControllerBase {
           },
         },
         select: {
+          area: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          area: true,
-          id: true,
-
           programs: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -170,27 +173,28 @@ export class MlAreaControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MlArea })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMlArea(
     @common.Param() params: MlAreaWhereUniqueInput
   ): Promise<MlArea | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMlArea({
         where: params,
         select: {
+          area: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          area: true,
-          id: true,
-
           programs: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {

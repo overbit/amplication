@@ -24,7 +24,7 @@ class ReviewPositiveFactorUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  positiveFactorId?: number;
+  reviewId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class ReviewPositiveFactorUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  reviewId?: number;
+  positiveFactorId?: number;
 }
 
 export { ReviewPositiveFactorUpdateInput as ReviewPositiveFactorUpdateInput };

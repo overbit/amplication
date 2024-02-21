@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, AttendanceStatus } from "@prisma/client";
+import {
+  Prisma,
+  AttendanceStatus as PrismaAttendanceStatus,
+} from "@prisma/client";
 
 export class AttendanceStatusServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class AttendanceStatusServiceBase {
     return this.prisma.attendanceStatus.count(args);
   }
 
-  async findMany<T extends Prisma.AttendanceStatusFindManyArgs>(
+  async attendanceStatuses<T extends Prisma.AttendanceStatusFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceStatusFindManyArgs>
-  ): Promise<AttendanceStatus[]> {
+  ): Promise<PrismaAttendanceStatus[]> {
     return this.prisma.attendanceStatus.findMany(args);
   }
-  async findOne<T extends Prisma.AttendanceStatusFindUniqueArgs>(
+  async attendanceStatus<T extends Prisma.AttendanceStatusFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceStatusFindUniqueArgs>
-  ): Promise<AttendanceStatus | null> {
+  ): Promise<PrismaAttendanceStatus | null> {
     return this.prisma.attendanceStatus.findUnique(args);
   }
-  async create<T extends Prisma.AttendanceStatusCreateArgs>(
+  async createAttendanceStatus<T extends Prisma.AttendanceStatusCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceStatusCreateArgs>
-  ): Promise<AttendanceStatus> {
+  ): Promise<PrismaAttendanceStatus> {
     return this.prisma.attendanceStatus.create<T>(args);
   }
-  async update<T extends Prisma.AttendanceStatusUpdateArgs>(
+  async updateAttendanceStatus<T extends Prisma.AttendanceStatusUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceStatusUpdateArgs>
-  ): Promise<AttendanceStatus> {
+  ): Promise<PrismaAttendanceStatus> {
     return this.prisma.attendanceStatus.update<T>(args);
   }
-  async delete<T extends Prisma.AttendanceStatusDeleteArgs>(
+  async deleteAttendanceStatus<T extends Prisma.AttendanceStatusDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceStatusDeleteArgs>
-  ): Promise<AttendanceStatus> {
+  ): Promise<PrismaAttendanceStatus> {
     return this.prisma.attendanceStatus.delete(args);
   }
 }

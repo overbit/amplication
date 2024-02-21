@@ -18,42 +18,42 @@ import { UnitRoleService } from "../unitRole.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  roleId: 42,
   unitId: 42,
   usersId: 42,
+  luUsersUsertypesId: 42,
+  roleId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  roleId: 42,
   unitId: 42,
   usersId: 42,
+  luUsersUsertypesId: 42,
+  roleId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
-    luUsersUsertypesId: 42,
-    roleId: 42,
     unitId: 42,
     usersId: 42,
+    luUsersUsertypesId: 42,
+    roleId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
-  luUsersUsertypesId: 42,
-  roleId: 42,
   unitId: 42,
   usersId: 42,
+  luUsersUsertypesId: 42,
+  roleId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createUnitRole() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  unitRoles: () => FIND_MANY_RESULT,
+  unitRole: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

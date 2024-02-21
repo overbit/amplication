@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateScsUserWebisoArgs } from "./CreateScsUserWebisoArgs";
-import { UpdateScsUserWebisoArgs } from "./UpdateScsUserWebisoArgs";
-import { DeleteScsUserWebisoArgs } from "./DeleteScsUserWebisoArgs";
+import { ScsUserWebiso } from "./ScsUserWebiso";
 import { ScsUserWebisoCountArgs } from "./ScsUserWebisoCountArgs";
 import { ScsUserWebisoFindManyArgs } from "./ScsUserWebisoFindManyArgs";
 import { ScsUserWebisoFindUniqueArgs } from "./ScsUserWebisoFindUniqueArgs";
-import { ScsUserWebiso } from "./ScsUserWebiso";
+import { CreateScsUserWebisoArgs } from "./CreateScsUserWebisoArgs";
+import { UpdateScsUserWebisoArgs } from "./UpdateScsUserWebisoArgs";
+import { DeleteScsUserWebisoArgs } from "./DeleteScsUserWebisoArgs";
 import { ScsUserWebisoService } from "../scsUserWebiso.service";
 @graphql.Resolver(() => ScsUserWebiso)
 export class ScsUserWebisoResolverBase {
@@ -38,14 +38,14 @@ export class ScsUserWebisoResolverBase {
   async scsUserWebisos(
     @graphql.Args() args: ScsUserWebisoFindManyArgs
   ): Promise<ScsUserWebiso[]> {
-    return this.service.findMany(args);
+    return this.service.scsUserWebisos(args);
   }
 
   @graphql.Query(() => ScsUserWebiso, { nullable: true })
   async scsUserWebiso(
     @graphql.Args() args: ScsUserWebisoFindUniqueArgs
   ): Promise<ScsUserWebiso | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.scsUserWebiso(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ScsUserWebisoResolverBase {
   async createScsUserWebiso(
     @graphql.Args() args: CreateScsUserWebisoArgs
   ): Promise<ScsUserWebiso> {
-    return await this.service.create({
+    return await this.service.createScsUserWebiso({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ScsUserWebisoResolverBase {
     @graphql.Args() args: UpdateScsUserWebisoArgs
   ): Promise<ScsUserWebiso | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateScsUserWebiso({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ScsUserWebisoResolverBase {
     @graphql.Args() args: DeleteScsUserWebisoArgs
   ): Promise<ScsUserWebiso | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteScsUserWebiso(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

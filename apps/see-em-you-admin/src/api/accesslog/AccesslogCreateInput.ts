@@ -1,14 +1,14 @@
 export type AccesslogCreateInput = {
-  activity?: string | null;
+  usersId?: number | null;
+  luUsersUsertypesId?: number | null;
+  usertypeId?: number | null;
   applicationId?: number | null;
   client?: string | null;
+  activity?: string | null;
   domain?: number | null;
-  lastsrv?: string | null;
-  luUsersUsertypesId?: number | null;
-  ra?: string | null;
   referer?: string | null;
-  sa?: string | null;
-  usersId?: number | null;
-  usertypeId?: number | null;
   xforward?: string | null;
+  sa?: string | null;
+  ra?: string | null;
+  lastsrv?: string | null;
 };

@@ -1,10 +1,10 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type TagInstanceOrderByInput = {
-  department?: SortOrder;
-  id?: SortOrder;
+  tagId?: SortOrder;
   owner?: SortOrder;
+  department?: SortOrder;
   period?: SortOrder;
   status?: SortOrder;
-  tagId?: SortOrder;
+  id?: SortOrder;
 };

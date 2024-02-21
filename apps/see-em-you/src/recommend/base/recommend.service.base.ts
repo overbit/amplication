@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Recommend, Application } from "@prisma/client";
+import {
+  Prisma,
+  Recommend as PrismaRecommend,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class RecommendServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class RecommendServiceBase {
     return this.prisma.recommend.count(args);
   }
 
-  async findMany<T extends Prisma.RecommendFindManyArgs>(
+  async recommends<T extends Prisma.RecommendFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendFindManyArgs>
-  ): Promise<Recommend[]> {
+  ): Promise<PrismaRecommend[]> {
     return this.prisma.recommend.findMany(args);
   }
-  async findOne<T extends Prisma.RecommendFindUniqueArgs>(
+  async recommend<T extends Prisma.RecommendFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendFindUniqueArgs>
-  ): Promise<Recommend | null> {
+  ): Promise<PrismaRecommend | null> {
     return this.prisma.recommend.findUnique(args);
   }
-  async create<T extends Prisma.RecommendCreateArgs>(
+  async createRecommend<T extends Prisma.RecommendCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendCreateArgs>
-  ): Promise<Recommend> {
+  ): Promise<PrismaRecommend> {
     return this.prisma.recommend.create<T>(args);
   }
-  async update<T extends Prisma.RecommendUpdateArgs>(
+  async updateRecommend<T extends Prisma.RecommendUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendUpdateArgs>
-  ): Promise<Recommend> {
+  ): Promise<PrismaRecommend> {
     return this.prisma.recommend.update<T>(args);
   }
-  async delete<T extends Prisma.RecommendDeleteArgs>(
+  async deleteRecommend<T extends Prisma.RecommendDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommendDeleteArgs>
-  ): Promise<Recommend> {
+  ): Promise<PrismaRecommend> {
     return this.prisma.recommend.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.recommend
       .findUnique({
         where: { id: parentId },

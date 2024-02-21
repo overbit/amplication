@@ -24,25 +24,6 @@ class DietrichFinancialSupport {
   applicationId!: number;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  interestedB2Training!: number | null;
-
-  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -82,6 +63,25 @@ class DietrichFinancialSupport {
     nullable: true,
   })
   supportSources!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  interestedB2Training!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { DietrichFinancialSupport as DietrichFinancialSupport };

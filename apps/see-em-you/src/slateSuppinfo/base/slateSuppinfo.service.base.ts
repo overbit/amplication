@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateSuppinfo } from "@prisma/client";
+import { Prisma, SlateSuppinfo as PrismaSlateSuppinfo } from "@prisma/client";
 
 export class SlateSuppinfoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateSuppinfoServiceBase {
     return this.prisma.slateSuppinfo.count(args);
   }
 
-  async findMany<T extends Prisma.SlateSuppinfoFindManyArgs>(
+  async slateSuppinfos<T extends Prisma.SlateSuppinfoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateSuppinfoFindManyArgs>
-  ): Promise<SlateSuppinfo[]> {
+  ): Promise<PrismaSlateSuppinfo[]> {
     return this.prisma.slateSuppinfo.findMany(args);
   }
-  async findOne<T extends Prisma.SlateSuppinfoFindUniqueArgs>(
+  async slateSuppinfo<T extends Prisma.SlateSuppinfoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateSuppinfoFindUniqueArgs>
-  ): Promise<SlateSuppinfo | null> {
+  ): Promise<PrismaSlateSuppinfo | null> {
     return this.prisma.slateSuppinfo.findUnique(args);
   }
-  async create<T extends Prisma.SlateSuppinfoCreateArgs>(
+  async createSlateSuppinfo<T extends Prisma.SlateSuppinfoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateSuppinfoCreateArgs>
-  ): Promise<SlateSuppinfo> {
+  ): Promise<PrismaSlateSuppinfo> {
     return this.prisma.slateSuppinfo.create<T>(args);
   }
-  async update<T extends Prisma.SlateSuppinfoUpdateArgs>(
+  async updateSlateSuppinfo<T extends Prisma.SlateSuppinfoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateSuppinfoUpdateArgs>
-  ): Promise<SlateSuppinfo> {
+  ): Promise<PrismaSlateSuppinfo> {
     return this.prisma.slateSuppinfo.update<T>(args);
   }
-  async delete<T extends Prisma.SlateSuppinfoDeleteArgs>(
+  async deleteSlateSuppinfo<T extends Prisma.SlateSuppinfoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateSuppinfoDeleteArgs>
-  ): Promise<SlateSuppinfo> {
+  ): Promise<PrismaSlateSuppinfo> {
     return this.prisma.slateSuppinfo.delete(args);
   }
 }

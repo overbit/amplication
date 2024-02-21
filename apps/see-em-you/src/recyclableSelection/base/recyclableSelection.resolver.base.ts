@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRecyclableSelectionArgs } from "./CreateRecyclableSelectionArgs";
-import { UpdateRecyclableSelectionArgs } from "./UpdateRecyclableSelectionArgs";
-import { DeleteRecyclableSelectionArgs } from "./DeleteRecyclableSelectionArgs";
+import { RecyclableSelection } from "./RecyclableSelection";
 import { RecyclableSelectionCountArgs } from "./RecyclableSelectionCountArgs";
 import { RecyclableSelectionFindManyArgs } from "./RecyclableSelectionFindManyArgs";
 import { RecyclableSelectionFindUniqueArgs } from "./RecyclableSelectionFindUniqueArgs";
-import { RecyclableSelection } from "./RecyclableSelection";
+import { CreateRecyclableSelectionArgs } from "./CreateRecyclableSelectionArgs";
+import { UpdateRecyclableSelectionArgs } from "./UpdateRecyclableSelectionArgs";
+import { DeleteRecyclableSelectionArgs } from "./DeleteRecyclableSelectionArgs";
 import { RecyclableSelectionService } from "../recyclableSelection.service";
 @graphql.Resolver(() => RecyclableSelection)
 export class RecyclableSelectionResolverBase {
@@ -38,14 +38,14 @@ export class RecyclableSelectionResolverBase {
   async recyclableSelections(
     @graphql.Args() args: RecyclableSelectionFindManyArgs
   ): Promise<RecyclableSelection[]> {
-    return this.service.findMany(args);
+    return this.service.recyclableSelections(args);
   }
 
   @graphql.Query(() => RecyclableSelection, { nullable: true })
   async recyclableSelection(
     @graphql.Args() args: RecyclableSelectionFindUniqueArgs
   ): Promise<RecyclableSelection | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.recyclableSelection(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class RecyclableSelectionResolverBase {
   async createRecyclableSelection(
     @graphql.Args() args: CreateRecyclableSelectionArgs
   ): Promise<RecyclableSelection> {
-    return await this.service.create({
+    return await this.service.createRecyclableSelection({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class RecyclableSelectionResolverBase {
     @graphql.Args() args: UpdateRecyclableSelectionArgs
   ): Promise<RecyclableSelection | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecyclableSelection({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class RecyclableSelectionResolverBase {
     @graphql.Args() args: DeleteRecyclableSelectionArgs
   ): Promise<RecyclableSelection | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRecyclableSelection(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

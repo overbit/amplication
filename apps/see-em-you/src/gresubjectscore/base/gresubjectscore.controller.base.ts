@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { GresubjectscoreService } from "../gresubjectscore.service";
 import { GresubjectscoreCreateInput } from "./GresubjectscoreCreateInput";
-import { GresubjectscoreWhereInput } from "./GresubjectscoreWhereInput";
-import { GresubjectscoreWhereUniqueInput } from "./GresubjectscoreWhereUniqueInput";
-import { GresubjectscoreFindManyArgs } from "./GresubjectscoreFindManyArgs";
-import { GresubjectscoreUpdateInput } from "./GresubjectscoreUpdateInput";
 import { Gresubjectscore } from "./Gresubjectscore";
+import { GresubjectscoreFindManyArgs } from "./GresubjectscoreFindManyArgs";
+import { GresubjectscoreWhereUniqueInput } from "./GresubjectscoreWhereUniqueInput";
+import { GresubjectscoreUpdateInput } from "./GresubjectscoreUpdateInput";
 
 export class GresubjectscoreControllerBase {
   constructor(protected readonly service: GresubjectscoreService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Gresubjectscore })
-  async create(
+  async createGresubjectscore(
     @common.Body() data: GresubjectscoreCreateInput
   ): Promise<Gresubjectscore> {
-    return await this.service.create({
+    return await this.service.createGresubjectscore({
       data: {
         ...data,
 
@@ -40,20 +39,21 @@ export class GresubjectscoreControllerBase {
         },
       },
       select: {
+        testdate: true,
+        name: true,
+        score: true,
+        percentile: true,
+        datafileId: true,
+        greSubEmail: true,
+        scorereceived: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        datafileId: true,
-        greSubEmail: true,
         id: true,
-        name: true,
-        percentile: true,
-        score: true,
-        scorereceived: true,
-        testdate: true,
       },
     });
   }
@@ -61,25 +61,28 @@ export class GresubjectscoreControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Gresubjectscore] })
   @ApiNestedQuery(GresubjectscoreFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Gresubjectscore[]> {
+  async gresubjectscores(
+    @common.Req() request: Request
+  ): Promise<Gresubjectscore[]> {
     const args = plainToClass(GresubjectscoreFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.gresubjectscores({
       ...args,
       select: {
+        testdate: true,
+        name: true,
+        score: true,
+        percentile: true,
+        datafileId: true,
+        greSubEmail: true,
+        scorereceived: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        datafileId: true,
-        greSubEmail: true,
         id: true,
-        name: true,
-        percentile: true,
-        score: true,
-        scorereceived: true,
-        testdate: true,
       },
     });
   }
@@ -87,26 +90,27 @@ export class GresubjectscoreControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Gresubjectscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async gresubjectscore(
     @common.Param() params: GresubjectscoreWhereUniqueInput
   ): Promise<Gresubjectscore | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.gresubjectscore({
       where: params,
       select: {
+        testdate: true,
+        name: true,
+        score: true,
+        percentile: true,
+        datafileId: true,
+        greSubEmail: true,
+        scorereceived: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        datafileId: true,
-        greSubEmail: true,
         id: true,
-        name: true,
-        percentile: true,
-        score: true,
-        scorereceived: true,
-        testdate: true,
       },
     });
     if (result === null) {
@@ -120,12 +124,12 @@ export class GresubjectscoreControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Gresubjectscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateGresubjectscore(
     @common.Param() params: GresubjectscoreWhereUniqueInput,
     @common.Body() data: GresubjectscoreUpdateInput
   ): Promise<Gresubjectscore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGresubjectscore({
         where: params,
         data: {
           ...data,
@@ -135,20 +139,21 @@ export class GresubjectscoreControllerBase {
           },
         },
         select: {
+          testdate: true,
+          name: true,
+          score: true,
+          percentile: true,
+          datafileId: true,
+          greSubEmail: true,
+          scorereceived: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          datafileId: true,
-          greSubEmail: true,
           id: true,
-          name: true,
-          percentile: true,
-          score: true,
-          scorereceived: true,
-          testdate: true,
         },
       });
     } catch (error) {
@@ -164,27 +169,28 @@ export class GresubjectscoreControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Gresubjectscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteGresubjectscore(
     @common.Param() params: GresubjectscoreWhereUniqueInput
   ): Promise<Gresubjectscore | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteGresubjectscore({
         where: params,
         select: {
+          testdate: true,
+          name: true,
+          score: true,
+          percentile: true,
+          datafileId: true,
+          greSubEmail: true,
+          scorereceived: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          datafileId: true,
-          greSubEmail: true,
           id: true,
-          name: true,
-          percentile: true,
-          score: true,
-          scorereceived: true,
-          testdate: true,
         },
       });
     } catch (error) {

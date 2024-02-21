@@ -24,14 +24,6 @@ class DietrichSharing {
   applicationId!: number;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -52,6 +44,14 @@ class DietrichSharing {
     nullable: true,
   })
   tepper!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { DietrichSharing as DietrichSharing };

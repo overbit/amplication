@@ -7,8 +7,8 @@ export const LuDegreesApplicationreqShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Appreq Id" source="appreqId" />
         <TextField label="Degree Id" source="degreeId" />
+        <TextField label="Appreq Id" source="appreqId" />
         <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>

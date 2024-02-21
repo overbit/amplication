@@ -1,8 +1,8 @@
 export type GroupRankComment = {
-  comment: string | null;
   groupId: number;
-  id: string;
-  luUsersUsertypesId: number;
-  periodId: number;
   round: number;
+  periodId: number;
+  luUsersUsertypesId: number;
+  comment: string | null;
+  id: string;
 };

@@ -28,72 +28,6 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  academicDegree?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  application_id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  closeDate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  createDate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  email?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  fieldOfStudy?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   id?: SortOrder;
 
   @ApiProperty({
@@ -105,7 +39,18 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  ips?: SortOrder;
+  testSessionId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  test?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -127,7 +72,139 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  nick?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  email?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  phone?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   lastSchoolAttended?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  fieldOfStudy?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  academicDegree?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  programmingExperience?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  profileUrl?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  createDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  startDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  closeDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  ips?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  totalScore?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -149,7 +226,7 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  nick?: SortOrder;
+  percentTotalScore?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -182,40 +259,7 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  percentTotalScore?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  phone?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  profileUrl?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  programmingExperience?: SortOrder;
+  timeUsed?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -237,40 +281,7 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  startDate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  task1Correctness?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   task1Name?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  task1Performance?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -292,7 +303,18 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  task2Correctness?: SortOrder;
+  task1Correctness?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  task1Performance?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -314,17 +336,6 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  task2Performance?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   task2Score?: SortOrder;
 
   @ApiProperty({
@@ -336,7 +347,18 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  task3Correctness?: SortOrder;
+  task2Correctness?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  task2Performance?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -358,17 +380,6 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  task3Performance?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   task3Score?: SortOrder;
 
   @ApiProperty({
@@ -380,7 +391,18 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  task4Correctness?: SortOrder;
+  task3Correctness?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  task3Performance?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -402,17 +424,6 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  task4Performance?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   task4Score?: SortOrder;
 
   @ApiProperty({
@@ -424,7 +435,7 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  test?: SortOrder;
+  task4Correctness?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -435,7 +446,7 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  testSessionId?: SortOrder;
+  task4Performance?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -446,18 +457,7 @@ class MseCodilityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  timeUsed?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  totalScore?: SortOrder;
+  application_id?: SortOrder;
 }
 
 export { MseCodilityOrderByInput as MseCodilityOrderByInput };

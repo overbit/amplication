@@ -39,18 +39,7 @@ class IniFinancialSupportOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applyOutsideSupportSource?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  applyOutsideSupportType?: SortOrder;
+  requestConsideration?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,40 +61,7 @@ class IniFinancialSupportOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  familySupportAmount?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  familySupportType?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  otherSupportSource?: SortOrder;
+  receiveOutsideSupportType?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -127,7 +83,7 @@ class IniFinancialSupportOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  receiveOutsideSupportType?: SortOrder;
+  applyOutsideSupportType?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -138,7 +94,51 @@ class IniFinancialSupportOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  requestConsideration?: SortOrder;
+  applyOutsideSupportSource?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  otherSupportSource?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  familySupportType?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  familySupportAmount?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { IniFinancialSupportOrderByInput as IniFinancialSupportOrderByInput };

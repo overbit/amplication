@@ -18,46 +18,46 @@ import { JiraIssueService } from "../jiraIssue.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  created: new Date(),
-  id: "exampleId",
-  jiraId: 42242424,
   jiraIssueId: 42,
   jiraProject: "exampleJiraProject",
+  jiraId: 42242424,
+  created: new Date(),
   updatedAt: new Date(),
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  created: new Date(),
-  id: "exampleId",
-  jiraId: 42242424,
   jiraIssueId: 42,
   jiraProject: "exampleJiraProject",
+  jiraId: 42242424,
+  created: new Date(),
   updatedAt: new Date(),
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    created: new Date(),
-    id: "exampleId",
-    jiraId: 42242424,
     jiraIssueId: 42,
     jiraProject: "exampleJiraProject",
+    jiraId: 42242424,
+    created: new Date(),
     updatedAt: new Date(),
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  created: new Date(),
-  id: "exampleId",
-  jiraId: 42242424,
   jiraIssueId: 42,
   jiraProject: "exampleJiraProject",
+  jiraId: 42242424,
+  created: new Date(),
   updatedAt: new Date(),
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createJiraIssue() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  jiraIssues: () => FIND_MANY_RESULT,
+  jiraIssue: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

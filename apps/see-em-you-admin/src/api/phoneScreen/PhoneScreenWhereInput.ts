@@ -1,1 +1,5 @@
-export type PhoneScreenWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type PhoneScreenWhereInput = {
+  id?: StringFilter;
+};

@@ -28,7 +28,7 @@ class LuDomainDepartmentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  departmentId?: SortOrder;
+  domainId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class LuDomainDepartmentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  domainId?: SortOrder;
+  departmentId?: SortOrder;
 
   @ApiProperty({
     required: false,

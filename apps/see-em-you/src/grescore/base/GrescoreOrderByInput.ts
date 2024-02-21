@@ -28,7 +28,62 @@ class GrescoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  analyticalpercentile?: SortOrder;
+  applicationId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  testdate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  verbalscore?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  verbalpercentile?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  quantitativescore?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  quantitativepercentile?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +105,7 @@ class GrescoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  analyticalwritingpercentile?: SortOrder;
+  analyticalpercentile?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +127,7 @@ class GrescoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationId?: SortOrder;
+  analyticalwritingpercentile?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +138,7 @@ class GrescoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  athome?: SortOrder;
+  scorereceived?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -95,6 +150,17 @@ class GrescoreOrderByInput {
     nullable: true,
   })
   datafileId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  athome?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -117,72 +183,6 @@ class GrescoreOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  quantitativepercentile?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  quantitativescore?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  scorereceived?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  testdate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  verbalpercentile?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  verbalscore?: SortOrder;
 }
 
 export { GrescoreOrderByInput as GrescoreOrderByInput };

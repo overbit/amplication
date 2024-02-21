@@ -1,13 +1,13 @@
-import { LuUsersUsertype } from "../luUsersUsertype/LuUsersUsertype";
 import { MhciPrereq } from "../mhciPrereq/MhciPrereq";
+import { LuUsersUsertype } from "../luUsersUsertype/LuUsersUsertype";
 
 export type MhciPrereqsConversationComment = {
   applicationId: number;
   comment: string;
-  id: number;
-  luUsersUsertypes?: LuUsersUsertype;
-  mhciPrereqs?: MhciPrereq;
+  timestamp: Date;
   periodId: number | null;
   programId: number | null;
-  timestamp: Date;
+  mhciPrereqs?: MhciPrereq;
+  luUsersUsertypes?: LuUsersUsertype;
+  id: number;
 };

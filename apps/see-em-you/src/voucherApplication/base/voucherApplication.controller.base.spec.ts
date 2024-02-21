@@ -18,38 +18,38 @@ import { VoucherApplicationService } from "../voucherApplication.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  appId: 42,
-  dateUsed: new Date(),
-  id: 42,
   voucherId: 42,
+  dateUsed: new Date(),
+  appId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  appId: 42,
-  dateUsed: new Date(),
-  id: 42,
   voucherId: 42,
+  dateUsed: new Date(),
+  appId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    appId: 42,
-    dateUsed: new Date(),
-    id: 42,
     voucherId: 42,
+    dateUsed: new Date(),
+    appId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  appId: 42,
-  dateUsed: new Date(),
-  id: 42,
   voucherId: 42,
+  dateUsed: new Date(),
+  appId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createVoucherApplication() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  voucherApplications: () => FIND_MANY_RESULT,
+  voucherApplication: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

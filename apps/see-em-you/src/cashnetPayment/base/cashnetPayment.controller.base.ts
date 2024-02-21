@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CashnetPaymentService } from "../cashnetPayment.service";
 import { CashnetPaymentCreateInput } from "./CashnetPaymentCreateInput";
-import { CashnetPaymentWhereInput } from "./CashnetPaymentWhereInput";
-import { CashnetPaymentWhereUniqueInput } from "./CashnetPaymentWhereUniqueInput";
-import { CashnetPaymentFindManyArgs } from "./CashnetPaymentFindManyArgs";
-import { CashnetPaymentUpdateInput } from "./CashnetPaymentUpdateInput";
 import { CashnetPayment } from "./CashnetPayment";
+import { CashnetPaymentFindManyArgs } from "./CashnetPaymentFindManyArgs";
+import { CashnetPaymentWhereUniqueInput } from "./CashnetPaymentWhereUniqueInput";
+import { CashnetPaymentUpdateInput } from "./CashnetPaymentUpdateInput";
 
 export class CashnetPaymentControllerBase {
   constructor(protected readonly service: CashnetPaymentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CashnetPayment })
-  async create(
+  async createCashnetPayment(
     @common.Body() data: CashnetPaymentCreateInput
   ): Promise<CashnetPayment> {
-    return await this.service.create({
+    return await this.service.createCashnetPayment({
       data: {
         ...data,
 
@@ -40,9 +39,14 @@ export class CashnetPaymentControllerBase {
         },
       },
       select: {
-        amount: true,
-        applicantEmail: true,
+        transactionId: true,
         applicantName: true,
+        applicantEmail: true,
+        merchant: true,
+        status: true,
+        transactionTime: true,
+        transactionType: true,
+        amount: true,
 
         application: {
           select: {
@@ -51,11 +55,6 @@ export class CashnetPaymentControllerBase {
         },
 
         id: true,
-        merchant: true,
-        status: true,
-        transactionId: true,
-        transactionTime: true,
-        transactionType: true,
       },
     });
   }
@@ -63,14 +62,21 @@ export class CashnetPaymentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CashnetPayment] })
   @ApiNestedQuery(CashnetPaymentFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<CashnetPayment[]> {
+  async cashnetPayments(
+    @common.Req() request: Request
+  ): Promise<CashnetPayment[]> {
     const args = plainToClass(CashnetPaymentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.cashnetPayments({
       ...args,
       select: {
-        amount: true,
-        applicantEmail: true,
+        transactionId: true,
         applicantName: true,
+        applicantEmail: true,
+        merchant: true,
+        status: true,
+        transactionTime: true,
+        transactionType: true,
+        amount: true,
 
         application: {
           select: {
@@ -79,11 +85,6 @@ export class CashnetPaymentControllerBase {
         },
 
         id: true,
-        merchant: true,
-        status: true,
-        transactionId: true,
-        transactionTime: true,
-        transactionType: true,
       },
     });
   }
@@ -91,15 +92,20 @@ export class CashnetPaymentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CashnetPayment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async cashnetPayment(
     @common.Param() params: CashnetPaymentWhereUniqueInput
   ): Promise<CashnetPayment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.cashnetPayment({
       where: params,
       select: {
-        amount: true,
-        applicantEmail: true,
+        transactionId: true,
         applicantName: true,
+        applicantEmail: true,
+        merchant: true,
+        status: true,
+        transactionTime: true,
+        transactionType: true,
+        amount: true,
 
         application: {
           select: {
@@ -108,11 +114,6 @@ export class CashnetPaymentControllerBase {
         },
 
         id: true,
-        merchant: true,
-        status: true,
-        transactionId: true,
-        transactionTime: true,
-        transactionType: true,
       },
     });
     if (result === null) {
@@ -126,12 +127,12 @@ export class CashnetPaymentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CashnetPayment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCashnetPayment(
     @common.Param() params: CashnetPaymentWhereUniqueInput,
     @common.Body() data: CashnetPaymentUpdateInput
   ): Promise<CashnetPayment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCashnetPayment({
         where: params,
         data: {
           ...data,
@@ -141,9 +142,14 @@ export class CashnetPaymentControllerBase {
           },
         },
         select: {
-          amount: true,
-          applicantEmail: true,
+          transactionId: true,
           applicantName: true,
+          applicantEmail: true,
+          merchant: true,
+          status: true,
+          transactionTime: true,
+          transactionType: true,
+          amount: true,
 
           application: {
             select: {
@@ -152,11 +158,6 @@ export class CashnetPaymentControllerBase {
           },
 
           id: true,
-          merchant: true,
-          status: true,
-          transactionId: true,
-          transactionTime: true,
-          transactionType: true,
         },
       });
     } catch (error) {
@@ -172,16 +173,21 @@ export class CashnetPaymentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CashnetPayment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCashnetPayment(
     @common.Param() params: CashnetPaymentWhereUniqueInput
   ): Promise<CashnetPayment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCashnetPayment({
         where: params,
         select: {
-          amount: true,
-          applicantEmail: true,
+          transactionId: true,
           applicantName: true,
+          applicantEmail: true,
+          merchant: true,
+          status: true,
+          transactionTime: true,
+          transactionType: true,
+          amount: true,
 
           application: {
             select: {
@@ -190,11 +196,6 @@ export class CashnetPaymentControllerBase {
           },
 
           id: true,
-          merchant: true,
-          status: true,
-          transactionId: true,
-          transactionTime: true,
-          transactionType: true,
         },
       });
     } catch (error) {

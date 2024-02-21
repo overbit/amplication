@@ -18,38 +18,37 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ToeflService } from "../toefl.service";
 import { ToeflCreateInput } from "./ToeflCreateInput";
-import { ToeflWhereInput } from "./ToeflWhereInput";
-import { ToeflWhereUniqueInput } from "./ToeflWhereUniqueInput";
-import { ToeflFindManyArgs } from "./ToeflFindManyArgs";
-import { ToeflUpdateInput } from "./ToeflUpdateInput";
 import { Toefl } from "./Toefl";
+import { ToeflFindManyArgs } from "./ToeflFindManyArgs";
+import { ToeflWhereUniqueInput } from "./ToeflWhereUniqueInput";
+import { ToeflUpdateInput } from "./ToeflUpdateInput";
 
 export class ToeflControllerBase {
   constructor(protected readonly service: ToeflService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Toefl })
-  async create(@common.Body() data: ToeflCreateInput): Promise<Toefl> {
-    return await this.service.create({
+  async createToefl(@common.Body() data: ToeflCreateInput): Promise<Toefl> {
+    return await this.service.createToefl({
       data: data,
       select: {
         applicationId: true,
-        datafileId: true,
-        essay: true,
-        essaymb: true,
-        id: true,
-        scorereceived: true,
-        section1: true,
-        section1mb: true,
-        section2: true,
-        section2mb: true,
-        section3: true,
-        section3mb: true,
         testdate: true,
+        section1: true,
+        section2: true,
+        section3: true,
+        essay: true,
+        total: true,
+        scorereceived: true,
+        typeField: true,
+        datafileId: true,
+        section1mb: true,
+        section2mb: true,
+        section3mb: true,
+        essaymb: true,
+        totalmb: true,
         toeflEmail: true,
         toeflPaperEmail: true,
-        total: true,
-        totalmb: true,
-        typeField: true,
+        id: true,
       },
     });
   }
@@ -57,29 +56,29 @@ export class ToeflControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Toefl] })
   @ApiNestedQuery(ToeflFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Toefl[]> {
+  async toefls(@common.Req() request: Request): Promise<Toefl[]> {
     const args = plainToClass(ToeflFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.toefls({
       ...args,
       select: {
         applicationId: true,
-        datafileId: true,
-        essay: true,
-        essaymb: true,
-        id: true,
-        scorereceived: true,
-        section1: true,
-        section1mb: true,
-        section2: true,
-        section2mb: true,
-        section3: true,
-        section3mb: true,
         testdate: true,
+        section1: true,
+        section2: true,
+        section3: true,
+        essay: true,
+        total: true,
+        scorereceived: true,
+        typeField: true,
+        datafileId: true,
+        section1mb: true,
+        section2mb: true,
+        section3mb: true,
+        essaymb: true,
+        totalmb: true,
         toeflEmail: true,
         toeflPaperEmail: true,
-        total: true,
-        totalmb: true,
-        typeField: true,
+        id: true,
       },
     });
   }
@@ -87,30 +86,30 @@ export class ToeflControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Toefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async toefl(
     @common.Param() params: ToeflWhereUniqueInput
   ): Promise<Toefl | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.toefl({
       where: params,
       select: {
         applicationId: true,
-        datafileId: true,
-        essay: true,
-        essaymb: true,
-        id: true,
-        scorereceived: true,
-        section1: true,
-        section1mb: true,
-        section2: true,
-        section2mb: true,
-        section3: true,
-        section3mb: true,
         testdate: true,
+        section1: true,
+        section2: true,
+        section3: true,
+        essay: true,
+        total: true,
+        scorereceived: true,
+        typeField: true,
+        datafileId: true,
+        section1mb: true,
+        section2mb: true,
+        section3mb: true,
+        essaymb: true,
+        totalmb: true,
         toeflEmail: true,
         toeflPaperEmail: true,
-        total: true,
-        totalmb: true,
-        typeField: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -124,33 +123,33 @@ export class ToeflControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Toefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateToefl(
     @common.Param() params: ToeflWhereUniqueInput,
     @common.Body() data: ToeflUpdateInput
   ): Promise<Toefl | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateToefl({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          datafileId: true,
-          essay: true,
-          essaymb: true,
-          id: true,
-          scorereceived: true,
-          section1: true,
-          section1mb: true,
-          section2: true,
-          section2mb: true,
-          section3: true,
-          section3mb: true,
           testdate: true,
+          section1: true,
+          section2: true,
+          section3: true,
+          essay: true,
+          total: true,
+          scorereceived: true,
+          typeField: true,
+          datafileId: true,
+          section1mb: true,
+          section2mb: true,
+          section3mb: true,
+          essaymb: true,
+          totalmb: true,
           toeflEmail: true,
           toeflPaperEmail: true,
-          total: true,
-          totalmb: true,
-          typeField: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -166,31 +165,31 @@ export class ToeflControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Toefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteToefl(
     @common.Param() params: ToeflWhereUniqueInput
   ): Promise<Toefl | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteToefl({
         where: params,
         select: {
           applicationId: true,
-          datafileId: true,
-          essay: true,
-          essaymb: true,
-          id: true,
-          scorereceived: true,
-          section1: true,
-          section1mb: true,
-          section2: true,
-          section2mb: true,
-          section3: true,
-          section3mb: true,
           testdate: true,
+          section1: true,
+          section2: true,
+          section3: true,
+          essay: true,
+          total: true,
+          scorereceived: true,
+          typeField: true,
+          datafileId: true,
+          section1mb: true,
+          section2mb: true,
+          section3mb: true,
+          essaymb: true,
+          totalmb: true,
           toeflEmail: true,
           toeflPaperEmail: true,
-          total: true,
-          totalmb: true,
-          typeField: true,
+          id: true,
         },
       });
     } catch (error) {

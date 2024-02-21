@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRequestsAccessArgs } from "./CreateRequestsAccessArgs";
-import { UpdateRequestsAccessArgs } from "./UpdateRequestsAccessArgs";
-import { DeleteRequestsAccessArgs } from "./DeleteRequestsAccessArgs";
+import { RequestsAccess } from "./RequestsAccess";
 import { RequestsAccessCountArgs } from "./RequestsAccessCountArgs";
 import { RequestsAccessFindManyArgs } from "./RequestsAccessFindManyArgs";
 import { RequestsAccessFindUniqueArgs } from "./RequestsAccessFindUniqueArgs";
-import { RequestsAccess } from "./RequestsAccess";
+import { CreateRequestsAccessArgs } from "./CreateRequestsAccessArgs";
+import { UpdateRequestsAccessArgs } from "./UpdateRequestsAccessArgs";
+import { DeleteRequestsAccessArgs } from "./DeleteRequestsAccessArgs";
 import { RequestsAccessService } from "../requestsAccess.service";
 @graphql.Resolver(() => RequestsAccess)
 export class RequestsAccessResolverBase {
@@ -38,14 +38,14 @@ export class RequestsAccessResolverBase {
   async requestsAccesses(
     @graphql.Args() args: RequestsAccessFindManyArgs
   ): Promise<RequestsAccess[]> {
-    return this.service.findMany(args);
+    return this.service.requestsAccesses(args);
   }
 
   @graphql.Query(() => RequestsAccess, { nullable: true })
   async requestsAccess(
     @graphql.Args() args: RequestsAccessFindUniqueArgs
   ): Promise<RequestsAccess | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.requestsAccess(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class RequestsAccessResolverBase {
   async createRequestsAccess(
     @graphql.Args() args: CreateRequestsAccessArgs
   ): Promise<RequestsAccess> {
-    return await this.service.create({
+    return await this.service.createRequestsAccess({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class RequestsAccessResolverBase {
     @graphql.Args() args: UpdateRequestsAccessArgs
   ): Promise<RequestsAccess | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRequestsAccess({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class RequestsAccessResolverBase {
     @graphql.Args() args: DeleteRequestsAccessArgs
   ): Promise<RequestsAccess | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRequestsAccess(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

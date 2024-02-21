@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLangProfRecommendArgs } from "./CreateLangProfRecommendArgs";
-import { UpdateLangProfRecommendArgs } from "./UpdateLangProfRecommendArgs";
-import { DeleteLangProfRecommendArgs } from "./DeleteLangProfRecommendArgs";
+import { LangProfRecommend } from "./LangProfRecommend";
 import { LangProfRecommendCountArgs } from "./LangProfRecommendCountArgs";
 import { LangProfRecommendFindManyArgs } from "./LangProfRecommendFindManyArgs";
 import { LangProfRecommendFindUniqueArgs } from "./LangProfRecommendFindUniqueArgs";
-import { LangProfRecommend } from "./LangProfRecommend";
+import { CreateLangProfRecommendArgs } from "./CreateLangProfRecommendArgs";
+import { UpdateLangProfRecommendArgs } from "./UpdateLangProfRecommendArgs";
+import { DeleteLangProfRecommendArgs } from "./DeleteLangProfRecommendArgs";
 import { LangProfRecommendService } from "../langProfRecommend.service";
 @graphql.Resolver(() => LangProfRecommend)
 export class LangProfRecommendResolverBase {
@@ -38,14 +38,14 @@ export class LangProfRecommendResolverBase {
   async langProfRecommends(
     @graphql.Args() args: LangProfRecommendFindManyArgs
   ): Promise<LangProfRecommend[]> {
-    return this.service.findMany(args);
+    return this.service.langProfRecommends(args);
   }
 
   @graphql.Query(() => LangProfRecommend, { nullable: true })
   async langProfRecommend(
     @graphql.Args() args: LangProfRecommendFindUniqueArgs
   ): Promise<LangProfRecommend | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.langProfRecommend(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LangProfRecommendResolverBase {
   async createLangProfRecommend(
     @graphql.Args() args: CreateLangProfRecommendArgs
   ): Promise<LangProfRecommend> {
-    return await this.service.create({
+    return await this.service.createLangProfRecommend({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LangProfRecommendResolverBase {
     @graphql.Args() args: UpdateLangProfRecommendArgs
   ): Promise<LangProfRecommend | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLangProfRecommend({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LangProfRecommendResolverBase {
     @graphql.Args() args: DeleteLangProfRecommendArgs
   ): Promise<LangProfRecommend | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLangProfRecommend(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

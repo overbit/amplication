@@ -15,6 +15,7 @@ export const PromotionHistoryCopyCreate = (
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
         <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Round" source="round" />
         <SelectInput
           source="promotion_method"
           label="Promotion Method"
@@ -27,7 +28,6 @@ export const PromotionHistoryCopyCreate = (
           optionText="label"
           optionValue="value"
         />
-        <NumberInput step={1} label="Round" source="round" />
         <NumberInput step={1} label="Users Id" source="usersId" />
       </SimpleForm>
     </Create>

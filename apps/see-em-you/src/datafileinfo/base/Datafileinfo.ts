@@ -17,6 +17,14 @@ import { Type } from "class-transformer";
 @ObjectType()
 class Datafileinfo {
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  typeField!: string;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -33,15 +41,15 @@ class Datafileinfo {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  size!: number;
 
   @ApiProperty({
     required: true,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  moddate!: Date;
+  @IsInt()
+  @Field(() => Number)
+  userId!: number;
 
   @ApiProperty({
     required: true,
@@ -53,19 +61,11 @@ class Datafileinfo {
 
   @ApiProperty({
     required: true,
-    type: Number,
   })
-  @IsInt()
-  @Field(() => Number)
-  size!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  typeField!: string;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  moddate!: Date;
 
   @ApiProperty({
     required: false,
@@ -84,7 +84,7 @@ class Datafileinfo {
   })
   @IsInt()
   @Field(() => Number)
-  userId!: number;
+  id!: number;
 }
 
 export { Datafileinfo as Datafileinfo };

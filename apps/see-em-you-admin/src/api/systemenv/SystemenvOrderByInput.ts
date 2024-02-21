@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type SystemenvOrderByInput = {
-  appbaseprice?: SortOrder;
-  coorduserId?: SortOrder;
   domainId?: SortOrder;
+  coorduserId?: SortOrder;
   expdate?: SortOrder;
   expdate2?: SortOrder;
-  id?: SortOrder;
+  appbaseprice?: SortOrder;
   sysemail?: SortOrder;
+  id?: SortOrder;
 };

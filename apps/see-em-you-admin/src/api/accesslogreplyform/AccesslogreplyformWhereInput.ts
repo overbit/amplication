@@ -1,1 +1,5 @@
-export type AccesslogreplyformWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type AccesslogreplyformWhereInput = {
+  id?: IntFilter;
+};

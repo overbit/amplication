@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMergeDatafileArgs } from "./CreateMergeDatafileArgs";
-import { UpdateMergeDatafileArgs } from "./UpdateMergeDatafileArgs";
-import { DeleteMergeDatafileArgs } from "./DeleteMergeDatafileArgs";
+import { MergeDatafile } from "./MergeDatafile";
 import { MergeDatafileCountArgs } from "./MergeDatafileCountArgs";
 import { MergeDatafileFindManyArgs } from "./MergeDatafileFindManyArgs";
 import { MergeDatafileFindUniqueArgs } from "./MergeDatafileFindUniqueArgs";
-import { MergeDatafile } from "./MergeDatafile";
+import { CreateMergeDatafileArgs } from "./CreateMergeDatafileArgs";
+import { UpdateMergeDatafileArgs } from "./UpdateMergeDatafileArgs";
+import { DeleteMergeDatafileArgs } from "./DeleteMergeDatafileArgs";
 import { MergeDatafileService } from "../mergeDatafile.service";
 @graphql.Resolver(() => MergeDatafile)
 export class MergeDatafileResolverBase {
@@ -38,14 +38,14 @@ export class MergeDatafileResolverBase {
   async mergeDatafiles(
     @graphql.Args() args: MergeDatafileFindManyArgs
   ): Promise<MergeDatafile[]> {
-    return this.service.findMany(args);
+    return this.service.mergeDatafiles(args);
   }
 
   @graphql.Query(() => MergeDatafile, { nullable: true })
   async mergeDatafile(
     @graphql.Args() args: MergeDatafileFindUniqueArgs
   ): Promise<MergeDatafile | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mergeDatafile(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MergeDatafileResolverBase {
   async createMergeDatafile(
     @graphql.Args() args: CreateMergeDatafileArgs
   ): Promise<MergeDatafile> {
-    return await this.service.create({
+    return await this.service.createMergeDatafile({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MergeDatafileResolverBase {
     @graphql.Args() args: UpdateMergeDatafileArgs
   ): Promise<MergeDatafile | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMergeDatafile({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MergeDatafileResolverBase {
     @graphql.Args() args: DeleteMergeDatafileArgs
   ): Promise<MergeDatafile | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMergeDatafile(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { StudentDecisionUniversityService } from "../studentDecisionUniversity.service";
 import { StudentDecisionUniversityCreateInput } from "./StudentDecisionUniversityCreateInput";
-import { StudentDecisionUniversityWhereInput } from "./StudentDecisionUniversityWhereInput";
-import { StudentDecisionUniversityWhereUniqueInput } from "./StudentDecisionUniversityWhereUniqueInput";
-import { StudentDecisionUniversityFindManyArgs } from "./StudentDecisionUniversityFindManyArgs";
-import { StudentDecisionUniversityUpdateInput } from "./StudentDecisionUniversityUpdateInput";
 import { StudentDecisionUniversity } from "./StudentDecisionUniversity";
+import { StudentDecisionUniversityFindManyArgs } from "./StudentDecisionUniversityFindManyArgs";
+import { StudentDecisionUniversityWhereUniqueInput } from "./StudentDecisionUniversityWhereUniqueInput";
+import { StudentDecisionUniversityUpdateInput } from "./StudentDecisionUniversityUpdateInput";
 
 export class StudentDecisionUniversityControllerBase {
   constructor(protected readonly service: StudentDecisionUniversityService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: StudentDecisionUniversity })
-  async create(
+  async createStudentDecisionUniversity(
     @common.Body() data: StudentDecisionUniversityCreateInput
   ): Promise<StudentDecisionUniversity> {
-    return await this.service.create({
+    return await this.service.createStudentDecisionUniversity({
       data: data,
       select: {
-        accepted: true,
         applicationId: true,
-        id: true,
-        name: true,
         programId: true,
+        name: true,
+        accepted: true,
+        id: true,
       },
     });
   }
@@ -46,21 +45,21 @@ export class StudentDecisionUniversityControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [StudentDecisionUniversity] })
   @ApiNestedQuery(StudentDecisionUniversityFindManyArgs)
-  async findMany(
+  async studentDecisionUniversities(
     @common.Req() request: Request
   ): Promise<StudentDecisionUniversity[]> {
     const args = plainToClass(
       StudentDecisionUniversityFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.studentDecisionUniversities({
       ...args,
       select: {
-        accepted: true,
         applicationId: true,
-        id: true,
-        name: true,
         programId: true,
+        name: true,
+        accepted: true,
+        id: true,
       },
     });
   }
@@ -68,17 +67,17 @@ export class StudentDecisionUniversityControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: StudentDecisionUniversity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async studentDecisionUniversity(
     @common.Param() params: StudentDecisionUniversityWhereUniqueInput
   ): Promise<StudentDecisionUniversity | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.studentDecisionUniversity({
       where: params,
       select: {
-        accepted: true,
         applicationId: true,
-        id: true,
-        name: true,
         programId: true,
+        name: true,
+        accepted: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -92,20 +91,20 @@ export class StudentDecisionUniversityControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: StudentDecisionUniversity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateStudentDecisionUniversity(
     @common.Param() params: StudentDecisionUniversityWhereUniqueInput,
     @common.Body() data: StudentDecisionUniversityUpdateInput
   ): Promise<StudentDecisionUniversity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateStudentDecisionUniversity({
         where: params,
         data: data,
         select: {
-          accepted: true,
           applicationId: true,
-          id: true,
-          name: true,
           programId: true,
+          name: true,
+          accepted: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -121,18 +120,18 @@ export class StudentDecisionUniversityControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: StudentDecisionUniversity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteStudentDecisionUniversity(
     @common.Param() params: StudentDecisionUniversityWhereUniqueInput
   ): Promise<StudentDecisionUniversity | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteStudentDecisionUniversity({
         where: params,
         select: {
-          accepted: true,
           applicationId: true,
-          id: true,
-          name: true,
           programId: true,
+          name: true,
+          accepted: true,
+          id: true,
         },
       });
     } catch (error) {

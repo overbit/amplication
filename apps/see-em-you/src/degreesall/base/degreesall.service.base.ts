@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Degreesall } from "@prisma/client";
+import { Prisma, Degreesall as PrismaDegreesall } from "@prisma/client";
 
 export class DegreesallServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DegreesallServiceBase {
     return this.prisma.degreesall.count(args);
   }
 
-  async findMany<T extends Prisma.DegreesallFindManyArgs>(
+  async degreesalls<T extends Prisma.DegreesallFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreesallFindManyArgs>
-  ): Promise<Degreesall[]> {
+  ): Promise<PrismaDegreesall[]> {
     return this.prisma.degreesall.findMany(args);
   }
-  async findOne<T extends Prisma.DegreesallFindUniqueArgs>(
+  async degreesall<T extends Prisma.DegreesallFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreesallFindUniqueArgs>
-  ): Promise<Degreesall | null> {
+  ): Promise<PrismaDegreesall | null> {
     return this.prisma.degreesall.findUnique(args);
   }
-  async create<T extends Prisma.DegreesallCreateArgs>(
+  async createDegreesall<T extends Prisma.DegreesallCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreesallCreateArgs>
-  ): Promise<Degreesall> {
+  ): Promise<PrismaDegreesall> {
     return this.prisma.degreesall.create<T>(args);
   }
-  async update<T extends Prisma.DegreesallUpdateArgs>(
+  async updateDegreesall<T extends Prisma.DegreesallUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreesallUpdateArgs>
-  ): Promise<Degreesall> {
+  ): Promise<PrismaDegreesall> {
     return this.prisma.degreesall.update<T>(args);
   }
-  async delete<T extends Prisma.DegreesallDeleteArgs>(
+  async deleteDegreesall<T extends Prisma.DegreesallDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreesallDeleteArgs>
-  ): Promise<Degreesall> {
+  ): Promise<PrismaDegreesall> {
     return this.prisma.degreesall.delete(args);
   }
 }

@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RissFundingService } from "../rissFunding.service";
 import { RissFundingCreateInput } from "./RissFundingCreateInput";
-import { RissFundingWhereInput } from "./RissFundingWhereInput";
-import { RissFundingWhereUniqueInput } from "./RissFundingWhereUniqueInput";
-import { RissFundingFindManyArgs } from "./RissFundingFindManyArgs";
-import { RissFundingUpdateInput } from "./RissFundingUpdateInput";
 import { RissFunding } from "./RissFunding";
+import { RissFundingFindManyArgs } from "./RissFundingFindManyArgs";
+import { RissFundingWhereUniqueInput } from "./RissFundingWhereUniqueInput";
+import { RissFundingUpdateInput } from "./RissFundingUpdateInput";
 
 export class RissFundingControllerBase {
   constructor(protected readonly service: RissFundingService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RissFunding })
-  async create(
+  async createRissFunding(
     @common.Body() data: RissFundingCreateInput
   ): Promise<RissFunding> {
-    return await this.service.create({
+    return await this.service.createRissFunding({
       data: {
         ...data,
 
@@ -40,18 +39,19 @@ export class RissFundingControllerBase {
         },
       },
       select: {
+        externalFunding: true,
+        externalSource: true,
+        externalAmount: true,
+        reuScholarship: true,
+        directFunding: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        directFunding: true,
-        externalAmount: true,
-        externalFunding: true,
-        externalSource: true,
         id: true,
-        reuScholarship: true,
       },
     });
   }
@@ -59,23 +59,24 @@ export class RissFundingControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RissFunding] })
   @ApiNestedQuery(RissFundingFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<RissFunding[]> {
+  async rissFundings(@common.Req() request: Request): Promise<RissFunding[]> {
     const args = plainToClass(RissFundingFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.rissFundings({
       ...args,
       select: {
+        externalFunding: true,
+        externalSource: true,
+        externalAmount: true,
+        reuScholarship: true,
+        directFunding: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        directFunding: true,
-        externalAmount: true,
-        externalFunding: true,
-        externalSource: true,
         id: true,
-        reuScholarship: true,
       },
     });
   }
@@ -83,24 +84,25 @@ export class RissFundingControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RissFunding })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async rissFunding(
     @common.Param() params: RissFundingWhereUniqueInput
   ): Promise<RissFunding | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.rissFunding({
       where: params,
       select: {
+        externalFunding: true,
+        externalSource: true,
+        externalAmount: true,
+        reuScholarship: true,
+        directFunding: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        directFunding: true,
-        externalAmount: true,
-        externalFunding: true,
-        externalSource: true,
         id: true,
-        reuScholarship: true,
       },
     });
     if (result === null) {
@@ -114,12 +116,12 @@ export class RissFundingControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RissFunding })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRissFunding(
     @common.Param() params: RissFundingWhereUniqueInput,
     @common.Body() data: RissFundingUpdateInput
   ): Promise<RissFunding | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRissFunding({
         where: params,
         data: {
           ...data,
@@ -129,18 +131,19 @@ export class RissFundingControllerBase {
           },
         },
         select: {
+          externalFunding: true,
+          externalSource: true,
+          externalAmount: true,
+          reuScholarship: true,
+          directFunding: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          directFunding: true,
-          externalAmount: true,
-          externalFunding: true,
-          externalSource: true,
           id: true,
-          reuScholarship: true,
         },
       });
     } catch (error) {
@@ -156,25 +159,26 @@ export class RissFundingControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RissFunding })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRissFunding(
     @common.Param() params: RissFundingWhereUniqueInput
   ): Promise<RissFunding | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRissFunding({
         where: params,
         select: {
+          externalFunding: true,
+          externalSource: true,
+          externalAmount: true,
+          reuScholarship: true,
+          directFunding: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          directFunding: true,
-          externalAmount: true,
-          externalFunding: true,
-          externalSource: true,
           id: true,
-          reuScholarship: true,
         },
       });
     } catch (error) {

@@ -1,6 +1,6 @@
 export type DepartmentEnableRecyclingCreateInput = {
   departmentId: number;
-  enableRecycling: number;
   periodId: number;
+  enableRecycling: number;
   usersId: number;
 };

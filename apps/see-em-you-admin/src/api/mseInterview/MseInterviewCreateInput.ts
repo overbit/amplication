@@ -1,8 +1,8 @@
 export type MseInterviewCreateInput = {
   applicationId: number;
-  interviewComments: string;
+  reviewerId: number;
   interviewDate: Date;
   interviewType: string;
   interviewTypeOther?: string | null;
-  reviewerId: number;
+  interviewComments: string;
 };

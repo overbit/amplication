@@ -5,8 +5,8 @@ export const CountryEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Iso Code" source="isoCode" />
         <TextInput label="Name" source="name" />
+        <TextInput label="Iso Code" source="isoCode" />
       </SimpleForm>
     </Edit>
   );

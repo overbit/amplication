@@ -14,8 +14,8 @@ export const ReviewRiskFactorOtherList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Risk Factor Other" source="riskFactorOther" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

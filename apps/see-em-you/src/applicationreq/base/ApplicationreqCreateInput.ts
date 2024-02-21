@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, ValidateNested, IsOptional, IsInt } from "class-validator";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { ProgramsApplicationreqCreateNestedManyWithoutApplicationreqsInput } from "./ProgramsApplicationreqCreateNestedManyWithoutApplicationreqsInput";
 import { Type } from "class-transformer";
 
@@ -23,7 +23,18 @@ class ApplicationreqCreateInput {
   })
   @IsString()
   @Field(() => String)
-  linkname!: string;
+  name!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  short?: string | null;
 
   @ApiProperty({
     required: true,
@@ -31,7 +42,15 @@ class ApplicationreqCreateInput {
   })
   @IsString()
   @Field(() => String)
-  name!: string;
+  linkname!: string;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  sortorder!: number;
 
   @ApiProperty({
     required: false,
@@ -48,25 +67,6 @@ class ApplicationreqCreateInput {
     }
   )
   programsApplicationreqs?: ProgramsApplicationreqCreateNestedManyWithoutApplicationreqsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  short?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  sortorder!: number;
 }
 
 export { ApplicationreqCreateInput as ApplicationreqCreateInput };

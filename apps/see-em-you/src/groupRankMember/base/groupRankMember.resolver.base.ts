@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGroupRankMemberArgs } from "./CreateGroupRankMemberArgs";
-import { UpdateGroupRankMemberArgs } from "./UpdateGroupRankMemberArgs";
-import { DeleteGroupRankMemberArgs } from "./DeleteGroupRankMemberArgs";
+import { GroupRankMember } from "./GroupRankMember";
 import { GroupRankMemberCountArgs } from "./GroupRankMemberCountArgs";
 import { GroupRankMemberFindManyArgs } from "./GroupRankMemberFindManyArgs";
 import { GroupRankMemberFindUniqueArgs } from "./GroupRankMemberFindUniqueArgs";
-import { GroupRankMember } from "./GroupRankMember";
+import { CreateGroupRankMemberArgs } from "./CreateGroupRankMemberArgs";
+import { UpdateGroupRankMemberArgs } from "./UpdateGroupRankMemberArgs";
+import { DeleteGroupRankMemberArgs } from "./DeleteGroupRankMemberArgs";
 import { GroupRankMemberService } from "../groupRankMember.service";
 @graphql.Resolver(() => GroupRankMember)
 export class GroupRankMemberResolverBase {
@@ -38,14 +38,14 @@ export class GroupRankMemberResolverBase {
   async groupRankMembers(
     @graphql.Args() args: GroupRankMemberFindManyArgs
   ): Promise<GroupRankMember[]> {
-    return this.service.findMany(args);
+    return this.service.groupRankMembers(args);
   }
 
   @graphql.Query(() => GroupRankMember, { nullable: true })
   async groupRankMember(
     @graphql.Args() args: GroupRankMemberFindUniqueArgs
   ): Promise<GroupRankMember | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.groupRankMember(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class GroupRankMemberResolverBase {
   async createGroupRankMember(
     @graphql.Args() args: CreateGroupRankMemberArgs
   ): Promise<GroupRankMember> {
-    return await this.service.create({
+    return await this.service.createGroupRankMember({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class GroupRankMemberResolverBase {
     @graphql.Args() args: UpdateGroupRankMemberArgs
   ): Promise<GroupRankMember | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGroupRankMember({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class GroupRankMemberResolverBase {
     @graphql.Args() args: DeleteGroupRankMemberArgs
   ): Promise<GroupRankMember | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGroupRankMember(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

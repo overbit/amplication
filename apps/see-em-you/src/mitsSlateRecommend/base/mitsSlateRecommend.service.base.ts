@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateRecommend } from "@prisma/client";
+import {
+  Prisma,
+  MitsSlateRecommend as PrismaMitsSlateRecommend,
+} from "@prisma/client";
 
 export class MitsSlateRecommendServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class MitsSlateRecommendServiceBase {
     return this.prisma.mitsSlateRecommend.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateRecommendFindManyArgs>(
+  async mitsSlateRecommends<T extends Prisma.MitsSlateRecommendFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateRecommendFindManyArgs>
-  ): Promise<MitsSlateRecommend[]> {
+  ): Promise<PrismaMitsSlateRecommend[]> {
     return this.prisma.mitsSlateRecommend.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateRecommendFindUniqueArgs>(
+  async mitsSlateRecommend<T extends Prisma.MitsSlateRecommendFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateRecommendFindUniqueArgs>
-  ): Promise<MitsSlateRecommend | null> {
+  ): Promise<PrismaMitsSlateRecommend | null> {
     return this.prisma.mitsSlateRecommend.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateRecommendCreateArgs>(
+  async createMitsSlateRecommend<T extends Prisma.MitsSlateRecommendCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateRecommendCreateArgs>
-  ): Promise<MitsSlateRecommend> {
+  ): Promise<PrismaMitsSlateRecommend> {
     return this.prisma.mitsSlateRecommend.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateRecommendUpdateArgs>(
+  async updateMitsSlateRecommend<T extends Prisma.MitsSlateRecommendUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateRecommendUpdateArgs>
-  ): Promise<MitsSlateRecommend> {
+  ): Promise<PrismaMitsSlateRecommend> {
     return this.prisma.mitsSlateRecommend.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateRecommendDeleteArgs>(
+  async deleteMitsSlateRecommend<T extends Prisma.MitsSlateRecommendDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateRecommendDeleteArgs>
-  ): Promise<MitsSlateRecommend> {
+  ): Promise<PrismaMitsSlateRecommend> {
     return this.prisma.mitsSlateRecommend.delete(args);
   }
 }

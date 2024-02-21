@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RejectionWaiverService } from "../rejectionWaiver.service";
 import { RejectionWaiverCreateInput } from "./RejectionWaiverCreateInput";
-import { RejectionWaiverWhereInput } from "./RejectionWaiverWhereInput";
-import { RejectionWaiverWhereUniqueInput } from "./RejectionWaiverWhereUniqueInput";
-import { RejectionWaiverFindManyArgs } from "./RejectionWaiverFindManyArgs";
-import { RejectionWaiverUpdateInput } from "./RejectionWaiverUpdateInput";
 import { RejectionWaiver } from "./RejectionWaiver";
+import { RejectionWaiverFindManyArgs } from "./RejectionWaiverFindManyArgs";
+import { RejectionWaiverWhereUniqueInput } from "./RejectionWaiverWhereUniqueInput";
+import { RejectionWaiverUpdateInput } from "./RejectionWaiverUpdateInput";
 
 export class RejectionWaiverControllerBase {
   constructor(protected readonly service: RejectionWaiverService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RejectionWaiver })
-  async create(
+  async createRejectionWaiver(
     @common.Body() data: RejectionWaiverCreateInput
   ): Promise<RejectionWaiver> {
-    return await this.service.create({
+    return await this.service.createRejectionWaiver({
       data: data,
       select: {
-        id: true,
         luApplicationProgramsId: true,
-        permittedProgramId: true,
         waived: true,
+        permittedProgramId: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class RejectionWaiverControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RejectionWaiver] })
   @ApiNestedQuery(RejectionWaiverFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<RejectionWaiver[]> {
+  async rejectionWaivers(
+    @common.Req() request: Request
+  ): Promise<RejectionWaiver[]> {
     const args = plainToClass(RejectionWaiverFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.rejectionWaivers({
       ...args,
       select: {
-        id: true,
         luApplicationProgramsId: true,
-        permittedProgramId: true,
         waived: true,
+        permittedProgramId: true,
+        id: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class RejectionWaiverControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RejectionWaiver })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async rejectionWaiver(
     @common.Param() params: RejectionWaiverWhereUniqueInput
   ): Promise<RejectionWaiver | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.rejectionWaiver({
       where: params,
       select: {
-        id: true,
         luApplicationProgramsId: true,
-        permittedProgramId: true,
         waived: true,
+        permittedProgramId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class RejectionWaiverControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RejectionWaiver })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRejectionWaiver(
     @common.Param() params: RejectionWaiverWhereUniqueInput,
     @common.Body() data: RejectionWaiverUpdateInput
   ): Promise<RejectionWaiver | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRejectionWaiver({
         where: params,
         data: data,
         select: {
-          id: true,
           luApplicationProgramsId: true,
-          permittedProgramId: true,
           waived: true,
+          permittedProgramId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class RejectionWaiverControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RejectionWaiver })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRejectionWaiver(
     @common.Param() params: RejectionWaiverWhereUniqueInput
   ): Promise<RejectionWaiver | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRejectionWaiver({
         where: params,
         select: {
-          id: true,
           luApplicationProgramsId: true,
-          permittedProgramId: true,
           waived: true,
+          permittedProgramId: true,
+          id: true,
         },
       });
     } catch (error) {

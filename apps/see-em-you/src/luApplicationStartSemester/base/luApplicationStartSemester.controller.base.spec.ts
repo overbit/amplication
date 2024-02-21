@@ -18,34 +18,34 @@ import { LuApplicationStartSemesterService } from "../luApplicationStartSemester
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   semester: "exampleSemester",
   year: "exampleYear",
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   semester: "exampleSemester",
   year: "exampleYear",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     semester: "exampleSemester",
     year: "exampleYear",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   semester: "exampleSemester",
   year: "exampleYear",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLuApplicationStartSemester() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luApplicationStartSemesters: () => FIND_MANY_RESULT,
+  luApplicationStartSemester: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

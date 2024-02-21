@@ -28,28 +28,6 @@ class RegistrationFeeStatusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  amount?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  application_id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   departmentId?: SortOrder;
 
   @ApiProperty({
@@ -61,7 +39,7 @@ class RegistrationFeeStatusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  amount?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -84,6 +62,28 @@ class RegistrationFeeStatusOrderByInput {
     nullable: true,
   })
   waived?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  application_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { RegistrationFeeStatusOrderByInput as RegistrationFeeStatusOrderByInput };

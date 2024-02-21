@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSelfGenderArgs } from "./CreateSelfGenderArgs";
-import { UpdateSelfGenderArgs } from "./UpdateSelfGenderArgs";
-import { DeleteSelfGenderArgs } from "./DeleteSelfGenderArgs";
+import { SelfGender } from "./SelfGender";
 import { SelfGenderCountArgs } from "./SelfGenderCountArgs";
 import { SelfGenderFindManyArgs } from "./SelfGenderFindManyArgs";
 import { SelfGenderFindUniqueArgs } from "./SelfGenderFindUniqueArgs";
-import { SelfGender } from "./SelfGender";
+import { CreateSelfGenderArgs } from "./CreateSelfGenderArgs";
+import { UpdateSelfGenderArgs } from "./UpdateSelfGenderArgs";
+import { DeleteSelfGenderArgs } from "./DeleteSelfGenderArgs";
 import { SelfGenderService } from "../selfGender.service";
 @graphql.Resolver(() => SelfGender)
 export class SelfGenderResolverBase {
@@ -38,14 +38,14 @@ export class SelfGenderResolverBase {
   async selfGenders(
     @graphql.Args() args: SelfGenderFindManyArgs
   ): Promise<SelfGender[]> {
-    return this.service.findMany(args);
+    return this.service.selfGenders(args);
   }
 
   @graphql.Query(() => SelfGender, { nullable: true })
   async selfGender(
     @graphql.Args() args: SelfGenderFindUniqueArgs
   ): Promise<SelfGender | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.selfGender(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SelfGenderResolverBase {
   async createSelfGender(
     @graphql.Args() args: CreateSelfGenderArgs
   ): Promise<SelfGender> {
-    return await this.service.create({
+    return await this.service.createSelfGender({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SelfGenderResolverBase {
     @graphql.Args() args: UpdateSelfGenderArgs
   ): Promise<SelfGender | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSelfGender({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SelfGenderResolverBase {
     @graphql.Args() args: DeleteSelfGenderArgs
   ): Promise<SelfGender | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSelfGender(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

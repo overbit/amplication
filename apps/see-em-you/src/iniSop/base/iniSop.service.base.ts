@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, IniSop } from "@prisma/client";
+import { Prisma, IniSop as PrismaIniSop } from "@prisma/client";
 
 export class IniSopServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class IniSopServiceBase {
     return this.prisma.iniSop.count(args);
   }
 
-  async findMany<T extends Prisma.IniSopFindManyArgs>(
+  async iniSops<T extends Prisma.IniSopFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniSopFindManyArgs>
-  ): Promise<IniSop[]> {
+  ): Promise<PrismaIniSop[]> {
     return this.prisma.iniSop.findMany(args);
   }
-  async findOne<T extends Prisma.IniSopFindUniqueArgs>(
+  async iniSop<T extends Prisma.IniSopFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniSopFindUniqueArgs>
-  ): Promise<IniSop | null> {
+  ): Promise<PrismaIniSop | null> {
     return this.prisma.iniSop.findUnique(args);
   }
-  async create<T extends Prisma.IniSopCreateArgs>(
+  async createIniSop<T extends Prisma.IniSopCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniSopCreateArgs>
-  ): Promise<IniSop> {
+  ): Promise<PrismaIniSop> {
     return this.prisma.iniSop.create<T>(args);
   }
-  async update<T extends Prisma.IniSopUpdateArgs>(
+  async updateIniSop<T extends Prisma.IniSopUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniSopUpdateArgs>
-  ): Promise<IniSop> {
+  ): Promise<PrismaIniSop> {
     return this.prisma.iniSop.update<T>(args);
   }
-  async delete<T extends Prisma.IniSopDeleteArgs>(
+  async deleteIniSop<T extends Prisma.IniSopDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniSopDeleteArgs>
-  ): Promise<IniSop> {
+  ): Promise<PrismaIniSop> {
     return this.prisma.iniSop.delete(args);
   }
 }

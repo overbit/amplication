@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, WaiverApplication } from "@prisma/client";
+import {
+  Prisma,
+  WaiverApplication as PrismaWaiverApplication,
+} from "@prisma/client";
 
 export class WaiverApplicationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class WaiverApplicationServiceBase {
     return this.prisma.waiverApplication.count(args);
   }
 
-  async findMany<T extends Prisma.WaiverApplicationFindManyArgs>(
+  async waiverApplications<T extends Prisma.WaiverApplicationFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverApplicationFindManyArgs>
-  ): Promise<WaiverApplication[]> {
+  ): Promise<PrismaWaiverApplication[]> {
     return this.prisma.waiverApplication.findMany(args);
   }
-  async findOne<T extends Prisma.WaiverApplicationFindUniqueArgs>(
+  async waiverApplication<T extends Prisma.WaiverApplicationFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverApplicationFindUniqueArgs>
-  ): Promise<WaiverApplication | null> {
+  ): Promise<PrismaWaiverApplication | null> {
     return this.prisma.waiverApplication.findUnique(args);
   }
-  async create<T extends Prisma.WaiverApplicationCreateArgs>(
+  async createWaiverApplication<T extends Prisma.WaiverApplicationCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverApplicationCreateArgs>
-  ): Promise<WaiverApplication> {
+  ): Promise<PrismaWaiverApplication> {
     return this.prisma.waiverApplication.create<T>(args);
   }
-  async update<T extends Prisma.WaiverApplicationUpdateArgs>(
+  async updateWaiverApplication<T extends Prisma.WaiverApplicationUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverApplicationUpdateArgs>
-  ): Promise<WaiverApplication> {
+  ): Promise<PrismaWaiverApplication> {
     return this.prisma.waiverApplication.update<T>(args);
   }
-  async delete<T extends Prisma.WaiverApplicationDeleteArgs>(
+  async deleteWaiverApplication<T extends Prisma.WaiverApplicationDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverApplicationDeleteArgs>
-  ): Promise<WaiverApplication> {
+  ): Promise<PrismaWaiverApplication> {
     return this.prisma.waiverApplication.delete(args);
   }
 }

@@ -11,18 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString } from "class-validator";
+import { IsString, IsInt } from "class-validator";
 
 @ObjectType()
 class Ethnicity {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -38,6 +30,14 @@ class Ethnicity {
   @IsInt()
   @Field(() => Number)
   sortorder!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Ethnicity as Ethnicity };

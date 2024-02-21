@@ -1,6 +1,6 @@
 export type SearchTextTest = {
   applicationId: string;
-  applicationText: string | null;
   guid: number;
+  applicationText: string | null;
   id: string;
 };

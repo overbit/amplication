@@ -20,10 +20,10 @@ export const PeriodApplicationShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Id" source="id" />
         <ReferenceField label="Period" source="period.id" reference="Period">
           <TextField source={PERIOD_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

@@ -18,38 +18,38 @@ import { GpascaleService } from "../gpascale.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  formula: "exampleFormula",
-  id: 42,
   name: "exampleName",
+  formula: "exampleFormula",
   sortorder: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  formula: "exampleFormula",
-  id: 42,
   name: "exampleName",
+  formula: "exampleFormula",
   sortorder: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    formula: "exampleFormula",
-    id: 42,
     name: "exampleName",
+    formula: "exampleFormula",
     sortorder: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  formula: "exampleFormula",
-  id: 42,
   name: "exampleName",
+  formula: "exampleFormula",
   sortorder: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createGpascale() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  gpascales: () => FIND_MANY_RESULT,
+  gpascale: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

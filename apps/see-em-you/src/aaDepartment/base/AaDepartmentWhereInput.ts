@@ -11,13 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DepartmentWhereUniqueInput } from "../../department/base/DepartmentWhereUniqueInput";
+import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
+import { DepartmentWhereUniqueInput } from "../../department/base/DepartmentWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class AaDepartmentWhereInput {
+  @ApiProperty({
+    required: false,
+    type: () => PeriodWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => PeriodWhereUniqueInput)
+  @IsOptional()
+  @Field(() => PeriodWhereUniqueInput, {
+    nullable: true,
+  })
+  period?: PeriodWhereUniqueInput;
+
   @ApiProperty({
     required: false,
     type: () => DepartmentWhereUniqueInput,
@@ -32,15 +45,14 @@ class AaDepartmentWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => PeriodWhereUniqueInput,
+    type: IntFilter,
   })
-  @ValidateNested()
-  @Type(() => PeriodWhereUniqueInput)
+  @Type(() => IntFilter)
   @IsOptional()
-  @Field(() => PeriodWhereUniqueInput, {
+  @Field(() => IntFilter, {
     nullable: true,
   })
-  period?: PeriodWhereUniqueInput;
+  id?: IntFilter;
 }
 
 export { AaDepartmentWhereInput as AaDepartmentWhereInput };

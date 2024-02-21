@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UsersRemoteAuthStringService } from "../usersRemoteAuthString.service";
 import { UsersRemoteAuthStringCreateInput } from "./UsersRemoteAuthStringCreateInput";
-import { UsersRemoteAuthStringWhereInput } from "./UsersRemoteAuthStringWhereInput";
-import { UsersRemoteAuthStringWhereUniqueInput } from "./UsersRemoteAuthStringWhereUniqueInput";
-import { UsersRemoteAuthStringFindManyArgs } from "./UsersRemoteAuthStringFindManyArgs";
-import { UsersRemoteAuthStringUpdateInput } from "./UsersRemoteAuthStringUpdateInput";
 import { UsersRemoteAuthString } from "./UsersRemoteAuthString";
+import { UsersRemoteAuthStringFindManyArgs } from "./UsersRemoteAuthStringFindManyArgs";
+import { UsersRemoteAuthStringWhereUniqueInput } from "./UsersRemoteAuthStringWhereUniqueInput";
+import { UsersRemoteAuthStringUpdateInput } from "./UsersRemoteAuthStringUpdateInput";
 
 export class UsersRemoteAuthStringControllerBase {
   constructor(protected readonly service: UsersRemoteAuthStringService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: UsersRemoteAuthString })
-  async create(
+  async createUsersRemoteAuthString(
     @common.Body() data: UsersRemoteAuthStringCreateInput
   ): Promise<UsersRemoteAuthString> {
-    return await this.service.create({
+    return await this.service.createUsersRemoteAuthString({
       data: data,
       select: {
-        id: true,
-        remoteAuthString: true,
         usersId: true,
+        remoteAuthString: true,
+        id: true,
       },
     });
   }
@@ -44,16 +43,16 @@ export class UsersRemoteAuthStringControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [UsersRemoteAuthString] })
   @ApiNestedQuery(UsersRemoteAuthStringFindManyArgs)
-  async findMany(
+  async usersRemoteAuthStrings(
     @common.Req() request: Request
   ): Promise<UsersRemoteAuthString[]> {
     const args = plainToClass(UsersRemoteAuthStringFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.usersRemoteAuthStrings({
       ...args,
       select: {
-        id: true,
-        remoteAuthString: true,
         usersId: true,
+        remoteAuthString: true,
+        id: true,
       },
     });
   }
@@ -61,15 +60,15 @@ export class UsersRemoteAuthStringControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: UsersRemoteAuthString })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async usersRemoteAuthString(
     @common.Param() params: UsersRemoteAuthStringWhereUniqueInput
   ): Promise<UsersRemoteAuthString | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.usersRemoteAuthString({
       where: params,
       select: {
-        id: true,
-        remoteAuthString: true,
         usersId: true,
+        remoteAuthString: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -83,18 +82,18 @@ export class UsersRemoteAuthStringControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: UsersRemoteAuthString })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUsersRemoteAuthString(
     @common.Param() params: UsersRemoteAuthStringWhereUniqueInput,
     @common.Body() data: UsersRemoteAuthStringUpdateInput
   ): Promise<UsersRemoteAuthString | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsersRemoteAuthString({
         where: params,
         data: data,
         select: {
-          id: true,
-          remoteAuthString: true,
           usersId: true,
+          remoteAuthString: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -110,16 +109,16 @@ export class UsersRemoteAuthStringControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: UsersRemoteAuthString })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUsersRemoteAuthString(
     @common.Param() params: UsersRemoteAuthStringWhereUniqueInput
   ): Promise<UsersRemoteAuthString | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUsersRemoteAuthString({
         where: params,
         select: {
-          id: true,
-          remoteAuthString: true,
           usersId: true,
+          remoteAuthString: true,
+          id: true,
         },
       });
     } catch (error) {

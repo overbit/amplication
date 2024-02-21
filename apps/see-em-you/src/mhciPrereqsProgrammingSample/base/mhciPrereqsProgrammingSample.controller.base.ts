@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqsProgrammingSampleService } from "../mhciPrereqsProgrammingSample.service";
 import { MhciPrereqsProgrammingSampleCreateInput } from "./MhciPrereqsProgrammingSampleCreateInput";
-import { MhciPrereqsProgrammingSampleWhereInput } from "./MhciPrereqsProgrammingSampleWhereInput";
-import { MhciPrereqsProgrammingSampleWhereUniqueInput } from "./MhciPrereqsProgrammingSampleWhereUniqueInput";
-import { MhciPrereqsProgrammingSampleFindManyArgs } from "./MhciPrereqsProgrammingSampleFindManyArgs";
-import { MhciPrereqsProgrammingSampleUpdateInput } from "./MhciPrereqsProgrammingSampleUpdateInput";
 import { MhciPrereqsProgrammingSample } from "./MhciPrereqsProgrammingSample";
+import { MhciPrereqsProgrammingSampleFindManyArgs } from "./MhciPrereqsProgrammingSampleFindManyArgs";
+import { MhciPrereqsProgrammingSampleWhereUniqueInput } from "./MhciPrereqsProgrammingSampleWhereUniqueInput";
+import { MhciPrereqsProgrammingSampleUpdateInput } from "./MhciPrereqsProgrammingSampleUpdateInput";
 
 export class MhciPrereqsProgrammingSampleControllerBase {
   constructor(
@@ -30,10 +29,10 @@ export class MhciPrereqsProgrammingSampleControllerBase {
   ) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereqsProgrammingSample })
-  async create(
+  async createMhciPrereqsProgrammingSample(
     @common.Body() data: MhciPrereqsProgrammingSampleCreateInput
   ): Promise<MhciPrereqsProgrammingSample> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsProgrammingSample({
       data: {
         ...data,
 
@@ -42,9 +41,13 @@ export class MhciPrereqsProgrammingSampleControllerBase {
         },
       },
       select: {
-        applicationId: true,
         datafileinfoId: true,
-        id: true,
+        note: true,
+        submittedToReviewer: true,
+        newFileUploaded: true,
+        applicationId: true,
+        periodId: true,
+        programId: true,
 
         luUsersUsertypes: {
           select: {
@@ -52,11 +55,7 @@ export class MhciPrereqsProgrammingSampleControllerBase {
           },
         },
 
-        newFileUploaded: true,
-        note: true,
-        periodId: true,
-        programId: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
   }
@@ -64,19 +63,23 @@ export class MhciPrereqsProgrammingSampleControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereqsProgrammingSample] })
   @ApiNestedQuery(MhciPrereqsProgrammingSampleFindManyArgs)
-  async findMany(
+  async mhciPrereqsProgrammingSamples(
     @common.Req() request: Request
   ): Promise<MhciPrereqsProgrammingSample[]> {
     const args = plainToClass(
       MhciPrereqsProgrammingSampleFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.mhciPrereqsProgrammingSamples({
       ...args,
       select: {
-        applicationId: true,
         datafileinfoId: true,
-        id: true,
+        note: true,
+        submittedToReviewer: true,
+        newFileUploaded: true,
+        applicationId: true,
+        periodId: true,
+        programId: true,
 
         luUsersUsertypes: {
           select: {
@@ -84,11 +87,7 @@ export class MhciPrereqsProgrammingSampleControllerBase {
           },
         },
 
-        newFileUploaded: true,
-        note: true,
-        periodId: true,
-        programId: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
   }
@@ -96,15 +95,19 @@ export class MhciPrereqsProgrammingSampleControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsProgrammingSample })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereqsProgrammingSample(
     @common.Param() params: MhciPrereqsProgrammingSampleWhereUniqueInput
   ): Promise<MhciPrereqsProgrammingSample | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereqsProgrammingSample({
       where: params,
       select: {
-        applicationId: true,
         datafileinfoId: true,
-        id: true,
+        note: true,
+        submittedToReviewer: true,
+        newFileUploaded: true,
+        applicationId: true,
+        periodId: true,
+        programId: true,
 
         luUsersUsertypes: {
           select: {
@@ -112,11 +115,7 @@ export class MhciPrereqsProgrammingSampleControllerBase {
           },
         },
 
-        newFileUploaded: true,
-        note: true,
-        periodId: true,
-        programId: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -130,12 +129,12 @@ export class MhciPrereqsProgrammingSampleControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsProgrammingSample })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereqsProgrammingSample(
     @common.Param() params: MhciPrereqsProgrammingSampleWhereUniqueInput,
     @common.Body() data: MhciPrereqsProgrammingSampleUpdateInput
   ): Promise<MhciPrereqsProgrammingSample | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsProgrammingSample({
         where: params,
         data: {
           ...data,
@@ -145,9 +144,13 @@ export class MhciPrereqsProgrammingSampleControllerBase {
           },
         },
         select: {
-          applicationId: true,
           datafileinfoId: true,
-          id: true,
+          note: true,
+          submittedToReviewer: true,
+          newFileUploaded: true,
+          applicationId: true,
+          periodId: true,
+          programId: true,
 
           luUsersUsertypes: {
             select: {
@@ -155,11 +158,7 @@ export class MhciPrereqsProgrammingSampleControllerBase {
             },
           },
 
-          newFileUploaded: true,
-          note: true,
-          periodId: true,
-          programId: true,
-          submittedToReviewer: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -175,16 +174,20 @@ export class MhciPrereqsProgrammingSampleControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsProgrammingSample })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereqsProgrammingSample(
     @common.Param() params: MhciPrereqsProgrammingSampleWhereUniqueInput
   ): Promise<MhciPrereqsProgrammingSample | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereqsProgrammingSample({
         where: params,
         select: {
-          applicationId: true,
           datafileinfoId: true,
-          id: true,
+          note: true,
+          submittedToReviewer: true,
+          newFileUploaded: true,
+          applicationId: true,
+          periodId: true,
+          programId: true,
 
           luUsersUsertypes: {
             select: {
@@ -192,11 +195,7 @@ export class MhciPrereqsProgrammingSampleControllerBase {
             },
           },
 
-          newFileUploaded: true,
-          note: true,
-          periodId: true,
-          programId: true,
-          submittedToReviewer: true,
+          id: true,
         },
       });
     } catch (error) {

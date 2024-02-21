@@ -24,7 +24,7 @@ class ExceptionApp {
   @Field(() => Number, {
     nullable: true,
   })
-  active!: number | null;
+  appId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class ExceptionApp {
   @Field(() => Number, {
     nullable: true,
   })
-  appId!: number | null;
+  active!: number | null;
 
   @ApiProperty({
     required: true,

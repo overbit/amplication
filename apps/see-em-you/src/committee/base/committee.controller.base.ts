@@ -18,23 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CommitteeService } from "../committee.service";
 import { CommitteeCreateInput } from "./CommitteeCreateInput";
-import { CommitteeWhereInput } from "./CommitteeWhereInput";
-import { CommitteeWhereUniqueInput } from "./CommitteeWhereUniqueInput";
-import { CommitteeFindManyArgs } from "./CommitteeFindManyArgs";
-import { CommitteeUpdateInput } from "./CommitteeUpdateInput";
 import { Committee } from "./Committee";
+import { CommitteeFindManyArgs } from "./CommitteeFindManyArgs";
+import { CommitteeWhereUniqueInput } from "./CommitteeWhereUniqueInput";
+import { CommitteeUpdateInput } from "./CommitteeUpdateInput";
 
 export class CommitteeControllerBase {
   constructor(protected readonly service: CommitteeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Committee })
-  async create(@common.Body() data: CommitteeCreateInput): Promise<Committee> {
-    return await this.service.create({
+  async createCommittee(
+    @common.Body() data: CommitteeCreateInput
+  ): Promise<Committee> {
+    return await this.service.createCommittee({
       data: data,
       select: {
+        userId: true,
         groupId: true,
         id: true,
-        userId: true,
       },
     });
   }
@@ -42,14 +43,14 @@ export class CommitteeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Committee] })
   @ApiNestedQuery(CommitteeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Committee[]> {
+  async committees(@common.Req() request: Request): Promise<Committee[]> {
     const args = plainToClass(CommitteeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.committees({
       ...args,
       select: {
+        userId: true,
         groupId: true,
         id: true,
-        userId: true,
       },
     });
   }
@@ -57,15 +58,15 @@ export class CommitteeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Committee })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async committee(
     @common.Param() params: CommitteeWhereUniqueInput
   ): Promise<Committee | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.committee({
       where: params,
       select: {
+        userId: true,
         groupId: true,
         id: true,
-        userId: true,
       },
     });
     if (result === null) {
@@ -79,18 +80,18 @@ export class CommitteeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Committee })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCommittee(
     @common.Param() params: CommitteeWhereUniqueInput,
     @common.Body() data: CommitteeUpdateInput
   ): Promise<Committee | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCommittee({
         where: params,
         data: data,
         select: {
+          userId: true,
           groupId: true,
           id: true,
-          userId: true,
         },
       });
     } catch (error) {
@@ -106,16 +107,16 @@ export class CommitteeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Committee })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCommittee(
     @common.Param() params: CommitteeWhereUniqueInput
   ): Promise<Committee | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCommittee({
         where: params,
         select: {
+          userId: true,
           groupId: true,
           id: true,
-          userId: true,
         },
       });
     } catch (error) {

@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LangProfRecommenderInfoService } from "../langProfRecommenderInfo.service";
 import { LangProfRecommenderInfoCreateInput } from "./LangProfRecommenderInfoCreateInput";
-import { LangProfRecommenderInfoWhereInput } from "./LangProfRecommenderInfoWhereInput";
-import { LangProfRecommenderInfoWhereUniqueInput } from "./LangProfRecommenderInfoWhereUniqueInput";
-import { LangProfRecommenderInfoFindManyArgs } from "./LangProfRecommenderInfoFindManyArgs";
-import { LangProfRecommenderInfoUpdateInput } from "./LangProfRecommenderInfoUpdateInput";
 import { LangProfRecommenderInfo } from "./LangProfRecommenderInfo";
+import { LangProfRecommenderInfoFindManyArgs } from "./LangProfRecommenderInfoFindManyArgs";
+import { LangProfRecommenderInfoWhereUniqueInput } from "./LangProfRecommenderInfoWhereUniqueInput";
+import { LangProfRecommenderInfoUpdateInput } from "./LangProfRecommenderInfoUpdateInput";
 
 export class LangProfRecommenderInfoControllerBase {
   constructor(protected readonly service: LangProfRecommenderInfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LangProfRecommenderInfo })
-  async create(
+  async createLangProfRecommenderInfo(
     @common.Body() data: LangProfRecommenderInfoCreateInput
   ): Promise<LangProfRecommenderInfo> {
-    return await this.service.create({
+    return await this.service.createLangProfRecommenderInfo({
       data: data,
       select: {
-        affiliation: true,
-        id: true,
-        languageSpecialization: true,
-        phone: true,
         recUserId: true,
         title: true,
+        affiliation: true,
+        phone: true,
+        languageSpecialization: true,
+        id: true,
       },
     });
   }
@@ -47,22 +46,22 @@ export class LangProfRecommenderInfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LangProfRecommenderInfo] })
   @ApiNestedQuery(LangProfRecommenderInfoFindManyArgs)
-  async findMany(
+  async langProfRecommenderInfos(
     @common.Req() request: Request
   ): Promise<LangProfRecommenderInfo[]> {
     const args = plainToClass(
       LangProfRecommenderInfoFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.langProfRecommenderInfos({
       ...args,
       select: {
-        affiliation: true,
-        id: true,
-        languageSpecialization: true,
-        phone: true,
         recUserId: true,
         title: true,
+        affiliation: true,
+        phone: true,
+        languageSpecialization: true,
+        id: true,
       },
     });
   }
@@ -70,18 +69,18 @@ export class LangProfRecommenderInfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LangProfRecommenderInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async langProfRecommenderInfo(
     @common.Param() params: LangProfRecommenderInfoWhereUniqueInput
   ): Promise<LangProfRecommenderInfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.langProfRecommenderInfo({
       where: params,
       select: {
-        affiliation: true,
-        id: true,
-        languageSpecialization: true,
-        phone: true,
         recUserId: true,
         title: true,
+        affiliation: true,
+        phone: true,
+        languageSpecialization: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -95,21 +94,21 @@ export class LangProfRecommenderInfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LangProfRecommenderInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLangProfRecommenderInfo(
     @common.Param() params: LangProfRecommenderInfoWhereUniqueInput,
     @common.Body() data: LangProfRecommenderInfoUpdateInput
   ): Promise<LangProfRecommenderInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLangProfRecommenderInfo({
         where: params,
         data: data,
         select: {
-          affiliation: true,
-          id: true,
-          languageSpecialization: true,
-          phone: true,
           recUserId: true,
           title: true,
+          affiliation: true,
+          phone: true,
+          languageSpecialization: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -125,19 +124,19 @@ export class LangProfRecommenderInfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LangProfRecommenderInfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLangProfRecommenderInfo(
     @common.Param() params: LangProfRecommenderInfoWhereUniqueInput
   ): Promise<LangProfRecommenderInfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLangProfRecommenderInfo({
         where: params,
         select: {
-          affiliation: true,
-          id: true,
-          languageSpecialization: true,
-          phone: true,
           recUserId: true,
           title: true,
+          affiliation: true,
+          phone: true,
+          languageSpecialization: true,
+          id: true,
         },
       });
     } catch (error) {

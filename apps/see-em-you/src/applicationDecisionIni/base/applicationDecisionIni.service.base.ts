@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ApplicationDecisionIni } from "@prisma/client";
+import {
+  Prisma,
+  ApplicationDecisionIni as PrismaApplicationDecisionIni,
+} from "@prisma/client";
 
 export class ApplicationDecisionIniServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ApplicationDecisionIniServiceBase {
     return this.prisma.applicationDecisionIni.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicationDecisionIniFindManyArgs>(
+  async applicationDecisionInis<
+    T extends Prisma.ApplicationDecisionIniFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionIniFindManyArgs>
-  ): Promise<ApplicationDecisionIni[]> {
+  ): Promise<PrismaApplicationDecisionIni[]> {
     return this.prisma.applicationDecisionIni.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicationDecisionIniFindUniqueArgs>(
+  async applicationDecisionIni<
+    T extends Prisma.ApplicationDecisionIniFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionIniFindUniqueArgs>
-  ): Promise<ApplicationDecisionIni | null> {
+  ): Promise<PrismaApplicationDecisionIni | null> {
     return this.prisma.applicationDecisionIni.findUnique(args);
   }
-  async create<T extends Prisma.ApplicationDecisionIniCreateArgs>(
+  async createApplicationDecisionIni<
+    T extends Prisma.ApplicationDecisionIniCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionIniCreateArgs>
-  ): Promise<ApplicationDecisionIni> {
+  ): Promise<PrismaApplicationDecisionIni> {
     return this.prisma.applicationDecisionIni.create<T>(args);
   }
-  async update<T extends Prisma.ApplicationDecisionIniUpdateArgs>(
+  async updateApplicationDecisionIni<
+    T extends Prisma.ApplicationDecisionIniUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionIniUpdateArgs>
-  ): Promise<ApplicationDecisionIni> {
+  ): Promise<PrismaApplicationDecisionIni> {
     return this.prisma.applicationDecisionIni.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicationDecisionIniDeleteArgs>(
+  async deleteApplicationDecisionIni<
+    T extends Prisma.ApplicationDecisionIniDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionIniDeleteArgs>
-  ): Promise<ApplicationDecisionIni> {
+  ): Promise<PrismaApplicationDecisionIni> {
     return this.prisma.applicationDecisionIni.delete(args);
   }
 }

@@ -12,16 +12,16 @@ export const ProgramGroupCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Period Id" source="periodId" />
-        <TextInput
-          label="Program Group Description"
-          source="programGroupDescription"
-        />
+        <NumberInput step={1} label="Unit Id" source="unitId" />
         <TextInput label="Program Group Name" source="programGroupName" />
         <TextInput
           label="Program Group Name Short"
           source="programGroupNameShort"
         />
-        <NumberInput step={1} label="Unit Id" source="unitId" />
+        <TextInput
+          label="Program Group Description"
+          source="programGroupDescription"
+        />
       </SimpleForm>
     </Create>
   );

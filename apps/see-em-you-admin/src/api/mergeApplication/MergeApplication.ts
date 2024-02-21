@@ -1,9 +1,9 @@
 export type MergeApplication = {
-  baseConvertError: number | null;
-  baseConvertMessage: string | null;
   baseWriteError: number | null;
   baseWriteMessage: string | null;
-  id: number;
+  baseConvertError: number | null;
+  baseConvertMessage: string | null;
   searchTextWriteError: number | null;
   searchTextWriteMessage: string | null;
+  id: number;
 };

@@ -13,15 +13,15 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsConversationCommentArgs } from "./CreateMhciPrereqsConversationCommentArgs";
-import { UpdateMhciPrereqsConversationCommentArgs } from "./UpdateMhciPrereqsConversationCommentArgs";
-import { DeleteMhciPrereqsConversationCommentArgs } from "./DeleteMhciPrereqsConversationCommentArgs";
+import { MhciPrereqsConversationComment } from "./MhciPrereqsConversationComment";
 import { MhciPrereqsConversationCommentCountArgs } from "./MhciPrereqsConversationCommentCountArgs";
 import { MhciPrereqsConversationCommentFindManyArgs } from "./MhciPrereqsConversationCommentFindManyArgs";
 import { MhciPrereqsConversationCommentFindUniqueArgs } from "./MhciPrereqsConversationCommentFindUniqueArgs";
-import { MhciPrereqsConversationComment } from "./MhciPrereqsConversationComment";
-import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
+import { CreateMhciPrereqsConversationCommentArgs } from "./CreateMhciPrereqsConversationCommentArgs";
+import { UpdateMhciPrereqsConversationCommentArgs } from "./UpdateMhciPrereqsConversationCommentArgs";
+import { DeleteMhciPrereqsConversationCommentArgs } from "./DeleteMhciPrereqsConversationCommentArgs";
 import { MhciPrereq } from "../../mhciPrereq/base/MhciPrereq";
+import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 import { MhciPrereqsConversationCommentService } from "../mhciPrereqsConversationComment.service";
 @graphql.Resolver(() => MhciPrereqsConversationComment)
 export class MhciPrereqsConversationCommentResolverBase {
@@ -42,14 +42,14 @@ export class MhciPrereqsConversationCommentResolverBase {
   async mhciPrereqsConversationComments(
     @graphql.Args() args: MhciPrereqsConversationCommentFindManyArgs
   ): Promise<MhciPrereqsConversationComment[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsConversationComments(args);
   }
 
   @graphql.Query(() => MhciPrereqsConversationComment, { nullable: true })
   async mhciPrereqsConversationComment(
     @graphql.Args() args: MhciPrereqsConversationCommentFindUniqueArgs
   ): Promise<MhciPrereqsConversationComment | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsConversationComment(args);
     if (result === null) {
       return null;
     }
@@ -60,17 +60,17 @@ export class MhciPrereqsConversationCommentResolverBase {
   async createMhciPrereqsConversationComment(
     @graphql.Args() args: CreateMhciPrereqsConversationCommentArgs
   ): Promise<MhciPrereqsConversationComment> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsConversationComment({
       ...args,
       data: {
         ...args.data,
 
-        luUsersUsertypes: {
-          connect: args.data.luUsersUsertypes,
-        },
-
         mhciPrereqs: {
           connect: args.data.mhciPrereqs,
+        },
+
+        luUsersUsertypes: {
+          connect: args.data.luUsersUsertypes,
         },
       },
     });
@@ -81,17 +81,17 @@ export class MhciPrereqsConversationCommentResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsConversationCommentArgs
   ): Promise<MhciPrereqsConversationComment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsConversationComment({
         ...args,
         data: {
           ...args.data,
 
-          luUsersUsertypes: {
-            connect: args.data.luUsersUsertypes,
-          },
-
           mhciPrereqs: {
             connect: args.data.mhciPrereqs,
+          },
+
+          luUsersUsertypes: {
+            connect: args.data.luUsersUsertypes,
           },
         },
       });
@@ -110,7 +110,7 @@ export class MhciPrereqsConversationCommentResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsConversationCommentArgs
   ): Promise<MhciPrereqsConversationComment | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsConversationComment(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -121,14 +121,14 @@ export class MhciPrereqsConversationCommentResolverBase {
     }
   }
 
-  @graphql.ResolveField(() => LuUsersUsertype, {
+  @graphql.ResolveField(() => MhciPrereq, {
     nullable: true,
-    name: "luUsersUsertypes",
+    name: "mhciPrereqs",
   })
-  async resolveFieldLuUsersUsertypes(
+  async getMhciPrereqs(
     @graphql.Parent() parent: MhciPrereqsConversationComment
-  ): Promise<LuUsersUsertype | null> {
-    const result = await this.service.getLuUsersUsertypes(parent.id);
+  ): Promise<MhciPrereq | null> {
+    const result = await this.service.getMhciPrereqs(parent.id);
 
     if (!result) {
       return null;
@@ -136,14 +136,14 @@ export class MhciPrereqsConversationCommentResolverBase {
     return result;
   }
 
-  @graphql.ResolveField(() => MhciPrereq, {
+  @graphql.ResolveField(() => LuUsersUsertype, {
     nullable: true,
-    name: "mhciPrereqs",
+    name: "luUsersUsertypes",
   })
-  async resolveFieldMhciPrereqs(
+  async getLuUsersUsertypes(
     @graphql.Parent() parent: MhciPrereqsConversationComment
-  ): Promise<MhciPrereq | null> {
-    const result = await this.service.getMhciPrereqs(parent.id);
+  ): Promise<LuUsersUsertype | null> {
+    const result = await this.service.getLuUsersUsertypes(parent.id);
 
     if (!result) {
       return null;

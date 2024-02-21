@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateVideoEssayArgs } from "./CreateVideoEssayArgs";
-import { UpdateVideoEssayArgs } from "./UpdateVideoEssayArgs";
-import { DeleteVideoEssayArgs } from "./DeleteVideoEssayArgs";
+import { VideoEssay } from "./VideoEssay";
 import { VideoEssayCountArgs } from "./VideoEssayCountArgs";
 import { VideoEssayFindManyArgs } from "./VideoEssayFindManyArgs";
 import { VideoEssayFindUniqueArgs } from "./VideoEssayFindUniqueArgs";
-import { VideoEssay } from "./VideoEssay";
+import { CreateVideoEssayArgs } from "./CreateVideoEssayArgs";
+import { UpdateVideoEssayArgs } from "./UpdateVideoEssayArgs";
+import { DeleteVideoEssayArgs } from "./DeleteVideoEssayArgs";
 import { VideoEssayService } from "../videoEssay.service";
 @graphql.Resolver(() => VideoEssay)
 export class VideoEssayResolverBase {
@@ -38,14 +38,14 @@ export class VideoEssayResolverBase {
   async videoEssays(
     @graphql.Args() args: VideoEssayFindManyArgs
   ): Promise<VideoEssay[]> {
-    return this.service.findMany(args);
+    return this.service.videoEssays(args);
   }
 
   @graphql.Query(() => VideoEssay, { nullable: true })
   async videoEssay(
     @graphql.Args() args: VideoEssayFindUniqueArgs
   ): Promise<VideoEssay | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.videoEssay(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class VideoEssayResolverBase {
   async createVideoEssay(
     @graphql.Args() args: CreateVideoEssayArgs
   ): Promise<VideoEssay> {
-    return await this.service.create({
+    return await this.service.createVideoEssay({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class VideoEssayResolverBase {
     @graphql.Args() args: UpdateVideoEssayArgs
   ): Promise<VideoEssay | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVideoEssay({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class VideoEssayResolverBase {
     @graphql.Args() args: DeleteVideoEssayArgs
   ): Promise<VideoEssay | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteVideoEssay(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -24,7 +24,7 @@ class AdvisorUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  departmentId?: number;
+  userId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class AdvisorUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  userId?: number;
+  departmentId?: number;
 }
 
 export { AdvisorUpdateInput as AdvisorUpdateInput };

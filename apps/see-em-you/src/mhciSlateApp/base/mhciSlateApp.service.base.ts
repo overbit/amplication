@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MhciSlateApp } from "@prisma/client";
+import { Prisma, MhciSlateApp as PrismaMhciSlateApp } from "@prisma/client";
 
 export class MhciSlateAppServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MhciSlateAppServiceBase {
     return this.prisma.mhciSlateApp.count(args);
   }
 
-  async findMany<T extends Prisma.MhciSlateAppFindManyArgs>(
+  async mhciSlateApps<T extends Prisma.MhciSlateAppFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateAppFindManyArgs>
-  ): Promise<MhciSlateApp[]> {
+  ): Promise<PrismaMhciSlateApp[]> {
     return this.prisma.mhciSlateApp.findMany(args);
   }
-  async findOne<T extends Prisma.MhciSlateAppFindUniqueArgs>(
+  async mhciSlateApp<T extends Prisma.MhciSlateAppFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateAppFindUniqueArgs>
-  ): Promise<MhciSlateApp | null> {
+  ): Promise<PrismaMhciSlateApp | null> {
     return this.prisma.mhciSlateApp.findUnique(args);
   }
-  async create<T extends Prisma.MhciSlateAppCreateArgs>(
+  async createMhciSlateApp<T extends Prisma.MhciSlateAppCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateAppCreateArgs>
-  ): Promise<MhciSlateApp> {
+  ): Promise<PrismaMhciSlateApp> {
     return this.prisma.mhciSlateApp.create<T>(args);
   }
-  async update<T extends Prisma.MhciSlateAppUpdateArgs>(
+  async updateMhciSlateApp<T extends Prisma.MhciSlateAppUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateAppUpdateArgs>
-  ): Promise<MhciSlateApp> {
+  ): Promise<PrismaMhciSlateApp> {
     return this.prisma.mhciSlateApp.update<T>(args);
   }
-  async delete<T extends Prisma.MhciSlateAppDeleteArgs>(
+  async deleteMhciSlateApp<T extends Prisma.MhciSlateAppDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateAppDeleteArgs>
-  ): Promise<MhciSlateApp> {
+  ): Promise<PrismaMhciSlateApp> {
     return this.prisma.mhciSlateApp.delete(args);
   }
 }

@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
 
@@ -12,6 +12,8 @@ export const RissMcnairShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Site" source="site" />
+        <TextField label="Contact" source="contact" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -19,9 +21,7 @@ export const RissMcnairShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Contact" source="contact" />
         <TextField label="Id" source="id" />
-        <TextField label="Site" source="site" />
       </SimpleShowLayout>
     </Show>
   );

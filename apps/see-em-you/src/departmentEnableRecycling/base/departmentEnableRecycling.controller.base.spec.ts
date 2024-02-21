@@ -19,41 +19,41 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   departmentId: 42,
-  enableRecycling: 42,
-  id: "exampleId",
   periodId: 42,
+  enableRecycling: 42,
   usersId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
   departmentId: 42,
-  enableRecycling: 42,
-  id: "exampleId",
   periodId: 42,
+  enableRecycling: 42,
   usersId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     departmentId: 42,
-    enableRecycling: 42,
-    id: "exampleId",
     periodId: 42,
+    enableRecycling: 42,
     usersId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   departmentId: 42,
-  enableRecycling: 42,
-  id: "exampleId",
   periodId: 42,
+  enableRecycling: 42,
   usersId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createDepartmentEnableRecycling() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  departmentEnableRecyclings: () => FIND_MANY_RESULT,
+  departmentEnableRecycling: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

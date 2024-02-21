@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, EtsGreCopy } from "@prisma/client";
+import { Prisma, EtsGreCopy as PrismaEtsGreCopy } from "@prisma/client";
 
 export class EtsGreCopyServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class EtsGreCopyServiceBase {
     return this.prisma.etsGreCopy.count(args);
   }
 
-  async findMany<T extends Prisma.EtsGreCopyFindManyArgs>(
+  async etsGreCopies<T extends Prisma.EtsGreCopyFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreCopyFindManyArgs>
-  ): Promise<EtsGreCopy[]> {
+  ): Promise<PrismaEtsGreCopy[]> {
     return this.prisma.etsGreCopy.findMany(args);
   }
-  async findOne<T extends Prisma.EtsGreCopyFindUniqueArgs>(
+  async etsGreCopy<T extends Prisma.EtsGreCopyFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreCopyFindUniqueArgs>
-  ): Promise<EtsGreCopy | null> {
+  ): Promise<PrismaEtsGreCopy | null> {
     return this.prisma.etsGreCopy.findUnique(args);
   }
-  async create<T extends Prisma.EtsGreCopyCreateArgs>(
+  async createEtsGreCopy<T extends Prisma.EtsGreCopyCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreCopyCreateArgs>
-  ): Promise<EtsGreCopy> {
+  ): Promise<PrismaEtsGreCopy> {
     return this.prisma.etsGreCopy.create<T>(args);
   }
-  async update<T extends Prisma.EtsGreCopyUpdateArgs>(
+  async updateEtsGreCopy<T extends Prisma.EtsGreCopyUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreCopyUpdateArgs>
-  ): Promise<EtsGreCopy> {
+  ): Promise<PrismaEtsGreCopy> {
     return this.prisma.etsGreCopy.update<T>(args);
   }
-  async delete<T extends Prisma.EtsGreCopyDeleteArgs>(
+  async deleteEtsGreCopy<T extends Prisma.EtsGreCopyDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.EtsGreCopyDeleteArgs>
-  ): Promise<EtsGreCopy> {
+  ): Promise<PrismaEtsGreCopy> {
     return this.prisma.etsGreCopy.delete(args);
   }
 }

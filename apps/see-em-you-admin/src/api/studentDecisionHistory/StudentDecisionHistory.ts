@@ -1,11 +1,11 @@
 import { Application } from "../application/Application";
 
 export type StudentDecisionHistory = {
-  application?: Application | null;
+  programId: number | null;
   decision: string | null;
   deferralSemester: string | null;
   deferralYear: string | null;
-  id: number;
   insertDate: Date;
-  programId: number | null;
+  application?: Application | null;
+  id: number;
 };

@@ -35,17 +35,6 @@ class LanguageAssessmentUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  competencyEvidence?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   language?: string;
 
   @ApiProperty({
@@ -68,7 +57,7 @@ class LanguageAssessmentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  nativeSpeaker?: number | null;
+  speaking?: number;
 
   @ApiProperty({
     required: false,
@@ -90,7 +79,29 @@ class LanguageAssessmentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  speaking?: number;
+  writing?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  nativeSpeaker?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  yearsStudy?: number | null;
 
   @ApiProperty({
     required: false,
@@ -105,25 +116,14 @@ class LanguageAssessmentUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  writing?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  yearsStudy?: number | null;
+  competencyEvidence?: string | null;
 }
 
 export { LanguageAssessmentUpdateInput as LanguageAssessmentUpdateInput };

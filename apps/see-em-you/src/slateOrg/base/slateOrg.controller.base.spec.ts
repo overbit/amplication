@@ -18,79 +18,79 @@ import { SlateOrgService } from "../slateOrg.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  category: "exampleCategory",
-  city: "exampleCity",
-  country: "exampleCountry",
-  id: "exampleId",
+  status: "exampleStatus",
   localName: "exampleLocalName",
+  sharedName: "exampleSharedName",
+  street: "exampleStreet",
+  city: "exampleCity",
+  region: "exampleRegion",
+  postal: "examplePostal",
+  country: "exampleCountry",
+  category: "exampleCategory",
+  orgType: "exampleOrgType",
+  numRecordsWithSchoolKeyInDatabase: "exampleNumRecordsWithSchoolKeyInDatabase",
   numActiveApplicationsWithSchoolKeyInDatabase:
     "exampleNumActiveApplicationsWithSchoolKeyInDatabase",
-  numRecordsWithSchoolKeyInDatabase: "exampleNumRecordsWithSchoolKeyInDatabase",
-  orgType: "exampleOrgType",
-  postal: "examplePostal",
-  region: "exampleRegion",
-  sharedName: "exampleSharedName",
-  status: "exampleStatus",
-  street: "exampleStreet",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  category: "exampleCategory",
-  city: "exampleCity",
-  country: "exampleCountry",
-  id: "exampleId",
+  status: "exampleStatus",
   localName: "exampleLocalName",
+  sharedName: "exampleSharedName",
+  street: "exampleStreet",
+  city: "exampleCity",
+  region: "exampleRegion",
+  postal: "examplePostal",
+  country: "exampleCountry",
+  category: "exampleCategory",
+  orgType: "exampleOrgType",
+  numRecordsWithSchoolKeyInDatabase: "exampleNumRecordsWithSchoolKeyInDatabase",
   numActiveApplicationsWithSchoolKeyInDatabase:
     "exampleNumActiveApplicationsWithSchoolKeyInDatabase",
-  numRecordsWithSchoolKeyInDatabase: "exampleNumRecordsWithSchoolKeyInDatabase",
-  orgType: "exampleOrgType",
-  postal: "examplePostal",
-  region: "exampleRegion",
-  sharedName: "exampleSharedName",
-  status: "exampleStatus",
-  street: "exampleStreet",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    category: "exampleCategory",
-    city: "exampleCity",
-    country: "exampleCountry",
-    id: "exampleId",
+    status: "exampleStatus",
     localName: "exampleLocalName",
-    numActiveApplicationsWithSchoolKeyInDatabase:
-      "exampleNumActiveApplicationsWithSchoolKeyInDatabase",
+    sharedName: "exampleSharedName",
+    street: "exampleStreet",
+    city: "exampleCity",
+    region: "exampleRegion",
+    postal: "examplePostal",
+    country: "exampleCountry",
+    category: "exampleCategory",
+    orgType: "exampleOrgType",
     numRecordsWithSchoolKeyInDatabase:
       "exampleNumRecordsWithSchoolKeyInDatabase",
-    orgType: "exampleOrgType",
-    postal: "examplePostal",
-    region: "exampleRegion",
-    sharedName: "exampleSharedName",
-    status: "exampleStatus",
-    street: "exampleStreet",
+    numActiveApplicationsWithSchoolKeyInDatabase:
+      "exampleNumActiveApplicationsWithSchoolKeyInDatabase",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  category: "exampleCategory",
-  city: "exampleCity",
-  country: "exampleCountry",
-  id: "exampleId",
+  status: "exampleStatus",
   localName: "exampleLocalName",
+  sharedName: "exampleSharedName",
+  street: "exampleStreet",
+  city: "exampleCity",
+  region: "exampleRegion",
+  postal: "examplePostal",
+  country: "exampleCountry",
+  category: "exampleCategory",
+  orgType: "exampleOrgType",
+  numRecordsWithSchoolKeyInDatabase: "exampleNumRecordsWithSchoolKeyInDatabase",
   numActiveApplicationsWithSchoolKeyInDatabase:
     "exampleNumActiveApplicationsWithSchoolKeyInDatabase",
-  numRecordsWithSchoolKeyInDatabase: "exampleNumRecordsWithSchoolKeyInDatabase",
-  orgType: "exampleOrgType",
-  postal: "examplePostal",
-  region: "exampleRegion",
-  sharedName: "exampleSharedName",
-  status: "exampleStatus",
-  street: "exampleStreet",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createSlateOrg() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slateOrgs: () => FIND_MANY_RESULT,
+  slateOrg: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

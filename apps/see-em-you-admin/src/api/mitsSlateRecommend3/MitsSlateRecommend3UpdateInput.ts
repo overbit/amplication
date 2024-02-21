@@ -1,17 +1,17 @@
 export type MitsSlateRecommend3UpdateInput = {
-  first?: string | null;
-  last?: string | null;
-  middle?: string | null;
   prefix?: string | null;
-  reference3Email?: string | null;
-  reference3First?: string | null;
-  reference3Industry?: string | null;
-  reference3Last?: string | null;
-  reference3Organization?: string | null;
-  reference3Phone?: string | null;
-  reference3Submitted?: string | null;
-  reference3Title?: string | null;
+  first?: string | null;
+  middle?: string | null;
+  last?: string | null;
   reference3Type?: string | null;
+  reference3Submitted?: string | null;
+  reference3First?: string | null;
+  reference3Last?: string | null;
+  reference3Industry?: string | null;
+  reference3Organization?: string | null;
+  reference3Title?: string | null;
+  reference3Email?: string | null;
+  reference3Phone?: string | null;
   referenceNum3IsrmsRecommenderScore1?: string | null;
   referenceNum3IsrmsRecommenderScore10?: string | null;
   referenceNum3IsrmsRecommenderScore11?: string | null;

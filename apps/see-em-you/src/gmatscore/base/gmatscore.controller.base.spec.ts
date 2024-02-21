@@ -18,70 +18,70 @@ import { GmatscoreService } from "../gmatscore.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  analyticalwritingpercentile: 42,
-  analyticalwritingscore: 42.424242424,
-  datafileId: 42,
-  id: 42,
-  quantitativepercentile: 42,
-  quantitativescore: 42,
   scorereceived: "true",
   testdate: new Date(),
-  totalpercentile: 42,
-  totalscore: 42,
-  verbalpercentile: 42,
   verbalscore: 42,
+  verbalpercentile: 42,
+  quantitativescore: 42,
+  quantitativepercentile: 42,
+  totalscore: 42,
+  totalpercentile: 42,
+  analyticalwritingscore: 42.424242424,
+  analyticalwritingpercentile: 42,
+  datafileId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  analyticalwritingpercentile: 42,
-  analyticalwritingscore: 42.424242424,
-  datafileId: 42,
-  id: 42,
-  quantitativepercentile: 42,
-  quantitativescore: 42,
   scorereceived: "true",
   testdate: new Date(),
-  totalpercentile: 42,
-  totalscore: 42,
-  verbalpercentile: 42,
   verbalscore: 42,
+  verbalpercentile: 42,
+  quantitativescore: 42,
+  quantitativepercentile: 42,
+  totalscore: 42,
+  totalpercentile: 42,
+  analyticalwritingscore: 42.424242424,
+  analyticalwritingpercentile: 42,
+  datafileId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    analyticalwritingpercentile: 42,
-    analyticalwritingscore: 42.424242424,
-    datafileId: 42,
-    id: 42,
-    quantitativepercentile: 42,
-    quantitativescore: 42,
     scorereceived: "true",
     testdate: new Date(),
-    totalpercentile: 42,
-    totalscore: 42,
-    verbalpercentile: 42,
     verbalscore: 42,
+    verbalpercentile: 42,
+    quantitativescore: 42,
+    quantitativepercentile: 42,
+    totalscore: 42,
+    totalpercentile: 42,
+    analyticalwritingscore: 42.424242424,
+    analyticalwritingpercentile: 42,
+    datafileId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  analyticalwritingpercentile: 42,
-  analyticalwritingscore: 42.424242424,
-  datafileId: 42,
-  id: 42,
-  quantitativepercentile: 42,
-  quantitativescore: 42,
   scorereceived: "true",
   testdate: new Date(),
-  totalpercentile: 42,
-  totalscore: 42,
-  verbalpercentile: 42,
   verbalscore: 42,
+  verbalpercentile: 42,
+  quantitativescore: 42,
+  quantitativepercentile: 42,
+  totalscore: 42,
+  totalpercentile: 42,
+  analyticalwritingscore: 42.424242424,
+  analyticalwritingpercentile: 42,
+  datafileId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createGmatscore() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  gmatscores: () => FIND_MANY_RESULT,
+  gmatscore: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

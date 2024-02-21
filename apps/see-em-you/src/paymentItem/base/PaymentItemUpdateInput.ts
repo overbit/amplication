@@ -27,6 +27,17 @@ class PaymentItemUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  paymentItemId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   paymentId?: number;
 
   @ApiProperty({
@@ -39,17 +50,6 @@ class PaymentItemUpdateInput {
     nullable: true,
   })
   paymentItemAmount?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  paymentItemId?: number;
 
   @ApiProperty({
     required: false,

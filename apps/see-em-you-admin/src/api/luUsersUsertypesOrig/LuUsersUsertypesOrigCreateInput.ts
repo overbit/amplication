@@ -1,5 +1,5 @@
 export type LuUsersUsertypesOrigCreateInput = {
-  domain?: number | null;
   userId: number;
   usertypeId: number;
+  domain?: number | null;
 };

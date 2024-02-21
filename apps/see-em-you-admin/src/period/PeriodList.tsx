@@ -12,13 +12,13 @@ export const PeriodList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Description" source="description" />
-        <TextField label="End Date" source="endDate" />
-        <TextField label="Id" source="id" />
-        <TextField label="Parent Period Id" source="parentPeriodId" />
-        <TextField label="Period Type Id" source="periodTypeId" />
-        <TextField label="Start Date" source="startDate" />
         <TextField label="Unit Id" source="unitId" />
+        <TextField label="Period Type Id" source="periodTypeId" />
+        <TextField label="Description" source="description" />
+        <TextField label="Start Date" source="startDate" />
+        <TextField label="End Date" source="endDate" />
+        <TextField label="Parent Period Id" source="parentPeriodId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

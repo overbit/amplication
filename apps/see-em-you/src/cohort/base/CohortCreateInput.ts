@@ -11,9 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, ValidateNested, IsOptional, IsDate } from "class-validator";
-import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
+import { IsInt, IsDate, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
 
 @InputType()
 class CohortCreateInput {
@@ -23,7 +23,15 @@ class CohortCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  closed!: number;
+  cohortId!: number;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  startDate!: Date;
 
   @ApiProperty({
     required: true,
@@ -31,7 +39,7 @@ class CohortCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  cohortId!: number;
+  closed!: number;
 
   @ApiProperty({
     required: false,
@@ -44,14 +52,6 @@ class CohortCreateInput {
     nullable: true,
   })
   period?: PeriodWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  startDate!: Date;
 }
 
 export { CohortCreateInput as CohortCreateInput };

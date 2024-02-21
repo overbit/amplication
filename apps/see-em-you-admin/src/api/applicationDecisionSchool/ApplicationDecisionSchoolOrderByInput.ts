@@ -1,10 +1,10 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type ApplicationDecisionSchoolOrderByInput = {
-  accepted?: SortOrder;
   applicationId?: SortOrder;
-  id?: SortOrder;
-  name?: SortOrder;
-  periodId?: SortOrder;
   programId?: SortOrder;
+  periodId?: SortOrder;
+  name?: SortOrder;
+  accepted?: SortOrder;
+  id?: SortOrder;
 };

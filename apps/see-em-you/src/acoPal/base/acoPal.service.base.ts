@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, AcoPal, Application } from "@prisma/client";
+import {
+  Prisma,
+  AcoPal as PrismaAcoPal,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class AcoPalServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class AcoPalServiceBase {
     return this.prisma.acoPal.count(args);
   }
 
-  async findMany<T extends Prisma.AcoPalFindManyArgs>(
+  async acoPals<T extends Prisma.AcoPalFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AcoPalFindManyArgs>
-  ): Promise<AcoPal[]> {
+  ): Promise<PrismaAcoPal[]> {
     return this.prisma.acoPal.findMany(args);
   }
-  async findOne<T extends Prisma.AcoPalFindUniqueArgs>(
+  async acoPal<T extends Prisma.AcoPalFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AcoPalFindUniqueArgs>
-  ): Promise<AcoPal | null> {
+  ): Promise<PrismaAcoPal | null> {
     return this.prisma.acoPal.findUnique(args);
   }
-  async create<T extends Prisma.AcoPalCreateArgs>(
+  async createAcoPal<T extends Prisma.AcoPalCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AcoPalCreateArgs>
-  ): Promise<AcoPal> {
+  ): Promise<PrismaAcoPal> {
     return this.prisma.acoPal.create<T>(args);
   }
-  async update<T extends Prisma.AcoPalUpdateArgs>(
+  async updateAcoPal<T extends Prisma.AcoPalUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AcoPalUpdateArgs>
-  ): Promise<AcoPal> {
+  ): Promise<PrismaAcoPal> {
     return this.prisma.acoPal.update<T>(args);
   }
-  async delete<T extends Prisma.AcoPalDeleteArgs>(
+  async deleteAcoPal<T extends Prisma.AcoPalDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AcoPalDeleteArgs>
-  ): Promise<AcoPal> {
+  ): Promise<PrismaAcoPal> {
     return this.prisma.acoPal.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.acoPal
       .findUnique({
         where: { id: parentId },

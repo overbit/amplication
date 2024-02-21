@@ -6,9 +6,9 @@ export const BlacklistReviewerShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="App Id" source="appId" />
+        <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Deny" source="deny" />
         <TextField label="Id" source="id" />
-        <TextField label="Reviewer Id" source="reviewerId" />
       </SimpleShowLayout>
     </Show>
   );

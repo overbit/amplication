@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ProgramGroupGroupType } from "@prisma/client";
+import {
+  Prisma,
+  ProgramGroupGroupType as PrismaProgramGroupGroupType,
+} from "@prisma/client";
 
 export class ProgramGroupGroupTypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ProgramGroupGroupTypeServiceBase {
     return this.prisma.programGroupGroupType.count(args);
   }
 
-  async findMany<T extends Prisma.ProgramGroupGroupTypeFindManyArgs>(
+  async programGroupGroupTypes<
+    T extends Prisma.ProgramGroupGroupTypeFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupGroupTypeFindManyArgs>
-  ): Promise<ProgramGroupGroupType[]> {
+  ): Promise<PrismaProgramGroupGroupType[]> {
     return this.prisma.programGroupGroupType.findMany(args);
   }
-  async findOne<T extends Prisma.ProgramGroupGroupTypeFindUniqueArgs>(
+  async programGroupGroupType<
+    T extends Prisma.ProgramGroupGroupTypeFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupGroupTypeFindUniqueArgs>
-  ): Promise<ProgramGroupGroupType | null> {
+  ): Promise<PrismaProgramGroupGroupType | null> {
     return this.prisma.programGroupGroupType.findUnique(args);
   }
-  async create<T extends Prisma.ProgramGroupGroupTypeCreateArgs>(
+  async createProgramGroupGroupType<
+    T extends Prisma.ProgramGroupGroupTypeCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupGroupTypeCreateArgs>
-  ): Promise<ProgramGroupGroupType> {
+  ): Promise<PrismaProgramGroupGroupType> {
     return this.prisma.programGroupGroupType.create<T>(args);
   }
-  async update<T extends Prisma.ProgramGroupGroupTypeUpdateArgs>(
+  async updateProgramGroupGroupType<
+    T extends Prisma.ProgramGroupGroupTypeUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupGroupTypeUpdateArgs>
-  ): Promise<ProgramGroupGroupType> {
+  ): Promise<PrismaProgramGroupGroupType> {
     return this.prisma.programGroupGroupType.update<T>(args);
   }
-  async delete<T extends Prisma.ProgramGroupGroupTypeDeleteArgs>(
+  async deleteProgramGroupGroupType<
+    T extends Prisma.ProgramGroupGroupTypeDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupGroupTypeDeleteArgs>
-  ): Promise<ProgramGroupGroupType> {
+  ): Promise<PrismaProgramGroupGroupType> {
     return this.prisma.programGroupGroupType.delete(args);
   }
 }

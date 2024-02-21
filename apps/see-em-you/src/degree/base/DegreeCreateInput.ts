@@ -26,6 +26,14 @@ class DegreeCreateInput {
   name!: string;
 
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  short!: string;
+
+  @ApiProperty({
     required: false,
     type: () => ProgramModelCreateNestedManyWithoutDegreesInput,
   })
@@ -36,14 +44,6 @@ class DegreeCreateInput {
     nullable: true,
   })
   programs?: ProgramModelCreateNestedManyWithoutDegreesInput;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  short!: string;
 }
 
 export { DegreeCreateInput as DegreeCreateInput };

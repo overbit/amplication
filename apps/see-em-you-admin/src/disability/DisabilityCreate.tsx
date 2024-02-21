@@ -6,8 +6,8 @@ export const DisabilityCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Disability Type" source="disabilityType" />
         <NumberInput step={1} label="Has Disability" source="hasDisability" />
+        <NumberInput step={1} label="Disability Type" source="disabilityType" />
       </SimpleForm>
     </Create>
   );

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateEmail2AwUserArgs } from "./CreateSlateEmail2AwUserArgs";
-import { UpdateSlateEmail2AwUserArgs } from "./UpdateSlateEmail2AwUserArgs";
-import { DeleteSlateEmail2AwUserArgs } from "./DeleteSlateEmail2AwUserArgs";
+import { SlateEmail2AwUser } from "./SlateEmail2AwUser";
 import { SlateEmail2AwUserCountArgs } from "./SlateEmail2AwUserCountArgs";
 import { SlateEmail2AwUserFindManyArgs } from "./SlateEmail2AwUserFindManyArgs";
 import { SlateEmail2AwUserFindUniqueArgs } from "./SlateEmail2AwUserFindUniqueArgs";
-import { SlateEmail2AwUser } from "./SlateEmail2AwUser";
+import { CreateSlateEmail2AwUserArgs } from "./CreateSlateEmail2AwUserArgs";
+import { UpdateSlateEmail2AwUserArgs } from "./UpdateSlateEmail2AwUserArgs";
+import { DeleteSlateEmail2AwUserArgs } from "./DeleteSlateEmail2AwUserArgs";
 import { SlateEmail2AwUserService } from "../slateEmail2AwUser.service";
 @graphql.Resolver(() => SlateEmail2AwUser)
 export class SlateEmail2AwUserResolverBase {
@@ -38,14 +38,14 @@ export class SlateEmail2AwUserResolverBase {
   async slateEmail2AwUsers(
     @graphql.Args() args: SlateEmail2AwUserFindManyArgs
   ): Promise<SlateEmail2AwUser[]> {
-    return this.service.findMany(args);
+    return this.service.slateEmail2AwUsers(args);
   }
 
   @graphql.Query(() => SlateEmail2AwUser, { nullable: true })
   async slateEmail2AwUser(
     @graphql.Args() args: SlateEmail2AwUserFindUniqueArgs
   ): Promise<SlateEmail2AwUser | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateEmail2AwUser(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateEmail2AwUserResolverBase {
   async createSlateEmail2AwUser(
     @graphql.Args() args: CreateSlateEmail2AwUserArgs
   ): Promise<SlateEmail2AwUser> {
-    return await this.service.create({
+    return await this.service.createSlateEmail2AwUser({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateEmail2AwUserResolverBase {
     @graphql.Args() args: UpdateSlateEmail2AwUserArgs
   ): Promise<SlateEmail2AwUser | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateEmail2AwUser({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateEmail2AwUserResolverBase {
     @graphql.Args() args: DeleteSlateEmail2AwUserArgs
   ): Promise<SlateEmail2AwUser | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateEmail2AwUser(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

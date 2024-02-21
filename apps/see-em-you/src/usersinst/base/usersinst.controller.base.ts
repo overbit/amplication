@@ -18,46 +18,47 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UsersinstService } from "../usersinst.service";
 import { UsersinstCreateInput } from "./UsersinstCreateInput";
-import { UsersinstWhereInput } from "./UsersinstWhereInput";
-import { UsersinstWhereUniqueInput } from "./UsersinstWhereUniqueInput";
-import { UsersinstFindManyArgs } from "./UsersinstFindManyArgs";
-import { UsersinstUpdateInput } from "./UsersinstUpdateInput";
 import { Usersinst } from "./Usersinst";
+import { UsersinstFindManyArgs } from "./UsersinstFindManyArgs";
+import { UsersinstWhereUniqueInput } from "./UsersinstWhereUniqueInput";
+import { UsersinstUpdateInput } from "./UsersinstUpdateInput";
 
 export class UsersinstControllerBase {
   constructor(protected readonly service: UsersinstService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Usersinst })
-  async create(@common.Body() data: UsersinstCreateInput): Promise<Usersinst> {
-    return await this.service.create({
+  async createUsersinst(
+    @common.Body() data: UsersinstCreateInput
+  ): Promise<Usersinst> {
+    return await this.service.createUsersinst({
       data: data,
       select: {
+        userId: true,
         applicationId: true,
-        classRank: true,
+        instituteId: true,
         collegeName: true,
-        convertedGpa: true,
-        datafileId: true,
         dateEntered: true,
         dateGrad: true,
         dateLeft: true,
         degree: true,
         degreeLevel: true,
         degreeLevelOther: true,
-        educationtype: true,
-        gpa: true,
-        gpaMajor: true,
-        gpaScale: true,
-        id: true,
-        instituteId: true,
-        joint: true,
-        jointInstituteId: true,
         major1: true,
         major2: true,
         major3: true,
         minor1: true,
         minor2: true,
+        gpa: true,
+        gpaMajor: true,
+        gpaScale: true,
         transscriptreceived: true,
-        userId: true,
+        datafileId: true,
+        educationtype: true,
+        classRank: true,
+        convertedGpa: true,
+        joint: true,
+        jointInstituteId: true,
+        id: true,
       },
     });
   }
@@ -65,37 +66,37 @@ export class UsersinstControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Usersinst] })
   @ApiNestedQuery(UsersinstFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Usersinst[]> {
+  async usersinsts(@common.Req() request: Request): Promise<Usersinst[]> {
     const args = plainToClass(UsersinstFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.usersinsts({
       ...args,
       select: {
+        userId: true,
         applicationId: true,
-        classRank: true,
+        instituteId: true,
         collegeName: true,
-        convertedGpa: true,
-        datafileId: true,
         dateEntered: true,
         dateGrad: true,
         dateLeft: true,
         degree: true,
         degreeLevel: true,
         degreeLevelOther: true,
-        educationtype: true,
-        gpa: true,
-        gpaMajor: true,
-        gpaScale: true,
-        id: true,
-        instituteId: true,
-        joint: true,
-        jointInstituteId: true,
         major1: true,
         major2: true,
         major3: true,
         minor1: true,
         minor2: true,
+        gpa: true,
+        gpaMajor: true,
+        gpaScale: true,
         transscriptreceived: true,
-        userId: true,
+        datafileId: true,
+        educationtype: true,
+        classRank: true,
+        convertedGpa: true,
+        joint: true,
+        jointInstituteId: true,
+        id: true,
       },
     });
   }
@@ -103,38 +104,38 @@ export class UsersinstControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Usersinst })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async usersinst(
     @common.Param() params: UsersinstWhereUniqueInput
   ): Promise<Usersinst | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.usersinst({
       where: params,
       select: {
+        userId: true,
         applicationId: true,
-        classRank: true,
+        instituteId: true,
         collegeName: true,
-        convertedGpa: true,
-        datafileId: true,
         dateEntered: true,
         dateGrad: true,
         dateLeft: true,
         degree: true,
         degreeLevel: true,
         degreeLevelOther: true,
-        educationtype: true,
-        gpa: true,
-        gpaMajor: true,
-        gpaScale: true,
-        id: true,
-        instituteId: true,
-        joint: true,
-        jointInstituteId: true,
         major1: true,
         major2: true,
         major3: true,
         minor1: true,
         minor2: true,
+        gpa: true,
+        gpaMajor: true,
+        gpaScale: true,
         transscriptreceived: true,
-        userId: true,
+        datafileId: true,
+        educationtype: true,
+        classRank: true,
+        convertedGpa: true,
+        joint: true,
+        jointInstituteId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -148,41 +149,41 @@ export class UsersinstControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Usersinst })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUsersinst(
     @common.Param() params: UsersinstWhereUniqueInput,
     @common.Body() data: UsersinstUpdateInput
   ): Promise<Usersinst | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsersinst({
         where: params,
         data: data,
         select: {
+          userId: true,
           applicationId: true,
-          classRank: true,
+          instituteId: true,
           collegeName: true,
-          convertedGpa: true,
-          datafileId: true,
           dateEntered: true,
           dateGrad: true,
           dateLeft: true,
           degree: true,
           degreeLevel: true,
           degreeLevelOther: true,
-          educationtype: true,
-          gpa: true,
-          gpaMajor: true,
-          gpaScale: true,
-          id: true,
-          instituteId: true,
-          joint: true,
-          jointInstituteId: true,
           major1: true,
           major2: true,
           major3: true,
           minor1: true,
           minor2: true,
+          gpa: true,
+          gpaMajor: true,
+          gpaScale: true,
           transscriptreceived: true,
-          userId: true,
+          datafileId: true,
+          educationtype: true,
+          classRank: true,
+          convertedGpa: true,
+          joint: true,
+          jointInstituteId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -198,39 +199,39 @@ export class UsersinstControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Usersinst })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUsersinst(
     @common.Param() params: UsersinstWhereUniqueInput
   ): Promise<Usersinst | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUsersinst({
         where: params,
         select: {
+          userId: true,
           applicationId: true,
-          classRank: true,
+          instituteId: true,
           collegeName: true,
-          convertedGpa: true,
-          datafileId: true,
           dateEntered: true,
           dateGrad: true,
           dateLeft: true,
           degree: true,
           degreeLevel: true,
           degreeLevelOther: true,
-          educationtype: true,
-          gpa: true,
-          gpaMajor: true,
-          gpaScale: true,
-          id: true,
-          instituteId: true,
-          joint: true,
-          jointInstituteId: true,
           major1: true,
           major2: true,
           major3: true,
           minor1: true,
           minor2: true,
+          gpa: true,
+          gpaMajor: true,
+          gpaScale: true,
           transscriptreceived: true,
-          userId: true,
+          datafileId: true,
+          educationtype: true,
+          classRank: true,
+          convertedGpa: true,
+          joint: true,
+          jointInstituteId: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -1,9 +1,9 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type VisatypeOrderByInput = {
-  addedFor?: SortOrder;
-  description?: SortOrder;
-  id?: SortOrder;
   name?: SortOrder;
   short?: SortOrder;
+  description?: SortOrder;
+  addedFor?: SortOrder;
+  id?: SortOrder;
 };

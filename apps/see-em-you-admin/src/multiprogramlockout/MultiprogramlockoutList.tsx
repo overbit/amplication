@@ -14,9 +14,9 @@ export const MultiprogramlockoutList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Program Id1" source="programId1" />
         <TextField label="Program Id2" source="programId2" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

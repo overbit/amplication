@@ -24,7 +24,18 @@ class VisatypeUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  addedFor?: string | null;
+  name?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  short?: string;
 
   @ApiProperty({
     required: false,
@@ -46,18 +57,7 @@ class VisatypeUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  name?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  short?: string;
+  addedFor?: string | null;
 }
 
 export { VisatypeUpdateInput as VisatypeUpdateInput };

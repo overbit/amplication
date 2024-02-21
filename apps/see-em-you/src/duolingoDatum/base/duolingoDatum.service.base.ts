@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DuolingoDatum } from "@prisma/client";
+import { Prisma, DuolingoDatum as PrismaDuolingoDatum } from "@prisma/client";
 
 export class DuolingoDatumServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DuolingoDatumServiceBase {
     return this.prisma.duolingoDatum.count(args);
   }
 
-  async findMany<T extends Prisma.DuolingoDatumFindManyArgs>(
+  async duolingoData<T extends Prisma.DuolingoDatumFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDatumFindManyArgs>
-  ): Promise<DuolingoDatum[]> {
+  ): Promise<PrismaDuolingoDatum[]> {
     return this.prisma.duolingoDatum.findMany(args);
   }
-  async findOne<T extends Prisma.DuolingoDatumFindUniqueArgs>(
+  async duolingoDatum<T extends Prisma.DuolingoDatumFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDatumFindUniqueArgs>
-  ): Promise<DuolingoDatum | null> {
+  ): Promise<PrismaDuolingoDatum | null> {
     return this.prisma.duolingoDatum.findUnique(args);
   }
-  async create<T extends Prisma.DuolingoDatumCreateArgs>(
+  async createDuolingoDatum<T extends Prisma.DuolingoDatumCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDatumCreateArgs>
-  ): Promise<DuolingoDatum> {
+  ): Promise<PrismaDuolingoDatum> {
     return this.prisma.duolingoDatum.create<T>(args);
   }
-  async update<T extends Prisma.DuolingoDatumUpdateArgs>(
+  async updateDuolingoDatum<T extends Prisma.DuolingoDatumUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDatumUpdateArgs>
-  ): Promise<DuolingoDatum> {
+  ): Promise<PrismaDuolingoDatum> {
     return this.prisma.duolingoDatum.update<T>(args);
   }
-  async delete<T extends Prisma.DuolingoDatumDeleteArgs>(
+  async deleteDuolingoDatum<T extends Prisma.DuolingoDatumDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDatumDeleteArgs>
-  ): Promise<DuolingoDatum> {
+  ): Promise<PrismaDuolingoDatum> {
     return this.prisma.duolingoDatum.delete(args);
   }
 }

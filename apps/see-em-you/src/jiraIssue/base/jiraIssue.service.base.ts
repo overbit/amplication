@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, JiraIssue } from "@prisma/client";
+import { Prisma, JiraIssue as PrismaJiraIssue } from "@prisma/client";
 
 export class JiraIssueServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class JiraIssueServiceBase {
     return this.prisma.jiraIssue.count(args);
   }
 
-  async findMany<T extends Prisma.JiraIssueFindManyArgs>(
+  async jiraIssues<T extends Prisma.JiraIssueFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiraIssueFindManyArgs>
-  ): Promise<JiraIssue[]> {
+  ): Promise<PrismaJiraIssue[]> {
     return this.prisma.jiraIssue.findMany(args);
   }
-  async findOne<T extends Prisma.JiraIssueFindUniqueArgs>(
+  async jiraIssue<T extends Prisma.JiraIssueFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiraIssueFindUniqueArgs>
-  ): Promise<JiraIssue | null> {
+  ): Promise<PrismaJiraIssue | null> {
     return this.prisma.jiraIssue.findUnique(args);
   }
-  async create<T extends Prisma.JiraIssueCreateArgs>(
+  async createJiraIssue<T extends Prisma.JiraIssueCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiraIssueCreateArgs>
-  ): Promise<JiraIssue> {
+  ): Promise<PrismaJiraIssue> {
     return this.prisma.jiraIssue.create<T>(args);
   }
-  async update<T extends Prisma.JiraIssueUpdateArgs>(
+  async updateJiraIssue<T extends Prisma.JiraIssueUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiraIssueUpdateArgs>
-  ): Promise<JiraIssue> {
+  ): Promise<PrismaJiraIssue> {
     return this.prisma.jiraIssue.update<T>(args);
   }
-  async delete<T extends Prisma.JiraIssueDeleteArgs>(
+  async deleteJiraIssue<T extends Prisma.JiraIssueDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiraIssueDeleteArgs>
-  ): Promise<JiraIssue> {
+  ): Promise<PrismaJiraIssue> {
     return this.prisma.jiraIssue.delete(args);
   }
 }

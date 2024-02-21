@@ -28,29 +28,7 @@ class IeltsscoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  application_id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  datafileId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
+  testdate?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,17 +50,6 @@ class IeltsscoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  overallscore?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   readingscore?: SortOrder;
 
   @ApiProperty({
@@ -94,7 +61,7 @@ class IeltsscoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  scorereceived?: SortOrder;
+  writingscore?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -116,7 +83,29 @@ class IeltsscoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  testdate?: SortOrder;
+  overallscore?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  scorereceived?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  datafileId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -138,7 +127,18 @@ class IeltsscoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  writingscore?: SortOrder;
+  application_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { IeltsscoreOrderByInput as IeltsscoreOrderByInput };

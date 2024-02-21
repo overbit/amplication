@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PromotionHistoryCopyService } from "../promotionHistoryCopy.service";
 import { PromotionHistoryCopyCreateInput } from "./PromotionHistoryCopyCreateInput";
-import { PromotionHistoryCopyWhereInput } from "./PromotionHistoryCopyWhereInput";
-import { PromotionHistoryCopyWhereUniqueInput } from "./PromotionHistoryCopyWhereUniqueInput";
-import { PromotionHistoryCopyFindManyArgs } from "./PromotionHistoryCopyFindManyArgs";
-import { PromotionHistoryCopyUpdateInput } from "./PromotionHistoryCopyUpdateInput";
 import { PromotionHistoryCopy } from "./PromotionHistoryCopy";
+import { PromotionHistoryCopyFindManyArgs } from "./PromotionHistoryCopyFindManyArgs";
+import { PromotionHistoryCopyWhereUniqueInput } from "./PromotionHistoryCopyWhereUniqueInput";
+import { PromotionHistoryCopyUpdateInput } from "./PromotionHistoryCopyUpdateInput";
 
 export class PromotionHistoryCopyControllerBase {
   constructor(protected readonly service: PromotionHistoryCopyService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PromotionHistoryCopy })
-  async create(
+  async createPromotionHistoryCopy(
     @common.Body() data: PromotionHistoryCopyCreateInput
   ): Promise<PromotionHistoryCopy> {
-    return await this.service.create({
+    return await this.service.createPromotionHistoryCopy({
       data: data,
       select: {
         applicationId: true,
-        id: true,
         programId: true,
-        promotion_method: true,
-        round: true,
         statusTime: true,
+        round: true,
+        promotion_method: true,
         usersId: true,
+        id: true,
       },
     });
   }
@@ -48,20 +47,20 @@ export class PromotionHistoryCopyControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PromotionHistoryCopy] })
   @ApiNestedQuery(PromotionHistoryCopyFindManyArgs)
-  async findMany(
+  async promotionHistoryCopies(
     @common.Req() request: Request
   ): Promise<PromotionHistoryCopy[]> {
     const args = plainToClass(PromotionHistoryCopyFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.promotionHistoryCopies({
       ...args,
       select: {
         applicationId: true,
-        id: true,
         programId: true,
-        promotion_method: true,
-        round: true,
         statusTime: true,
+        round: true,
+        promotion_method: true,
         usersId: true,
+        id: true,
       },
     });
   }
@@ -69,19 +68,19 @@ export class PromotionHistoryCopyControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PromotionHistoryCopy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async promotionHistoryCopy(
     @common.Param() params: PromotionHistoryCopyWhereUniqueInput
   ): Promise<PromotionHistoryCopy | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.promotionHistoryCopy({
       where: params,
       select: {
         applicationId: true,
-        id: true,
         programId: true,
-        promotion_method: true,
-        round: true,
         statusTime: true,
+        round: true,
+        promotion_method: true,
         usersId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -95,22 +94,22 @@ export class PromotionHistoryCopyControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PromotionHistoryCopy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePromotionHistoryCopy(
     @common.Param() params: PromotionHistoryCopyWhereUniqueInput,
     @common.Body() data: PromotionHistoryCopyUpdateInput
   ): Promise<PromotionHistoryCopy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePromotionHistoryCopy({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          id: true,
           programId: true,
-          promotion_method: true,
-          round: true,
           statusTime: true,
+          round: true,
+          promotion_method: true,
           usersId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -126,20 +125,20 @@ export class PromotionHistoryCopyControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PromotionHistoryCopy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePromotionHistoryCopy(
     @common.Param() params: PromotionHistoryCopyWhereUniqueInput
   ): Promise<PromotionHistoryCopy | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePromotionHistoryCopy({
         where: params,
         select: {
           applicationId: true,
-          id: true,
           programId: true,
-          promotion_method: true,
-          round: true,
           statusTime: true,
+          round: true,
+          promotion_method: true,
           usersId: true,
+          id: true,
         },
       });
     } catch (error) {

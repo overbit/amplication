@@ -1,16 +1,16 @@
-import { Application } from "../application/Application";
 import { Decimal } from "decimal.js";
+import { Application } from "../application/Application";
 
 export type Ieltsscore = {
-  application?: Application;
-  datafileId: number | null;
-  id: number;
-  listeningscore: Decimal | null;
-  overallscore: Decimal | null;
-  readingscore: Decimal | null;
-  scorereceived: number | null;
-  speakingscore: Decimal | null;
   testdate: Date | null;
-  testEmail: string | null;
+  listeningscore: Decimal | null;
+  readingscore: Decimal | null;
   writingscore: Decimal | null;
+  speakingscore: Decimal | null;
+  overallscore: Decimal | null;
+  scorereceived: number | null;
+  datafileId: number | null;
+  testEmail: string | null;
+  application?: Application;
+  id: number;
 };

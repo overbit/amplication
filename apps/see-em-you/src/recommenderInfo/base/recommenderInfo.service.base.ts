@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, RecommenderInfo } from "@prisma/client";
+import {
+  Prisma,
+  RecommenderInfo as PrismaRecommenderInfo,
+} from "@prisma/client";
 
 export class RecommenderInfoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class RecommenderInfoServiceBase {
     return this.prisma.recommenderInfo.count(args);
   }
 
-  async findMany<T extends Prisma.RecommenderInfoFindManyArgs>(
+  async recommenderInfos<T extends Prisma.RecommenderInfoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommenderInfoFindManyArgs>
-  ): Promise<RecommenderInfo[]> {
+  ): Promise<PrismaRecommenderInfo[]> {
     return this.prisma.recommenderInfo.findMany(args);
   }
-  async findOne<T extends Prisma.RecommenderInfoFindUniqueArgs>(
+  async recommenderInfo<T extends Prisma.RecommenderInfoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommenderInfoFindUniqueArgs>
-  ): Promise<RecommenderInfo | null> {
+  ): Promise<PrismaRecommenderInfo | null> {
     return this.prisma.recommenderInfo.findUnique(args);
   }
-  async create<T extends Prisma.RecommenderInfoCreateArgs>(
+  async createRecommenderInfo<T extends Prisma.RecommenderInfoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommenderInfoCreateArgs>
-  ): Promise<RecommenderInfo> {
+  ): Promise<PrismaRecommenderInfo> {
     return this.prisma.recommenderInfo.create<T>(args);
   }
-  async update<T extends Prisma.RecommenderInfoUpdateArgs>(
+  async updateRecommenderInfo<T extends Prisma.RecommenderInfoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommenderInfoUpdateArgs>
-  ): Promise<RecommenderInfo> {
+  ): Promise<PrismaRecommenderInfo> {
     return this.prisma.recommenderInfo.update<T>(args);
   }
-  async delete<T extends Prisma.RecommenderInfoDeleteArgs>(
+  async deleteRecommenderInfo<T extends Prisma.RecommenderInfoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RecommenderInfoDeleteArgs>
-  ): Promise<RecommenderInfo> {
+  ): Promise<PrismaRecommenderInfo> {
     return this.prisma.recommenderInfo.delete(args);
   }
 }

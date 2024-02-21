@@ -10,10 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  MhciPrereqsCourseDatafile,
-  MhciPrereqsCourse,
+  MhciPrereqsCourseDatafile as PrismaMhciPrereqsCourseDatafile,
+  MhciPrereqsCourse as PrismaMhciPrereqsCourse,
 } from "@prisma/client";
 
 export class MhciPrereqsCourseDatafileServiceBase {
@@ -25,35 +26,45 @@ export class MhciPrereqsCourseDatafileServiceBase {
     return this.prisma.mhciPrereqsCourseDatafile.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsCourseDatafileFindManyArgs>(
+  async mhciPrereqsCourseDatafiles<
+    T extends Prisma.MhciPrereqsCourseDatafileFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseDatafileFindManyArgs>
-  ): Promise<MhciPrereqsCourseDatafile[]> {
+  ): Promise<PrismaMhciPrereqsCourseDatafile[]> {
     return this.prisma.mhciPrereqsCourseDatafile.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsCourseDatafileFindUniqueArgs>(
+  async mhciPrereqsCourseDatafile<
+    T extends Prisma.MhciPrereqsCourseDatafileFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseDatafileFindUniqueArgs>
-  ): Promise<MhciPrereqsCourseDatafile | null> {
+  ): Promise<PrismaMhciPrereqsCourseDatafile | null> {
     return this.prisma.mhciPrereqsCourseDatafile.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsCourseDatafileCreateArgs>(
+  async createMhciPrereqsCourseDatafile<
+    T extends Prisma.MhciPrereqsCourseDatafileCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseDatafileCreateArgs>
-  ): Promise<MhciPrereqsCourseDatafile> {
+  ): Promise<PrismaMhciPrereqsCourseDatafile> {
     return this.prisma.mhciPrereqsCourseDatafile.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsCourseDatafileUpdateArgs>(
+  async updateMhciPrereqsCourseDatafile<
+    T extends Prisma.MhciPrereqsCourseDatafileUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseDatafileUpdateArgs>
-  ): Promise<MhciPrereqsCourseDatafile> {
+  ): Promise<PrismaMhciPrereqsCourseDatafile> {
     return this.prisma.mhciPrereqsCourseDatafile.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsCourseDatafileDeleteArgs>(
+  async deleteMhciPrereqsCourseDatafile<
+    T extends Prisma.MhciPrereqsCourseDatafileDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsCourseDatafileDeleteArgs>
-  ): Promise<MhciPrereqsCourseDatafile> {
+  ): Promise<PrismaMhciPrereqsCourseDatafile> {
     return this.prisma.mhciPrereqsCourseDatafile.delete(args);
   }
 
   async getMhciPrereqsCourses(
     parentId: number
-  ): Promise<MhciPrereqsCourse | null> {
+  ): Promise<PrismaMhciPrereqsCourse | null> {
     return this.prisma.mhciPrereqsCourseDatafile
       .findUnique({
         where: { id: parentId },

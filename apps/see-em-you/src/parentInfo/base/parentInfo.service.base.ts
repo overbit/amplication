@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ParentInfo } from "@prisma/client";
+import { Prisma, ParentInfo as PrismaParentInfo } from "@prisma/client";
 
 export class ParentInfoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ParentInfoServiceBase {
     return this.prisma.parentInfo.count(args);
   }
 
-  async findMany<T extends Prisma.ParentInfoFindManyArgs>(
+  async parentInfos<T extends Prisma.ParentInfoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ParentInfoFindManyArgs>
-  ): Promise<ParentInfo[]> {
+  ): Promise<PrismaParentInfo[]> {
     return this.prisma.parentInfo.findMany(args);
   }
-  async findOne<T extends Prisma.ParentInfoFindUniqueArgs>(
+  async parentInfo<T extends Prisma.ParentInfoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ParentInfoFindUniqueArgs>
-  ): Promise<ParentInfo | null> {
+  ): Promise<PrismaParentInfo | null> {
     return this.prisma.parentInfo.findUnique(args);
   }
-  async create<T extends Prisma.ParentInfoCreateArgs>(
+  async createParentInfo<T extends Prisma.ParentInfoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ParentInfoCreateArgs>
-  ): Promise<ParentInfo> {
+  ): Promise<PrismaParentInfo> {
     return this.prisma.parentInfo.create<T>(args);
   }
-  async update<T extends Prisma.ParentInfoUpdateArgs>(
+  async updateParentInfo<T extends Prisma.ParentInfoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ParentInfoUpdateArgs>
-  ): Promise<ParentInfo> {
+  ): Promise<PrismaParentInfo> {
     return this.prisma.parentInfo.update<T>(args);
   }
-  async delete<T extends Prisma.ParentInfoDeleteArgs>(
+  async deleteParentInfo<T extends Prisma.ParentInfoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ParentInfoDeleteArgs>
-  ): Promise<ParentInfo> {
+  ): Promise<PrismaParentInfo> {
     return this.prisma.parentInfo.delete(args);
   }
 }

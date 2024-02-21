@@ -35,7 +35,7 @@ class AssistantshipUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  granted?: number;
+  requested?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class AssistantshipUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  requested?: number;
+  granted?: number;
 }
 
 export { AssistantshipUpdateInput as AssistantshipUpdateInput };

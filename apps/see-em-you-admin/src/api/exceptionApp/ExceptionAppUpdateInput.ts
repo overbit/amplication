@@ -1,4 +1,4 @@
 export type ExceptionAppUpdateInput = {
-  active?: number | null;
   appId?: number | null;
+  active?: number | null;
 };

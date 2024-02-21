@@ -28,18 +28,7 @@ class CashnetPaymentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  amount?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  applicantEmail?: SortOrder;
+  transactionId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,18 +50,7 @@ class CashnetPaymentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  app_id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
+  applicantEmail?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,17 +83,6 @@ class CashnetPaymentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  transactionId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   transactionTime?: SortOrder;
 
   @ApiProperty({
@@ -128,6 +95,39 @@ class CashnetPaymentOrderByInput {
     nullable: true,
   })
   transactionType?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  amount?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  app_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { CashnetPaymentOrderByInput as CashnetPaymentOrderByInput };

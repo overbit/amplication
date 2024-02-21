@@ -28,7 +28,7 @@ class UnitOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationBasePrice?: SortOrder;
+  unitName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,40 +39,7 @@ class UnitOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationProgramPrice?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  parentUnitId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  unitCcEmail?: SortOrder;
+  unitNameShort?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -94,18 +61,7 @@ class UnitOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  unitName?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  unitNameShort?: SortOrder;
+  unitUrl?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -138,7 +94,51 @@ class UnitOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  unitUrl?: SortOrder;
+  unitCcEmail?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  applicationBasePrice?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  applicationProgramPrice?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  parentUnitId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { UnitOrderByInput as UnitOrderByInput };

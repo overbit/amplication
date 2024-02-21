@@ -1,5 +1,5 @@
 export type ApplicantIpedsRace = {
-  id: string;
-  ipedsRaceId: number;
   luUsersUsertypesId: number;
+  ipedsRaceId: number;
+  id: string;
 };

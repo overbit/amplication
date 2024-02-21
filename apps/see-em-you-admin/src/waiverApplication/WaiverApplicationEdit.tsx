@@ -6,8 +6,8 @@ export const WaiverApplicationEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Datafile Id" source="datafileId" />
         <NumberInput step={1} label="Org Id" source="orgId" />
+        <NumberInput step={1} label="Datafile Id" source="datafileId" />
       </SimpleForm>
     </Edit>
   );

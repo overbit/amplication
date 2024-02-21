@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { FellowshipService } from "../fellowship.service";
 import { FellowshipCreateInput } from "./FellowshipCreateInput";
-import { FellowshipWhereInput } from "./FellowshipWhereInput";
-import { FellowshipWhereUniqueInput } from "./FellowshipWhereUniqueInput";
-import { FellowshipFindManyArgs } from "./FellowshipFindManyArgs";
-import { FellowshipUpdateInput } from "./FellowshipUpdateInput";
 import { Fellowship } from "./Fellowship";
+import { FellowshipFindManyArgs } from "./FellowshipFindManyArgs";
+import { FellowshipWhereUniqueInput } from "./FellowshipWhereUniqueInput";
+import { FellowshipUpdateInput } from "./FellowshipUpdateInput";
 
 export class FellowshipControllerBase {
   constructor(protected readonly service: FellowshipService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Fellowship })
-  async create(
+  async createFellowship(
     @common.Body() data: FellowshipCreateInput
   ): Promise<Fellowship> {
-    return await this.service.create({
+    return await this.service.createFellowship({
       data: {
         ...data,
 
@@ -40,7 +39,14 @@ export class FellowshipControllerBase {
         },
       },
       select: {
+        name: true,
         amount: true,
+        status: true,
+        appliedDate: true,
+        awardDate: true,
+        duration: true,
+        datafileId: true,
+        short: true,
 
         application: {
           select: {
@@ -48,14 +54,7 @@ export class FellowshipControllerBase {
           },
         },
 
-        appliedDate: true,
-        awardDate: true,
-        datafileId: true,
-        duration: true,
         id: true,
-        name: true,
-        short: true,
-        status: true,
       },
     });
   }
@@ -63,12 +62,19 @@ export class FellowshipControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Fellowship] })
   @ApiNestedQuery(FellowshipFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Fellowship[]> {
+  async fellowships(@common.Req() request: Request): Promise<Fellowship[]> {
     const args = plainToClass(FellowshipFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.fellowships({
       ...args,
       select: {
+        name: true,
         amount: true,
+        status: true,
+        appliedDate: true,
+        awardDate: true,
+        duration: true,
+        datafileId: true,
+        short: true,
 
         application: {
           select: {
@@ -76,14 +82,7 @@ export class FellowshipControllerBase {
           },
         },
 
-        appliedDate: true,
-        awardDate: true,
-        datafileId: true,
-        duration: true,
         id: true,
-        name: true,
-        short: true,
-        status: true,
       },
     });
   }
@@ -91,13 +90,20 @@ export class FellowshipControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Fellowship })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async fellowship(
     @common.Param() params: FellowshipWhereUniqueInput
   ): Promise<Fellowship | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.fellowship({
       where: params,
       select: {
+        name: true,
         amount: true,
+        status: true,
+        appliedDate: true,
+        awardDate: true,
+        duration: true,
+        datafileId: true,
+        short: true,
 
         application: {
           select: {
@@ -105,14 +111,7 @@ export class FellowshipControllerBase {
           },
         },
 
-        appliedDate: true,
-        awardDate: true,
-        datafileId: true,
-        duration: true,
         id: true,
-        name: true,
-        short: true,
-        status: true,
       },
     });
     if (result === null) {
@@ -126,12 +125,12 @@ export class FellowshipControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Fellowship })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateFellowship(
     @common.Param() params: FellowshipWhereUniqueInput,
     @common.Body() data: FellowshipUpdateInput
   ): Promise<Fellowship | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateFellowship({
         where: params,
         data: {
           ...data,
@@ -141,7 +140,14 @@ export class FellowshipControllerBase {
           },
         },
         select: {
+          name: true,
           amount: true,
+          status: true,
+          appliedDate: true,
+          awardDate: true,
+          duration: true,
+          datafileId: true,
+          short: true,
 
           application: {
             select: {
@@ -149,14 +155,7 @@ export class FellowshipControllerBase {
             },
           },
 
-          appliedDate: true,
-          awardDate: true,
-          datafileId: true,
-          duration: true,
           id: true,
-          name: true,
-          short: true,
-          status: true,
         },
       });
     } catch (error) {
@@ -172,14 +171,21 @@ export class FellowshipControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Fellowship })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteFellowship(
     @common.Param() params: FellowshipWhereUniqueInput
   ): Promise<Fellowship | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteFellowship({
         where: params,
         select: {
+          name: true,
           amount: true,
+          status: true,
+          appliedDate: true,
+          awardDate: true,
+          duration: true,
+          datafileId: true,
+          short: true,
 
           application: {
             select: {
@@ -187,14 +193,7 @@ export class FellowshipControllerBase {
             },
           },
 
-          appliedDate: true,
-          awardDate: true,
-          datafileId: true,
-          duration: true,
           id: true,
-          name: true,
-          short: true,
-          status: true,
         },
       });
     } catch (error) {

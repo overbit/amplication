@@ -11,9 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, IsEnum, IsDate, IsOptional } from "class-validator";
-import { EnumPromotionHistoryCopyPromotionMethod } from "./EnumPromotionHistoryCopyPromotionMethod";
+import { IsInt, IsDate, IsEnum, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
+import { EnumPromotionHistoryCopyPromotionMethod } from "./EnumPromotionHistoryCopyPromotionMethod";
 
 @ObjectType()
 class PromotionHistoryCopy {
@@ -27,11 +27,19 @@ class PromotionHistoryCopy {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  @IsInt()
+  @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  statusTime!: Date;
 
   @ApiProperty({
     required: true,
@@ -39,7 +47,7 @@ class PromotionHistoryCopy {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
+  round!: number;
 
   @ApiProperty({
     required: true,
@@ -52,22 +60,6 @@ class PromotionHistoryCopy {
   promotion_method?: "default" | "voting" | "promotion" | "demotion";
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  round!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  statusTime!: Date;
-
-  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -77,6 +69,14 @@ class PromotionHistoryCopy {
     nullable: true,
   })
   usersId!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { PromotionHistoryCopy as PromotionHistoryCopy };

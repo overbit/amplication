@@ -28,17 +28,6 @@ class MseLetterRecOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  algortihms?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   applicationId?: SortOrder;
 
   @ApiProperty({
@@ -50,29 +39,7 @@ class MseLetterRecOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  dataStructures?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  discrete?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
+  reviewerId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -94,7 +61,40 @@ class MseLetterRecOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  reviewerId?: SortOrder;
+  discrete?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  algortihms?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  dataStructures?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MseLetterRecOrderByInput as MseLetterRecOrderByInput };

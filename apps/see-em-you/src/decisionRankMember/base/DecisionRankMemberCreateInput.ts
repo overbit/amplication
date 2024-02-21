@@ -21,7 +21,15 @@ class DecisionRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
+  departmentId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +45,7 @@ class DecisionRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  departmentId!: number;
+  applicationId!: number;
 
   @ApiProperty({
     required: true,
@@ -46,14 +54,6 @@ class DecisionRankMemberCreateInput {
   @IsInt()
   @Field(() => Number)
   drank!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
 }
 
 export { DecisionRankMemberCreateInput as DecisionRankMemberCreateInput };

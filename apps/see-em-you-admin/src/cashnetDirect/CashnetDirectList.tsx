@@ -12,20 +12,20 @@ export const CashnetDirectList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Amount" source="amount" />
+        <TextField label="Batch" source="batch" />
+        <TextField label="Station" source="station" />
+        <TextField label="Tx Number" source="txNumber" />
+        <TextField label="Trans Type" source="transType" />
+        <TextField label="Status" source="status" />
+        <TextField label="Cust Code" source="custCode" />
+        <TextField label="Name" source="name" />
         <TextField label="App Email" source="appEmail" />
         <TextField label="App Id" source="appId" />
-        <TextField label="Batch" source="batch" />
-        <DateField source="created" label="Created" />
-        <TextField label="Cust Code" source="custCode" />
         <TextField label="Dept" source="dept" />
-        <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
         <TextField label="Payment Type" source="paymentType" />
-        <TextField label="Station" source="station" />
-        <TextField label="Status" source="status" />
-        <TextField label="Trans Type" source="transType" />
-        <TextField label="Tx Number" source="txNumber" />
+        <TextField label="Amount" source="amount" />
+        <DateField source="created" label="Created" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

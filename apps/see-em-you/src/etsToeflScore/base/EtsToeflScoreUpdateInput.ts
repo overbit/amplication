@@ -24,6 +24,72 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  instCode?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  deptCode?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  regNumber?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  lName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  fName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   address1?: string | null;
 
   @ApiProperty({
@@ -90,17 +156,6 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  addressZip?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   countryCode?: string | null;
 
   @ApiProperty({
@@ -123,381 +178,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  deptCode?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  dob?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  email?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsListening?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsListeningCEFR?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsListeningmb?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsListeningmbDate?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsReading?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsReadingCEFR?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsReadingmb?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsReadingmbDate?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsSpeaking?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsSpeakingCEFR?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsSpeakingmb?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsSpeakingmbDate?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsTotalBandScore?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsTotalBandScoreCEFR?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsTotalBandScoremb?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsTotalBandScorembDate?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsWriting?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsWritingCEFR?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsWritingmb?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  essentialsWritingmbDate?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  fName?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  gender?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  identificationType?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  idNumber?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  instCode?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  issuingCountry?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  listening?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  listeningIndicator?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  listeningmb?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  listeningmbDate?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  lName?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mName?: string | null;
+  addressZip?: string | null;
 
   @ApiProperty({
     required: false,
@@ -509,6 +190,17 @@ class EtsToeflScoreUpdateInput {
     nullable: true,
   })
   nativeCountryCode?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  testCenterCodeRPDT?: string | null;
 
   @ApiProperty({
     required: false,
@@ -552,7 +244,216 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  dob?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  gender?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  testDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  testType?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  listeningIndicator?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  speakingIndicator?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  email?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reportDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  listening?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   reading?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  speaking?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  writing?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  total?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  testCenterCode?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  testCountryLocation?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  identificationType?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  idNumber?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  issuingCountry?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  listeningmb?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  listeningmbDate?: string | null;
 
   @ApiProperty({
     required: false,
@@ -585,7 +486,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  regNumber?: string | null;
+  speakingmb?: string | null;
 
   @ApiProperty({
     required: false,
@@ -596,7 +497,51 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  reportDate?: string | null;
+  speakingmbDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  writingmb?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  writingmbDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  totalmb?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  totalmbDate?: string | null;
 
   @ApiProperty({
     required: false,
@@ -640,7 +585,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  speaking?: string | null;
+  essentialsListening?: string | null;
 
   @ApiProperty({
     required: false,
@@ -651,7 +596,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  speakingIndicator?: string | null;
+  essentialsReading?: string | null;
 
   @ApiProperty({
     required: false,
@@ -662,7 +607,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  speakingmb?: string | null;
+  essentialsWriting?: string | null;
 
   @ApiProperty({
     required: false,
@@ -673,7 +618,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  speakingmbDate?: string | null;
+  essentialsSpeaking?: string | null;
 
   @ApiProperty({
     required: false,
@@ -684,7 +629,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  testCenterCode?: string | null;
+  essentialsTotalBandScore?: string | null;
 
   @ApiProperty({
     required: false,
@@ -695,7 +640,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  testCenterCodeRPDT?: string | null;
+  essentialsTotalBandScoremb?: string | null;
 
   @ApiProperty({
     required: false,
@@ -706,7 +651,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  testCountryLocation?: string | null;
+  essentialsTotalBandScorembDate?: string | null;
 
   @ApiProperty({
     required: false,
@@ -717,7 +662,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  testDate?: string | null;
+  essentialsListeningmb?: string | null;
 
   @ApiProperty({
     required: false,
@@ -728,7 +673,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  testType?: string | null;
+  essentialsListeningmbDate?: string | null;
 
   @ApiProperty({
     required: false,
@@ -739,7 +684,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  total?: string | null;
+  essentialsReadingmb?: string | null;
 
   @ApiProperty({
     required: false,
@@ -750,7 +695,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  totalmb?: string | null;
+  essentialsReadingmbDate?: string | null;
 
   @ApiProperty({
     required: false,
@@ -761,7 +706,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  totalmbDate?: string | null;
+  essentialsWritingmb?: string | null;
 
   @ApiProperty({
     required: false,
@@ -772,7 +717,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  writing?: string | null;
+  essentialsWritingmbDate?: string | null;
 
   @ApiProperty({
     required: false,
@@ -783,7 +728,7 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  writingmb?: string | null;
+  essentialsSpeakingmb?: string | null;
 
   @ApiProperty({
     required: false,
@@ -794,7 +739,62 @@ class EtsToeflScoreUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  writingmbDate?: string | null;
+  essentialsSpeakingmbDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  essentialsListeningCEFR?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  essentialsReadingCEFR?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  essentialsWritingCEFR?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  essentialsSpeakingCEFR?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  essentialsTotalBandScoreCEFR?: string | null;
 }
 
 export { EtsToeflScoreUpdateInput as EtsToeflScoreUpdateInput };

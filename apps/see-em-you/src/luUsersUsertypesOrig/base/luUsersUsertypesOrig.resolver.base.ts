@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuUsersUsertypesOrigArgs } from "./CreateLuUsersUsertypesOrigArgs";
-import { UpdateLuUsersUsertypesOrigArgs } from "./UpdateLuUsersUsertypesOrigArgs";
-import { DeleteLuUsersUsertypesOrigArgs } from "./DeleteLuUsersUsertypesOrigArgs";
+import { LuUsersUsertypesOrig } from "./LuUsersUsertypesOrig";
 import { LuUsersUsertypesOrigCountArgs } from "./LuUsersUsertypesOrigCountArgs";
 import { LuUsersUsertypesOrigFindManyArgs } from "./LuUsersUsertypesOrigFindManyArgs";
 import { LuUsersUsertypesOrigFindUniqueArgs } from "./LuUsersUsertypesOrigFindUniqueArgs";
-import { LuUsersUsertypesOrig } from "./LuUsersUsertypesOrig";
+import { CreateLuUsersUsertypesOrigArgs } from "./CreateLuUsersUsertypesOrigArgs";
+import { UpdateLuUsersUsertypesOrigArgs } from "./UpdateLuUsersUsertypesOrigArgs";
+import { DeleteLuUsersUsertypesOrigArgs } from "./DeleteLuUsersUsertypesOrigArgs";
 import { LuUsersUsertypesOrigService } from "../luUsersUsertypesOrig.service";
 @graphql.Resolver(() => LuUsersUsertypesOrig)
 export class LuUsersUsertypesOrigResolverBase {
@@ -38,14 +38,14 @@ export class LuUsersUsertypesOrigResolverBase {
   async luUsersUsertypesOrigs(
     @graphql.Args() args: LuUsersUsertypesOrigFindManyArgs
   ): Promise<LuUsersUsertypesOrig[]> {
-    return this.service.findMany(args);
+    return this.service.luUsersUsertypesOrigs(args);
   }
 
   @graphql.Query(() => LuUsersUsertypesOrig, { nullable: true })
   async luUsersUsertypesOrig(
     @graphql.Args() args: LuUsersUsertypesOrigFindUniqueArgs
   ): Promise<LuUsersUsertypesOrig | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luUsersUsertypesOrig(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LuUsersUsertypesOrigResolverBase {
   async createLuUsersUsertypesOrig(
     @graphql.Args() args: CreateLuUsersUsertypesOrigArgs
   ): Promise<LuUsersUsertypesOrig> {
-    return await this.service.create({
+    return await this.service.createLuUsersUsertypesOrig({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LuUsersUsertypesOrigResolverBase {
     @graphql.Args() args: UpdateLuUsersUsertypesOrigArgs
   ): Promise<LuUsersUsertypesOrig | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuUsersUsertypesOrig({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LuUsersUsertypesOrigResolverBase {
     @graphql.Args() args: DeleteLuUsersUsertypesOrigArgs
   ): Promise<LuUsersUsertypesOrig | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuUsersUsertypesOrig(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

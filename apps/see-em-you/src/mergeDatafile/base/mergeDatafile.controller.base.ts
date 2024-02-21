@@ -18,32 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MergeDatafileService } from "../mergeDatafile.service";
 import { MergeDatafileCreateInput } from "./MergeDatafileCreateInput";
-import { MergeDatafileWhereInput } from "./MergeDatafileWhereInput";
-import { MergeDatafileWhereUniqueInput } from "./MergeDatafileWhereUniqueInput";
-import { MergeDatafileFindManyArgs } from "./MergeDatafileFindManyArgs";
-import { MergeDatafileUpdateInput } from "./MergeDatafileUpdateInput";
 import { MergeDatafile } from "./MergeDatafile";
+import { MergeDatafileFindManyArgs } from "./MergeDatafileFindManyArgs";
+import { MergeDatafileWhereUniqueInput } from "./MergeDatafileWhereUniqueInput";
+import { MergeDatafileUpdateInput } from "./MergeDatafileUpdateInput";
 
 export class MergeDatafileControllerBase {
   constructor(protected readonly service: MergeDatafileService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MergeDatafile })
-  async create(
+  async createMergeDatafile(
     @common.Body() data: MergeDatafileCreateInput
   ): Promise<MergeDatafile> {
-    return await this.service.create({
+    return await this.service.createMergeDatafile({
       data: data,
       select: {
+        mergeId: true,
+        datafileinfoId: true,
         converted: true,
         convertError: true,
         convertMessage: true,
-        datafileinfoId: true,
-        id: true,
+        mergeFilename: true,
         merged: true,
         mergeError: true,
-        mergeFilename: true,
-        mergeId: true,
         mergeMessage: true,
+        id: true,
       },
     });
   }
@@ -51,21 +50,23 @@ export class MergeDatafileControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MergeDatafile] })
   @ApiNestedQuery(MergeDatafileFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MergeDatafile[]> {
+  async mergeDatafiles(
+    @common.Req() request: Request
+  ): Promise<MergeDatafile[]> {
     const args = plainToClass(MergeDatafileFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mergeDatafiles({
       ...args,
       select: {
+        mergeId: true,
+        datafileinfoId: true,
         converted: true,
         convertError: true,
         convertMessage: true,
-        datafileinfoId: true,
-        id: true,
+        mergeFilename: true,
         merged: true,
         mergeError: true,
-        mergeFilename: true,
-        mergeId: true,
         mergeMessage: true,
+        id: true,
       },
     });
   }
@@ -73,22 +74,22 @@ export class MergeDatafileControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MergeDatafile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mergeDatafile(
     @common.Param() params: MergeDatafileWhereUniqueInput
   ): Promise<MergeDatafile | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mergeDatafile({
       where: params,
       select: {
+        mergeId: true,
+        datafileinfoId: true,
         converted: true,
         convertError: true,
         convertMessage: true,
-        datafileinfoId: true,
-        id: true,
+        mergeFilename: true,
         merged: true,
         mergeError: true,
-        mergeFilename: true,
-        mergeId: true,
         mergeMessage: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -102,25 +103,25 @@ export class MergeDatafileControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MergeDatafile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMergeDatafile(
     @common.Param() params: MergeDatafileWhereUniqueInput,
     @common.Body() data: MergeDatafileUpdateInput
   ): Promise<MergeDatafile | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMergeDatafile({
         where: params,
         data: data,
         select: {
+          mergeId: true,
+          datafileinfoId: true,
           converted: true,
           convertError: true,
           convertMessage: true,
-          datafileinfoId: true,
-          id: true,
+          mergeFilename: true,
           merged: true,
           mergeError: true,
-          mergeFilename: true,
-          mergeId: true,
           mergeMessage: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -136,23 +137,23 @@ export class MergeDatafileControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MergeDatafile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMergeDatafile(
     @common.Param() params: MergeDatafileWhereUniqueInput
   ): Promise<MergeDatafile | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMergeDatafile({
         where: params,
         select: {
+          mergeId: true,
+          datafileinfoId: true,
           converted: true,
           convertError: true,
           convertMessage: true,
-          datafileinfoId: true,
-          id: true,
+          mergeFilename: true,
           merged: true,
           mergeError: true,
-          mergeFilename: true,
-          mergeId: true,
           mergeMessage: true,
+          id: true,
         },
       });
     } catch (error) {

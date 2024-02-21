@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
+  programId: 42,
   code: 42,
   id: 42,
-  programId: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
+  programId: 42,
   code: 42,
   id: 42,
-  programId: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
+    programId: 42,
     code: 42,
     id: 42,
-    programId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
+  programId: 42,
   code: 42,
   id: 42,
-  programId: 42,
 };
 
 const service = {
-  create() {
+  createAdmission() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  admissions: () => FIND_MANY_RESULT,
+  admission: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

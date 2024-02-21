@@ -3,8 +3,8 @@ import {
   List,
   Datagrid,
   ListProps,
-  BooleanField,
   TextField,
+  BooleanField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 
@@ -20,11 +20,11 @@ export const MhciPrereqsReviewerList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Reviewer Luu Id" source="reviewerLuuId" />
+        <TextField label="Prereq Type" source="prereqType" />
+        <TextField label="Placeout Period Id" source="placeoutPeriodId" />
         <BooleanField label="Email Notification" source="emailNotification" />
         <TextField label="Id" source="id" />
-        <TextField label="Placeout Period Id" source="placeoutPeriodId" />
-        <TextField label="Prereq Type" source="prereqType" />
-        <TextField label="Reviewer Luu Id" source="reviewerLuuId" />
       </Datagrid>
     </List>
   );

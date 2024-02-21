@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AccesslogreplyformService } from "../accesslogreplyform.service";
 import { AccesslogreplyformCreateInput } from "./AccesslogreplyformCreateInput";
-import { AccesslogreplyformWhereInput } from "./AccesslogreplyformWhereInput";
-import { AccesslogreplyformWhereUniqueInput } from "./AccesslogreplyformWhereUniqueInput";
-import { AccesslogreplyformFindManyArgs } from "./AccesslogreplyformFindManyArgs";
-import { AccesslogreplyformUpdateInput } from "./AccesslogreplyformUpdateInput";
 import { Accesslogreplyform } from "./Accesslogreplyform";
+import { AccesslogreplyformFindManyArgs } from "./AccesslogreplyformFindManyArgs";
+import { AccesslogreplyformWhereUniqueInput } from "./AccesslogreplyformWhereUniqueInput";
+import { AccesslogreplyformUpdateInput } from "./AccesslogreplyformUpdateInput";
 
 export class AccesslogreplyformControllerBase {
   constructor(protected readonly service: AccesslogreplyformService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Accesslogreplyform })
-  async create(
+  async createAccesslogreplyform(
     @common.Body() data: AccesslogreplyformCreateInput
   ): Promise<Accesslogreplyform> {
-    return await this.service.create({
+    return await this.service.createAccesslogreplyform({
       data: data,
       select: {
-        activity: true,
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        id: true,
-        luUsersUsertypesId: true,
         timestamp: true,
-        usersId: true,
-        usertypeId: true,
+        activity: true,
+        id: true,
       },
     });
   }
@@ -49,21 +48,21 @@ export class AccesslogreplyformControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Accesslogreplyform] })
   @ApiNestedQuery(AccesslogreplyformFindManyArgs)
-  async findMany(
+  async accesslogreplyforms(
     @common.Req() request: Request
   ): Promise<Accesslogreplyform[]> {
     const args = plainToClass(AccesslogreplyformFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.accesslogreplyforms({
       ...args,
       select: {
-        activity: true,
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        id: true,
-        luUsersUsertypesId: true,
         timestamp: true,
-        usersId: true,
-        usertypeId: true,
+        activity: true,
+        id: true,
       },
     });
   }
@@ -71,20 +70,20 @@ export class AccesslogreplyformControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Accesslogreplyform })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async accesslogreplyform(
     @common.Param() params: AccesslogreplyformWhereUniqueInput
   ): Promise<Accesslogreplyform | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.accesslogreplyform({
       where: params,
       select: {
-        activity: true,
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        id: true,
-        luUsersUsertypesId: true,
         timestamp: true,
-        usersId: true,
-        usertypeId: true,
+        activity: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -98,23 +97,23 @@ export class AccesslogreplyformControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Accesslogreplyform })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAccesslogreplyform(
     @common.Param() params: AccesslogreplyformWhereUniqueInput,
     @common.Body() data: AccesslogreplyformUpdateInput
   ): Promise<Accesslogreplyform | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAccesslogreplyform({
         where: params,
         data: data,
         select: {
-          activity: true,
+          usersId: true,
+          luUsersUsertypesId: true,
+          usertypeId: true,
           applicationId: true,
           client: true,
-          id: true,
-          luUsersUsertypesId: true,
           timestamp: true,
-          usersId: true,
-          usertypeId: true,
+          activity: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -130,21 +129,21 @@ export class AccesslogreplyformControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Accesslogreplyform })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAccesslogreplyform(
     @common.Param() params: AccesslogreplyformWhereUniqueInput
   ): Promise<Accesslogreplyform | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAccesslogreplyform({
         where: params,
         select: {
-          activity: true,
+          usersId: true,
+          luUsersUsertypesId: true,
+          usertypeId: true,
           applicationId: true,
           client: true,
-          id: true,
-          luUsersUsertypesId: true,
           timestamp: true,
-          usersId: true,
-          usertypeId: true,
+          activity: true,
+          id: true,
         },
       });
     } catch (error) {

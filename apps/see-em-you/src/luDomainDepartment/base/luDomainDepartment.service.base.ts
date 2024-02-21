@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuDomainDepartment } from "@prisma/client";
+import {
+  Prisma,
+  LuDomainDepartment as PrismaLuDomainDepartment,
+} from "@prisma/client";
 
 export class LuDomainDepartmentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class LuDomainDepartmentServiceBase {
     return this.prisma.luDomainDepartment.count(args);
   }
 
-  async findMany<T extends Prisma.LuDomainDepartmentFindManyArgs>(
+  async luDomainDepartments<T extends Prisma.LuDomainDepartmentFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuDomainDepartmentFindManyArgs>
-  ): Promise<LuDomainDepartment[]> {
+  ): Promise<PrismaLuDomainDepartment[]> {
     return this.prisma.luDomainDepartment.findMany(args);
   }
-  async findOne<T extends Prisma.LuDomainDepartmentFindUniqueArgs>(
+  async luDomainDepartment<T extends Prisma.LuDomainDepartmentFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuDomainDepartmentFindUniqueArgs>
-  ): Promise<LuDomainDepartment | null> {
+  ): Promise<PrismaLuDomainDepartment | null> {
     return this.prisma.luDomainDepartment.findUnique(args);
   }
-  async create<T extends Prisma.LuDomainDepartmentCreateArgs>(
+  async createLuDomainDepartment<T extends Prisma.LuDomainDepartmentCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuDomainDepartmentCreateArgs>
-  ): Promise<LuDomainDepartment> {
+  ): Promise<PrismaLuDomainDepartment> {
     return this.prisma.luDomainDepartment.create<T>(args);
   }
-  async update<T extends Prisma.LuDomainDepartmentUpdateArgs>(
+  async updateLuDomainDepartment<T extends Prisma.LuDomainDepartmentUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuDomainDepartmentUpdateArgs>
-  ): Promise<LuDomainDepartment> {
+  ): Promise<PrismaLuDomainDepartment> {
     return this.prisma.luDomainDepartment.update<T>(args);
   }
-  async delete<T extends Prisma.LuDomainDepartmentDeleteArgs>(
+  async deleteLuDomainDepartment<T extends Prisma.LuDomainDepartmentDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuDomainDepartmentDeleteArgs>
-  ): Promise<LuDomainDepartment> {
+  ): Promise<PrismaLuDomainDepartment> {
     return this.prisma.luDomainDepartment.delete(args);
   }
 }

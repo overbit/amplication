@@ -18,50 +18,50 @@ import { MergeApplicationService } from "../mergeApplication.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  baseConvertError: 42,
-  baseConvertMessage: "exampleBaseConvertMessage",
   baseWriteError: 42,
   baseWriteMessage: "exampleBaseWriteMessage",
-  id: 42,
+  baseConvertError: 42,
+  baseConvertMessage: "exampleBaseConvertMessage",
   searchTextWriteError: 42,
   searchTextWriteMessage: "exampleSearchTextWriteMessage",
+  id: 42,
 };
 const CREATE_RESULT = {
-  baseConvertError: 42,
-  baseConvertMessage: "exampleBaseConvertMessage",
   baseWriteError: 42,
   baseWriteMessage: "exampleBaseWriteMessage",
-  id: 42,
+  baseConvertError: 42,
+  baseConvertMessage: "exampleBaseConvertMessage",
   searchTextWriteError: 42,
   searchTextWriteMessage: "exampleSearchTextWriteMessage",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    baseConvertError: 42,
-    baseConvertMessage: "exampleBaseConvertMessage",
     baseWriteError: 42,
     baseWriteMessage: "exampleBaseWriteMessage",
-    id: 42,
+    baseConvertError: 42,
+    baseConvertMessage: "exampleBaseConvertMessage",
     searchTextWriteError: 42,
     searchTextWriteMessage: "exampleSearchTextWriteMessage",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  baseConvertError: 42,
-  baseConvertMessage: "exampleBaseConvertMessage",
   baseWriteError: 42,
   baseWriteMessage: "exampleBaseWriteMessage",
-  id: 42,
+  baseConvertError: 42,
+  baseConvertMessage: "exampleBaseConvertMessage",
   searchTextWriteError: 42,
   searchTextWriteMessage: "exampleSearchTextWriteMessage",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMergeApplication() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mergeApplications: () => FIND_MANY_RESULT,
+  mergeApplication: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

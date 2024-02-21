@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Experience, Application } from "@prisma/client";
+import {
+  Prisma,
+  Experience as PrismaExperience,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class ExperienceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class ExperienceServiceBase {
     return this.prisma.experience.count(args);
   }
 
-  async findMany<T extends Prisma.ExperienceFindManyArgs>(
+  async experiences<T extends Prisma.ExperienceFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExperienceFindManyArgs>
-  ): Promise<Experience[]> {
+  ): Promise<PrismaExperience[]> {
     return this.prisma.experience.findMany(args);
   }
-  async findOne<T extends Prisma.ExperienceFindUniqueArgs>(
+  async experience<T extends Prisma.ExperienceFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExperienceFindUniqueArgs>
-  ): Promise<Experience | null> {
+  ): Promise<PrismaExperience | null> {
     return this.prisma.experience.findUnique(args);
   }
-  async create<T extends Prisma.ExperienceCreateArgs>(
+  async createExperience<T extends Prisma.ExperienceCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExperienceCreateArgs>
-  ): Promise<Experience> {
+  ): Promise<PrismaExperience> {
     return this.prisma.experience.create<T>(args);
   }
-  async update<T extends Prisma.ExperienceUpdateArgs>(
+  async updateExperience<T extends Prisma.ExperienceUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExperienceUpdateArgs>
-  ): Promise<Experience> {
+  ): Promise<PrismaExperience> {
     return this.prisma.experience.update<T>(args);
   }
-  async delete<T extends Prisma.ExperienceDeleteArgs>(
+  async deleteExperience<T extends Prisma.ExperienceDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ExperienceDeleteArgs>
-  ): Promise<Experience> {
+  ): Promise<PrismaExperience> {
     return this.prisma.experience.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.experience
       .findUnique({
         where: { id: parentId },

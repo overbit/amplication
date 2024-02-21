@@ -16,6 +16,14 @@ import { IsInt, IsOptional } from "class-validator";
 @InputType()
 class SelfGenderCreateInput {
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  userId!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -25,14 +33,6 @@ class SelfGenderCreateInput {
     nullable: true,
   })
   genderIndex?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  userId!: number;
 }
 
 export { SelfGenderCreateInput as SelfGenderCreateInput };

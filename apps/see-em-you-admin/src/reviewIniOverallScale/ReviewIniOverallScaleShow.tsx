@@ -7,8 +7,8 @@ export const ReviewIniOverallScaleShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="Value" source="value" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

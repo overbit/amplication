@@ -1,11 +1,11 @@
 import { DomainUnit } from "../domainUnit/DomainUnit";
 
 export type Domain = {
+  name: string;
+  description: string | null;
+  path: string;
   active: boolean;
   banner: string;
-  description: string | null;
   domainUnit?: Array<DomainUnit>;
   id: number;
-  name: string;
-  path: string;
 };

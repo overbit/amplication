@@ -2,14 +2,14 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type IniSupportingCourseworkOrderByInput = {
   applicationId?: SortOrder;
-  dataStructuresNumber?: SortOrder;
   dataStructuresTitle?: SortOrder;
-  id?: SortOrder;
-  msitExperience?: SortOrder;
-  probabilityNumber?: SortOrder;
+  dataStructuresNumber?: SortOrder;
   probabilityTitle?: SortOrder;
+  probabilityNumber?: SortOrder;
+  statisticsTitle?: SortOrder;
+  statisticsNumber?: SortOrder;
+  msitExperience?: SortOrder;
   programmingDescription?: SortOrder;
   programmingDescription2?: SortOrder;
-  statisticsNumber?: SortOrder;
-  statisticsTitle?: SortOrder;
+  id?: SortOrder;
 };

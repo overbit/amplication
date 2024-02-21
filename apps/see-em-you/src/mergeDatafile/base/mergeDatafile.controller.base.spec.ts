@@ -18,62 +18,62 @@ import { MergeDatafileService } from "../mergeDatafile.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  mergeId: 42,
+  datafileinfoId: 42,
   converted: "true",
   convertError: 42,
   convertMessage: "exampleConvertMessage",
-  datafileinfoId: 42,
-  id: "exampleId",
+  mergeFilename: "exampleMergeFilename",
   merged: "true",
   mergeError: 42,
-  mergeFilename: "exampleMergeFilename",
-  mergeId: 42,
   mergeMessage: "exampleMergeMessage",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
+  mergeId: 42,
+  datafileinfoId: 42,
   converted: "true",
   convertError: 42,
   convertMessage: "exampleConvertMessage",
-  datafileinfoId: 42,
-  id: "exampleId",
+  mergeFilename: "exampleMergeFilename",
   merged: "true",
   mergeError: 42,
-  mergeFilename: "exampleMergeFilename",
-  mergeId: 42,
   mergeMessage: "exampleMergeMessage",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
+    mergeId: 42,
+    datafileinfoId: 42,
     converted: "true",
     convertError: 42,
     convertMessage: "exampleConvertMessage",
-    datafileinfoId: 42,
-    id: "exampleId",
+    mergeFilename: "exampleMergeFilename",
     merged: "true",
     mergeError: 42,
-    mergeFilename: "exampleMergeFilename",
-    mergeId: 42,
     mergeMessage: "exampleMergeMessage",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
+  mergeId: 42,
+  datafileinfoId: 42,
   converted: "true",
   convertError: 42,
   convertMessage: "exampleConvertMessage",
-  datafileinfoId: 42,
-  id: "exampleId",
+  mergeFilename: "exampleMergeFilename",
   merged: "true",
   mergeError: 42,
-  mergeFilename: "exampleMergeFilename",
-  mergeId: 42,
   mergeMessage: "exampleMergeMessage",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createMergeDatafile() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mergeDatafiles: () => FIND_MANY_RESULT,
+  mergeDatafile: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

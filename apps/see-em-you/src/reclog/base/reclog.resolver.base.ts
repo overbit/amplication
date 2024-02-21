@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReclogArgs } from "./CreateReclogArgs";
-import { UpdateReclogArgs } from "./UpdateReclogArgs";
-import { DeleteReclogArgs } from "./DeleteReclogArgs";
+import { Reclog } from "./Reclog";
 import { ReclogCountArgs } from "./ReclogCountArgs";
 import { ReclogFindManyArgs } from "./ReclogFindManyArgs";
 import { ReclogFindUniqueArgs } from "./ReclogFindUniqueArgs";
-import { Reclog } from "./Reclog";
+import { CreateReclogArgs } from "./CreateReclogArgs";
+import { UpdateReclogArgs } from "./UpdateReclogArgs";
+import { DeleteReclogArgs } from "./DeleteReclogArgs";
 import { ReclogService } from "../reclog.service";
 @graphql.Resolver(() => Reclog)
 export class ReclogResolverBase {
@@ -36,14 +36,14 @@ export class ReclogResolverBase {
 
   @graphql.Query(() => [Reclog])
   async reclogs(@graphql.Args() args: ReclogFindManyArgs): Promise<Reclog[]> {
-    return this.service.findMany(args);
+    return this.service.reclogs(args);
   }
 
   @graphql.Query(() => Reclog, { nullable: true })
   async reclog(
     @graphql.Args() args: ReclogFindUniqueArgs
   ): Promise<Reclog | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reclog(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class ReclogResolverBase {
 
   @graphql.Mutation(() => Reclog)
   async createReclog(@graphql.Args() args: CreateReclogArgs): Promise<Reclog> {
-    return await this.service.create({
+    return await this.service.createReclog({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class ReclogResolverBase {
     @graphql.Args() args: UpdateReclogArgs
   ): Promise<Reclog | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReclog({
         ...args,
         data: args.data,
       });
@@ -82,7 +82,7 @@ export class ReclogResolverBase {
     @graphql.Args() args: DeleteReclogArgs
   ): Promise<Reclog | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReclog(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

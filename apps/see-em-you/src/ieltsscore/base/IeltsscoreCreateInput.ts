@@ -11,39 +11,30 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import {
-  ValidateNested,
-  IsInt,
+  IsDate,
   IsOptional,
   IsNumber,
-  IsDate,
+  IsInt,
   IsString,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { Decimal } from "decimal.js";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 
 @InputType()
 class IeltsscoreCreateInput {
   @ApiProperty({
-    required: true,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
     required: false,
-    type: Number,
   })
-  @IsInt()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => Date, {
     nullable: true,
   })
-  datafileId?: number | null;
+  testdate?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -65,7 +56,7 @@ class IeltsscoreCreateInput {
   @Field(() => Float, {
     nullable: true,
   })
-  overallscore?: Decimal | null;
+  readingscore?: Decimal | null;
 
   @ApiProperty({
     required: false,
@@ -76,7 +67,29 @@ class IeltsscoreCreateInput {
   @Field(() => Float, {
     nullable: true,
   })
-  readingscore?: Decimal | null;
+  writingscore?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  speakingscore?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  overallscore?: Decimal | null;
 
   @ApiProperty({
     required: false,
@@ -93,23 +106,12 @@ class IeltsscoreCreateInput {
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
-  @Field(() => Float, {
+  @Field(() => Number, {
     nullable: true,
   })
-  speakingscore?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  testdate?: Date | null;
+  datafileId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -123,15 +125,13 @@ class IeltsscoreCreateInput {
   testEmail?: string | null;
 
   @ApiProperty({
-    required: false,
-    type: Number,
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  writingscore?: Decimal | null;
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { IeltsscoreCreateInput as IeltsscoreCreateInput };

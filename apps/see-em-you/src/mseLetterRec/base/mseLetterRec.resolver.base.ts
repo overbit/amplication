@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMseLetterRecArgs } from "./CreateMseLetterRecArgs";
-import { UpdateMseLetterRecArgs } from "./UpdateMseLetterRecArgs";
-import { DeleteMseLetterRecArgs } from "./DeleteMseLetterRecArgs";
+import { MseLetterRec } from "./MseLetterRec";
 import { MseLetterRecCountArgs } from "./MseLetterRecCountArgs";
 import { MseLetterRecFindManyArgs } from "./MseLetterRecFindManyArgs";
 import { MseLetterRecFindUniqueArgs } from "./MseLetterRecFindUniqueArgs";
-import { MseLetterRec } from "./MseLetterRec";
+import { CreateMseLetterRecArgs } from "./CreateMseLetterRecArgs";
+import { UpdateMseLetterRecArgs } from "./UpdateMseLetterRecArgs";
+import { DeleteMseLetterRecArgs } from "./DeleteMseLetterRecArgs";
 import { MseLetterRecService } from "../mseLetterRec.service";
 @graphql.Resolver(() => MseLetterRec)
 export class MseLetterRecResolverBase {
@@ -38,14 +38,14 @@ export class MseLetterRecResolverBase {
   async mseLetterRecs(
     @graphql.Args() args: MseLetterRecFindManyArgs
   ): Promise<MseLetterRec[]> {
-    return this.service.findMany(args);
+    return this.service.mseLetterRecs(args);
   }
 
   @graphql.Query(() => MseLetterRec, { nullable: true })
   async mseLetterRec(
     @graphql.Args() args: MseLetterRecFindUniqueArgs
   ): Promise<MseLetterRec | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mseLetterRec(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MseLetterRecResolverBase {
   async createMseLetterRec(
     @graphql.Args() args: CreateMseLetterRecArgs
   ): Promise<MseLetterRec> {
-    return await this.service.create({
+    return await this.service.createMseLetterRec({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MseLetterRecResolverBase {
     @graphql.Args() args: UpdateMseLetterRecArgs
   ): Promise<MseLetterRec | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseLetterRec({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MseLetterRecResolverBase {
     @graphql.Args() args: DeleteMseLetterRecArgs
   ): Promise<MseLetterRec | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMseLetterRec(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

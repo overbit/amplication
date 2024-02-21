@@ -4,8 +4,8 @@ import {
   SimpleForm,
   EditProps,
   NumberInput,
-  DateTimeInput,
   TextInput,
+  DateTimeInput,
 } from "react-admin";
 
 export const ParentInfoEdit = (props: EditProps): React.ReactElement => {
@@ -13,11 +13,11 @@ export const ParentInfoEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <NumberInput step={1} label="App Id" source="appId" />
-        <DateTimeInput label="Modified" source="modified" />
-        <NumberInput step={1} label="P1 Ed Level" source="p1EdLevel" />
         <TextInput label="P1 Profession" source="p1Profession" />
-        <NumberInput step={1} label="P2 Ed Level" source="p2EdLevel" />
+        <NumberInput step={1} label="P1 Ed Level" source="p1EdLevel" />
         <TextInput label="P2 Profession" source="p2Profession" />
+        <NumberInput step={1} label="P2 Ed Level" source="p2EdLevel" />
+        <DateTimeInput label="Modified" source="modified" />
       </SimpleForm>
     </Edit>
   );

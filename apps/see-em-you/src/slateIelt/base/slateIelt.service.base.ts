@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateIelt } from "@prisma/client";
+import { Prisma, SlateIelt as PrismaSlateIelt } from "@prisma/client";
 
 export class SlateIeltServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateIeltServiceBase {
     return this.prisma.slateIelt.count(args);
   }
 
-  async findMany<T extends Prisma.SlateIeltFindManyArgs>(
+  async slateIelts<T extends Prisma.SlateIeltFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateIeltFindManyArgs>
-  ): Promise<SlateIelt[]> {
+  ): Promise<PrismaSlateIelt[]> {
     return this.prisma.slateIelt.findMany(args);
   }
-  async findOne<T extends Prisma.SlateIeltFindUniqueArgs>(
+  async slateIelt<T extends Prisma.SlateIeltFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateIeltFindUniqueArgs>
-  ): Promise<SlateIelt | null> {
+  ): Promise<PrismaSlateIelt | null> {
     return this.prisma.slateIelt.findUnique(args);
   }
-  async create<T extends Prisma.SlateIeltCreateArgs>(
+  async createSlateIelt<T extends Prisma.SlateIeltCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateIeltCreateArgs>
-  ): Promise<SlateIelt> {
+  ): Promise<PrismaSlateIelt> {
     return this.prisma.slateIelt.create<T>(args);
   }
-  async update<T extends Prisma.SlateIeltUpdateArgs>(
+  async updateSlateIelt<T extends Prisma.SlateIeltUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateIeltUpdateArgs>
-  ): Promise<SlateIelt> {
+  ): Promise<PrismaSlateIelt> {
     return this.prisma.slateIelt.update<T>(args);
   }
-  async delete<T extends Prisma.SlateIeltDeleteArgs>(
+  async deleteSlateIelt<T extends Prisma.SlateIeltDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateIeltDeleteArgs>
-  ): Promise<SlateIelt> {
+  ): Promise<PrismaSlateIelt> {
     return this.prisma.slateIelt.delete(args);
   }
 }

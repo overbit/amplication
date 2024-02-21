@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   abbrev: "exampleAbbrev",
+  name: "exampleName",
   countryId: 42,
   id: 42,
-  name: "exampleName",
 };
 const CREATE_RESULT = {
   abbrev: "exampleAbbrev",
+  name: "exampleName",
   countryId: 42,
   id: 42,
-  name: "exampleName",
 };
 const FIND_MANY_RESULT = [
   {
     abbrev: "exampleAbbrev",
+    name: "exampleName",
     countryId: 42,
     id: 42,
-    name: "exampleName",
   },
 ];
 const FIND_ONE_RESULT = {
   abbrev: "exampleAbbrev",
+  name: "exampleName",
   countryId: 42,
   id: 42,
-  name: "exampleName",
 };
 
 const service = {
-  create() {
+  createState() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  states: () => FIND_MANY_RESULT,
+  state: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

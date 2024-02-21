@@ -39,29 +39,7 @@ class ParentInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  created?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  modified?: SortOrder;
+  p1Profession?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +61,7 @@ class ParentInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  p1Profession?: SortOrder;
+  p2Profession?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,7 +83,29 @@ class ParentInfoOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  p2Profession?: SortOrder;
+  created?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  modified?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { ParentInfoOrderByInput as ParentInfoOrderByInput };

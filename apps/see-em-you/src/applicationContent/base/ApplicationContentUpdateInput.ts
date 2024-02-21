@@ -11,20 +11,20 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsOptional, IsInt, IsString } from "class-validator";
+import { IsString, IsOptional, IsInt, IsBoolean } from "class-validator";
 
 @InputType()
 class ApplicationContentUpdateInput {
   @ApiProperty({
     required: false,
-    type: Boolean,
+    type: String,
   })
-  @IsBoolean()
+  @IsString()
   @IsOptional()
-  @Field(() => Boolean, {
+  @Field(() => String, {
     nullable: true,
   })
-  desired?: boolean | null;
+  sectionIdentifier?: string | null;
 
   @ApiProperty({
     required: false,
@@ -46,18 +46,18 @@ class ApplicationContentUpdateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
-  required?: boolean | null;
+  desired?: boolean | null;
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Boolean,
   })
-  @IsString()
+  @IsBoolean()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Boolean, {
     nullable: true,
   })
-  sectionIdentifier?: string | null;
+  required?: boolean | null;
 }
 
 export { ApplicationContentUpdateInput as ApplicationContentUpdateInput };

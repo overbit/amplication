@@ -1,6 +1,6 @@
 export type CmuAffiliation = {
   applicationId: number;
-  cmuEmployee: number;
   cmuStudentOrAlumnus: number;
+  cmuEmployee: number;
   id: number;
 };

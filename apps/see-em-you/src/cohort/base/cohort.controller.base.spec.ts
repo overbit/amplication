@@ -18,38 +18,38 @@ import { CohortService } from "../cohort.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  closed: 42,
   cohortId: 42,
-  id: 42,
   startDate: new Date(),
+  closed: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  closed: 42,
   cohortId: 42,
-  id: 42,
   startDate: new Date(),
+  closed: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    closed: 42,
     cohortId: 42,
-    id: 42,
     startDate: new Date(),
+    closed: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  closed: 42,
   cohortId: 42,
-  id: 42,
   startDate: new Date(),
+  closed: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createCohort() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  cohorts: () => FIND_MANY_RESULT,
+  cohort: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

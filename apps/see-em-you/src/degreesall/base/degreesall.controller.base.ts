@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DegreesallService } from "../degreesall.service";
 import { DegreesallCreateInput } from "./DegreesallCreateInput";
-import { DegreesallWhereInput } from "./DegreesallWhereInput";
-import { DegreesallWhereUniqueInput } from "./DegreesallWhereUniqueInput";
-import { DegreesallFindManyArgs } from "./DegreesallFindManyArgs";
-import { DegreesallUpdateInput } from "./DegreesallUpdateInput";
 import { Degreesall } from "./Degreesall";
+import { DegreesallFindManyArgs } from "./DegreesallFindManyArgs";
+import { DegreesallWhereUniqueInput } from "./DegreesallWhereUniqueInput";
+import { DegreesallUpdateInput } from "./DegreesallUpdateInput";
 
 export class DegreesallControllerBase {
   constructor(protected readonly service: DegreesallService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Degreesall })
-  async create(
+  async createDegreesall(
     @common.Body() data: DegreesallCreateInput
   ): Promise<Degreesall> {
-    return await this.service.create({
+    return await this.service.createDegreesall({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -43,13 +42,13 @@ export class DegreesallControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Degreesall] })
   @ApiNestedQuery(DegreesallFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Degreesall[]> {
+  async degreesalls(@common.Req() request: Request): Promise<Degreesall[]> {
     const args = plainToClass(DegreesallFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.degreesalls({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -57,14 +56,14 @@ export class DegreesallControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Degreesall })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async degreesall(
     @common.Param() params: DegreesallWhereUniqueInput
   ): Promise<Degreesall | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.degreesall({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -78,17 +77,17 @@ export class DegreesallControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Degreesall })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDegreesall(
     @common.Param() params: DegreesallWhereUniqueInput,
     @common.Body() data: DegreesallUpdateInput
   ): Promise<Degreesall | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDegreesall({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -104,15 +103,15 @@ export class DegreesallControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Degreesall })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDegreesall(
     @common.Param() params: DegreesallWhereUniqueInput
   ): Promise<Degreesall | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDegreesall({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {

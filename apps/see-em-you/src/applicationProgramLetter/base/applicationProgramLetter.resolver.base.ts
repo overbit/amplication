@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateApplicationProgramLetterArgs } from "./CreateApplicationProgramLetterArgs";
-import { UpdateApplicationProgramLetterArgs } from "./UpdateApplicationProgramLetterArgs";
-import { DeleteApplicationProgramLetterArgs } from "./DeleteApplicationProgramLetterArgs";
+import { ApplicationProgramLetter } from "./ApplicationProgramLetter";
 import { ApplicationProgramLetterCountArgs } from "./ApplicationProgramLetterCountArgs";
 import { ApplicationProgramLetterFindManyArgs } from "./ApplicationProgramLetterFindManyArgs";
 import { ApplicationProgramLetterFindUniqueArgs } from "./ApplicationProgramLetterFindUniqueArgs";
-import { ApplicationProgramLetter } from "./ApplicationProgramLetter";
+import { CreateApplicationProgramLetterArgs } from "./CreateApplicationProgramLetterArgs";
+import { UpdateApplicationProgramLetterArgs } from "./UpdateApplicationProgramLetterArgs";
+import { DeleteApplicationProgramLetterArgs } from "./DeleteApplicationProgramLetterArgs";
 import { ApplicationProgramLetterService } from "../applicationProgramLetter.service";
 @graphql.Resolver(() => ApplicationProgramLetter)
 export class ApplicationProgramLetterResolverBase {
@@ -38,14 +38,14 @@ export class ApplicationProgramLetterResolverBase {
   async applicationProgramLetters(
     @graphql.Args() args: ApplicationProgramLetterFindManyArgs
   ): Promise<ApplicationProgramLetter[]> {
-    return this.service.findMany(args);
+    return this.service.applicationProgramLetters(args);
   }
 
   @graphql.Query(() => ApplicationProgramLetter, { nullable: true })
   async applicationProgramLetter(
     @graphql.Args() args: ApplicationProgramLetterFindUniqueArgs
   ): Promise<ApplicationProgramLetter | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.applicationProgramLetter(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ApplicationProgramLetterResolverBase {
   async createApplicationProgramLetter(
     @graphql.Args() args: CreateApplicationProgramLetterArgs
   ): Promise<ApplicationProgramLetter> {
-    return await this.service.create({
+    return await this.service.createApplicationProgramLetter({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ApplicationProgramLetterResolverBase {
     @graphql.Args() args: UpdateApplicationProgramLetterArgs
   ): Promise<ApplicationProgramLetter | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationProgramLetter({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ApplicationProgramLetterResolverBase {
     @graphql.Args() args: DeleteApplicationProgramLetterArgs
   ): Promise<ApplicationProgramLetter | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteApplicationProgramLetter(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -1,5 +1,5 @@
 export type VoucherApplicationCreateInput = {
-  appId: number;
-  dateUsed: Date;
   voucherId: number;
+  dateUsed: Date;
+  appId: number;
 };

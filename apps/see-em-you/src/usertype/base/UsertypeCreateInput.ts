@@ -16,6 +16,14 @@ import { IsString, IsOptional } from "class-validator";
 @InputType()
 class UsertypeCreateInput {
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -25,14 +33,6 @@ class UsertypeCreateInput {
     nullable: true,
   })
   description?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
 }
 
 export { UsertypeCreateInput as UsertypeCreateInput };

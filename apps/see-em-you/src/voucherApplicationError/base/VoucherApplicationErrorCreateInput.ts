@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @InputType()
 class VoucherApplicationErrorCreateInput {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  allowMultiple?: number | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -41,6 +30,17 @@ class VoucherApplicationErrorCreateInput {
   @IsString()
   @Field(() => String)
   code!: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  vaId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -62,7 +62,7 @@ class VoucherApplicationErrorCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  vaId?: number | null;
+  allowMultiple?: number | null;
 }
 
 export { VoucherApplicationErrorCreateInput as VoucherApplicationErrorCreateInput };

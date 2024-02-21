@@ -3,9 +3,9 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  NumberInput,
   ReferenceInput,
   SelectInput,
-  NumberInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -15,6 +15,12 @@ export const SpecialConsiderationCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Reviewer Id" source="reviewerId" />
+        <NumberInput
+          step={1}
+          label="Special Consideration"
+          source="specialConsideration"
+        />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -22,12 +28,6 @@ export const SpecialConsiderationCreate = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Reviewer Id" source="reviewerId" />
-        <NumberInput
-          step={1}
-          label="Special Consideration"
-          source="specialConsideration"
-        />
       </SimpleForm>
     </Create>
   );

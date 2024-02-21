@@ -18,23 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CountryService } from "../country.service";
 import { CountryCreateInput } from "./CountryCreateInput";
-import { CountryWhereInput } from "./CountryWhereInput";
-import { CountryWhereUniqueInput } from "./CountryWhereUniqueInput";
-import { CountryFindManyArgs } from "./CountryFindManyArgs";
-import { CountryUpdateInput } from "./CountryUpdateInput";
 import { Country } from "./Country";
+import { CountryFindManyArgs } from "./CountryFindManyArgs";
+import { CountryWhereUniqueInput } from "./CountryWhereUniqueInput";
+import { CountryUpdateInput } from "./CountryUpdateInput";
 
 export class CountryControllerBase {
   constructor(protected readonly service: CountryService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Country })
-  async create(@common.Body() data: CountryCreateInput): Promise<Country> {
-    return await this.service.create({
+  async createCountry(
+    @common.Body() data: CountryCreateInput
+  ): Promise<Country> {
+    return await this.service.createCountry({
       data: data,
       select: {
-        id: true,
-        isoCode: true,
         name: true,
+        isoCode: true,
+        id: true,
       },
     });
   }
@@ -42,14 +43,14 @@ export class CountryControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Country] })
   @ApiNestedQuery(CountryFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Country[]> {
+  async countries(@common.Req() request: Request): Promise<Country[]> {
     const args = plainToClass(CountryFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.countries({
       ...args,
       select: {
-        id: true,
-        isoCode: true,
         name: true,
+        isoCode: true,
+        id: true,
       },
     });
   }
@@ -57,15 +58,15 @@ export class CountryControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Country })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async country(
     @common.Param() params: CountryWhereUniqueInput
   ): Promise<Country | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.country({
       where: params,
       select: {
-        id: true,
-        isoCode: true,
         name: true,
+        isoCode: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -79,18 +80,18 @@ export class CountryControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Country })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCountry(
     @common.Param() params: CountryWhereUniqueInput,
     @common.Body() data: CountryUpdateInput
   ): Promise<Country | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCountry({
         where: params,
         data: data,
         select: {
-          id: true,
-          isoCode: true,
           name: true,
+          isoCode: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -106,16 +107,16 @@ export class CountryControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Country })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCountry(
     @common.Param() params: CountryWhereUniqueInput
   ): Promise<Country | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCountry({
         where: params,
         select: {
-          id: true,
-          isoCode: true,
           name: true,
+          isoCode: true,
+          id: true,
         },
       });
     } catch (error) {

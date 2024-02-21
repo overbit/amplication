@@ -11,10 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt, IsOptional } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @ObjectType()
 class RecommenderInfo {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  recUserId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  title!: string;
+
   @ApiProperty({
     required: true,
     type: String,
@@ -25,27 +41,11 @@ class RecommenderInfo {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
     type: String,
   })
   @IsString()
   @Field(() => String)
   phone!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  recUserId!: number;
 
   @ApiProperty({
     required: false,
@@ -60,11 +60,11 @@ class RecommenderInfo {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  title!: string;
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { RecommenderInfo as RecommenderInfo };

@@ -10,11 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  LuApplicationProgram,
-  Application,
-  ProgramModel,
+  LuApplicationProgram as PrismaLuApplicationProgram,
+  Application as PrismaApplication,
+  ProgramModel as PrismaProgramModel,
 } from "@prisma/client";
 
 export class LuApplicationProgramServiceBase {
@@ -26,33 +27,43 @@ export class LuApplicationProgramServiceBase {
     return this.prisma.luApplicationProgram.count(args);
   }
 
-  async findMany<T extends Prisma.LuApplicationProgramFindManyArgs>(
+  async luApplicationPrograms<
+    T extends Prisma.LuApplicationProgramFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationProgramFindManyArgs>
-  ): Promise<LuApplicationProgram[]> {
+  ): Promise<PrismaLuApplicationProgram[]> {
     return this.prisma.luApplicationProgram.findMany(args);
   }
-  async findOne<T extends Prisma.LuApplicationProgramFindUniqueArgs>(
+  async luApplicationProgram<
+    T extends Prisma.LuApplicationProgramFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationProgramFindUniqueArgs>
-  ): Promise<LuApplicationProgram | null> {
+  ): Promise<PrismaLuApplicationProgram | null> {
     return this.prisma.luApplicationProgram.findUnique(args);
   }
-  async create<T extends Prisma.LuApplicationProgramCreateArgs>(
+  async createLuApplicationProgram<
+    T extends Prisma.LuApplicationProgramCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationProgramCreateArgs>
-  ): Promise<LuApplicationProgram> {
+  ): Promise<PrismaLuApplicationProgram> {
     return this.prisma.luApplicationProgram.create<T>(args);
   }
-  async update<T extends Prisma.LuApplicationProgramUpdateArgs>(
+  async updateLuApplicationProgram<
+    T extends Prisma.LuApplicationProgramUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationProgramUpdateArgs>
-  ): Promise<LuApplicationProgram> {
+  ): Promise<PrismaLuApplicationProgram> {
     return this.prisma.luApplicationProgram.update<T>(args);
   }
-  async delete<T extends Prisma.LuApplicationProgramDeleteArgs>(
+  async deleteLuApplicationProgram<
+    T extends Prisma.LuApplicationProgramDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationProgramDeleteArgs>
-  ): Promise<LuApplicationProgram> {
+  ): Promise<PrismaLuApplicationProgram> {
     return this.prisma.luApplicationProgram.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.luApplicationProgram
       .findUnique({
         where: { id: parentId },
@@ -60,7 +71,7 @@ export class LuApplicationProgramServiceBase {
       .application();
   }
 
-  async getPrograms(parentId: number): Promise<ProgramModel | null> {
+  async getPrograms(parentId: number): Promise<PrismaProgramModel | null> {
     return this.prisma.luApplicationProgram
       .findUnique({
         where: { id: parentId },

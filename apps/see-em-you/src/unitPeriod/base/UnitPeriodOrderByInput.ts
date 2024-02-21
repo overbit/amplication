@@ -39,7 +39,7 @@ class UnitPeriodOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  periodId?: SortOrder;
+  unitId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class UnitPeriodOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  unitId?: SortOrder;
+  periodId?: SortOrder;
 }
 
 export { UnitPeriodOrderByInput as UnitPeriodOrderByInput };

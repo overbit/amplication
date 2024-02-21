@@ -1,14 +1,14 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MitsSlateToeflOrderByInput = {
-  first?: SortOrder;
-  id?: SortOrder;
-  last?: SortOrder;
-  middle?: SortOrder;
   prefix?: SortOrder;
+  first?: SortOrder;
+  middle?: SortOrder;
+  last?: SortOrder;
+  toeflTotal?: SortOrder;
   toeflListening?: SortOrder;
   toeflReading?: SortOrder;
-  toeflSpeaking?: SortOrder;
   toeflStructureWrittenExpression?: SortOrder;
-  toeflTotal?: SortOrder;
+  toeflSpeaking?: SortOrder;
+  id?: SortOrder;
 };

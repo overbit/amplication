@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Jiravote } from "@prisma/client";
+import { Prisma, Jiravote as PrismaJiravote } from "@prisma/client";
 
 export class JiravoteServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class JiravoteServiceBase {
     return this.prisma.jiravote.count(args);
   }
 
-  async findMany<T extends Prisma.JiravoteFindManyArgs>(
+  async jiravotes<T extends Prisma.JiravoteFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiravoteFindManyArgs>
-  ): Promise<Jiravote[]> {
+  ): Promise<PrismaJiravote[]> {
     return this.prisma.jiravote.findMany(args);
   }
-  async findOne<T extends Prisma.JiravoteFindUniqueArgs>(
+  async jiravote<T extends Prisma.JiravoteFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiravoteFindUniqueArgs>
-  ): Promise<Jiravote | null> {
+  ): Promise<PrismaJiravote | null> {
     return this.prisma.jiravote.findUnique(args);
   }
-  async create<T extends Prisma.JiravoteCreateArgs>(
+  async createJiravote<T extends Prisma.JiravoteCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiravoteCreateArgs>
-  ): Promise<Jiravote> {
+  ): Promise<PrismaJiravote> {
     return this.prisma.jiravote.create<T>(args);
   }
-  async update<T extends Prisma.JiravoteUpdateArgs>(
+  async updateJiravote<T extends Prisma.JiravoteUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiravoteUpdateArgs>
-  ): Promise<Jiravote> {
+  ): Promise<PrismaJiravote> {
     return this.prisma.jiravote.update<T>(args);
   }
-  async delete<T extends Prisma.JiravoteDeleteArgs>(
+  async deleteJiravote<T extends Prisma.JiravoteDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.JiravoteDeleteArgs>
-  ): Promise<Jiravote> {
+  ): Promise<PrismaJiravote> {
     return this.prisma.jiravote.delete(args);
   }
 }

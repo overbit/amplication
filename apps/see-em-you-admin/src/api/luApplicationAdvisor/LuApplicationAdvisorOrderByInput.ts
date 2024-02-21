@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type LuApplicationAdvisorOrderByInput = {
-  advisorType?: SortOrder;
   advisorUserId?: SortOrder;
-  application_id?: SortOrder;
-  choice?: SortOrder;
-  id?: SortOrder;
+  advisorType?: SortOrder;
   name?: SortOrder;
   programId?: SortOrder;
+  choice?: SortOrder;
+  application_id?: SortOrder;
+  id?: SortOrder;
 };

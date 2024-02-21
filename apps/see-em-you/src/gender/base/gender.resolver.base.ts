@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGenderArgs } from "./CreateGenderArgs";
-import { UpdateGenderArgs } from "./UpdateGenderArgs";
-import { DeleteGenderArgs } from "./DeleteGenderArgs";
+import { Gender } from "./Gender";
 import { GenderCountArgs } from "./GenderCountArgs";
 import { GenderFindManyArgs } from "./GenderFindManyArgs";
 import { GenderFindUniqueArgs } from "./GenderFindUniqueArgs";
-import { Gender } from "./Gender";
+import { CreateGenderArgs } from "./CreateGenderArgs";
+import { UpdateGenderArgs } from "./UpdateGenderArgs";
+import { DeleteGenderArgs } from "./DeleteGenderArgs";
 import { GenderService } from "../gender.service";
 @graphql.Resolver(() => Gender)
 export class GenderResolverBase {
@@ -36,14 +36,14 @@ export class GenderResolverBase {
 
   @graphql.Query(() => [Gender])
   async genders(@graphql.Args() args: GenderFindManyArgs): Promise<Gender[]> {
-    return this.service.findMany(args);
+    return this.service.genders(args);
   }
 
   @graphql.Query(() => Gender, { nullable: true })
   async gender(
     @graphql.Args() args: GenderFindUniqueArgs
   ): Promise<Gender | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.gender(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class GenderResolverBase {
 
   @graphql.Mutation(() => Gender)
   async createGender(@graphql.Args() args: CreateGenderArgs): Promise<Gender> {
-    return await this.service.create({
+    return await this.service.createGender({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class GenderResolverBase {
     @graphql.Args() args: UpdateGenderArgs
   ): Promise<Gender | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGender({
         ...args,
         data: args.data,
       });
@@ -82,7 +82,7 @@ export class GenderResolverBase {
     @graphql.Args() args: DeleteGenderArgs
   ): Promise<Gender | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGender(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

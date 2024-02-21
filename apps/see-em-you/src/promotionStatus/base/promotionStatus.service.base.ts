@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PromotionStatus } from "@prisma/client";
+import {
+  Prisma,
+  PromotionStatus as PrismaPromotionStatus,
+} from "@prisma/client";
 
 export class PromotionStatusServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class PromotionStatusServiceBase {
     return this.prisma.promotionStatus.count(args);
   }
 
-  async findMany<T extends Prisma.PromotionStatusFindManyArgs>(
+  async promotionStatuses<T extends Prisma.PromotionStatusFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionStatusFindManyArgs>
-  ): Promise<PromotionStatus[]> {
+  ): Promise<PrismaPromotionStatus[]> {
     return this.prisma.promotionStatus.findMany(args);
   }
-  async findOne<T extends Prisma.PromotionStatusFindUniqueArgs>(
+  async promotionStatus<T extends Prisma.PromotionStatusFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionStatusFindUniqueArgs>
-  ): Promise<PromotionStatus | null> {
+  ): Promise<PrismaPromotionStatus | null> {
     return this.prisma.promotionStatus.findUnique(args);
   }
-  async create<T extends Prisma.PromotionStatusCreateArgs>(
+  async createPromotionStatus<T extends Prisma.PromotionStatusCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionStatusCreateArgs>
-  ): Promise<PromotionStatus> {
+  ): Promise<PrismaPromotionStatus> {
     return this.prisma.promotionStatus.create<T>(args);
   }
-  async update<T extends Prisma.PromotionStatusUpdateArgs>(
+  async updatePromotionStatus<T extends Prisma.PromotionStatusUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionStatusUpdateArgs>
-  ): Promise<PromotionStatus> {
+  ): Promise<PrismaPromotionStatus> {
     return this.prisma.promotionStatus.update<T>(args);
   }
-  async delete<T extends Prisma.PromotionStatusDeleteArgs>(
+  async deletePromotionStatus<T extends Prisma.PromotionStatusDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionStatusDeleteArgs>
-  ): Promise<PromotionStatus> {
+  ): Promise<PrismaPromotionStatus> {
     return this.prisma.promotionStatus.delete(args);
   }
 }

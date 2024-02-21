@@ -1,6 +1,10 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type SlateCodilityOrderByInput = {
+  prefix?: SortOrder;
+  first?: SortOrder;
+  middle?: SortOrder;
+  last?: SortOrder;
   codilityCloseDate?: SortOrder;
   codilityCreateDate?: SortOrder;
   codilityIpAddresses?: SortOrder;
@@ -37,9 +41,5 @@ export type SlateCodilityOrderByInput = {
   codilityTask4Score?: SortOrder;
   codilityTestName?: SortOrder;
   codilityTestSession?: SortOrder;
-  first?: SortOrder;
   id?: SortOrder;
-  last?: SortOrder;
-  middle?: SortOrder;
-  prefix?: SortOrder;
 };

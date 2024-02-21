@@ -1,12 +1,12 @@
-import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 import { Decimal } from "decimal.js";
+import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 
 export type RegistrationFeePaymentCreateInput = {
-  application: ApplicationWhereUniqueInput;
   departmentId: number;
-  lastModUserId: number;
+  paymentType: number;
   paymentAmount: Decimal;
   paymentIntentDate: Date;
   payment_status: "pending" | "paid" | "refunded" | "void";
-  paymentType: number;
+  lastModUserId: number;
+  application: ApplicationWhereUniqueInput;
 };

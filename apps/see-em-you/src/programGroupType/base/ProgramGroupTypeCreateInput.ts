@@ -24,7 +24,7 @@ class ProgramGroupTypeCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  programGroupTypeDescription?: string | null;
+  programGroupTypeName?: string | null;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class ProgramGroupTypeCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  programGroupTypeName?: string | null;
+  programGroupTypeDescription?: string | null;
 }
 
 export { ProgramGroupTypeCreateInput as ProgramGroupTypeCreateInput };

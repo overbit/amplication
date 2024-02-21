@@ -7,8 +7,8 @@ export const ReviewerPreferenceShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="View Mode" source="viewMode" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

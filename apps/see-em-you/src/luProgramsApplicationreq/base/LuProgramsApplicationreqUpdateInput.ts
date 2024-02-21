@@ -24,7 +24,7 @@ class LuProgramsApplicationreqUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  appreqId?: number | null;
+  degreeId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class LuProgramsApplicationreqUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  degreeId?: number | null;
+  appreqId?: number | null;
 
   @ApiProperty({
     required: false,

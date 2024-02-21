@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DegreeLevel } from "@prisma/client";
+import { Prisma, DegreeLevel as PrismaDegreeLevel } from "@prisma/client";
 
 export class DegreeLevelServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DegreeLevelServiceBase {
     return this.prisma.degreeLevel.count(args);
   }
 
-  async findMany<T extends Prisma.DegreeLevelFindManyArgs>(
+  async degreeLevels<T extends Prisma.DegreeLevelFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeLevelFindManyArgs>
-  ): Promise<DegreeLevel[]> {
+  ): Promise<PrismaDegreeLevel[]> {
     return this.prisma.degreeLevel.findMany(args);
   }
-  async findOne<T extends Prisma.DegreeLevelFindUniqueArgs>(
+  async degreeLevel<T extends Prisma.DegreeLevelFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeLevelFindUniqueArgs>
-  ): Promise<DegreeLevel | null> {
+  ): Promise<PrismaDegreeLevel | null> {
     return this.prisma.degreeLevel.findUnique(args);
   }
-  async create<T extends Prisma.DegreeLevelCreateArgs>(
+  async createDegreeLevel<T extends Prisma.DegreeLevelCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeLevelCreateArgs>
-  ): Promise<DegreeLevel> {
+  ): Promise<PrismaDegreeLevel> {
     return this.prisma.degreeLevel.create<T>(args);
   }
-  async update<T extends Prisma.DegreeLevelUpdateArgs>(
+  async updateDegreeLevel<T extends Prisma.DegreeLevelUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeLevelUpdateArgs>
-  ): Promise<DegreeLevel> {
+  ): Promise<PrismaDegreeLevel> {
     return this.prisma.degreeLevel.update<T>(args);
   }
-  async delete<T extends Prisma.DegreeLevelDeleteArgs>(
+  async deleteDegreeLevel<T extends Prisma.DegreeLevelDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DegreeLevelDeleteArgs>
-  ): Promise<DegreeLevel> {
+  ): Promise<PrismaDegreeLevel> {
     return this.prisma.degreeLevel.delete(args);
   }
 }

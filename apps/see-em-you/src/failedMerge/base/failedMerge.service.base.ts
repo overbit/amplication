@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, FailedMerge } from "@prisma/client";
+import { Prisma, FailedMerge as PrismaFailedMerge } from "@prisma/client";
 
 export class FailedMergeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class FailedMergeServiceBase {
     return this.prisma.failedMerge.count(args);
   }
 
-  async findMany<T extends Prisma.FailedMergeFindManyArgs>(
+  async failedMerges<T extends Prisma.FailedMergeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.FailedMergeFindManyArgs>
-  ): Promise<FailedMerge[]> {
+  ): Promise<PrismaFailedMerge[]> {
     return this.prisma.failedMerge.findMany(args);
   }
-  async findOne<T extends Prisma.FailedMergeFindUniqueArgs>(
+  async failedMerge<T extends Prisma.FailedMergeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.FailedMergeFindUniqueArgs>
-  ): Promise<FailedMerge | null> {
+  ): Promise<PrismaFailedMerge | null> {
     return this.prisma.failedMerge.findUnique(args);
   }
-  async create<T extends Prisma.FailedMergeCreateArgs>(
+  async createFailedMerge<T extends Prisma.FailedMergeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.FailedMergeCreateArgs>
-  ): Promise<FailedMerge> {
+  ): Promise<PrismaFailedMerge> {
     return this.prisma.failedMerge.create<T>(args);
   }
-  async update<T extends Prisma.FailedMergeUpdateArgs>(
+  async updateFailedMerge<T extends Prisma.FailedMergeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.FailedMergeUpdateArgs>
-  ): Promise<FailedMerge> {
+  ): Promise<PrismaFailedMerge> {
     return this.prisma.failedMerge.update<T>(args);
   }
-  async delete<T extends Prisma.FailedMergeDeleteArgs>(
+  async deleteFailedMerge<T extends Prisma.FailedMergeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.FailedMergeDeleteArgs>
-  ): Promise<FailedMerge> {
+  ): Promise<PrismaFailedMerge> {
     return this.prisma.failedMerge.delete(args);
   }
 }

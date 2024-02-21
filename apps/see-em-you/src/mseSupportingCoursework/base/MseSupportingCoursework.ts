@@ -11,34 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt } from "class-validator";
+import { IsInt, IsString } from "class-validator";
 
 @ObjectType()
 class MseSupportingCoursework {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  algCourseGrade!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  algCourseName!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  algCourseNum!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -46,22 +22,6 @@ class MseSupportingCoursework {
   @IsInt()
   @Field(() => Number)
   appId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  dmCourseGrade!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  dmCourseName!: string;
 
   @ApiProperty({
     required: true,
@@ -77,7 +37,23 @@ class MseSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  dsCourseGrade!: string;
+  dmCourseName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  dmCourseGrade!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  dsCourseNum!: string;
 
   @ApiProperty({
     required: true,
@@ -93,15 +69,7 @@ class MseSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  dsCourseNum!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  dsCourseGrade!: string;
 
   @ApiProperty({
     required: true,
@@ -109,7 +77,7 @@ class MseSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  prog1CourseGrade!: string;
+  algCourseNum!: string;
 
   @ApiProperty({
     required: true,
@@ -117,7 +85,15 @@ class MseSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  prog1CourseName!: string;
+  algCourseName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  algCourseGrade!: string;
 
   @ApiProperty({
     required: true,
@@ -133,7 +109,23 @@ class MseSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  prog2CourseGrade!: string;
+  prog1CourseName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  prog1CourseGrade!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  prog2CourseNum!: string;
 
   @ApiProperty({
     required: true,
@@ -149,7 +141,15 @@ class MseSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  prog2CourseNum!: string;
+  prog2CourseGrade!: string;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MseSupportingCoursework as MseSupportingCoursework };

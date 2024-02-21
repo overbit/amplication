@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateAwAppId } from "@prisma/client";
+import { Prisma, SlateAwAppId as PrismaSlateAwAppId } from "@prisma/client";
 
 export class SlateAwAppIdServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateAwAppIdServiceBase {
     return this.prisma.slateAwAppId.count(args);
   }
 
-  async findMany<T extends Prisma.SlateAwAppIdFindManyArgs>(
+  async slateAwAppIds<T extends Prisma.SlateAwAppIdFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAwAppIdFindManyArgs>
-  ): Promise<SlateAwAppId[]> {
+  ): Promise<PrismaSlateAwAppId[]> {
     return this.prisma.slateAwAppId.findMany(args);
   }
-  async findOne<T extends Prisma.SlateAwAppIdFindUniqueArgs>(
+  async slateAwAppId<T extends Prisma.SlateAwAppIdFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAwAppIdFindUniqueArgs>
-  ): Promise<SlateAwAppId | null> {
+  ): Promise<PrismaSlateAwAppId | null> {
     return this.prisma.slateAwAppId.findUnique(args);
   }
-  async create<T extends Prisma.SlateAwAppIdCreateArgs>(
+  async createSlateAwAppId<T extends Prisma.SlateAwAppIdCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAwAppIdCreateArgs>
-  ): Promise<SlateAwAppId> {
+  ): Promise<PrismaSlateAwAppId> {
     return this.prisma.slateAwAppId.create<T>(args);
   }
-  async update<T extends Prisma.SlateAwAppIdUpdateArgs>(
+  async updateSlateAwAppId<T extends Prisma.SlateAwAppIdUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAwAppIdUpdateArgs>
-  ): Promise<SlateAwAppId> {
+  ): Promise<PrismaSlateAwAppId> {
     return this.prisma.slateAwAppId.update<T>(args);
   }
-  async delete<T extends Prisma.SlateAwAppIdDeleteArgs>(
+  async deleteSlateAwAppId<T extends Prisma.SlateAwAppIdDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateAwAppIdDeleteArgs>
-  ): Promise<SlateAwAppId> {
+  ): Promise<PrismaSlateAwAppId> {
     return this.prisma.slateAwAppId.delete(args);
   }
 }

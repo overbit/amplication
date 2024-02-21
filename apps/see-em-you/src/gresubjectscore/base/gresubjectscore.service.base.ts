@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Gresubjectscore, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  Gresubjectscore as PrismaGresubjectscore,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class GresubjectscoreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,33 @@ export class GresubjectscoreServiceBase {
     return this.prisma.gresubjectscore.count(args);
   }
 
-  async findMany<T extends Prisma.GresubjectscoreFindManyArgs>(
+  async gresubjectscores<T extends Prisma.GresubjectscoreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.GresubjectscoreFindManyArgs>
-  ): Promise<Gresubjectscore[]> {
+  ): Promise<PrismaGresubjectscore[]> {
     return this.prisma.gresubjectscore.findMany(args);
   }
-  async findOne<T extends Prisma.GresubjectscoreFindUniqueArgs>(
+  async gresubjectscore<T extends Prisma.GresubjectscoreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.GresubjectscoreFindUniqueArgs>
-  ): Promise<Gresubjectscore | null> {
+  ): Promise<PrismaGresubjectscore | null> {
     return this.prisma.gresubjectscore.findUnique(args);
   }
-  async create<T extends Prisma.GresubjectscoreCreateArgs>(
+  async createGresubjectscore<T extends Prisma.GresubjectscoreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GresubjectscoreCreateArgs>
-  ): Promise<Gresubjectscore> {
+  ): Promise<PrismaGresubjectscore> {
     return this.prisma.gresubjectscore.create<T>(args);
   }
-  async update<T extends Prisma.GresubjectscoreUpdateArgs>(
+  async updateGresubjectscore<T extends Prisma.GresubjectscoreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GresubjectscoreUpdateArgs>
-  ): Promise<Gresubjectscore> {
+  ): Promise<PrismaGresubjectscore> {
     return this.prisma.gresubjectscore.update<T>(args);
   }
-  async delete<T extends Prisma.GresubjectscoreDeleteArgs>(
+  async deleteGresubjectscore<T extends Prisma.GresubjectscoreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.GresubjectscoreDeleteArgs>
-  ): Promise<Gresubjectscore> {
+  ): Promise<PrismaGresubjectscore> {
     return this.prisma.gresubjectscore.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.gresubjectscore
       .findUnique({
         where: { id: parentId },

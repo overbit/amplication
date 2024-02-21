@@ -7,8 +7,8 @@ export const AccesslogApplicationEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Active" source="active" />
         <NumberInput step={1} label="App Id" source="appId" />
+        <NumberInput step={1} label="Active" source="active" />
       </SimpleForm>
     </Edit>
   );

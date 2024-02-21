@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateTestScoreArgs } from "./CreateSlateTestScoreArgs";
-import { UpdateSlateTestScoreArgs } from "./UpdateSlateTestScoreArgs";
-import { DeleteSlateTestScoreArgs } from "./DeleteSlateTestScoreArgs";
+import { SlateTestScore } from "./SlateTestScore";
 import { SlateTestScoreCountArgs } from "./SlateTestScoreCountArgs";
 import { SlateTestScoreFindManyArgs } from "./SlateTestScoreFindManyArgs";
 import { SlateTestScoreFindUniqueArgs } from "./SlateTestScoreFindUniqueArgs";
-import { SlateTestScore } from "./SlateTestScore";
+import { CreateSlateTestScoreArgs } from "./CreateSlateTestScoreArgs";
+import { UpdateSlateTestScoreArgs } from "./UpdateSlateTestScoreArgs";
+import { DeleteSlateTestScoreArgs } from "./DeleteSlateTestScoreArgs";
 import { SlateTestScoreService } from "../slateTestScore.service";
 @graphql.Resolver(() => SlateTestScore)
 export class SlateTestScoreResolverBase {
@@ -38,14 +38,14 @@ export class SlateTestScoreResolverBase {
   async slateTestScores(
     @graphql.Args() args: SlateTestScoreFindManyArgs
   ): Promise<SlateTestScore[]> {
-    return this.service.findMany(args);
+    return this.service.slateTestScores(args);
   }
 
   @graphql.Query(() => SlateTestScore, { nullable: true })
   async slateTestScore(
     @graphql.Args() args: SlateTestScoreFindUniqueArgs
   ): Promise<SlateTestScore | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateTestScore(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateTestScoreResolverBase {
   async createSlateTestScore(
     @graphql.Args() args: CreateSlateTestScoreArgs
   ): Promise<SlateTestScore> {
-    return await this.service.create({
+    return await this.service.createSlateTestScore({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateTestScoreResolverBase {
     @graphql.Args() args: UpdateSlateTestScoreArgs
   ): Promise<SlateTestScore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateTestScore({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateTestScoreResolverBase {
     @graphql.Args() args: DeleteSlateTestScoreArgs
   ): Promise<SlateTestScore | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateTestScore(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

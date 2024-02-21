@@ -2,7 +2,7 @@ import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniq
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type ApplicationAdminNoteCreateInput = {
-  application: ApplicationWhereUniqueInput;
   note: string;
+  application: ApplicationWhereUniqueInput;
   users: UserWhereUniqueInput;
 };

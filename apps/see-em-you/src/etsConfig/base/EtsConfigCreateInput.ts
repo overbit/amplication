@@ -24,28 +24,6 @@ class EtsConfigCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  login?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  password?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   testName?: string | null;
 
   @ApiProperty({
@@ -58,6 +36,28 @@ class EtsConfigCreateInput {
     nullable: true,
   })
   wsdl?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  login?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  password?: string | null;
 }
 
 export { EtsConfigCreateInput as EtsConfigCreateInput };

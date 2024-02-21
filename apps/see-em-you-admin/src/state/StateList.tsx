@@ -13,9 +13,9 @@ export const StateList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Abbrev" source="abbrev" />
+        <TextField label="Name" source="name" />
         <TextField label="Country Id" source="countryId" />
         <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
       </Datagrid>
     </List>
   );

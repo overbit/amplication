@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, VideoEssay } from "@prisma/client";
+import { Prisma, VideoEssay as PrismaVideoEssay } from "@prisma/client";
 
 export class VideoEssayServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class VideoEssayServiceBase {
     return this.prisma.videoEssay.count(args);
   }
 
-  async findMany<T extends Prisma.VideoEssayFindManyArgs>(
+  async videoEssays<T extends Prisma.VideoEssayFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.VideoEssayFindManyArgs>
-  ): Promise<VideoEssay[]> {
+  ): Promise<PrismaVideoEssay[]> {
     return this.prisma.videoEssay.findMany(args);
   }
-  async findOne<T extends Prisma.VideoEssayFindUniqueArgs>(
+  async videoEssay<T extends Prisma.VideoEssayFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.VideoEssayFindUniqueArgs>
-  ): Promise<VideoEssay | null> {
+  ): Promise<PrismaVideoEssay | null> {
     return this.prisma.videoEssay.findUnique(args);
   }
-  async create<T extends Prisma.VideoEssayCreateArgs>(
+  async createVideoEssay<T extends Prisma.VideoEssayCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VideoEssayCreateArgs>
-  ): Promise<VideoEssay> {
+  ): Promise<PrismaVideoEssay> {
     return this.prisma.videoEssay.create<T>(args);
   }
-  async update<T extends Prisma.VideoEssayUpdateArgs>(
+  async updateVideoEssay<T extends Prisma.VideoEssayUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VideoEssayUpdateArgs>
-  ): Promise<VideoEssay> {
+  ): Promise<PrismaVideoEssay> {
     return this.prisma.videoEssay.update<T>(args);
   }
-  async delete<T extends Prisma.VideoEssayDeleteArgs>(
+  async deleteVideoEssay<T extends Prisma.VideoEssayDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.VideoEssayDeleteArgs>
-  ): Promise<VideoEssay> {
+  ): Promise<PrismaVideoEssay> {
     return this.prisma.videoEssay.delete(args);
   }
 }

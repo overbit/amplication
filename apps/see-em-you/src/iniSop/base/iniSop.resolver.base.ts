@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIniSopArgs } from "./CreateIniSopArgs";
-import { UpdateIniSopArgs } from "./UpdateIniSopArgs";
-import { DeleteIniSopArgs } from "./DeleteIniSopArgs";
+import { IniSop } from "./IniSop";
 import { IniSopCountArgs } from "./IniSopCountArgs";
 import { IniSopFindManyArgs } from "./IniSopFindManyArgs";
 import { IniSopFindUniqueArgs } from "./IniSopFindUniqueArgs";
-import { IniSop } from "./IniSop";
+import { CreateIniSopArgs } from "./CreateIniSopArgs";
+import { UpdateIniSopArgs } from "./UpdateIniSopArgs";
+import { DeleteIniSopArgs } from "./DeleteIniSopArgs";
 import { IniSopService } from "../iniSop.service";
 @graphql.Resolver(() => IniSop)
 export class IniSopResolverBase {
@@ -36,14 +36,14 @@ export class IniSopResolverBase {
 
   @graphql.Query(() => [IniSop])
   async iniSops(@graphql.Args() args: IniSopFindManyArgs): Promise<IniSop[]> {
-    return this.service.findMany(args);
+    return this.service.iniSops(args);
   }
 
   @graphql.Query(() => IniSop, { nullable: true })
   async iniSop(
     @graphql.Args() args: IniSopFindUniqueArgs
   ): Promise<IniSop | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.iniSop(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class IniSopResolverBase {
 
   @graphql.Mutation(() => IniSop)
   async createIniSop(@graphql.Args() args: CreateIniSopArgs): Promise<IniSop> {
-    return await this.service.create({
+    return await this.service.createIniSop({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class IniSopResolverBase {
     @graphql.Args() args: UpdateIniSopArgs
   ): Promise<IniSop | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniSop({
         ...args,
         data: args.data,
       });
@@ -82,7 +82,7 @@ export class IniSopResolverBase {
     @graphql.Args() args: DeleteIniSopArgs
   ): Promise<IniSop | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIniSop(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

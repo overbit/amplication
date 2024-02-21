@@ -11,20 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, ValidateNested, IsString } from "class-validator";
+import { IsInt, IsOptional, IsString, ValidateNested } from "class-validator";
 import { Application } from "../../application/base/Application";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class LuApplicationAdvisor {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  advisorType!: number;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -38,30 +30,11 @@ class LuApplicationAdvisor {
 
   @ApiProperty({
     required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  choice!: number | null;
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  advisorType!: number;
 
   @ApiProperty({
     required: false,
@@ -84,6 +57,33 @@ class LuApplicationAdvisor {
     nullable: true,
   })
   programId!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  choice!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { LuApplicationAdvisor as LuApplicationAdvisor };

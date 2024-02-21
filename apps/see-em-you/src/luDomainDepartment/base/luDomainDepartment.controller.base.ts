@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuDomainDepartmentService } from "../luDomainDepartment.service";
 import { LuDomainDepartmentCreateInput } from "./LuDomainDepartmentCreateInput";
-import { LuDomainDepartmentWhereInput } from "./LuDomainDepartmentWhereInput";
-import { LuDomainDepartmentWhereUniqueInput } from "./LuDomainDepartmentWhereUniqueInput";
-import { LuDomainDepartmentFindManyArgs } from "./LuDomainDepartmentFindManyArgs";
-import { LuDomainDepartmentUpdateInput } from "./LuDomainDepartmentUpdateInput";
 import { LuDomainDepartment } from "./LuDomainDepartment";
+import { LuDomainDepartmentFindManyArgs } from "./LuDomainDepartmentFindManyArgs";
+import { LuDomainDepartmentWhereUniqueInput } from "./LuDomainDepartmentWhereUniqueInput";
+import { LuDomainDepartmentUpdateInput } from "./LuDomainDepartmentUpdateInput";
 
 export class LuDomainDepartmentControllerBase {
   constructor(protected readonly service: LuDomainDepartmentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuDomainDepartment })
-  async create(
+  async createLuDomainDepartment(
     @common.Body() data: LuDomainDepartmentCreateInput
   ): Promise<LuDomainDepartment> {
-    return await this.service.create({
+    return await this.service.createLuDomainDepartment({
       data: data,
       select: {
-        departmentId: true,
         domainId: true,
+        departmentId: true,
         drank: true,
         id: true,
       },
@@ -45,15 +44,15 @@ export class LuDomainDepartmentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuDomainDepartment] })
   @ApiNestedQuery(LuDomainDepartmentFindManyArgs)
-  async findMany(
+  async luDomainDepartments(
     @common.Req() request: Request
   ): Promise<LuDomainDepartment[]> {
     const args = plainToClass(LuDomainDepartmentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luDomainDepartments({
       ...args,
       select: {
-        departmentId: true,
         domainId: true,
+        departmentId: true,
         drank: true,
         id: true,
       },
@@ -63,14 +62,14 @@ export class LuDomainDepartmentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuDomainDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luDomainDepartment(
     @common.Param() params: LuDomainDepartmentWhereUniqueInput
   ): Promise<LuDomainDepartment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luDomainDepartment({
       where: params,
       select: {
-        departmentId: true,
         domainId: true,
+        departmentId: true,
         drank: true,
         id: true,
       },
@@ -86,17 +85,17 @@ export class LuDomainDepartmentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuDomainDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuDomainDepartment(
     @common.Param() params: LuDomainDepartmentWhereUniqueInput,
     @common.Body() data: LuDomainDepartmentUpdateInput
   ): Promise<LuDomainDepartment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuDomainDepartment({
         where: params,
         data: data,
         select: {
-          departmentId: true,
           domainId: true,
+          departmentId: true,
           drank: true,
           id: true,
         },
@@ -114,15 +113,15 @@ export class LuDomainDepartmentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuDomainDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuDomainDepartment(
     @common.Param() params: LuDomainDepartmentWhereUniqueInput
   ): Promise<LuDomainDepartment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuDomainDepartment({
         where: params,
         select: {
-          departmentId: true,
           domainId: true,
+          departmentId: true,
           drank: true,
           id: true,
         },

@@ -1,1 +1,5 @@
-export type AssistantshipWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type AssistantshipWhereInput = {
+  id?: IntFilter;
+};

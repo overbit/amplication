@@ -39,17 +39,6 @@ class IniSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  dataStructuresNumber?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   dataStructuresTitle?: SortOrder;
 
   @ApiProperty({
@@ -61,7 +50,7 @@ class IniSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  dataStructuresNumber?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +61,7 @@ class IniSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  msitExperience?: SortOrder;
+  probabilityTitle?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -94,7 +83,29 @@ class IniSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  probabilityTitle?: SortOrder;
+  statisticsTitle?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  statisticsNumber?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  msitExperience?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -127,18 +138,7 @@ class IniSupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  statisticsNumber?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  statisticsTitle?: SortOrder;
+  id?: SortOrder;
 }
 
 export { IniSupportingCourseworkOrderByInput as IniSupportingCourseworkOrderByInput };

@@ -35,7 +35,7 @@ class AdmissionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  code?: number;
+  programId?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class AdmissionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  programId?: number;
+  code?: number;
 }
 
 export { AdmissionUpdateInput as AdmissionUpdateInput };

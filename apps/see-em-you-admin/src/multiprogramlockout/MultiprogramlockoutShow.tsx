@@ -7,9 +7,9 @@ export const MultiprogramlockoutShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="Program Id1" source="programId1" />
         <TextField label="Program Id2" source="programId2" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

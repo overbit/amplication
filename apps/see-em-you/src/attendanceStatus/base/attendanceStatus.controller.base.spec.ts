@@ -18,30 +18,30 @@ import { AttendanceStatusService } from "../attendanceStatus.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   value: "exampleValue",
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   value: "exampleValue",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     value: "exampleValue",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   value: "exampleValue",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createAttendanceStatus() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  attendanceStatuses: () => FIND_MANY_RESULT,
+  attendanceStatus: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

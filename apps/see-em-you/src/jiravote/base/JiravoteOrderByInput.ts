@@ -39,7 +39,7 @@ class JiravoteOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  updatedAt?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class JiravoteOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  updatedAt?: SortOrder;
+  user?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +72,7 @@ class JiravoteOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  user?: SortOrder;
+  id?: SortOrder;
 }
 
 export { JiravoteOrderByInput as JiravoteOrderByInput };

@@ -28,7 +28,7 @@ class RejectionWaiverOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  luApplicationProgramsId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class RejectionWaiverOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  luApplicationProgramsId?: SortOrder;
+  waived?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class RejectionWaiverOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  waived?: SortOrder;
+  id?: SortOrder;
 }
 
 export { RejectionWaiverOrderByInput as RejectionWaiverOrderByInput };

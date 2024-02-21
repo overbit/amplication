@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePeriodTypeArgs } from "./CreatePeriodTypeArgs";
-import { UpdatePeriodTypeArgs } from "./UpdatePeriodTypeArgs";
-import { DeletePeriodTypeArgs } from "./DeletePeriodTypeArgs";
+import { PeriodType } from "./PeriodType";
 import { PeriodTypeCountArgs } from "./PeriodTypeCountArgs";
 import { PeriodTypeFindManyArgs } from "./PeriodTypeFindManyArgs";
 import { PeriodTypeFindUniqueArgs } from "./PeriodTypeFindUniqueArgs";
-import { PeriodType } from "./PeriodType";
+import { CreatePeriodTypeArgs } from "./CreatePeriodTypeArgs";
+import { UpdatePeriodTypeArgs } from "./UpdatePeriodTypeArgs";
+import { DeletePeriodTypeArgs } from "./DeletePeriodTypeArgs";
 import { PeriodTypeService } from "../periodType.service";
 @graphql.Resolver(() => PeriodType)
 export class PeriodTypeResolverBase {
@@ -38,14 +38,14 @@ export class PeriodTypeResolverBase {
   async periodTypes(
     @graphql.Args() args: PeriodTypeFindManyArgs
   ): Promise<PeriodType[]> {
-    return this.service.findMany(args);
+    return this.service.periodTypes(args);
   }
 
   @graphql.Query(() => PeriodType, { nullable: true })
   async periodType(
     @graphql.Args() args: PeriodTypeFindUniqueArgs
   ): Promise<PeriodType | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.periodType(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PeriodTypeResolverBase {
   async createPeriodType(
     @graphql.Args() args: CreatePeriodTypeArgs
   ): Promise<PeriodType> {
-    return await this.service.create({
+    return await this.service.createPeriodType({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PeriodTypeResolverBase {
     @graphql.Args() args: UpdatePeriodTypeArgs
   ): Promise<PeriodType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriodType({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PeriodTypeResolverBase {
     @graphql.Args() args: DeletePeriodTypeArgs
   ): Promise<PeriodType | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePeriodType(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

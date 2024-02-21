@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDepartmentEnableRecyclingArgs } from "./CreateDepartmentEnableRecyclingArgs";
-import { UpdateDepartmentEnableRecyclingArgs } from "./UpdateDepartmentEnableRecyclingArgs";
-import { DeleteDepartmentEnableRecyclingArgs } from "./DeleteDepartmentEnableRecyclingArgs";
+import { DepartmentEnableRecycling } from "./DepartmentEnableRecycling";
 import { DepartmentEnableRecyclingCountArgs } from "./DepartmentEnableRecyclingCountArgs";
 import { DepartmentEnableRecyclingFindManyArgs } from "./DepartmentEnableRecyclingFindManyArgs";
 import { DepartmentEnableRecyclingFindUniqueArgs } from "./DepartmentEnableRecyclingFindUniqueArgs";
-import { DepartmentEnableRecycling } from "./DepartmentEnableRecycling";
+import { CreateDepartmentEnableRecyclingArgs } from "./CreateDepartmentEnableRecyclingArgs";
+import { UpdateDepartmentEnableRecyclingArgs } from "./UpdateDepartmentEnableRecyclingArgs";
+import { DeleteDepartmentEnableRecyclingArgs } from "./DeleteDepartmentEnableRecyclingArgs";
 import { DepartmentEnableRecyclingService } from "../departmentEnableRecycling.service";
 @graphql.Resolver(() => DepartmentEnableRecycling)
 export class DepartmentEnableRecyclingResolverBase {
@@ -38,14 +38,14 @@ export class DepartmentEnableRecyclingResolverBase {
   async departmentEnableRecyclings(
     @graphql.Args() args: DepartmentEnableRecyclingFindManyArgs
   ): Promise<DepartmentEnableRecycling[]> {
-    return this.service.findMany(args);
+    return this.service.departmentEnableRecyclings(args);
   }
 
   @graphql.Query(() => DepartmentEnableRecycling, { nullable: true })
   async departmentEnableRecycling(
     @graphql.Args() args: DepartmentEnableRecyclingFindUniqueArgs
   ): Promise<DepartmentEnableRecycling | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.departmentEnableRecycling(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DepartmentEnableRecyclingResolverBase {
   async createDepartmentEnableRecycling(
     @graphql.Args() args: CreateDepartmentEnableRecyclingArgs
   ): Promise<DepartmentEnableRecycling> {
-    return await this.service.create({
+    return await this.service.createDepartmentEnableRecycling({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DepartmentEnableRecyclingResolverBase {
     @graphql.Args() args: UpdateDepartmentEnableRecyclingArgs
   ): Promise<DepartmentEnableRecycling | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDepartmentEnableRecycling({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DepartmentEnableRecyclingResolverBase {
     @graphql.Args() args: DeleteDepartmentEnableRecyclingArgs
   ): Promise<DepartmentEnableRecycling | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDepartmentEnableRecycling(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -18,34 +18,34 @@ import { AdvisorService } from "../advisor.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  userId: 42,
   departmentId: 42,
   id: 42,
-  userId: 42,
 };
 const CREATE_RESULT = {
+  userId: 42,
   departmentId: 42,
   id: 42,
-  userId: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    userId: 42,
     departmentId: 42,
     id: 42,
-    userId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  userId: 42,
   departmentId: 42,
   id: 42,
-  userId: 42,
 };
 
 const service = {
-  create() {
+  createAdvisor() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  advisors: () => FIND_MANY_RESULT,
+  advisor: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

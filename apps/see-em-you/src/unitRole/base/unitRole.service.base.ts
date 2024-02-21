@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, UnitRole } from "@prisma/client";
+import { Prisma, UnitRole as PrismaUnitRole } from "@prisma/client";
 
 export class UnitRoleServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class UnitRoleServiceBase {
     return this.prisma.unitRole.count(args);
   }
 
-  async findMany<T extends Prisma.UnitRoleFindManyArgs>(
+  async unitRoles<T extends Prisma.UnitRoleFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitRoleFindManyArgs>
-  ): Promise<UnitRole[]> {
+  ): Promise<PrismaUnitRole[]> {
     return this.prisma.unitRole.findMany(args);
   }
-  async findOne<T extends Prisma.UnitRoleFindUniqueArgs>(
+  async unitRole<T extends Prisma.UnitRoleFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitRoleFindUniqueArgs>
-  ): Promise<UnitRole | null> {
+  ): Promise<PrismaUnitRole | null> {
     return this.prisma.unitRole.findUnique(args);
   }
-  async create<T extends Prisma.UnitRoleCreateArgs>(
+  async createUnitRole<T extends Prisma.UnitRoleCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitRoleCreateArgs>
-  ): Promise<UnitRole> {
+  ): Promise<PrismaUnitRole> {
     return this.prisma.unitRole.create<T>(args);
   }
-  async update<T extends Prisma.UnitRoleUpdateArgs>(
+  async updateUnitRole<T extends Prisma.UnitRoleUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitRoleUpdateArgs>
-  ): Promise<UnitRole> {
+  ): Promise<PrismaUnitRole> {
     return this.prisma.unitRole.update<T>(args);
   }
-  async delete<T extends Prisma.UnitRoleDeleteArgs>(
+  async deleteUnitRole<T extends Prisma.UnitRoleDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitRoleDeleteArgs>
-  ): Promise<UnitRole> {
+  ): Promise<PrismaUnitRole> {
     return this.prisma.unitRole.delete(args);
   }
 }

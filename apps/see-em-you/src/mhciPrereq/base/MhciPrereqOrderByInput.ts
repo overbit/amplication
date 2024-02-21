@@ -28,40 +28,7 @@ class MhciPrereqOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  application_id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  mhciPrereqsStatusId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  periodId?: SortOrder;
+  studentLuUsersUsertypesId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +50,7 @@ class MhciPrereqOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  status2?: SortOrder;
+  periodId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,7 +72,7 @@ class MhciPrereqOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  studentLuUsersUsertypesId?: SortOrder;
+  status2?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -117,6 +84,39 @@ class MhciPrereqOrderByInput {
     nullable: true,
   })
   timestamp?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  application_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mhciPrereqsStatusId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MhciPrereqOrderByInput as MhciPrereqOrderByInput };

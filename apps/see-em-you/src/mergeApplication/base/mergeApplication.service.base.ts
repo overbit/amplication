@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MergeApplication } from "@prisma/client";
+import {
+  Prisma,
+  MergeApplication as PrismaMergeApplication,
+} from "@prisma/client";
 
 export class MergeApplicationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class MergeApplicationServiceBase {
     return this.prisma.mergeApplication.count(args);
   }
 
-  async findMany<T extends Prisma.MergeApplicationFindManyArgs>(
+  async mergeApplications<T extends Prisma.MergeApplicationFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeApplicationFindManyArgs>
-  ): Promise<MergeApplication[]> {
+  ): Promise<PrismaMergeApplication[]> {
     return this.prisma.mergeApplication.findMany(args);
   }
-  async findOne<T extends Prisma.MergeApplicationFindUniqueArgs>(
+  async mergeApplication<T extends Prisma.MergeApplicationFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeApplicationFindUniqueArgs>
-  ): Promise<MergeApplication | null> {
+  ): Promise<PrismaMergeApplication | null> {
     return this.prisma.mergeApplication.findUnique(args);
   }
-  async create<T extends Prisma.MergeApplicationCreateArgs>(
+  async createMergeApplication<T extends Prisma.MergeApplicationCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeApplicationCreateArgs>
-  ): Promise<MergeApplication> {
+  ): Promise<PrismaMergeApplication> {
     return this.prisma.mergeApplication.create<T>(args);
   }
-  async update<T extends Prisma.MergeApplicationUpdateArgs>(
+  async updateMergeApplication<T extends Prisma.MergeApplicationUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeApplicationUpdateArgs>
-  ): Promise<MergeApplication> {
+  ): Promise<PrismaMergeApplication> {
     return this.prisma.mergeApplication.update<T>(args);
   }
-  async delete<T extends Prisma.MergeApplicationDeleteArgs>(
+  async deleteMergeApplication<T extends Prisma.MergeApplicationDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MergeApplicationDeleteArgs>
-  ): Promise<MergeApplication> {
+  ): Promise<PrismaMergeApplication> {
     return this.prisma.mergeApplication.delete(args);
   }
 }

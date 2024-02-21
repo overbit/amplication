@@ -28,39 +28,6 @@ class ApplicationProgramLetterOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  admitSent?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  admitSentDate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   rejectionSent?: SortOrder;
 
   @ApiProperty({
@@ -83,6 +50,28 @@ class ApplicationProgramLetterOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  admitSent?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  admitSentDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   waitlistSent?: SortOrder;
 
   @ApiProperty({
@@ -95,6 +84,17 @@ class ApplicationProgramLetterOrderByInput {
     nullable: true,
   })
   waitlistSentDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { ApplicationProgramLetterOrderByInput as ApplicationProgramLetterOrderByInput };

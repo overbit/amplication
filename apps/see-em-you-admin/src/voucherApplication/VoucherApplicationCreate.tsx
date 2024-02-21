@@ -13,9 +13,9 @@ export const VoucherApplicationCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="App Id" source="appId" />
-        <DateTimeInput label="Date Used" source="dateUsed" />
         <NumberInput step={1} label="Voucher Id" source="voucherId" />
+        <DateTimeInput label="Date Used" source="dateUsed" />
+        <NumberInput step={1} label="App Id" source="appId" />
       </SimpleForm>
     </Create>
   );

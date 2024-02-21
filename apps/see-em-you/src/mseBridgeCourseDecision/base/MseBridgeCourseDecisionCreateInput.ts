@@ -29,7 +29,7 @@ class MseBridgeCourseDecisionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  courseId!: number;
+  programId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class MseBridgeCourseDecisionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
+  courseId!: number;
 }
 
 export { MseBridgeCourseDecisionCreateInput as MseBridgeCourseDecisionCreateInput };

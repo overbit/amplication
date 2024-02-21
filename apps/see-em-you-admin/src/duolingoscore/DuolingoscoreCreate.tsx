@@ -13,10 +13,10 @@ export const DuolingoscoreCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Duolingodata Id" source="duolingodataId" />
-        <DateTimeInput label="Match Date" source="matchDate" />
         <DateTimeInput label="Testdate" source="testdate" />
         <TextInput label="Testemail" source="testemail" />
+        <NumberInput step={1} label="Duolingodata Id" source="duolingodataId" />
+        <DateTimeInput label="Match Date" source="matchDate" />
       </SimpleForm>
     </Create>
   );

@@ -11,29 +11,21 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
-import {
-  ValidateNested,
-  IsEnum,
-  IsInt,
-  IsOptional,
-  IsString,
-} from "class-validator";
-import { Type } from "class-transformer";
 import { EnumMhciPrereqsCourseCourseType } from "./EnumMhciPrereqsCourseCourseType";
+import {
+  IsEnum,
+  IsString,
+  IsOptional,
+  IsInt,
+  ValidateNested,
+} from "class-validator";
+import { Application } from "../../application/base/Application";
+import { Type } from "class-transformer";
 import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 import { MhciPrereqsCourseDatafile } from "../../mhciPrereqsCourseDatafile/base/MhciPrereqsCourseDatafile";
 
 @ObjectType()
 class MhciPrereqsCourse {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
   @ApiProperty({
     required: true,
     enum: EnumMhciPrereqsCourseCourseType,
@@ -52,28 +44,46 @@ class MhciPrereqsCourse {
 
   @ApiProperty({
     required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  studentCourseName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  studentCourseTime!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  studentCourseInstitution!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  studentCourseGrade!: string | null;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: () => LuUsersUsertype,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertype)
-  luUsersUsertypes?: LuUsersUsertype;
-
-  @ApiProperty({
-    required: false,
-    type: () => [MhciPrereqsCourseDatafile],
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereqsCourseDatafile)
-  @IsOptional()
-  mhciPrereqsCourseDatafiles?: Array<MhciPrereqsCourseDatafile>;
+  submittedToReviewer!: number;
 
   @ApiProperty({
     required: false,
@@ -98,39 +108,29 @@ class MhciPrereqsCourse {
   programId!: number | null;
 
   @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: () => LuUsersUsertype,
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertype)
+  luUsersUsertypes?: LuUsersUsertype;
+
+  @ApiProperty({
     required: false,
-    type: String,
+    type: () => [MhciPrereqsCourseDatafile],
   })
-  @IsString()
+  @ValidateNested()
+  @Type(() => MhciPrereqsCourseDatafile)
   @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  studentCourseGrade!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  studentCourseInstitution!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  studentCourseName!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  studentCourseTime!: string;
+  mhciPrereqsCourseDatafiles?: Array<MhciPrereqsCourseDatafile>;
 
   @ApiProperty({
     required: true,
@@ -138,7 +138,7 @@ class MhciPrereqsCourse {
   })
   @IsInt()
   @Field(() => Number)
-  submittedToReviewer!: number;
+  id!: number;
 }
 
 export { MhciPrereqsCourse as MhciPrereqsCourse };

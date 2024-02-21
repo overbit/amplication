@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Institute } from "@prisma/client";
+import { Prisma, Institute as PrismaInstitute } from "@prisma/client";
 
 export class InstituteServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class InstituteServiceBase {
     return this.prisma.institute.count(args);
   }
 
-  async findMany<T extends Prisma.InstituteFindManyArgs>(
+  async institutes<T extends Prisma.InstituteFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.InstituteFindManyArgs>
-  ): Promise<Institute[]> {
+  ): Promise<PrismaInstitute[]> {
     return this.prisma.institute.findMany(args);
   }
-  async findOne<T extends Prisma.InstituteFindUniqueArgs>(
+  async institute<T extends Prisma.InstituteFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.InstituteFindUniqueArgs>
-  ): Promise<Institute | null> {
+  ): Promise<PrismaInstitute | null> {
     return this.prisma.institute.findUnique(args);
   }
-  async create<T extends Prisma.InstituteCreateArgs>(
+  async createInstitute<T extends Prisma.InstituteCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.InstituteCreateArgs>
-  ): Promise<Institute> {
+  ): Promise<PrismaInstitute> {
     return this.prisma.institute.create<T>(args);
   }
-  async update<T extends Prisma.InstituteUpdateArgs>(
+  async updateInstitute<T extends Prisma.InstituteUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.InstituteUpdateArgs>
-  ): Promise<Institute> {
+  ): Promise<PrismaInstitute> {
     return this.prisma.institute.update<T>(args);
   }
-  async delete<T extends Prisma.InstituteDeleteArgs>(
+  async deleteInstitute<T extends Prisma.InstituteDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.InstituteDeleteArgs>
-  ): Promise<Institute> {
+  ): Promise<PrismaInstitute> {
     return this.prisma.institute.delete(args);
   }
 }

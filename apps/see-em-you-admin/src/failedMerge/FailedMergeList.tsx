@@ -13,8 +13,8 @@ export const FailedMergeList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="File" source="file" />
         <TextField label="Guid" source="guid" />
+        <TextField label="File" source="file" />
         <TextField label="Id" source="id" />
       </Datagrid>
     </List>

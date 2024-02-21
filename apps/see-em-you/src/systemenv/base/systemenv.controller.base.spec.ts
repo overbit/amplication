@@ -18,50 +18,50 @@ import { SystemenvService } from "../systemenv.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  appbaseprice: 42.424242424,
-  coorduserId: 42,
   domainId: 42,
+  coorduserId: 42,
   expdate: new Date(),
   expdate2: new Date(),
-  id: 42,
+  appbaseprice: 42.424242424,
   sysemail: "exampleSysemail",
+  id: 42,
 };
 const CREATE_RESULT = {
-  appbaseprice: 42.424242424,
-  coorduserId: 42,
   domainId: 42,
+  coorduserId: 42,
   expdate: new Date(),
   expdate2: new Date(),
-  id: 42,
+  appbaseprice: 42.424242424,
   sysemail: "exampleSysemail",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    appbaseprice: 42.424242424,
-    coorduserId: 42,
     domainId: 42,
+    coorduserId: 42,
     expdate: new Date(),
     expdate2: new Date(),
-    id: 42,
+    appbaseprice: 42.424242424,
     sysemail: "exampleSysemail",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  appbaseprice: 42.424242424,
-  coorduserId: 42,
   domainId: 42,
+  coorduserId: 42,
   expdate: new Date(),
   expdate2: new Date(),
-  id: 42,
+  appbaseprice: 42.424242424,
   sysemail: "exampleSysemail",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createSystemenv() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  systemenvs: () => FIND_MANY_RESULT,
+  systemenv: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

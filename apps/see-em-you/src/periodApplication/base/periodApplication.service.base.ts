@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PeriodApplication, Application, Period } from "@prisma/client";
+
+import {
+  Prisma,
+  PeriodApplication as PrismaPeriodApplication,
+  Application as PrismaApplication,
+  Period as PrismaPeriod,
+} from "@prisma/client";
 
 export class PeriodApplicationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +27,33 @@ export class PeriodApplicationServiceBase {
     return this.prisma.periodApplication.count(args);
   }
 
-  async findMany<T extends Prisma.PeriodApplicationFindManyArgs>(
+  async periodApplications<T extends Prisma.PeriodApplicationFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodApplicationFindManyArgs>
-  ): Promise<PeriodApplication[]> {
+  ): Promise<PrismaPeriodApplication[]> {
     return this.prisma.periodApplication.findMany(args);
   }
-  async findOne<T extends Prisma.PeriodApplicationFindUniqueArgs>(
+  async periodApplication<T extends Prisma.PeriodApplicationFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodApplicationFindUniqueArgs>
-  ): Promise<PeriodApplication | null> {
+  ): Promise<PrismaPeriodApplication | null> {
     return this.prisma.periodApplication.findUnique(args);
   }
-  async create<T extends Prisma.PeriodApplicationCreateArgs>(
+  async createPeriodApplication<T extends Prisma.PeriodApplicationCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodApplicationCreateArgs>
-  ): Promise<PeriodApplication> {
+  ): Promise<PrismaPeriodApplication> {
     return this.prisma.periodApplication.create<T>(args);
   }
-  async update<T extends Prisma.PeriodApplicationUpdateArgs>(
+  async updatePeriodApplication<T extends Prisma.PeriodApplicationUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodApplicationUpdateArgs>
-  ): Promise<PeriodApplication> {
+  ): Promise<PrismaPeriodApplication> {
     return this.prisma.periodApplication.update<T>(args);
   }
-  async delete<T extends Prisma.PeriodApplicationDeleteArgs>(
+  async deletePeriodApplication<T extends Prisma.PeriodApplicationDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodApplicationDeleteArgs>
-  ): Promise<PeriodApplication> {
+  ): Promise<PrismaPeriodApplication> {
     return this.prisma.periodApplication.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.periodApplication
       .findUnique({
         where: { id: parentId },
@@ -55,7 +61,7 @@ export class PeriodApplicationServiceBase {
       .application();
   }
 
-  async getPeriod(parentId: number): Promise<Period | null> {
+  async getPeriod(parentId: number): Promise<PrismaPeriod | null> {
     return this.prisma.periodApplication
       .findUnique({
         where: { id: parentId },

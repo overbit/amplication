@@ -18,50 +18,50 @@ import { ScsUserService } from "../scsUser.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  andrewId: "exampleAndrewId",
+  usersId: 42,
   cmuGuid: "exampleCmuGuid",
   csId: "exampleCsId",
+  andrewId: "exampleAndrewId",
   eceId: "exampleEceId",
-  id: 42,
   qatarId: "exampleQatarId",
-  usersId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  andrewId: "exampleAndrewId",
+  usersId: 42,
   cmuGuid: "exampleCmuGuid",
   csId: "exampleCsId",
+  andrewId: "exampleAndrewId",
   eceId: "exampleEceId",
-  id: 42,
   qatarId: "exampleQatarId",
-  usersId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    andrewId: "exampleAndrewId",
+    usersId: 42,
     cmuGuid: "exampleCmuGuid",
     csId: "exampleCsId",
+    andrewId: "exampleAndrewId",
     eceId: "exampleEceId",
-    id: 42,
     qatarId: "exampleQatarId",
-    usersId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  andrewId: "exampleAndrewId",
+  usersId: 42,
   cmuGuid: "exampleCmuGuid",
   csId: "exampleCsId",
+  andrewId: "exampleAndrewId",
   eceId: "exampleEceId",
-  id: 42,
   qatarId: "exampleQatarId",
-  usersId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createScsUser() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  scsUsers: () => FIND_MANY_RESULT,
+  scsUser: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

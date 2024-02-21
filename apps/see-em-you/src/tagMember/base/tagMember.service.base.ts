@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, TagMember, Application } from "@prisma/client";
+import {
+  Prisma,
+  TagMember as PrismaTagMember,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class TagMemberServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class TagMemberServiceBase {
     return this.prisma.tagMember.count(args);
   }
 
-  async findMany<T extends Prisma.TagMemberFindManyArgs>(
+  async tagMembers<T extends Prisma.TagMemberFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagMemberFindManyArgs>
-  ): Promise<TagMember[]> {
+  ): Promise<PrismaTagMember[]> {
     return this.prisma.tagMember.findMany(args);
   }
-  async findOne<T extends Prisma.TagMemberFindUniqueArgs>(
+  async tagMember<T extends Prisma.TagMemberFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagMemberFindUniqueArgs>
-  ): Promise<TagMember | null> {
+  ): Promise<PrismaTagMember | null> {
     return this.prisma.tagMember.findUnique(args);
   }
-  async create<T extends Prisma.TagMemberCreateArgs>(
+  async createTagMember<T extends Prisma.TagMemberCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagMemberCreateArgs>
-  ): Promise<TagMember> {
+  ): Promise<PrismaTagMember> {
     return this.prisma.tagMember.create<T>(args);
   }
-  async update<T extends Prisma.TagMemberUpdateArgs>(
+  async updateTagMember<T extends Prisma.TagMemberUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagMemberUpdateArgs>
-  ): Promise<TagMember> {
+  ): Promise<PrismaTagMember> {
     return this.prisma.tagMember.update<T>(args);
   }
-  async delete<T extends Prisma.TagMemberDeleteArgs>(
+  async deleteTagMember<T extends Prisma.TagMemberDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.TagMemberDeleteArgs>
-  ): Promise<TagMember> {
+  ): Promise<PrismaTagMember> {
     return this.prisma.tagMember.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.tagMember
       .findUnique({
         where: { id: parentId },

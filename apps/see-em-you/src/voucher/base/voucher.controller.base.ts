@@ -18,26 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { VoucherService } from "../voucher.service";
 import { VoucherCreateInput } from "./VoucherCreateInput";
-import { VoucherWhereInput } from "./VoucherWhereInput";
-import { VoucherWhereUniqueInput } from "./VoucherWhereUniqueInput";
-import { VoucherFindManyArgs } from "./VoucherFindManyArgs";
-import { VoucherUpdateInput } from "./VoucherUpdateInput";
 import { Voucher } from "./Voucher";
+import { VoucherFindManyArgs } from "./VoucherFindManyArgs";
+import { VoucherWhereUniqueInput } from "./VoucherWhereUniqueInput";
+import { VoucherUpdateInput } from "./VoucherUpdateInput";
 
 export class VoucherControllerBase {
   constructor(protected readonly service: VoucherService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Voucher })
-  async create(@common.Body() data: VoucherCreateInput): Promise<Voucher> {
-    return await this.service.create({
+  async createVoucher(
+    @common.Body() data: VoucherCreateInput
+  ): Promise<Voucher> {
+    return await this.service.createVoucher({
       data: data,
       select: {
+        code: true,
         active: true,
         allowMultiple: true,
-        code: true,
-        id: true,
         prettyCode: true,
         prog: true,
+        id: true,
       },
     });
   }
@@ -45,17 +46,17 @@ export class VoucherControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Voucher] })
   @ApiNestedQuery(VoucherFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Voucher[]> {
+  async vouchers(@common.Req() request: Request): Promise<Voucher[]> {
     const args = plainToClass(VoucherFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.vouchers({
       ...args,
       select: {
+        code: true,
         active: true,
         allowMultiple: true,
-        code: true,
-        id: true,
         prettyCode: true,
         prog: true,
+        id: true,
       },
     });
   }
@@ -63,18 +64,18 @@ export class VoucherControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Voucher })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async voucher(
     @common.Param() params: VoucherWhereUniqueInput
   ): Promise<Voucher | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.voucher({
       where: params,
       select: {
+        code: true,
         active: true,
         allowMultiple: true,
-        code: true,
-        id: true,
         prettyCode: true,
         prog: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -88,21 +89,21 @@ export class VoucherControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Voucher })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateVoucher(
     @common.Param() params: VoucherWhereUniqueInput,
     @common.Body() data: VoucherUpdateInput
   ): Promise<Voucher | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVoucher({
         where: params,
         data: data,
         select: {
+          code: true,
           active: true,
           allowMultiple: true,
-          code: true,
-          id: true,
           prettyCode: true,
           prog: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -118,19 +119,19 @@ export class VoucherControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Voucher })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteVoucher(
     @common.Param() params: VoucherWhereUniqueInput
   ): Promise<Voucher | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteVoucher({
         where: params,
         select: {
+          code: true,
           active: true,
           allowMultiple: true,
-          code: true,
-          id: true,
           prettyCode: true,
           prog: true,
+          id: true,
         },
       });
     } catch (error) {

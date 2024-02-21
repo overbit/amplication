@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateMaterialArgs } from "./CreateSlateMaterialArgs";
-import { UpdateSlateMaterialArgs } from "./UpdateSlateMaterialArgs";
-import { DeleteSlateMaterialArgs } from "./DeleteSlateMaterialArgs";
+import { SlateMaterial } from "./SlateMaterial";
 import { SlateMaterialCountArgs } from "./SlateMaterialCountArgs";
 import { SlateMaterialFindManyArgs } from "./SlateMaterialFindManyArgs";
 import { SlateMaterialFindUniqueArgs } from "./SlateMaterialFindUniqueArgs";
-import { SlateMaterial } from "./SlateMaterial";
+import { CreateSlateMaterialArgs } from "./CreateSlateMaterialArgs";
+import { UpdateSlateMaterialArgs } from "./UpdateSlateMaterialArgs";
+import { DeleteSlateMaterialArgs } from "./DeleteSlateMaterialArgs";
 import { SlateMaterialService } from "../slateMaterial.service";
 @graphql.Resolver(() => SlateMaterial)
 export class SlateMaterialResolverBase {
@@ -38,14 +38,14 @@ export class SlateMaterialResolverBase {
   async slateMaterials(
     @graphql.Args() args: SlateMaterialFindManyArgs
   ): Promise<SlateMaterial[]> {
-    return this.service.findMany(args);
+    return this.service.slateMaterials(args);
   }
 
   @graphql.Query(() => SlateMaterial, { nullable: true })
   async slateMaterial(
     @graphql.Args() args: SlateMaterialFindUniqueArgs
   ): Promise<SlateMaterial | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateMaterial(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateMaterialResolverBase {
   async createSlateMaterial(
     @graphql.Args() args: CreateSlateMaterialArgs
   ): Promise<SlateMaterial> {
-    return await this.service.create({
+    return await this.service.createSlateMaterial({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateMaterialResolverBase {
     @graphql.Args() args: UpdateSlateMaterialArgs
   ): Promise<SlateMaterial | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateMaterial({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateMaterialResolverBase {
     @graphql.Args() args: DeleteSlateMaterialArgs
   ): Promise<SlateMaterial | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateMaterial(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

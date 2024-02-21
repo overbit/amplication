@@ -35,7 +35,7 @@ class CcPaymentStatusUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  creditTotal?: number;
+  settleTotal?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class CcPaymentStatusUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  settleTotal?: number;
+  creditTotal?: number;
 }
 
 export { CcPaymentStatusUpdateInput as CcPaymentStatusUpdateInput };

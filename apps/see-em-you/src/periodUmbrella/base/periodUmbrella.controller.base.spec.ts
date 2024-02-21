@@ -21,43 +21,43 @@ const CREATE_INPUT = {
   admissionTerm: "exampleAdmissionTerm",
   admissionYear: 42,
   higherFeeDate: new Date(),
-  id: 42,
-  lastPaymentDate: new Date(),
   umbrellaName: "exampleUmbrellaName",
+  lastPaymentDate: new Date(),
+  id: 42,
 };
 const CREATE_RESULT = {
   admissionTerm: "exampleAdmissionTerm",
   admissionYear: 42,
   higherFeeDate: new Date(),
-  id: 42,
-  lastPaymentDate: new Date(),
   umbrellaName: "exampleUmbrellaName",
+  lastPaymentDate: new Date(),
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     admissionTerm: "exampleAdmissionTerm",
     admissionYear: 42,
     higherFeeDate: new Date(),
-    id: 42,
-    lastPaymentDate: new Date(),
     umbrellaName: "exampleUmbrellaName",
+    lastPaymentDate: new Date(),
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   admissionTerm: "exampleAdmissionTerm",
   admissionYear: 42,
   higherFeeDate: new Date(),
-  id: 42,
-  lastPaymentDate: new Date(),
   umbrellaName: "exampleUmbrellaName",
+  lastPaymentDate: new Date(),
+  id: 42,
 };
 
 const service = {
-  create() {
+  createPeriodUmbrella() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  periodUmbrellas: () => FIND_MANY_RESULT,
+  periodUmbrella: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

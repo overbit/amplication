@@ -1,9 +1,9 @@
 export type ScsUser = {
-  andrewId: string | null;
+  usersId: number;
   cmuGuid: string | null;
   csId: string | null;
+  andrewId: string | null;
   eceId: string | null;
-  id: number;
   qatarId: string | null;
-  usersId: number;
+  id: number;
 };

@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Fieldsofstudy, ProgramModel } from "@prisma/client";
+
+import {
+  Prisma,
+  Fieldsofstudy as PrismaFieldsofstudy,
+  ProgramModel as PrismaProgramModel,
+} from "@prisma/client";
 
 export class FieldsofstudyServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,36 +26,36 @@ export class FieldsofstudyServiceBase {
     return this.prisma.fieldsofstudy.count(args);
   }
 
-  async findMany<T extends Prisma.FieldsofstudyFindManyArgs>(
+  async fieldsofstudies<T extends Prisma.FieldsofstudyFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.FieldsofstudyFindManyArgs>
-  ): Promise<Fieldsofstudy[]> {
+  ): Promise<PrismaFieldsofstudy[]> {
     return this.prisma.fieldsofstudy.findMany(args);
   }
-  async findOne<T extends Prisma.FieldsofstudyFindUniqueArgs>(
+  async fieldsofstudy<T extends Prisma.FieldsofstudyFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.FieldsofstudyFindUniqueArgs>
-  ): Promise<Fieldsofstudy | null> {
+  ): Promise<PrismaFieldsofstudy | null> {
     return this.prisma.fieldsofstudy.findUnique(args);
   }
-  async create<T extends Prisma.FieldsofstudyCreateArgs>(
+  async createFieldsofstudy<T extends Prisma.FieldsofstudyCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.FieldsofstudyCreateArgs>
-  ): Promise<Fieldsofstudy> {
+  ): Promise<PrismaFieldsofstudy> {
     return this.prisma.fieldsofstudy.create<T>(args);
   }
-  async update<T extends Prisma.FieldsofstudyUpdateArgs>(
+  async updateFieldsofstudy<T extends Prisma.FieldsofstudyUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.FieldsofstudyUpdateArgs>
-  ): Promise<Fieldsofstudy> {
+  ): Promise<PrismaFieldsofstudy> {
     return this.prisma.fieldsofstudy.update<T>(args);
   }
-  async delete<T extends Prisma.FieldsofstudyDeleteArgs>(
+  async deleteFieldsofstudy<T extends Prisma.FieldsofstudyDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.FieldsofstudyDeleteArgs>
-  ): Promise<Fieldsofstudy> {
+  ): Promise<PrismaFieldsofstudy> {
     return this.prisma.fieldsofstudy.delete(args);
   }
 
   async findPrograms(
     parentId: number,
     args: Prisma.ProgramModelFindManyArgs
-  ): Promise<ProgramModel[]> {
+  ): Promise<PrismaProgramModel[]> {
     return this.prisma.fieldsofstudy
       .findUniqueOrThrow({
         where: { id: parentId },

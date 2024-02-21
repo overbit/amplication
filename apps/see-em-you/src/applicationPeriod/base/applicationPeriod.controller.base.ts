@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationPeriodService } from "../applicationPeriod.service";
 import { ApplicationPeriodCreateInput } from "./ApplicationPeriodCreateInput";
-import { ApplicationPeriodWhereInput } from "./ApplicationPeriodWhereInput";
-import { ApplicationPeriodWhereUniqueInput } from "./ApplicationPeriodWhereUniqueInput";
-import { ApplicationPeriodFindManyArgs } from "./ApplicationPeriodFindManyArgs";
-import { ApplicationPeriodUpdateInput } from "./ApplicationPeriodUpdateInput";
 import { ApplicationPeriod } from "./ApplicationPeriod";
+import { ApplicationPeriodFindManyArgs } from "./ApplicationPeriodFindManyArgs";
+import { ApplicationPeriodWhereUniqueInput } from "./ApplicationPeriodWhereUniqueInput";
+import { ApplicationPeriodUpdateInput } from "./ApplicationPeriodUpdateInput";
 
 export class ApplicationPeriodControllerBase {
   constructor(protected readonly service: ApplicationPeriodService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicationPeriod })
-  async create(
+  async createApplicationPeriod(
     @common.Body() data: ApplicationPeriodCreateInput
   ): Promise<ApplicationPeriod> {
-    return await this.service.create({
+    return await this.service.createApplicationPeriod({
       data: data,
       select: {
         departmentId: true,
+        startDate: true,
         endDate: true,
         id: true,
-        startDate: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class ApplicationPeriodControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicationPeriod] })
   @ApiNestedQuery(ApplicationPeriodFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ApplicationPeriod[]> {
+  async applicationPeriods(
+    @common.Req() request: Request
+  ): Promise<ApplicationPeriod[]> {
     const args = plainToClass(ApplicationPeriodFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.applicationPeriods({
       ...args,
       select: {
         departmentId: true,
+        startDate: true,
         endDate: true,
         id: true,
-        startDate: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class ApplicationPeriodControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicationPeriod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationPeriod(
     @common.Param() params: ApplicationPeriodWhereUniqueInput
   ): Promise<ApplicationPeriod | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationPeriod({
       where: params,
       select: {
         departmentId: true,
+        startDate: true,
         endDate: true,
         id: true,
-        startDate: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class ApplicationPeriodControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicationPeriod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationPeriod(
     @common.Param() params: ApplicationPeriodWhereUniqueInput,
     @common.Body() data: ApplicationPeriodUpdateInput
   ): Promise<ApplicationPeriod | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationPeriod({
         where: params,
         data: data,
         select: {
           departmentId: true,
+          startDate: true,
           endDate: true,
           id: true,
-          startDate: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class ApplicationPeriodControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicationPeriod })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationPeriod(
     @common.Param() params: ApplicationPeriodWhereUniqueInput
   ): Promise<ApplicationPeriod | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationPeriod({
         where: params,
         select: {
           departmentId: true,
+          startDate: true,
           endDate: true,
           id: true,
-          startDate: true,
         },
       });
     } catch (error) {

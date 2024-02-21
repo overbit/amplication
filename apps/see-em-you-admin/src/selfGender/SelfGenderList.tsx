@@ -12,9 +12,9 @@ export const SelfGenderList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="User Id" source="userId" />
         <TextField label="Gender Index" source="genderIndex" />
         <TextField label="Id" source="id" />
-        <TextField label="User Id" source="userId" />
       </Datagrid>
     </List>
   );

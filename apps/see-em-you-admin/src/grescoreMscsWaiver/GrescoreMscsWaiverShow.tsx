@@ -13,9 +13,9 @@ export const GrescoreMscsWaiverShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="Waiver Agree" source="waiverAgree" />
         <DateField source="waiverTime" label="Waiver Time" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

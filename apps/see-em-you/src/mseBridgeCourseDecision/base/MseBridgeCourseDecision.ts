@@ -29,6 +29,14 @@ class MseBridgeCourseDecision {
   })
   @IsInt()
   @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   courseId!: number;
 
   @ApiProperty({
@@ -38,14 +46,6 @@ class MseBridgeCourseDecision {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
 }
 
 export { MseBridgeCourseDecision as MseBridgeCourseDecision };

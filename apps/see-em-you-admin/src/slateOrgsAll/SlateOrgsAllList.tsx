@@ -12,13 +12,13 @@ export const SlateOrgsAllList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Local Name" source="localName" />
+        <TextField label="Shared Name" source="sharedName" />
+        <TextField label="Slate Orgs All Id" source="slateOrgsAllId" />
+        <TextField label="Name" source="name" />
         <TextField label="Aw Id" source="awId" />
         <TextField label="Aw Name" source="awName" />
         <TextField label="Id" source="id" />
-        <TextField label="Local Name" source="localName" />
-        <TextField label="Name" source="name" />
-        <TextField label="Shared Name" source="sharedName" />
-        <TextField label="Slate Orgs All Id" source="slateOrgsAllId" />
       </Datagrid>
     </List>
   );

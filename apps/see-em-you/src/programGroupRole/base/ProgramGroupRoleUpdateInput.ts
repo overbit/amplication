@@ -35,7 +35,7 @@ class ProgramGroupRoleUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  roleId?: number;
+  usersId?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class ProgramGroupRoleUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  usersId?: number;
+  roleId?: number;
 }
 
 export { ProgramGroupRoleUpdateInput as ProgramGroupRoleUpdateInput };

@@ -13,16 +13,16 @@ export const ToeflItpPlusList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Datafile Id" source="datafileId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Listeningscore" source="listeningscore" />
-        <TextField label="Overallscore" source="overallscore" />
-        <TextField label="Readingscore" source="readingscore" />
-        <TextField label="Scorereceived" source="scorereceived" />
         <TextField label="Testdate" source="testdate" />
-        <TextField label="Test Email" source="testEmail" />
-        <TextField label="Url" source="url" />
+        <TextField label="Listeningscore" source="listeningscore" />
+        <TextField label="Readingscore" source="readingscore" />
         <TextField label="Writingscore" source="writingscore" />
+        <TextField label="Overallscore" source="overallscore" />
+        <TextField label="Url" source="url" />
+        <TextField label="Scorereceived" source="scorereceived" />
+        <TextField label="Datafile Id" source="datafileId" />
+        <TextField label="Test Email" source="testEmail" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

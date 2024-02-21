@@ -18,34 +18,34 @@ import { UsertypeService } from "../usertype.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  name: "exampleName",
   description: "exampleDescription",
   id: 42,
-  name: "exampleName",
 };
 const CREATE_RESULT = {
+  name: "exampleName",
   description: "exampleDescription",
   id: 42,
-  name: "exampleName",
 };
 const FIND_MANY_RESULT = [
   {
+    name: "exampleName",
     description: "exampleDescription",
     id: 42,
-    name: "exampleName",
   },
 ];
 const FIND_ONE_RESULT = {
+  name: "exampleName",
   description: "exampleDescription",
   id: 42,
-  name: "exampleName",
 };
 
 const service = {
-  create() {
+  createUsertype() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  usertypes: () => FIND_MANY_RESULT,
+  usertype: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

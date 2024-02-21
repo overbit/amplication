@@ -12,11 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsNumber,
-  IsOptional,
-  ValidateNested,
-  IsInt,
   IsString,
+  IsOptional,
+  IsNumber,
+  IsInt,
+  ValidateNested,
 } from "class-validator";
 import { Decimal } from "decimal.js";
 import { DomainUnitUpdateManyWithoutUnitsInput } from "./DomainUnitUpdateManyWithoutUnitsInput";
@@ -24,73 +24,6 @@ import { Type } from "class-transformer";
 
 @InputType()
 class UnitUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  applicationBasePrice?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  applicationProgramPrice?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => DomainUnitUpdateManyWithoutUnitsInput,
-  })
-  @ValidateNested()
-  @Type(() => DomainUnitUpdateManyWithoutUnitsInput)
-  @IsOptional()
-  @Field(() => DomainUnitUpdateManyWithoutUnitsInput, {
-    nullable: true,
-  })
-  domainUnit?: DomainUnitUpdateManyWithoutUnitsInput;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  parentUnitId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  unitCcEmail?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  unitDescription?: string | null;
-
   @ApiProperty({
     required: false,
     type: String,
@@ -112,6 +45,28 @@ class UnitUpdateInput {
     nullable: true,
   })
   unitNameShort?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  unitDescription?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  unitUrl?: string | null;
 
   @ApiProperty({
     required: false,
@@ -144,7 +99,52 @@ class UnitUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  unitUrl?: string | null;
+  unitCcEmail?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  applicationBasePrice?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  applicationProgramPrice?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  parentUnitId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => DomainUnitUpdateManyWithoutUnitsInput,
+  })
+  @ValidateNested()
+  @Type(() => DomainUnitUpdateManyWithoutUnitsInput)
+  @IsOptional()
+  @Field(() => DomainUnitUpdateManyWithoutUnitsInput, {
+    nullable: true,
+  })
+  domainUnit?: DomainUnitUpdateManyWithoutUnitsInput;
 }
 
 export { UnitUpdateInput as UnitUpdateInput };

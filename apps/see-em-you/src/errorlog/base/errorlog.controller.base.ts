@@ -18,28 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ErrorlogService } from "../errorlog.service";
 import { ErrorlogCreateInput } from "./ErrorlogCreateInput";
-import { ErrorlogWhereInput } from "./ErrorlogWhereInput";
-import { ErrorlogWhereUniqueInput } from "./ErrorlogWhereUniqueInput";
-import { ErrorlogFindManyArgs } from "./ErrorlogFindManyArgs";
-import { ErrorlogUpdateInput } from "./ErrorlogUpdateInput";
 import { Errorlog } from "./Errorlog";
+import { ErrorlogFindManyArgs } from "./ErrorlogFindManyArgs";
+import { ErrorlogWhereUniqueInput } from "./ErrorlogWhereUniqueInput";
+import { ErrorlogUpdateInput } from "./ErrorlogUpdateInput";
 
 export class ErrorlogControllerBase {
   constructor(protected readonly service: ErrorlogService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Errorlog })
-  async create(@common.Body() data: ErrorlogCreateInput): Promise<Errorlog> {
-    return await this.service.create({
+  async createErrorlog(
+    @common.Body() data: ErrorlogCreateInput
+  ): Promise<Errorlog> {
+    return await this.service.createErrorlog({
       data: data,
       select: {
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        id: true,
-        luUsersUsertypesId: true,
-        message: true,
         timestamp: true,
-        usersId: true,
-        usertypeId: true,
+        message: true,
+        id: true,
       },
     });
   }
@@ -47,19 +48,19 @@ export class ErrorlogControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Errorlog] })
   @ApiNestedQuery(ErrorlogFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Errorlog[]> {
+  async errorlogs(@common.Req() request: Request): Promise<Errorlog[]> {
     const args = plainToClass(ErrorlogFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.errorlogs({
       ...args,
       select: {
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        id: true,
-        luUsersUsertypesId: true,
-        message: true,
         timestamp: true,
-        usersId: true,
-        usertypeId: true,
+        message: true,
+        id: true,
       },
     });
   }
@@ -67,20 +68,20 @@ export class ErrorlogControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Errorlog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async errorlog(
     @common.Param() params: ErrorlogWhereUniqueInput
   ): Promise<Errorlog | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.errorlog({
       where: params,
       select: {
+        usersId: true,
+        luUsersUsertypesId: true,
+        usertypeId: true,
         applicationId: true,
         client: true,
-        id: true,
-        luUsersUsertypesId: true,
-        message: true,
         timestamp: true,
-        usersId: true,
-        usertypeId: true,
+        message: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -94,23 +95,23 @@ export class ErrorlogControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Errorlog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateErrorlog(
     @common.Param() params: ErrorlogWhereUniqueInput,
     @common.Body() data: ErrorlogUpdateInput
   ): Promise<Errorlog | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateErrorlog({
         where: params,
         data: data,
         select: {
+          usersId: true,
+          luUsersUsertypesId: true,
+          usertypeId: true,
           applicationId: true,
           client: true,
-          id: true,
-          luUsersUsertypesId: true,
-          message: true,
           timestamp: true,
-          usersId: true,
-          usertypeId: true,
+          message: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -126,21 +127,21 @@ export class ErrorlogControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Errorlog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteErrorlog(
     @common.Param() params: ErrorlogWhereUniqueInput
   ): Promise<Errorlog | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteErrorlog({
         where: params,
         select: {
+          usersId: true,
+          luUsersUsertypesId: true,
+          usertypeId: true,
           applicationId: true,
           client: true,
-          id: true,
-          luUsersUsertypesId: true,
-          message: true,
           timestamp: true,
-          usersId: true,
-          usertypeId: true,
+          message: true,
+          id: true,
         },
       });
     } catch (error) {

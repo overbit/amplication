@@ -24,7 +24,7 @@ class SlateSuppinfoCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  fellowship10Amount?: string | null;
+  prefix?: string | null;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class SlateSuppinfoCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  fellowship10AppliedDate?: string | null;
+  first?: string | null;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class SlateSuppinfoCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  fellowship10AwardedDate?: string | null;
+  middle?: string | null;
 
   @ApiProperty({
     required: false,
@@ -57,7 +57,7 @@ class SlateSuppinfoCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  fellowship10Duration?: string | null;
+  last?: string | null;
 
   @ApiProperty({
     required: false,
@@ -68,7 +68,7 @@ class SlateSuppinfoCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  fellowship10Name?: string | null;
+  videoEssayUrl?: string | null;
 
   @ApiProperty({
     required: false,
@@ -79,7 +79,29 @@ class SlateSuppinfoCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  fellowship10Status?: string | null;
+  videoEssayAccessCode?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  learnAboutUs?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  learnAboutOther?: string | null;
 
   @ApiProperty({
     required: false,
@@ -146,6 +168,72 @@ class SlateSuppinfoCreateInput {
     nullable: true,
   })
   fellowship1Status?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  fellowship10Amount?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  fellowship10AppliedDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  fellowship10AwardedDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  fellowship10Duration?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  fellowship10Name?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  fellowship10Status?: string | null;
 
   @ApiProperty({
     required: false,
@@ -684,95 +772,7 @@ class SlateSuppinfoCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  first?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   hasFellowships?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  last?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  learnAboutOther?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  learnAboutUs?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  middle?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  prefix?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  videoEssayAccessCode?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  videoEssayUrl?: string | null;
 }
 
 export { SlateSuppinfoCreateInput as SlateSuppinfoCreateInput };

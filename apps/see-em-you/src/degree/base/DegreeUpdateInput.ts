@@ -30,6 +30,17 @@ class DegreeUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  short?: string;
+
+  @ApiProperty({
+    required: false,
     type: () => ProgramModelUpdateManyWithoutDegreesInput,
   })
   @ValidateNested()
@@ -39,17 +50,6 @@ class DegreeUpdateInput {
     nullable: true,
   })
   programs?: ProgramModelUpdateManyWithoutDegreesInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  short?: string;
 }
 
 export { DegreeUpdateInput as DegreeUpdateInput };

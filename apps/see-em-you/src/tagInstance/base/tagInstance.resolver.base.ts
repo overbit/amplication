@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateTagInstanceArgs } from "./CreateTagInstanceArgs";
-import { UpdateTagInstanceArgs } from "./UpdateTagInstanceArgs";
-import { DeleteTagInstanceArgs } from "./DeleteTagInstanceArgs";
+import { TagInstance } from "./TagInstance";
 import { TagInstanceCountArgs } from "./TagInstanceCountArgs";
 import { TagInstanceFindManyArgs } from "./TagInstanceFindManyArgs";
 import { TagInstanceFindUniqueArgs } from "./TagInstanceFindUniqueArgs";
-import { TagInstance } from "./TagInstance";
+import { CreateTagInstanceArgs } from "./CreateTagInstanceArgs";
+import { UpdateTagInstanceArgs } from "./UpdateTagInstanceArgs";
+import { DeleteTagInstanceArgs } from "./DeleteTagInstanceArgs";
 import { TagInstanceService } from "../tagInstance.service";
 @graphql.Resolver(() => TagInstance)
 export class TagInstanceResolverBase {
@@ -38,14 +38,14 @@ export class TagInstanceResolverBase {
   async tagInstances(
     @graphql.Args() args: TagInstanceFindManyArgs
   ): Promise<TagInstance[]> {
-    return this.service.findMany(args);
+    return this.service.tagInstances(args);
   }
 
   @graphql.Query(() => TagInstance, { nullable: true })
   async tagInstance(
     @graphql.Args() args: TagInstanceFindUniqueArgs
   ): Promise<TagInstance | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.tagInstance(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class TagInstanceResolverBase {
   async createTagInstance(
     @graphql.Args() args: CreateTagInstanceArgs
   ): Promise<TagInstance> {
-    return await this.service.create({
+    return await this.service.createTagInstance({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class TagInstanceResolverBase {
     @graphql.Args() args: UpdateTagInstanceArgs
   ): Promise<TagInstance | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTagInstance({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class TagInstanceResolverBase {
     @graphql.Args() args: DeleteTagInstanceArgs
   ): Promise<TagInstance | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteTagInstance(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

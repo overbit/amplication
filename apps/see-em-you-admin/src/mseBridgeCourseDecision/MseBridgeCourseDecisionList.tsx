@@ -15,9 +15,9 @@ export const MseBridgeCourseDecisionList = (
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
+        <TextField label="Program Id" source="programId" />
         <TextField label="Course Id" source="courseId" />
         <TextField label="Id" source="id" />
-        <TextField label="Program Id" source="programId" />
       </Datagrid>
     </List>
   );

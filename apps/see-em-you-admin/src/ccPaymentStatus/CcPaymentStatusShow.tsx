@@ -3,19 +3,19 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  TextField,
   DateField,
+  TextField,
 } from "react-admin";
 
 export const CcPaymentStatusShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <DateField source="statusDate" label="Status Date" />
         <TextField label="Auth Total" source="authTotal" />
+        <TextField label="Settle Total" source="settleTotal" />
         <TextField label="Credit Total" source="creditTotal" />
         <TextField label="Id" source="id" />
-        <TextField label="Settle Total" source="settleTotal" />
-        <DateField source="statusDate" label="Status Date" />
       </SimpleShowLayout>
     </Show>
   );

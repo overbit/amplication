@@ -18,6 +18,10 @@ import { SlatePubService } from "../slatePub.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   authorsPub1: "exampleAuthorsPub1",
   authorsPub2: "exampleAuthorsPub2",
   authorsPub3: "exampleAuthorsPub3",
@@ -36,18 +40,13 @@ const CREATE_INPUT = {
   destinationPub4: "exampleDestinationPub4",
   destinationPub5: "exampleDestinationPub5",
   destinationPub6: "exampleDestinationPub6",
-  first: "exampleFirst",
   hasPublications: "exampleHasPublications",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   otherTypeOfPublication1: "exampleOtherTypeOfPublication1",
   otherTypeOfPublication2: "exampleOtherTypeOfPublication2",
   otherTypeOfPublication3: "exampleOtherTypeOfPublication3",
   otherTypeOfPublication4: "exampleOtherTypeOfPublication4",
   otherTypeOfPublication5: "exampleOtherTypeOfPublication5",
   otherTypeOfPublication6: "exampleOtherTypeOfPublication6",
-  prefix: "examplePrefix",
   statusOfPublication1: "exampleStatusOfPublication1",
   statusOfPublication2: "exampleStatusOfPublication2",
   statusOfPublication3: "exampleStatusOfPublication3",
@@ -72,8 +71,13 @@ const CREATE_INPUT = {
   urlPub4: "exampleUrlPub4",
   urlPub5: "exampleUrlPub5",
   urlPub6: "exampleUrlPub6",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
+  prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   authorsPub1: "exampleAuthorsPub1",
   authorsPub2: "exampleAuthorsPub2",
   authorsPub3: "exampleAuthorsPub3",
@@ -92,18 +96,13 @@ const CREATE_RESULT = {
   destinationPub4: "exampleDestinationPub4",
   destinationPub5: "exampleDestinationPub5",
   destinationPub6: "exampleDestinationPub6",
-  first: "exampleFirst",
   hasPublications: "exampleHasPublications",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   otherTypeOfPublication1: "exampleOtherTypeOfPublication1",
   otherTypeOfPublication2: "exampleOtherTypeOfPublication2",
   otherTypeOfPublication3: "exampleOtherTypeOfPublication3",
   otherTypeOfPublication4: "exampleOtherTypeOfPublication4",
   otherTypeOfPublication5: "exampleOtherTypeOfPublication5",
   otherTypeOfPublication6: "exampleOtherTypeOfPublication6",
-  prefix: "examplePrefix",
   statusOfPublication1: "exampleStatusOfPublication1",
   statusOfPublication2: "exampleStatusOfPublication2",
   statusOfPublication3: "exampleStatusOfPublication3",
@@ -128,9 +127,14 @@ const CREATE_RESULT = {
   urlPub4: "exampleUrlPub4",
   urlPub5: "exampleUrlPub5",
   urlPub6: "exampleUrlPub6",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
+    prefix: "examplePrefix",
+    first: "exampleFirst",
+    middle: "exampleMiddle",
+    last: "exampleLast",
     authorsPub1: "exampleAuthorsPub1",
     authorsPub2: "exampleAuthorsPub2",
     authorsPub3: "exampleAuthorsPub3",
@@ -149,18 +153,13 @@ const FIND_MANY_RESULT = [
     destinationPub4: "exampleDestinationPub4",
     destinationPub5: "exampleDestinationPub5",
     destinationPub6: "exampleDestinationPub6",
-    first: "exampleFirst",
     hasPublications: "exampleHasPublications",
-    id: "exampleId",
-    last: "exampleLast",
-    middle: "exampleMiddle",
     otherTypeOfPublication1: "exampleOtherTypeOfPublication1",
     otherTypeOfPublication2: "exampleOtherTypeOfPublication2",
     otherTypeOfPublication3: "exampleOtherTypeOfPublication3",
     otherTypeOfPublication4: "exampleOtherTypeOfPublication4",
     otherTypeOfPublication5: "exampleOtherTypeOfPublication5",
     otherTypeOfPublication6: "exampleOtherTypeOfPublication6",
-    prefix: "examplePrefix",
     statusOfPublication1: "exampleStatusOfPublication1",
     statusOfPublication2: "exampleStatusOfPublication2",
     statusOfPublication3: "exampleStatusOfPublication3",
@@ -185,9 +184,14 @@ const FIND_MANY_RESULT = [
     urlPub4: "exampleUrlPub4",
     urlPub5: "exampleUrlPub5",
     urlPub6: "exampleUrlPub6",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
+  prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
   authorsPub1: "exampleAuthorsPub1",
   authorsPub2: "exampleAuthorsPub2",
   authorsPub3: "exampleAuthorsPub3",
@@ -206,18 +210,13 @@ const FIND_ONE_RESULT = {
   destinationPub4: "exampleDestinationPub4",
   destinationPub5: "exampleDestinationPub5",
   destinationPub6: "exampleDestinationPub6",
-  first: "exampleFirst",
   hasPublications: "exampleHasPublications",
-  id: "exampleId",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   otherTypeOfPublication1: "exampleOtherTypeOfPublication1",
   otherTypeOfPublication2: "exampleOtherTypeOfPublication2",
   otherTypeOfPublication3: "exampleOtherTypeOfPublication3",
   otherTypeOfPublication4: "exampleOtherTypeOfPublication4",
   otherTypeOfPublication5: "exampleOtherTypeOfPublication5",
   otherTypeOfPublication6: "exampleOtherTypeOfPublication6",
-  prefix: "examplePrefix",
   statusOfPublication1: "exampleStatusOfPublication1",
   statusOfPublication2: "exampleStatusOfPublication2",
   statusOfPublication3: "exampleStatusOfPublication3",
@@ -242,14 +241,15 @@ const FIND_ONE_RESULT = {
   urlPub4: "exampleUrlPub4",
   urlPub5: "exampleUrlPub5",
   urlPub6: "exampleUrlPub6",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createSlatePub() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slatePubs: () => FIND_MANY_RESULT,
+  slatePub: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -7,9 +7,9 @@ export const LuProgramsDepartmentShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Program Id" source="programId" />
         <TextField label="Department Id" source="departmentId" />
         <TextField label="Id" source="id" />
-        <TextField label="Program Id" source="programId" />
       </SimpleShowLayout>
     </Show>
   );

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Ethnicity } from "@prisma/client";
+import { Prisma, Ethnicity as PrismaEthnicity } from "@prisma/client";
 
 export class EthnicityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class EthnicityServiceBase {
     return this.prisma.ethnicity.count(args);
   }
 
-  async findMany<T extends Prisma.EthnicityFindManyArgs>(
+  async ethnicities<T extends Prisma.EthnicityFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.EthnicityFindManyArgs>
-  ): Promise<Ethnicity[]> {
+  ): Promise<PrismaEthnicity[]> {
     return this.prisma.ethnicity.findMany(args);
   }
-  async findOne<T extends Prisma.EthnicityFindUniqueArgs>(
+  async ethnicity<T extends Prisma.EthnicityFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.EthnicityFindUniqueArgs>
-  ): Promise<Ethnicity | null> {
+  ): Promise<PrismaEthnicity | null> {
     return this.prisma.ethnicity.findUnique(args);
   }
-  async create<T extends Prisma.EthnicityCreateArgs>(
+  async createEthnicity<T extends Prisma.EthnicityCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.EthnicityCreateArgs>
-  ): Promise<Ethnicity> {
+  ): Promise<PrismaEthnicity> {
     return this.prisma.ethnicity.create<T>(args);
   }
-  async update<T extends Prisma.EthnicityUpdateArgs>(
+  async updateEthnicity<T extends Prisma.EthnicityUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.EthnicityUpdateArgs>
-  ): Promise<Ethnicity> {
+  ): Promise<PrismaEthnicity> {
     return this.prisma.ethnicity.update<T>(args);
   }
-  async delete<T extends Prisma.EthnicityDeleteArgs>(
+  async deleteEthnicity<T extends Prisma.EthnicityDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.EthnicityDeleteArgs>
-  ): Promise<Ethnicity> {
+  ): Promise<PrismaEthnicity> {
     return this.prisma.ethnicity.delete(args);
   }
 }

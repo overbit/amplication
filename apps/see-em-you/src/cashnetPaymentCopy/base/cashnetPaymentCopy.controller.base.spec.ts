@@ -18,62 +18,62 @@ import { CashnetPaymentCopyService } from "../cashnetPaymentCopy.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  amount: 42.42,
   appId: 42,
-  applicantEmail: "exampleApplicantEmail",
+  transactionId: 42,
   applicantName: "exampleApplicantName",
-  id: 42,
+  applicantEmail: "exampleApplicantEmail",
   merchant: 42,
   status: "exampleStatus",
-  transactionId: 42,
   transactionTime: new Date(),
   transactionType: "exampleTransactionType",
+  amount: 42.42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  amount: 42.42,
   appId: 42,
-  applicantEmail: "exampleApplicantEmail",
+  transactionId: 42,
   applicantName: "exampleApplicantName",
-  id: 42,
+  applicantEmail: "exampleApplicantEmail",
   merchant: 42,
   status: "exampleStatus",
-  transactionId: 42,
   transactionTime: new Date(),
   transactionType: "exampleTransactionType",
+  amount: 42.42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    amount: 42.42,
     appId: 42,
-    applicantEmail: "exampleApplicantEmail",
+    transactionId: 42,
     applicantName: "exampleApplicantName",
-    id: 42,
+    applicantEmail: "exampleApplicantEmail",
     merchant: 42,
     status: "exampleStatus",
-    transactionId: 42,
     transactionTime: new Date(),
     transactionType: "exampleTransactionType",
+    amount: 42.42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  amount: 42.42,
   appId: 42,
-  applicantEmail: "exampleApplicantEmail",
+  transactionId: 42,
   applicantName: "exampleApplicantName",
-  id: 42,
+  applicantEmail: "exampleApplicantEmail",
   merchant: 42,
   status: "exampleStatus",
-  transactionId: 42,
   transactionTime: new Date(),
   transactionType: "exampleTransactionType",
+  amount: 42.42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createCashnetPaymentCopy() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  cashnetPaymentCopies: () => FIND_MANY_RESULT,
+  cashnetPaymentCopy: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

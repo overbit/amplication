@@ -19,69 +19,69 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   appId: 42,
-  created: new Date(),
-  graduated: 42,
-  hsCeeb: 42,
-  hsDuration: 42.424242424,
-  hsGradYear: 42,
   hsName: "exampleHsName",
+  hsCeeb: 42,
   hsNces: 42242424,
   hsState: "exampleHsState",
   hsZip: "exampleHsZip",
-  id: 42,
+  hsGradYear: 42,
+  hsDuration: 42.424242424,
+  graduated: 42,
+  created: new Date(),
   modified: new Date(),
+  id: 42,
 };
 const CREATE_RESULT = {
   appId: 42,
-  created: new Date(),
-  graduated: 42,
-  hsCeeb: 42,
-  hsDuration: 42.424242424,
-  hsGradYear: 42,
   hsName: "exampleHsName",
+  hsCeeb: 42,
   hsNces: 42242424,
   hsState: "exampleHsState",
   hsZip: "exampleHsZip",
-  id: 42,
+  hsGradYear: 42,
+  hsDuration: 42.424242424,
+  graduated: 42,
+  created: new Date(),
   modified: new Date(),
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     appId: 42,
-    created: new Date(),
-    graduated: 42,
-    hsCeeb: 42,
-    hsDuration: 42.424242424,
-    hsGradYear: 42,
     hsName: "exampleHsName",
+    hsCeeb: 42,
     hsNces: 42242424,
     hsState: "exampleHsState",
     hsZip: "exampleHsZip",
-    id: 42,
+    hsGradYear: 42,
+    hsDuration: 42.424242424,
+    graduated: 42,
+    created: new Date(),
     modified: new Date(),
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   appId: 42,
-  created: new Date(),
-  graduated: 42,
-  hsCeeb: 42,
-  hsDuration: 42.424242424,
-  hsGradYear: 42,
   hsName: "exampleHsName",
+  hsCeeb: 42,
   hsNces: 42242424,
   hsState: "exampleHsState",
   hsZip: "exampleHsZip",
-  id: 42,
+  hsGradYear: 42,
+  hsDuration: 42.424242424,
+  graduated: 42,
+  created: new Date(),
   modified: new Date(),
+  id: 42,
 };
 
 const service = {
-  create() {
+  createHighschool() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  highschools: () => FIND_MANY_RESULT,
+  highschool: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -11,21 +11,43 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt, IsDate } from "class-validator";
+import { IsInt, IsOptional, IsString, IsDate } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class Accesslogreplyform {
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  activity!: string | null;
+  usersId!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  luUsersUsertypesId!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  usertypeId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -51,25 +73,6 @@ class Accesslogreplyform {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  luUsersUsertypesId!: number | null;
-
-  @ApiProperty({
-    required: true,
   })
   @IsDate()
   @Type(() => Date)
@@ -78,25 +81,22 @@ class Accesslogreplyform {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  usersId!: number | null;
+  activity!: string | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usertypeId!: number | null;
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Accesslogreplyform as Accesslogreplyform };

@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { Em2SopService } from "../em2Sop.service";
 import { Em2SopCreateInput } from "./Em2SopCreateInput";
-import { Em2SopWhereInput } from "./Em2SopWhereInput";
-import { Em2SopWhereUniqueInput } from "./Em2SopWhereUniqueInput";
-import { Em2SopFindManyArgs } from "./Em2SopFindManyArgs";
-import { Em2SopUpdateInput } from "./Em2SopUpdateInput";
 import { Em2Sop } from "./Em2Sop";
+import { Em2SopFindManyArgs } from "./Em2SopFindManyArgs";
+import { Em2SopWhereUniqueInput } from "./Em2SopWhereUniqueInput";
+import { Em2SopUpdateInput } from "./Em2SopUpdateInput";
 
 export class Em2SopControllerBase {
   constructor(protected readonly service: Em2SopService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Em2Sop })
-  async create(@common.Body() data: Em2SopCreateInput): Promise<Em2Sop> {
-    return await this.service.create({
+  async createEm2Sop(@common.Body() data: Em2SopCreateInput): Promise<Em2Sop> {
+    return await this.service.createEm2Sop({
       data: data,
       select: {
-        additionalInfo: true,
         applicationId: true,
-        background: true,
-        id: true,
         objective: true,
+        background: true,
         researchExperience: true,
         taInterest: true,
+        additionalInfo: true,
+        id: true,
       },
     });
   }
@@ -46,18 +45,18 @@ export class Em2SopControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Em2Sop] })
   @ApiNestedQuery(Em2SopFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Em2Sop[]> {
+  async em2Sops(@common.Req() request: Request): Promise<Em2Sop[]> {
     const args = plainToClass(Em2SopFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.em2Sops({
       ...args,
       select: {
-        additionalInfo: true,
         applicationId: true,
-        background: true,
-        id: true,
         objective: true,
+        background: true,
         researchExperience: true,
         taInterest: true,
+        additionalInfo: true,
+        id: true,
       },
     });
   }
@@ -65,19 +64,19 @@ export class Em2SopControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Em2Sop })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async em2Sop(
     @common.Param() params: Em2SopWhereUniqueInput
   ): Promise<Em2Sop | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.em2Sop({
       where: params,
       select: {
-        additionalInfo: true,
         applicationId: true,
-        background: true,
-        id: true,
         objective: true,
+        background: true,
         researchExperience: true,
         taInterest: true,
+        additionalInfo: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -91,22 +90,22 @@ export class Em2SopControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Em2Sop })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateEm2Sop(
     @common.Param() params: Em2SopWhereUniqueInput,
     @common.Body() data: Em2SopUpdateInput
   ): Promise<Em2Sop | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEm2Sop({
         where: params,
         data: data,
         select: {
-          additionalInfo: true,
           applicationId: true,
-          background: true,
-          id: true,
           objective: true,
+          background: true,
           researchExperience: true,
           taInterest: true,
+          additionalInfo: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -122,20 +121,20 @@ export class Em2SopControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Em2Sop })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteEm2Sop(
     @common.Param() params: Em2SopWhereUniqueInput
   ): Promise<Em2Sop | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteEm2Sop({
         where: params,
         select: {
-          additionalInfo: true,
           applicationId: true,
-          background: true,
-          id: true,
           objective: true,
+          background: true,
           researchExperience: true,
           taInterest: true,
+          additionalInfo: true,
+          id: true,
         },
       });
     } catch (error) {

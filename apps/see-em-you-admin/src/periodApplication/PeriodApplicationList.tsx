@@ -27,10 +27,10 @@ export const PeriodApplicationList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Id" source="id" />
         <ReferenceField label="Period" source="period.id" reference="Period">
           <TextField source={PERIOD_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

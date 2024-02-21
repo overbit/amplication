@@ -39,7 +39,7 @@ class DuolingoscoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  duolingodataId?: SortOrder;
+  testdate?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,18 @@ class DuolingoscoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  testemail?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  duolingodataId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,18 +83,7 @@ class DuolingoscoreOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  testdate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  testemail?: SortOrder;
+  id?: SortOrder;
 }
 
 export { DuolingoscoreOrderByInput as DuolingoscoreOrderByInput };

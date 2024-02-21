@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MhciPrereqsStatus, MhciPrereq } from "@prisma/client";
+
+import {
+  Prisma,
+  MhciPrereqsStatus as PrismaMhciPrereqsStatus,
+  MhciPrereq as PrismaMhciPrereq,
+} from "@prisma/client";
 
 export class MhciPrereqsStatusServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,33 @@ export class MhciPrereqsStatusServiceBase {
     return this.prisma.mhciPrereqsStatus.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsStatusFindManyArgs>(
+  async mhciPrereqsStatuses<T extends Prisma.MhciPrereqsStatusFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsStatusFindManyArgs>
-  ): Promise<MhciPrereqsStatus[]> {
+  ): Promise<PrismaMhciPrereqsStatus[]> {
     return this.prisma.mhciPrereqsStatus.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsStatusFindUniqueArgs>(
+  async mhciPrereqsStatus<T extends Prisma.MhciPrereqsStatusFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsStatusFindUniqueArgs>
-  ): Promise<MhciPrereqsStatus | null> {
+  ): Promise<PrismaMhciPrereqsStatus | null> {
     return this.prisma.mhciPrereqsStatus.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsStatusCreateArgs>(
+  async createMhciPrereqsStatus<T extends Prisma.MhciPrereqsStatusCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsStatusCreateArgs>
-  ): Promise<MhciPrereqsStatus> {
+  ): Promise<PrismaMhciPrereqsStatus> {
     return this.prisma.mhciPrereqsStatus.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsStatusUpdateArgs>(
+  async updateMhciPrereqsStatus<T extends Prisma.MhciPrereqsStatusUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsStatusUpdateArgs>
-  ): Promise<MhciPrereqsStatus> {
+  ): Promise<PrismaMhciPrereqsStatus> {
     return this.prisma.mhciPrereqsStatus.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsStatusDeleteArgs>(
+  async deleteMhciPrereqsStatus<T extends Prisma.MhciPrereqsStatusDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsStatusDeleteArgs>
-  ): Promise<MhciPrereqsStatus> {
+  ): Promise<PrismaMhciPrereqsStatus> {
     return this.prisma.mhciPrereqsStatus.delete(args);
   }
 
-  async getMhciPrereqs(parentId: number): Promise<MhciPrereq | null> {
+  async getMhciPrereqs(parentId: number): Promise<PrismaMhciPrereq | null> {
     return this.prisma.mhciPrereqsStatus
       .findUnique({
         where: { id: parentId },

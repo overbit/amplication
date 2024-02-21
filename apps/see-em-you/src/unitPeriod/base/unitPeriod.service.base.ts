@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, UnitPeriod } from "@prisma/client";
+import { Prisma, UnitPeriod as PrismaUnitPeriod } from "@prisma/client";
 
 export class UnitPeriodServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class UnitPeriodServiceBase {
     return this.prisma.unitPeriod.count(args);
   }
 
-  async findMany<T extends Prisma.UnitPeriodFindManyArgs>(
+  async unitPeriods<T extends Prisma.UnitPeriodFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitPeriodFindManyArgs>
-  ): Promise<UnitPeriod[]> {
+  ): Promise<PrismaUnitPeriod[]> {
     return this.prisma.unitPeriod.findMany(args);
   }
-  async findOne<T extends Prisma.UnitPeriodFindUniqueArgs>(
+  async unitPeriod<T extends Prisma.UnitPeriodFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitPeriodFindUniqueArgs>
-  ): Promise<UnitPeriod | null> {
+  ): Promise<PrismaUnitPeriod | null> {
     return this.prisma.unitPeriod.findUnique(args);
   }
-  async create<T extends Prisma.UnitPeriodCreateArgs>(
+  async createUnitPeriod<T extends Prisma.UnitPeriodCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitPeriodCreateArgs>
-  ): Promise<UnitPeriod> {
+  ): Promise<PrismaUnitPeriod> {
     return this.prisma.unitPeriod.create<T>(args);
   }
-  async update<T extends Prisma.UnitPeriodUpdateArgs>(
+  async updateUnitPeriod<T extends Prisma.UnitPeriodUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitPeriodUpdateArgs>
-  ): Promise<UnitPeriod> {
+  ): Promise<PrismaUnitPeriod> {
     return this.prisma.unitPeriod.update<T>(args);
   }
-  async delete<T extends Prisma.UnitPeriodDeleteArgs>(
+  async deleteUnitPeriod<T extends Prisma.UnitPeriodDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.UnitPeriodDeleteArgs>
-  ): Promise<UnitPeriod> {
+  ): Promise<PrismaUnitPeriod> {
     return this.prisma.unitPeriod.delete(args);
   }
 }

@@ -5,9 +5,9 @@ export const IpedsRaceShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="Ipeds Race" source="ipedsRace" />
         <TextField label="Sort Order" source="sortOrder" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

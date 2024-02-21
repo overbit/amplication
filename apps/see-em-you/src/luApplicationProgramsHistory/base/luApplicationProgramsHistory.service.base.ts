@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuApplicationProgramsHistory } from "@prisma/client";
+import {
+  Prisma,
+  LuApplicationProgramsHistory as PrismaLuApplicationProgramsHistory,
+} from "@prisma/client";
 
 export class LuApplicationProgramsHistoryServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,35 +24,45 @@ export class LuApplicationProgramsHistoryServiceBase {
     return this.prisma.luApplicationProgramsHistory.count(args);
   }
 
-  async findMany<T extends Prisma.LuApplicationProgramsHistoryFindManyArgs>(
+  async luApplicationProgramsHistories<
+    T extends Prisma.LuApplicationProgramsHistoryFindManyArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.LuApplicationProgramsHistoryFindManyArgs
     >
-  ): Promise<LuApplicationProgramsHistory[]> {
+  ): Promise<PrismaLuApplicationProgramsHistory[]> {
     return this.prisma.luApplicationProgramsHistory.findMany(args);
   }
-  async findOne<T extends Prisma.LuApplicationProgramsHistoryFindUniqueArgs>(
+  async luApplicationProgramsHistory<
+    T extends Prisma.LuApplicationProgramsHistoryFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.LuApplicationProgramsHistoryFindUniqueArgs
     >
-  ): Promise<LuApplicationProgramsHistory | null> {
+  ): Promise<PrismaLuApplicationProgramsHistory | null> {
     return this.prisma.luApplicationProgramsHistory.findUnique(args);
   }
-  async create<T extends Prisma.LuApplicationProgramsHistoryCreateArgs>(
+  async createLuApplicationProgramsHistory<
+    T extends Prisma.LuApplicationProgramsHistoryCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationProgramsHistoryCreateArgs>
-  ): Promise<LuApplicationProgramsHistory> {
+  ): Promise<PrismaLuApplicationProgramsHistory> {
     return this.prisma.luApplicationProgramsHistory.create<T>(args);
   }
-  async update<T extends Prisma.LuApplicationProgramsHistoryUpdateArgs>(
+  async updateLuApplicationProgramsHistory<
+    T extends Prisma.LuApplicationProgramsHistoryUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationProgramsHistoryUpdateArgs>
-  ): Promise<LuApplicationProgramsHistory> {
+  ): Promise<PrismaLuApplicationProgramsHistory> {
     return this.prisma.luApplicationProgramsHistory.update<T>(args);
   }
-  async delete<T extends Prisma.LuApplicationProgramsHistoryDeleteArgs>(
+  async deleteLuApplicationProgramsHistory<
+    T extends Prisma.LuApplicationProgramsHistoryDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationProgramsHistoryDeleteArgs>
-  ): Promise<LuApplicationProgramsHistory> {
+  ): Promise<PrismaLuApplicationProgramsHistory> {
     return this.prisma.luApplicationProgramsHistory.delete(args);
   }
 }

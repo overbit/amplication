@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MhciSlatePub } from "@prisma/client";
+import { Prisma, MhciSlatePub as PrismaMhciSlatePub } from "@prisma/client";
 
 export class MhciSlatePubServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MhciSlatePubServiceBase {
     return this.prisma.mhciSlatePub.count(args);
   }
 
-  async findMany<T extends Prisma.MhciSlatePubFindManyArgs>(
+  async mhciSlatePubs<T extends Prisma.MhciSlatePubFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlatePubFindManyArgs>
-  ): Promise<MhciSlatePub[]> {
+  ): Promise<PrismaMhciSlatePub[]> {
     return this.prisma.mhciSlatePub.findMany(args);
   }
-  async findOne<T extends Prisma.MhciSlatePubFindUniqueArgs>(
+  async mhciSlatePub<T extends Prisma.MhciSlatePubFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlatePubFindUniqueArgs>
-  ): Promise<MhciSlatePub | null> {
+  ): Promise<PrismaMhciSlatePub | null> {
     return this.prisma.mhciSlatePub.findUnique(args);
   }
-  async create<T extends Prisma.MhciSlatePubCreateArgs>(
+  async createMhciSlatePub<T extends Prisma.MhciSlatePubCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlatePubCreateArgs>
-  ): Promise<MhciSlatePub> {
+  ): Promise<PrismaMhciSlatePub> {
     return this.prisma.mhciSlatePub.create<T>(args);
   }
-  async update<T extends Prisma.MhciSlatePubUpdateArgs>(
+  async updateMhciSlatePub<T extends Prisma.MhciSlatePubUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlatePubUpdateArgs>
-  ): Promise<MhciSlatePub> {
+  ): Promise<PrismaMhciSlatePub> {
     return this.prisma.mhciSlatePub.update<T>(args);
   }
-  async delete<T extends Prisma.MhciSlatePubDeleteArgs>(
+  async deleteMhciSlatePub<T extends Prisma.MhciSlatePubDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlatePubDeleteArgs>
-  ): Promise<MhciSlatePub> {
+  ): Promise<PrismaMhciSlatePub> {
     return this.prisma.mhciSlatePub.delete(args);
   }
 }

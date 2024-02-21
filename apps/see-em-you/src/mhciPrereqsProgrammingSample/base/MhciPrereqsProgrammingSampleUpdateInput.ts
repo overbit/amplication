@@ -14,9 +14,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
   IsOptional,
-  ValidateNested,
-  IsBoolean,
   IsString,
+  IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -32,30 +32,29 @@ class MhciPrereqsProgrammingSampleUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  applicationId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   datafileinfoId?: number;
 
   @ApiProperty({
     required: false,
-    type: () => LuUsersUsertypeWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => LuUsersUsertypeWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => LuUsersUsertypeWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
+  note?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  submittedToReviewer?: boolean;
 
   @ApiProperty({
     required: false,
@@ -70,14 +69,14 @@ class MhciPrereqsProgrammingSampleUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  note?: string | null;
+  applicationId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -103,14 +102,15 @@ class MhciPrereqsProgrammingSampleUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Boolean,
+    type: () => LuUsersUsertypeWhereUniqueInput,
   })
-  @IsBoolean()
+  @ValidateNested()
+  @Type(() => LuUsersUsertypeWhereUniqueInput)
   @IsOptional()
-  @Field(() => Boolean, {
+  @Field(() => LuUsersUsertypeWhereUniqueInput, {
     nullable: true,
   })
-  submittedToReviewer?: boolean;
+  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
 }
 
 export { MhciPrereqsProgrammingSampleUpdateInput as MhciPrereqsProgrammingSampleUpdateInput };

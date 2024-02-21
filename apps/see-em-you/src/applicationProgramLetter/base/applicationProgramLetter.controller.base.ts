@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationProgramLetterService } from "../applicationProgramLetter.service";
 import { ApplicationProgramLetterCreateInput } from "./ApplicationProgramLetterCreateInput";
-import { ApplicationProgramLetterWhereInput } from "./ApplicationProgramLetterWhereInput";
-import { ApplicationProgramLetterWhereUniqueInput } from "./ApplicationProgramLetterWhereUniqueInput";
-import { ApplicationProgramLetterFindManyArgs } from "./ApplicationProgramLetterFindManyArgs";
-import { ApplicationProgramLetterUpdateInput } from "./ApplicationProgramLetterUpdateInput";
 import { ApplicationProgramLetter } from "./ApplicationProgramLetter";
+import { ApplicationProgramLetterFindManyArgs } from "./ApplicationProgramLetterFindManyArgs";
+import { ApplicationProgramLetterWhereUniqueInput } from "./ApplicationProgramLetterWhereUniqueInput";
+import { ApplicationProgramLetterUpdateInput } from "./ApplicationProgramLetterUpdateInput";
 
 export class ApplicationProgramLetterControllerBase {
   constructor(protected readonly service: ApplicationProgramLetterService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicationProgramLetter })
-  async create(
+  async createApplicationProgramLetter(
     @common.Body() data: ApplicationProgramLetterCreateInput
   ): Promise<ApplicationProgramLetter> {
-    return await this.service.create({
+    return await this.service.createApplicationProgramLetter({
       data: data,
       select: {
-        admitSent: true,
-        admitSentDate: true,
-        id: true,
         rejectionSent: true,
         rejectionSentDate: true,
+        admitSent: true,
+        admitSentDate: true,
         waitlistSent: true,
         waitlistSentDate: true,
+        id: true,
       },
     });
   }
@@ -48,23 +47,23 @@ export class ApplicationProgramLetterControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicationProgramLetter] })
   @ApiNestedQuery(ApplicationProgramLetterFindManyArgs)
-  async findMany(
+  async applicationProgramLetters(
     @common.Req() request: Request
   ): Promise<ApplicationProgramLetter[]> {
     const args = plainToClass(
       ApplicationProgramLetterFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.applicationProgramLetters({
       ...args,
       select: {
-        admitSent: true,
-        admitSentDate: true,
-        id: true,
         rejectionSent: true,
         rejectionSentDate: true,
+        admitSent: true,
+        admitSentDate: true,
         waitlistSent: true,
         waitlistSentDate: true,
+        id: true,
       },
     });
   }
@@ -72,19 +71,19 @@ export class ApplicationProgramLetterControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicationProgramLetter })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationProgramLetter(
     @common.Param() params: ApplicationProgramLetterWhereUniqueInput
   ): Promise<ApplicationProgramLetter | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationProgramLetter({
       where: params,
       select: {
-        admitSent: true,
-        admitSentDate: true,
-        id: true,
         rejectionSent: true,
         rejectionSentDate: true,
+        admitSent: true,
+        admitSentDate: true,
         waitlistSent: true,
         waitlistSentDate: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -98,22 +97,22 @@ export class ApplicationProgramLetterControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicationProgramLetter })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationProgramLetter(
     @common.Param() params: ApplicationProgramLetterWhereUniqueInput,
     @common.Body() data: ApplicationProgramLetterUpdateInput
   ): Promise<ApplicationProgramLetter | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationProgramLetter({
         where: params,
         data: data,
         select: {
-          admitSent: true,
-          admitSentDate: true,
-          id: true,
           rejectionSent: true,
           rejectionSentDate: true,
+          admitSent: true,
+          admitSentDate: true,
           waitlistSent: true,
           waitlistSentDate: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -129,20 +128,20 @@ export class ApplicationProgramLetterControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicationProgramLetter })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationProgramLetter(
     @common.Param() params: ApplicationProgramLetterWhereUniqueInput
   ): Promise<ApplicationProgramLetter | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationProgramLetter({
         where: params,
         select: {
-          admitSent: true,
-          admitSentDate: true,
-          id: true,
           rejectionSent: true,
           rejectionSentDate: true,
+          admitSent: true,
+          admitSentDate: true,
           waitlistSent: true,
           waitlistSentDate: true,
+          id: true,
         },
       });
     } catch (error) {

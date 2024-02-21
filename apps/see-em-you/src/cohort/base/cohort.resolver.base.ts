@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCohortArgs } from "./CreateCohortArgs";
-import { UpdateCohortArgs } from "./UpdateCohortArgs";
-import { DeleteCohortArgs } from "./DeleteCohortArgs";
+import { Cohort } from "./Cohort";
 import { CohortCountArgs } from "./CohortCountArgs";
 import { CohortFindManyArgs } from "./CohortFindManyArgs";
 import { CohortFindUniqueArgs } from "./CohortFindUniqueArgs";
-import { Cohort } from "./Cohort";
+import { CreateCohortArgs } from "./CreateCohortArgs";
+import { UpdateCohortArgs } from "./UpdateCohortArgs";
+import { DeleteCohortArgs } from "./DeleteCohortArgs";
 import { Period } from "../../period/base/Period";
 import { CohortService } from "../cohort.service";
 @graphql.Resolver(() => Cohort)
@@ -37,14 +37,14 @@ export class CohortResolverBase {
 
   @graphql.Query(() => [Cohort])
   async cohorts(@graphql.Args() args: CohortFindManyArgs): Promise<Cohort[]> {
-    return this.service.findMany(args);
+    return this.service.cohorts(args);
   }
 
   @graphql.Query(() => Cohort, { nullable: true })
   async cohort(
     @graphql.Args() args: CohortFindUniqueArgs
   ): Promise<Cohort | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.cohort(args);
     if (result === null) {
       return null;
     }
@@ -53,7 +53,7 @@ export class CohortResolverBase {
 
   @graphql.Mutation(() => Cohort)
   async createCohort(@graphql.Args() args: CreateCohortArgs): Promise<Cohort> {
-    return await this.service.create({
+    return await this.service.createCohort({
       ...args,
       data: {
         ...args.data,
@@ -72,7 +72,7 @@ export class CohortResolverBase {
     @graphql.Args() args: UpdateCohortArgs
   ): Promise<Cohort | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCohort({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class CohortResolverBase {
     @graphql.Args() args: DeleteCohortArgs
   ): Promise<Cohort | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCohort(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,9 +114,7 @@ export class CohortResolverBase {
     nullable: true,
     name: "period",
   })
-  async resolveFieldPeriod(
-    @graphql.Parent() parent: Cohort
-  ): Promise<Period | null> {
+  async getPeriod(@graphql.Parent() parent: Cohort): Promise<Period | null> {
     const result = await this.service.getPeriod(parent.id);
 
     if (!result) {

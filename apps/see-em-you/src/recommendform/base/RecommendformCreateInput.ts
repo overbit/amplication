@@ -21,6 +21,14 @@ class RecommendformCreateInput {
   })
   @IsInt()
   @Field(() => Number)
+  recommendId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   formId!: number;
 
   @ApiProperty({
@@ -41,14 +49,6 @@ class RecommendformCreateInput {
     nullable: true,
   })
   questionKey?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  recommendId!: number;
 
   @ApiProperty({
     required: false,

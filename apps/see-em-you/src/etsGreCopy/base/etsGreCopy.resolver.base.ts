@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateEtsGreCopyArgs } from "./CreateEtsGreCopyArgs";
-import { UpdateEtsGreCopyArgs } from "./UpdateEtsGreCopyArgs";
-import { DeleteEtsGreCopyArgs } from "./DeleteEtsGreCopyArgs";
+import { EtsGreCopy } from "./EtsGreCopy";
 import { EtsGreCopyCountArgs } from "./EtsGreCopyCountArgs";
 import { EtsGreCopyFindManyArgs } from "./EtsGreCopyFindManyArgs";
 import { EtsGreCopyFindUniqueArgs } from "./EtsGreCopyFindUniqueArgs";
-import { EtsGreCopy } from "./EtsGreCopy";
+import { CreateEtsGreCopyArgs } from "./CreateEtsGreCopyArgs";
+import { UpdateEtsGreCopyArgs } from "./UpdateEtsGreCopyArgs";
+import { DeleteEtsGreCopyArgs } from "./DeleteEtsGreCopyArgs";
 import { EtsGreCopyService } from "../etsGreCopy.service";
 @graphql.Resolver(() => EtsGreCopy)
 export class EtsGreCopyResolverBase {
@@ -38,14 +38,14 @@ export class EtsGreCopyResolverBase {
   async etsGreCopies(
     @graphql.Args() args: EtsGreCopyFindManyArgs
   ): Promise<EtsGreCopy[]> {
-    return this.service.findMany(args);
+    return this.service.etsGreCopies(args);
   }
 
   @graphql.Query(() => EtsGreCopy, { nullable: true })
   async etsGreCopy(
     @graphql.Args() args: EtsGreCopyFindUniqueArgs
   ): Promise<EtsGreCopy | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.etsGreCopy(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class EtsGreCopyResolverBase {
   async createEtsGreCopy(
     @graphql.Args() args: CreateEtsGreCopyArgs
   ): Promise<EtsGreCopy> {
-    return await this.service.create({
+    return await this.service.createEtsGreCopy({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class EtsGreCopyResolverBase {
     @graphql.Args() args: UpdateEtsGreCopyArgs
   ): Promise<EtsGreCopy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEtsGreCopy({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class EtsGreCopyResolverBase {
     @graphql.Args() args: DeleteEtsGreCopyArgs
   ): Promise<EtsGreCopy | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteEtsGreCopy(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

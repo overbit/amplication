@@ -24,6 +24,14 @@ class BlacklistReviewerCreateInput {
   appId!: number;
 
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  reviewerId!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -33,14 +41,6 @@ class BlacklistReviewerCreateInput {
     nullable: true,
   })
   deny?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reviewerId!: number;
 }
 
 export { BlacklistReviewerCreateInput as BlacklistReviewerCreateInput };

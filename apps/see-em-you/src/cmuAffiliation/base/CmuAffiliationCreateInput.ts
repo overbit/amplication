@@ -29,7 +29,7 @@ class CmuAffiliationCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  cmuEmployee!: number;
+  cmuStudentOrAlumnus!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class CmuAffiliationCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  cmuStudentOrAlumnus!: number;
+  cmuEmployee!: number;
 }
 
 export { CmuAffiliationCreateInput as CmuAffiliationCreateInput };

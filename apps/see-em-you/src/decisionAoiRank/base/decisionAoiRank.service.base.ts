@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DecisionAoiRank } from "@prisma/client";
+import {
+  Prisma,
+  DecisionAoiRank as PrismaDecisionAoiRank,
+} from "@prisma/client";
 
 export class DecisionAoiRankServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class DecisionAoiRankServiceBase {
     return this.prisma.decisionAoiRank.count(args);
   }
 
-  async findMany<T extends Prisma.DecisionAoiRankFindManyArgs>(
+  async decisionAoiRanks<T extends Prisma.DecisionAoiRankFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionAoiRankFindManyArgs>
-  ): Promise<DecisionAoiRank[]> {
+  ): Promise<PrismaDecisionAoiRank[]> {
     return this.prisma.decisionAoiRank.findMany(args);
   }
-  async findOne<T extends Prisma.DecisionAoiRankFindUniqueArgs>(
+  async decisionAoiRank<T extends Prisma.DecisionAoiRankFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionAoiRankFindUniqueArgs>
-  ): Promise<DecisionAoiRank | null> {
+  ): Promise<PrismaDecisionAoiRank | null> {
     return this.prisma.decisionAoiRank.findUnique(args);
   }
-  async create<T extends Prisma.DecisionAoiRankCreateArgs>(
+  async createDecisionAoiRank<T extends Prisma.DecisionAoiRankCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionAoiRankCreateArgs>
-  ): Promise<DecisionAoiRank> {
+  ): Promise<PrismaDecisionAoiRank> {
     return this.prisma.decisionAoiRank.create<T>(args);
   }
-  async update<T extends Prisma.DecisionAoiRankUpdateArgs>(
+  async updateDecisionAoiRank<T extends Prisma.DecisionAoiRankUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionAoiRankUpdateArgs>
-  ): Promise<DecisionAoiRank> {
+  ): Promise<PrismaDecisionAoiRank> {
     return this.prisma.decisionAoiRank.update<T>(args);
   }
-  async delete<T extends Prisma.DecisionAoiRankDeleteArgs>(
+  async deleteDecisionAoiRank<T extends Prisma.DecisionAoiRankDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DecisionAoiRankDeleteArgs>
-  ): Promise<DecisionAoiRank> {
+  ): Promise<PrismaDecisionAoiRank> {
     return this.prisma.decisionAoiRank.delete(args);
   }
 }

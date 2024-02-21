@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuApplicationProgramArgs } from "./CreateLuApplicationProgramArgs";
-import { UpdateLuApplicationProgramArgs } from "./UpdateLuApplicationProgramArgs";
-import { DeleteLuApplicationProgramArgs } from "./DeleteLuApplicationProgramArgs";
+import { LuApplicationProgram } from "./LuApplicationProgram";
 import { LuApplicationProgramCountArgs } from "./LuApplicationProgramCountArgs";
 import { LuApplicationProgramFindManyArgs } from "./LuApplicationProgramFindManyArgs";
 import { LuApplicationProgramFindUniqueArgs } from "./LuApplicationProgramFindUniqueArgs";
-import { LuApplicationProgram } from "./LuApplicationProgram";
+import { CreateLuApplicationProgramArgs } from "./CreateLuApplicationProgramArgs";
+import { UpdateLuApplicationProgramArgs } from "./UpdateLuApplicationProgramArgs";
+import { DeleteLuApplicationProgramArgs } from "./DeleteLuApplicationProgramArgs";
 import { Application } from "../../application/base/Application";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
 import { LuApplicationProgramService } from "../luApplicationProgram.service";
@@ -40,14 +40,14 @@ export class LuApplicationProgramResolverBase {
   async luApplicationPrograms(
     @graphql.Args() args: LuApplicationProgramFindManyArgs
   ): Promise<LuApplicationProgram[]> {
-    return this.service.findMany(args);
+    return this.service.luApplicationPrograms(args);
   }
 
   @graphql.Query(() => LuApplicationProgram, { nullable: true })
   async luApplicationProgram(
     @graphql.Args() args: LuApplicationProgramFindUniqueArgs
   ): Promise<LuApplicationProgram | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luApplicationProgram(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class LuApplicationProgramResolverBase {
   async createLuApplicationProgram(
     @graphql.Args() args: CreateLuApplicationProgramArgs
   ): Promise<LuApplicationProgram> {
-    return await this.service.create({
+    return await this.service.createLuApplicationProgram({
       ...args,
       data: {
         ...args.data,
@@ -79,7 +79,7 @@ export class LuApplicationProgramResolverBase {
     @graphql.Args() args: UpdateLuApplicationProgramArgs
   ): Promise<LuApplicationProgram | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationProgram({
         ...args,
         data: {
           ...args.data,
@@ -108,7 +108,7 @@ export class LuApplicationProgramResolverBase {
     @graphql.Args() args: DeleteLuApplicationProgramArgs
   ): Promise<LuApplicationProgram | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuApplicationProgram(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -123,7 +123,7 @@ export class LuApplicationProgramResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: LuApplicationProgram
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);
@@ -138,7 +138,7 @@ export class LuApplicationProgramResolverBase {
     nullable: true,
     name: "programs",
   })
-  async resolveFieldPrograms(
+  async getPrograms(
     @graphql.Parent() parent: LuApplicationProgram
   ): Promise<ProgramModel | null> {
     const result = await this.service.getPrograms(parent.id);

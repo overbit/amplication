@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DecisionAoiRankService } from "../decisionAoiRank.service";
 import { DecisionAoiRankCreateInput } from "./DecisionAoiRankCreateInput";
-import { DecisionAoiRankWhereInput } from "./DecisionAoiRankWhereInput";
-import { DecisionAoiRankWhereUniqueInput } from "./DecisionAoiRankWhereUniqueInput";
-import { DecisionAoiRankFindManyArgs } from "./DecisionAoiRankFindManyArgs";
-import { DecisionAoiRankUpdateInput } from "./DecisionAoiRankUpdateInput";
 import { DecisionAoiRank } from "./DecisionAoiRank";
+import { DecisionAoiRankFindManyArgs } from "./DecisionAoiRankFindManyArgs";
+import { DecisionAoiRankWhereUniqueInput } from "./DecisionAoiRankWhereUniqueInput";
+import { DecisionAoiRankUpdateInput } from "./DecisionAoiRankUpdateInput";
 
 export class DecisionAoiRankControllerBase {
   constructor(protected readonly service: DecisionAoiRankService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DecisionAoiRank })
-  async create(
+  async createDecisionAoiRank(
     @common.Body() data: DecisionAoiRankCreateInput
   ): Promise<DecisionAoiRank> {
-    return await this.service.create({
+    return await this.service.createDecisionAoiRank({
       data: data,
       select: {
-        decision: true,
         departmentId: true,
-        id: true,
-        interestId: true,
-        luUsersUsertypesId: true,
         periodId: true,
-        ranking: true,
+        interestId: true,
+        decision: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        ranking: true,
+        id: true,
       },
     });
   }
@@ -49,19 +48,21 @@ export class DecisionAoiRankControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DecisionAoiRank] })
   @ApiNestedQuery(DecisionAoiRankFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DecisionAoiRank[]> {
+  async decisionAoiRanks(
+    @common.Req() request: Request
+  ): Promise<DecisionAoiRank[]> {
     const args = plainToClass(DecisionAoiRankFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.decisionAoiRanks({
       ...args,
       select: {
-        decision: true,
         departmentId: true,
-        id: true,
-        interestId: true,
-        luUsersUsertypesId: true,
         periodId: true,
-        ranking: true,
+        interestId: true,
+        decision: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        ranking: true,
+        id: true,
       },
     });
   }
@@ -69,20 +70,20 @@ export class DecisionAoiRankControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DecisionAoiRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async decisionAoiRank(
     @common.Param() params: DecisionAoiRankWhereUniqueInput
   ): Promise<DecisionAoiRank | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.decisionAoiRank({
       where: params,
       select: {
-        decision: true,
         departmentId: true,
-        id: true,
-        interestId: true,
-        luUsersUsertypesId: true,
         periodId: true,
-        ranking: true,
+        interestId: true,
+        decision: true,
         timestamp: true,
+        luUsersUsertypesId: true,
+        ranking: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -96,23 +97,23 @@ export class DecisionAoiRankControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DecisionAoiRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDecisionAoiRank(
     @common.Param() params: DecisionAoiRankWhereUniqueInput,
     @common.Body() data: DecisionAoiRankUpdateInput
   ): Promise<DecisionAoiRank | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDecisionAoiRank({
         where: params,
         data: data,
         select: {
-          decision: true,
           departmentId: true,
-          id: true,
-          interestId: true,
-          luUsersUsertypesId: true,
           periodId: true,
-          ranking: true,
+          interestId: true,
+          decision: true,
           timestamp: true,
+          luUsersUsertypesId: true,
+          ranking: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -128,21 +129,21 @@ export class DecisionAoiRankControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DecisionAoiRank })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDecisionAoiRank(
     @common.Param() params: DecisionAoiRankWhereUniqueInput
   ): Promise<DecisionAoiRank | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDecisionAoiRank({
         where: params,
         select: {
-          decision: true,
           departmentId: true,
-          id: true,
-          interestId: true,
-          luUsersUsertypesId: true,
           periodId: true,
-          ranking: true,
+          interestId: true,
+          decision: true,
           timestamp: true,
+          luUsersUsertypesId: true,
+          ranking: true,
+          id: true,
         },
       });
     } catch (error) {

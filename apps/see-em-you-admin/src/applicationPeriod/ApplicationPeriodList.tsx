@@ -13,9 +13,9 @@ export const ApplicationPeriodList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Department Id" source="departmentId" />
+        <TextField label="Start Date" source="startDate" />
         <TextField label="End Date" source="endDate" />
         <TextField label="Id" source="id" />
-        <TextField label="Start Date" source="startDate" />
       </Datagrid>
     </List>
   );

@@ -8,12 +8,12 @@ export const DepartmentEnableRecyclingCreate = (
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Department Id" source="departmentId" />
+        <NumberInput step={1} label="Period Id" source="periodId" />
         <NumberInput
           step={1}
           label="Enable Recycling"
           source="enableRecycling"
         />
-        <NumberInput step={1} label="Period Id" source="periodId" />
         <NumberInput step={1} label="Users Id" source="usersId" />
       </SimpleForm>
     </Create>

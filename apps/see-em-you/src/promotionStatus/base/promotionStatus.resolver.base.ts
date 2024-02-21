@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePromotionStatusArgs } from "./CreatePromotionStatusArgs";
-import { UpdatePromotionStatusArgs } from "./UpdatePromotionStatusArgs";
-import { DeletePromotionStatusArgs } from "./DeletePromotionStatusArgs";
+import { PromotionStatus } from "./PromotionStatus";
 import { PromotionStatusCountArgs } from "./PromotionStatusCountArgs";
 import { PromotionStatusFindManyArgs } from "./PromotionStatusFindManyArgs";
 import { PromotionStatusFindUniqueArgs } from "./PromotionStatusFindUniqueArgs";
-import { PromotionStatus } from "./PromotionStatus";
+import { CreatePromotionStatusArgs } from "./CreatePromotionStatusArgs";
+import { UpdatePromotionStatusArgs } from "./UpdatePromotionStatusArgs";
+import { DeletePromotionStatusArgs } from "./DeletePromotionStatusArgs";
 import { PromotionStatusService } from "../promotionStatus.service";
 @graphql.Resolver(() => PromotionStatus)
 export class PromotionStatusResolverBase {
@@ -38,14 +38,14 @@ export class PromotionStatusResolverBase {
   async promotionStatuses(
     @graphql.Args() args: PromotionStatusFindManyArgs
   ): Promise<PromotionStatus[]> {
-    return this.service.findMany(args);
+    return this.service.promotionStatuses(args);
   }
 
   @graphql.Query(() => PromotionStatus, { nullable: true })
   async promotionStatus(
     @graphql.Args() args: PromotionStatusFindUniqueArgs
   ): Promise<PromotionStatus | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.promotionStatus(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PromotionStatusResolverBase {
   async createPromotionStatus(
     @graphql.Args() args: CreatePromotionStatusArgs
   ): Promise<PromotionStatus> {
-    return await this.service.create({
+    return await this.service.createPromotionStatus({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PromotionStatusResolverBase {
     @graphql.Args() args: UpdatePromotionStatusArgs
   ): Promise<PromotionStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePromotionStatus({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PromotionStatusResolverBase {
     @graphql.Args() args: DeletePromotionStatusArgs
   ): Promise<PromotionStatus | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePromotionStatus(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

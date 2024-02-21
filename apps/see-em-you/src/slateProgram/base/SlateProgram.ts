@@ -24,15 +24,7 @@ class SlateProgram {
   @Field(() => String, {
     nullable: true,
   })
-  first!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  prefix!: string | null;
 
   @ApiProperty({
     required: false,
@@ -43,7 +35,7 @@ class SlateProgram {
   @Field(() => String, {
     nullable: true,
   })
-  last!: string | null;
+  first!: string | null;
 
   @ApiProperty({
     required: false,
@@ -55,6 +47,17 @@ class SlateProgram {
     nullable: true,
   })
   middle!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  last!: string | null;
 
   @ApiProperty({
     required: false,
@@ -90,15 +93,12 @@ class SlateProgram {
   mseProgram3!: string | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  prefix!: string | null;
+  @Field(() => String)
+  id!: string;
 }
 
 export { SlateProgram as SlateProgram };

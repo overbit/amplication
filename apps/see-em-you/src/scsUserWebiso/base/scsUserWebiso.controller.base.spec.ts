@@ -18,34 +18,34 @@ import { ScsUserWebisoService } from "../scsUserWebiso.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
   scsUserId: 42,
   webiso: "exampleWebiso",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
   scsUserId: 42,
   webiso: "exampleWebiso",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
     scsUserId: 42,
     webiso: "exampleWebiso",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
   scsUserId: 42,
   webiso: "exampleWebiso",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createScsUserWebiso() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  scsUserWebisos: () => FIND_MANY_RESULT,
+  scsUserWebiso: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, BfDepartment } from "@prisma/client";
+import { Prisma, BfDepartment as PrismaBfDepartment } from "@prisma/client";
 
 export class BfDepartmentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class BfDepartmentServiceBase {
     return this.prisma.bfDepartment.count(args);
   }
 
-  async findMany<T extends Prisma.BfDepartmentFindManyArgs>(
+  async bfDepartments<T extends Prisma.BfDepartmentFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.BfDepartmentFindManyArgs>
-  ): Promise<BfDepartment[]> {
+  ): Promise<PrismaBfDepartment[]> {
     return this.prisma.bfDepartment.findMany(args);
   }
-  async findOne<T extends Prisma.BfDepartmentFindUniqueArgs>(
+  async bfDepartment<T extends Prisma.BfDepartmentFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.BfDepartmentFindUniqueArgs>
-  ): Promise<BfDepartment | null> {
+  ): Promise<PrismaBfDepartment | null> {
     return this.prisma.bfDepartment.findUnique(args);
   }
-  async create<T extends Prisma.BfDepartmentCreateArgs>(
+  async createBfDepartment<T extends Prisma.BfDepartmentCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.BfDepartmentCreateArgs>
-  ): Promise<BfDepartment> {
+  ): Promise<PrismaBfDepartment> {
     return this.prisma.bfDepartment.create<T>(args);
   }
-  async update<T extends Prisma.BfDepartmentUpdateArgs>(
+  async updateBfDepartment<T extends Prisma.BfDepartmentUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.BfDepartmentUpdateArgs>
-  ): Promise<BfDepartment> {
+  ): Promise<PrismaBfDepartment> {
     return this.prisma.bfDepartment.update<T>(args);
   }
-  async delete<T extends Prisma.BfDepartmentDeleteArgs>(
+  async deleteBfDepartment<T extends Prisma.BfDepartmentDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.BfDepartmentDeleteArgs>
-  ): Promise<BfDepartment> {
+  ): Promise<PrismaBfDepartment> {
     return this.prisma.bfDepartment.delete(args);
   }
 }

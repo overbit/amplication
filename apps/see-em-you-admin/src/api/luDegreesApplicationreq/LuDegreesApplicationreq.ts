@@ -1,5 +1,5 @@
 export type LuDegreesApplicationreq = {
-  appreqId: number;
   degreeId: number;
+  appreqId: number;
   id: number;
 };

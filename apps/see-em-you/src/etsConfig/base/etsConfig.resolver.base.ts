@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateEtsConfigArgs } from "./CreateEtsConfigArgs";
-import { UpdateEtsConfigArgs } from "./UpdateEtsConfigArgs";
-import { DeleteEtsConfigArgs } from "./DeleteEtsConfigArgs";
+import { EtsConfig } from "./EtsConfig";
 import { EtsConfigCountArgs } from "./EtsConfigCountArgs";
 import { EtsConfigFindManyArgs } from "./EtsConfigFindManyArgs";
 import { EtsConfigFindUniqueArgs } from "./EtsConfigFindUniqueArgs";
-import { EtsConfig } from "./EtsConfig";
+import { CreateEtsConfigArgs } from "./CreateEtsConfigArgs";
+import { UpdateEtsConfigArgs } from "./UpdateEtsConfigArgs";
+import { DeleteEtsConfigArgs } from "./DeleteEtsConfigArgs";
 import { EtsConfigService } from "../etsConfig.service";
 @graphql.Resolver(() => EtsConfig)
 export class EtsConfigResolverBase {
@@ -38,14 +38,14 @@ export class EtsConfigResolverBase {
   async etsConfigs(
     @graphql.Args() args: EtsConfigFindManyArgs
   ): Promise<EtsConfig[]> {
-    return this.service.findMany(args);
+    return this.service.etsConfigs(args);
   }
 
   @graphql.Query(() => EtsConfig, { nullable: true })
   async etsConfig(
     @graphql.Args() args: EtsConfigFindUniqueArgs
   ): Promise<EtsConfig | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.etsConfig(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class EtsConfigResolverBase {
   async createEtsConfig(
     @graphql.Args() args: CreateEtsConfigArgs
   ): Promise<EtsConfig> {
-    return await this.service.create({
+    return await this.service.createEtsConfig({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class EtsConfigResolverBase {
     @graphql.Args() args: UpdateEtsConfigArgs
   ): Promise<EtsConfig | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEtsConfig({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class EtsConfigResolverBase {
     @graphql.Args() args: DeleteEtsConfigArgs
   ): Promise<EtsConfig | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteEtsConfig(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PositiveFactorService } from "../positiveFactor.service";
 import { PositiveFactorCreateInput } from "./PositiveFactorCreateInput";
-import { PositiveFactorWhereInput } from "./PositiveFactorWhereInput";
-import { PositiveFactorWhereUniqueInput } from "./PositiveFactorWhereUniqueInput";
-import { PositiveFactorFindManyArgs } from "./PositiveFactorFindManyArgs";
-import { PositiveFactorUpdateInput } from "./PositiveFactorUpdateInput";
 import { PositiveFactor } from "./PositiveFactor";
+import { PositiveFactorFindManyArgs } from "./PositiveFactorFindManyArgs";
+import { PositiveFactorWhereUniqueInput } from "./PositiveFactorWhereUniqueInput";
+import { PositiveFactorUpdateInput } from "./PositiveFactorUpdateInput";
 
 export class PositiveFactorControllerBase {
   constructor(protected readonly service: PositiveFactorService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PositiveFactor })
-  async create(
+  async createPositiveFactor(
     @common.Body() data: PositiveFactorCreateInput
   ): Promise<PositiveFactor> {
-    return await this.service.create({
+    return await this.service.createPositiveFactor({
       data: data,
       select: {
-        departmentId: true,
-        id: true,
         positiveFactor: true,
+        departmentId: true,
         positiveFactorId: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class PositiveFactorControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PositiveFactor] })
   @ApiNestedQuery(PositiveFactorFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PositiveFactor[]> {
+  async positiveFactors(
+    @common.Req() request: Request
+  ): Promise<PositiveFactor[]> {
     const args = plainToClass(PositiveFactorFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.positiveFactors({
       ...args,
       select: {
-        departmentId: true,
-        id: true,
         positiveFactor: true,
+        departmentId: true,
         positiveFactorId: true,
+        id: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class PositiveFactorControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PositiveFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async positiveFactor(
     @common.Param() params: PositiveFactorWhereUniqueInput
   ): Promise<PositiveFactor | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.positiveFactor({
       where: params,
       select: {
-        departmentId: true,
-        id: true,
         positiveFactor: true,
+        departmentId: true,
         positiveFactorId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class PositiveFactorControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PositiveFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePositiveFactor(
     @common.Param() params: PositiveFactorWhereUniqueInput,
     @common.Body() data: PositiveFactorUpdateInput
   ): Promise<PositiveFactor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePositiveFactor({
         where: params,
         data: data,
         select: {
-          departmentId: true,
-          id: true,
           positiveFactor: true,
+          departmentId: true,
           positiveFactorId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class PositiveFactorControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PositiveFactor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePositiveFactor(
     @common.Param() params: PositiveFactorWhereUniqueInput
   ): Promise<PositiveFactor | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePositiveFactor({
         where: params,
         select: {
-          departmentId: true,
-          id: true,
           positiveFactor: true,
+          departmentId: true,
           positiveFactorId: true,
+          id: true,
         },
       });
     } catch (error) {

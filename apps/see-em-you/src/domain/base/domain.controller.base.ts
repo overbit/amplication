@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DomainService } from "../domain.service";
 import { DomainCreateInput } from "./DomainCreateInput";
-import { DomainWhereInput } from "./DomainWhereInput";
-import { DomainWhereUniqueInput } from "./DomainWhereUniqueInput";
-import { DomainFindManyArgs } from "./DomainFindManyArgs";
-import { DomainUpdateInput } from "./DomainUpdateInput";
 import { Domain } from "./Domain";
+import { DomainFindManyArgs } from "./DomainFindManyArgs";
+import { DomainWhereUniqueInput } from "./DomainWhereUniqueInput";
+import { DomainUpdateInput } from "./DomainUpdateInput";
 import { DomainUnitFindManyArgs } from "../../domainUnit/base/DomainUnitFindManyArgs";
 import { DomainUnit } from "../../domainUnit/base/DomainUnit";
 import { DomainUnitWhereUniqueInput } from "../../domainUnit/base/DomainUnitWhereUniqueInput";
@@ -31,16 +30,16 @@ export class DomainControllerBase {
   constructor(protected readonly service: DomainService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Domain })
-  async create(@common.Body() data: DomainCreateInput): Promise<Domain> {
-    return await this.service.create({
+  async createDomain(@common.Body() data: DomainCreateInput): Promise<Domain> {
+    return await this.service.createDomain({
       data: data,
       select: {
+        name: true,
+        description: true,
+        path: true,
         active: true,
         banner: true,
-        description: true,
         id: true,
-        name: true,
-        path: true,
       },
     });
   }
@@ -48,17 +47,17 @@ export class DomainControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Domain] })
   @ApiNestedQuery(DomainFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Domain[]> {
+  async domains(@common.Req() request: Request): Promise<Domain[]> {
     const args = plainToClass(DomainFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.domains({
       ...args,
       select: {
+        name: true,
+        description: true,
+        path: true,
         active: true,
         banner: true,
-        description: true,
         id: true,
-        name: true,
-        path: true,
       },
     });
   }
@@ -66,18 +65,18 @@ export class DomainControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Domain })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async domain(
     @common.Param() params: DomainWhereUniqueInput
   ): Promise<Domain | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.domain({
       where: params,
       select: {
+        name: true,
+        description: true,
+        path: true,
         active: true,
         banner: true,
-        description: true,
         id: true,
-        name: true,
-        path: true,
       },
     });
     if (result === null) {
@@ -91,21 +90,21 @@ export class DomainControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Domain })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDomain(
     @common.Param() params: DomainWhereUniqueInput,
     @common.Body() data: DomainUpdateInput
   ): Promise<Domain | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDomain({
         where: params,
         data: data,
         select: {
+          name: true,
+          description: true,
+          path: true,
           active: true,
           banner: true,
-          description: true,
           id: true,
-          name: true,
-          path: true,
         },
       });
     } catch (error) {
@@ -121,19 +120,19 @@ export class DomainControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Domain })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDomain(
     @common.Param() params: DomainWhereUniqueInput
   ): Promise<Domain | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDomain({
         where: params,
         select: {
+          name: true,
+          description: true,
+          path: true,
           active: true,
           banner: true,
-          description: true,
           id: true,
-          name: true,
-          path: true,
         },
       });
     } catch (error) {
@@ -148,7 +147,7 @@ export class DomainControllerBase {
 
   @common.Get("/:id/domainUnit")
   @ApiNestedQuery(DomainUnitFindManyArgs)
-  async findManyDomainUnit(
+  async findDomainUnit(
     @common.Req() request: Request,
     @common.Param() params: DomainWhereUniqueInput
   ): Promise<DomainUnit[]> {
@@ -162,13 +161,13 @@ export class DomainControllerBase {
           },
         },
 
-        id: true,
-
         unit: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -189,7 +188,7 @@ export class DomainControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDomain({
       where: params,
       data,
       select: { id: true },
@@ -206,7 +205,7 @@ export class DomainControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDomain({
       where: params,
       data,
       select: { id: true },
@@ -223,7 +222,7 @@ export class DomainControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDomain({
       where: params,
       data,
       select: { id: true },

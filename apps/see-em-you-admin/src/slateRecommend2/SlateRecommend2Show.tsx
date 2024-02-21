@@ -5,23 +5,22 @@ export const SlateRecommend2Show = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="First" source="first" />
-        <TextField label="Id" source="id" />
-        <TextField label="Last" source="last" />
-        <TextField label="Middle" source="middle" />
         <TextField label="Prefix" source="prefix" />
-        <TextField label="Reference2 Email" source="reference2Email" />
+        <TextField label="First" source="first" />
+        <TextField label="Middle" source="middle" />
+        <TextField label="Last" source="last" />
+        <TextField label="Reference2 Type" source="reference2Type" />
+        <TextField label="Reference2 Submitted" source="reference2Submitted" />
         <TextField label="Reference2 First" source="reference2First" />
-        <TextField label="Reference2 Industry" source="reference2Industry" />
         <TextField label="Reference2 Last" source="reference2Last" />
+        <TextField label="Reference2 Industry" source="reference2Industry" />
         <TextField
           label="Reference2 Organization"
           source="reference2Organization"
         />
-        <TextField label="Reference2 Phone" source="reference2Phone" />
-        <TextField label="Reference2 Submitted" source="reference2Submitted" />
         <TextField label="Reference2 Title" source="reference2Title" />
-        <TextField label="Reference2 Type" source="reference2Type" />
+        <TextField label="Reference2 Email" source="reference2Email" />
+        <TextField label="Reference2 Phone" source="reference2Phone" />
         <TextField
           label="Reference Num2 Isrms Recommender Score1"
           source="referenceNum2IsrmsRecommenderScore1"
@@ -134,6 +133,7 @@ export const SlateRecommend2Show = (props: ShowProps): React.ReactElement => {
           label="Reference Num2 Recommender Score8"
           source="referenceNum2RecommenderScore8"
         />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

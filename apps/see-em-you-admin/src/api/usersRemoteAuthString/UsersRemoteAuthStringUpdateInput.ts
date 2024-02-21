@@ -1,4 +1,4 @@
 export type UsersRemoteAuthStringUpdateInput = {
-  remoteAuthString?: string;
   usersId?: number;
+  remoteAuthString?: string;
 };

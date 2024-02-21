@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateJiraIssueArgs } from "./CreateJiraIssueArgs";
-import { UpdateJiraIssueArgs } from "./UpdateJiraIssueArgs";
-import { DeleteJiraIssueArgs } from "./DeleteJiraIssueArgs";
+import { JiraIssue } from "./JiraIssue";
 import { JiraIssueCountArgs } from "./JiraIssueCountArgs";
 import { JiraIssueFindManyArgs } from "./JiraIssueFindManyArgs";
 import { JiraIssueFindUniqueArgs } from "./JiraIssueFindUniqueArgs";
-import { JiraIssue } from "./JiraIssue";
+import { CreateJiraIssueArgs } from "./CreateJiraIssueArgs";
+import { UpdateJiraIssueArgs } from "./UpdateJiraIssueArgs";
+import { DeleteJiraIssueArgs } from "./DeleteJiraIssueArgs";
 import { JiraIssueService } from "../jiraIssue.service";
 @graphql.Resolver(() => JiraIssue)
 export class JiraIssueResolverBase {
@@ -38,14 +38,14 @@ export class JiraIssueResolverBase {
   async jiraIssues(
     @graphql.Args() args: JiraIssueFindManyArgs
   ): Promise<JiraIssue[]> {
-    return this.service.findMany(args);
+    return this.service.jiraIssues(args);
   }
 
   @graphql.Query(() => JiraIssue, { nullable: true })
   async jiraIssue(
     @graphql.Args() args: JiraIssueFindUniqueArgs
   ): Promise<JiraIssue | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.jiraIssue(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class JiraIssueResolverBase {
   async createJiraIssue(
     @graphql.Args() args: CreateJiraIssueArgs
   ): Promise<JiraIssue> {
-    return await this.service.create({
+    return await this.service.createJiraIssue({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class JiraIssueResolverBase {
     @graphql.Args() args: UpdateJiraIssueArgs
   ): Promise<JiraIssue | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateJiraIssue({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class JiraIssueResolverBase {
     @graphql.Args() args: DeleteJiraIssueArgs
   ): Promise<JiraIssue | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteJiraIssue(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -19,65 +19,65 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  applyOutsideSupportSource: "exampleApplyOutsideSupportSource",
-  applyOutsideSupportType: "exampleApplyOutsideSupportType",
-  attendWithoutSupport: 42,
-  familySupportAmount: "exampleFamilySupportAmount",
-  familySupportType: "exampleFamilySupportType",
-  id: 42,
-  otherSupportSource: "exampleOtherSupportSource",
-  receiveOutsideSupportSource: "exampleReceiveOutsideSupportSource",
-  receiveOutsideSupportType: "exampleReceiveOutsideSupportType",
   requestConsideration: 42,
+  attendWithoutSupport: 42,
+  receiveOutsideSupportType: "exampleReceiveOutsideSupportType",
+  receiveOutsideSupportSource: "exampleReceiveOutsideSupportSource",
+  applyOutsideSupportType: "exampleApplyOutsideSupportType",
+  applyOutsideSupportSource: "exampleApplyOutsideSupportSource",
+  otherSupportSource: "exampleOtherSupportSource",
+  familySupportType: "exampleFamilySupportType",
+  familySupportAmount: "exampleFamilySupportAmount",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  applyOutsideSupportSource: "exampleApplyOutsideSupportSource",
-  applyOutsideSupportType: "exampleApplyOutsideSupportType",
-  attendWithoutSupport: 42,
-  familySupportAmount: "exampleFamilySupportAmount",
-  familySupportType: "exampleFamilySupportType",
-  id: 42,
-  otherSupportSource: "exampleOtherSupportSource",
-  receiveOutsideSupportSource: "exampleReceiveOutsideSupportSource",
-  receiveOutsideSupportType: "exampleReceiveOutsideSupportType",
   requestConsideration: 42,
+  attendWithoutSupport: 42,
+  receiveOutsideSupportType: "exampleReceiveOutsideSupportType",
+  receiveOutsideSupportSource: "exampleReceiveOutsideSupportSource",
+  applyOutsideSupportType: "exampleApplyOutsideSupportType",
+  applyOutsideSupportSource: "exampleApplyOutsideSupportSource",
+  otherSupportSource: "exampleOtherSupportSource",
+  familySupportType: "exampleFamilySupportType",
+  familySupportAmount: "exampleFamilySupportAmount",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    applyOutsideSupportSource: "exampleApplyOutsideSupportSource",
-    applyOutsideSupportType: "exampleApplyOutsideSupportType",
-    attendWithoutSupport: 42,
-    familySupportAmount: "exampleFamilySupportAmount",
-    familySupportType: "exampleFamilySupportType",
-    id: 42,
-    otherSupportSource: "exampleOtherSupportSource",
-    receiveOutsideSupportSource: "exampleReceiveOutsideSupportSource",
-    receiveOutsideSupportType: "exampleReceiveOutsideSupportType",
     requestConsideration: 42,
+    attendWithoutSupport: 42,
+    receiveOutsideSupportType: "exampleReceiveOutsideSupportType",
+    receiveOutsideSupportSource: "exampleReceiveOutsideSupportSource",
+    applyOutsideSupportType: "exampleApplyOutsideSupportType",
+    applyOutsideSupportSource: "exampleApplyOutsideSupportSource",
+    otherSupportSource: "exampleOtherSupportSource",
+    familySupportType: "exampleFamilySupportType",
+    familySupportAmount: "exampleFamilySupportAmount",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  applyOutsideSupportSource: "exampleApplyOutsideSupportSource",
-  applyOutsideSupportType: "exampleApplyOutsideSupportType",
-  attendWithoutSupport: 42,
-  familySupportAmount: "exampleFamilySupportAmount",
-  familySupportType: "exampleFamilySupportType",
-  id: 42,
-  otherSupportSource: "exampleOtherSupportSource",
-  receiveOutsideSupportSource: "exampleReceiveOutsideSupportSource",
-  receiveOutsideSupportType: "exampleReceiveOutsideSupportType",
   requestConsideration: 42,
+  attendWithoutSupport: 42,
+  receiveOutsideSupportType: "exampleReceiveOutsideSupportType",
+  receiveOutsideSupportSource: "exampleReceiveOutsideSupportSource",
+  applyOutsideSupportType: "exampleApplyOutsideSupportType",
+  applyOutsideSupportSource: "exampleApplyOutsideSupportSource",
+  otherSupportSource: "exampleOtherSupportSource",
+  familySupportType: "exampleFamilySupportType",
+  familySupportAmount: "exampleFamilySupportAmount",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createIniFinancialSupport() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  iniFinancialSupports: () => FIND_MANY_RESULT,
+  iniFinancialSupport: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

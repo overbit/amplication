@@ -11,19 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsString, IsOptional, ValidateNested } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsString, IsOptional, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class MseAqa {
   @ApiProperty({
     required: true,
-    type: () => Application,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
+  @IsInt()
+  @Field(() => Number)
+  reviewerId!: number;
 
   @ApiProperty({
     required: false,
@@ -38,14 +38,47 @@ class MseAqa {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  englishRating!: number | null;
+  programmingComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  foundationalComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  maturityComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  understandingComments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -67,18 +100,18 @@ class MseAqa {
   @Field(() => Number, {
     nullable: true,
   })
-  experienceRating!: number | null;
+  englishRating!: number | null;
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  foundationalComments!: string | null;
+  programmingRating!: number | null;
 
   @ApiProperty({
     required: false,
@@ -90,25 +123,6 @@ class MseAqa {
     nullable: true,
   })
   foundationalRating!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  maturityComments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -123,47 +137,6 @@ class MseAqa {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  programmingComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programmingRating!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reviewerId!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  understandingComments!: string | null;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -172,6 +145,33 @@ class MseAqa {
     nullable: true,
   })
   understandingRating!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  experienceRating!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MseAqa as MseAqa };

@@ -24,7 +24,7 @@ class CountryUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  isoCode?: string | null;
+  name?: string | null;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class CountryUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  name?: string | null;
+  isoCode?: string | null;
 }
 
 export { CountryUpdateInput as CountryUpdateInput };

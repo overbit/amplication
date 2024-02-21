@@ -11,17 +11,30 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { MhciPrereqsConversationCommentListRelationFilter } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentListRelationFilter";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { MhciPrereqsConversationCommentListRelationFilter } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentListRelationFilter";
 import { MhciPrereqsCourseListRelationFilter } from "../../mhciPrereqsCourse/base/MhciPrereqsCourseListRelationFilter";
 import { MhciPrereqsDesignPortfolioListRelationFilter } from "../../mhciPrereqsDesignPortfolio/base/MhciPrereqsDesignPortfolioListRelationFilter";
 import { MhciPrereqsProgrammingSampleWhereUniqueInput } from "../../mhciPrereqsProgrammingSample/base/MhciPrereqsProgrammingSampleWhereUniqueInput";
 import { MhciPrereqsProgrammingTestListRelationFilter } from "../../mhciPrereqsProgrammingTest/base/MhciPrereqsProgrammingTestListRelationFilter";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class LuUsersUsertypeWhereInput {
+  @ApiProperty({
+    required: false,
+    type: () => UserWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  users?: UserWhereUniqueInput;
+
   @ApiProperty({
     required: false,
     type: () => MhciPrereqsConversationCommentListRelationFilter,
@@ -84,15 +97,14 @@ class LuUsersUsertypeWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserWhereUniqueInput,
+    type: IntFilter,
   })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
+  @Type(() => IntFilter)
   @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
+  @Field(() => IntFilter, {
     nullable: true,
   })
-  users?: UserWhereUniqueInput;
+  id?: IntFilter;
 }
 
 export { LuUsersUsertypeWhereInput as LuUsersUsertypeWhereInput };

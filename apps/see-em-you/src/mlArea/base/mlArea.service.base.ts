@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MlArea, Application, ProgramModel } from "@prisma/client";
+
+import {
+  Prisma,
+  MlArea as PrismaMlArea,
+  Application as PrismaApplication,
+  ProgramModel as PrismaProgramModel,
+} from "@prisma/client";
 
 export class MlAreaServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +27,33 @@ export class MlAreaServiceBase {
     return this.prisma.mlArea.count(args);
   }
 
-  async findMany<T extends Prisma.MlAreaFindManyArgs>(
+  async mlAreas<T extends Prisma.MlAreaFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MlAreaFindManyArgs>
-  ): Promise<MlArea[]> {
+  ): Promise<PrismaMlArea[]> {
     return this.prisma.mlArea.findMany(args);
   }
-  async findOne<T extends Prisma.MlAreaFindUniqueArgs>(
+  async mlArea<T extends Prisma.MlAreaFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MlAreaFindUniqueArgs>
-  ): Promise<MlArea | null> {
+  ): Promise<PrismaMlArea | null> {
     return this.prisma.mlArea.findUnique(args);
   }
-  async create<T extends Prisma.MlAreaCreateArgs>(
+  async createMlArea<T extends Prisma.MlAreaCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MlAreaCreateArgs>
-  ): Promise<MlArea> {
+  ): Promise<PrismaMlArea> {
     return this.prisma.mlArea.create<T>(args);
   }
-  async update<T extends Prisma.MlAreaUpdateArgs>(
+  async updateMlArea<T extends Prisma.MlAreaUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MlAreaUpdateArgs>
-  ): Promise<MlArea> {
+  ): Promise<PrismaMlArea> {
     return this.prisma.mlArea.update<T>(args);
   }
-  async delete<T extends Prisma.MlAreaDeleteArgs>(
+  async deleteMlArea<T extends Prisma.MlAreaDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MlAreaDeleteArgs>
-  ): Promise<MlArea> {
+  ): Promise<PrismaMlArea> {
     return this.prisma.mlArea.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.mlArea
       .findUnique({
         where: { id: parentId },
@@ -55,7 +61,7 @@ export class MlAreaServiceBase {
       .application();
   }
 
-  async getPrograms(parentId: number): Promise<ProgramModel | null> {
+  async getPrograms(parentId: number): Promise<PrismaProgramModel | null> {
     return this.prisma.mlArea
       .findUnique({
         where: { id: parentId },

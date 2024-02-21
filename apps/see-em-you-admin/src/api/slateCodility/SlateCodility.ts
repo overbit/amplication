@@ -1,4 +1,8 @@
 export type SlateCodility = {
+  prefix: string | null;
+  first: string | null;
+  middle: string | null;
+  last: string | null;
   codilityCloseDate: string | null;
   codilityCreateDate: string | null;
   codilityIpAddresses: string | null;
@@ -35,9 +39,5 @@ export type SlateCodility = {
   codilityTask4Score: string | null;
   codilityTestName: string | null;
   codilityTestSession: string | null;
-  first: string | null;
   id: string;
-  last: string | null;
-  middle: string | null;
-  prefix: string | null;
 };

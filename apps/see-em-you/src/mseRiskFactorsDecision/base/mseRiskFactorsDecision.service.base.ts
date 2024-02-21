@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseRiskFactorsDecision } from "@prisma/client";
+import {
+  Prisma,
+  MseRiskFactorsDecision as PrismaMseRiskFactorsDecision,
+} from "@prisma/client";
 
 export class MseRiskFactorsDecisionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class MseRiskFactorsDecisionServiceBase {
     return this.prisma.mseRiskFactorsDecision.count(args);
   }
 
-  async findMany<T extends Prisma.MseRiskFactorsDecisionFindManyArgs>(
+  async mseRiskFactorsDecisions<
+    T extends Prisma.MseRiskFactorsDecisionFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorsDecisionFindManyArgs>
-  ): Promise<MseRiskFactorsDecision[]> {
+  ): Promise<PrismaMseRiskFactorsDecision[]> {
     return this.prisma.mseRiskFactorsDecision.findMany(args);
   }
-  async findOne<T extends Prisma.MseRiskFactorsDecisionFindUniqueArgs>(
+  async mseRiskFactorsDecision<
+    T extends Prisma.MseRiskFactorsDecisionFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorsDecisionFindUniqueArgs>
-  ): Promise<MseRiskFactorsDecision | null> {
+  ): Promise<PrismaMseRiskFactorsDecision | null> {
     return this.prisma.mseRiskFactorsDecision.findUnique(args);
   }
-  async create<T extends Prisma.MseRiskFactorsDecisionCreateArgs>(
+  async createMseRiskFactorsDecision<
+    T extends Prisma.MseRiskFactorsDecisionCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorsDecisionCreateArgs>
-  ): Promise<MseRiskFactorsDecision> {
+  ): Promise<PrismaMseRiskFactorsDecision> {
     return this.prisma.mseRiskFactorsDecision.create<T>(args);
   }
-  async update<T extends Prisma.MseRiskFactorsDecisionUpdateArgs>(
+  async updateMseRiskFactorsDecision<
+    T extends Prisma.MseRiskFactorsDecisionUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorsDecisionUpdateArgs>
-  ): Promise<MseRiskFactorsDecision> {
+  ): Promise<PrismaMseRiskFactorsDecision> {
     return this.prisma.mseRiskFactorsDecision.update<T>(args);
   }
-  async delete<T extends Prisma.MseRiskFactorsDecisionDeleteArgs>(
+  async deleteMseRiskFactorsDecision<
+    T extends Prisma.MseRiskFactorsDecisionDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorsDecisionDeleteArgs>
-  ): Promise<MseRiskFactorsDecision> {
+  ): Promise<PrismaMseRiskFactorsDecision> {
     return this.prisma.mseRiskFactorsDecision.delete(args);
   }
 }

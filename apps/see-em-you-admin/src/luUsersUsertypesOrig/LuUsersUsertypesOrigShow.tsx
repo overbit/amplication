@@ -7,10 +7,10 @@ export const LuUsersUsertypesOrigShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Domain" source="domain" />
-        <TextField label="Id" source="id" />
         <TextField label="User Id" source="userId" />
         <TextField label="Usertype Id" source="usertypeId" />
+        <TextField label="Domain" source="domain" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

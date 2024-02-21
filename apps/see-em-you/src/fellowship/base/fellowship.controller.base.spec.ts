@@ -18,58 +18,58 @@ import { FellowshipService } from "../fellowship.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  name: "exampleName",
   amount: "exampleAmount",
+  status: "exampleStatus",
   appliedDate: new Date(),
   awardDate: new Date(),
-  datafileId: 42,
   duration: 42,
-  id: 42,
-  name: "exampleName",
+  datafileId: 42,
   short: 42,
-  status: "exampleStatus",
+  id: 42,
 };
 const CREATE_RESULT = {
+  name: "exampleName",
   amount: "exampleAmount",
+  status: "exampleStatus",
   appliedDate: new Date(),
   awardDate: new Date(),
-  datafileId: 42,
   duration: 42,
-  id: 42,
-  name: "exampleName",
+  datafileId: 42,
   short: 42,
-  status: "exampleStatus",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    name: "exampleName",
     amount: "exampleAmount",
+    status: "exampleStatus",
     appliedDate: new Date(),
     awardDate: new Date(),
-    datafileId: 42,
     duration: 42,
-    id: 42,
-    name: "exampleName",
+    datafileId: 42,
     short: 42,
-    status: "exampleStatus",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  name: "exampleName",
   amount: "exampleAmount",
+  status: "exampleStatus",
   appliedDate: new Date(),
   awardDate: new Date(),
-  datafileId: 42,
   duration: 42,
-  id: 42,
-  name: "exampleName",
+  datafileId: 42,
   short: 42,
-  status: "exampleStatus",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createFellowship() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  fellowships: () => FIND_MANY_RESULT,
+  fellowship: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -11,48 +11,34 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
 import {
-  ValidateNested,
   IsInt,
-  IsOptional,
   IsString,
-  IsDate,
+  IsOptional,
   IsBoolean,
+  IsDate,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { Application } from "../../application/base/Application";
 
 @ObjectType()
 class Recommend {
   @ApiProperty({
     required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  buckleyatupload!: number | null;
+  @Field(() => Number)
+  recUserId!: number;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  cmuAffiliation!: number | null;
+  @Field(() => Number)
+  recommendtype!: number;
 
   @ApiProperty({
     required: false,
@@ -78,11 +64,19 @@ class Recommend {
 
   @ApiProperty({
     required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  submitted!: boolean;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  reminderSentCount!: number;
 
   @ApiProperty({
     required: false,
@@ -96,12 +90,34 @@ class Recommend {
   lastReminderSent!: Date | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsInt()
-  @Field(() => Number)
-  recommendtype!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  cmuAffiliation!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  buckleyatupload!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
 
   @ApiProperty({
     required: true,
@@ -109,23 +125,7 @@ class Recommend {
   })
   @IsInt()
   @Field(() => Number)
-  recUserId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reminderSentCount!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  submitted!: boolean;
+  id!: number;
 }
 
 export { Recommend as Recommend };

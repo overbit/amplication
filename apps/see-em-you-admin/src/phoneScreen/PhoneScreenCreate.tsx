@@ -6,13 +6,13 @@ export const PhoneScreenCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Language Screen" source="languageScreen" />
         <NumberInput step={1} label="Reviewer Id" source="reviewerId" />
         <NumberInput
           step={1}
           label="Technical Screen"
           source="technicalScreen"
         />
+        <NumberInput step={1} label="Language Screen" source="languageScreen" />
       </SimpleForm>
     </Create>
   );

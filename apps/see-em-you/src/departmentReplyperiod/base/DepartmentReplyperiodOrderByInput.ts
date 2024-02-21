@@ -39,6 +39,17 @@ class DepartmentReplyperiodOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  start?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   end?: SortOrder;
 
   @ApiProperty({
@@ -51,17 +62,6 @@ class DepartmentReplyperiodOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  start?: SortOrder;
 }
 
 export { DepartmentReplyperiodOrderByInput as DepartmentReplyperiodOrderByInput };

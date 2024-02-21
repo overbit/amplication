@@ -34,19 +34,19 @@ class PromotionHistoryCopyCreateInput {
 
   @ApiProperty({
     required: true,
-    enum: EnumPromotionHistoryCopyPromotionMethod,
-  })
-  @IsEnum(EnumPromotionHistoryCopyPromotionMethod)
-  @Field(() => EnumPromotionHistoryCopyPromotionMethod)
-  promotion_method!: "default" | "voting" | "promotion" | "demotion";
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
   round!: number;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumPromotionHistoryCopyPromotionMethod,
+  })
+  @IsEnum(EnumPromotionHistoryCopyPromotionMethod)
+  @Field(() => EnumPromotionHistoryCopyPromotionMethod)
+  promotion_method!: "default" | "voting" | "promotion" | "demotion";
 
   @ApiProperty({
     required: false,

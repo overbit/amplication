@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Payment, Application, PaymentVoucher } from "@prisma/client";
+
+import {
+  Prisma,
+  Payment as PrismaPayment,
+  Application as PrismaApplication,
+  PaymentVoucher as PrismaPaymentVoucher,
+} from "@prisma/client";
 
 export class PaymentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +27,33 @@ export class PaymentServiceBase {
     return this.prisma.payment.count(args);
   }
 
-  async findMany<T extends Prisma.PaymentFindManyArgs>(
+  async payments<T extends Prisma.PaymentFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentFindManyArgs>
-  ): Promise<Payment[]> {
+  ): Promise<PrismaPayment[]> {
     return this.prisma.payment.findMany(args);
   }
-  async findOne<T extends Prisma.PaymentFindUniqueArgs>(
+  async payment<T extends Prisma.PaymentFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentFindUniqueArgs>
-  ): Promise<Payment | null> {
+  ): Promise<PrismaPayment | null> {
     return this.prisma.payment.findUnique(args);
   }
-  async create<T extends Prisma.PaymentCreateArgs>(
+  async createPayment<T extends Prisma.PaymentCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentCreateArgs>
-  ): Promise<Payment> {
+  ): Promise<PrismaPayment> {
     return this.prisma.payment.create<T>(args);
   }
-  async update<T extends Prisma.PaymentUpdateArgs>(
+  async updatePayment<T extends Prisma.PaymentUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentUpdateArgs>
-  ): Promise<Payment> {
+  ): Promise<PrismaPayment> {
     return this.prisma.payment.update<T>(args);
   }
-  async delete<T extends Prisma.PaymentDeleteArgs>(
+  async deletePayment<T extends Prisma.PaymentDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentDeleteArgs>
-  ): Promise<Payment> {
+  ): Promise<PrismaPayment> {
     return this.prisma.payment.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.payment
       .findUnique({
         where: { id: parentId },
@@ -55,7 +61,9 @@ export class PaymentServiceBase {
       .application();
   }
 
-  async getPaymentVoucher(parentId: number): Promise<PaymentVoucher | null> {
+  async getPaymentVoucher(
+    parentId: number
+  ): Promise<PrismaPaymentVoucher | null> {
     return this.prisma.payment
       .findUnique({
         where: { id: parentId },

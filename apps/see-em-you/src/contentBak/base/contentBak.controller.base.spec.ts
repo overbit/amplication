@@ -18,54 +18,54 @@ import { ContentBakService } from "../contentBak.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  name: "exampleName",
   content: "exampleContent",
   contenttypeId: 42,
-  departmentId: 42,
   domainId: 42,
-  id: 42,
-  modifiedby: 42,
   modifieddate: new Date(),
-  name: "exampleName",
+  modifiedby: 42,
+  departmentId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
+  name: "exampleName",
   content: "exampleContent",
   contenttypeId: 42,
-  departmentId: 42,
   domainId: 42,
-  id: 42,
-  modifiedby: 42,
   modifieddate: new Date(),
-  name: "exampleName",
+  modifiedby: 42,
+  departmentId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    name: "exampleName",
     content: "exampleContent",
     contenttypeId: 42,
-    departmentId: 42,
     domainId: 42,
-    id: 42,
-    modifiedby: 42,
     modifieddate: new Date(),
-    name: "exampleName",
+    modifiedby: 42,
+    departmentId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  name: "exampleName",
   content: "exampleContent",
   contenttypeId: 42,
-  departmentId: 42,
   domainId: 42,
-  id: 42,
-  modifiedby: 42,
   modifieddate: new Date(),
-  name: "exampleName",
+  modifiedby: 42,
+  departmentId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createContentBak() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  contentBaks: () => FIND_MANY_RESULT,
+  contentBak: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

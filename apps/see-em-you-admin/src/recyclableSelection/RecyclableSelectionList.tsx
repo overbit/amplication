@@ -14,12 +14,12 @@ export const RecyclableSelectionList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Application Id" source="applicationId" />
-        <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
-        <TextField label="Period Id" source="periodId" />
         <TextField label="Users Id" source="usersId" />
+        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Department Id" source="departmentId" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Application Id" source="applicationId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

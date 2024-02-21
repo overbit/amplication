@@ -1,1 +1,5 @@
-export type AttendanceStatusWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type AttendanceStatusWhereInput = {
+  id?: IntFilter;
+};

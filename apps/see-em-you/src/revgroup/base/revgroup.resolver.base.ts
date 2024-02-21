@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRevgroupArgs } from "./CreateRevgroupArgs";
-import { UpdateRevgroupArgs } from "./UpdateRevgroupArgs";
-import { DeleteRevgroupArgs } from "./DeleteRevgroupArgs";
+import { Revgroup } from "./Revgroup";
 import { RevgroupCountArgs } from "./RevgroupCountArgs";
 import { RevgroupFindManyArgs } from "./RevgroupFindManyArgs";
 import { RevgroupFindUniqueArgs } from "./RevgroupFindUniqueArgs";
-import { Revgroup } from "./Revgroup";
+import { CreateRevgroupArgs } from "./CreateRevgroupArgs";
+import { UpdateRevgroupArgs } from "./UpdateRevgroupArgs";
+import { DeleteRevgroupArgs } from "./DeleteRevgroupArgs";
 import { RevgroupService } from "../revgroup.service";
 @graphql.Resolver(() => Revgroup)
 export class RevgroupResolverBase {
@@ -38,14 +38,14 @@ export class RevgroupResolverBase {
   async revgroups(
     @graphql.Args() args: RevgroupFindManyArgs
   ): Promise<Revgroup[]> {
-    return this.service.findMany(args);
+    return this.service.revgroups(args);
   }
 
   @graphql.Query(() => Revgroup, { nullable: true })
   async revgroup(
     @graphql.Args() args: RevgroupFindUniqueArgs
   ): Promise<Revgroup | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.revgroup(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class RevgroupResolverBase {
   async createRevgroup(
     @graphql.Args() args: CreateRevgroupArgs
   ): Promise<Revgroup> {
-    return await this.service.create({
+    return await this.service.createRevgroup({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class RevgroupResolverBase {
     @graphql.Args() args: UpdateRevgroupArgs
   ): Promise<Revgroup | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRevgroup({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class RevgroupResolverBase {
     @graphql.Args() args: DeleteRevgroupArgs
   ): Promise<Revgroup | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRevgroup(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

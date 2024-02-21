@@ -11,29 +11,20 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationAdminNote } from "../../applicationAdminNote/base/ApplicationAdminNote";
 import {
-  ValidateNested,
-  IsOptional,
   IsString,
-  IsInt,
+  IsOptional,
   IsDate,
   IsBoolean,
+  ValidateNested,
+  IsInt,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { ApplicationAdminNote } from "../../applicationAdminNote/base/ApplicationAdminNote";
 import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 
 @ObjectType()
 class User {
-  @ApiProperty({
-    required: false,
-    type: () => [ApplicationAdminNote],
-  })
-  @ValidateNested()
-  @Type(() => ApplicationAdminNote)
-  @IsOptional()
-  applicationAdminNote?: Array<ApplicationAdminNote>;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -41,6 +32,17 @@ class User {
   @IsString()
   @Field(() => String)
   email!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  title!: string | null;
 
   @ApiProperty({
     required: true,
@@ -59,34 +61,7 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  firstNamePref!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  guid!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  initials!: string | null;
+  middlename!: string | null;
 
   @ApiProperty({
     required: true,
@@ -95,34 +70,6 @@ class User {
   @IsString()
   @Field(() => String)
   lastname!: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => [LuUsersUsertype],
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertype)
-  @IsOptional()
-  luUsersUsertypes?: Array<LuUsersUsertype>;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  middlename!: string | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  signupDate!: Date;
 
   @ApiProperty({
     required: false,
@@ -144,7 +91,15 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  title!: string | null;
+  initials!: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  signupDate!: Date;
 
   @ApiProperty({
     required: true,
@@ -153,6 +108,51 @@ class User {
   @IsBoolean()
   @Field(() => Boolean)
   verified!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  guid!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  firstNamePref!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => [ApplicationAdminNote],
+  })
+  @ValidateNested()
+  @Type(() => ApplicationAdminNote)
+  @IsOptional()
+  applicationAdminNote?: Array<ApplicationAdminNote>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [LuUsersUsertype],
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertype)
+  @IsOptional()
+  luUsersUsertypes?: Array<LuUsersUsertype>;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { User as User };

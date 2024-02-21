@@ -10,10 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  MhciPrereqsDesignPortfolio,
-  LuUsersUsertype,
+  MhciPrereqsDesignPortfolio as PrismaMhciPrereqsDesignPortfolio,
+  LuUsersUsertype as PrismaLuUsersUsertype,
 } from "@prisma/client";
 
 export class MhciPrereqsDesignPortfolioServiceBase {
@@ -25,36 +26,48 @@ export class MhciPrereqsDesignPortfolioServiceBase {
     return this.prisma.mhciPrereqsDesignPortfolio.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsDesignPortfolioFindManyArgs>(
+  async mhciPrereqsDesignPortfolios<
+    T extends Prisma.MhciPrereqsDesignPortfolioFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsDesignPortfolioFindManyArgs>
-  ): Promise<MhciPrereqsDesignPortfolio[]> {
+  ): Promise<PrismaMhciPrereqsDesignPortfolio[]> {
     return this.prisma.mhciPrereqsDesignPortfolio.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsDesignPortfolioFindUniqueArgs>(
+  async mhciPrereqsDesignPortfolio<
+    T extends Prisma.MhciPrereqsDesignPortfolioFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsDesignPortfolioFindUniqueArgs
     >
-  ): Promise<MhciPrereqsDesignPortfolio | null> {
+  ): Promise<PrismaMhciPrereqsDesignPortfolio | null> {
     return this.prisma.mhciPrereqsDesignPortfolio.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsDesignPortfolioCreateArgs>(
+  async createMhciPrereqsDesignPortfolio<
+    T extends Prisma.MhciPrereqsDesignPortfolioCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsDesignPortfolioCreateArgs>
-  ): Promise<MhciPrereqsDesignPortfolio> {
+  ): Promise<PrismaMhciPrereqsDesignPortfolio> {
     return this.prisma.mhciPrereqsDesignPortfolio.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsDesignPortfolioUpdateArgs>(
+  async updateMhciPrereqsDesignPortfolio<
+    T extends Prisma.MhciPrereqsDesignPortfolioUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsDesignPortfolioUpdateArgs>
-  ): Promise<MhciPrereqsDesignPortfolio> {
+  ): Promise<PrismaMhciPrereqsDesignPortfolio> {
     return this.prisma.mhciPrereqsDesignPortfolio.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsDesignPortfolioDeleteArgs>(
+  async deleteMhciPrereqsDesignPortfolio<
+    T extends Prisma.MhciPrereqsDesignPortfolioDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsDesignPortfolioDeleteArgs>
-  ): Promise<MhciPrereqsDesignPortfolio> {
+  ): Promise<PrismaMhciPrereqsDesignPortfolio> {
     return this.prisma.mhciPrereqsDesignPortfolio.delete(args);
   }
 
-  async getLuUsersUsertypes(parentId: number): Promise<LuUsersUsertype | null> {
+  async getLuUsersUsertypes(
+    parentId: number
+  ): Promise<PrismaLuUsersUsertype | null> {
     return this.prisma.mhciPrereqsDesignPortfolio
       .findUnique({
         where: { id: parentId },

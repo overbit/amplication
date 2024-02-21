@@ -1,7 +1,7 @@
-import { DepartmentWhereUniqueInput } from "../department/DepartmentWhereUniqueInput";
 import { PeriodWhereUniqueInput } from "../period/PeriodWhereUniqueInput";
+import { DepartmentWhereUniqueInput } from "../department/DepartmentWhereUniqueInput";
 
 export type AaDepartmentCreateInput = {
-  department: DepartmentWhereUniqueInput;
   period?: PeriodWhereUniqueInput | null;
+  department: DepartmentWhereUniqueInput;
 };

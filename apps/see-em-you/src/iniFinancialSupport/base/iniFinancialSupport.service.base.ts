@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, IniFinancialSupport } from "@prisma/client";
+import {
+  Prisma,
+  IniFinancialSupport as PrismaIniFinancialSupport,
+} from "@prisma/client";
 
 export class IniFinancialSupportServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,35 @@ export class IniFinancialSupportServiceBase {
     return this.prisma.iniFinancialSupport.count(args);
   }
 
-  async findMany<T extends Prisma.IniFinancialSupportFindManyArgs>(
+  async iniFinancialSupports<T extends Prisma.IniFinancialSupportFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniFinancialSupportFindManyArgs>
-  ): Promise<IniFinancialSupport[]> {
+  ): Promise<PrismaIniFinancialSupport[]> {
     return this.prisma.iniFinancialSupport.findMany(args);
   }
-  async findOne<T extends Prisma.IniFinancialSupportFindUniqueArgs>(
+  async iniFinancialSupport<T extends Prisma.IniFinancialSupportFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.IniFinancialSupportFindUniqueArgs>
-  ): Promise<IniFinancialSupport | null> {
+  ): Promise<PrismaIniFinancialSupport | null> {
     return this.prisma.iniFinancialSupport.findUnique(args);
   }
-  async create<T extends Prisma.IniFinancialSupportCreateArgs>(
+  async createIniFinancialSupport<
+    T extends Prisma.IniFinancialSupportCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniFinancialSupportCreateArgs>
-  ): Promise<IniFinancialSupport> {
+  ): Promise<PrismaIniFinancialSupport> {
     return this.prisma.iniFinancialSupport.create<T>(args);
   }
-  async update<T extends Prisma.IniFinancialSupportUpdateArgs>(
+  async updateIniFinancialSupport<
+    T extends Prisma.IniFinancialSupportUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniFinancialSupportUpdateArgs>
-  ): Promise<IniFinancialSupport> {
+  ): Promise<PrismaIniFinancialSupport> {
     return this.prisma.iniFinancialSupport.update<T>(args);
   }
-  async delete<T extends Prisma.IniFinancialSupportDeleteArgs>(
+  async deleteIniFinancialSupport<
+    T extends Prisma.IniFinancialSupportDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniFinancialSupportDeleteArgs>
-  ): Promise<IniFinancialSupport> {
+  ): Promise<PrismaIniFinancialSupport> {
     return this.prisma.iniFinancialSupport.delete(args);
   }
 }

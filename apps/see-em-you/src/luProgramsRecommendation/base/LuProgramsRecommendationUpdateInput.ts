@@ -24,17 +24,6 @@ class LuProgramsRecommendationUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  numrequired?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   programId?: number;
 
   @ApiProperty({
@@ -47,6 +36,17 @@ class LuProgramsRecommendationUpdateInput {
     nullable: true,
   })
   recommendationtypeId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  numrequired?: number;
 }
 
 export { LuProgramsRecommendationUpdateInput as LuProgramsRecommendationUpdateInput };

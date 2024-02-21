@@ -1,8 +1,8 @@
 export type Merge = {
-  applicationId: number;
-  errorField: number;
-  id: number;
-  merged: boolean;
   mergeDate: Date;
+  applicationId: number;
+  merged: boolean;
+  errorField: number;
   message: string | null;
+  id: number;
 };

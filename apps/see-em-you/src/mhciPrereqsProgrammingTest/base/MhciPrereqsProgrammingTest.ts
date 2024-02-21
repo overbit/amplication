@@ -11,20 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsDate, IsOptional, ValidateNested } from "class-validator";
+import { IsDate, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 
 @ObjectType()
 class MhciPrereqsProgrammingTest {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  applicationId!: number;
-
   @ApiProperty({
     required: false,
   })
@@ -37,12 +29,31 @@ class MhciPrereqsProgrammingTest {
   downloadTimestamp!: Date | null;
 
   @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  uploadDatafileinfoId!: number | null;
+
+  @ApiProperty({
     required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
 
   @ApiProperty({
     required: true,
@@ -58,18 +69,7 @@ class MhciPrereqsProgrammingTest {
   })
   @IsInt()
   @Field(() => Number)
-  periodId!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  uploadDatafileinfoId!: number | null;
+  id!: number;
 }
 
 export { MhciPrereqsProgrammingTest as MhciPrereqsProgrammingTest };

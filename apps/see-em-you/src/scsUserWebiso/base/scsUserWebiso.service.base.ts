@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ScsUserWebiso } from "@prisma/client";
+import { Prisma, ScsUserWebiso as PrismaScsUserWebiso } from "@prisma/client";
 
 export class ScsUserWebisoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ScsUserWebisoServiceBase {
     return this.prisma.scsUserWebiso.count(args);
   }
 
-  async findMany<T extends Prisma.ScsUserWebisoFindManyArgs>(
+  async scsUserWebisos<T extends Prisma.ScsUserWebisoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserWebisoFindManyArgs>
-  ): Promise<ScsUserWebiso[]> {
+  ): Promise<PrismaScsUserWebiso[]> {
     return this.prisma.scsUserWebiso.findMany(args);
   }
-  async findOne<T extends Prisma.ScsUserWebisoFindUniqueArgs>(
+  async scsUserWebiso<T extends Prisma.ScsUserWebisoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserWebisoFindUniqueArgs>
-  ): Promise<ScsUserWebiso | null> {
+  ): Promise<PrismaScsUserWebiso | null> {
     return this.prisma.scsUserWebiso.findUnique(args);
   }
-  async create<T extends Prisma.ScsUserWebisoCreateArgs>(
+  async createScsUserWebiso<T extends Prisma.ScsUserWebisoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserWebisoCreateArgs>
-  ): Promise<ScsUserWebiso> {
+  ): Promise<PrismaScsUserWebiso> {
     return this.prisma.scsUserWebiso.create<T>(args);
   }
-  async update<T extends Prisma.ScsUserWebisoUpdateArgs>(
+  async updateScsUserWebiso<T extends Prisma.ScsUserWebisoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserWebisoUpdateArgs>
-  ): Promise<ScsUserWebiso> {
+  ): Promise<PrismaScsUserWebiso> {
     return this.prisma.scsUserWebiso.update<T>(args);
   }
-  async delete<T extends Prisma.ScsUserWebisoDeleteArgs>(
+  async deleteScsUserWebiso<T extends Prisma.ScsUserWebisoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ScsUserWebisoDeleteArgs>
-  ): Promise<ScsUserWebiso> {
+  ): Promise<PrismaScsUserWebiso> {
     return this.prisma.scsUserWebiso.delete(args);
   }
 }

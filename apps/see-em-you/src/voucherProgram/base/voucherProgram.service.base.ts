@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, VoucherProgram } from "@prisma/client";
+import { Prisma, VoucherProgram as PrismaVoucherProgram } from "@prisma/client";
 
 export class VoucherProgramServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class VoucherProgramServiceBase {
     return this.prisma.voucherProgram.count(args);
   }
 
-  async findMany<T extends Prisma.VoucherProgramFindManyArgs>(
+  async voucherPrograms<T extends Prisma.VoucherProgramFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherProgramFindManyArgs>
-  ): Promise<VoucherProgram[]> {
+  ): Promise<PrismaVoucherProgram[]> {
     return this.prisma.voucherProgram.findMany(args);
   }
-  async findOne<T extends Prisma.VoucherProgramFindUniqueArgs>(
+  async voucherProgram<T extends Prisma.VoucherProgramFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherProgramFindUniqueArgs>
-  ): Promise<VoucherProgram | null> {
+  ): Promise<PrismaVoucherProgram | null> {
     return this.prisma.voucherProgram.findUnique(args);
   }
-  async create<T extends Prisma.VoucherProgramCreateArgs>(
+  async createVoucherProgram<T extends Prisma.VoucherProgramCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherProgramCreateArgs>
-  ): Promise<VoucherProgram> {
+  ): Promise<PrismaVoucherProgram> {
     return this.prisma.voucherProgram.create<T>(args);
   }
-  async update<T extends Prisma.VoucherProgramUpdateArgs>(
+  async updateVoucherProgram<T extends Prisma.VoucherProgramUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherProgramUpdateArgs>
-  ): Promise<VoucherProgram> {
+  ): Promise<PrismaVoucherProgram> {
     return this.prisma.voucherProgram.update<T>(args);
   }
-  async delete<T extends Prisma.VoucherProgramDeleteArgs>(
+  async deleteVoucherProgram<T extends Prisma.VoucherProgramDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherProgramDeleteArgs>
-  ): Promise<VoucherProgram> {
+  ): Promise<PrismaVoucherProgram> {
     return this.prisma.voucherProgram.delete(args);
   }
 }

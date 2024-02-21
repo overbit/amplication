@@ -36,7 +36,7 @@ class ApplicationPeriodUpdateInput {
   @Field(() => Date, {
     nullable: true,
   })
-  endDate?: Date;
+  startDate?: Date;
 
   @ApiProperty({
     required: false,
@@ -47,7 +47,7 @@ class ApplicationPeriodUpdateInput {
   @Field(() => Date, {
     nullable: true,
   })
-  startDate?: Date;
+  endDate?: Date;
 }
 
 export { ApplicationPeriodUpdateInput as ApplicationPeriodUpdateInput };

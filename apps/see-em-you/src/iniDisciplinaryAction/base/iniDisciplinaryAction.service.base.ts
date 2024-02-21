@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, IniDisciplinaryAction } from "@prisma/client";
+import {
+  Prisma,
+  IniDisciplinaryAction as PrismaIniDisciplinaryAction,
+} from "@prisma/client";
 
 export class IniDisciplinaryActionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class IniDisciplinaryActionServiceBase {
     return this.prisma.iniDisciplinaryAction.count(args);
   }
 
-  async findMany<T extends Prisma.IniDisciplinaryActionFindManyArgs>(
+  async iniDisciplinaryActions<
+    T extends Prisma.IniDisciplinaryActionFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniDisciplinaryActionFindManyArgs>
-  ): Promise<IniDisciplinaryAction[]> {
+  ): Promise<PrismaIniDisciplinaryAction[]> {
     return this.prisma.iniDisciplinaryAction.findMany(args);
   }
-  async findOne<T extends Prisma.IniDisciplinaryActionFindUniqueArgs>(
+  async iniDisciplinaryAction<
+    T extends Prisma.IniDisciplinaryActionFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniDisciplinaryActionFindUniqueArgs>
-  ): Promise<IniDisciplinaryAction | null> {
+  ): Promise<PrismaIniDisciplinaryAction | null> {
     return this.prisma.iniDisciplinaryAction.findUnique(args);
   }
-  async create<T extends Prisma.IniDisciplinaryActionCreateArgs>(
+  async createIniDisciplinaryAction<
+    T extends Prisma.IniDisciplinaryActionCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniDisciplinaryActionCreateArgs>
-  ): Promise<IniDisciplinaryAction> {
+  ): Promise<PrismaIniDisciplinaryAction> {
     return this.prisma.iniDisciplinaryAction.create<T>(args);
   }
-  async update<T extends Prisma.IniDisciplinaryActionUpdateArgs>(
+  async updateIniDisciplinaryAction<
+    T extends Prisma.IniDisciplinaryActionUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniDisciplinaryActionUpdateArgs>
-  ): Promise<IniDisciplinaryAction> {
+  ): Promise<PrismaIniDisciplinaryAction> {
     return this.prisma.iniDisciplinaryAction.update<T>(args);
   }
-  async delete<T extends Prisma.IniDisciplinaryActionDeleteArgs>(
+  async deleteIniDisciplinaryAction<
+    T extends Prisma.IniDisciplinaryActionDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniDisciplinaryActionDeleteArgs>
-  ): Promise<IniDisciplinaryAction> {
+  ): Promise<PrismaIniDisciplinaryAction> {
     return this.prisma.iniDisciplinaryAction.delete(args);
   }
 }

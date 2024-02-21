@@ -12,11 +12,11 @@ export const SystemenvCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput label="Appbaseprice" source="appbaseprice" />
-        <NumberInput step={1} label="Coorduser Id" source="coorduserId" />
         <NumberInput step={1} label="Domain Id" source="domainId" />
+        <NumberInput step={1} label="Coorduser Id" source="coorduserId" />
         <DateTimeInput label="Expdate" source="expdate" />
         <DateTimeInput label="Expdate2" source="expdate2" />
+        <NumberInput label="Appbaseprice" source="appbaseprice" />
         <TextInput label="Sysemail" source="sysemail" />
       </SimpleForm>
     </Create>

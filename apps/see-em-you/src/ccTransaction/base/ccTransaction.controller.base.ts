@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CcTransactionService } from "../ccTransaction.service";
 import { CcTransactionCreateInput } from "./CcTransactionCreateInput";
-import { CcTransactionWhereInput } from "./CcTransactionWhereInput";
-import { CcTransactionWhereUniqueInput } from "./CcTransactionWhereUniqueInput";
-import { CcTransactionFindManyArgs } from "./CcTransactionFindManyArgs";
-import { CcTransactionUpdateInput } from "./CcTransactionUpdateInput";
 import { CcTransaction } from "./CcTransaction";
+import { CcTransactionFindManyArgs } from "./CcTransactionFindManyArgs";
+import { CcTransactionWhereUniqueInput } from "./CcTransactionWhereUniqueInput";
+import { CcTransactionUpdateInput } from "./CcTransactionUpdateInput";
 
 export class CcTransactionControllerBase {
   constructor(protected readonly service: CcTransactionService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CcTransaction })
-  async create(
+  async createCcTransaction(
     @common.Body() data: CcTransactionCreateInput
   ): Promise<CcTransaction> {
-    return await this.service.create({
+    return await this.service.createCcTransaction({
       data: data,
       select: {
         applicationId: true,
-        cardholderNameFirst: true,
-        cardholderNameLast: true,
-        id: true,
         paymentId: true,
         storeNumber: true,
+        cardholderNameLast: true,
+        cardholderNameFirst: true,
+        id: true,
       },
     });
   }
@@ -47,17 +46,19 @@ export class CcTransactionControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CcTransaction] })
   @ApiNestedQuery(CcTransactionFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<CcTransaction[]> {
+  async ccTransactions(
+    @common.Req() request: Request
+  ): Promise<CcTransaction[]> {
     const args = plainToClass(CcTransactionFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ccTransactions({
       ...args,
       select: {
         applicationId: true,
-        cardholderNameFirst: true,
-        cardholderNameLast: true,
-        id: true,
         paymentId: true,
         storeNumber: true,
+        cardholderNameLast: true,
+        cardholderNameFirst: true,
+        id: true,
       },
     });
   }
@@ -65,18 +66,18 @@ export class CcTransactionControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CcTransaction })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ccTransaction(
     @common.Param() params: CcTransactionWhereUniqueInput
   ): Promise<CcTransaction | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ccTransaction({
       where: params,
       select: {
         applicationId: true,
-        cardholderNameFirst: true,
-        cardholderNameLast: true,
-        id: true,
         paymentId: true,
         storeNumber: true,
+        cardholderNameLast: true,
+        cardholderNameFirst: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -90,21 +91,21 @@ export class CcTransactionControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CcTransaction })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCcTransaction(
     @common.Param() params: CcTransactionWhereUniqueInput,
     @common.Body() data: CcTransactionUpdateInput
   ): Promise<CcTransaction | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcTransaction({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          cardholderNameFirst: true,
-          cardholderNameLast: true,
-          id: true,
           paymentId: true,
           storeNumber: true,
+          cardholderNameLast: true,
+          cardholderNameFirst: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -120,19 +121,19 @@ export class CcTransactionControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CcTransaction })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCcTransaction(
     @common.Param() params: CcTransactionWhereUniqueInput
   ): Promise<CcTransaction | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCcTransaction({
         where: params,
         select: {
           applicationId: true,
-          cardholderNameFirst: true,
-          cardholderNameLast: true,
-          id: true,
           paymentId: true,
           storeNumber: true,
+          cardholderNameLast: true,
+          cardholderNameFirst: true,
+          id: true,
         },
       });
     } catch (error) {

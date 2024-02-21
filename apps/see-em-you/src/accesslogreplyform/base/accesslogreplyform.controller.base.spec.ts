@@ -18,54 +18,54 @@ import { AccesslogreplyformService } from "../accesslogreplyform.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  activity: "exampleActivity",
+  usersId: 42,
+  luUsersUsertypesId: 42,
+  usertypeId: 42,
   applicationId: 42,
   client: "exampleClient",
-  id: 42,
-  luUsersUsertypesId: 42,
   timestamp: new Date(),
-  usersId: 42,
-  usertypeId: 42,
+  activity: "exampleActivity",
+  id: 42,
 };
 const CREATE_RESULT = {
-  activity: "exampleActivity",
+  usersId: 42,
+  luUsersUsertypesId: 42,
+  usertypeId: 42,
   applicationId: 42,
   client: "exampleClient",
-  id: 42,
-  luUsersUsertypesId: 42,
   timestamp: new Date(),
-  usersId: 42,
-  usertypeId: 42,
+  activity: "exampleActivity",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    activity: "exampleActivity",
+    usersId: 42,
+    luUsersUsertypesId: 42,
+    usertypeId: 42,
     applicationId: 42,
     client: "exampleClient",
-    id: 42,
-    luUsersUsertypesId: 42,
     timestamp: new Date(),
-    usersId: 42,
-    usertypeId: 42,
+    activity: "exampleActivity",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  activity: "exampleActivity",
+  usersId: 42,
+  luUsersUsertypesId: 42,
+  usertypeId: 42,
   applicationId: 42,
   client: "exampleClient",
-  id: 42,
-  luUsersUsertypesId: 42,
   timestamp: new Date(),
-  usersId: 42,
-  usertypeId: 42,
+  activity: "exampleActivity",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createAccesslogreplyform() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  accesslogreplyforms: () => FIND_MANY_RESULT,
+  accesslogreplyform: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

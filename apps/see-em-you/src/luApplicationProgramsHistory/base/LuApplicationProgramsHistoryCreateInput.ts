@@ -21,7 +21,23 @@ class LuApplicationProgramsHistoryCreateInput {
   })
   @IsInt()
   @Field(() => Number)
+  lapId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  programId!: number;
 
   @ApiProperty({
     required: true,
@@ -38,22 +54,6 @@ class LuApplicationProgramsHistoryCreateInput {
   @IsInt()
   @Field(() => Number)
   deletedBy!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  lapId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
 }
 
 export { LuApplicationProgramsHistoryCreateInput as LuApplicationProgramsHistoryCreateInput };

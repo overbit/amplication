@@ -2,18 +2,18 @@ import { ApplicationAdminNote } from "../applicationAdminNote/ApplicationAdminNo
 import { LuUsersUsertype } from "../luUsersUsertype/LuUsersUsertype";
 
 export type User = {
-  applicationAdminNote?: Array<ApplicationAdminNote>;
   email: string;
-  firstname: string;
-  firstNamePref: string | null;
-  guid: string;
-  id: number;
-  initials: string | null;
-  lastname: string;
-  luUsersUsertypes?: Array<LuUsersUsertype>;
-  middlename: string | null;
-  signupDate: Date;
-  suffix: string | null;
   title: string | null;
+  firstname: string;
+  middlename: string | null;
+  lastname: string;
+  suffix: string | null;
+  initials: string | null;
+  signupDate: Date;
   verified: boolean;
+  guid: string;
+  firstNamePref: string | null;
+  applicationAdminNote?: Array<ApplicationAdminNote>;
+  luUsersUsertypes?: Array<LuUsersUsertype>;
+  id: number;
 };

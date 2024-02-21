@@ -11,12 +11,23 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsOptional, ValidateNested } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsOptional, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class TagMember {
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  tagInstanceId!: number | null;
+
   @ApiProperty({
     required: false,
     type: () => Application,
@@ -33,17 +44,6 @@ class TagMember {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  tagInstanceId!: number | null;
 }
 
 export { TagMember as TagMember };

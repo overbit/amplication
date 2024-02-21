@@ -21,7 +21,15 @@ class LuProgramsRecommendation {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  recommendationtypeId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,15 +45,7 @@ class LuProgramsRecommendation {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  recommendationtypeId!: number;
+  id!: number;
 }
 
 export { LuProgramsRecommendation as LuProgramsRecommendation };

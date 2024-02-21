@@ -7,8 +7,8 @@ export const LuProgramsInterestCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Interest Id" source="interestId" />
         <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Interest Id" source="interestId" />
       </SimpleForm>
     </Create>
   );

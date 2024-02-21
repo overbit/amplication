@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, VoucherApplicationError } from "@prisma/client";
+import {
+  Prisma,
+  VoucherApplicationError as PrismaVoucherApplicationError,
+} from "@prisma/client";
 
 export class VoucherApplicationErrorServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class VoucherApplicationErrorServiceBase {
     return this.prisma.voucherApplicationError.count(args);
   }
 
-  async findMany<T extends Prisma.VoucherApplicationErrorFindManyArgs>(
+  async voucherApplicationErrors<
+    T extends Prisma.VoucherApplicationErrorFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationErrorFindManyArgs>
-  ): Promise<VoucherApplicationError[]> {
+  ): Promise<PrismaVoucherApplicationError[]> {
     return this.prisma.voucherApplicationError.findMany(args);
   }
-  async findOne<T extends Prisma.VoucherApplicationErrorFindUniqueArgs>(
+  async voucherApplicationError<
+    T extends Prisma.VoucherApplicationErrorFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationErrorFindUniqueArgs>
-  ): Promise<VoucherApplicationError | null> {
+  ): Promise<PrismaVoucherApplicationError | null> {
     return this.prisma.voucherApplicationError.findUnique(args);
   }
-  async create<T extends Prisma.VoucherApplicationErrorCreateArgs>(
+  async createVoucherApplicationError<
+    T extends Prisma.VoucherApplicationErrorCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationErrorCreateArgs>
-  ): Promise<VoucherApplicationError> {
+  ): Promise<PrismaVoucherApplicationError> {
     return this.prisma.voucherApplicationError.create<T>(args);
   }
-  async update<T extends Prisma.VoucherApplicationErrorUpdateArgs>(
+  async updateVoucherApplicationError<
+    T extends Prisma.VoucherApplicationErrorUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationErrorUpdateArgs>
-  ): Promise<VoucherApplicationError> {
+  ): Promise<PrismaVoucherApplicationError> {
     return this.prisma.voucherApplicationError.update<T>(args);
   }
-  async delete<T extends Prisma.VoucherApplicationErrorDeleteArgs>(
+  async deleteVoucherApplicationError<
+    T extends Prisma.VoucherApplicationErrorDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationErrorDeleteArgs>
-  ): Promise<VoucherApplicationError> {
+  ): Promise<PrismaVoucherApplicationError> {
     return this.prisma.voucherApplicationError.delete(args);
   }
 }

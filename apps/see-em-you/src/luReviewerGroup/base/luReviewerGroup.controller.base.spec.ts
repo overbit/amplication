@@ -18,42 +18,42 @@ import { LuReviewerGroupService } from "../luReviewerGroup.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  reviewerId: 42,
   departmentId: 42,
   groupId: 42,
-  id: 42,
-  reviewerId: 42,
   round: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
+  reviewerId: 42,
   departmentId: 42,
   groupId: 42,
-  id: 42,
-  reviewerId: 42,
   round: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    reviewerId: 42,
     departmentId: 42,
     groupId: 42,
-    id: 42,
-    reviewerId: 42,
     round: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  reviewerId: 42,
   departmentId: 42,
   groupId: 42,
-  id: 42,
-  reviewerId: 42,
   round: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLuReviewerGroup() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luReviewerGroups: () => FIND_MANY_RESULT,
+  luReviewerGroup: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

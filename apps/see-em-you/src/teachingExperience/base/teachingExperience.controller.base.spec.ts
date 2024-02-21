@@ -18,54 +18,54 @@ import { TeachingExperienceService } from "../teachingExperience.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  address: "exampleAddress",
   applicationId: 42,
+  orderEntered: 42,
+  institution: "exampleInstitution",
+  address: "exampleAddress",
   coursesTaught: "exampleCoursesTaught",
+  startDate: new Date(),
   endDate: "exampleEndDate",
   id: 42,
-  institution: "exampleInstitution",
-  orderEntered: 42,
-  startDate: new Date(),
 };
 const CREATE_RESULT = {
-  address: "exampleAddress",
   applicationId: 42,
+  orderEntered: 42,
+  institution: "exampleInstitution",
+  address: "exampleAddress",
   coursesTaught: "exampleCoursesTaught",
+  startDate: new Date(),
   endDate: "exampleEndDate",
   id: 42,
-  institution: "exampleInstitution",
-  orderEntered: 42,
-  startDate: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
-    address: "exampleAddress",
     applicationId: 42,
+    orderEntered: 42,
+    institution: "exampleInstitution",
+    address: "exampleAddress",
     coursesTaught: "exampleCoursesTaught",
+    startDate: new Date(),
     endDate: "exampleEndDate",
     id: 42,
-    institution: "exampleInstitution",
-    orderEntered: 42,
-    startDate: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
-  address: "exampleAddress",
   applicationId: 42,
+  orderEntered: 42,
+  institution: "exampleInstitution",
+  address: "exampleAddress",
   coursesTaught: "exampleCoursesTaught",
+  startDate: new Date(),
   endDate: "exampleEndDate",
   id: 42,
-  institution: "exampleInstitution",
-  orderEntered: 42,
-  startDate: new Date(),
 };
 
 const service = {
-  create() {
+  createTeachingExperience() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  teachingExperiences: () => FIND_MANY_RESULT,
+  teachingExperience: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Domain, DomainUnit } from "@prisma/client";
+import {
+  Prisma,
+  Domain as PrismaDomain,
+  DomainUnit as PrismaDomainUnit,
+} from "@prisma/client";
 
 export class DomainServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,36 +25,36 @@ export class DomainServiceBase {
     return this.prisma.domain.count(args);
   }
 
-  async findMany<T extends Prisma.DomainFindManyArgs>(
+  async domains<T extends Prisma.DomainFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainFindManyArgs>
-  ): Promise<Domain[]> {
+  ): Promise<PrismaDomain[]> {
     return this.prisma.domain.findMany(args);
   }
-  async findOne<T extends Prisma.DomainFindUniqueArgs>(
+  async domain<T extends Prisma.DomainFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainFindUniqueArgs>
-  ): Promise<Domain | null> {
+  ): Promise<PrismaDomain | null> {
     return this.prisma.domain.findUnique(args);
   }
-  async create<T extends Prisma.DomainCreateArgs>(
+  async createDomain<T extends Prisma.DomainCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainCreateArgs>
-  ): Promise<Domain> {
+  ): Promise<PrismaDomain> {
     return this.prisma.domain.create<T>(args);
   }
-  async update<T extends Prisma.DomainUpdateArgs>(
+  async updateDomain<T extends Prisma.DomainUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainUpdateArgs>
-  ): Promise<Domain> {
+  ): Promise<PrismaDomain> {
     return this.prisma.domain.update<T>(args);
   }
-  async delete<T extends Prisma.DomainDeleteArgs>(
+  async deleteDomain<T extends Prisma.DomainDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DomainDeleteArgs>
-  ): Promise<Domain> {
+  ): Promise<PrismaDomain> {
     return this.prisma.domain.delete(args);
   }
 
   async findDomainUnit(
     parentId: number,
     args: Prisma.DomainUnitFindManyArgs
-  ): Promise<DomainUnit[]> {
+  ): Promise<PrismaDomainUnit[]> {
     return this.prisma.domain
       .findUniqueOrThrow({
         where: { id: parentId },

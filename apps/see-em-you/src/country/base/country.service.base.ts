@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Country } from "@prisma/client";
+import { Prisma, Country as PrismaCountry } from "@prisma/client";
 
 export class CountryServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class CountryServiceBase {
     return this.prisma.country.count(args);
   }
 
-  async findMany<T extends Prisma.CountryFindManyArgs>(
+  async countries<T extends Prisma.CountryFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CountryFindManyArgs>
-  ): Promise<Country[]> {
+  ): Promise<PrismaCountry[]> {
     return this.prisma.country.findMany(args);
   }
-  async findOne<T extends Prisma.CountryFindUniqueArgs>(
+  async country<T extends Prisma.CountryFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CountryFindUniqueArgs>
-  ): Promise<Country | null> {
+  ): Promise<PrismaCountry | null> {
     return this.prisma.country.findUnique(args);
   }
-  async create<T extends Prisma.CountryCreateArgs>(
+  async createCountry<T extends Prisma.CountryCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CountryCreateArgs>
-  ): Promise<Country> {
+  ): Promise<PrismaCountry> {
     return this.prisma.country.create<T>(args);
   }
-  async update<T extends Prisma.CountryUpdateArgs>(
+  async updateCountry<T extends Prisma.CountryUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CountryUpdateArgs>
-  ): Promise<Country> {
+  ): Promise<PrismaCountry> {
     return this.prisma.country.update<T>(args);
   }
-  async delete<T extends Prisma.CountryDeleteArgs>(
+  async deleteCountry<T extends Prisma.CountryDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CountryDeleteArgs>
-  ): Promise<Country> {
+  ): Promise<PrismaCountry> {
     return this.prisma.country.delete(args);
   }
 }

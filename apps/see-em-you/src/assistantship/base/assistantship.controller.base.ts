@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { AssistantshipService } from "../assistantship.service";
 import { AssistantshipCreateInput } from "./AssistantshipCreateInput";
-import { AssistantshipWhereInput } from "./AssistantshipWhereInput";
-import { AssistantshipWhereUniqueInput } from "./AssistantshipWhereUniqueInput";
-import { AssistantshipFindManyArgs } from "./AssistantshipFindManyArgs";
-import { AssistantshipUpdateInput } from "./AssistantshipUpdateInput";
 import { Assistantship } from "./Assistantship";
+import { AssistantshipFindManyArgs } from "./AssistantshipFindManyArgs";
+import { AssistantshipWhereUniqueInput } from "./AssistantshipWhereUniqueInput";
+import { AssistantshipUpdateInput } from "./AssistantshipUpdateInput";
 
 export class AssistantshipControllerBase {
   constructor(protected readonly service: AssistantshipService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Assistantship })
-  async create(
+  async createAssistantship(
     @common.Body() data: AssistantshipCreateInput
   ): Promise<Assistantship> {
-    return await this.service.create({
+    return await this.service.createAssistantship({
       data: data,
       select: {
-        applicationId: true,
-        granted: true,
         id: true,
+        applicationId: true,
         requested: true,
+        granted: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class AssistantshipControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Assistantship] })
   @ApiNestedQuery(AssistantshipFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Assistantship[]> {
+  async assistantships(
+    @common.Req() request: Request
+  ): Promise<Assistantship[]> {
     const args = plainToClass(AssistantshipFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.assistantships({
       ...args,
       select: {
-        applicationId: true,
-        granted: true,
         id: true,
+        applicationId: true,
         requested: true,
+        granted: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class AssistantshipControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Assistantship })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async assistantship(
     @common.Param() params: AssistantshipWhereUniqueInput
   ): Promise<Assistantship | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.assistantship({
       where: params,
       select: {
-        applicationId: true,
-        granted: true,
         id: true,
+        applicationId: true,
         requested: true,
+        granted: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class AssistantshipControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Assistantship })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateAssistantship(
     @common.Param() params: AssistantshipWhereUniqueInput,
     @common.Body() data: AssistantshipUpdateInput
   ): Promise<Assistantship | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAssistantship({
         where: params,
         data: data,
         select: {
-          applicationId: true,
-          granted: true,
           id: true,
+          applicationId: true,
           requested: true,
+          granted: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class AssistantshipControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Assistantship })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteAssistantship(
     @common.Param() params: AssistantshipWhereUniqueInput
   ): Promise<Assistantship | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteAssistantship({
         where: params,
         select: {
-          applicationId: true,
-          granted: true,
           id: true,
+          applicationId: true,
           requested: true,
+          granted: true,
         },
       });
     } catch (error) {

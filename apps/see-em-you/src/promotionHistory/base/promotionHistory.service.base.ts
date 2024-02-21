@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PromotionHistory, Application } from "@prisma/client";
+
+import {
+  Prisma,
+  PromotionHistory as PrismaPromotionHistory,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class PromotionHistoryServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,33 @@ export class PromotionHistoryServiceBase {
     return this.prisma.promotionHistory.count(args);
   }
 
-  async findMany<T extends Prisma.PromotionHistoryFindManyArgs>(
+  async promotionHistories<T extends Prisma.PromotionHistoryFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryFindManyArgs>
-  ): Promise<PromotionHistory[]> {
+  ): Promise<PrismaPromotionHistory[]> {
     return this.prisma.promotionHistory.findMany(args);
   }
-  async findOne<T extends Prisma.PromotionHistoryFindUniqueArgs>(
+  async promotionHistory<T extends Prisma.PromotionHistoryFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryFindUniqueArgs>
-  ): Promise<PromotionHistory | null> {
+  ): Promise<PrismaPromotionHistory | null> {
     return this.prisma.promotionHistory.findUnique(args);
   }
-  async create<T extends Prisma.PromotionHistoryCreateArgs>(
+  async createPromotionHistory<T extends Prisma.PromotionHistoryCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryCreateArgs>
-  ): Promise<PromotionHistory> {
+  ): Promise<PrismaPromotionHistory> {
     return this.prisma.promotionHistory.create<T>(args);
   }
-  async update<T extends Prisma.PromotionHistoryUpdateArgs>(
+  async updatePromotionHistory<T extends Prisma.PromotionHistoryUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryUpdateArgs>
-  ): Promise<PromotionHistory> {
+  ): Promise<PrismaPromotionHistory> {
     return this.prisma.promotionHistory.update<T>(args);
   }
-  async delete<T extends Prisma.PromotionHistoryDeleteArgs>(
+  async deletePromotionHistory<T extends Prisma.PromotionHistoryDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PromotionHistoryDeleteArgs>
-  ): Promise<PromotionHistory> {
+  ): Promise<PrismaPromotionHistory> {
     return this.prisma.promotionHistory.delete(args);
   }
 
-  async getApplication(parentId: string): Promise<Application | null> {
+  async getApplication(parentId: string): Promise<PrismaApplication | null> {
     return this.prisma.promotionHistory
       .findUnique({
         where: { id: parentId },

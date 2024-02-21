@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateApplicationDecisionArgs } from "./CreateApplicationDecisionArgs";
-import { UpdateApplicationDecisionArgs } from "./UpdateApplicationDecisionArgs";
-import { DeleteApplicationDecisionArgs } from "./DeleteApplicationDecisionArgs";
+import { ApplicationDecision } from "./ApplicationDecision";
 import { ApplicationDecisionCountArgs } from "./ApplicationDecisionCountArgs";
 import { ApplicationDecisionFindManyArgs } from "./ApplicationDecisionFindManyArgs";
 import { ApplicationDecisionFindUniqueArgs } from "./ApplicationDecisionFindUniqueArgs";
-import { ApplicationDecision } from "./ApplicationDecision";
+import { CreateApplicationDecisionArgs } from "./CreateApplicationDecisionArgs";
+import { UpdateApplicationDecisionArgs } from "./UpdateApplicationDecisionArgs";
+import { DeleteApplicationDecisionArgs } from "./DeleteApplicationDecisionArgs";
 import { ApplicationDecisionService } from "../applicationDecision.service";
 @graphql.Resolver(() => ApplicationDecision)
 export class ApplicationDecisionResolverBase {
@@ -38,14 +38,14 @@ export class ApplicationDecisionResolverBase {
   async applicationDecisions(
     @graphql.Args() args: ApplicationDecisionFindManyArgs
   ): Promise<ApplicationDecision[]> {
-    return this.service.findMany(args);
+    return this.service.applicationDecisions(args);
   }
 
   @graphql.Query(() => ApplicationDecision, { nullable: true })
   async applicationDecision(
     @graphql.Args() args: ApplicationDecisionFindUniqueArgs
   ): Promise<ApplicationDecision | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.applicationDecision(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ApplicationDecisionResolverBase {
   async createApplicationDecision(
     @graphql.Args() args: CreateApplicationDecisionArgs
   ): Promise<ApplicationDecision> {
-    return await this.service.create({
+    return await this.service.createApplicationDecision({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ApplicationDecisionResolverBase {
     @graphql.Args() args: UpdateApplicationDecisionArgs
   ): Promise<ApplicationDecision | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationDecision({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ApplicationDecisionResolverBase {
     @graphql.Args() args: DeleteApplicationDecisionArgs
   ): Promise<ApplicationDecision | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteApplicationDecision(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

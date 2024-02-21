@@ -11,23 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { AaDepartmentUpdateManyWithoutDepartmentsInput } from "./AaDepartmentUpdateManyWithoutDepartmentsInput";
-import { ValidateNested, IsOptional, IsInt, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class DepartmentUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => AaDepartmentUpdateManyWithoutDepartmentsInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => AaDepartmentUpdateManyWithoutDepartmentsInput)
+  @IsString()
   @IsOptional()
-  @Field(() => AaDepartmentUpdateManyWithoutDepartmentsInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  aaDepartment?: AaDepartmentUpdateManyWithoutDepartmentsInput;
+  name?: string;
 
   @ApiProperty({
     required: false,
@@ -38,7 +37,7 @@ class DepartmentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  allowRequestAdvisors?: number | null;
+  parentSchoolId?: number;
 
   @ApiProperty({
     required: false,
@@ -49,7 +48,18 @@ class DepartmentUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  ccEmail?: string | null;
+  oraclestring?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  registrationoraclestring?: string | null;
 
   @ApiProperty({
     required: false,
@@ -71,7 +81,7 @@ class DepartmentUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  enableFinal?: string | null;
+  ccEmail?: string | null;
 
   @ApiProperty({
     required: false,
@@ -126,40 +136,7 @@ class DepartmentUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  name?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  oraclestring?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  parentSchoolId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  registrationoraclestring?: string | null;
+  enableFinal?: string | null;
 
   @ApiProperty({
     required: false,
@@ -171,6 +148,29 @@ class DepartmentUpdateInput {
     nullable: true,
   })
   semiblindReview?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  allowRequestAdvisors?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => AaDepartmentUpdateManyWithoutDepartmentsInput,
+  })
+  @ValidateNested()
+  @Type(() => AaDepartmentUpdateManyWithoutDepartmentsInput)
+  @IsOptional()
+  @Field(() => AaDepartmentUpdateManyWithoutDepartmentsInput, {
+    nullable: true,
+  })
+  aaDepartment?: AaDepartmentUpdateManyWithoutDepartmentsInput;
 }
 
 export { DepartmentUpdateInput as DepartmentUpdateInput };

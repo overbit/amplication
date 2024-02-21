@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateEmploy } from "@prisma/client";
+import {
+  Prisma,
+  MitsSlateEmploy as PrismaMitsSlateEmploy,
+} from "@prisma/client";
 
 export class MitsSlateEmployServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class MitsSlateEmployServiceBase {
     return this.prisma.mitsSlateEmploy.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateEmployFindManyArgs>(
+  async mitsSlateEmploys<T extends Prisma.MitsSlateEmployFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateEmployFindManyArgs>
-  ): Promise<MitsSlateEmploy[]> {
+  ): Promise<PrismaMitsSlateEmploy[]> {
     return this.prisma.mitsSlateEmploy.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateEmployFindUniqueArgs>(
+  async mitsSlateEmploy<T extends Prisma.MitsSlateEmployFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateEmployFindUniqueArgs>
-  ): Promise<MitsSlateEmploy | null> {
+  ): Promise<PrismaMitsSlateEmploy | null> {
     return this.prisma.mitsSlateEmploy.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateEmployCreateArgs>(
+  async createMitsSlateEmploy<T extends Prisma.MitsSlateEmployCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateEmployCreateArgs>
-  ): Promise<MitsSlateEmploy> {
+  ): Promise<PrismaMitsSlateEmploy> {
     return this.prisma.mitsSlateEmploy.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateEmployUpdateArgs>(
+  async updateMitsSlateEmploy<T extends Prisma.MitsSlateEmployUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateEmployUpdateArgs>
-  ): Promise<MitsSlateEmploy> {
+  ): Promise<PrismaMitsSlateEmploy> {
     return this.prisma.mitsSlateEmploy.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateEmployDeleteArgs>(
+  async deleteMitsSlateEmploy<T extends Prisma.MitsSlateEmployDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateEmployDeleteArgs>
-  ): Promise<MitsSlateEmploy> {
+  ): Promise<PrismaMitsSlateEmploy> {
     return this.prisma.mitsSlateEmploy.delete(args);
   }
 }

@@ -6,8 +6,8 @@ export const SearchTextTestShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Application Text" source="applicationText" />
         <TextField label="Guid" source="guid" />
+        <TextField label="Application Text" source="applicationText" />
         <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>

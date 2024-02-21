@@ -24,7 +24,7 @@ class PaymentItem {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  paymentItemId!: number;
 
   @ApiProperty({
     required: true,
@@ -46,14 +46,6 @@ class PaymentItem {
   paymentItemAmount!: Decimal | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  paymentItemId!: number;
-
-  @ApiProperty({
     required: false,
     type: () => ProgramModel,
   })
@@ -61,6 +53,14 @@ class PaymentItem {
   @Type(() => ProgramModel)
   @IsOptional()
   programs?: ProgramModel | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { PaymentItem as PaymentItem };

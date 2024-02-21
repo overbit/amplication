@@ -28,6 +28,17 @@ class CcAuthNotificationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  paymentId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   authNotificationTime?: SortOrder;
 
   @ApiProperty({
@@ -40,17 +51,6 @@ class CcAuthNotificationOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  paymentId?: SortOrder;
 }
 
 export { CcAuthNotificationOrderByInput as CcAuthNotificationOrderByInput };

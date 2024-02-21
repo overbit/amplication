@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateApplicationContentArgs } from "./CreateApplicationContentArgs";
-import { UpdateApplicationContentArgs } from "./UpdateApplicationContentArgs";
-import { DeleteApplicationContentArgs } from "./DeleteApplicationContentArgs";
+import { ApplicationContent } from "./ApplicationContent";
 import { ApplicationContentCountArgs } from "./ApplicationContentCountArgs";
 import { ApplicationContentFindManyArgs } from "./ApplicationContentFindManyArgs";
 import { ApplicationContentFindUniqueArgs } from "./ApplicationContentFindUniqueArgs";
-import { ApplicationContent } from "./ApplicationContent";
+import { CreateApplicationContentArgs } from "./CreateApplicationContentArgs";
+import { UpdateApplicationContentArgs } from "./UpdateApplicationContentArgs";
+import { DeleteApplicationContentArgs } from "./DeleteApplicationContentArgs";
 import { ApplicationContentService } from "../applicationContent.service";
 @graphql.Resolver(() => ApplicationContent)
 export class ApplicationContentResolverBase {
@@ -38,14 +38,14 @@ export class ApplicationContentResolverBase {
   async applicationContents(
     @graphql.Args() args: ApplicationContentFindManyArgs
   ): Promise<ApplicationContent[]> {
-    return this.service.findMany(args);
+    return this.service.applicationContents(args);
   }
 
   @graphql.Query(() => ApplicationContent, { nullable: true })
   async applicationContent(
     @graphql.Args() args: ApplicationContentFindUniqueArgs
   ): Promise<ApplicationContent | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.applicationContent(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ApplicationContentResolverBase {
   async createApplicationContent(
     @graphql.Args() args: CreateApplicationContentArgs
   ): Promise<ApplicationContent> {
-    return await this.service.create({
+    return await this.service.createApplicationContent({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ApplicationContentResolverBase {
     @graphql.Args() args: UpdateApplicationContentArgs
   ): Promise<ApplicationContent | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationContent({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ApplicationContentResolverBase {
     @graphql.Args() args: DeleteApplicationContentArgs
   ): Promise<ApplicationContent | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteApplicationContent(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

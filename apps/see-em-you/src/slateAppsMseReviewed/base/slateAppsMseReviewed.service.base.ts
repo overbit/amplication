@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateAppsMseReviewed } from "@prisma/client";
+import {
+  Prisma,
+  SlateAppsMseReviewed as PrismaSlateAppsMseReviewed,
+} from "@prisma/client";
 
 export class SlateAppsMseReviewedServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class SlateAppsMseReviewedServiceBase {
     return this.prisma.slateAppsMseReviewed.count(args);
   }
 
-  async findMany<T extends Prisma.SlateAppsMseReviewedFindManyArgs>(
+  async slateAppsMseRevieweds<
+    T extends Prisma.SlateAppsMseReviewedFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SlateAppsMseReviewedFindManyArgs>
-  ): Promise<SlateAppsMseReviewed[]> {
+  ): Promise<PrismaSlateAppsMseReviewed[]> {
     return this.prisma.slateAppsMseReviewed.findMany(args);
   }
-  async findOne<T extends Prisma.SlateAppsMseReviewedFindUniqueArgs>(
+  async slateAppsMseReviewed<
+    T extends Prisma.SlateAppsMseReviewedFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SlateAppsMseReviewedFindUniqueArgs>
-  ): Promise<SlateAppsMseReviewed | null> {
+  ): Promise<PrismaSlateAppsMseReviewed | null> {
     return this.prisma.slateAppsMseReviewed.findUnique(args);
   }
-  async create<T extends Prisma.SlateAppsMseReviewedCreateArgs>(
+  async createSlateAppsMseReviewed<
+    T extends Prisma.SlateAppsMseReviewedCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SlateAppsMseReviewedCreateArgs>
-  ): Promise<SlateAppsMseReviewed> {
+  ): Promise<PrismaSlateAppsMseReviewed> {
     return this.prisma.slateAppsMseReviewed.create<T>(args);
   }
-  async update<T extends Prisma.SlateAppsMseReviewedUpdateArgs>(
+  async updateSlateAppsMseReviewed<
+    T extends Prisma.SlateAppsMseReviewedUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SlateAppsMseReviewedUpdateArgs>
-  ): Promise<SlateAppsMseReviewed> {
+  ): Promise<PrismaSlateAppsMseReviewed> {
     return this.prisma.slateAppsMseReviewed.update<T>(args);
   }
-  async delete<T extends Prisma.SlateAppsMseReviewedDeleteArgs>(
+  async deleteSlateAppsMseReviewed<
+    T extends Prisma.SlateAppsMseReviewedDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.SlateAppsMseReviewedDeleteArgs>
-  ): Promise<SlateAppsMseReviewed> {
+  ): Promise<PrismaSlateAppsMseReviewed> {
     return this.prisma.slateAppsMseReviewed.delete(args);
   }
 }

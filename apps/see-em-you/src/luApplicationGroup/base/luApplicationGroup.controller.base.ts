@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuApplicationGroupService } from "../luApplicationGroup.service";
 import { LuApplicationGroupCreateInput } from "./LuApplicationGroupCreateInput";
-import { LuApplicationGroupWhereInput } from "./LuApplicationGroupWhereInput";
-import { LuApplicationGroupWhereUniqueInput } from "./LuApplicationGroupWhereUniqueInput";
-import { LuApplicationGroupFindManyArgs } from "./LuApplicationGroupFindManyArgs";
-import { LuApplicationGroupUpdateInput } from "./LuApplicationGroupUpdateInput";
 import { LuApplicationGroup } from "./LuApplicationGroup";
+import { LuApplicationGroupFindManyArgs } from "./LuApplicationGroupFindManyArgs";
+import { LuApplicationGroupWhereUniqueInput } from "./LuApplicationGroupWhereUniqueInput";
+import { LuApplicationGroupUpdateInput } from "./LuApplicationGroupUpdateInput";
 
 export class LuApplicationGroupControllerBase {
   constructor(protected readonly service: LuApplicationGroupService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuApplicationGroup })
-  async create(
+  async createLuApplicationGroup(
     @common.Body() data: LuApplicationGroupCreateInput
   ): Promise<LuApplicationGroup> {
-    return await this.service.create({
+    return await this.service.createLuApplicationGroup({
       data: {
         ...data,
 
@@ -40,15 +39,16 @@ export class LuApplicationGroupControllerBase {
         },
       },
       select: {
+        groupId: true,
+        round: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        groupId: true,
         id: true,
-        round: true,
       },
     });
   }
@@ -56,22 +56,23 @@ export class LuApplicationGroupControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuApplicationGroup] })
   @ApiNestedQuery(LuApplicationGroupFindManyArgs)
-  async findMany(
+  async luApplicationGroups(
     @common.Req() request: Request
   ): Promise<LuApplicationGroup[]> {
     const args = plainToClass(LuApplicationGroupFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luApplicationGroups({
       ...args,
       select: {
+        groupId: true,
+        round: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        groupId: true,
         id: true,
-        round: true,
       },
     });
   }
@@ -79,21 +80,22 @@ export class LuApplicationGroupControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationGroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luApplicationGroup(
     @common.Param() params: LuApplicationGroupWhereUniqueInput
   ): Promise<LuApplicationGroup | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luApplicationGroup({
       where: params,
       select: {
+        groupId: true,
+        round: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        groupId: true,
         id: true,
-        round: true,
       },
     });
     if (result === null) {
@@ -107,12 +109,12 @@ export class LuApplicationGroupControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationGroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuApplicationGroup(
     @common.Param() params: LuApplicationGroupWhereUniqueInput,
     @common.Body() data: LuApplicationGroupUpdateInput
   ): Promise<LuApplicationGroup | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationGroup({
         where: params,
         data: {
           ...data,
@@ -122,15 +124,16 @@ export class LuApplicationGroupControllerBase {
           },
         },
         select: {
+          groupId: true,
+          round: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          groupId: true,
           id: true,
-          round: true,
         },
       });
     } catch (error) {
@@ -146,22 +149,23 @@ export class LuApplicationGroupControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationGroup })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuApplicationGroup(
     @common.Param() params: LuApplicationGroupWhereUniqueInput
   ): Promise<LuApplicationGroup | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuApplicationGroup({
         where: params,
         select: {
+          groupId: true,
+          round: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          groupId: true,
           id: true,
-          round: true,
         },
       });
     } catch (error) {

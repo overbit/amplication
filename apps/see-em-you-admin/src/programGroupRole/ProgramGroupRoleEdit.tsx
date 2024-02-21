@@ -10,8 +10,8 @@ export const ProgramGroupRoleEdit = (props: EditProps): React.ReactElement => {
           label="Program Group Id"
           source="programGroupId"
         />
-        <NumberInput step={1} label="Role Id" source="roleId" />
         <NumberInput step={1} label="Users Id" source="usersId" />
+        <NumberInput step={1} label="Role Id" source="roleId" />
       </SimpleForm>
     </Edit>
   );

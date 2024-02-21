@@ -7,9 +7,9 @@ export const LuProgramsInterestShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
-        <TextField label="Interest Id" source="interestId" />
         <TextField label="Program Id" source="programId" />
+        <TextField label="Interest Id" source="interestId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

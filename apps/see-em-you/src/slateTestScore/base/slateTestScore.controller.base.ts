@@ -18,33 +18,32 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateTestScoreService } from "../slateTestScore.service";
 import { SlateTestScoreCreateInput } from "./SlateTestScoreCreateInput";
-import { SlateTestScoreWhereInput } from "./SlateTestScoreWhereInput";
-import { SlateTestScoreWhereUniqueInput } from "./SlateTestScoreWhereUniqueInput";
-import { SlateTestScoreFindManyArgs } from "./SlateTestScoreFindManyArgs";
-import { SlateTestScoreUpdateInput } from "./SlateTestScoreUpdateInput";
 import { SlateTestScore } from "./SlateTestScore";
+import { SlateTestScoreFindManyArgs } from "./SlateTestScoreFindManyArgs";
+import { SlateTestScoreWhereUniqueInput } from "./SlateTestScoreWhereUniqueInput";
+import { SlateTestScoreUpdateInput } from "./SlateTestScoreUpdateInput";
 
 export class SlateTestScoreControllerBase {
   constructor(protected readonly service: SlateTestScoreService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateTestScore })
-  async create(
+  async createSlateTestScore(
     @common.Body() data: SlateTestScoreCreateInput
   ): Promise<SlateTestScore> {
-    return await this.service.create({
+    return await this.service.createSlateTestScore({
       data: data,
       select: {
+        prefix: true,
         first: true,
-        greAnalyticalWriting: true,
-        greAnalyticalWritingPct: true,
-        greQuantitative: true,
-        greQuantitativePct: true,
+        middle: true,
+        last: true,
         greVerbal: true,
         greVerbalPct: true,
+        greQuantitative: true,
+        greQuantitativePct: true,
+        greAnalyticalWriting: true,
+        greAnalyticalWritingPct: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
   }
@@ -52,22 +51,24 @@ export class SlateTestScoreControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateTestScore] })
   @ApiNestedQuery(SlateTestScoreFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateTestScore[]> {
+  async slateTestScores(
+    @common.Req() request: Request
+  ): Promise<SlateTestScore[]> {
     const args = plainToClass(SlateTestScoreFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateTestScores({
       ...args,
       select: {
+        prefix: true,
         first: true,
-        greAnalyticalWriting: true,
-        greAnalyticalWritingPct: true,
-        greQuantitative: true,
-        greQuantitativePct: true,
+        middle: true,
+        last: true,
         greVerbal: true,
         greVerbalPct: true,
+        greQuantitative: true,
+        greQuantitativePct: true,
+        greAnalyticalWriting: true,
+        greAnalyticalWritingPct: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
   }
@@ -75,23 +76,23 @@ export class SlateTestScoreControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateTestScore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateTestScore(
     @common.Param() params: SlateTestScoreWhereUniqueInput
   ): Promise<SlateTestScore | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateTestScore({
       where: params,
       select: {
+        prefix: true,
         first: true,
-        greAnalyticalWriting: true,
-        greAnalyticalWritingPct: true,
-        greQuantitative: true,
-        greQuantitativePct: true,
+        middle: true,
+        last: true,
         greVerbal: true,
         greVerbalPct: true,
+        greQuantitative: true,
+        greQuantitativePct: true,
+        greAnalyticalWriting: true,
+        greAnalyticalWritingPct: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
     if (result === null) {
@@ -105,26 +106,26 @@ export class SlateTestScoreControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateTestScore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateTestScore(
     @common.Param() params: SlateTestScoreWhereUniqueInput,
     @common.Body() data: SlateTestScoreUpdateInput
   ): Promise<SlateTestScore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateTestScore({
         where: params,
         data: data,
         select: {
+          prefix: true,
           first: true,
-          greAnalyticalWriting: true,
-          greAnalyticalWritingPct: true,
-          greQuantitative: true,
-          greQuantitativePct: true,
+          middle: true,
+          last: true,
           greVerbal: true,
           greVerbalPct: true,
+          greQuantitative: true,
+          greQuantitativePct: true,
+          greAnalyticalWriting: true,
+          greAnalyticalWritingPct: true,
           id: true,
-          last: true,
-          middle: true,
-          prefix: true,
         },
       });
     } catch (error) {
@@ -140,24 +141,24 @@ export class SlateTestScoreControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateTestScore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateTestScore(
     @common.Param() params: SlateTestScoreWhereUniqueInput
   ): Promise<SlateTestScore | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateTestScore({
         where: params,
         select: {
+          prefix: true,
           first: true,
-          greAnalyticalWriting: true,
-          greAnalyticalWritingPct: true,
-          greQuantitative: true,
-          greQuantitativePct: true,
+          middle: true,
+          last: true,
           greVerbal: true,
           greVerbalPct: true,
+          greQuantitative: true,
+          greQuantitativePct: true,
+          greAnalyticalWriting: true,
+          greAnalyticalWritingPct: true,
           id: true,
-          last: true,
-          middle: true,
-          prefix: true,
         },
       });
     } catch (error) {

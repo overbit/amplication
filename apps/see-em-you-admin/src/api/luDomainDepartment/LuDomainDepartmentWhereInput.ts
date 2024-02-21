@@ -1,1 +1,5 @@
-export type LuDomainDepartmentWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type LuDomainDepartmentWhereInput = {
+  id?: IntFilter;
+};

@@ -11,20 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, ValidateNested } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class LuApplicationCohort {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -32,6 +24,14 @@ class LuApplicationCohort {
   @IsInt()
   @Field(() => Number)
   cohortId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
 
   @ApiProperty({
     required: true,

@@ -24,7 +24,7 @@ class ApplicantIpedsRaceUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  ipedsRaceId?: number;
+  luUsersUsertypesId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class ApplicantIpedsRaceUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  luUsersUsertypesId?: number;
+  ipedsRaceId?: number;
 }
 
 export { ApplicantIpedsRaceUpdateInput as ApplicantIpedsRaceUpdateInput };

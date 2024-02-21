@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDomainUnitArgs } from "./CreateDomainUnitArgs";
-import { UpdateDomainUnitArgs } from "./UpdateDomainUnitArgs";
-import { DeleteDomainUnitArgs } from "./DeleteDomainUnitArgs";
+import { DomainUnit } from "./DomainUnit";
 import { DomainUnitCountArgs } from "./DomainUnitCountArgs";
 import { DomainUnitFindManyArgs } from "./DomainUnitFindManyArgs";
 import { DomainUnitFindUniqueArgs } from "./DomainUnitFindUniqueArgs";
-import { DomainUnit } from "./DomainUnit";
+import { CreateDomainUnitArgs } from "./CreateDomainUnitArgs";
+import { UpdateDomainUnitArgs } from "./UpdateDomainUnitArgs";
+import { DeleteDomainUnitArgs } from "./DeleteDomainUnitArgs";
 import { Domain } from "../../domain/base/Domain";
 import { Unit } from "../../unit/base/Unit";
 import { DomainUnitService } from "../domainUnit.service";
@@ -40,14 +40,14 @@ export class DomainUnitResolverBase {
   async domainUnits(
     @graphql.Args() args: DomainUnitFindManyArgs
   ): Promise<DomainUnit[]> {
-    return this.service.findMany(args);
+    return this.service.domainUnits(args);
   }
 
   @graphql.Query(() => DomainUnit, { nullable: true })
   async domainUnit(
     @graphql.Args() args: DomainUnitFindUniqueArgs
   ): Promise<DomainUnit | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.domainUnit(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class DomainUnitResolverBase {
   async createDomainUnit(
     @graphql.Args() args: CreateDomainUnitArgs
   ): Promise<DomainUnit> {
-    return await this.service.create({
+    return await this.service.createDomainUnit({
       ...args,
       data: {
         ...args.data,
@@ -79,7 +79,7 @@ export class DomainUnitResolverBase {
     @graphql.Args() args: UpdateDomainUnitArgs
   ): Promise<DomainUnit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDomainUnit({
         ...args,
         data: {
           ...args.data,
@@ -108,7 +108,7 @@ export class DomainUnitResolverBase {
     @graphql.Args() args: DeleteDomainUnitArgs
   ): Promise<DomainUnit | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDomainUnit(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -123,7 +123,7 @@ export class DomainUnitResolverBase {
     nullable: true,
     name: "domain",
   })
-  async resolveFieldDomain(
+  async getDomain(
     @graphql.Parent() parent: DomainUnit
   ): Promise<Domain | null> {
     const result = await this.service.getDomain(parent.id);
@@ -138,9 +138,7 @@ export class DomainUnitResolverBase {
     nullable: true,
     name: "unit",
   })
-  async resolveFieldUnit(
-    @graphql.Parent() parent: DomainUnit
-  ): Promise<Unit | null> {
+  async getUnit(@graphql.Parent() parent: DomainUnit): Promise<Unit | null> {
     const result = await this.service.getUnit(parent.id);
 
     if (!result) {

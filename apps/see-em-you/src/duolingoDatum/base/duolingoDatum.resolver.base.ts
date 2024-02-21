@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDuolingoDatumArgs } from "./CreateDuolingoDatumArgs";
-import { UpdateDuolingoDatumArgs } from "./UpdateDuolingoDatumArgs";
-import { DeleteDuolingoDatumArgs } from "./DeleteDuolingoDatumArgs";
+import { DuolingoDatum } from "./DuolingoDatum";
 import { DuolingoDatumCountArgs } from "./DuolingoDatumCountArgs";
 import { DuolingoDatumFindManyArgs } from "./DuolingoDatumFindManyArgs";
 import { DuolingoDatumFindUniqueArgs } from "./DuolingoDatumFindUniqueArgs";
-import { DuolingoDatum } from "./DuolingoDatum";
+import { CreateDuolingoDatumArgs } from "./CreateDuolingoDatumArgs";
+import { UpdateDuolingoDatumArgs } from "./UpdateDuolingoDatumArgs";
+import { DeleteDuolingoDatumArgs } from "./DeleteDuolingoDatumArgs";
 import { DuolingoDatumService } from "../duolingoDatum.service";
 @graphql.Resolver(() => DuolingoDatum)
 export class DuolingoDatumResolverBase {
@@ -38,14 +38,14 @@ export class DuolingoDatumResolverBase {
   async duolingoData(
     @graphql.Args() args: DuolingoDatumFindManyArgs
   ): Promise<DuolingoDatum[]> {
-    return this.service.findMany(args);
+    return this.service.duolingoData(args);
   }
 
   @graphql.Query(() => DuolingoDatum, { nullable: true })
   async duolingoDatum(
     @graphql.Args() args: DuolingoDatumFindUniqueArgs
   ): Promise<DuolingoDatum | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.duolingoDatum(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DuolingoDatumResolverBase {
   async createDuolingoDatum(
     @graphql.Args() args: CreateDuolingoDatumArgs
   ): Promise<DuolingoDatum> {
-    return await this.service.create({
+    return await this.service.createDuolingoDatum({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DuolingoDatumResolverBase {
     @graphql.Args() args: UpdateDuolingoDatumArgs
   ): Promise<DuolingoDatum | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDuolingoDatum({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DuolingoDatumResolverBase {
     @graphql.Args() args: DeleteDuolingoDatumArgs
   ): Promise<DuolingoDatum | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDuolingoDatum(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

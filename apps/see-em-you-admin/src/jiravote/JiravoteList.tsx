@@ -13,10 +13,10 @@ export const JiravoteList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <DateField source="created" label="Created" />
-        <TextField label="Id" source="id" />
-        <TextField label="Jira Name" source="jiraName" />
         <DateField source="updatedAt" label="Updated At" />
+        <TextField label="Jira Name" source="jiraName" />
         <TextField label="User" source="user" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

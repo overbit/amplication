@@ -18,40 +18,41 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewIniService } from "../reviewIni.service";
 import { ReviewIniCreateInput } from "./ReviewIniCreateInput";
-import { ReviewIniWhereInput } from "./ReviewIniWhereInput";
-import { ReviewIniWhereUniqueInput } from "./ReviewIniWhereUniqueInput";
-import { ReviewIniFindManyArgs } from "./ReviewIniFindManyArgs";
-import { ReviewIniUpdateInput } from "./ReviewIniUpdateInput";
 import { ReviewIni } from "./ReviewIni";
+import { ReviewIniFindManyArgs } from "./ReviewIniFindManyArgs";
+import { ReviewIniWhereUniqueInput } from "./ReviewIniWhereUniqueInput";
+import { ReviewIniUpdateInput } from "./ReviewIniUpdateInput";
 
 export class ReviewIniControllerBase {
   constructor(protected readonly service: ReviewIniService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewIni })
-  async create(@common.Body() data: ReviewIniCreateInput): Promise<ReviewIni> {
-    return await this.service.create({
+  async createReviewIni(
+    @common.Body() data: ReviewIniCreateInput
+  ): Promise<ReviewIni> {
+    return await this.service.createReviewIni({
       data: data,
       select: {
-        academicComments: true,
-        academicProgramComments: true,
-        academicRating: true,
-        additionalComments: true,
-        alternativeProgram: true,
         applicationId: true,
-        departmentId: true,
-        id: true,
-        leadershipComments: true,
-        leadershipRating: true,
-        overallRating: true,
-        researchComments: true,
-        researchRating: true,
         reviewerId: true,
+        departmentId: true,
         round: true,
         technicalComments: true,
-        technicalRating: true,
-        ugProgramComments: true,
+        academicComments: true,
+        academicProgramComments: true,
+        researchComments: true,
         workExperienceComments: true,
+        leadershipComments: true,
+        additionalComments: true,
+        ugProgramComments: true,
+        technicalRating: true,
+        academicRating: true,
+        researchRating: true,
         workExperienceRating: true,
+        leadershipRating: true,
+        overallRating: true,
+        alternativeProgram: true,
+        id: true,
       },
     });
   }
@@ -59,31 +60,31 @@ export class ReviewIniControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewIni] })
   @ApiNestedQuery(ReviewIniFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<ReviewIni[]> {
+  async reviewInis(@common.Req() request: Request): Promise<ReviewIni[]> {
     const args = plainToClass(ReviewIniFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.reviewInis({
       ...args,
       select: {
-        academicComments: true,
-        academicProgramComments: true,
-        academicRating: true,
-        additionalComments: true,
-        alternativeProgram: true,
         applicationId: true,
-        departmentId: true,
-        id: true,
-        leadershipComments: true,
-        leadershipRating: true,
-        overallRating: true,
-        researchComments: true,
-        researchRating: true,
         reviewerId: true,
+        departmentId: true,
         round: true,
         technicalComments: true,
-        technicalRating: true,
-        ugProgramComments: true,
+        academicComments: true,
+        academicProgramComments: true,
+        researchComments: true,
         workExperienceComments: true,
+        leadershipComments: true,
+        additionalComments: true,
+        ugProgramComments: true,
+        technicalRating: true,
+        academicRating: true,
+        researchRating: true,
         workExperienceRating: true,
+        leadershipRating: true,
+        overallRating: true,
+        alternativeProgram: true,
+        id: true,
       },
     });
   }
@@ -91,32 +92,32 @@ export class ReviewIniControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewIni })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewIni(
     @common.Param() params: ReviewIniWhereUniqueInput
   ): Promise<ReviewIni | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewIni({
       where: params,
       select: {
-        academicComments: true,
-        academicProgramComments: true,
-        academicRating: true,
-        additionalComments: true,
-        alternativeProgram: true,
         applicationId: true,
-        departmentId: true,
-        id: true,
-        leadershipComments: true,
-        leadershipRating: true,
-        overallRating: true,
-        researchComments: true,
-        researchRating: true,
         reviewerId: true,
+        departmentId: true,
         round: true,
         technicalComments: true,
-        technicalRating: true,
-        ugProgramComments: true,
+        academicComments: true,
+        academicProgramComments: true,
+        researchComments: true,
         workExperienceComments: true,
+        leadershipComments: true,
+        additionalComments: true,
+        ugProgramComments: true,
+        technicalRating: true,
+        academicRating: true,
+        researchRating: true,
         workExperienceRating: true,
+        leadershipRating: true,
+        overallRating: true,
+        alternativeProgram: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -130,35 +131,35 @@ export class ReviewIniControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewIni })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewIni(
     @common.Param() params: ReviewIniWhereUniqueInput,
     @common.Body() data: ReviewIniUpdateInput
   ): Promise<ReviewIni | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIni({
         where: params,
         data: data,
         select: {
-          academicComments: true,
-          academicProgramComments: true,
-          academicRating: true,
-          additionalComments: true,
-          alternativeProgram: true,
           applicationId: true,
-          departmentId: true,
-          id: true,
-          leadershipComments: true,
-          leadershipRating: true,
-          overallRating: true,
-          researchComments: true,
-          researchRating: true,
           reviewerId: true,
+          departmentId: true,
           round: true,
           technicalComments: true,
-          technicalRating: true,
-          ugProgramComments: true,
+          academicComments: true,
+          academicProgramComments: true,
+          researchComments: true,
           workExperienceComments: true,
+          leadershipComments: true,
+          additionalComments: true,
+          ugProgramComments: true,
+          technicalRating: true,
+          academicRating: true,
+          researchRating: true,
           workExperienceRating: true,
+          leadershipRating: true,
+          overallRating: true,
+          alternativeProgram: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -174,33 +175,33 @@ export class ReviewIniControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewIni })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewIni(
     @common.Param() params: ReviewIniWhereUniqueInput
   ): Promise<ReviewIni | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewIni({
         where: params,
         select: {
-          academicComments: true,
-          academicProgramComments: true,
-          academicRating: true,
-          additionalComments: true,
-          alternativeProgram: true,
           applicationId: true,
-          departmentId: true,
-          id: true,
-          leadershipComments: true,
-          leadershipRating: true,
-          overallRating: true,
-          researchComments: true,
-          researchRating: true,
           reviewerId: true,
+          departmentId: true,
           round: true,
           technicalComments: true,
-          technicalRating: true,
-          ugProgramComments: true,
+          academicComments: true,
+          academicProgramComments: true,
+          researchComments: true,
           workExperienceComments: true,
+          leadershipComments: true,
+          additionalComments: true,
+          ugProgramComments: true,
+          technicalRating: true,
+          academicRating: true,
+          researchRating: true,
           workExperienceRating: true,
+          leadershipRating: true,
+          overallRating: true,
+          alternativeProgram: true,
+          id: true,
         },
       });
     } catch (error) {

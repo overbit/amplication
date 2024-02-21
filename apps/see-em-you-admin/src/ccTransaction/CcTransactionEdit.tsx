@@ -12,10 +12,10 @@ export const CcTransactionEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <TextInput label="Cardholder Name First" source="cardholderNameFirst" />
-        <TextInput label="Cardholder Name Last" source="cardholderNameLast" />
         <NumberInput step={1} label="Payment Id" source="paymentId" />
         <TextInput label="Store Number" source="storeNumber" />
+        <TextInput label="Cardholder Name Last" source="cardholderNameLast" />
+        <TextInput label="Cardholder Name First" source="cardholderNameFirst" />
       </SimpleForm>
     </Edit>
   );

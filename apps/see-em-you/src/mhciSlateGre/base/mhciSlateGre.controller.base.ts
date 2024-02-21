@@ -18,33 +18,32 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciSlateGreService } from "../mhciSlateGre.service";
 import { MhciSlateGreCreateInput } from "./MhciSlateGreCreateInput";
-import { MhciSlateGreWhereInput } from "./MhciSlateGreWhereInput";
-import { MhciSlateGreWhereUniqueInput } from "./MhciSlateGreWhereUniqueInput";
-import { MhciSlateGreFindManyArgs } from "./MhciSlateGreFindManyArgs";
-import { MhciSlateGreUpdateInput } from "./MhciSlateGreUpdateInput";
 import { MhciSlateGre } from "./MhciSlateGre";
+import { MhciSlateGreFindManyArgs } from "./MhciSlateGreFindManyArgs";
+import { MhciSlateGreWhereUniqueInput } from "./MhciSlateGreWhereUniqueInput";
+import { MhciSlateGreUpdateInput } from "./MhciSlateGreUpdateInput";
 
 export class MhciSlateGreControllerBase {
   constructor(protected readonly service: MhciSlateGreService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciSlateGre })
-  async create(
+  async createMhciSlateGre(
     @common.Body() data: MhciSlateGreCreateInput
   ): Promise<MhciSlateGre> {
-    return await this.service.create({
+    return await this.service.createMhciSlateGre({
       data: data,
       select: {
+        prefix: true,
         first: true,
-        greAnalyticalWriting: true,
-        greAnalyticalWritingPct: true,
-        greQuantitative: true,
-        greQuantitativePct: true,
+        middle: true,
+        last: true,
         greVerbal: true,
         greVerbalPct: true,
+        greQuantitative: true,
+        greQuantitativePct: true,
+        greAnalyticalWriting: true,
+        greAnalyticalWritingPct: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
   }
@@ -52,22 +51,22 @@ export class MhciSlateGreControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciSlateGre] })
   @ApiNestedQuery(MhciSlateGreFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MhciSlateGre[]> {
+  async mhciSlateGres(@common.Req() request: Request): Promise<MhciSlateGre[]> {
     const args = plainToClass(MhciSlateGreFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciSlateGres({
       ...args,
       select: {
+        prefix: true,
         first: true,
-        greAnalyticalWriting: true,
-        greAnalyticalWritingPct: true,
-        greQuantitative: true,
-        greQuantitativePct: true,
+        middle: true,
+        last: true,
         greVerbal: true,
         greVerbalPct: true,
+        greQuantitative: true,
+        greQuantitativePct: true,
+        greAnalyticalWriting: true,
+        greAnalyticalWritingPct: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
   }
@@ -75,23 +74,23 @@ export class MhciSlateGreControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateGre })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciSlateGre(
     @common.Param() params: MhciSlateGreWhereUniqueInput
   ): Promise<MhciSlateGre | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciSlateGre({
       where: params,
       select: {
+        prefix: true,
         first: true,
-        greAnalyticalWriting: true,
-        greAnalyticalWritingPct: true,
-        greQuantitative: true,
-        greQuantitativePct: true,
+        middle: true,
+        last: true,
         greVerbal: true,
         greVerbalPct: true,
+        greQuantitative: true,
+        greQuantitativePct: true,
+        greAnalyticalWriting: true,
+        greAnalyticalWritingPct: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
     if (result === null) {
@@ -105,26 +104,26 @@ export class MhciSlateGreControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateGre })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciSlateGre(
     @common.Param() params: MhciSlateGreWhereUniqueInput,
     @common.Body() data: MhciSlateGreUpdateInput
   ): Promise<MhciSlateGre | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciSlateGre({
         where: params,
         data: data,
         select: {
+          prefix: true,
           first: true,
-          greAnalyticalWriting: true,
-          greAnalyticalWritingPct: true,
-          greQuantitative: true,
-          greQuantitativePct: true,
+          middle: true,
+          last: true,
           greVerbal: true,
           greVerbalPct: true,
+          greQuantitative: true,
+          greQuantitativePct: true,
+          greAnalyticalWriting: true,
+          greAnalyticalWritingPct: true,
           id: true,
-          last: true,
-          middle: true,
-          prefix: true,
         },
       });
     } catch (error) {
@@ -140,24 +139,24 @@ export class MhciSlateGreControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateGre })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciSlateGre(
     @common.Param() params: MhciSlateGreWhereUniqueInput
   ): Promise<MhciSlateGre | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciSlateGre({
         where: params,
         select: {
+          prefix: true,
           first: true,
-          greAnalyticalWriting: true,
-          greAnalyticalWritingPct: true,
-          greQuantitative: true,
-          greQuantitativePct: true,
+          middle: true,
+          last: true,
           greVerbal: true,
           greVerbalPct: true,
+          greQuantitative: true,
+          greQuantitativePct: true,
+          greAnalyticalWriting: true,
+          greAnalyticalWritingPct: true,
           id: true,
-          last: true,
-          middle: true,
-          prefix: true,
         },
       });
     } catch (error) {

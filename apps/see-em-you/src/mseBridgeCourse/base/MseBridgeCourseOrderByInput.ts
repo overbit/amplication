@@ -39,6 +39,17 @@ class MseBridgeCourseOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  reviewerId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   courseId?: SortOrder;
 
   @ApiProperty({
@@ -51,17 +62,6 @@ class MseBridgeCourseOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  reviewerId?: SortOrder;
 }
 
 export { MseBridgeCourseOrderByInput as MseBridgeCourseOrderByInput };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateTeachingExperienceArgs } from "./CreateTeachingExperienceArgs";
-import { UpdateTeachingExperienceArgs } from "./UpdateTeachingExperienceArgs";
-import { DeleteTeachingExperienceArgs } from "./DeleteTeachingExperienceArgs";
+import { TeachingExperience } from "./TeachingExperience";
 import { TeachingExperienceCountArgs } from "./TeachingExperienceCountArgs";
 import { TeachingExperienceFindManyArgs } from "./TeachingExperienceFindManyArgs";
 import { TeachingExperienceFindUniqueArgs } from "./TeachingExperienceFindUniqueArgs";
-import { TeachingExperience } from "./TeachingExperience";
+import { CreateTeachingExperienceArgs } from "./CreateTeachingExperienceArgs";
+import { UpdateTeachingExperienceArgs } from "./UpdateTeachingExperienceArgs";
+import { DeleteTeachingExperienceArgs } from "./DeleteTeachingExperienceArgs";
 import { TeachingExperienceService } from "../teachingExperience.service";
 @graphql.Resolver(() => TeachingExperience)
 export class TeachingExperienceResolverBase {
@@ -38,14 +38,14 @@ export class TeachingExperienceResolverBase {
   async teachingExperiences(
     @graphql.Args() args: TeachingExperienceFindManyArgs
   ): Promise<TeachingExperience[]> {
-    return this.service.findMany(args);
+    return this.service.teachingExperiences(args);
   }
 
   @graphql.Query(() => TeachingExperience, { nullable: true })
   async teachingExperience(
     @graphql.Args() args: TeachingExperienceFindUniqueArgs
   ): Promise<TeachingExperience | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.teachingExperience(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class TeachingExperienceResolverBase {
   async createTeachingExperience(
     @graphql.Args() args: CreateTeachingExperienceArgs
   ): Promise<TeachingExperience> {
-    return await this.service.create({
+    return await this.service.createTeachingExperience({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class TeachingExperienceResolverBase {
     @graphql.Args() args: UpdateTeachingExperienceArgs
   ): Promise<TeachingExperience | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTeachingExperience({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class TeachingExperienceResolverBase {
     @graphql.Args() args: DeleteTeachingExperienceArgs
   ): Promise<TeachingExperience | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteTeachingExperience(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

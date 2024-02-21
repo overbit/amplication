@@ -24,6 +24,14 @@ class LuApplicationInterestCreateInput {
   appProgramId!: number;
 
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  interestId!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -33,14 +41,6 @@ class LuApplicationInterestCreateInput {
     nullable: true,
   })
   choice?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  interestId!: number;
 }
 
 export { LuApplicationInterestCreateInput as LuApplicationInterestCreateInput };

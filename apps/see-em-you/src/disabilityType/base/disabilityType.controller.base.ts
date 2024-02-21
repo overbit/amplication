@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DisabilityTypeService } from "../disabilityType.service";
 import { DisabilityTypeCreateInput } from "./DisabilityTypeCreateInput";
-import { DisabilityTypeWhereInput } from "./DisabilityTypeWhereInput";
-import { DisabilityTypeWhereUniqueInput } from "./DisabilityTypeWhereUniqueInput";
-import { DisabilityTypeFindManyArgs } from "./DisabilityTypeFindManyArgs";
-import { DisabilityTypeUpdateInput } from "./DisabilityTypeUpdateInput";
 import { DisabilityType } from "./DisabilityType";
+import { DisabilityTypeFindManyArgs } from "./DisabilityTypeFindManyArgs";
+import { DisabilityTypeWhereUniqueInput } from "./DisabilityTypeWhereUniqueInput";
+import { DisabilityTypeUpdateInput } from "./DisabilityTypeUpdateInput";
 
 export class DisabilityTypeControllerBase {
   constructor(protected readonly service: DisabilityTypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DisabilityType })
-  async create(
+  async createDisabilityType(
     @common.Body() data: DisabilityTypeCreateInput
   ): Promise<DisabilityType> {
-    return await this.service.create({
+    return await this.service.createDisabilityType({
       data: data,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -43,13 +42,15 @@ export class DisabilityTypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DisabilityType] })
   @ApiNestedQuery(DisabilityTypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DisabilityType[]> {
+  async disabilityTypes(
+    @common.Req() request: Request
+  ): Promise<DisabilityType[]> {
     const args = plainToClass(DisabilityTypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.disabilityTypes({
       ...args,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
   }
@@ -57,14 +58,14 @@ export class DisabilityTypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DisabilityType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async disabilityType(
     @common.Param() params: DisabilityTypeWhereUniqueInput
   ): Promise<DisabilityType | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.disabilityType({
       where: params,
       select: {
-        id: true,
         value: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -78,17 +79,17 @@ export class DisabilityTypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DisabilityType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDisabilityType(
     @common.Param() params: DisabilityTypeWhereUniqueInput,
     @common.Body() data: DisabilityTypeUpdateInput
   ): Promise<DisabilityType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDisabilityType({
         where: params,
         data: data,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -104,15 +105,15 @@ export class DisabilityTypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DisabilityType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDisabilityType(
     @common.Param() params: DisabilityTypeWhereUniqueInput
   ): Promise<DisabilityType | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDisabilityType({
         where: params,
         select: {
-          id: true,
           value: true,
+          id: true,
         },
       });
     } catch (error) {

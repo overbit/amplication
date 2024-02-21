@@ -16,6 +16,14 @@ import { IsString, IsOptional, IsInt } from "class-validator";
 @ObjectType()
 class Usertype {
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -33,14 +41,6 @@ class Usertype {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
 }
 
 export { Usertype as Usertype };

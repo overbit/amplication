@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlatePub } from "@prisma/client";
+import { Prisma, SlatePub as PrismaSlatePub } from "@prisma/client";
 
 export class SlatePubServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlatePubServiceBase {
     return this.prisma.slatePub.count(args);
   }
 
-  async findMany<T extends Prisma.SlatePubFindManyArgs>(
+  async slatePubs<T extends Prisma.SlatePubFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlatePubFindManyArgs>
-  ): Promise<SlatePub[]> {
+  ): Promise<PrismaSlatePub[]> {
     return this.prisma.slatePub.findMany(args);
   }
-  async findOne<T extends Prisma.SlatePubFindUniqueArgs>(
+  async slatePub<T extends Prisma.SlatePubFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlatePubFindUniqueArgs>
-  ): Promise<SlatePub | null> {
+  ): Promise<PrismaSlatePub | null> {
     return this.prisma.slatePub.findUnique(args);
   }
-  async create<T extends Prisma.SlatePubCreateArgs>(
+  async createSlatePub<T extends Prisma.SlatePubCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlatePubCreateArgs>
-  ): Promise<SlatePub> {
+  ): Promise<PrismaSlatePub> {
     return this.prisma.slatePub.create<T>(args);
   }
-  async update<T extends Prisma.SlatePubUpdateArgs>(
+  async updateSlatePub<T extends Prisma.SlatePubUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlatePubUpdateArgs>
-  ): Promise<SlatePub> {
+  ): Promise<PrismaSlatePub> {
     return this.prisma.slatePub.update<T>(args);
   }
-  async delete<T extends Prisma.SlatePubDeleteArgs>(
+  async deleteSlatePub<T extends Prisma.SlatePubDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlatePubDeleteArgs>
-  ): Promise<SlatePub> {
+  ): Promise<PrismaSlatePub> {
     return this.prisma.slatePub.delete(args);
   }
 }

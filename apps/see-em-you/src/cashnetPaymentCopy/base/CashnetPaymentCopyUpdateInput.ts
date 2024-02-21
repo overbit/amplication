@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsOptional, IsInt, IsString } from "class-validator";
+import { IsInt, IsOptional, IsString, IsNumber } from "class-validator";
 
 @InputType()
 class CashnetPaymentCopyUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  amount?: number | null;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -39,14 +28,14 @@ class CashnetPaymentCopyUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  applicantEmail?: string;
+  transactionId?: number;
 
   @ApiProperty({
     required: false,
@@ -58,6 +47,17 @@ class CashnetPaymentCopyUpdateInput {
     nullable: true,
   })
   applicantName?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  applicantEmail?: string;
 
   @ApiProperty({
     required: false,
@@ -83,17 +83,6 @@ class CashnetPaymentCopyUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  transactionId?: number;
-
-  @ApiProperty({
-    required: false,
     type: String,
   })
   @IsString()
@@ -102,6 +91,17 @@ class CashnetPaymentCopyUpdateInput {
     nullable: true,
   })
   transactionType?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  amount?: number | null;
 }
 
 export { CashnetPaymentCopyUpdateInput as CashnetPaymentCopyUpdateInput };

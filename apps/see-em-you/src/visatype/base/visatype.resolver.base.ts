@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateVisatypeArgs } from "./CreateVisatypeArgs";
-import { UpdateVisatypeArgs } from "./UpdateVisatypeArgs";
-import { DeleteVisatypeArgs } from "./DeleteVisatypeArgs";
+import { Visatype } from "./Visatype";
 import { VisatypeCountArgs } from "./VisatypeCountArgs";
 import { VisatypeFindManyArgs } from "./VisatypeFindManyArgs";
 import { VisatypeFindUniqueArgs } from "./VisatypeFindUniqueArgs";
-import { Visatype } from "./Visatype";
+import { CreateVisatypeArgs } from "./CreateVisatypeArgs";
+import { UpdateVisatypeArgs } from "./UpdateVisatypeArgs";
+import { DeleteVisatypeArgs } from "./DeleteVisatypeArgs";
 import { VisatypeService } from "../visatype.service";
 @graphql.Resolver(() => Visatype)
 export class VisatypeResolverBase {
@@ -38,14 +38,14 @@ export class VisatypeResolverBase {
   async visatypes(
     @graphql.Args() args: VisatypeFindManyArgs
   ): Promise<Visatype[]> {
-    return this.service.findMany(args);
+    return this.service.visatypes(args);
   }
 
   @graphql.Query(() => Visatype, { nullable: true })
   async visatype(
     @graphql.Args() args: VisatypeFindUniqueArgs
   ): Promise<Visatype | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.visatype(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class VisatypeResolverBase {
   async createVisatype(
     @graphql.Args() args: CreateVisatypeArgs
   ): Promise<Visatype> {
-    return await this.service.create({
+    return await this.service.createVisatype({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class VisatypeResolverBase {
     @graphql.Args() args: UpdateVisatypeArgs
   ): Promise<Visatype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVisatype({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class VisatypeResolverBase {
     @graphql.Args() args: DeleteVisatypeArgs
   ): Promise<Visatype | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteVisatype(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

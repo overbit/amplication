@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MseBridgeCourseService } from "../mseBridgeCourse.service";
 import { MseBridgeCourseCreateInput } from "./MseBridgeCourseCreateInput";
-import { MseBridgeCourseWhereInput } from "./MseBridgeCourseWhereInput";
-import { MseBridgeCourseWhereUniqueInput } from "./MseBridgeCourseWhereUniqueInput";
-import { MseBridgeCourseFindManyArgs } from "./MseBridgeCourseFindManyArgs";
-import { MseBridgeCourseUpdateInput } from "./MseBridgeCourseUpdateInput";
 import { MseBridgeCourse } from "./MseBridgeCourse";
+import { MseBridgeCourseFindManyArgs } from "./MseBridgeCourseFindManyArgs";
+import { MseBridgeCourseWhereUniqueInput } from "./MseBridgeCourseWhereUniqueInput";
+import { MseBridgeCourseUpdateInput } from "./MseBridgeCourseUpdateInput";
 
 export class MseBridgeCourseControllerBase {
   constructor(protected readonly service: MseBridgeCourseService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MseBridgeCourse })
-  async create(
+  async createMseBridgeCourse(
     @common.Body() data: MseBridgeCourseCreateInput
   ): Promise<MseBridgeCourse> {
-    return await this.service.create({
+    return await this.service.createMseBridgeCourse({
       data: data,
       select: {
         applicationId: true,
+        reviewerId: true,
         courseId: true,
         id: true,
-        reviewerId: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class MseBridgeCourseControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MseBridgeCourse] })
   @ApiNestedQuery(MseBridgeCourseFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MseBridgeCourse[]> {
+  async mseBridgeCourses(
+    @common.Req() request: Request
+  ): Promise<MseBridgeCourse[]> {
     const args = plainToClass(MseBridgeCourseFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mseBridgeCourses({
       ...args,
       select: {
         applicationId: true,
+        reviewerId: true,
         courseId: true,
         id: true,
-        reviewerId: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class MseBridgeCourseControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MseBridgeCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mseBridgeCourse(
     @common.Param() params: MseBridgeCourseWhereUniqueInput
   ): Promise<MseBridgeCourse | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mseBridgeCourse({
       where: params,
       select: {
         applicationId: true,
+        reviewerId: true,
         courseId: true,
         id: true,
-        reviewerId: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class MseBridgeCourseControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MseBridgeCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMseBridgeCourse(
     @common.Param() params: MseBridgeCourseWhereUniqueInput,
     @common.Body() data: MseBridgeCourseUpdateInput
   ): Promise<MseBridgeCourse | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseBridgeCourse({
         where: params,
         data: data,
         select: {
           applicationId: true,
+          reviewerId: true,
           courseId: true,
           id: true,
-          reviewerId: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class MseBridgeCourseControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MseBridgeCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMseBridgeCourse(
     @common.Param() params: MseBridgeCourseWhereUniqueInput
   ): Promise<MseBridgeCourse | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMseBridgeCourse({
         where: params,
         select: {
           applicationId: true,
+          reviewerId: true,
           courseId: true,
           id: true,
-          reviewerId: true,
         },
       });
     } catch (error) {

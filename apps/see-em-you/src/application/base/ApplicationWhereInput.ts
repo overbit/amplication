@@ -48,6 +48,7 @@ import { SpecialConsiderationListRelationFilter } from "../../specialConsiderati
 import { StudentDecisionListRelationFilter } from "../../studentDecision/base/StudentDecisionListRelationFilter";
 import { StudentDecisionHistoryListRelationFilter } from "../../studentDecisionHistory/base/StudentDecisionHistoryListRelationFilter";
 import { TagMemberListRelationFilter } from "../../tagMember/base/TagMemberListRelationFilter";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class ApplicationWhereInput {
@@ -470,6 +471,17 @@ class ApplicationWhereInput {
     nullable: true,
   })
   tagMembers?: TagMemberListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { ApplicationWhereInput as ApplicationWhereInput };

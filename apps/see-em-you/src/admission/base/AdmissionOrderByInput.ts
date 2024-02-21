@@ -39,6 +39,17 @@ class AdmissionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  programId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   code?: SortOrder;
 
   @ApiProperty({
@@ -51,17 +62,6 @@ class AdmissionOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  programId?: SortOrder;
 }
 
 export { AdmissionOrderByInput as AdmissionOrderByInput };

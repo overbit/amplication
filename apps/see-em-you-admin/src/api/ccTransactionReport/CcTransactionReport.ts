@@ -1,6 +1,6 @@
 export type CcTransactionReport = {
-  id: string;
-  lastModDate: Date;
   size: number;
+  lastModDate: Date;
   statusTime: Date;
+  id: string;
 };

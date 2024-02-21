@@ -12,7 +12,14 @@ export const FellowshipShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Name" source="name" />
         <TextField label="Amount" source="amount" />
+        <TextField label="Status" source="status" />
+        <TextField label="Applied Date" source="appliedDate" />
+        <TextField label="Award Date" source="awardDate" />
+        <TextField label="Duration" source="duration" />
+        <TextField label="Datafile Id" source="datafileId" />
+        <TextField label="Short" source="short" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -20,14 +27,7 @@ export const FellowshipShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Applied Date" source="appliedDate" />
-        <TextField label="Award Date" source="awardDate" />
-        <TextField label="Datafile Id" source="datafileId" />
-        <TextField label="Duration" source="duration" />
         <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
-        <TextField label="Short" source="short" />
-        <TextField label="Status" source="status" />
       </SimpleShowLayout>
     </Show>
   );

@@ -1,8 +1,8 @@
 export type DecisionAoiRankCreateInput = {
-  decision: string;
   departmentId: number;
-  interestId: number;
-  luUsersUsertypesId: number;
   periodId: number;
+  interestId: number;
+  decision: string;
+  luUsersUsertypesId: number;
   ranking?: string | null;
 };

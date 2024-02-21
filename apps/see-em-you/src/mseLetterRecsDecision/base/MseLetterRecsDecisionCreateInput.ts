@@ -21,14 +21,6 @@ class MseLetterRecsDecisionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  algorithms!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   applicationId!: number;
 
   @ApiProperty({
@@ -37,15 +29,7 @@ class MseLetterRecsDecisionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  dataStructures!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  discrete!: number;
+  programId!: number;
 
   @ApiProperty({
     required: true,
@@ -61,7 +45,23 @@ class MseLetterRecsDecisionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  programId!: number;
+  discrete!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  algorithms!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  dataStructures!: number;
 }
 
 export { MseLetterRecsDecisionCreateInput as MseLetterRecsDecisionCreateInput };

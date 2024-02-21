@@ -2,7 +2,7 @@ import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniq
 import { ProgramModelWhereUniqueInput } from "../programModel/ProgramModelWhereUniqueInput";
 
 export type MlAreaUpdateInput = {
-  application?: ApplicationWhereUniqueInput;
   area?: string;
+  application?: ApplicationWhereUniqueInput;
   programs?: ProgramModelWhereUniqueInput;
 };

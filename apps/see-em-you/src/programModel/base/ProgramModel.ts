@@ -12,11 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
+  IsInt,
+  IsString,
   IsNumber,
   IsOptional,
   ValidateNested,
-  IsString,
-  IsInt,
 } from "class-validator";
 import { Decimal } from "decimal.js";
 import { Degree } from "../../degree/base/Degree";
@@ -33,63 +33,6 @@ class ProgramModel {
     required: true,
     type: Number,
   })
-  @IsNumber()
-  @Field(() => Float)
-  baseprice!: Decimal;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  basepriceLate!: Decimal | null;
-
-  @ApiProperty({
-    required: true,
-    type: () => Degree,
-  })
-  @ValidateNested()
-  @Type(() => Degree)
-  degree?: Degree;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  enabled!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: () => Fieldsofstudy,
-  })
-  @ValidateNested()
-  @Type(() => Fieldsofstudy)
-  fieldsofstudy?: Fieldsofstudy;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
   @IsInt()
   @Field(() => Number)
   id!: number;
@@ -101,52 +44,6 @@ class ProgramModel {
   @IsString()
   @Field(() => String)
   linkword!: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => [LuApplicationProgram],
-  })
-  @ValidateNested()
-  @Type(() => LuApplicationProgram)
-  @IsOptional()
-  luApplicationPrograms?: Array<LuApplicationProgram>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [MlArea],
-  })
-  @ValidateNested()
-  @Type(() => MlArea)
-  @IsOptional()
-  mlArea?: Array<MlArea>;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  oraclestring!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => [PaymentItem],
-  })
-  @ValidateNested()
-  @Type(() => PaymentItem)
-  @IsOptional()
-  paymentItem?: Array<PaymentItem>;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  prank!: number;
 
   @ApiProperty({
     required: true,
@@ -169,12 +66,36 @@ class ProgramModel {
 
   @ApiProperty({
     required: false,
-    type: () => [ProgramsApplicationreq],
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ProgramsApplicationreq)
+  @IsString()
   @IsOptional()
-  programsApplicationreqs?: Array<ProgramsApplicationreq>;
+  @Field(() => String, {
+    nullable: true,
+  })
+  description!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  url!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  oraclestring!: string | null;
 
   @ApiProperty({
     required: false,
@@ -188,6 +109,33 @@ class ProgramModel {
   registrationoraclestring!: string | null;
 
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsNumber()
+  @Field(() => Float)
+  baseprice!: Decimal;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  basepriceLate!: Decimal | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  prank!: number;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -196,7 +144,59 @@ class ProgramModel {
   @Field(() => String, {
     nullable: true,
   })
-  url!: string | null;
+  enabled!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => Degree,
+  })
+  @ValidateNested()
+  @Type(() => Degree)
+  degree?: Degree;
+
+  @ApiProperty({
+    required: true,
+    type: () => Fieldsofstudy,
+  })
+  @ValidateNested()
+  @Type(() => Fieldsofstudy)
+  fieldsofstudy?: Fieldsofstudy;
+
+  @ApiProperty({
+    required: false,
+    type: () => [LuApplicationProgram],
+  })
+  @ValidateNested()
+  @Type(() => LuApplicationProgram)
+  @IsOptional()
+  luApplicationPrograms?: Array<LuApplicationProgram>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [MlArea],
+  })
+  @ValidateNested()
+  @Type(() => MlArea)
+  @IsOptional()
+  mlArea?: Array<MlArea>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [PaymentItem],
+  })
+  @ValidateNested()
+  @Type(() => PaymentItem)
+  @IsOptional()
+  paymentItem?: Array<PaymentItem>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [ProgramsApplicationreq],
+  })
+  @ValidateNested()
+  @Type(() => ProgramsApplicationreq)
+  @IsOptional()
+  programsApplicationreqs?: Array<ProgramsApplicationreq>;
 }
 
 export { ProgramModel as ProgramModel };

@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqsCourseService } from "../mhciPrereqsCourse.service";
 import { MhciPrereqsCourseCreateInput } from "./MhciPrereqsCourseCreateInput";
-import { MhciPrereqsCourseWhereInput } from "./MhciPrereqsCourseWhereInput";
-import { MhciPrereqsCourseWhereUniqueInput } from "./MhciPrereqsCourseWhereUniqueInput";
-import { MhciPrereqsCourseFindManyArgs } from "./MhciPrereqsCourseFindManyArgs";
-import { MhciPrereqsCourseUpdateInput } from "./MhciPrereqsCourseUpdateInput";
 import { MhciPrereqsCourse } from "./MhciPrereqsCourse";
+import { MhciPrereqsCourseFindManyArgs } from "./MhciPrereqsCourseFindManyArgs";
+import { MhciPrereqsCourseWhereUniqueInput } from "./MhciPrereqsCourseWhereUniqueInput";
+import { MhciPrereqsCourseUpdateInput } from "./MhciPrereqsCourseUpdateInput";
 import { MhciPrereqsCourseDatafileFindManyArgs } from "../../mhciPrereqsCourseDatafile/base/MhciPrereqsCourseDatafileFindManyArgs";
 import { MhciPrereqsCourseDatafile } from "../../mhciPrereqsCourseDatafile/base/MhciPrereqsCourseDatafile";
 import { MhciPrereqsCourseDatafileWhereUniqueInput } from "../../mhciPrereqsCourseDatafile/base/MhciPrereqsCourseDatafileWhereUniqueInput";
@@ -31,10 +30,10 @@ export class MhciPrereqsCourseControllerBase {
   constructor(protected readonly service: MhciPrereqsCourseService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereqsCourse })
-  async create(
+  async createMhciPrereqsCourse(
     @common.Body() data: MhciPrereqsCourseCreateInput
   ): Promise<MhciPrereqsCourse> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsCourse({
       data: {
         ...data,
 
@@ -47,14 +46,20 @@ export class MhciPrereqsCourseControllerBase {
         },
       },
       select: {
+        course_type: true,
+        studentCourseName: true,
+        studentCourseTime: true,
+        studentCourseInstitution: true,
+        studentCourseGrade: true,
+        submittedToReviewer: true,
+        periodId: true,
+        programId: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        course_type: true,
-        id: true,
 
         luUsersUsertypes: {
           select: {
@@ -62,13 +67,7 @@ export class MhciPrereqsCourseControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        studentCourseGrade: true,
-        studentCourseInstitution: true,
-        studentCourseName: true,
-        studentCourseTime: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
   }
@@ -76,19 +75,27 @@ export class MhciPrereqsCourseControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereqsCourse] })
   @ApiNestedQuery(MhciPrereqsCourseFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MhciPrereqsCourse[]> {
+  async mhciPrereqsCourses(
+    @common.Req() request: Request
+  ): Promise<MhciPrereqsCourse[]> {
     const args = plainToClass(MhciPrereqsCourseFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciPrereqsCourses({
       ...args,
       select: {
+        course_type: true,
+        studentCourseName: true,
+        studentCourseTime: true,
+        studentCourseInstitution: true,
+        studentCourseGrade: true,
+        submittedToReviewer: true,
+        periodId: true,
+        programId: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        course_type: true,
-        id: true,
 
         luUsersUsertypes: {
           select: {
@@ -96,13 +103,7 @@ export class MhciPrereqsCourseControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        studentCourseGrade: true,
-        studentCourseInstitution: true,
-        studentCourseName: true,
-        studentCourseTime: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
   }
@@ -110,20 +111,26 @@ export class MhciPrereqsCourseControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereqsCourse(
     @common.Param() params: MhciPrereqsCourseWhereUniqueInput
   ): Promise<MhciPrereqsCourse | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereqsCourse({
       where: params,
       select: {
+        course_type: true,
+        studentCourseName: true,
+        studentCourseTime: true,
+        studentCourseInstitution: true,
+        studentCourseGrade: true,
+        submittedToReviewer: true,
+        periodId: true,
+        programId: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        course_type: true,
-        id: true,
 
         luUsersUsertypes: {
           select: {
@@ -131,13 +138,7 @@ export class MhciPrereqsCourseControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        studentCourseGrade: true,
-        studentCourseInstitution: true,
-        studentCourseName: true,
-        studentCourseTime: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -151,12 +152,12 @@ export class MhciPrereqsCourseControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereqsCourse(
     @common.Param() params: MhciPrereqsCourseWhereUniqueInput,
     @common.Body() data: MhciPrereqsCourseUpdateInput
   ): Promise<MhciPrereqsCourse | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsCourse({
         where: params,
         data: {
           ...data,
@@ -170,14 +171,20 @@ export class MhciPrereqsCourseControllerBase {
           },
         },
         select: {
+          course_type: true,
+          studentCourseName: true,
+          studentCourseTime: true,
+          studentCourseInstitution: true,
+          studentCourseGrade: true,
+          submittedToReviewer: true,
+          periodId: true,
+          programId: true,
+
           application: {
             select: {
               id: true,
             },
           },
-
-          course_type: true,
-          id: true,
 
           luUsersUsertypes: {
             select: {
@@ -185,13 +192,7 @@ export class MhciPrereqsCourseControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          studentCourseGrade: true,
-          studentCourseInstitution: true,
-          studentCourseName: true,
-          studentCourseTime: true,
-          submittedToReviewer: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -207,21 +208,27 @@ export class MhciPrereqsCourseControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsCourse })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereqsCourse(
     @common.Param() params: MhciPrereqsCourseWhereUniqueInput
   ): Promise<MhciPrereqsCourse | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereqsCourse({
         where: params,
         select: {
+          course_type: true,
+          studentCourseName: true,
+          studentCourseTime: true,
+          studentCourseInstitution: true,
+          studentCourseGrade: true,
+          submittedToReviewer: true,
+          periodId: true,
+          programId: true,
+
           application: {
             select: {
               id: true,
             },
           },
-
-          course_type: true,
-          id: true,
 
           luUsersUsertypes: {
             select: {
@@ -229,13 +236,7 @@ export class MhciPrereqsCourseControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          studentCourseGrade: true,
-          studentCourseInstitution: true,
-          studentCourseName: true,
-          studentCourseTime: true,
-          submittedToReviewer: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -250,7 +251,7 @@ export class MhciPrereqsCourseControllerBase {
 
   @common.Get("/:id/mhciPrereqsCourseDatafiles")
   @ApiNestedQuery(MhciPrereqsCourseDatafileFindManyArgs)
-  async findManyMhciPrereqsCourseDatafiles(
+  async findMhciPrereqsCourseDatafiles(
     @common.Req() request: Request,
     @common.Param() params: MhciPrereqsCourseWhereUniqueInput
   ): Promise<MhciPrereqsCourseDatafile[]> {
@@ -264,7 +265,9 @@ export class MhciPrereqsCourseControllerBase {
         ...query,
         select: {
           datafileinfoId: true,
-          id: true,
+          note: true,
+          submittedToReviewer: true,
+          newFileUploaded: true,
 
           mhciPrereqsCourses: {
             select: {
@@ -272,9 +275,7 @@ export class MhciPrereqsCourseControllerBase {
             },
           },
 
-          newFileUploaded: true,
-          note: true,
-          submittedToReviewer: true,
+          id: true,
         },
       }
     );
@@ -296,7 +297,7 @@ export class MhciPrereqsCourseControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateMhciPrereqsCourse({
       where: params,
       data,
       select: { id: true },
@@ -313,7 +314,7 @@ export class MhciPrereqsCourseControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateMhciPrereqsCourse({
       where: params,
       data,
       select: { id: true },
@@ -330,7 +331,7 @@ export class MhciPrereqsCourseControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateMhciPrereqsCourse({
       where: params,
       data,
       select: { id: true },

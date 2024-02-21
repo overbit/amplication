@@ -1,9 +1,9 @@
 import { Application } from "../application/Application";
 
 export type LuApplicationAppreq = {
-  application?: Application;
-  completed: boolean;
-  id: number;
-  lastModified: Date;
   reqId: number;
+  lastModified: Date;
+  completed: boolean;
+  application?: Application;
+  id: number;
 };

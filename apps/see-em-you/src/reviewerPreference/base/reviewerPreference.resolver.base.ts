@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReviewerPreferenceArgs } from "./CreateReviewerPreferenceArgs";
-import { UpdateReviewerPreferenceArgs } from "./UpdateReviewerPreferenceArgs";
-import { DeleteReviewerPreferenceArgs } from "./DeleteReviewerPreferenceArgs";
+import { ReviewerPreference } from "./ReviewerPreference";
 import { ReviewerPreferenceCountArgs } from "./ReviewerPreferenceCountArgs";
 import { ReviewerPreferenceFindManyArgs } from "./ReviewerPreferenceFindManyArgs";
 import { ReviewerPreferenceFindUniqueArgs } from "./ReviewerPreferenceFindUniqueArgs";
-import { ReviewerPreference } from "./ReviewerPreference";
+import { CreateReviewerPreferenceArgs } from "./CreateReviewerPreferenceArgs";
+import { UpdateReviewerPreferenceArgs } from "./UpdateReviewerPreferenceArgs";
+import { DeleteReviewerPreferenceArgs } from "./DeleteReviewerPreferenceArgs";
 import { ReviewerPreferenceService } from "../reviewerPreference.service";
 @graphql.Resolver(() => ReviewerPreference)
 export class ReviewerPreferenceResolverBase {
@@ -38,14 +38,14 @@ export class ReviewerPreferenceResolverBase {
   async reviewerPreferences(
     @graphql.Args() args: ReviewerPreferenceFindManyArgs
   ): Promise<ReviewerPreference[]> {
-    return this.service.findMany(args);
+    return this.service.reviewerPreferences(args);
   }
 
   @graphql.Query(() => ReviewerPreference, { nullable: true })
   async reviewerPreference(
     @graphql.Args() args: ReviewerPreferenceFindUniqueArgs
   ): Promise<ReviewerPreference | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reviewerPreference(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ReviewerPreferenceResolverBase {
   async createReviewerPreference(
     @graphql.Args() args: CreateReviewerPreferenceArgs
   ): Promise<ReviewerPreference> {
-    return await this.service.create({
+    return await this.service.createReviewerPreference({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ReviewerPreferenceResolverBase {
     @graphql.Args() args: UpdateReviewerPreferenceArgs
   ): Promise<ReviewerPreference | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewerPreference({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ReviewerPreferenceResolverBase {
     @graphql.Args() args: DeleteReviewerPreferenceArgs
   ): Promise<ReviewerPreference | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReviewerPreference(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

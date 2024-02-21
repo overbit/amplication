@@ -1,4 +1,4 @@
 export type Recommendationtype = {
-  id: number;
   name: string;
+  id: number;
 };

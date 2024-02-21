@@ -1,12 +1,12 @@
 export type MergeDatafile = {
+  mergeId: number;
+  datafileinfoId: number;
   converted: boolean | null;
   convertError: number | null;
   convertMessage: string | null;
-  datafileinfoId: number;
-  id: string;
+  mergeFilename: string | null;
   merged: boolean | null;
   mergeError: number | null;
-  mergeFilename: string | null;
-  mergeId: number;
   mergeMessage: string | null;
+  id: string;
 };

@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DegreeService } from "../degree.service";
 import { DegreeCreateInput } from "./DegreeCreateInput";
-import { DegreeWhereInput } from "./DegreeWhereInput";
-import { DegreeWhereUniqueInput } from "./DegreeWhereUniqueInput";
-import { DegreeFindManyArgs } from "./DegreeFindManyArgs";
-import { DegreeUpdateInput } from "./DegreeUpdateInput";
 import { Degree } from "./Degree";
+import { DegreeFindManyArgs } from "./DegreeFindManyArgs";
+import { DegreeWhereUniqueInput } from "./DegreeWhereUniqueInput";
+import { DegreeUpdateInput } from "./DegreeUpdateInput";
 import { ProgramModelFindManyArgs } from "../../programModel/base/ProgramModelFindManyArgs";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
 import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
@@ -31,13 +30,13 @@ export class DegreeControllerBase {
   constructor(protected readonly service: DegreeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Degree })
-  async create(@common.Body() data: DegreeCreateInput): Promise<Degree> {
-    return await this.service.create({
+  async createDegree(@common.Body() data: DegreeCreateInput): Promise<Degree> {
+    return await this.service.createDegree({
       data: data,
       select: {
-        id: true,
         name: true,
         short: true,
+        id: true,
       },
     });
   }
@@ -45,14 +44,14 @@ export class DegreeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Degree] })
   @ApiNestedQuery(DegreeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Degree[]> {
+  async degrees(@common.Req() request: Request): Promise<Degree[]> {
     const args = plainToClass(DegreeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.degrees({
       ...args,
       select: {
-        id: true,
         name: true,
         short: true,
+        id: true,
       },
     });
   }
@@ -60,15 +59,15 @@ export class DegreeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Degree })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async degree(
     @common.Param() params: DegreeWhereUniqueInput
   ): Promise<Degree | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.degree({
       where: params,
       select: {
-        id: true,
         name: true,
         short: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -82,18 +81,18 @@ export class DegreeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Degree })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDegree(
     @common.Param() params: DegreeWhereUniqueInput,
     @common.Body() data: DegreeUpdateInput
   ): Promise<Degree | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDegree({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
           short: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -109,16 +108,16 @@ export class DegreeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Degree })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDegree(
     @common.Param() params: DegreeWhereUniqueInput
   ): Promise<Degree | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDegree({
         where: params,
         select: {
-          id: true,
           name: true,
           short: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -133,7 +132,7 @@ export class DegreeControllerBase {
 
   @common.Get("/:id/programs")
   @ApiNestedQuery(ProgramModelFindManyArgs)
-  async findManyPrograms(
+  async findPrograms(
     @common.Req() request: Request,
     @common.Param() params: DegreeWhereUniqueInput
   ): Promise<ProgramModel[]> {
@@ -141,8 +140,18 @@ export class DegreeControllerBase {
     const results = await this.service.findPrograms(params.id, {
       ...query,
       select: {
+        id: true,
+        linkword: true,
+        programprice: true,
+        programpriceLate: true,
+        description: true,
+        url: true,
+        oraclestring: true,
+        registrationoraclestring: true,
         baseprice: true,
         basepriceLate: true,
+        prank: true,
+        enabled: true,
 
         degree: {
           select: {
@@ -150,23 +159,11 @@ export class DegreeControllerBase {
           },
         },
 
-        description: true,
-        enabled: true,
-
         fieldsofstudy: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        linkword: true,
-        oraclestring: true,
-        prank: true,
-        programprice: true,
-        programpriceLate: true,
-        registrationoraclestring: true,
-        url: true,
       },
     });
     if (results === null) {
@@ -187,7 +184,7 @@ export class DegreeControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDegree({
       where: params,
       data,
       select: { id: true },
@@ -204,7 +201,7 @@ export class DegreeControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDegree({
       where: params,
       data,
       select: { id: true },
@@ -221,7 +218,7 @@ export class DegreeControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateDegree({
       where: params,
       data,
       select: { id: true },

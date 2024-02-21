@@ -18,35 +18,36 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { GrescoreService } from "../grescore.service";
 import { GrescoreCreateInput } from "./GrescoreCreateInput";
-import { GrescoreWhereInput } from "./GrescoreWhereInput";
-import { GrescoreWhereUniqueInput } from "./GrescoreWhereUniqueInput";
-import { GrescoreFindManyArgs } from "./GrescoreFindManyArgs";
-import { GrescoreUpdateInput } from "./GrescoreUpdateInput";
 import { Grescore } from "./Grescore";
+import { GrescoreFindManyArgs } from "./GrescoreFindManyArgs";
+import { GrescoreWhereUniqueInput } from "./GrescoreWhereUniqueInput";
+import { GrescoreUpdateInput } from "./GrescoreUpdateInput";
 
 export class GrescoreControllerBase {
   constructor(protected readonly service: GrescoreService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Grescore })
-  async create(@common.Body() data: GrescoreCreateInput): Promise<Grescore> {
-    return await this.service.create({
+  async createGrescore(
+    @common.Body() data: GrescoreCreateInput
+  ): Promise<Grescore> {
+    return await this.service.createGrescore({
       data: data,
       select: {
-        analyticalpercentile: true,
-        analyticalscore: true,
-        analyticalwritingpercentile: true,
-        analyticalwritingscore: true,
         applicationId: true,
-        athome: true,
+        testdate: true,
+        verbalscore: true,
+        verbalpercentile: true,
+        quantitativescore: true,
+        quantitativepercentile: true,
+        analyticalscore: true,
+        analyticalpercentile: true,
+        analyticalwritingscore: true,
+        analyticalwritingpercentile: true,
+        scorereceived: true,
         datafileId: true,
+        athome: true,
         greEmail: true,
         id: true,
-        quantitativepercentile: true,
-        quantitativescore: true,
-        scorereceived: true,
-        testdate: true,
-        verbalpercentile: true,
-        verbalscore: true,
       },
     });
   }
@@ -54,26 +55,26 @@ export class GrescoreControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Grescore] })
   @ApiNestedQuery(GrescoreFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Grescore[]> {
+  async grescores(@common.Req() request: Request): Promise<Grescore[]> {
     const args = plainToClass(GrescoreFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.grescores({
       ...args,
       select: {
-        analyticalpercentile: true,
-        analyticalscore: true,
-        analyticalwritingpercentile: true,
-        analyticalwritingscore: true,
         applicationId: true,
-        athome: true,
+        testdate: true,
+        verbalscore: true,
+        verbalpercentile: true,
+        quantitativescore: true,
+        quantitativepercentile: true,
+        analyticalscore: true,
+        analyticalpercentile: true,
+        analyticalwritingscore: true,
+        analyticalwritingpercentile: true,
+        scorereceived: true,
         datafileId: true,
+        athome: true,
         greEmail: true,
         id: true,
-        quantitativepercentile: true,
-        quantitativescore: true,
-        scorereceived: true,
-        testdate: true,
-        verbalpercentile: true,
-        verbalscore: true,
       },
     });
   }
@@ -81,27 +82,27 @@ export class GrescoreControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Grescore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async grescore(
     @common.Param() params: GrescoreWhereUniqueInput
   ): Promise<Grescore | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.grescore({
       where: params,
       select: {
-        analyticalpercentile: true,
-        analyticalscore: true,
-        analyticalwritingpercentile: true,
-        analyticalwritingscore: true,
         applicationId: true,
-        athome: true,
+        testdate: true,
+        verbalscore: true,
+        verbalpercentile: true,
+        quantitativescore: true,
+        quantitativepercentile: true,
+        analyticalscore: true,
+        analyticalpercentile: true,
+        analyticalwritingscore: true,
+        analyticalwritingpercentile: true,
+        scorereceived: true,
         datafileId: true,
+        athome: true,
         greEmail: true,
         id: true,
-        quantitativepercentile: true,
-        quantitativescore: true,
-        scorereceived: true,
-        testdate: true,
-        verbalpercentile: true,
-        verbalscore: true,
       },
     });
     if (result === null) {
@@ -115,30 +116,30 @@ export class GrescoreControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Grescore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateGrescore(
     @common.Param() params: GrescoreWhereUniqueInput,
     @common.Body() data: GrescoreUpdateInput
   ): Promise<Grescore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGrescore({
         where: params,
         data: data,
         select: {
-          analyticalpercentile: true,
-          analyticalscore: true,
-          analyticalwritingpercentile: true,
-          analyticalwritingscore: true,
           applicationId: true,
-          athome: true,
+          testdate: true,
+          verbalscore: true,
+          verbalpercentile: true,
+          quantitativescore: true,
+          quantitativepercentile: true,
+          analyticalscore: true,
+          analyticalpercentile: true,
+          analyticalwritingscore: true,
+          analyticalwritingpercentile: true,
+          scorereceived: true,
           datafileId: true,
+          athome: true,
           greEmail: true,
           id: true,
-          quantitativepercentile: true,
-          quantitativescore: true,
-          scorereceived: true,
-          testdate: true,
-          verbalpercentile: true,
-          verbalscore: true,
         },
       });
     } catch (error) {
@@ -154,28 +155,28 @@ export class GrescoreControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Grescore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteGrescore(
     @common.Param() params: GrescoreWhereUniqueInput
   ): Promise<Grescore | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteGrescore({
         where: params,
         select: {
-          analyticalpercentile: true,
-          analyticalscore: true,
-          analyticalwritingpercentile: true,
-          analyticalwritingscore: true,
           applicationId: true,
-          athome: true,
+          testdate: true,
+          verbalscore: true,
+          verbalpercentile: true,
+          quantitativescore: true,
+          quantitativepercentile: true,
+          analyticalscore: true,
+          analyticalpercentile: true,
+          analyticalwritingscore: true,
+          analyticalwritingpercentile: true,
+          scorereceived: true,
           datafileId: true,
+          athome: true,
           greEmail: true,
           id: true,
-          quantitativepercentile: true,
-          quantitativescore: true,
-          scorereceived: true,
-          testdate: true,
-          verbalpercentile: true,
-          verbalscore: true,
         },
       });
     } catch (error) {

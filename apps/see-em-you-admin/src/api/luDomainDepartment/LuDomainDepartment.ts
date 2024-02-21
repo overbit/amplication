@@ -1,6 +1,6 @@
 export type LuDomainDepartment = {
-  departmentId: number;
   domainId: number;
+  departmentId: number;
   drank: number;
   id: number;
 };

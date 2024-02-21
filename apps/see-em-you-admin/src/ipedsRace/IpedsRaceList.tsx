@@ -12,9 +12,9 @@ export const IpedsRaceList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Ipeds Race" source="ipedsRace" />
         <TextField label="Sort Order" source="sortOrder" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

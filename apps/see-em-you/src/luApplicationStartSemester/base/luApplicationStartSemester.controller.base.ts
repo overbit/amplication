@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuApplicationStartSemesterService } from "../luApplicationStartSemester.service";
 import { LuApplicationStartSemesterCreateInput } from "./LuApplicationStartSemesterCreateInput";
-import { LuApplicationStartSemesterWhereInput } from "./LuApplicationStartSemesterWhereInput";
-import { LuApplicationStartSemesterWhereUniqueInput } from "./LuApplicationStartSemesterWhereUniqueInput";
-import { LuApplicationStartSemesterFindManyArgs } from "./LuApplicationStartSemesterFindManyArgs";
-import { LuApplicationStartSemesterUpdateInput } from "./LuApplicationStartSemesterUpdateInput";
 import { LuApplicationStartSemester } from "./LuApplicationStartSemester";
+import { LuApplicationStartSemesterFindManyArgs } from "./LuApplicationStartSemesterFindManyArgs";
+import { LuApplicationStartSemesterWhereUniqueInput } from "./LuApplicationStartSemesterWhereUniqueInput";
+import { LuApplicationStartSemesterUpdateInput } from "./LuApplicationStartSemesterUpdateInput";
 
 export class LuApplicationStartSemesterControllerBase {
   constructor(protected readonly service: LuApplicationStartSemesterService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuApplicationStartSemester })
-  async create(
+  async createLuApplicationStartSemester(
     @common.Body() data: LuApplicationStartSemesterCreateInput
   ): Promise<LuApplicationStartSemester> {
-    return await this.service.create({
+    return await this.service.createLuApplicationStartSemester({
       data: {
         ...data,
 
@@ -40,6 +39,9 @@ export class LuApplicationStartSemesterControllerBase {
         },
       },
       select: {
+        semester: true,
+        year: true,
+
         application: {
           select: {
             id: true,
@@ -47,8 +49,6 @@ export class LuApplicationStartSemesterControllerBase {
         },
 
         id: true,
-        semester: true,
-        year: true,
       },
     });
   }
@@ -56,16 +56,19 @@ export class LuApplicationStartSemesterControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuApplicationStartSemester] })
   @ApiNestedQuery(LuApplicationStartSemesterFindManyArgs)
-  async findMany(
+  async luApplicationStartSemesters(
     @common.Req() request: Request
   ): Promise<LuApplicationStartSemester[]> {
     const args = plainToClass(
       LuApplicationStartSemesterFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.luApplicationStartSemesters({
       ...args,
       select: {
+        semester: true,
+        year: true,
+
         application: {
           select: {
             id: true,
@@ -73,8 +76,6 @@ export class LuApplicationStartSemesterControllerBase {
         },
 
         id: true,
-        semester: true,
-        year: true,
       },
     });
   }
@@ -82,12 +83,15 @@ export class LuApplicationStartSemesterControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationStartSemester })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luApplicationStartSemester(
     @common.Param() params: LuApplicationStartSemesterWhereUniqueInput
   ): Promise<LuApplicationStartSemester | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luApplicationStartSemester({
       where: params,
       select: {
+        semester: true,
+        year: true,
+
         application: {
           select: {
             id: true,
@@ -95,8 +99,6 @@ export class LuApplicationStartSemesterControllerBase {
         },
 
         id: true,
-        semester: true,
-        year: true,
       },
     });
     if (result === null) {
@@ -110,12 +112,12 @@ export class LuApplicationStartSemesterControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationStartSemester })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuApplicationStartSemester(
     @common.Param() params: LuApplicationStartSemesterWhereUniqueInput,
     @common.Body() data: LuApplicationStartSemesterUpdateInput
   ): Promise<LuApplicationStartSemester | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationStartSemester({
         where: params,
         data: {
           ...data,
@@ -125,6 +127,9 @@ export class LuApplicationStartSemesterControllerBase {
           },
         },
         select: {
+          semester: true,
+          year: true,
+
           application: {
             select: {
               id: true,
@@ -132,8 +137,6 @@ export class LuApplicationStartSemesterControllerBase {
           },
 
           id: true,
-          semester: true,
-          year: true,
         },
       });
     } catch (error) {
@@ -149,13 +152,16 @@ export class LuApplicationStartSemesterControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationStartSemester })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuApplicationStartSemester(
     @common.Param() params: LuApplicationStartSemesterWhereUniqueInput
   ): Promise<LuApplicationStartSemester | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuApplicationStartSemester({
         where: params,
         select: {
+          semester: true,
+          year: true,
+
           application: {
             select: {
               id: true,
@@ -163,8 +169,6 @@ export class LuApplicationStartSemesterControllerBase {
           },
 
           id: true,
-          semester: true,
-          year: true,
         },
       });
     } catch (error) {

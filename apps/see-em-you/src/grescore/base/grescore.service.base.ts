@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Grescore } from "@prisma/client";
+import { Prisma, Grescore as PrismaGrescore } from "@prisma/client";
 
 export class GrescoreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class GrescoreServiceBase {
     return this.prisma.grescore.count(args);
   }
 
-  async findMany<T extends Prisma.GrescoreFindManyArgs>(
+  async grescores<T extends Prisma.GrescoreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreFindManyArgs>
-  ): Promise<Grescore[]> {
+  ): Promise<PrismaGrescore[]> {
     return this.prisma.grescore.findMany(args);
   }
-  async findOne<T extends Prisma.GrescoreFindUniqueArgs>(
+  async grescore<T extends Prisma.GrescoreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreFindUniqueArgs>
-  ): Promise<Grescore | null> {
+  ): Promise<PrismaGrescore | null> {
     return this.prisma.grescore.findUnique(args);
   }
-  async create<T extends Prisma.GrescoreCreateArgs>(
+  async createGrescore<T extends Prisma.GrescoreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreCreateArgs>
-  ): Promise<Grescore> {
+  ): Promise<PrismaGrescore> {
     return this.prisma.grescore.create<T>(args);
   }
-  async update<T extends Prisma.GrescoreUpdateArgs>(
+  async updateGrescore<T extends Prisma.GrescoreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreUpdateArgs>
-  ): Promise<Grescore> {
+  ): Promise<PrismaGrescore> {
     return this.prisma.grescore.update<T>(args);
   }
-  async delete<T extends Prisma.GrescoreDeleteArgs>(
+  async deleteGrescore<T extends Prisma.GrescoreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.GrescoreDeleteArgs>
-  ): Promise<Grescore> {
+  ): Promise<PrismaGrescore> {
     return this.prisma.grescore.delete(args);
   }
 }

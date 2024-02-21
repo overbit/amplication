@@ -1,1 +1,5 @@
-export type MhciSlateAppSchoolWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type MhciSlateAppSchoolWhereInput = {
+  id?: StringFilter;
+};

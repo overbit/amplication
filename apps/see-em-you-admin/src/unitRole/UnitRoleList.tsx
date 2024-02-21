@@ -12,11 +12,11 @@ export const UnitRoleList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
-        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
-        <TextField label="Role Id" source="roleId" />
         <TextField label="Unit Id" source="unitId" />
         <TextField label="Users Id" source="usersId" />
+        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Role Id" source="roleId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

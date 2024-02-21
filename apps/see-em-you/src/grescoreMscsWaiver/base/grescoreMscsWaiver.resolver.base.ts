@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGrescoreMscsWaiverArgs } from "./CreateGrescoreMscsWaiverArgs";
-import { UpdateGrescoreMscsWaiverArgs } from "./UpdateGrescoreMscsWaiverArgs";
-import { DeleteGrescoreMscsWaiverArgs } from "./DeleteGrescoreMscsWaiverArgs";
+import { GrescoreMscsWaiver } from "./GrescoreMscsWaiver";
 import { GrescoreMscsWaiverCountArgs } from "./GrescoreMscsWaiverCountArgs";
 import { GrescoreMscsWaiverFindManyArgs } from "./GrescoreMscsWaiverFindManyArgs";
 import { GrescoreMscsWaiverFindUniqueArgs } from "./GrescoreMscsWaiverFindUniqueArgs";
-import { GrescoreMscsWaiver } from "./GrescoreMscsWaiver";
+import { CreateGrescoreMscsWaiverArgs } from "./CreateGrescoreMscsWaiverArgs";
+import { UpdateGrescoreMscsWaiverArgs } from "./UpdateGrescoreMscsWaiverArgs";
+import { DeleteGrescoreMscsWaiverArgs } from "./DeleteGrescoreMscsWaiverArgs";
 import { GrescoreMscsWaiverService } from "../grescoreMscsWaiver.service";
 @graphql.Resolver(() => GrescoreMscsWaiver)
 export class GrescoreMscsWaiverResolverBase {
@@ -38,14 +38,14 @@ export class GrescoreMscsWaiverResolverBase {
   async grescoreMscsWaivers(
     @graphql.Args() args: GrescoreMscsWaiverFindManyArgs
   ): Promise<GrescoreMscsWaiver[]> {
-    return this.service.findMany(args);
+    return this.service.grescoreMscsWaivers(args);
   }
 
   @graphql.Query(() => GrescoreMscsWaiver, { nullable: true })
   async grescoreMscsWaiver(
     @graphql.Args() args: GrescoreMscsWaiverFindUniqueArgs
   ): Promise<GrescoreMscsWaiver | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.grescoreMscsWaiver(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class GrescoreMscsWaiverResolverBase {
   async createGrescoreMscsWaiver(
     @graphql.Args() args: CreateGrescoreMscsWaiverArgs
   ): Promise<GrescoreMscsWaiver> {
-    return await this.service.create({
+    return await this.service.createGrescoreMscsWaiver({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class GrescoreMscsWaiverResolverBase {
     @graphql.Args() args: UpdateGrescoreMscsWaiverArgs
   ): Promise<GrescoreMscsWaiver | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGrescoreMscsWaiver({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class GrescoreMscsWaiverResolverBase {
     @graphql.Args() args: DeleteGrescoreMscsWaiverArgs
   ): Promise<GrescoreMscsWaiver | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGrescoreMscsWaiver(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

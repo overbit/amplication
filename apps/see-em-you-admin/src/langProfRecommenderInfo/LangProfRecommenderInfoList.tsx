@@ -14,15 +14,15 @@ export const LangProfRecommenderInfoList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Rec User Id" source="recUserId" />
+        <TextField label="Title" source="title" />
         <TextField label="Affiliation" source="affiliation" />
-        <TextField label="Id" source="id" />
+        <TextField label="Phone" source="phone" />
         <TextField
           label="Language Specialization"
           source="languageSpecialization"
         />
-        <TextField label="Phone" source="phone" />
-        <TextField label="Rec User Id" source="recUserId" />
-        <TextField label="Title" source="title" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

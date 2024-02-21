@@ -18,30 +18,30 @@ import { FieldsofstudyService } from "../fieldsofstudy.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   name: "exampleName",
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   name: "exampleName",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     name: "exampleName",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   name: "exampleName",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createFieldsofstudy() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  fieldsofstudies: () => FIND_MANY_RESULT,
+  fieldsofstudy: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

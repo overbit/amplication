@@ -3,9 +3,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  BooleanInput,
-  TextInput,
   NumberInput,
+  TextInput,
+  BooleanInput,
 } from "react-admin";
 
 export const MhciPrereqsReviewerEdit = (
@@ -14,10 +14,10 @@ export const MhciPrereqsReviewerEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <BooleanInput label="Email Notification" source="emailNotification" />
-        <TextInput label="Placeout Period Id" source="placeoutPeriodId" />
-        <TextInput label="Prereq Type" source="prereqType" />
         <NumberInput step={1} label="Reviewer Luu Id" source="reviewerLuuId" />
+        <TextInput label="Prereq Type" source="prereqType" />
+        <TextInput label="Placeout Period Id" source="placeoutPeriodId" />
+        <BooleanInput label="Email Notification" source="emailNotification" />
       </SimpleForm>
     </Edit>
   );

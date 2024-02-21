@@ -1,4 +1,4 @@
 export type AdvisorCreateInput = {
-  departmentId: number;
   userId: number;
+  departmentId: number;
 };

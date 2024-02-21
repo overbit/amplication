@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Interest } from "@prisma/client";
+import { Prisma, Interest as PrismaInterest } from "@prisma/client";
 
 export class InterestServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class InterestServiceBase {
     return this.prisma.interest.count(args);
   }
 
-  async findMany<T extends Prisma.InterestFindManyArgs>(
+  async interests<T extends Prisma.InterestFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.InterestFindManyArgs>
-  ): Promise<Interest[]> {
+  ): Promise<PrismaInterest[]> {
     return this.prisma.interest.findMany(args);
   }
-  async findOne<T extends Prisma.InterestFindUniqueArgs>(
+  async interest<T extends Prisma.InterestFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.InterestFindUniqueArgs>
-  ): Promise<Interest | null> {
+  ): Promise<PrismaInterest | null> {
     return this.prisma.interest.findUnique(args);
   }
-  async create<T extends Prisma.InterestCreateArgs>(
+  async createInterest<T extends Prisma.InterestCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.InterestCreateArgs>
-  ): Promise<Interest> {
+  ): Promise<PrismaInterest> {
     return this.prisma.interest.create<T>(args);
   }
-  async update<T extends Prisma.InterestUpdateArgs>(
+  async updateInterest<T extends Prisma.InterestUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.InterestUpdateArgs>
-  ): Promise<Interest> {
+  ): Promise<PrismaInterest> {
     return this.prisma.interest.update<T>(args);
   }
-  async delete<T extends Prisma.InterestDeleteArgs>(
+  async deleteInterest<T extends Prisma.InterestDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.InterestDeleteArgs>
-  ): Promise<Interest> {
+  ): Promise<PrismaInterest> {
     return this.prisma.interest.delete(args);
   }
 }

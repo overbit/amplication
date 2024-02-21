@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateProgramArgs } from "./CreateSlateProgramArgs";
-import { UpdateSlateProgramArgs } from "./UpdateSlateProgramArgs";
-import { DeleteSlateProgramArgs } from "./DeleteSlateProgramArgs";
+import { SlateProgram } from "./SlateProgram";
 import { SlateProgramCountArgs } from "./SlateProgramCountArgs";
 import { SlateProgramFindManyArgs } from "./SlateProgramFindManyArgs";
 import { SlateProgramFindUniqueArgs } from "./SlateProgramFindUniqueArgs";
-import { SlateProgram } from "./SlateProgram";
+import { CreateSlateProgramArgs } from "./CreateSlateProgramArgs";
+import { UpdateSlateProgramArgs } from "./UpdateSlateProgramArgs";
+import { DeleteSlateProgramArgs } from "./DeleteSlateProgramArgs";
 import { SlateProgramService } from "../slateProgram.service";
 @graphql.Resolver(() => SlateProgram)
 export class SlateProgramResolverBase {
@@ -38,14 +38,14 @@ export class SlateProgramResolverBase {
   async slatePrograms(
     @graphql.Args() args: SlateProgramFindManyArgs
   ): Promise<SlateProgram[]> {
-    return this.service.findMany(args);
+    return this.service.slatePrograms(args);
   }
 
   @graphql.Query(() => SlateProgram, { nullable: true })
   async slateProgram(
     @graphql.Args() args: SlateProgramFindUniqueArgs
   ): Promise<SlateProgram | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateProgram(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateProgramResolverBase {
   async createSlateProgram(
     @graphql.Args() args: CreateSlateProgramArgs
   ): Promise<SlateProgram> {
-    return await this.service.create({
+    return await this.service.createSlateProgram({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateProgramResolverBase {
     @graphql.Args() args: UpdateSlateProgramArgs
   ): Promise<SlateProgram | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateProgram({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateProgramResolverBase {
     @graphql.Args() args: DeleteSlateProgramArgs
   ): Promise<SlateProgram | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateProgram(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

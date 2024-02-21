@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Disability } from "@prisma/client";
+import { Prisma, Disability as PrismaDisability } from "@prisma/client";
 
 export class DisabilityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DisabilityServiceBase {
     return this.prisma.disability.count(args);
   }
 
-  async findMany<T extends Prisma.DisabilityFindManyArgs>(
+  async disabilities<T extends Prisma.DisabilityFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityFindManyArgs>
-  ): Promise<Disability[]> {
+  ): Promise<PrismaDisability[]> {
     return this.prisma.disability.findMany(args);
   }
-  async findOne<T extends Prisma.DisabilityFindUniqueArgs>(
+  async disability<T extends Prisma.DisabilityFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityFindUniqueArgs>
-  ): Promise<Disability | null> {
+  ): Promise<PrismaDisability | null> {
     return this.prisma.disability.findUnique(args);
   }
-  async create<T extends Prisma.DisabilityCreateArgs>(
+  async createDisability<T extends Prisma.DisabilityCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityCreateArgs>
-  ): Promise<Disability> {
+  ): Promise<PrismaDisability> {
     return this.prisma.disability.create<T>(args);
   }
-  async update<T extends Prisma.DisabilityUpdateArgs>(
+  async updateDisability<T extends Prisma.DisabilityUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityUpdateArgs>
-  ): Promise<Disability> {
+  ): Promise<PrismaDisability> {
     return this.prisma.disability.update<T>(args);
   }
-  async delete<T extends Prisma.DisabilityDeleteArgs>(
+  async deleteDisability<T extends Prisma.DisabilityDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityDeleteArgs>
-  ): Promise<Disability> {
+  ): Promise<PrismaDisability> {
     return this.prisma.disability.delete(args);
   }
 }

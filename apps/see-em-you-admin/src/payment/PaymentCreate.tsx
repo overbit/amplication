@@ -4,10 +4,10 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  ReferenceInput,
-  SelectInput,
   NumberInput,
   DateTimeInput,
+  SelectInput,
+  ReferenceInput,
 } from "react-admin";
 
 import { ApplicationTitle } from "../application/ApplicationTitle";
@@ -17,16 +17,9 @@ export const PaymentCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="application.id"
-          reference="Application"
-          label="Application"
-        >
-          <SelectInput optionText={ApplicationTitle} />
-        </ReferenceInput>
-        <NumberInput step={1} label="Last Mod User Id" source="lastModUserId" />
-        <NumberInput label="Payment Amount" source="paymentAmount" />
         <NumberInput step={1} label="Payment Id" source="paymentId" />
+        <NumberInput step={1} label="Payment Type" source="paymentType" />
+        <NumberInput label="Payment Amount" source="paymentAmount" />
         <DateTimeInput label="Payment Intent Date" source="paymentIntentDate" />
         <SelectInput
           source="payment_status"
@@ -40,7 +33,14 @@ export const PaymentCreate = (props: CreateProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <NumberInput step={1} label="Payment Type" source="paymentType" />
+        <NumberInput step={1} label="Last Mod User Id" source="lastModUserId" />
+        <ReferenceInput
+          source="application.id"
+          reference="Application"
+          label="Application"
+        >
+          <SelectInput optionText={ApplicationTitle} />
+        </ReferenceInput>
         <ReferenceInput
           source="paymentVoucher.id"
           reference="PaymentVoucher"

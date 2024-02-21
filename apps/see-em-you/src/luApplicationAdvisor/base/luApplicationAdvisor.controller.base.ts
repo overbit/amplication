@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuApplicationAdvisorService } from "../luApplicationAdvisor.service";
 import { LuApplicationAdvisorCreateInput } from "./LuApplicationAdvisorCreateInput";
-import { LuApplicationAdvisorWhereInput } from "./LuApplicationAdvisorWhereInput";
-import { LuApplicationAdvisorWhereUniqueInput } from "./LuApplicationAdvisorWhereUniqueInput";
-import { LuApplicationAdvisorFindManyArgs } from "./LuApplicationAdvisorFindManyArgs";
-import { LuApplicationAdvisorUpdateInput } from "./LuApplicationAdvisorUpdateInput";
 import { LuApplicationAdvisor } from "./LuApplicationAdvisor";
+import { LuApplicationAdvisorFindManyArgs } from "./LuApplicationAdvisorFindManyArgs";
+import { LuApplicationAdvisorWhereUniqueInput } from "./LuApplicationAdvisorWhereUniqueInput";
+import { LuApplicationAdvisorUpdateInput } from "./LuApplicationAdvisorUpdateInput";
 
 export class LuApplicationAdvisorControllerBase {
   constructor(protected readonly service: LuApplicationAdvisorService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuApplicationAdvisor })
-  async create(
+  async createLuApplicationAdvisor(
     @common.Body() data: LuApplicationAdvisorCreateInput
   ): Promise<LuApplicationAdvisor> {
-    return await this.service.create({
+    return await this.service.createLuApplicationAdvisor({
       data: {
         ...data,
 
@@ -40,8 +39,11 @@ export class LuApplicationAdvisorControllerBase {
         },
       },
       select: {
-        advisorType: true,
         advisorUserId: true,
+        advisorType: true,
+        name: true,
+        programId: true,
+        choice: true,
 
         application: {
           select: {
@@ -49,10 +51,7 @@ export class LuApplicationAdvisorControllerBase {
           },
         },
 
-        choice: true,
         id: true,
-        name: true,
-        programId: true,
       },
     });
   }
@@ -60,15 +59,18 @@ export class LuApplicationAdvisorControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuApplicationAdvisor] })
   @ApiNestedQuery(LuApplicationAdvisorFindManyArgs)
-  async findMany(
+  async luApplicationAdvisors(
     @common.Req() request: Request
   ): Promise<LuApplicationAdvisor[]> {
     const args = plainToClass(LuApplicationAdvisorFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luApplicationAdvisors({
       ...args,
       select: {
-        advisorType: true,
         advisorUserId: true,
+        advisorType: true,
+        name: true,
+        programId: true,
+        choice: true,
 
         application: {
           select: {
@@ -76,10 +78,7 @@ export class LuApplicationAdvisorControllerBase {
           },
         },
 
-        choice: true,
         id: true,
-        name: true,
-        programId: true,
       },
     });
   }
@@ -87,14 +86,17 @@ export class LuApplicationAdvisorControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationAdvisor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luApplicationAdvisor(
     @common.Param() params: LuApplicationAdvisorWhereUniqueInput
   ): Promise<LuApplicationAdvisor | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luApplicationAdvisor({
       where: params,
       select: {
-        advisorType: true,
         advisorUserId: true,
+        advisorType: true,
+        name: true,
+        programId: true,
+        choice: true,
 
         application: {
           select: {
@@ -102,10 +104,7 @@ export class LuApplicationAdvisorControllerBase {
           },
         },
 
-        choice: true,
         id: true,
-        name: true,
-        programId: true,
       },
     });
     if (result === null) {
@@ -119,12 +118,12 @@ export class LuApplicationAdvisorControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationAdvisor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuApplicationAdvisor(
     @common.Param() params: LuApplicationAdvisorWhereUniqueInput,
     @common.Body() data: LuApplicationAdvisorUpdateInput
   ): Promise<LuApplicationAdvisor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationAdvisor({
         where: params,
         data: {
           ...data,
@@ -134,8 +133,11 @@ export class LuApplicationAdvisorControllerBase {
           },
         },
         select: {
-          advisorType: true,
           advisorUserId: true,
+          advisorType: true,
+          name: true,
+          programId: true,
+          choice: true,
 
           application: {
             select: {
@@ -143,10 +145,7 @@ export class LuApplicationAdvisorControllerBase {
             },
           },
 
-          choice: true,
           id: true,
-          name: true,
-          programId: true,
         },
       });
     } catch (error) {
@@ -162,15 +161,18 @@ export class LuApplicationAdvisorControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationAdvisor })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuApplicationAdvisor(
     @common.Param() params: LuApplicationAdvisorWhereUniqueInput
   ): Promise<LuApplicationAdvisor | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuApplicationAdvisor({
         where: params,
         select: {
-          advisorType: true,
           advisorUserId: true,
+          advisorType: true,
+          name: true,
+          programId: true,
+          choice: true,
 
           application: {
             select: {
@@ -178,10 +180,7 @@ export class LuApplicationAdvisorControllerBase {
             },
           },
 
-          choice: true,
           id: true,
-          name: true,
-          programId: true,
         },
       });
     } catch (error) {

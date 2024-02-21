@@ -21,6 +21,30 @@ class ApplicationDecision {
   })
   @IsInt()
   @Field(() => Number)
+  applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   admissionProgramId!: number;
 
   @ApiProperty({
@@ -35,12 +59,15 @@ class ApplicationDecision {
   admissionStatus!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  applicationId!: number;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  comments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -62,42 +89,7 @@ class ApplicationDecision {
   @Field(() => String, {
     nullable: true,
   })
-  comments!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   otherChoiceLocation!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
 
   @ApiProperty({
     required: false,
@@ -119,7 +111,7 @@ class ApplicationDecision {
   @Field(() => Number, {
     nullable: true,
   })
-  visitComments!: number | null;
+  visitHelpful!: number | null;
 
   @ApiProperty({
     required: false,
@@ -130,7 +122,15 @@ class ApplicationDecision {
   @Field(() => Number, {
     nullable: true,
   })
-  visitHelpful!: number | null;
+  visitComments!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { ApplicationDecision as ApplicationDecision };

@@ -14,12 +14,12 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  ValidateNested,
   IsDate,
   IsInt,
+  ValidateNested,
 } from "class-validator";
-import { Application } from "../../application/base/Application";
 import { Type } from "class-transformer";
+import { Application } from "../../application/base/Application";
 
 @ObjectType()
 class Fellowship {
@@ -32,15 +32,29 @@ class Fellowship {
   @Field(() => String, {
     nullable: true,
   })
+  name!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   amount!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: () => Application,
+    required: false,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  status!: string | null;
 
   @ApiProperty({
     required: false,
@@ -73,7 +87,7 @@ class Fellowship {
   @Field(() => Number, {
     nullable: true,
   })
-  datafileId!: number | null;
+  duration!: number | null;
 
   @ApiProperty({
     required: false,
@@ -84,26 +98,7 @@ class Fellowship {
   @Field(() => Number, {
     nullable: true,
   })
-  duration!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  name!: string | null;
+  datafileId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -117,15 +112,20 @@ class Fellowship {
   short!: number | null;
 
   @ApiProperty({
-    required: false,
-    type: String,
+    required: true,
+    type: () => Application,
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
   })
-  status!: string | null;
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Fellowship as Fellowship };

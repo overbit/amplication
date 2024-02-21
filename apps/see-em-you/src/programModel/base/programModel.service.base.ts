@@ -13,13 +13,13 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  ProgramModel,
-  LuApplicationProgram,
-  MlArea,
-  PaymentItem,
-  ProgramsApplicationreq,
-  Degree,
-  Fieldsofstudy,
+  ProgramModel as PrismaProgramModel,
+  LuApplicationProgram as PrismaLuApplicationProgram,
+  MlArea as PrismaMlArea,
+  PaymentItem as PrismaPaymentItem,
+  ProgramsApplicationreq as PrismaProgramsApplicationreq,
+  Degree as PrismaDegree,
+  Fieldsofstudy as PrismaFieldsofstudy,
 } from "@prisma/client";
 
 export class ProgramModelServiceBase {
@@ -31,36 +31,36 @@ export class ProgramModelServiceBase {
     return this.prisma.programModel.count(args);
   }
 
-  async findMany<T extends Prisma.ProgramModelFindManyArgs>(
+  async programModels<T extends Prisma.ProgramModelFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramModelFindManyArgs>
-  ): Promise<ProgramModel[]> {
+  ): Promise<PrismaProgramModel[]> {
     return this.prisma.programModel.findMany(args);
   }
-  async findOne<T extends Prisma.ProgramModelFindUniqueArgs>(
+  async programModel<T extends Prisma.ProgramModelFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramModelFindUniqueArgs>
-  ): Promise<ProgramModel | null> {
+  ): Promise<PrismaProgramModel | null> {
     return this.prisma.programModel.findUnique(args);
   }
-  async create<T extends Prisma.ProgramModelCreateArgs>(
+  async createProgramModel<T extends Prisma.ProgramModelCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramModelCreateArgs>
-  ): Promise<ProgramModel> {
+  ): Promise<PrismaProgramModel> {
     return this.prisma.programModel.create<T>(args);
   }
-  async update<T extends Prisma.ProgramModelUpdateArgs>(
+  async updateProgramModel<T extends Prisma.ProgramModelUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramModelUpdateArgs>
-  ): Promise<ProgramModel> {
+  ): Promise<PrismaProgramModel> {
     return this.prisma.programModel.update<T>(args);
   }
-  async delete<T extends Prisma.ProgramModelDeleteArgs>(
+  async deleteProgramModel<T extends Prisma.ProgramModelDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramModelDeleteArgs>
-  ): Promise<ProgramModel> {
+  ): Promise<PrismaProgramModel> {
     return this.prisma.programModel.delete(args);
   }
 
   async findLuApplicationPrograms(
     parentId: number,
     args: Prisma.LuApplicationProgramFindManyArgs
-  ): Promise<LuApplicationProgram[]> {
+  ): Promise<PrismaLuApplicationProgram[]> {
     return this.prisma.programModel
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -71,7 +71,7 @@ export class ProgramModelServiceBase {
   async findMlArea(
     parentId: number,
     args: Prisma.MlAreaFindManyArgs
-  ): Promise<MlArea[]> {
+  ): Promise<PrismaMlArea[]> {
     return this.prisma.programModel
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -82,7 +82,7 @@ export class ProgramModelServiceBase {
   async findPaymentItem(
     parentId: number,
     args: Prisma.PaymentItemFindManyArgs
-  ): Promise<PaymentItem[]> {
+  ): Promise<PrismaPaymentItem[]> {
     return this.prisma.programModel
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -93,7 +93,7 @@ export class ProgramModelServiceBase {
   async findProgramsApplicationreqs(
     parentId: number,
     args: Prisma.ProgramsApplicationreqFindManyArgs
-  ): Promise<ProgramsApplicationreq[]> {
+  ): Promise<PrismaProgramsApplicationreq[]> {
     return this.prisma.programModel
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -101,7 +101,7 @@ export class ProgramModelServiceBase {
       .programsApplicationreqs(args);
   }
 
-  async getDegree(parentId: number): Promise<Degree | null> {
+  async getDegree(parentId: number): Promise<PrismaDegree | null> {
     return this.prisma.programModel
       .findUnique({
         where: { id: parentId },
@@ -109,7 +109,9 @@ export class ProgramModelServiceBase {
       .degree();
   }
 
-  async getFieldsofstudy(parentId: number): Promise<Fieldsofstudy | null> {
+  async getFieldsofstudy(
+    parentId: number
+  ): Promise<PrismaFieldsofstudy | null> {
     return this.prisma.programModel
       .findUnique({
         where: { id: parentId },

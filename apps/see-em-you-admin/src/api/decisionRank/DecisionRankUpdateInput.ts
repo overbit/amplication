@@ -1,7 +1,7 @@
 export type DecisionRankUpdateInput = {
-  decision?: string;
   departmentId?: number;
-  luUsersUsertypesId?: number;
   periodId?: number;
+  decision?: string;
+  luUsersUsertypesId?: number;
   ranking?: string | null;
 };

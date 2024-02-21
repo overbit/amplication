@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateEmail2AwUser } from "@prisma/client";
+import {
+  Prisma,
+  SlateEmail2AwUser as PrismaSlateEmail2AwUser,
+} from "@prisma/client";
 
 export class SlateEmail2AwUserServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class SlateEmail2AwUserServiceBase {
     return this.prisma.slateEmail2AwUser.count(args);
   }
 
-  async findMany<T extends Prisma.SlateEmail2AwUserFindManyArgs>(
+  async slateEmail2AwUsers<T extends Prisma.SlateEmail2AwUserFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmail2AwUserFindManyArgs>
-  ): Promise<SlateEmail2AwUser[]> {
+  ): Promise<PrismaSlateEmail2AwUser[]> {
     return this.prisma.slateEmail2AwUser.findMany(args);
   }
-  async findOne<T extends Prisma.SlateEmail2AwUserFindUniqueArgs>(
+  async slateEmail2AwUser<T extends Prisma.SlateEmail2AwUserFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmail2AwUserFindUniqueArgs>
-  ): Promise<SlateEmail2AwUser | null> {
+  ): Promise<PrismaSlateEmail2AwUser | null> {
     return this.prisma.slateEmail2AwUser.findUnique(args);
   }
-  async create<T extends Prisma.SlateEmail2AwUserCreateArgs>(
+  async createSlateEmail2AwUser<T extends Prisma.SlateEmail2AwUserCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmail2AwUserCreateArgs>
-  ): Promise<SlateEmail2AwUser> {
+  ): Promise<PrismaSlateEmail2AwUser> {
     return this.prisma.slateEmail2AwUser.create<T>(args);
   }
-  async update<T extends Prisma.SlateEmail2AwUserUpdateArgs>(
+  async updateSlateEmail2AwUser<T extends Prisma.SlateEmail2AwUserUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmail2AwUserUpdateArgs>
-  ): Promise<SlateEmail2AwUser> {
+  ): Promise<PrismaSlateEmail2AwUser> {
     return this.prisma.slateEmail2AwUser.update<T>(args);
   }
-  async delete<T extends Prisma.SlateEmail2AwUserDeleteArgs>(
+  async deleteSlateEmail2AwUser<T extends Prisma.SlateEmail2AwUserDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateEmail2AwUserDeleteArgs>
-  ): Promise<SlateEmail2AwUser> {
+  ): Promise<PrismaSlateEmail2AwUser> {
     return this.prisma.slateEmail2AwUser.delete(args);
   }
 }

@@ -1,9 +1,9 @@
 export type MseInterview = {
   applicationId: number;
-  id: string;
-  interviewComments: string;
+  reviewerId: number;
   interviewDate: Date;
   interviewType: string;
   interviewTypeOther: string | null;
-  reviewerId: number;
+  interviewComments: string;
+  id: string;
 };

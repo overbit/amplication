@@ -28,17 +28,6 @@ class ApplicationMergeFileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  guid?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   id?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,7 @@ class ApplicationMergeFileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mergeDate?: SortOrder;
+  guid?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -62,6 +51,17 @@ class ApplicationMergeFileOrderByInput {
     nullable: true,
   })
   mergeFile?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mergeDate?: SortOrder;
 }
 
 export { ApplicationMergeFileOrderByInput as ApplicationMergeFileOrderByInput };

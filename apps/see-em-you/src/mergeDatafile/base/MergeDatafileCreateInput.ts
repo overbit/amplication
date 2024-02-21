@@ -11,10 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsOptional, IsInt, IsString } from "class-validator";
+import { IsInt, IsBoolean, IsOptional, IsString } from "class-validator";
 
 @InputType()
 class MergeDatafileCreateInput {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  mergeId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  datafileinfoId!: number;
+
   @ApiProperty({
     required: false,
     type: Boolean,
@@ -49,12 +65,15 @@ class MergeDatafileCreateInput {
   convertMessage?: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  datafileinfoId!: number;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mergeFilename?: string | null;
 
   @ApiProperty({
     required: false,
@@ -77,25 +96,6 @@ class MergeDatafileCreateInput {
     nullable: true,
   })
   mergeError?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mergeFilename?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  mergeId!: number;
 
   @ApiProperty({
     required: false,

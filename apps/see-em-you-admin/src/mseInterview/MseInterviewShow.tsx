@@ -6,12 +6,12 @@ export const MseInterviewShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Interview Comments" source="interviewComments" />
+        <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Interview Date" source="interviewDate" />
         <TextField label="Interview Type" source="interviewType" />
         <TextField label="Interview Type Other" source="interviewTypeOther" />
-        <TextField label="Reviewer Id" source="reviewerId" />
+        <TextField label="Interview Comments" source="interviewComments" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

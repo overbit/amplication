@@ -21,7 +21,7 @@ class LuReviewInterest {
   })
   @IsInt()
   @Field(() => Number)
-  code!: number;
+  id!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class LuReviewInterest {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  reviewId!: number;
 
   @ApiProperty({
     required: true,
@@ -45,7 +45,7 @@ class LuReviewInterest {
   })
   @IsInt()
   @Field(() => Number)
-  reviewId!: number;
+  code!: number;
 }
 
 export { LuReviewInterest as LuReviewInterest };

@@ -35,14 +35,6 @@ class DietrichDiversity {
   background!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -52,6 +44,14 @@ class DietrichDiversity {
     nullable: true,
   })
   lifeExperience!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { DietrichDiversity as DietrichDiversity };

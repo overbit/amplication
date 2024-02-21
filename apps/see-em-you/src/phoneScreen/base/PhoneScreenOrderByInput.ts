@@ -39,7 +39,18 @@ class PhoneScreenOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  reviewerId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  technicalScreen?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,18 +72,7 @@ class PhoneScreenOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  reviewerId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  technicalScreen?: SortOrder;
+  id?: SortOrder;
 }
 
 export { PhoneScreenOrderByInput as PhoneScreenOrderByInput };

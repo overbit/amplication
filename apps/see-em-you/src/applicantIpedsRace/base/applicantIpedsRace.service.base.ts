@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ApplicantIpedsRace } from "@prisma/client";
+import {
+  Prisma,
+  ApplicantIpedsRace as PrismaApplicantIpedsRace,
+} from "@prisma/client";
 
 export class ApplicantIpedsRaceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class ApplicantIpedsRaceServiceBase {
     return this.prisma.applicantIpedsRace.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicantIpedsRaceFindManyArgs>(
+  async applicantIpedsRaces<T extends Prisma.ApplicantIpedsRaceFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicantIpedsRaceFindManyArgs>
-  ): Promise<ApplicantIpedsRace[]> {
+  ): Promise<PrismaApplicantIpedsRace[]> {
     return this.prisma.applicantIpedsRace.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicantIpedsRaceFindUniqueArgs>(
+  async applicantIpedsRace<T extends Prisma.ApplicantIpedsRaceFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicantIpedsRaceFindUniqueArgs>
-  ): Promise<ApplicantIpedsRace | null> {
+  ): Promise<PrismaApplicantIpedsRace | null> {
     return this.prisma.applicantIpedsRace.findUnique(args);
   }
-  async create<T extends Prisma.ApplicantIpedsRaceCreateArgs>(
+  async createApplicantIpedsRace<T extends Prisma.ApplicantIpedsRaceCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicantIpedsRaceCreateArgs>
-  ): Promise<ApplicantIpedsRace> {
+  ): Promise<PrismaApplicantIpedsRace> {
     return this.prisma.applicantIpedsRace.create<T>(args);
   }
-  async update<T extends Prisma.ApplicantIpedsRaceUpdateArgs>(
+  async updateApplicantIpedsRace<T extends Prisma.ApplicantIpedsRaceUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicantIpedsRaceUpdateArgs>
-  ): Promise<ApplicantIpedsRace> {
+  ): Promise<PrismaApplicantIpedsRace> {
     return this.prisma.applicantIpedsRace.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicantIpedsRaceDeleteArgs>(
+  async deleteApplicantIpedsRace<T extends Prisma.ApplicantIpedsRaceDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicantIpedsRaceDeleteArgs>
-  ): Promise<ApplicantIpedsRace> {
+  ): Promise<PrismaApplicantIpedsRace> {
     return this.prisma.applicantIpedsRace.delete(args);
   }
 }

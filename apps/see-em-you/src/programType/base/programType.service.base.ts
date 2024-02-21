@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ProgramType } from "@prisma/client";
+import { Prisma, ProgramType as PrismaProgramType } from "@prisma/client";
 
 export class ProgramTypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ProgramTypeServiceBase {
     return this.prisma.programType.count(args);
   }
 
-  async findMany<T extends Prisma.ProgramTypeFindManyArgs>(
+  async programTypes<T extends Prisma.ProgramTypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramTypeFindManyArgs>
-  ): Promise<ProgramType[]> {
+  ): Promise<PrismaProgramType[]> {
     return this.prisma.programType.findMany(args);
   }
-  async findOne<T extends Prisma.ProgramTypeFindUniqueArgs>(
+  async programType<T extends Prisma.ProgramTypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramTypeFindUniqueArgs>
-  ): Promise<ProgramType | null> {
+  ): Promise<PrismaProgramType | null> {
     return this.prisma.programType.findUnique(args);
   }
-  async create<T extends Prisma.ProgramTypeCreateArgs>(
+  async createProgramType<T extends Prisma.ProgramTypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramTypeCreateArgs>
-  ): Promise<ProgramType> {
+  ): Promise<PrismaProgramType> {
     return this.prisma.programType.create<T>(args);
   }
-  async update<T extends Prisma.ProgramTypeUpdateArgs>(
+  async updateProgramType<T extends Prisma.ProgramTypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramTypeUpdateArgs>
-  ): Promise<ProgramType> {
+  ): Promise<PrismaProgramType> {
     return this.prisma.programType.update<T>(args);
   }
-  async delete<T extends Prisma.ProgramTypeDeleteArgs>(
+  async deleteProgramType<T extends Prisma.ProgramTypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramTypeDeleteArgs>
-  ): Promise<ProgramType> {
+  ): Promise<PrismaProgramType> {
     return this.prisma.programType.delete(args);
   }
 }

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SelfGender } from "@prisma/client";
+import { Prisma, SelfGender as PrismaSelfGender } from "@prisma/client";
 
 export class SelfGenderServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SelfGenderServiceBase {
     return this.prisma.selfGender.count(args);
   }
 
-  async findMany<T extends Prisma.SelfGenderFindManyArgs>(
+  async selfGenders<T extends Prisma.SelfGenderFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SelfGenderFindManyArgs>
-  ): Promise<SelfGender[]> {
+  ): Promise<PrismaSelfGender[]> {
     return this.prisma.selfGender.findMany(args);
   }
-  async findOne<T extends Prisma.SelfGenderFindUniqueArgs>(
+  async selfGender<T extends Prisma.SelfGenderFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SelfGenderFindUniqueArgs>
-  ): Promise<SelfGender | null> {
+  ): Promise<PrismaSelfGender | null> {
     return this.prisma.selfGender.findUnique(args);
   }
-  async create<T extends Prisma.SelfGenderCreateArgs>(
+  async createSelfGender<T extends Prisma.SelfGenderCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SelfGenderCreateArgs>
-  ): Promise<SelfGender> {
+  ): Promise<PrismaSelfGender> {
     return this.prisma.selfGender.create<T>(args);
   }
-  async update<T extends Prisma.SelfGenderUpdateArgs>(
+  async updateSelfGender<T extends Prisma.SelfGenderUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SelfGenderUpdateArgs>
-  ): Promise<SelfGender> {
+  ): Promise<PrismaSelfGender> {
     return this.prisma.selfGender.update<T>(args);
   }
-  async delete<T extends Prisma.SelfGenderDeleteArgs>(
+  async deleteSelfGender<T extends Prisma.SelfGenderDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SelfGenderDeleteArgs>
-  ): Promise<SelfGender> {
+  ): Promise<PrismaSelfGender> {
     return this.prisma.selfGender.delete(args);
   }
 }

@@ -18,50 +18,50 @@ import { ApplicationProgramLetterService } from "../applicationProgramLetter.ser
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  admitSent: "true",
-  admitSentDate: new Date(),
-  id: 42,
   rejectionSent: "true",
   rejectionSentDate: new Date(),
+  admitSent: "true",
+  admitSentDate: new Date(),
   waitlistSent: "true",
   waitlistSentDate: new Date(),
+  id: 42,
 };
 const CREATE_RESULT = {
-  admitSent: "true",
-  admitSentDate: new Date(),
-  id: 42,
   rejectionSent: "true",
   rejectionSentDate: new Date(),
+  admitSent: "true",
+  admitSentDate: new Date(),
   waitlistSent: "true",
   waitlistSentDate: new Date(),
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    admitSent: "true",
-    admitSentDate: new Date(),
-    id: 42,
     rejectionSent: "true",
     rejectionSentDate: new Date(),
+    admitSent: "true",
+    admitSentDate: new Date(),
     waitlistSent: "true",
     waitlistSentDate: new Date(),
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  admitSent: "true",
-  admitSentDate: new Date(),
-  id: 42,
   rejectionSent: "true",
   rejectionSentDate: new Date(),
+  admitSent: "true",
+  admitSentDate: new Date(),
   waitlistSent: "true",
   waitlistSentDate: new Date(),
+  id: 42,
 };
 
 const service = {
-  create() {
+  createApplicationProgramLetter() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  applicationProgramLetters: () => FIND_MANY_RESULT,
+  applicationProgramLetter: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -138,8 +138,8 @@ describe("ApplicationProgramLetter", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        admitSentDate: CREATE_RESULT.admitSentDate.toISOString(),
         rejectionSentDate: CREATE_RESULT.rejectionSentDate.toISOString(),
+        admitSentDate: CREATE_RESULT.admitSentDate.toISOString(),
         waitlistSentDate: CREATE_RESULT.waitlistSentDate.toISOString(),
       });
   });
@@ -151,9 +151,9 @@ describe("ApplicationProgramLetter", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          admitSentDate: FIND_MANY_RESULT[0].admitSentDate.toISOString(),
           rejectionSentDate:
             FIND_MANY_RESULT[0].rejectionSentDate.toISOString(),
+          admitSentDate: FIND_MANY_RESULT[0].admitSentDate.toISOString(),
           waitlistSentDate: FIND_MANY_RESULT[0].waitlistSentDate.toISOString(),
         },
       ]);
@@ -176,8 +176,8 @@ describe("ApplicationProgramLetter", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        admitSentDate: FIND_ONE_RESULT.admitSentDate.toISOString(),
         rejectionSentDate: FIND_ONE_RESULT.rejectionSentDate.toISOString(),
+        admitSentDate: FIND_ONE_RESULT.admitSentDate.toISOString(),
         waitlistSentDate: FIND_ONE_RESULT.waitlistSentDate.toISOString(),
       });
   });
@@ -190,8 +190,8 @@ describe("ApplicationProgramLetter", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        admitSentDate: CREATE_RESULT.admitSentDate.toISOString(),
         rejectionSentDate: CREATE_RESULT.rejectionSentDate.toISOString(),
+        admitSentDate: CREATE_RESULT.admitSentDate.toISOString(),
         waitlistSentDate: CREATE_RESULT.waitlistSentDate.toISOString(),
       })
       .then(function () {

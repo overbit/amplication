@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IeltsscoreService } from "../ieltsscore.service";
 import { IeltsscoreCreateInput } from "./IeltsscoreCreateInput";
-import { IeltsscoreWhereInput } from "./IeltsscoreWhereInput";
-import { IeltsscoreWhereUniqueInput } from "./IeltsscoreWhereUniqueInput";
-import { IeltsscoreFindManyArgs } from "./IeltsscoreFindManyArgs";
-import { IeltsscoreUpdateInput } from "./IeltsscoreUpdateInput";
 import { Ieltsscore } from "./Ieltsscore";
+import { IeltsscoreFindManyArgs } from "./IeltsscoreFindManyArgs";
+import { IeltsscoreWhereUniqueInput } from "./IeltsscoreWhereUniqueInput";
+import { IeltsscoreUpdateInput } from "./IeltsscoreUpdateInput";
 
 export class IeltsscoreControllerBase {
   constructor(protected readonly service: IeltsscoreService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Ieltsscore })
-  async create(
+  async createIeltsscore(
     @common.Body() data: IeltsscoreCreateInput
   ): Promise<Ieltsscore> {
-    return await this.service.create({
+    return await this.service.createIeltsscore({
       data: {
         ...data,
 
@@ -40,22 +39,23 @@ export class IeltsscoreControllerBase {
         },
       },
       select: {
+        testdate: true,
+        listeningscore: true,
+        readingscore: true,
+        writingscore: true,
+        speakingscore: true,
+        overallscore: true,
+        scorereceived: true,
+        datafileId: true,
+        testEmail: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        datafileId: true,
         id: true,
-        listeningscore: true,
-        overallscore: true,
-        readingscore: true,
-        scorereceived: true,
-        speakingscore: true,
-        testdate: true,
-        testEmail: true,
-        writingscore: true,
       },
     });
   }
@@ -63,27 +63,28 @@ export class IeltsscoreControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Ieltsscore] })
   @ApiNestedQuery(IeltsscoreFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Ieltsscore[]> {
+  async ieltsscores(@common.Req() request: Request): Promise<Ieltsscore[]> {
     const args = plainToClass(IeltsscoreFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ieltsscores({
       ...args,
       select: {
+        testdate: true,
+        listeningscore: true,
+        readingscore: true,
+        writingscore: true,
+        speakingscore: true,
+        overallscore: true,
+        scorereceived: true,
+        datafileId: true,
+        testEmail: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        datafileId: true,
         id: true,
-        listeningscore: true,
-        overallscore: true,
-        readingscore: true,
-        scorereceived: true,
-        speakingscore: true,
-        testdate: true,
-        testEmail: true,
-        writingscore: true,
       },
     });
   }
@@ -91,28 +92,29 @@ export class IeltsscoreControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Ieltsscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ieltsscore(
     @common.Param() params: IeltsscoreWhereUniqueInput
   ): Promise<Ieltsscore | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ieltsscore({
       where: params,
       select: {
+        testdate: true,
+        listeningscore: true,
+        readingscore: true,
+        writingscore: true,
+        speakingscore: true,
+        overallscore: true,
+        scorereceived: true,
+        datafileId: true,
+        testEmail: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        datafileId: true,
         id: true,
-        listeningscore: true,
-        overallscore: true,
-        readingscore: true,
-        scorereceived: true,
-        speakingscore: true,
-        testdate: true,
-        testEmail: true,
-        writingscore: true,
       },
     });
     if (result === null) {
@@ -126,12 +128,12 @@ export class IeltsscoreControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Ieltsscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIeltsscore(
     @common.Param() params: IeltsscoreWhereUniqueInput,
     @common.Body() data: IeltsscoreUpdateInput
   ): Promise<Ieltsscore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIeltsscore({
         where: params,
         data: {
           ...data,
@@ -141,22 +143,23 @@ export class IeltsscoreControllerBase {
           },
         },
         select: {
+          testdate: true,
+          listeningscore: true,
+          readingscore: true,
+          writingscore: true,
+          speakingscore: true,
+          overallscore: true,
+          scorereceived: true,
+          datafileId: true,
+          testEmail: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          datafileId: true,
           id: true,
-          listeningscore: true,
-          overallscore: true,
-          readingscore: true,
-          scorereceived: true,
-          speakingscore: true,
-          testdate: true,
-          testEmail: true,
-          writingscore: true,
         },
       });
     } catch (error) {
@@ -172,29 +175,30 @@ export class IeltsscoreControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Ieltsscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIeltsscore(
     @common.Param() params: IeltsscoreWhereUniqueInput
   ): Promise<Ieltsscore | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIeltsscore({
         where: params,
         select: {
+          testdate: true,
+          listeningscore: true,
+          readingscore: true,
+          writingscore: true,
+          speakingscore: true,
+          overallscore: true,
+          scorereceived: true,
+          datafileId: true,
+          testEmail: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          datafileId: true,
           id: true,
-          listeningscore: true,
-          overallscore: true,
-          readingscore: true,
-          scorereceived: true,
-          speakingscore: true,
-          testdate: true,
-          testEmail: true,
-          writingscore: true,
         },
       });
     } catch (error) {

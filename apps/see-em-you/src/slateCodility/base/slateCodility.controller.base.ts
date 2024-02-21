@@ -18,22 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateCodilityService } from "../slateCodility.service";
 import { SlateCodilityCreateInput } from "./SlateCodilityCreateInput";
-import { SlateCodilityWhereInput } from "./SlateCodilityWhereInput";
-import { SlateCodilityWhereUniqueInput } from "./SlateCodilityWhereUniqueInput";
-import { SlateCodilityFindManyArgs } from "./SlateCodilityFindManyArgs";
-import { SlateCodilityUpdateInput } from "./SlateCodilityUpdateInput";
 import { SlateCodility } from "./SlateCodility";
+import { SlateCodilityFindManyArgs } from "./SlateCodilityFindManyArgs";
+import { SlateCodilityWhereUniqueInput } from "./SlateCodilityWhereUniqueInput";
+import { SlateCodilityUpdateInput } from "./SlateCodilityUpdateInput";
 
 export class SlateCodilityControllerBase {
   constructor(protected readonly service: SlateCodilityService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateCodility })
-  async create(
+  async createSlateCodility(
     @common.Body() data: SlateCodilityCreateInput
   ): Promise<SlateCodility> {
-    return await this.service.create({
+    return await this.service.createSlateCodility({
       data: data,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         codilityCloseDate: true,
         codilityCreateDate: true,
         codilityIpAddresses: true,
@@ -70,11 +73,7 @@ export class SlateCodilityControllerBase {
         codilityTask4Score: true,
         codilityTestName: true,
         codilityTestSession: true,
-        first: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
   }
@@ -82,11 +81,17 @@ export class SlateCodilityControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateCodility] })
   @ApiNestedQuery(SlateCodilityFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateCodility[]> {
+  async slateCodilities(
+    @common.Req() request: Request
+  ): Promise<SlateCodility[]> {
     const args = plainToClass(SlateCodilityFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateCodilities({
       ...args,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         codilityCloseDate: true,
         codilityCreateDate: true,
         codilityIpAddresses: true,
@@ -123,11 +128,7 @@ export class SlateCodilityControllerBase {
         codilityTask4Score: true,
         codilityTestName: true,
         codilityTestSession: true,
-        first: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
   }
@@ -135,12 +136,16 @@ export class SlateCodilityControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateCodility(
     @common.Param() params: SlateCodilityWhereUniqueInput
   ): Promise<SlateCodility | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateCodility({
       where: params,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         codilityCloseDate: true,
         codilityCreateDate: true,
         codilityIpAddresses: true,
@@ -177,11 +182,7 @@ export class SlateCodilityControllerBase {
         codilityTask4Score: true,
         codilityTestName: true,
         codilityTestSession: true,
-        first: true,
         id: true,
-        last: true,
-        middle: true,
-        prefix: true,
       },
     });
     if (result === null) {
@@ -195,15 +196,19 @@ export class SlateCodilityControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateCodility(
     @common.Param() params: SlateCodilityWhereUniqueInput,
     @common.Body() data: SlateCodilityUpdateInput
   ): Promise<SlateCodility | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateCodility({
         where: params,
         data: data,
         select: {
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           codilityCloseDate: true,
           codilityCreateDate: true,
           codilityIpAddresses: true,
@@ -240,11 +245,7 @@ export class SlateCodilityControllerBase {
           codilityTask4Score: true,
           codilityTestName: true,
           codilityTestSession: true,
-          first: true,
           id: true,
-          last: true,
-          middle: true,
-          prefix: true,
         },
       });
     } catch (error) {
@@ -260,13 +261,17 @@ export class SlateCodilityControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateCodility })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateCodility(
     @common.Param() params: SlateCodilityWhereUniqueInput
   ): Promise<SlateCodility | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateCodility({
         where: params,
         select: {
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           codilityCloseDate: true,
           codilityCreateDate: true,
           codilityIpAddresses: true,
@@ -303,11 +308,7 @@ export class SlateCodilityControllerBase {
           codilityTask4Score: true,
           codilityTestName: true,
           codilityTestSession: true,
-          first: true,
           id: true,
-          last: true,
-          middle: true,
-          prefix: true,
         },
       });
     } catch (error) {

@@ -7,12 +7,12 @@ export const ReviewPositiveFactorEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Review Id" source="reviewId" />
         <NumberInput
           step={1}
           label="Positive Factor Id"
           source="positiveFactorId"
         />
-        <NumberInput step={1} label="Review Id" source="reviewId" />
       </SimpleForm>
     </Edit>
   );

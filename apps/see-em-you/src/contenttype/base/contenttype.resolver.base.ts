@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateContenttypeArgs } from "./CreateContenttypeArgs";
-import { UpdateContenttypeArgs } from "./UpdateContenttypeArgs";
-import { DeleteContenttypeArgs } from "./DeleteContenttypeArgs";
+import { Contenttype } from "./Contenttype";
 import { ContenttypeCountArgs } from "./ContenttypeCountArgs";
 import { ContenttypeFindManyArgs } from "./ContenttypeFindManyArgs";
 import { ContenttypeFindUniqueArgs } from "./ContenttypeFindUniqueArgs";
-import { Contenttype } from "./Contenttype";
+import { CreateContenttypeArgs } from "./CreateContenttypeArgs";
+import { UpdateContenttypeArgs } from "./UpdateContenttypeArgs";
+import { DeleteContenttypeArgs } from "./DeleteContenttypeArgs";
 import { ContenttypeService } from "../contenttype.service";
 @graphql.Resolver(() => Contenttype)
 export class ContenttypeResolverBase {
@@ -38,14 +38,14 @@ export class ContenttypeResolverBase {
   async contenttypes(
     @graphql.Args() args: ContenttypeFindManyArgs
   ): Promise<Contenttype[]> {
-    return this.service.findMany(args);
+    return this.service.contenttypes(args);
   }
 
   @graphql.Query(() => Contenttype, { nullable: true })
   async contenttype(
     @graphql.Args() args: ContenttypeFindUniqueArgs
   ): Promise<Contenttype | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.contenttype(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ContenttypeResolverBase {
   async createContenttype(
     @graphql.Args() args: CreateContenttypeArgs
   ): Promise<Contenttype> {
-    return await this.service.create({
+    return await this.service.createContenttype({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ContenttypeResolverBase {
     @graphql.Args() args: UpdateContenttypeArgs
   ): Promise<Contenttype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateContenttype({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ContenttypeResolverBase {
     @graphql.Args() args: DeleteContenttypeArgs
   ): Promise<Contenttype | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteContenttype(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

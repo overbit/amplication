@@ -13,8 +13,8 @@ export const DisabilityList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Disability Type" source="disabilityType" />
         <TextField label="Has Disability" source="hasDisability" />
+        <TextField label="Disability Type" source="disabilityType" />
         <TextField label="Id" source="id" />
       </Datagrid>
     </List>

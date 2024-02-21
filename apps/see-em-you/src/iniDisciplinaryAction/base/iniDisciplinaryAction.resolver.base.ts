@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIniDisciplinaryActionArgs } from "./CreateIniDisciplinaryActionArgs";
-import { UpdateIniDisciplinaryActionArgs } from "./UpdateIniDisciplinaryActionArgs";
-import { DeleteIniDisciplinaryActionArgs } from "./DeleteIniDisciplinaryActionArgs";
+import { IniDisciplinaryAction } from "./IniDisciplinaryAction";
 import { IniDisciplinaryActionCountArgs } from "./IniDisciplinaryActionCountArgs";
 import { IniDisciplinaryActionFindManyArgs } from "./IniDisciplinaryActionFindManyArgs";
 import { IniDisciplinaryActionFindUniqueArgs } from "./IniDisciplinaryActionFindUniqueArgs";
-import { IniDisciplinaryAction } from "./IniDisciplinaryAction";
+import { CreateIniDisciplinaryActionArgs } from "./CreateIniDisciplinaryActionArgs";
+import { UpdateIniDisciplinaryActionArgs } from "./UpdateIniDisciplinaryActionArgs";
+import { DeleteIniDisciplinaryActionArgs } from "./DeleteIniDisciplinaryActionArgs";
 import { IniDisciplinaryActionService } from "../iniDisciplinaryAction.service";
 @graphql.Resolver(() => IniDisciplinaryAction)
 export class IniDisciplinaryActionResolverBase {
@@ -38,14 +38,14 @@ export class IniDisciplinaryActionResolverBase {
   async iniDisciplinaryActions(
     @graphql.Args() args: IniDisciplinaryActionFindManyArgs
   ): Promise<IniDisciplinaryAction[]> {
-    return this.service.findMany(args);
+    return this.service.iniDisciplinaryActions(args);
   }
 
   @graphql.Query(() => IniDisciplinaryAction, { nullable: true })
   async iniDisciplinaryAction(
     @graphql.Args() args: IniDisciplinaryActionFindUniqueArgs
   ): Promise<IniDisciplinaryAction | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.iniDisciplinaryAction(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class IniDisciplinaryActionResolverBase {
   async createIniDisciplinaryAction(
     @graphql.Args() args: CreateIniDisciplinaryActionArgs
   ): Promise<IniDisciplinaryAction> {
-    return await this.service.create({
+    return await this.service.createIniDisciplinaryAction({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class IniDisciplinaryActionResolverBase {
     @graphql.Args() args: UpdateIniDisciplinaryActionArgs
   ): Promise<IniDisciplinaryAction | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniDisciplinaryAction({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class IniDisciplinaryActionResolverBase {
     @graphql.Args() args: DeleteIniDisciplinaryActionArgs
   ): Promise<IniDisciplinaryAction | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIniDisciplinaryAction(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

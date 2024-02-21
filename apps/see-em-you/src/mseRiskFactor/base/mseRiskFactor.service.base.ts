@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseRiskFactor } from "@prisma/client";
+import { Prisma, MseRiskFactor as PrismaMseRiskFactor } from "@prisma/client";
 
 export class MseRiskFactorServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MseRiskFactorServiceBase {
     return this.prisma.mseRiskFactor.count(args);
   }
 
-  async findMany<T extends Prisma.MseRiskFactorFindManyArgs>(
+  async mseRiskFactors<T extends Prisma.MseRiskFactorFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorFindManyArgs>
-  ): Promise<MseRiskFactor[]> {
+  ): Promise<PrismaMseRiskFactor[]> {
     return this.prisma.mseRiskFactor.findMany(args);
   }
-  async findOne<T extends Prisma.MseRiskFactorFindUniqueArgs>(
+  async mseRiskFactor<T extends Prisma.MseRiskFactorFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorFindUniqueArgs>
-  ): Promise<MseRiskFactor | null> {
+  ): Promise<PrismaMseRiskFactor | null> {
     return this.prisma.mseRiskFactor.findUnique(args);
   }
-  async create<T extends Prisma.MseRiskFactorCreateArgs>(
+  async createMseRiskFactor<T extends Prisma.MseRiskFactorCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorCreateArgs>
-  ): Promise<MseRiskFactor> {
+  ): Promise<PrismaMseRiskFactor> {
     return this.prisma.mseRiskFactor.create<T>(args);
   }
-  async update<T extends Prisma.MseRiskFactorUpdateArgs>(
+  async updateMseRiskFactor<T extends Prisma.MseRiskFactorUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorUpdateArgs>
-  ): Promise<MseRiskFactor> {
+  ): Promise<PrismaMseRiskFactor> {
     return this.prisma.mseRiskFactor.update<T>(args);
   }
-  async delete<T extends Prisma.MseRiskFactorDeleteArgs>(
+  async deleteMseRiskFactor<T extends Prisma.MseRiskFactorDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseRiskFactorDeleteArgs>
-  ): Promise<MseRiskFactor> {
+  ): Promise<PrismaMseRiskFactor> {
     return this.prisma.mseRiskFactor.delete(args);
   }
 }

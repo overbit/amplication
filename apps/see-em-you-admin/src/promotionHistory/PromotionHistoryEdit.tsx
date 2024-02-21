@@ -3,9 +3,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceInput,
-  SelectInput,
   NumberInput,
+  SelectInput,
+  ReferenceInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -13,14 +13,8 @@ export const PromotionHistoryEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="application.id"
-          reference="Application"
-          label="Application"
-        >
-          <SelectInput optionText={ApplicationTitle} />
-        </ReferenceInput>
         <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Round" source="round" />
         <SelectInput
           source="promotion_method"
           label="Promotion Method"
@@ -33,8 +27,14 @@ export const PromotionHistoryEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <NumberInput step={1} label="Round" source="round" />
         <NumberInput step={1} label="Users Id" source="usersId" />
+        <ReferenceInput
+          source="application.id"
+          reference="Application"
+          label="Application"
+        >
+          <SelectInput optionText={ApplicationTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );

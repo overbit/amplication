@@ -12,8 +12,8 @@ export const SlateLangCodeList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Language" source="language" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

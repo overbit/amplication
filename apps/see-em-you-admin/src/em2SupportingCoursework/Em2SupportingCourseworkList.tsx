@@ -15,20 +15,13 @@ export const Em2SupportingCourseworkList = (
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
+        <TextField label="Data Structures Title" source="dataStructuresTitle" />
         <TextField
           label="Data Structures Number"
           source="dataStructuresNumber"
         />
-        <TextField label="Data Structures Title" source="dataStructuresTitle" />
-        <TextField label="Id" source="id" />
-        <TextField
-          label="Makerkits Description"
-          source="makerkitsDescription"
-        />
-        <TextField
-          label="Makerkits Description2"
-          source="makerkitsDescription2"
-        />
+        <TextField label="Statistics Title" source="statisticsTitle" />
+        <TextField label="Statistics Number" source="statisticsNumber" />
         <TextField label="Msit Experience" source="msitExperience" />
         <TextField
           label="Programming Description"
@@ -38,8 +31,15 @@ export const Em2SupportingCourseworkList = (
           label="Programming Description2"
           source="programmingDescription2"
         />
-        <TextField label="Statistics Number" source="statisticsNumber" />
-        <TextField label="Statistics Title" source="statisticsTitle" />
+        <TextField
+          label="Makerkits Description"
+          source="makerkitsDescription"
+        />
+        <TextField
+          label="Makerkits Description2"
+          source="makerkitsDescription2"
+        />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

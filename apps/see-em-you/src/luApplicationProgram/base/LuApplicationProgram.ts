@@ -12,19 +12,49 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
+  IsInt,
   IsString,
   IsOptional,
-  ValidateNested,
-  IsInt,
   IsNumber,
+  ValidateNested,
 } from "class-validator";
+import { Decimal } from "decimal.js";
 import { Application } from "../../application/base/Application";
 import { Type } from "class-transformer";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
-import { Decimal } from "decimal.js";
 
 @ObjectType()
 class LuApplicationProgram {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  choice!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  round2!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  decision!: string | null;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -59,33 +89,6 @@ class LuApplicationProgram {
   admitComments!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  choice!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  decision!: string | null;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -97,14 +100,6 @@ class LuApplicationProgram {
   faccontact!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -113,37 +108,7 @@ class LuApplicationProgram {
   @Field(() => String, {
     nullable: true,
   })
-  ltichoice!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  msecertchoice!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: () => ProgramModel,
-  })
-  @ValidateNested()
-  @Type(() => ProgramModel)
-  programs?: ProgramModel;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  round2!: string | null;
+  stucontact!: string | null;
 
   @ApiProperty({
     required: false,
@@ -176,7 +141,42 @@ class LuApplicationProgram {
   @Field(() => String, {
     nullable: true,
   })
-  stucontact!: string | null;
+  ltichoice!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  msecertchoice!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: () => ProgramModel,
+  })
+  @ValidateNested()
+  @Type(() => ProgramModel)
+  programs?: ProgramModel;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { LuApplicationProgram as LuApplicationProgram };

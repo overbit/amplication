@@ -11,13 +11,21 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
 
 @InputType()
 class MlAreaCreateInput {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  area!: string;
+
   @ApiProperty({
     required: true,
     type: () => ApplicationWhereUniqueInput,
@@ -26,14 +34,6 @@ class MlAreaCreateInput {
   @Type(() => ApplicationWhereUniqueInput)
   @Field(() => ApplicationWhereUniqueInput)
   application!: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  area!: string;
 
   @ApiProperty({
     required: true,

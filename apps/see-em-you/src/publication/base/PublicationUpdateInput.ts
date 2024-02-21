@@ -11,23 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsOptional, IsString, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class PublicationUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput;
+  title?: string | null;
 
   @ApiProperty({
     required: false,
@@ -49,28 +48,6 @@ class PublicationUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  citation?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  datafileId?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   forum?: string | null;
 
   @ApiProperty({
@@ -82,7 +59,7 @@ class PublicationUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  status?: string | null;
+  citation?: string | null;
 
   @ApiProperty({
     required: false,
@@ -93,7 +70,18 @@ class PublicationUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  title?: string | null;
+  url?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  status?: string | null;
 
   @ApiProperty({
     required: false,
@@ -119,14 +107,26 @@ class PublicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  url?: string | null;
+  datafileId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApplicationWhereUniqueInput, {
+    nullable: true,
+  })
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { PublicationUpdateInput as PublicationUpdateInput };

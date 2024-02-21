@@ -5,9 +5,9 @@ export const CommitteeShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="User Id" source="userId" />
         <TextField label="Group Id" source="groupId" />
         <TextField label="Id" source="id" />
-        <TextField label="User Id" source="userId" />
       </SimpleShowLayout>
     </Show>
   );

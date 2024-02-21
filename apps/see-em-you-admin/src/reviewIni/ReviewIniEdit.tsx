@@ -3,54 +3,54 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const ReviewIniEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Application Id" source="applicationId" />
+        <NumberInput step={1} label="Reviewer Id" source="reviewerId" />
+        <NumberInput step={1} label="Department Id" source="departmentId" />
+        <NumberInput step={1} label="Round" source="round" />
+        <TextInput label="Technical Comments" source="technicalComments" />
         <TextInput label="Academic Comments" source="academicComments" />
         <TextInput
           label="Academic Program Comments"
           source="academicProgramComments"
         />
-        <NumberInput step={1} label="Academic Rating" source="academicRating" />
+        <TextInput label="Research Comments" source="researchComments" />
+        <TextInput
+          label="Work Experience Comments"
+          source="workExperienceComments"
+        />
+        <TextInput label="Leadership Comments" source="leadershipComments" />
         <TextInput label="Additional Comments" source="additionalComments" />
+        <TextInput label="Ug Program Comments" source="ugProgramComments" />
         <NumberInput
           step={1}
-          label="Alternative Program"
-          source="alternativeProgram"
+          label="Technical Rating"
+          source="technicalRating"
         />
-        <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Department Id" source="departmentId" />
-        <TextInput label="Leadership Comments" source="leadershipComments" />
+        <NumberInput step={1} label="Academic Rating" source="academicRating" />
+        <NumberInput step={1} label="Research Rating" source="researchRating" />
+        <NumberInput
+          step={1}
+          label="Work Experience Rating"
+          source="workExperienceRating"
+        />
         <NumberInput
           step={1}
           label="Leadership Rating"
           source="leadershipRating"
         />
         <NumberInput step={1} label="Overall Rating" source="overallRating" />
-        <TextInput label="Research Comments" source="researchComments" />
-        <NumberInput step={1} label="Research Rating" source="researchRating" />
-        <NumberInput step={1} label="Reviewer Id" source="reviewerId" />
-        <NumberInput step={1} label="Round" source="round" />
-        <TextInput label="Technical Comments" source="technicalComments" />
         <NumberInput
           step={1}
-          label="Technical Rating"
-          source="technicalRating"
-        />
-        <TextInput label="Ug Program Comments" source="ugProgramComments" />
-        <TextInput
-          label="Work Experience Comments"
-          source="workExperienceComments"
-        />
-        <NumberInput
-          step={1}
-          label="Work Experience Rating"
-          source="workExperienceRating"
+          label="Alternative Program"
+          source="alternativeProgram"
         />
       </SimpleForm>
     </Edit>

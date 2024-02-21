@@ -11,23 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsOptional, IsString, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsOptional, IsString, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class StudentDecisionHistoryCreateInput {
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsInt()
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => Number, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput | null;
+  programId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -64,14 +63,15 @@ class StudentDecisionHistoryCreateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsInt()
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => ApplicationWhereUniqueInput, {
     nullable: true,
   })
-  programId?: number | null;
+  application?: ApplicationWhereUniqueInput | null;
 }
 
 export { StudentDecisionHistoryCreateInput as StudentDecisionHistoryCreateInput };

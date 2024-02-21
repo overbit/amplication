@@ -28,6 +28,17 @@ class SlateEmail2AwUserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  slateEmail?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   awLuuUserId?: SortOrder;
 
   @ApiProperty({
@@ -40,17 +51,6 @@ class SlateEmail2AwUserOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  slateEmail?: SortOrder;
 }
 
 export { SlateEmail2AwUserOrderByInput as SlateEmail2AwUserOrderByInput };

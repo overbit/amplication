@@ -28,19 +28,19 @@ class DomainUnit {
 
   @ApiProperty({
     required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
     type: () => Unit,
   })
   @ValidateNested()
   @Type(() => Unit)
   unit?: Unit;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { DomainUnit as DomainUnit };

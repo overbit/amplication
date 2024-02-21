@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDietrichFinancialSupportArgs } from "./CreateDietrichFinancialSupportArgs";
-import { UpdateDietrichFinancialSupportArgs } from "./UpdateDietrichFinancialSupportArgs";
-import { DeleteDietrichFinancialSupportArgs } from "./DeleteDietrichFinancialSupportArgs";
+import { DietrichFinancialSupport } from "./DietrichFinancialSupport";
 import { DietrichFinancialSupportCountArgs } from "./DietrichFinancialSupportCountArgs";
 import { DietrichFinancialSupportFindManyArgs } from "./DietrichFinancialSupportFindManyArgs";
 import { DietrichFinancialSupportFindUniqueArgs } from "./DietrichFinancialSupportFindUniqueArgs";
-import { DietrichFinancialSupport } from "./DietrichFinancialSupport";
+import { CreateDietrichFinancialSupportArgs } from "./CreateDietrichFinancialSupportArgs";
+import { UpdateDietrichFinancialSupportArgs } from "./UpdateDietrichFinancialSupportArgs";
+import { DeleteDietrichFinancialSupportArgs } from "./DeleteDietrichFinancialSupportArgs";
 import { DietrichFinancialSupportService } from "../dietrichFinancialSupport.service";
 @graphql.Resolver(() => DietrichFinancialSupport)
 export class DietrichFinancialSupportResolverBase {
@@ -38,14 +38,14 @@ export class DietrichFinancialSupportResolverBase {
   async dietrichFinancialSupports(
     @graphql.Args() args: DietrichFinancialSupportFindManyArgs
   ): Promise<DietrichFinancialSupport[]> {
-    return this.service.findMany(args);
+    return this.service.dietrichFinancialSupports(args);
   }
 
   @graphql.Query(() => DietrichFinancialSupport, { nullable: true })
   async dietrichFinancialSupport(
     @graphql.Args() args: DietrichFinancialSupportFindUniqueArgs
   ): Promise<DietrichFinancialSupport | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.dietrichFinancialSupport(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DietrichFinancialSupportResolverBase {
   async createDietrichFinancialSupport(
     @graphql.Args() args: CreateDietrichFinancialSupportArgs
   ): Promise<DietrichFinancialSupport> {
-    return await this.service.create({
+    return await this.service.createDietrichFinancialSupport({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DietrichFinancialSupportResolverBase {
     @graphql.Args() args: UpdateDietrichFinancialSupportArgs
   ): Promise<DietrichFinancialSupport | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDietrichFinancialSupport({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DietrichFinancialSupportResolverBase {
     @graphql.Args() args: DeleteDietrichFinancialSupportArgs
   ): Promise<DietrichFinancialSupport | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDietrichFinancialSupport(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

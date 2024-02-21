@@ -15,8 +15,8 @@ import {
   IsInt,
   IsString,
   IsOptional,
-  IsDate,
   IsBoolean,
+  IsDate,
 } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -29,6 +29,14 @@ class LangProfRecommendCreateInput {
   @IsInt()
   @Field(() => Number)
   applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  recUserId!: number;
 
   @ApiProperty({
     required: false,
@@ -65,11 +73,19 @@ class LangProfRecommendCreateInput {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Boolean,
   })
-  @IsString()
-  @Field(() => String)
-  languageSpecialization!: string;
+  @IsBoolean()
+  @Field(() => Boolean)
+  submitted!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  reminderSentCount!: number;
 
   @ApiProperty({
     required: false,
@@ -84,27 +100,11 @@ class LangProfRecommendCreateInput {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  recUserId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reminderSentCount!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  submitted!: boolean;
+  @IsString()
+  @Field(() => String)
+  languageSpecialization!: string;
 }
 
 export { LangProfRecommendCreateInput as LangProfRecommendCreateInput };

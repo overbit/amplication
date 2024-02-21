@@ -18,34 +18,34 @@ import { RequestsAccessService } from "../requestsAccess.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  user: "exampleUser",
   createdDate: new Date(),
   id: 42,
-  user: "exampleUser",
 };
 const CREATE_RESULT = {
+  user: "exampleUser",
   createdDate: new Date(),
   id: 42,
-  user: "exampleUser",
 };
 const FIND_MANY_RESULT = [
   {
+    user: "exampleUser",
     createdDate: new Date(),
     id: 42,
-    user: "exampleUser",
   },
 ];
 const FIND_ONE_RESULT = {
+  user: "exampleUser",
   createdDate: new Date(),
   id: 42,
-  user: "exampleUser",
 };
 
 const service = {
-  create() {
+  createRequestsAccess() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  requestsAccesses: () => FIND_MANY_RESULT,
+  requestsAccess: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

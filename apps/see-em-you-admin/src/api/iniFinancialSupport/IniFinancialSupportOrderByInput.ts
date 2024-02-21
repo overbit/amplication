@@ -2,14 +2,14 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type IniFinancialSupportOrderByInput = {
   applicationId?: SortOrder;
-  applyOutsideSupportSource?: SortOrder;
-  applyOutsideSupportType?: SortOrder;
-  attendWithoutSupport?: SortOrder;
-  familySupportAmount?: SortOrder;
-  familySupportType?: SortOrder;
-  id?: SortOrder;
-  otherSupportSource?: SortOrder;
-  receiveOutsideSupportSource?: SortOrder;
-  receiveOutsideSupportType?: SortOrder;
   requestConsideration?: SortOrder;
+  attendWithoutSupport?: SortOrder;
+  receiveOutsideSupportType?: SortOrder;
+  receiveOutsideSupportSource?: SortOrder;
+  applyOutsideSupportType?: SortOrder;
+  applyOutsideSupportSource?: SortOrder;
+  otherSupportSource?: SortOrder;
+  familySupportType?: SortOrder;
+  familySupportAmount?: SortOrder;
+  id?: SortOrder;
 };

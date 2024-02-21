@@ -1,8 +1,8 @@
 export type LangProfRecommenderInfo = {
-  affiliation: string;
-  id: number;
-  languageSpecialization: string | null;
-  phone: string;
   recUserId: number;
   title: string;
+  affiliation: string;
+  phone: string;
+  languageSpecialization: string | null;
+  id: number;
 };

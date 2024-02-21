@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePeriodArgs } from "./CreatePeriodArgs";
-import { UpdatePeriodArgs } from "./UpdatePeriodArgs";
-import { DeletePeriodArgs } from "./DeletePeriodArgs";
+import { Period } from "./Period";
 import { PeriodCountArgs } from "./PeriodCountArgs";
 import { PeriodFindManyArgs } from "./PeriodFindManyArgs";
 import { PeriodFindUniqueArgs } from "./PeriodFindUniqueArgs";
-import { Period } from "./Period";
+import { CreatePeriodArgs } from "./CreatePeriodArgs";
+import { UpdatePeriodArgs } from "./UpdatePeriodArgs";
+import { DeletePeriodArgs } from "./DeletePeriodArgs";
 import { AaDepartmentFindManyArgs } from "../../aaDepartment/base/AaDepartmentFindManyArgs";
 import { AaDepartment } from "../../aaDepartment/base/AaDepartment";
 import { CohortFindManyArgs } from "../../cohort/base/CohortFindManyArgs";
@@ -42,14 +42,14 @@ export class PeriodResolverBase {
 
   @graphql.Query(() => [Period])
   async periods(@graphql.Args() args: PeriodFindManyArgs): Promise<Period[]> {
-    return this.service.findMany(args);
+    return this.service.periods(args);
   }
 
   @graphql.Query(() => Period, { nullable: true })
   async period(
     @graphql.Args() args: PeriodFindUniqueArgs
   ): Promise<Period | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.period(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class PeriodResolverBase {
 
   @graphql.Mutation(() => Period)
   async createPeriod(@graphql.Args() args: CreatePeriodArgs): Promise<Period> {
-    return await this.service.create({
+    return await this.service.createPeriod({
       ...args,
       data: args.data,
     });
@@ -69,7 +69,7 @@ export class PeriodResolverBase {
     @graphql.Args() args: UpdatePeriodArgs
   ): Promise<Period | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriod({
         ...args,
         data: args.data,
       });
@@ -88,7 +88,7 @@ export class PeriodResolverBase {
     @graphql.Args() args: DeletePeriodArgs
   ): Promise<Period | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePeriod(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -100,7 +100,7 @@ export class PeriodResolverBase {
   }
 
   @graphql.ResolveField(() => [AaDepartment], { name: "aaDepartment" })
-  async resolveFieldAaDepartment(
+  async findAaDepartment(
     @graphql.Parent() parent: Period,
     @graphql.Args() args: AaDepartmentFindManyArgs
   ): Promise<AaDepartment[]> {
@@ -114,7 +114,7 @@ export class PeriodResolverBase {
   }
 
   @graphql.ResolveField(() => [Cohort], { name: "cohort" })
-  async resolveFieldCohort(
+  async findCohort(
     @graphql.Parent() parent: Period,
     @graphql.Args() args: CohortFindManyArgs
   ): Promise<Cohort[]> {
@@ -130,7 +130,7 @@ export class PeriodResolverBase {
   @graphql.ResolveField(() => [PeriodApplication], {
     name: "periodApplication",
   })
-  async resolveFieldPeriodApplication(
+  async findPeriodApplication(
     @graphql.Parent() parent: Period,
     @graphql.Args() args: PeriodApplicationFindManyArgs
   ): Promise<PeriodApplication[]> {

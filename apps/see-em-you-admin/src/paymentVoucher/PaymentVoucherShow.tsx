@@ -13,10 +13,10 @@ export const PaymentVoucherShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Datafileinfo Id" source="datafileinfoId" />
-        <TextField label="Id" source="id" />
         <ReferenceField label="Payment" source="payment.id" reference="Payment">
           <TextField source={PAYMENT_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

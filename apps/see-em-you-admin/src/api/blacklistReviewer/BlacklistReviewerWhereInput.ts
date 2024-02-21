@@ -1,1 +1,5 @@
-export type BlacklistReviewerWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type BlacklistReviewerWhereInput = {
+  id?: IntFilter;
+};

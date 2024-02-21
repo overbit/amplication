@@ -3,9 +3,9 @@ import {
   List,
   Datagrid,
   ListProps,
+  DateField,
   TextField,
   BooleanField,
-  DateField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 
@@ -19,12 +19,12 @@ export const MergeList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Application Id" source="applicationId" />
-        <TextField label="Error Field" source="errorField" />
-        <TextField label="Id" source="id" />
-        <BooleanField label="Merged" source="merged" />
         <DateField source="mergeDate" label="Merge Date" />
+        <TextField label="Application Id" source="applicationId" />
+        <BooleanField label="Merged" source="merged" />
+        <TextField label="Error Field" source="errorField" />
         <TextField label="Message" source="message" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

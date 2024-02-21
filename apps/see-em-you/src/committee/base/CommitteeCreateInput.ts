@@ -21,7 +21,7 @@ class CommitteeCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  groupId!: number;
+  userId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class CommitteeCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  userId!: number;
+  groupId!: number;
 }
 
 export { CommitteeCreateInput as CommitteeCreateInput };

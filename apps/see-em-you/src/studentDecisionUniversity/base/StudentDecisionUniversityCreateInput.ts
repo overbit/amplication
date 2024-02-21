@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsOptional, IsInt, IsString } from "class-validator";
+import { IsInt, IsString, IsBoolean, IsOptional } from "class-validator";
 
 @InputType()
 class StudentDecisionUniversityCreateInput {
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  accepted?: boolean | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -36,6 +25,14 @@ class StudentDecisionUniversityCreateInput {
 
   @ApiProperty({
     required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
     type: String,
   })
   @IsString()
@@ -43,12 +40,15 @@ class StudentDecisionUniversityCreateInput {
   name!: string;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: Boolean,
   })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  accepted?: boolean | null;
 }
 
 export { StudentDecisionUniversityCreateInput as StudentDecisionUniversityCreateInput };

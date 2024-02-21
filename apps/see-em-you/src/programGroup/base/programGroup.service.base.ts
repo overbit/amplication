@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ProgramGroup } from "@prisma/client";
+import { Prisma, ProgramGroup as PrismaProgramGroup } from "@prisma/client";
 
 export class ProgramGroupServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ProgramGroupServiceBase {
     return this.prisma.programGroup.count(args);
   }
 
-  async findMany<T extends Prisma.ProgramGroupFindManyArgs>(
+  async programGroups<T extends Prisma.ProgramGroupFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupFindManyArgs>
-  ): Promise<ProgramGroup[]> {
+  ): Promise<PrismaProgramGroup[]> {
     return this.prisma.programGroup.findMany(args);
   }
-  async findOne<T extends Prisma.ProgramGroupFindUniqueArgs>(
+  async programGroup<T extends Prisma.ProgramGroupFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupFindUniqueArgs>
-  ): Promise<ProgramGroup | null> {
+  ): Promise<PrismaProgramGroup | null> {
     return this.prisma.programGroup.findUnique(args);
   }
-  async create<T extends Prisma.ProgramGroupCreateArgs>(
+  async createProgramGroup<T extends Prisma.ProgramGroupCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupCreateArgs>
-  ): Promise<ProgramGroup> {
+  ): Promise<PrismaProgramGroup> {
     return this.prisma.programGroup.create<T>(args);
   }
-  async update<T extends Prisma.ProgramGroupUpdateArgs>(
+  async updateProgramGroup<T extends Prisma.ProgramGroupUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupUpdateArgs>
-  ): Promise<ProgramGroup> {
+  ): Promise<PrismaProgramGroup> {
     return this.prisma.programGroup.update<T>(args);
   }
-  async delete<T extends Prisma.ProgramGroupDeleteArgs>(
+  async deleteProgramGroup<T extends Prisma.ProgramGroupDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramGroupDeleteArgs>
-  ): Promise<ProgramGroup> {
+  ): Promise<PrismaProgramGroup> {
     return this.prisma.programGroup.delete(args);
   }
 }

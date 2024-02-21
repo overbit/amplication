@@ -1,24 +1,24 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type ReviewIniOrderByInput = {
-  academicComments?: SortOrder;
-  academicProgramComments?: SortOrder;
-  academicRating?: SortOrder;
-  additionalComments?: SortOrder;
-  alternativeProgram?: SortOrder;
   applicationId?: SortOrder;
-  departmentId?: SortOrder;
-  id?: SortOrder;
-  leadershipComments?: SortOrder;
-  leadershipRating?: SortOrder;
-  overallRating?: SortOrder;
-  researchComments?: SortOrder;
-  researchRating?: SortOrder;
   reviewerId?: SortOrder;
+  departmentId?: SortOrder;
   round?: SortOrder;
   technicalComments?: SortOrder;
-  technicalRating?: SortOrder;
-  ugProgramComments?: SortOrder;
+  academicComments?: SortOrder;
+  academicProgramComments?: SortOrder;
+  researchComments?: SortOrder;
   workExperienceComments?: SortOrder;
+  leadershipComments?: SortOrder;
+  additionalComments?: SortOrder;
+  ugProgramComments?: SortOrder;
+  technicalRating?: SortOrder;
+  academicRating?: SortOrder;
+  researchRating?: SortOrder;
   workExperienceRating?: SortOrder;
+  leadershipRating?: SortOrder;
+  overallRating?: SortOrder;
+  alternativeProgram?: SortOrder;
+  id?: SortOrder;
 };

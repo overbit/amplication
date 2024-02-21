@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuUsersUsertypeArgs } from "./CreateLuUsersUsertypeArgs";
-import { UpdateLuUsersUsertypeArgs } from "./UpdateLuUsersUsertypeArgs";
-import { DeleteLuUsersUsertypeArgs } from "./DeleteLuUsersUsertypeArgs";
+import { LuUsersUsertype } from "./LuUsersUsertype";
 import { LuUsersUsertypeCountArgs } from "./LuUsersUsertypeCountArgs";
 import { LuUsersUsertypeFindManyArgs } from "./LuUsersUsertypeFindManyArgs";
 import { LuUsersUsertypeFindUniqueArgs } from "./LuUsersUsertypeFindUniqueArgs";
-import { LuUsersUsertype } from "./LuUsersUsertype";
+import { CreateLuUsersUsertypeArgs } from "./CreateLuUsersUsertypeArgs";
+import { UpdateLuUsersUsertypeArgs } from "./UpdateLuUsersUsertypeArgs";
+import { DeleteLuUsersUsertypeArgs } from "./DeleteLuUsersUsertypeArgs";
 import { MhciPrereqsConversationCommentFindManyArgs } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentFindManyArgs";
 import { MhciPrereqsConversationComment } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationComment";
 import { MhciPrereqsCourseFindManyArgs } from "../../mhciPrereqsCourse/base/MhciPrereqsCourseFindManyArgs";
@@ -28,8 +28,8 @@ import { MhciPrereqsDesignPortfolioFindManyArgs } from "../../mhciPrereqsDesignP
 import { MhciPrereqsDesignPortfolio } from "../../mhciPrereqsDesignPortfolio/base/MhciPrereqsDesignPortfolio";
 import { MhciPrereqsProgrammingTestFindManyArgs } from "../../mhciPrereqsProgrammingTest/base/MhciPrereqsProgrammingTestFindManyArgs";
 import { MhciPrereqsProgrammingTest } from "../../mhciPrereqsProgrammingTest/base/MhciPrereqsProgrammingTest";
-import { MhciPrereqsProgrammingSample } from "../../mhciPrereqsProgrammingSample/base/MhciPrereqsProgrammingSample";
 import { User } from "../../user/base/User";
+import { MhciPrereqsProgrammingSample } from "../../mhciPrereqsProgrammingSample/base/MhciPrereqsProgrammingSample";
 import { LuUsersUsertypeService } from "../luUsersUsertype.service";
 @graphql.Resolver(() => LuUsersUsertype)
 export class LuUsersUsertypeResolverBase {
@@ -48,14 +48,14 @@ export class LuUsersUsertypeResolverBase {
   async luUsersUsertypes(
     @graphql.Args() args: LuUsersUsertypeFindManyArgs
   ): Promise<LuUsersUsertype[]> {
-    return this.service.findMany(args);
+    return this.service.luUsersUsertypes(args);
   }
 
   @graphql.Query(() => LuUsersUsertype, { nullable: true })
   async luUsersUsertype(
     @graphql.Args() args: LuUsersUsertypeFindUniqueArgs
   ): Promise<LuUsersUsertype | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luUsersUsertype(args);
     if (result === null) {
       return null;
     }
@@ -66,20 +66,20 @@ export class LuUsersUsertypeResolverBase {
   async createLuUsersUsertype(
     @graphql.Args() args: CreateLuUsersUsertypeArgs
   ): Promise<LuUsersUsertype> {
-    return await this.service.create({
+    return await this.service.createLuUsersUsertype({
       ...args,
       data: {
         ...args.data,
+
+        users: {
+          connect: args.data.users,
+        },
 
         mhciPrereqsProgrammingSamples: args.data.mhciPrereqsProgrammingSamples
           ? {
               connect: args.data.mhciPrereqsProgrammingSamples,
             }
           : undefined,
-
-        users: {
-          connect: args.data.users,
-        },
       },
     });
   }
@@ -89,20 +89,20 @@ export class LuUsersUsertypeResolverBase {
     @graphql.Args() args: UpdateLuUsersUsertypeArgs
   ): Promise<LuUsersUsertype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuUsersUsertype({
         ...args,
         data: {
           ...args.data,
+
+          users: {
+            connect: args.data.users,
+          },
 
           mhciPrereqsProgrammingSamples: args.data.mhciPrereqsProgrammingSamples
             ? {
                 connect: args.data.mhciPrereqsProgrammingSamples,
               }
             : undefined,
-
-          users: {
-            connect: args.data.users,
-          },
         },
       });
     } catch (error) {
@@ -120,7 +120,7 @@ export class LuUsersUsertypeResolverBase {
     @graphql.Args() args: DeleteLuUsersUsertypeArgs
   ): Promise<LuUsersUsertype | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuUsersUsertype(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -134,7 +134,7 @@ export class LuUsersUsertypeResolverBase {
   @graphql.ResolveField(() => [MhciPrereqsConversationComment], {
     name: "mhciPrereqsConversationComments",
   })
-  async resolveFieldMhciPrereqsConversationComments(
+  async findMhciPrereqsConversationComments(
     @graphql.Parent() parent: LuUsersUsertype,
     @graphql.Args() args: MhciPrereqsConversationCommentFindManyArgs
   ): Promise<MhciPrereqsConversationComment[]> {
@@ -153,7 +153,7 @@ export class LuUsersUsertypeResolverBase {
   @graphql.ResolveField(() => [MhciPrereqsCourse], {
     name: "mhciPrereqsCourses",
   })
-  async resolveFieldMhciPrereqsCourses(
+  async findMhciPrereqsCourses(
     @graphql.Parent() parent: LuUsersUsertype,
     @graphql.Args() args: MhciPrereqsCourseFindManyArgs
   ): Promise<MhciPrereqsCourse[]> {
@@ -169,7 +169,7 @@ export class LuUsersUsertypeResolverBase {
   @graphql.ResolveField(() => [MhciPrereqsDesignPortfolio], {
     name: "mhciPrereqsDesignPortfolios",
   })
-  async resolveFieldMhciPrereqsDesignPortfolios(
+  async findMhciPrereqsDesignPortfolios(
     @graphql.Parent() parent: LuUsersUsertype,
     @graphql.Args() args: MhciPrereqsDesignPortfolioFindManyArgs
   ): Promise<MhciPrereqsDesignPortfolio[]> {
@@ -188,7 +188,7 @@ export class LuUsersUsertypeResolverBase {
   @graphql.ResolveField(() => [MhciPrereqsProgrammingTest], {
     name: "mhciPrereqsProgrammingTests",
   })
-  async resolveFieldMhciPrereqsProgrammingTests(
+  async findMhciPrereqsProgrammingTests(
     @graphql.Parent() parent: LuUsersUsertype,
     @graphql.Args() args: MhciPrereqsProgrammingTestFindManyArgs
   ): Promise<MhciPrereqsProgrammingTest[]> {
@@ -204,16 +204,14 @@ export class LuUsersUsertypeResolverBase {
     return results;
   }
 
-  @graphql.ResolveField(() => MhciPrereqsProgrammingSample, {
+  @graphql.ResolveField(() => User, {
     nullable: true,
-    name: "mhciPrereqsProgrammingSamples",
+    name: "users",
   })
-  async resolveFieldMhciPrereqsProgrammingSamples(
+  async getUsers(
     @graphql.Parent() parent: LuUsersUsertype
-  ): Promise<MhciPrereqsProgrammingSample | null> {
-    const result = await this.service.getMhciPrereqsProgrammingSamples(
-      parent.id
-    );
+  ): Promise<User | null> {
+    const result = await this.service.getUsers(parent.id);
 
     if (!result) {
       return null;
@@ -221,14 +219,16 @@ export class LuUsersUsertypeResolverBase {
     return result;
   }
 
-  @graphql.ResolveField(() => User, {
+  @graphql.ResolveField(() => MhciPrereqsProgrammingSample, {
     nullable: true,
-    name: "users",
+    name: "mhciPrereqsProgrammingSamples",
   })
-  async resolveFieldUsers(
+  async getMhciPrereqsProgrammingSamples(
     @graphql.Parent() parent: LuUsersUsertype
-  ): Promise<User | null> {
-    const result = await this.service.getUsers(parent.id);
+  ): Promise<MhciPrereqsProgrammingSample | null> {
+    const result = await this.service.getMhciPrereqsProgrammingSamples(
+      parent.id
+    );
 
     if (!result) {
       return null;

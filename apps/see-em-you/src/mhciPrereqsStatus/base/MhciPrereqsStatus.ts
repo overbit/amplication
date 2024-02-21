@@ -13,57 +13,19 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
-  ValidateNested,
   IsOptional,
-  IsString,
   IsEnum,
+  IsString,
   IsDate,
+  ValidateNested,
 } from "class-validator";
-import { MhciPrereq } from "../../mhciPrereq/base/MhciPrereq";
-import { Type } from "class-transformer";
 import { EnumMhciPrereqsStatusReviewerStatus } from "./EnumMhciPrereqsStatusReviewerStatus";
+import { Type } from "class-transformer";
 import { EnumMhciPrereqsStatusStatus3 } from "./EnumMhciPrereqsStatusStatus3";
+import { MhciPrereq } from "../../mhciPrereq/base/MhciPrereq";
 
 @ObjectType()
 class MhciPrereqsStatus {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: () => MhciPrereq,
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereq)
-  mhciPrereqs?: MhciPrereq;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programId!: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reviewerExplanation!: string | null;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -93,6 +55,17 @@ class MhciPrereqsStatus {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reviewerExplanation!: string | null;
+
+  @ApiProperty({
+    required: false,
   })
   @IsDate()
   @Type(() => Date)
@@ -117,6 +90,33 @@ class MhciPrereqsStatus {
     | "Student_Edited"
     | "Reviewer_Responded"
     | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  programId!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => MhciPrereq,
+  })
+  @ValidateNested()
+  @Type(() => MhciPrereq)
+  mhciPrereqs?: MhciPrereq;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MhciPrereqsStatus as MhciPrereqsStatus };

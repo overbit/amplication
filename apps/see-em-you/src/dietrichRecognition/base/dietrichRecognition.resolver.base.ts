@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDietrichRecognitionArgs } from "./CreateDietrichRecognitionArgs";
-import { UpdateDietrichRecognitionArgs } from "./UpdateDietrichRecognitionArgs";
-import { DeleteDietrichRecognitionArgs } from "./DeleteDietrichRecognitionArgs";
+import { DietrichRecognition } from "./DietrichRecognition";
 import { DietrichRecognitionCountArgs } from "./DietrichRecognitionCountArgs";
 import { DietrichRecognitionFindManyArgs } from "./DietrichRecognitionFindManyArgs";
 import { DietrichRecognitionFindUniqueArgs } from "./DietrichRecognitionFindUniqueArgs";
-import { DietrichRecognition } from "./DietrichRecognition";
+import { CreateDietrichRecognitionArgs } from "./CreateDietrichRecognitionArgs";
+import { UpdateDietrichRecognitionArgs } from "./UpdateDietrichRecognitionArgs";
+import { DeleteDietrichRecognitionArgs } from "./DeleteDietrichRecognitionArgs";
 import { DietrichRecognitionService } from "../dietrichRecognition.service";
 @graphql.Resolver(() => DietrichRecognition)
 export class DietrichRecognitionResolverBase {
@@ -38,14 +38,14 @@ export class DietrichRecognitionResolverBase {
   async dietrichRecognitions(
     @graphql.Args() args: DietrichRecognitionFindManyArgs
   ): Promise<DietrichRecognition[]> {
-    return this.service.findMany(args);
+    return this.service.dietrichRecognitions(args);
   }
 
   @graphql.Query(() => DietrichRecognition, { nullable: true })
   async dietrichRecognition(
     @graphql.Args() args: DietrichRecognitionFindUniqueArgs
   ): Promise<DietrichRecognition | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.dietrichRecognition(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DietrichRecognitionResolverBase {
   async createDietrichRecognition(
     @graphql.Args() args: CreateDietrichRecognitionArgs
   ): Promise<DietrichRecognition> {
-    return await this.service.create({
+    return await this.service.createDietrichRecognition({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DietrichRecognitionResolverBase {
     @graphql.Args() args: UpdateDietrichRecognitionArgs
   ): Promise<DietrichRecognition | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDietrichRecognition({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DietrichRecognitionResolverBase {
     @graphql.Args() args: DeleteDietrichRecognitionArgs
   ): Promise<DietrichRecognition | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDietrichRecognition(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

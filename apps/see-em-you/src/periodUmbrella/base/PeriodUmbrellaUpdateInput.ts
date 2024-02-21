@@ -51,17 +51,6 @@ class PeriodUmbrellaUpdateInput {
 
   @ApiProperty({
     required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  lastPaymentDate?: Date | null;
-
-  @ApiProperty({
-    required: false,
     type: String,
   })
   @IsString()
@@ -70,6 +59,17 @@ class PeriodUmbrellaUpdateInput {
     nullable: true,
   })
   umbrellaName?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  lastPaymentDate?: Date | null;
 }
 
 export { PeriodUmbrellaUpdateInput as PeriodUmbrellaUpdateInput };

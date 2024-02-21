@@ -5,11 +5,11 @@ export const LuReviewerGroupShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Department Id" source="departmentId" />
         <TextField label="Group Id" source="groupId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Round" source="round" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

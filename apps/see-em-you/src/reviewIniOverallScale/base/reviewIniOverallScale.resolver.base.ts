@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReviewIniOverallScaleArgs } from "./CreateReviewIniOverallScaleArgs";
-import { UpdateReviewIniOverallScaleArgs } from "./UpdateReviewIniOverallScaleArgs";
-import { DeleteReviewIniOverallScaleArgs } from "./DeleteReviewIniOverallScaleArgs";
+import { ReviewIniOverallScale } from "./ReviewIniOverallScale";
 import { ReviewIniOverallScaleCountArgs } from "./ReviewIniOverallScaleCountArgs";
 import { ReviewIniOverallScaleFindManyArgs } from "./ReviewIniOverallScaleFindManyArgs";
 import { ReviewIniOverallScaleFindUniqueArgs } from "./ReviewIniOverallScaleFindUniqueArgs";
-import { ReviewIniOverallScale } from "./ReviewIniOverallScale";
+import { CreateReviewIniOverallScaleArgs } from "./CreateReviewIniOverallScaleArgs";
+import { UpdateReviewIniOverallScaleArgs } from "./UpdateReviewIniOverallScaleArgs";
+import { DeleteReviewIniOverallScaleArgs } from "./DeleteReviewIniOverallScaleArgs";
 import { ReviewIniOverallScaleService } from "../reviewIniOverallScale.service";
 @graphql.Resolver(() => ReviewIniOverallScale)
 export class ReviewIniOverallScaleResolverBase {
@@ -38,14 +38,14 @@ export class ReviewIniOverallScaleResolverBase {
   async reviewIniOverallScales(
     @graphql.Args() args: ReviewIniOverallScaleFindManyArgs
   ): Promise<ReviewIniOverallScale[]> {
-    return this.service.findMany(args);
+    return this.service.reviewIniOverallScales(args);
   }
 
   @graphql.Query(() => ReviewIniOverallScale, { nullable: true })
   async reviewIniOverallScale(
     @graphql.Args() args: ReviewIniOverallScaleFindUniqueArgs
   ): Promise<ReviewIniOverallScale | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reviewIniOverallScale(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ReviewIniOverallScaleResolverBase {
   async createReviewIniOverallScale(
     @graphql.Args() args: CreateReviewIniOverallScaleArgs
   ): Promise<ReviewIniOverallScale> {
-    return await this.service.create({
+    return await this.service.createReviewIniOverallScale({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ReviewIniOverallScaleResolverBase {
     @graphql.Args() args: UpdateReviewIniOverallScaleArgs
   ): Promise<ReviewIniOverallScale | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewIniOverallScale({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ReviewIniOverallScaleResolverBase {
     @graphql.Args() args: DeleteReviewIniOverallScaleArgs
   ): Promise<ReviewIniOverallScale | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReviewIniOverallScale(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

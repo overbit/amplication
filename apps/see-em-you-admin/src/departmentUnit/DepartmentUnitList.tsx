@@ -13,8 +13,8 @@ export const DepartmentUnitList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
         <TextField label="Unit Id" source="unitId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

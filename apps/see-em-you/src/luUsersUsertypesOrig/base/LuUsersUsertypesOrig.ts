@@ -16,6 +16,22 @@ import { IsInt, IsOptional } from "class-validator";
 @ObjectType()
 class LuUsersUsertypesOrig {
   @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  userId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  usertypeId!: number;
+
+  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -33,22 +49,6 @@ class LuUsersUsertypesOrig {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  userId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  usertypeId!: number;
 }
 
 export { LuUsersUsertypesOrig as LuUsersUsertypesOrig };

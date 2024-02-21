@@ -5,10 +5,10 @@ export const VisatypeEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Added For" source="addedFor" />
-        <TextInput label="Description" source="description" />
         <TextInput label="Name" source="name" />
         <TextInput label="Short" source="short" />
+        <TextInput label="Description" source="description" />
+        <TextInput label="Added For" source="addedFor" />
       </SimpleForm>
     </Edit>
   );

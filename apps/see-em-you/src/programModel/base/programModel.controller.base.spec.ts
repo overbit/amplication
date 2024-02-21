@@ -18,70 +18,70 @@ import { ProgramModelService } from "../programModel.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  baseprice: 42.424242424,
-  basepriceLate: 42.424242424,
-  description: "exampleDescription",
-  enabled: "exampleEnabled",
   id: 42,
   linkword: "exampleLinkword",
-  oraclestring: "exampleOraclestring",
-  prank: 42,
   programprice: 42.424242424,
   programpriceLate: 42.424242424,
-  registrationoraclestring: "exampleRegistrationoraclestring",
+  description: "exampleDescription",
   url: "exampleUrl",
+  oraclestring: "exampleOraclestring",
+  registrationoraclestring: "exampleRegistrationoraclestring",
+  baseprice: 42.424242424,
+  basepriceLate: 42.424242424,
+  prank: 42,
+  enabled: "exampleEnabled",
 };
 const CREATE_RESULT = {
-  baseprice: 42.424242424,
-  basepriceLate: 42.424242424,
-  description: "exampleDescription",
-  enabled: "exampleEnabled",
   id: 42,
   linkword: "exampleLinkword",
-  oraclestring: "exampleOraclestring",
-  prank: 42,
   programprice: 42.424242424,
   programpriceLate: 42.424242424,
-  registrationoraclestring: "exampleRegistrationoraclestring",
+  description: "exampleDescription",
   url: "exampleUrl",
+  oraclestring: "exampleOraclestring",
+  registrationoraclestring: "exampleRegistrationoraclestring",
+  baseprice: 42.424242424,
+  basepriceLate: 42.424242424,
+  prank: 42,
+  enabled: "exampleEnabled",
 };
 const FIND_MANY_RESULT = [
   {
-    baseprice: 42.424242424,
-    basepriceLate: 42.424242424,
-    description: "exampleDescription",
-    enabled: "exampleEnabled",
     id: 42,
     linkword: "exampleLinkword",
-    oraclestring: "exampleOraclestring",
-    prank: 42,
     programprice: 42.424242424,
     programpriceLate: 42.424242424,
-    registrationoraclestring: "exampleRegistrationoraclestring",
+    description: "exampleDescription",
     url: "exampleUrl",
+    oraclestring: "exampleOraclestring",
+    registrationoraclestring: "exampleRegistrationoraclestring",
+    baseprice: 42.424242424,
+    basepriceLate: 42.424242424,
+    prank: 42,
+    enabled: "exampleEnabled",
   },
 ];
 const FIND_ONE_RESULT = {
-  baseprice: 42.424242424,
-  basepriceLate: 42.424242424,
-  description: "exampleDescription",
-  enabled: "exampleEnabled",
   id: 42,
   linkword: "exampleLinkword",
-  oraclestring: "exampleOraclestring",
-  prank: 42,
   programprice: 42.424242424,
   programpriceLate: 42.424242424,
-  registrationoraclestring: "exampleRegistrationoraclestring",
+  description: "exampleDescription",
   url: "exampleUrl",
+  oraclestring: "exampleOraclestring",
+  registrationoraclestring: "exampleRegistrationoraclestring",
+  baseprice: 42.424242424,
+  basepriceLate: 42.424242424,
+  prank: 42,
+  enabled: "exampleEnabled",
 };
 
 const service = {
-  create() {
+  createProgramModel() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  programModels: () => FIND_MANY_RESULT,
+  programModel: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

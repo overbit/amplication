@@ -1,14 +1,14 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type CashnetPaymentOrderByInput = {
-  amount?: SortOrder;
-  applicantEmail?: SortOrder;
+  transactionId?: SortOrder;
   applicantName?: SortOrder;
-  app_id?: SortOrder;
-  id?: SortOrder;
+  applicantEmail?: SortOrder;
   merchant?: SortOrder;
   status?: SortOrder;
-  transactionId?: SortOrder;
   transactionTime?: SortOrder;
   transactionType?: SortOrder;
+  amount?: SortOrder;
+  app_id?: SortOrder;
+  id?: SortOrder;
 };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDietrichDiversityArgs } from "./CreateDietrichDiversityArgs";
-import { UpdateDietrichDiversityArgs } from "./UpdateDietrichDiversityArgs";
-import { DeleteDietrichDiversityArgs } from "./DeleteDietrichDiversityArgs";
+import { DietrichDiversity } from "./DietrichDiversity";
 import { DietrichDiversityCountArgs } from "./DietrichDiversityCountArgs";
 import { DietrichDiversityFindManyArgs } from "./DietrichDiversityFindManyArgs";
 import { DietrichDiversityFindUniqueArgs } from "./DietrichDiversityFindUniqueArgs";
-import { DietrichDiversity } from "./DietrichDiversity";
+import { CreateDietrichDiversityArgs } from "./CreateDietrichDiversityArgs";
+import { UpdateDietrichDiversityArgs } from "./UpdateDietrichDiversityArgs";
+import { DeleteDietrichDiversityArgs } from "./DeleteDietrichDiversityArgs";
 import { DietrichDiversityService } from "../dietrichDiversity.service";
 @graphql.Resolver(() => DietrichDiversity)
 export class DietrichDiversityResolverBase {
@@ -38,14 +38,14 @@ export class DietrichDiversityResolverBase {
   async dietrichDiversities(
     @graphql.Args() args: DietrichDiversityFindManyArgs
   ): Promise<DietrichDiversity[]> {
-    return this.service.findMany(args);
+    return this.service.dietrichDiversities(args);
   }
 
   @graphql.Query(() => DietrichDiversity, { nullable: true })
   async dietrichDiversity(
     @graphql.Args() args: DietrichDiversityFindUniqueArgs
   ): Promise<DietrichDiversity | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.dietrichDiversity(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DietrichDiversityResolverBase {
   async createDietrichDiversity(
     @graphql.Args() args: CreateDietrichDiversityArgs
   ): Promise<DietrichDiversity> {
-    return await this.service.create({
+    return await this.service.createDietrichDiversity({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DietrichDiversityResolverBase {
     @graphql.Args() args: UpdateDietrichDiversityArgs
   ): Promise<DietrichDiversity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDietrichDiversity({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DietrichDiversityResolverBase {
     @graphql.Args() args: DeleteDietrichDiversityArgs
   ): Promise<DietrichDiversity | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDietrichDiversity(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

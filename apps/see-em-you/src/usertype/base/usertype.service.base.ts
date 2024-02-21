@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Usertype } from "@prisma/client";
+import { Prisma, Usertype as PrismaUsertype } from "@prisma/client";
 
 export class UsertypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class UsertypeServiceBase {
     return this.prisma.usertype.count(args);
   }
 
-  async findMany<T extends Prisma.UsertypeFindManyArgs>(
+  async usertypes<T extends Prisma.UsertypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsertypeFindManyArgs>
-  ): Promise<Usertype[]> {
+  ): Promise<PrismaUsertype[]> {
     return this.prisma.usertype.findMany(args);
   }
-  async findOne<T extends Prisma.UsertypeFindUniqueArgs>(
+  async usertype<T extends Prisma.UsertypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsertypeFindUniqueArgs>
-  ): Promise<Usertype | null> {
+  ): Promise<PrismaUsertype | null> {
     return this.prisma.usertype.findUnique(args);
   }
-  async create<T extends Prisma.UsertypeCreateArgs>(
+  async createUsertype<T extends Prisma.UsertypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsertypeCreateArgs>
-  ): Promise<Usertype> {
+  ): Promise<PrismaUsertype> {
     return this.prisma.usertype.create<T>(args);
   }
-  async update<T extends Prisma.UsertypeUpdateArgs>(
+  async updateUsertype<T extends Prisma.UsertypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsertypeUpdateArgs>
-  ): Promise<Usertype> {
+  ): Promise<PrismaUsertype> {
     return this.prisma.usertype.update<T>(args);
   }
-  async delete<T extends Prisma.UsertypeDeleteArgs>(
+  async deleteUsertype<T extends Prisma.UsertypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.UsertypeDeleteArgs>
-  ): Promise<Usertype> {
+  ): Promise<PrismaUsertype> {
     return this.prisma.usertype.delete(args);
   }
 }

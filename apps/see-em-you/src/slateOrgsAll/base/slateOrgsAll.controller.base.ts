@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateOrgsAllService } from "../slateOrgsAll.service";
 import { SlateOrgsAllCreateInput } from "./SlateOrgsAllCreateInput";
-import { SlateOrgsAllWhereInput } from "./SlateOrgsAllWhereInput";
-import { SlateOrgsAllWhereUniqueInput } from "./SlateOrgsAllWhereUniqueInput";
-import { SlateOrgsAllFindManyArgs } from "./SlateOrgsAllFindManyArgs";
-import { SlateOrgsAllUpdateInput } from "./SlateOrgsAllUpdateInput";
 import { SlateOrgsAll } from "./SlateOrgsAll";
+import { SlateOrgsAllFindManyArgs } from "./SlateOrgsAllFindManyArgs";
+import { SlateOrgsAllWhereUniqueInput } from "./SlateOrgsAllWhereUniqueInput";
+import { SlateOrgsAllUpdateInput } from "./SlateOrgsAllUpdateInput";
 
 export class SlateOrgsAllControllerBase {
   constructor(protected readonly service: SlateOrgsAllService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateOrgsAll })
-  async create(
+  async createSlateOrgsAll(
     @common.Body() data: SlateOrgsAllCreateInput
   ): Promise<SlateOrgsAll> {
-    return await this.service.create({
+    return await this.service.createSlateOrgsAll({
       data: data,
       select: {
+        localName: true,
+        sharedName: true,
+        slateOrgsAllId: true,
+        name: true,
         awId: true,
         awName: true,
         id: true,
-        localName: true,
-        name: true,
-        sharedName: true,
-        slateOrgsAllId: true,
       },
     });
   }
@@ -48,18 +47,18 @@ export class SlateOrgsAllControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateOrgsAll] })
   @ApiNestedQuery(SlateOrgsAllFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateOrgsAll[]> {
+  async slateOrgsAlls(@common.Req() request: Request): Promise<SlateOrgsAll[]> {
     const args = plainToClass(SlateOrgsAllFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateOrgsAlls({
       ...args,
       select: {
+        localName: true,
+        sharedName: true,
+        slateOrgsAllId: true,
+        name: true,
         awId: true,
         awName: true,
         id: true,
-        localName: true,
-        name: true,
-        sharedName: true,
-        slateOrgsAllId: true,
       },
     });
   }
@@ -67,19 +66,19 @@ export class SlateOrgsAllControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateOrgsAll })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateOrgsAll(
     @common.Param() params: SlateOrgsAllWhereUniqueInput
   ): Promise<SlateOrgsAll | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateOrgsAll({
       where: params,
       select: {
+        localName: true,
+        sharedName: true,
+        slateOrgsAllId: true,
+        name: true,
         awId: true,
         awName: true,
         id: true,
-        localName: true,
-        name: true,
-        sharedName: true,
-        slateOrgsAllId: true,
       },
     });
     if (result === null) {
@@ -93,22 +92,22 @@ export class SlateOrgsAllControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateOrgsAll })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateOrgsAll(
     @common.Param() params: SlateOrgsAllWhereUniqueInput,
     @common.Body() data: SlateOrgsAllUpdateInput
   ): Promise<SlateOrgsAll | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateOrgsAll({
         where: params,
         data: data,
         select: {
+          localName: true,
+          sharedName: true,
+          slateOrgsAllId: true,
+          name: true,
           awId: true,
           awName: true,
           id: true,
-          localName: true,
-          name: true,
-          sharedName: true,
-          slateOrgsAllId: true,
         },
       });
     } catch (error) {
@@ -124,20 +123,20 @@ export class SlateOrgsAllControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateOrgsAll })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateOrgsAll(
     @common.Param() params: SlateOrgsAllWhereUniqueInput
   ): Promise<SlateOrgsAll | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateOrgsAll({
         where: params,
         select: {
+          localName: true,
+          sharedName: true,
+          slateOrgsAllId: true,
+          name: true,
           awId: true,
           awName: true,
           id: true,
-          localName: true,
-          name: true,
-          sharedName: true,
-          slateOrgsAllId: true,
         },
       });
     } catch (error) {

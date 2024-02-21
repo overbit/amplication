@@ -12,10 +12,9 @@ export const PaymentItemShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
+        <TextField label="Payment Item Id" source="paymentItemId" />
         <TextField label="Payment Id" source="paymentId" />
         <TextField label="Payment Item Amount" source="paymentItemAmount" />
-        <TextField label="Payment Item Id" source="paymentItemId" />
         <ReferenceField
           label="Programs"
           source="programmodel.id"
@@ -23,6 +22,7 @@ export const PaymentItemShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={PROGRAMMODEL_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

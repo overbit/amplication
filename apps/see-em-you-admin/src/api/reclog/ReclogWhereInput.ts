@@ -1,1 +1,5 @@
-export type ReclogWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type ReclogWhereInput = {
+  id?: IntFilter;
+};

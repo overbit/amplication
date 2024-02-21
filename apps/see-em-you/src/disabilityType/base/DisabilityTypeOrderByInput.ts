@@ -28,7 +28,7 @@ class DisabilityTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  value?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class DisabilityTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  value?: SortOrder;
+  id?: SortOrder;
 }
 
 export { DisabilityTypeOrderByInput as DisabilityTypeOrderByInput };

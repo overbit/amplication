@@ -22,6 +22,14 @@ class Content {
   })
   @IsString()
   @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   content!: string;
 
   @ApiProperty({
@@ -31,14 +39,6 @@ class Content {
   @IsInt()
   @Field(() => Number)
   contenttypeId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  departmentId!: number;
 
   @ApiProperty({
     required: false,
@@ -53,11 +53,11 @@ class Content {
 
   @ApiProperty({
     required: true,
-    type: Number,
   })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  modifieddate!: Date;
 
   @ApiProperty({
     required: true,
@@ -69,19 +69,19 @@ class Content {
 
   @ApiProperty({
     required: true,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  modifieddate!: Date;
+  @IsInt()
+  @Field(() => Number)
+  departmentId!: number;
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  name!: string;
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Content as Content };

@@ -18,50 +18,50 @@ import { PeriodService } from "../period.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  description: "exampleDescription",
-  endDate: new Date(),
-  id: 42,
-  parentPeriodId: 42,
-  periodTypeId: 42,
-  startDate: new Date(),
   unitId: 42,
+  periodTypeId: 42,
+  description: "exampleDescription",
+  startDate: new Date(),
+  endDate: new Date(),
+  parentPeriodId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  description: "exampleDescription",
-  endDate: new Date(),
-  id: 42,
-  parentPeriodId: 42,
-  periodTypeId: 42,
-  startDate: new Date(),
   unitId: 42,
+  periodTypeId: 42,
+  description: "exampleDescription",
+  startDate: new Date(),
+  endDate: new Date(),
+  parentPeriodId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    description: "exampleDescription",
-    endDate: new Date(),
-    id: 42,
-    parentPeriodId: 42,
-    periodTypeId: 42,
-    startDate: new Date(),
     unitId: 42,
+    periodTypeId: 42,
+    description: "exampleDescription",
+    startDate: new Date(),
+    endDate: new Date(),
+    parentPeriodId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  description: "exampleDescription",
-  endDate: new Date(),
-  id: 42,
-  parentPeriodId: 42,
-  periodTypeId: 42,
-  startDate: new Date(),
   unitId: 42,
+  periodTypeId: 42,
+  description: "exampleDescription",
+  startDate: new Date(),
+  endDate: new Date(),
+  parentPeriodId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createPeriod() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  periods: () => FIND_MANY_RESULT,
+  period: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -138,8 +138,8 @@ describe("Period", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        endDate: CREATE_RESULT.endDate.toISOString(),
         startDate: CREATE_RESULT.startDate.toISOString(),
+        endDate: CREATE_RESULT.endDate.toISOString(),
       });
   });
 
@@ -150,8 +150,8 @@ describe("Period", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          endDate: FIND_MANY_RESULT[0].endDate.toISOString(),
           startDate: FIND_MANY_RESULT[0].startDate.toISOString(),
+          endDate: FIND_MANY_RESULT[0].endDate.toISOString(),
         },
       ]);
   });
@@ -173,8 +173,8 @@ describe("Period", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        endDate: FIND_ONE_RESULT.endDate.toISOString(),
         startDate: FIND_ONE_RESULT.startDate.toISOString(),
+        endDate: FIND_ONE_RESULT.endDate.toISOString(),
       });
   });
 
@@ -186,8 +186,8 @@ describe("Period", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        endDate: CREATE_RESULT.endDate.toISOString(),
         startDate: CREATE_RESULT.startDate.toISOString(),
+        endDate: CREATE_RESULT.endDate.toISOString(),
       })
       .then(function () {
         agent

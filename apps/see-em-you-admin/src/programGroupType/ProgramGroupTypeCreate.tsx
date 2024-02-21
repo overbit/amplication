@@ -8,12 +8,12 @@ export const ProgramGroupTypeCreate = (
     <Create {...props}>
       <SimpleForm>
         <TextInput
-          label="Program Group Type Description"
-          source="programGroupTypeDescription"
-        />
-        <TextInput
           label="Program Group Type Name"
           source="programGroupTypeName"
+        />
+        <TextInput
+          label="Program Group Type Description"
+          source="programGroupTypeDescription"
         />
       </SimpleForm>
     </Create>

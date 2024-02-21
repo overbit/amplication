@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateOrgsAll } from "@prisma/client";
+import { Prisma, SlateOrgsAll as PrismaSlateOrgsAll } from "@prisma/client";
 
 export class SlateOrgsAllServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateOrgsAllServiceBase {
     return this.prisma.slateOrgsAll.count(args);
   }
 
-  async findMany<T extends Prisma.SlateOrgsAllFindManyArgs>(
+  async slateOrgsAlls<T extends Prisma.SlateOrgsAllFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgsAllFindManyArgs>
-  ): Promise<SlateOrgsAll[]> {
+  ): Promise<PrismaSlateOrgsAll[]> {
     return this.prisma.slateOrgsAll.findMany(args);
   }
-  async findOne<T extends Prisma.SlateOrgsAllFindUniqueArgs>(
+  async slateOrgsAll<T extends Prisma.SlateOrgsAllFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgsAllFindUniqueArgs>
-  ): Promise<SlateOrgsAll | null> {
+  ): Promise<PrismaSlateOrgsAll | null> {
     return this.prisma.slateOrgsAll.findUnique(args);
   }
-  async create<T extends Prisma.SlateOrgsAllCreateArgs>(
+  async createSlateOrgsAll<T extends Prisma.SlateOrgsAllCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgsAllCreateArgs>
-  ): Promise<SlateOrgsAll> {
+  ): Promise<PrismaSlateOrgsAll> {
     return this.prisma.slateOrgsAll.create<T>(args);
   }
-  async update<T extends Prisma.SlateOrgsAllUpdateArgs>(
+  async updateSlateOrgsAll<T extends Prisma.SlateOrgsAllUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgsAllUpdateArgs>
-  ): Promise<SlateOrgsAll> {
+  ): Promise<PrismaSlateOrgsAll> {
     return this.prisma.slateOrgsAll.update<T>(args);
   }
-  async delete<T extends Prisma.SlateOrgsAllDeleteArgs>(
+  async deleteSlateOrgsAll<T extends Prisma.SlateOrgsAllDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgsAllDeleteArgs>
-  ): Promise<SlateOrgsAll> {
+  ): Promise<PrismaSlateOrgsAll> {
     return this.prisma.slateOrgsAll.delete(args);
   }
 }

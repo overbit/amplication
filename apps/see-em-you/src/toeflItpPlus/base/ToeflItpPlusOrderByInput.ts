@@ -39,18 +39,7 @@ class ToeflItpPlusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  datafileId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
+  testdate?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,17 +61,6 @@ class ToeflItpPlusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  overallscore?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   readingscore?: SortOrder;
 
   @ApiProperty({
@@ -94,7 +72,7 @@ class ToeflItpPlusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  scorereceived?: SortOrder;
+  writingscore?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,18 +83,7 @@ class ToeflItpPlusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  testdate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  testEmail?: SortOrder;
+  overallscore?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -138,7 +105,40 @@ class ToeflItpPlusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  writingscore?: SortOrder;
+  scorereceived?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  datafileId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  testEmail?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { ToeflItpPlusOrderByInput as ToeflItpPlusOrderByInput };

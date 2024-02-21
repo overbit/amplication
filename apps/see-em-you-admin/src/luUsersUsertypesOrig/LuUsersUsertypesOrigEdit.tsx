@@ -7,9 +7,9 @@ export const LuUsersUsertypesOrigEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Domain" source="domain" />
         <NumberInput step={1} label="User Id" source="userId" />
         <NumberInput step={1} label="Usertype Id" source="usertypeId" />
+        <NumberInput step={1} label="Domain" source="domain" />
       </SimpleForm>
     </Edit>
   );

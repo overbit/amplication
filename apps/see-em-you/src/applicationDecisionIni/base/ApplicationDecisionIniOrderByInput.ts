@@ -28,29 +28,18 @@ class ApplicationDecisionIniOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  admissionProgramId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  admissionStatus?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   applicationId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  admissionProgramId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +61,7 @@ class ApplicationDecisionIniOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  comments?: SortOrder;
+  admissionStatus?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +72,7 @@ class ApplicationDecisionIniOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  comments?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -117,6 +106,17 @@ class ApplicationDecisionIniOrderByInput {
     nullable: true,
   })
   timestamp?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { ApplicationDecisionIniOrderByInput as ApplicationDecisionIniOrderByInput };

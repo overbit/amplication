@@ -37,11 +37,11 @@ const FIND_ONE_RESULT = {
 };
 
 const service = {
-  create() {
+  createDatafileType() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  datafileTypes: () => FIND_MANY_RESULT,
+  datafileType: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

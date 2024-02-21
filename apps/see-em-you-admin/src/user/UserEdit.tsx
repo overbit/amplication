@@ -4,11 +4,11 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceArrayInput,
-  SelectArrayInput,
   TextInput,
   DateTimeInput,
   BooleanInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 
 import { ApplicationAdminNoteTitle } from "../applicationAdminNote/ApplicationAdminNoteTitle";
@@ -18,6 +18,17 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="Email" source="email" />
+        <TextInput label="Title" source="title" />
+        <TextInput label="Firstname" source="firstname" />
+        <TextInput label="Middlename" source="middlename" />
+        <TextInput label="Lastname" source="lastname" />
+        <TextInput label="Suffix" source="suffix" />
+        <TextInput label="Initials" source="initials" />
+        <DateTimeInput label="Signup Date" source="signupDate" />
+        <BooleanInput label="Verified" source="verified" />
+        <TextInput label="Guid" source="guid" />
+        <TextInput label="First Name Pref" source="firstNamePref" />
         <ReferenceArrayInput
           source="applicationAdminNote"
           reference="ApplicationAdminNote"
@@ -26,12 +37,6 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={ApplicationAdminNoteTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Email" source="email" />
-        <TextInput label="Firstname" source="firstname" />
-        <TextInput label="First Name Pref" source="firstNamePref" />
-        <TextInput label="Guid" source="guid" />
-        <TextInput label="Initials" source="initials" />
-        <TextInput label="Lastname" source="lastname" />
         <ReferenceArrayInput
           source="luUsersUsertypes"
           reference="LuUsersUsertype"
@@ -40,11 +45,6 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={LuUsersUsertypeTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Middlename" source="middlename" />
-        <DateTimeInput label="Signup Date" source="signupDate" />
-        <TextInput label="Suffix" source="suffix" />
-        <TextInput label="Title" source="title" />
-        <BooleanInput label="Verified" source="verified" />
       </SimpleForm>
     </Edit>
   );

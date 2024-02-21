@@ -11,20 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, ValidateNested, IsOptional, IsDate } from "class-validator";
-import { Period } from "../../period/base/Period";
+import { IsInt, IsDate, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { Period } from "../../period/base/Period";
 
 @ObjectType()
 class Cohort {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  closed!: number;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -35,11 +27,19 @@ class Cohort {
 
   @ApiProperty({
     required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  startDate!: Date;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  closed!: number;
 
   @ApiProperty({
     required: false,
@@ -52,11 +52,11 @@ class Cohort {
 
   @ApiProperty({
     required: true,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  startDate!: Date;
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Cohort as Cohort };

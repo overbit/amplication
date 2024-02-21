@@ -25,18 +25,7 @@ class FolderLabelInfoUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  lastLabelColumn?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  lastLabelRow?: number | null;
+  periodId?: number;
 
   @ApiProperty({
     required: false,
@@ -58,7 +47,18 @@ class FolderLabelInfoUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  periodId?: number;
+  lastLabelColumn?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  lastLabelRow?: number | null;
 }
 
 export { FolderLabelInfoUpdateInput as FolderLabelInfoUpdateInput };

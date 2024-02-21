@@ -9,5 +9,24 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-class ApplicationContentWhereInput {}
+import { InputType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
+import { BigIntFilter } from "../../util/BigIntFilter";
+import { Type } from "class-transformer";
+import { IsOptional } from "class-validator";
+
+@InputType()
+class ApplicationContentWhereInput {
+  @ApiProperty({
+    required: false,
+    type: BigIntFilter,
+  })
+  @Type(() => BigIntFilter)
+  @IsOptional()
+  @Field(() => BigIntFilter, {
+    nullable: true,
+  })
+  id?: BigIntFilter;
+}
+
 export { ApplicationContentWhereInput as ApplicationContentWhereInput };

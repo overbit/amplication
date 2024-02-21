@@ -25,22 +25,6 @@ class CcTransactionCreateInput {
 
   @ApiProperty({
     required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  cardholderNameFirst!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  cardholderNameLast!: string;
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
@@ -54,6 +38,22 @@ class CcTransactionCreateInput {
   @IsString()
   @Field(() => String)
   storeNumber!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  cardholderNameLast!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  cardholderNameFirst!: string;
 }
 
 export { CcTransactionCreateInput as CcTransactionCreateInput };

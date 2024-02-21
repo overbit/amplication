@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, FolderLabelInfo } from "@prisma/client";
+import {
+  Prisma,
+  FolderLabelInfo as PrismaFolderLabelInfo,
+} from "@prisma/client";
 
 export class FolderLabelInfoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class FolderLabelInfoServiceBase {
     return this.prisma.folderLabelInfo.count(args);
   }
 
-  async findMany<T extends Prisma.FolderLabelInfoFindManyArgs>(
+  async folderLabelInfos<T extends Prisma.FolderLabelInfoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.FolderLabelInfoFindManyArgs>
-  ): Promise<FolderLabelInfo[]> {
+  ): Promise<PrismaFolderLabelInfo[]> {
     return this.prisma.folderLabelInfo.findMany(args);
   }
-  async findOne<T extends Prisma.FolderLabelInfoFindUniqueArgs>(
+  async folderLabelInfo<T extends Prisma.FolderLabelInfoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.FolderLabelInfoFindUniqueArgs>
-  ): Promise<FolderLabelInfo | null> {
+  ): Promise<PrismaFolderLabelInfo | null> {
     return this.prisma.folderLabelInfo.findUnique(args);
   }
-  async create<T extends Prisma.FolderLabelInfoCreateArgs>(
+  async createFolderLabelInfo<T extends Prisma.FolderLabelInfoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.FolderLabelInfoCreateArgs>
-  ): Promise<FolderLabelInfo> {
+  ): Promise<PrismaFolderLabelInfo> {
     return this.prisma.folderLabelInfo.create<T>(args);
   }
-  async update<T extends Prisma.FolderLabelInfoUpdateArgs>(
+  async updateFolderLabelInfo<T extends Prisma.FolderLabelInfoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.FolderLabelInfoUpdateArgs>
-  ): Promise<FolderLabelInfo> {
+  ): Promise<PrismaFolderLabelInfo> {
     return this.prisma.folderLabelInfo.update<T>(args);
   }
-  async delete<T extends Prisma.FolderLabelInfoDeleteArgs>(
+  async deleteFolderLabelInfo<T extends Prisma.FolderLabelInfoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.FolderLabelInfoDeleteArgs>
-  ): Promise<FolderLabelInfo> {
+  ): Promise<PrismaFolderLabelInfo> {
     return this.prisma.folderLabelInfo.delete(args);
   }
 }

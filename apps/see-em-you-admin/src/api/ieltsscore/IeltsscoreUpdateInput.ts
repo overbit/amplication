@@ -1,15 +1,15 @@
-import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 import { Decimal } from "decimal.js";
+import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 
 export type IeltsscoreUpdateInput = {
-  application?: ApplicationWhereUniqueInput;
-  datafileId?: number | null;
-  listeningscore?: Decimal | null;
-  overallscore?: Decimal | null;
-  readingscore?: Decimal | null;
-  scorereceived?: number | null;
-  speakingscore?: Decimal | null;
   testdate?: Date | null;
-  testEmail?: string | null;
+  listeningscore?: Decimal | null;
+  readingscore?: Decimal | null;
   writingscore?: Decimal | null;
+  speakingscore?: Decimal | null;
+  overallscore?: Decimal | null;
+  scorereceived?: number | null;
+  datafileId?: number | null;
+  testEmail?: string | null;
+  application?: ApplicationWhereUniqueInput;
 };

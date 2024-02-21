@@ -25,28 +25,6 @@ class ApplicationDecisionIniUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  admissionProgramId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  admissionStatus?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   applicationId?: number;
 
   @ApiProperty({
@@ -58,7 +36,29 @@ class ApplicationDecisionIniUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  admissionProgramId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   choice?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  admissionStatus?: number | null;
 
   @ApiProperty({
     required: false,

@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuProgramsDepartmentService } from "../luProgramsDepartment.service";
 import { LuProgramsDepartmentCreateInput } from "./LuProgramsDepartmentCreateInput";
-import { LuProgramsDepartmentWhereInput } from "./LuProgramsDepartmentWhereInput";
-import { LuProgramsDepartmentWhereUniqueInput } from "./LuProgramsDepartmentWhereUniqueInput";
-import { LuProgramsDepartmentFindManyArgs } from "./LuProgramsDepartmentFindManyArgs";
-import { LuProgramsDepartmentUpdateInput } from "./LuProgramsDepartmentUpdateInput";
 import { LuProgramsDepartment } from "./LuProgramsDepartment";
+import { LuProgramsDepartmentFindManyArgs } from "./LuProgramsDepartmentFindManyArgs";
+import { LuProgramsDepartmentWhereUniqueInput } from "./LuProgramsDepartmentWhereUniqueInput";
+import { LuProgramsDepartmentUpdateInput } from "./LuProgramsDepartmentUpdateInput";
 
 export class LuProgramsDepartmentControllerBase {
   constructor(protected readonly service: LuProgramsDepartmentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuProgramsDepartment })
-  async create(
+  async createLuProgramsDepartment(
     @common.Body() data: LuProgramsDepartmentCreateInput
   ): Promise<LuProgramsDepartment> {
-    return await this.service.create({
+    return await this.service.createLuProgramsDepartment({
       data: data,
       select: {
+        programId: true,
         departmentId: true,
         id: true,
-        programId: true,
       },
     });
   }
@@ -44,16 +43,16 @@ export class LuProgramsDepartmentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuProgramsDepartment] })
   @ApiNestedQuery(LuProgramsDepartmentFindManyArgs)
-  async findMany(
+  async luProgramsDepartments(
     @common.Req() request: Request
   ): Promise<LuProgramsDepartment[]> {
     const args = plainToClass(LuProgramsDepartmentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luProgramsDepartments({
       ...args,
       select: {
+        programId: true,
         departmentId: true,
         id: true,
-        programId: true,
       },
     });
   }
@@ -61,15 +60,15 @@ export class LuProgramsDepartmentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luProgramsDepartment(
     @common.Param() params: LuProgramsDepartmentWhereUniqueInput
   ): Promise<LuProgramsDepartment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luProgramsDepartment({
       where: params,
       select: {
+        programId: true,
         departmentId: true,
         id: true,
-        programId: true,
       },
     });
     if (result === null) {
@@ -83,18 +82,18 @@ export class LuProgramsDepartmentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuProgramsDepartment(
     @common.Param() params: LuProgramsDepartmentWhereUniqueInput,
     @common.Body() data: LuProgramsDepartmentUpdateInput
   ): Promise<LuProgramsDepartment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuProgramsDepartment({
         where: params,
         data: data,
         select: {
+          programId: true,
           departmentId: true,
           id: true,
-          programId: true,
         },
       });
     } catch (error) {
@@ -110,16 +109,16 @@ export class LuProgramsDepartmentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuProgramsDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuProgramsDepartment(
     @common.Param() params: LuProgramsDepartmentWhereUniqueInput
   ): Promise<LuProgramsDepartment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuProgramsDepartment({
         where: params,
         select: {
+          programId: true,
           departmentId: true,
           id: true,
-          programId: true,
         },
       });
     } catch (error) {

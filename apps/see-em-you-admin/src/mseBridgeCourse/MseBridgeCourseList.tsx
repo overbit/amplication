@@ -13,9 +13,9 @@ export const MseBridgeCourseList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
+        <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Course Id" source="courseId" />
         <TextField label="Id" source="id" />
-        <TextField label="Reviewer Id" source="reviewerId" />
       </Datagrid>
     </List>
   );

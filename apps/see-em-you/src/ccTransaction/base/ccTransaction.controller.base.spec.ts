@@ -19,45 +19,45 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  cardholderNameFirst: "exampleCardholderNameFirst",
-  cardholderNameLast: "exampleCardholderNameLast",
-  id: 42,
   paymentId: 42,
   storeNumber: "exampleStoreNumber",
+  cardholderNameLast: "exampleCardholderNameLast",
+  cardholderNameFirst: "exampleCardholderNameFirst",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  cardholderNameFirst: "exampleCardholderNameFirst",
-  cardholderNameLast: "exampleCardholderNameLast",
-  id: 42,
   paymentId: 42,
   storeNumber: "exampleStoreNumber",
+  cardholderNameLast: "exampleCardholderNameLast",
+  cardholderNameFirst: "exampleCardholderNameFirst",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    cardholderNameFirst: "exampleCardholderNameFirst",
-    cardholderNameLast: "exampleCardholderNameLast",
-    id: 42,
     paymentId: 42,
     storeNumber: "exampleStoreNumber",
+    cardholderNameLast: "exampleCardholderNameLast",
+    cardholderNameFirst: "exampleCardholderNameFirst",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  cardholderNameFirst: "exampleCardholderNameFirst",
-  cardholderNameLast: "exampleCardholderNameLast",
-  id: 42,
   paymentId: 42,
   storeNumber: "exampleStoreNumber",
+  cardholderNameLast: "exampleCardholderNameLast",
+  cardholderNameFirst: "exampleCardholderNameFirst",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createCcTransaction() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ccTransactions: () => FIND_MANY_RESULT,
+  ccTransaction: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

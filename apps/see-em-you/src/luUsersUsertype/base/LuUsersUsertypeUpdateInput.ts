@@ -12,13 +12,13 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsOptional, ValidateNested } from "class-validator";
-import { MhciPrereqsConversationCommentUpdateManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsConversationCommentUpdateManyWithoutLuUsersUsertypesInput";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { Type } from "class-transformer";
+import { MhciPrereqsConversationCommentUpdateManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsConversationCommentUpdateManyWithoutLuUsersUsertypesInput";
 import { MhciPrereqsCourseUpdateManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsCourseUpdateManyWithoutLuUsersUsertypesInput";
 import { MhciPrereqsDesignPortfolioUpdateManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsDesignPortfolioUpdateManyWithoutLuUsersUsertypesInput";
 import { MhciPrereqsProgrammingSampleWhereUniqueInput } from "../../mhciPrereqsProgrammingSample/base/MhciPrereqsProgrammingSampleWhereUniqueInput";
 import { MhciPrereqsProgrammingTestUpdateManyWithoutLuUsersUsertypesInput } from "./MhciPrereqsProgrammingTestUpdateManyWithoutLuUsersUsertypesInput";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
 class LuUsersUsertypeUpdateInput {
@@ -31,7 +31,30 @@ class LuUsersUsertypeUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  usertypeId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   domain?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  users?: UserWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -106,29 +129,6 @@ class LuUsersUsertypeUpdateInput {
     }
   )
   mhciPrereqsProgrammingTests?: MhciPrereqsProgrammingTestUpdateManyWithoutLuUsersUsertypesInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  users?: UserWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usertypeId?: number;
 }
 
 export { LuUsersUsertypeUpdateInput as LuUsersUsertypeUpdateInput };

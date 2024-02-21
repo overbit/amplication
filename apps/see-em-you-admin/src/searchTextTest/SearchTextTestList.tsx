@@ -13,8 +13,8 @@ export const SearchTextTestList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Application Text" source="applicationText" />
         <TextField label="Guid" source="guid" />
+        <TextField label="Application Text" source="applicationText" />
         <TextField label="Id" source="id" />
       </Datagrid>
     </List>

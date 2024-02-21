@@ -5,10 +5,10 @@ import {
   SimpleForm,
   CreateProps,
   NumberInput,
+  TextInput,
+  BooleanInput,
   ReferenceInput,
   SelectInput,
-  BooleanInput,
-  TextInput,
 } from "react-admin";
 
 import { MhciPrereqsCourseTitle } from "../mhciPrereqsCourse/MhciPrereqsCourseTitle";
@@ -20,6 +20,12 @@ export const MhciPrereqsCourseDatafileCreate = (
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Datafileinfo Id" source="datafileinfoId" />
+        <TextInput label="Note" source="note" />
+        <BooleanInput
+          label="Submitted To Reviewer"
+          source="submittedToReviewer"
+        />
+        <BooleanInput label="New File Uploaded" source="newFileUploaded" />
         <ReferenceInput
           source="mhciPrereqsCourses.id"
           reference="MhciPrereqsCourse"
@@ -27,12 +33,6 @@ export const MhciPrereqsCourseDatafileCreate = (
         >
           <SelectInput optionText={MhciPrereqsCourseTitle} />
         </ReferenceInput>
-        <BooleanInput label="New File Uploaded" source="newFileUploaded" />
-        <TextInput label="Note" source="note" />
-        <BooleanInput
-          label="Submitted To Reviewer"
-          source="submittedToReviewer"
-        />
       </SimpleForm>
     </Create>
   );

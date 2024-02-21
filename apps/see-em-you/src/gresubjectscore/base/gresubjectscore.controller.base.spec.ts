@@ -18,54 +18,54 @@ import { GresubjectscoreService } from "../gresubjectscore.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  testdate: new Date(),
+  name: "exampleName",
+  score: "exampleScore",
+  percentile: "examplePercentile",
   datafileId: 42,
   greSubEmail: "exampleGreSubEmail",
-  id: 42,
-  name: "exampleName",
-  percentile: "examplePercentile",
-  score: "exampleScore",
   scorereceived: "true",
-  testdate: new Date(),
+  id: 42,
 };
 const CREATE_RESULT = {
+  testdate: new Date(),
+  name: "exampleName",
+  score: "exampleScore",
+  percentile: "examplePercentile",
   datafileId: 42,
   greSubEmail: "exampleGreSubEmail",
-  id: 42,
-  name: "exampleName",
-  percentile: "examplePercentile",
-  score: "exampleScore",
   scorereceived: "true",
-  testdate: new Date(),
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    testdate: new Date(),
+    name: "exampleName",
+    score: "exampleScore",
+    percentile: "examplePercentile",
     datafileId: 42,
     greSubEmail: "exampleGreSubEmail",
-    id: 42,
-    name: "exampleName",
-    percentile: "examplePercentile",
-    score: "exampleScore",
     scorereceived: "true",
-    testdate: new Date(),
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  testdate: new Date(),
+  name: "exampleName",
+  score: "exampleScore",
+  percentile: "examplePercentile",
   datafileId: 42,
   greSubEmail: "exampleGreSubEmail",
-  id: 42,
-  name: "exampleName",
-  percentile: "examplePercentile",
-  score: "exampleScore",
   scorereceived: "true",
-  testdate: new Date(),
+  id: 42,
 };
 
 const service = {
-  create() {
+  createGresubjectscore() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  gresubjectscores: () => FIND_MANY_RESULT,
+  gresubjectscore: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

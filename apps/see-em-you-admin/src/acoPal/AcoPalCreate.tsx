@@ -14,6 +14,7 @@ export const AcoPalCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <BooleanInput label="Aco" source="aco" />
+        <BooleanInput label="Pal" source="pal" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -21,7 +22,6 @@ export const AcoPalCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <BooleanInput label="Pal" source="pal" />
       </SimpleForm>
     </Create>
   );

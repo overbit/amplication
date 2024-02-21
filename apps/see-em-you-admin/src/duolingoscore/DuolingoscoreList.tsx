@@ -13,11 +13,11 @@ export const DuolingoscoreList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Duolingodata Id" source="duolingodataId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Match Date" source="matchDate" />
         <TextField label="Testdate" source="testdate" />
         <TextField label="Testemail" source="testemail" />
+        <TextField label="Duolingodata Id" source="duolingodataId" />
+        <TextField label="Match Date" source="matchDate" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

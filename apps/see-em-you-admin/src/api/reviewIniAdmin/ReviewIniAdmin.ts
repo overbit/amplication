@@ -1,8 +1,8 @@
 export type ReviewIniAdmin = {
   applicationId: number;
-  comments: string;
-  departmentId: number;
-  id: number;
   reviewerId: number;
+  departmentId: number;
   round: number | null;
+  comments: string;
+  id: number;
 };

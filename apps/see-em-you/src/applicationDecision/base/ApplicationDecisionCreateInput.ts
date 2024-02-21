@@ -21,6 +21,30 @@ class ApplicationDecisionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
+  applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  programId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   admissionProgramId!: number;
 
   @ApiProperty({
@@ -35,12 +59,15 @@ class ApplicationDecisionCreateInput {
   admissionStatus?: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  applicationId!: number;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  comments?: string | null;
 
   @ApiProperty({
     required: false,
@@ -62,34 +89,7 @@ class ApplicationDecisionCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  comments?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   otherChoiceLocation?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  programId!: number;
 
   @ApiProperty({
     required: false,
@@ -111,7 +111,7 @@ class ApplicationDecisionCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  visitComments?: number | null;
+  visitHelpful?: number | null;
 
   @ApiProperty({
     required: false,
@@ -122,7 +122,7 @@ class ApplicationDecisionCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  visitHelpful?: number | null;
+  visitComments?: number | null;
 }
 
 export { ApplicationDecisionCreateInput as ApplicationDecisionCreateInput };

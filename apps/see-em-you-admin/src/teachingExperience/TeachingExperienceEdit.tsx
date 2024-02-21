@@ -3,8 +3,8 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  TextInput,
   NumberInput,
+  TextInput,
   DateTimeInput,
 } from "react-admin";
 
@@ -14,13 +14,13 @@ export const TeachingExperienceEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Address" source="address" />
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <TextInput label="Courses Taught" source="coursesTaught" />
-        <TextInput label="End Date" source="endDate" />
-        <TextInput label="Institution" source="institution" />
         <NumberInput step={1} label="Order Entered" source="orderEntered" />
+        <TextInput label="Institution" source="institution" />
+        <TextInput label="Address" source="address" />
+        <TextInput label="Courses Taught" source="coursesTaught" />
         <DateTimeInput label="Start Date" source="startDate" />
+        <TextInput label="End Date" source="endDate" />
       </SimpleForm>
     </Edit>
   );

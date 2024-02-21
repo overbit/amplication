@@ -1,1 +1,5 @@
-export type MitsSlateGreWhereInput = {};
+import { StringFilter } from "../../util/StringFilter";
+
+export type MitsSlateGreWhereInput = {
+  id?: StringFilter;
+};

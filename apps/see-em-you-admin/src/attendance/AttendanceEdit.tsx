@@ -3,9 +3,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  NumberInput,
   ReferenceInput,
   SelectInput,
-  NumberInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -13,6 +13,7 @@ export const AttendanceEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Status" source="status" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -20,7 +21,6 @@ export const AttendanceEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Status" source="status" />
       </SimpleForm>
     </Edit>
   );

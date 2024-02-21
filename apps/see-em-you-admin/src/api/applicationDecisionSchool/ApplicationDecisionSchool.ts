@@ -1,8 +1,8 @@
 export type ApplicationDecisionSchool = {
-  accepted: boolean | null;
   applicationId: number | null;
-  id: number;
-  name: string | null;
-  periodId: number | null;
   programId: number | null;
+  periodId: number | null;
+  name: string | null;
+  accepted: boolean | null;
+  id: number;
 };

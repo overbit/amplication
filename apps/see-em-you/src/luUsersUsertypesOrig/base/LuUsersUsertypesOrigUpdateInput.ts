@@ -24,17 +24,6 @@ class LuUsersUsertypesOrigUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  domain?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   userId?: number;
 
   @ApiProperty({
@@ -47,6 +36,17 @@ class LuUsersUsertypesOrigUpdateInput {
     nullable: true,
   })
   usertypeId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  domain?: number | null;
 }
 
 export { LuUsersUsertypesOrigUpdateInput as LuUsersUsertypesOrigUpdateInput };

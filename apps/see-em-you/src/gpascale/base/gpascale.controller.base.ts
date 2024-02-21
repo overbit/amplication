@@ -18,24 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { GpascaleService } from "../gpascale.service";
 import { GpascaleCreateInput } from "./GpascaleCreateInput";
-import { GpascaleWhereInput } from "./GpascaleWhereInput";
-import { GpascaleWhereUniqueInput } from "./GpascaleWhereUniqueInput";
-import { GpascaleFindManyArgs } from "./GpascaleFindManyArgs";
-import { GpascaleUpdateInput } from "./GpascaleUpdateInput";
 import { Gpascale } from "./Gpascale";
+import { GpascaleFindManyArgs } from "./GpascaleFindManyArgs";
+import { GpascaleWhereUniqueInput } from "./GpascaleWhereUniqueInput";
+import { GpascaleUpdateInput } from "./GpascaleUpdateInput";
 
 export class GpascaleControllerBase {
   constructor(protected readonly service: GpascaleService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Gpascale })
-  async create(@common.Body() data: GpascaleCreateInput): Promise<Gpascale> {
-    return await this.service.create({
+  async createGpascale(
+    @common.Body() data: GpascaleCreateInput
+  ): Promise<Gpascale> {
+    return await this.service.createGpascale({
       data: data,
       select: {
-        formula: true,
-        id: true,
         name: true,
+        formula: true,
         sortorder: true,
+        id: true,
       },
     });
   }
@@ -43,15 +44,15 @@ export class GpascaleControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Gpascale] })
   @ApiNestedQuery(GpascaleFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Gpascale[]> {
+  async gpascales(@common.Req() request: Request): Promise<Gpascale[]> {
     const args = plainToClass(GpascaleFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.gpascales({
       ...args,
       select: {
-        formula: true,
-        id: true,
         name: true,
+        formula: true,
         sortorder: true,
+        id: true,
       },
     });
   }
@@ -59,16 +60,16 @@ export class GpascaleControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Gpascale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async gpascale(
     @common.Param() params: GpascaleWhereUniqueInput
   ): Promise<Gpascale | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.gpascale({
       where: params,
       select: {
-        formula: true,
-        id: true,
         name: true,
+        formula: true,
         sortorder: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -82,19 +83,19 @@ export class GpascaleControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Gpascale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateGpascale(
     @common.Param() params: GpascaleWhereUniqueInput,
     @common.Body() data: GpascaleUpdateInput
   ): Promise<Gpascale | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGpascale({
         where: params,
         data: data,
         select: {
-          formula: true,
-          id: true,
           name: true,
+          formula: true,
           sortorder: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -110,17 +111,17 @@ export class GpascaleControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Gpascale })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteGpascale(
     @common.Param() params: GpascaleWhereUniqueInput
   ): Promise<Gpascale | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteGpascale({
         where: params,
         select: {
-          formula: true,
-          id: true,
           name: true,
+          formula: true,
           sortorder: true,
+          id: true,
         },
       });
     } catch (error) {

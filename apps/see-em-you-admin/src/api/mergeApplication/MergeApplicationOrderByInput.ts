@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MergeApplicationOrderByInput = {
-  baseConvertError?: SortOrder;
-  baseConvertMessage?: SortOrder;
   baseWriteError?: SortOrder;
   baseWriteMessage?: SortOrder;
-  id?: SortOrder;
+  baseConvertError?: SortOrder;
+  baseConvertMessage?: SortOrder;
   searchTextWriteError?: SortOrder;
   searchTextWriteMessage?: SortOrder;
+  id?: SortOrder;
 };

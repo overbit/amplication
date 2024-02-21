@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Duolingoscore } from "@prisma/client";
+import { Prisma, Duolingoscore as PrismaDuolingoscore } from "@prisma/client";
 
 export class DuolingoscoreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DuolingoscoreServiceBase {
     return this.prisma.duolingoscore.count(args);
   }
 
-  async findMany<T extends Prisma.DuolingoscoreFindManyArgs>(
+  async duolingoscores<T extends Prisma.DuolingoscoreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoscoreFindManyArgs>
-  ): Promise<Duolingoscore[]> {
+  ): Promise<PrismaDuolingoscore[]> {
     return this.prisma.duolingoscore.findMany(args);
   }
-  async findOne<T extends Prisma.DuolingoscoreFindUniqueArgs>(
+  async duolingoscore<T extends Prisma.DuolingoscoreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoscoreFindUniqueArgs>
-  ): Promise<Duolingoscore | null> {
+  ): Promise<PrismaDuolingoscore | null> {
     return this.prisma.duolingoscore.findUnique(args);
   }
-  async create<T extends Prisma.DuolingoscoreCreateArgs>(
+  async createDuolingoscore<T extends Prisma.DuolingoscoreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoscoreCreateArgs>
-  ): Promise<Duolingoscore> {
+  ): Promise<PrismaDuolingoscore> {
     return this.prisma.duolingoscore.create<T>(args);
   }
-  async update<T extends Prisma.DuolingoscoreUpdateArgs>(
+  async updateDuolingoscore<T extends Prisma.DuolingoscoreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoscoreUpdateArgs>
-  ): Promise<Duolingoscore> {
+  ): Promise<PrismaDuolingoscore> {
     return this.prisma.duolingoscore.update<T>(args);
   }
-  async delete<T extends Prisma.DuolingoscoreDeleteArgs>(
+  async deleteDuolingoscore<T extends Prisma.DuolingoscoreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoscoreDeleteArgs>
-  ): Promise<Duolingoscore> {
+  ): Promise<PrismaDuolingoscore> {
     return this.prisma.duolingoscore.delete(args);
   }
 }

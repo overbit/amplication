@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Fellowship, Application } from "@prisma/client";
+import {
+  Prisma,
+  Fellowship as PrismaFellowship,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class FellowshipServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class FellowshipServiceBase {
     return this.prisma.fellowship.count(args);
   }
 
-  async findMany<T extends Prisma.FellowshipFindManyArgs>(
+  async fellowships<T extends Prisma.FellowshipFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.FellowshipFindManyArgs>
-  ): Promise<Fellowship[]> {
+  ): Promise<PrismaFellowship[]> {
     return this.prisma.fellowship.findMany(args);
   }
-  async findOne<T extends Prisma.FellowshipFindUniqueArgs>(
+  async fellowship<T extends Prisma.FellowshipFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.FellowshipFindUniqueArgs>
-  ): Promise<Fellowship | null> {
+  ): Promise<PrismaFellowship | null> {
     return this.prisma.fellowship.findUnique(args);
   }
-  async create<T extends Prisma.FellowshipCreateArgs>(
+  async createFellowship<T extends Prisma.FellowshipCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.FellowshipCreateArgs>
-  ): Promise<Fellowship> {
+  ): Promise<PrismaFellowship> {
     return this.prisma.fellowship.create<T>(args);
   }
-  async update<T extends Prisma.FellowshipUpdateArgs>(
+  async updateFellowship<T extends Prisma.FellowshipUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.FellowshipUpdateArgs>
-  ): Promise<Fellowship> {
+  ): Promise<PrismaFellowship> {
     return this.prisma.fellowship.update<T>(args);
   }
-  async delete<T extends Prisma.FellowshipDeleteArgs>(
+  async deleteFellowship<T extends Prisma.FellowshipDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.FellowshipDeleteArgs>
-  ): Promise<Fellowship> {
+  ): Promise<PrismaFellowship> {
     return this.prisma.fellowship.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.fellowship
       .findUnique({
         where: { id: parentId },

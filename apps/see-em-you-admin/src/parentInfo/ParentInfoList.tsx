@@ -13,13 +13,13 @@ export const ParentInfoList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="App Id" source="appId" />
-        <DateField source="created" label="Created" />
-        <TextField label="Id" source="id" />
-        <TextField label="Modified" source="modified" />
-        <TextField label="P1 Ed Level" source="p1EdLevel" />
         <TextField label="P1 Profession" source="p1Profession" />
-        <TextField label="P2 Ed Level" source="p2EdLevel" />
+        <TextField label="P1 Ed Level" source="p1EdLevel" />
         <TextField label="P2 Profession" source="p2Profession" />
+        <TextField label="P2 Ed Level" source="p2EdLevel" />
+        <DateField source="created" label="Created" />
+        <TextField label="Modified" source="modified" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

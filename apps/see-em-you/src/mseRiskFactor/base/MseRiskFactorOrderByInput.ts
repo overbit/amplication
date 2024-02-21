@@ -28,7 +28,7 @@ class MseRiskFactorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  academic?: SortOrder;
+  applicationId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,18 @@ class MseRiskFactorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationId?: SortOrder;
+  reviewerId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  language?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,18 +72,7 @@ class MseRiskFactorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  language?: SortOrder;
+  academic?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,7 +105,7 @@ class MseRiskFactorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  reviewerId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { MseRiskFactorOrderByInput as MseRiskFactorOrderByInput };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRiskFactorArgs } from "./CreateRiskFactorArgs";
-import { UpdateRiskFactorArgs } from "./UpdateRiskFactorArgs";
-import { DeleteRiskFactorArgs } from "./DeleteRiskFactorArgs";
+import { RiskFactor } from "./RiskFactor";
 import { RiskFactorCountArgs } from "./RiskFactorCountArgs";
 import { RiskFactorFindManyArgs } from "./RiskFactorFindManyArgs";
 import { RiskFactorFindUniqueArgs } from "./RiskFactorFindUniqueArgs";
-import { RiskFactor } from "./RiskFactor";
+import { CreateRiskFactorArgs } from "./CreateRiskFactorArgs";
+import { UpdateRiskFactorArgs } from "./UpdateRiskFactorArgs";
+import { DeleteRiskFactorArgs } from "./DeleteRiskFactorArgs";
 import { RiskFactorService } from "../riskFactor.service";
 @graphql.Resolver(() => RiskFactor)
 export class RiskFactorResolverBase {
@@ -38,14 +38,14 @@ export class RiskFactorResolverBase {
   async riskFactors(
     @graphql.Args() args: RiskFactorFindManyArgs
   ): Promise<RiskFactor[]> {
-    return this.service.findMany(args);
+    return this.service.riskFactors(args);
   }
 
   @graphql.Query(() => RiskFactor, { nullable: true })
   async riskFactor(
     @graphql.Args() args: RiskFactorFindUniqueArgs
   ): Promise<RiskFactor | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.riskFactor(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class RiskFactorResolverBase {
   async createRiskFactor(
     @graphql.Args() args: CreateRiskFactorArgs
   ): Promise<RiskFactor> {
-    return await this.service.create({
+    return await this.service.createRiskFactor({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class RiskFactorResolverBase {
     @graphql.Args() args: UpdateRiskFactorArgs
   ): Promise<RiskFactor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRiskFactor({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class RiskFactorResolverBase {
     @graphql.Args() args: DeleteRiskFactorArgs
   ): Promise<RiskFactor | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRiskFactor(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

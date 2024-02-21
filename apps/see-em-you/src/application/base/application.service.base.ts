@@ -13,42 +13,42 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  Application,
-  ApplicationAdminNote,
-  Attendance,
-  CashnetPayment,
-  Experience,
-  Fellowship,
-  Gmatscore,
-  Gresubjectscore,
-  Ieltsscore,
-  LuApplicationAdvisor,
-  LuApplicationAppreq,
-  LuApplicationGroup,
-  LuApplicationProgram,
-  MhciPrereq,
-  MhciPrereqsCourse,
-  MlArea,
-  MlSupportingCoursework,
-  MseAqa,
-  Payment,
-  PeriodApplication,
-  PromotionHistory,
-  Publication,
-  Recommend,
-  RegistrationFeePayment,
-  RegistrationFeeStatus,
-  Review,
-  RissFunding,
-  RissMcnair,
-  SpecialConsideration,
-  StudentDecision,
-  StudentDecisionHistory,
-  TagMember,
-  AcoPal,
-  LuApplicationCohort,
-  LuApplicationStartSemester,
-  MseCodility,
+  Application as PrismaApplication,
+  ApplicationAdminNote as PrismaApplicationAdminNote,
+  Attendance as PrismaAttendance,
+  CashnetPayment as PrismaCashnetPayment,
+  Experience as PrismaExperience,
+  Fellowship as PrismaFellowship,
+  Gmatscore as PrismaGmatscore,
+  Gresubjectscore as PrismaGresubjectscore,
+  Ieltsscore as PrismaIeltsscore,
+  LuApplicationAdvisor as PrismaLuApplicationAdvisor,
+  LuApplicationAppreq as PrismaLuApplicationAppreq,
+  LuApplicationGroup as PrismaLuApplicationGroup,
+  LuApplicationProgram as PrismaLuApplicationProgram,
+  MhciPrereq as PrismaMhciPrereq,
+  MhciPrereqsCourse as PrismaMhciPrereqsCourse,
+  MlArea as PrismaMlArea,
+  MlSupportingCoursework as PrismaMlSupportingCoursework,
+  MseAqa as PrismaMseAqa,
+  Payment as PrismaPayment,
+  PeriodApplication as PrismaPeriodApplication,
+  PromotionHistory as PrismaPromotionHistory,
+  Publication as PrismaPublication,
+  Recommend as PrismaRecommend,
+  RegistrationFeePayment as PrismaRegistrationFeePayment,
+  RegistrationFeeStatus as PrismaRegistrationFeeStatus,
+  Review as PrismaReview,
+  RissFunding as PrismaRissFunding,
+  RissMcnair as PrismaRissMcnair,
+  SpecialConsideration as PrismaSpecialConsideration,
+  StudentDecision as PrismaStudentDecision,
+  StudentDecisionHistory as PrismaStudentDecisionHistory,
+  TagMember as PrismaTagMember,
+  AcoPal as PrismaAcoPal,
+  LuApplicationCohort as PrismaLuApplicationCohort,
+  LuApplicationStartSemester as PrismaLuApplicationStartSemester,
+  MseCodility as PrismaMseCodility,
 } from "@prisma/client";
 
 export class ApplicationServiceBase {
@@ -60,36 +60,36 @@ export class ApplicationServiceBase {
     return this.prisma.application.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicationFindManyArgs>(
+  async applications<T extends Prisma.ApplicationFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationFindManyArgs>
-  ): Promise<Application[]> {
+  ): Promise<PrismaApplication[]> {
     return this.prisma.application.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicationFindUniqueArgs>(
+  async application<T extends Prisma.ApplicationFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationFindUniqueArgs>
-  ): Promise<Application | null> {
+  ): Promise<PrismaApplication | null> {
     return this.prisma.application.findUnique(args);
   }
-  async create<T extends Prisma.ApplicationCreateArgs>(
+  async createApplication<T extends Prisma.ApplicationCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationCreateArgs>
-  ): Promise<Application> {
+  ): Promise<PrismaApplication> {
     return this.prisma.application.create<T>(args);
   }
-  async update<T extends Prisma.ApplicationUpdateArgs>(
+  async updateApplication<T extends Prisma.ApplicationUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationUpdateArgs>
-  ): Promise<Application> {
+  ): Promise<PrismaApplication> {
     return this.prisma.application.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicationDeleteArgs>(
+  async deleteApplication<T extends Prisma.ApplicationDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDeleteArgs>
-  ): Promise<Application> {
+  ): Promise<PrismaApplication> {
     return this.prisma.application.delete(args);
   }
 
   async findApplicationAdminNote(
     parentId: number,
     args: Prisma.ApplicationAdminNoteFindManyArgs
-  ): Promise<ApplicationAdminNote[]> {
+  ): Promise<PrismaApplicationAdminNote[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -100,7 +100,7 @@ export class ApplicationServiceBase {
   async findAttendance(
     parentId: number,
     args: Prisma.AttendanceFindManyArgs
-  ): Promise<Attendance[]> {
+  ): Promise<PrismaAttendance[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -111,7 +111,7 @@ export class ApplicationServiceBase {
   async findCashnetPayment(
     parentId: number,
     args: Prisma.CashnetPaymentFindManyArgs
-  ): Promise<CashnetPayment[]> {
+  ): Promise<PrismaCashnetPayment[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -122,7 +122,7 @@ export class ApplicationServiceBase {
   async findExperience(
     parentId: number,
     args: Prisma.ExperienceFindManyArgs
-  ): Promise<Experience[]> {
+  ): Promise<PrismaExperience[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -133,7 +133,7 @@ export class ApplicationServiceBase {
   async findFellowships(
     parentId: number,
     args: Prisma.FellowshipFindManyArgs
-  ): Promise<Fellowship[]> {
+  ): Promise<PrismaFellowship[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -144,7 +144,7 @@ export class ApplicationServiceBase {
   async findGmatscore(
     parentId: number,
     args: Prisma.GmatscoreFindManyArgs
-  ): Promise<Gmatscore[]> {
+  ): Promise<PrismaGmatscore[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -155,7 +155,7 @@ export class ApplicationServiceBase {
   async findGresubjectscore(
     parentId: number,
     args: Prisma.GresubjectscoreFindManyArgs
-  ): Promise<Gresubjectscore[]> {
+  ): Promise<PrismaGresubjectscore[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -166,7 +166,7 @@ export class ApplicationServiceBase {
   async findIeltsscore(
     parentId: number,
     args: Prisma.IeltsscoreFindManyArgs
-  ): Promise<Ieltsscore[]> {
+  ): Promise<PrismaIeltsscore[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -177,7 +177,7 @@ export class ApplicationServiceBase {
   async findLuApplicationAdvisor(
     parentId: number,
     args: Prisma.LuApplicationAdvisorFindManyArgs
-  ): Promise<LuApplicationAdvisor[]> {
+  ): Promise<PrismaLuApplicationAdvisor[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -188,7 +188,7 @@ export class ApplicationServiceBase {
   async findLuApplicationAppreqs(
     parentId: number,
     args: Prisma.LuApplicationAppreqFindManyArgs
-  ): Promise<LuApplicationAppreq[]> {
+  ): Promise<PrismaLuApplicationAppreq[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -199,7 +199,7 @@ export class ApplicationServiceBase {
   async findLuApplicationGroups(
     parentId: number,
     args: Prisma.LuApplicationGroupFindManyArgs
-  ): Promise<LuApplicationGroup[]> {
+  ): Promise<PrismaLuApplicationGroup[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -210,7 +210,7 @@ export class ApplicationServiceBase {
   async findLuApplicationPrograms(
     parentId: number,
     args: Prisma.LuApplicationProgramFindManyArgs
-  ): Promise<LuApplicationProgram[]> {
+  ): Promise<PrismaLuApplicationProgram[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -221,7 +221,7 @@ export class ApplicationServiceBase {
   async findMhciPrereqs(
     parentId: number,
     args: Prisma.MhciPrereqFindManyArgs
-  ): Promise<MhciPrereq[]> {
+  ): Promise<PrismaMhciPrereq[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -232,7 +232,7 @@ export class ApplicationServiceBase {
   async findMhciPrereqsCourses(
     parentId: number,
     args: Prisma.MhciPrereqsCourseFindManyArgs
-  ): Promise<MhciPrereqsCourse[]> {
+  ): Promise<PrismaMhciPrereqsCourse[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -243,7 +243,7 @@ export class ApplicationServiceBase {
   async findMlArea(
     parentId: number,
     args: Prisma.MlAreaFindManyArgs
-  ): Promise<MlArea[]> {
+  ): Promise<PrismaMlArea[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -254,7 +254,7 @@ export class ApplicationServiceBase {
   async findMlSupportingCoursework(
     parentId: number,
     args: Prisma.MlSupportingCourseworkFindManyArgs
-  ): Promise<MlSupportingCoursework[]> {
+  ): Promise<PrismaMlSupportingCoursework[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -265,7 +265,7 @@ export class ApplicationServiceBase {
   async findMseAqa(
     parentId: number,
     args: Prisma.MseAqaFindManyArgs
-  ): Promise<MseAqa[]> {
+  ): Promise<PrismaMseAqa[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -276,7 +276,7 @@ export class ApplicationServiceBase {
   async findPayment(
     parentId: number,
     args: Prisma.PaymentFindManyArgs
-  ): Promise<Payment[]> {
+  ): Promise<PrismaPayment[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -287,7 +287,7 @@ export class ApplicationServiceBase {
   async findPeriodApplication(
     parentId: number,
     args: Prisma.PeriodApplicationFindManyArgs
-  ): Promise<PeriodApplication[]> {
+  ): Promise<PrismaPeriodApplication[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -298,7 +298,7 @@ export class ApplicationServiceBase {
   async findPromotionHistory(
     parentId: number,
     args: Prisma.PromotionHistoryFindManyArgs
-  ): Promise<PromotionHistory[]> {
+  ): Promise<PrismaPromotionHistory[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -309,7 +309,7 @@ export class ApplicationServiceBase {
   async findPublication(
     parentId: number,
     args: Prisma.PublicationFindManyArgs
-  ): Promise<Publication[]> {
+  ): Promise<PrismaPublication[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -320,7 +320,7 @@ export class ApplicationServiceBase {
   async findRecommend(
     parentId: number,
     args: Prisma.RecommendFindManyArgs
-  ): Promise<Recommend[]> {
+  ): Promise<PrismaRecommend[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -331,7 +331,7 @@ export class ApplicationServiceBase {
   async findRegistrationFeePayment(
     parentId: number,
     args: Prisma.RegistrationFeePaymentFindManyArgs
-  ): Promise<RegistrationFeePayment[]> {
+  ): Promise<PrismaRegistrationFeePayment[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -342,7 +342,7 @@ export class ApplicationServiceBase {
   async findRegistrationFeeStatus(
     parentId: number,
     args: Prisma.RegistrationFeeStatusFindManyArgs
-  ): Promise<RegistrationFeeStatus[]> {
+  ): Promise<PrismaRegistrationFeeStatus[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -353,7 +353,7 @@ export class ApplicationServiceBase {
   async findReview(
     parentId: number,
     args: Prisma.ReviewFindManyArgs
-  ): Promise<Review[]> {
+  ): Promise<PrismaReview[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -364,7 +364,7 @@ export class ApplicationServiceBase {
   async findRissFunding(
     parentId: number,
     args: Prisma.RissFundingFindManyArgs
-  ): Promise<RissFunding[]> {
+  ): Promise<PrismaRissFunding[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -375,7 +375,7 @@ export class ApplicationServiceBase {
   async findRissMcnair(
     parentId: number,
     args: Prisma.RissMcnairFindManyArgs
-  ): Promise<RissMcnair[]> {
+  ): Promise<PrismaRissMcnair[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -386,7 +386,7 @@ export class ApplicationServiceBase {
   async findSpecialConsideration(
     parentId: number,
     args: Prisma.SpecialConsiderationFindManyArgs
-  ): Promise<SpecialConsideration[]> {
+  ): Promise<PrismaSpecialConsideration[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -397,7 +397,7 @@ export class ApplicationServiceBase {
   async findStudentDecision(
     parentId: number,
     args: Prisma.StudentDecisionFindManyArgs
-  ): Promise<StudentDecision[]> {
+  ): Promise<PrismaStudentDecision[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -408,7 +408,7 @@ export class ApplicationServiceBase {
   async findStudentDecisionHistory(
     parentId: number,
     args: Prisma.StudentDecisionHistoryFindManyArgs
-  ): Promise<StudentDecisionHistory[]> {
+  ): Promise<PrismaStudentDecisionHistory[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -419,7 +419,7 @@ export class ApplicationServiceBase {
   async findTagMembers(
     parentId: number,
     args: Prisma.TagMemberFindManyArgs
-  ): Promise<TagMember[]> {
+  ): Promise<PrismaTagMember[]> {
     return this.prisma.application
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -427,7 +427,7 @@ export class ApplicationServiceBase {
       .tagMembers(args);
   }
 
-  async getAcoPal(parentId: number): Promise<AcoPal | null> {
+  async getAcoPal(parentId: number): Promise<PrismaAcoPal | null> {
     return this.prisma.application
       .findUnique({
         where: { id: parentId },
@@ -437,7 +437,7 @@ export class ApplicationServiceBase {
 
   async getLuApplicationCohort(
     parentId: number
-  ): Promise<LuApplicationCohort | null> {
+  ): Promise<PrismaLuApplicationCohort | null> {
     return this.prisma.application
       .findUnique({
         where: { id: parentId },
@@ -447,7 +447,7 @@ export class ApplicationServiceBase {
 
   async getLuApplicationStartSemester(
     parentId: number
-  ): Promise<LuApplicationStartSemester | null> {
+  ): Promise<PrismaLuApplicationStartSemester | null> {
     return this.prisma.application
       .findUnique({
         where: { id: parentId },
@@ -455,7 +455,7 @@ export class ApplicationServiceBase {
       .luApplicationStartSemester();
   }
 
-  async getMseCodility(parentId: number): Promise<MseCodility | null> {
+  async getMseCodility(parentId: number): Promise<PrismaMseCodility | null> {
     return this.prisma.application
       .findUnique({
         where: { id: parentId },

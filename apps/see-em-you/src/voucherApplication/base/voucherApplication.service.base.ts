@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, VoucherApplication } from "@prisma/client";
+import {
+  Prisma,
+  VoucherApplication as PrismaVoucherApplication,
+} from "@prisma/client";
 
 export class VoucherApplicationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class VoucherApplicationServiceBase {
     return this.prisma.voucherApplication.count(args);
   }
 
-  async findMany<T extends Prisma.VoucherApplicationFindManyArgs>(
+  async voucherApplications<T extends Prisma.VoucherApplicationFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationFindManyArgs>
-  ): Promise<VoucherApplication[]> {
+  ): Promise<PrismaVoucherApplication[]> {
     return this.prisma.voucherApplication.findMany(args);
   }
-  async findOne<T extends Prisma.VoucherApplicationFindUniqueArgs>(
+  async voucherApplication<T extends Prisma.VoucherApplicationFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationFindUniqueArgs>
-  ): Promise<VoucherApplication | null> {
+  ): Promise<PrismaVoucherApplication | null> {
     return this.prisma.voucherApplication.findUnique(args);
   }
-  async create<T extends Prisma.VoucherApplicationCreateArgs>(
+  async createVoucherApplication<T extends Prisma.VoucherApplicationCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationCreateArgs>
-  ): Promise<VoucherApplication> {
+  ): Promise<PrismaVoucherApplication> {
     return this.prisma.voucherApplication.create<T>(args);
   }
-  async update<T extends Prisma.VoucherApplicationUpdateArgs>(
+  async updateVoucherApplication<T extends Prisma.VoucherApplicationUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationUpdateArgs>
-  ): Promise<VoucherApplication> {
+  ): Promise<PrismaVoucherApplication> {
     return this.prisma.voucherApplication.update<T>(args);
   }
-  async delete<T extends Prisma.VoucherApplicationDeleteArgs>(
+  async deleteVoucherApplication<T extends Prisma.VoucherApplicationDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherApplicationDeleteArgs>
-  ): Promise<VoucherApplication> {
+  ): Promise<PrismaVoucherApplication> {
     return this.prisma.voucherApplication.delete(args);
   }
 }

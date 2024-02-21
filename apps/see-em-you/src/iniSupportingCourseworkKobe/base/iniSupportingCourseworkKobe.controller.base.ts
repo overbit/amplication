@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IniSupportingCourseworkKobeService } from "../iniSupportingCourseworkKobe.service";
 import { IniSupportingCourseworkKobeCreateInput } from "./IniSupportingCourseworkKobeCreateInput";
-import { IniSupportingCourseworkKobeWhereInput } from "./IniSupportingCourseworkKobeWhereInput";
-import { IniSupportingCourseworkKobeWhereUniqueInput } from "./IniSupportingCourseworkKobeWhereUniqueInput";
-import { IniSupportingCourseworkKobeFindManyArgs } from "./IniSupportingCourseworkKobeFindManyArgs";
-import { IniSupportingCourseworkKobeUpdateInput } from "./IniSupportingCourseworkKobeUpdateInput";
 import { IniSupportingCourseworkKobe } from "./IniSupportingCourseworkKobe";
+import { IniSupportingCourseworkKobeFindManyArgs } from "./IniSupportingCourseworkKobeFindManyArgs";
+import { IniSupportingCourseworkKobeWhereUniqueInput } from "./IniSupportingCourseworkKobeWhereUniqueInput";
+import { IniSupportingCourseworkKobeUpdateInput } from "./IniSupportingCourseworkKobeUpdateInput";
 
 export class IniSupportingCourseworkKobeControllerBase {
   constructor(protected readonly service: IniSupportingCourseworkKobeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IniSupportingCourseworkKobe })
-  async create(
+  async createIniSupportingCourseworkKobe(
     @common.Body() data: IniSupportingCourseworkKobeCreateInput
   ): Promise<IniSupportingCourseworkKobe> {
-    return await this.service.create({
+    return await this.service.createIniSupportingCourseworkKobe({
       data: data,
       select: {
         applicationId: true,
@@ -44,14 +43,14 @@ export class IniSupportingCourseworkKobeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [IniSupportingCourseworkKobe] })
   @ApiNestedQuery(IniSupportingCourseworkKobeFindManyArgs)
-  async findMany(
+  async iniSupportingCourseworkKobes(
     @common.Req() request: Request
   ): Promise<IniSupportingCourseworkKobe[]> {
     const args = plainToClass(
       IniSupportingCourseworkKobeFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.iniSupportingCourseworkKobes({
       ...args,
       select: {
         applicationId: true,
@@ -64,10 +63,10 @@ export class IniSupportingCourseworkKobeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IniSupportingCourseworkKobe })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async iniSupportingCourseworkKobe(
     @common.Param() params: IniSupportingCourseworkKobeWhereUniqueInput
   ): Promise<IniSupportingCourseworkKobe | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.iniSupportingCourseworkKobe({
       where: params,
       select: {
         applicationId: true,
@@ -86,12 +85,12 @@ export class IniSupportingCourseworkKobeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IniSupportingCourseworkKobe })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIniSupportingCourseworkKobe(
     @common.Param() params: IniSupportingCourseworkKobeWhereUniqueInput,
     @common.Body() data: IniSupportingCourseworkKobeUpdateInput
   ): Promise<IniSupportingCourseworkKobe | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniSupportingCourseworkKobe({
         where: params,
         data: data,
         select: {
@@ -113,11 +112,11 @@ export class IniSupportingCourseworkKobeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IniSupportingCourseworkKobe })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIniSupportingCourseworkKobe(
     @common.Param() params: IniSupportingCourseworkKobeWhereUniqueInput
   ): Promise<IniSupportingCourseworkKobe | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIniSupportingCourseworkKobe({
         where: params,
         select: {
           applicationId: true,

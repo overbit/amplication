@@ -24,6 +24,17 @@ class LuProgramsApplicationreq {
   @Field(() => Number, {
     nullable: true,
   })
+  degreeId!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   appreqId!: number | null;
 
   @ApiProperty({
@@ -35,7 +46,7 @@ class LuProgramsApplicationreq {
   @Field(() => Number, {
     nullable: true,
   })
-  degreeId!: number | null;
+  programId!: number | null;
 
   @ApiProperty({
     required: true,
@@ -44,17 +55,6 @@ class LuProgramsApplicationreq {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programId!: number | null;
 }
 
 export { LuProgramsApplicationreq as LuProgramsApplicationreq };

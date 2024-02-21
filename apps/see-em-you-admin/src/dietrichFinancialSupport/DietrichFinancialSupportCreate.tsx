@@ -16,11 +16,6 @@ export const DietrichFinancialSupportCreate = (
         <NumberInput step={1} label="Application Id" source="applicationId" />
         <NumberInput
           step={1}
-          label="Interested B2 Training"
-          source="interestedB2Training"
-        />
-        <NumberInput
-          step={1}
           label="Qualified Assistance"
           source="qualifiedAssistance"
         />
@@ -31,6 +26,11 @@ export const DietrichFinancialSupportCreate = (
           source="receivedScholarships"
         />
         <TextInput label="Support Sources" source="supportSources" />
+        <NumberInput
+          step={1}
+          label="Interested B2 Training"
+          source="interestedB2Training"
+        />
       </SimpleForm>
     </Create>
   );

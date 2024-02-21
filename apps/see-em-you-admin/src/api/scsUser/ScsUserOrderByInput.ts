@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type ScsUserOrderByInput = {
-  andrewId?: SortOrder;
+  usersId?: SortOrder;
   cmuGuid?: SortOrder;
   csId?: SortOrder;
+  andrewId?: SortOrder;
   eceId?: SortOrder;
-  id?: SortOrder;
   qatarId?: SortOrder;
-  usersId?: SortOrder;
+  id?: SortOrder;
 };

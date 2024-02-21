@@ -1,11 +1,11 @@
 export type MergeDatafileCreateInput = {
+  mergeId: number;
+  datafileinfoId: number;
   converted?: boolean | null;
   convertError?: number | null;
   convertMessage?: string | null;
-  datafileinfoId: number;
+  mergeFilename?: string | null;
   merged?: boolean | null;
   mergeError?: number | null;
-  mergeFilename?: string | null;
-  mergeId: number;
   mergeMessage?: string | null;
 };

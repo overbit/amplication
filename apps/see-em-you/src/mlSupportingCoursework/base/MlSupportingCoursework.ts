@@ -11,27 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, ValidateNested, IsInt } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsInt, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class MlSupportingCoursework {
   @ApiProperty({
     required: true,
-    type: () => Application,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @IsString()
+  @Field(() => String)
+  introCourseNum!: string;
 
   @ApiProperty({
     required: true,
@@ -39,7 +31,15 @@ class MlSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  introCourse2Grade!: string;
+  introCourseSemester!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  introCourseGrade!: string;
 
   @ApiProperty({
     required: true,
@@ -63,31 +63,7 @@ class MlSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  introCourseGrade!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  introCourseNum!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  introCourseSemester!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  ml1CourseGrade!: string;
+  introCourse2Grade!: string;
 
   @ApiProperty({
     required: true,
@@ -111,7 +87,7 @@ class MlSupportingCoursework {
   })
   @IsString()
   @Field(() => String)
-  ml2CourseGrade!: string;
+  ml1CourseGrade!: string;
 
   @ApiProperty({
     required: true,
@@ -128,6 +104,30 @@ class MlSupportingCoursework {
   @IsString()
   @Field(() => String)
   ml2CourseSemester!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  ml2CourseGrade!: string;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MlSupportingCoursework as MlSupportingCoursework };

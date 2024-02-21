@@ -11,13 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
+import { MhciPrereqWhereUniqueInput } from "../../mhciPrereq/base/MhciPrereqWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { MhciPrereqWhereUniqueInput } from "../../mhciPrereq/base/MhciPrereqWhereUniqueInput";
+import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class MhciPrereqsConversationCommentWhereInput {
+  @ApiProperty({
+    required: false,
+    type: () => MhciPrereqWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => MhciPrereqWhereUniqueInput)
+  @IsOptional()
+  @Field(() => MhciPrereqWhereUniqueInput, {
+    nullable: true,
+  })
+  mhciPrereqs?: MhciPrereqWhereUniqueInput;
+
   @ApiProperty({
     required: false,
     type: () => LuUsersUsertypeWhereUniqueInput,
@@ -32,15 +45,14 @@ class MhciPrereqsConversationCommentWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => MhciPrereqWhereUniqueInput,
+    type: IntFilter,
   })
-  @ValidateNested()
-  @Type(() => MhciPrereqWhereUniqueInput)
+  @Type(() => IntFilter)
   @IsOptional()
-  @Field(() => MhciPrereqWhereUniqueInput, {
+  @Field(() => IntFilter, {
     nullable: true,
   })
-  mhciPrereqs?: MhciPrereqWhereUniqueInput;
+  id?: IntFilter;
 }
 
 export { MhciPrereqsConversationCommentWhereInput as MhciPrereqsConversationCommentWhereInput };

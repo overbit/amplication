@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, CashnetPaymentCopy } from "@prisma/client";
+import {
+  Prisma,
+  CashnetPaymentCopy as PrismaCashnetPaymentCopy,
+} from "@prisma/client";
 
 export class CashnetPaymentCopyServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class CashnetPaymentCopyServiceBase {
     return this.prisma.cashnetPaymentCopy.count(args);
   }
 
-  async findMany<T extends Prisma.CashnetPaymentCopyFindManyArgs>(
+  async cashnetPaymentCopies<T extends Prisma.CashnetPaymentCopyFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentCopyFindManyArgs>
-  ): Promise<CashnetPaymentCopy[]> {
+  ): Promise<PrismaCashnetPaymentCopy[]> {
     return this.prisma.cashnetPaymentCopy.findMany(args);
   }
-  async findOne<T extends Prisma.CashnetPaymentCopyFindUniqueArgs>(
+  async cashnetPaymentCopy<T extends Prisma.CashnetPaymentCopyFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentCopyFindUniqueArgs>
-  ): Promise<CashnetPaymentCopy | null> {
+  ): Promise<PrismaCashnetPaymentCopy | null> {
     return this.prisma.cashnetPaymentCopy.findUnique(args);
   }
-  async create<T extends Prisma.CashnetPaymentCopyCreateArgs>(
+  async createCashnetPaymentCopy<T extends Prisma.CashnetPaymentCopyCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentCopyCreateArgs>
-  ): Promise<CashnetPaymentCopy> {
+  ): Promise<PrismaCashnetPaymentCopy> {
     return this.prisma.cashnetPaymentCopy.create<T>(args);
   }
-  async update<T extends Prisma.CashnetPaymentCopyUpdateArgs>(
+  async updateCashnetPaymentCopy<T extends Prisma.CashnetPaymentCopyUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentCopyUpdateArgs>
-  ): Promise<CashnetPaymentCopy> {
+  ): Promise<PrismaCashnetPaymentCopy> {
     return this.prisma.cashnetPaymentCopy.update<T>(args);
   }
-  async delete<T extends Prisma.CashnetPaymentCopyDeleteArgs>(
+  async deleteCashnetPaymentCopy<T extends Prisma.CashnetPaymentCopyDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.CashnetPaymentCopyDeleteArgs>
-  ): Promise<CashnetPaymentCopy> {
+  ): Promise<PrismaCashnetPaymentCopy> {
     return this.prisma.cashnetPaymentCopy.delete(args);
   }
 }

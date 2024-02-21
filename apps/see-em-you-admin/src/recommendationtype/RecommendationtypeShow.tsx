@@ -7,8 +7,8 @@ export const RecommendationtypeShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="Name" source="name" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

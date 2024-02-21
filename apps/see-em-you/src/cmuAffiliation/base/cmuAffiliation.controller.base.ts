@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CmuAffiliationService } from "../cmuAffiliation.service";
 import { CmuAffiliationCreateInput } from "./CmuAffiliationCreateInput";
-import { CmuAffiliationWhereInput } from "./CmuAffiliationWhereInput";
-import { CmuAffiliationWhereUniqueInput } from "./CmuAffiliationWhereUniqueInput";
-import { CmuAffiliationFindManyArgs } from "./CmuAffiliationFindManyArgs";
-import { CmuAffiliationUpdateInput } from "./CmuAffiliationUpdateInput";
 import { CmuAffiliation } from "./CmuAffiliation";
+import { CmuAffiliationFindManyArgs } from "./CmuAffiliationFindManyArgs";
+import { CmuAffiliationWhereUniqueInput } from "./CmuAffiliationWhereUniqueInput";
+import { CmuAffiliationUpdateInput } from "./CmuAffiliationUpdateInput";
 
 export class CmuAffiliationControllerBase {
   constructor(protected readonly service: CmuAffiliationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CmuAffiliation })
-  async create(
+  async createCmuAffiliation(
     @common.Body() data: CmuAffiliationCreateInput
   ): Promise<CmuAffiliation> {
-    return await this.service.create({
+    return await this.service.createCmuAffiliation({
       data: data,
       select: {
         applicationId: true,
-        cmuEmployee: true,
         cmuStudentOrAlumnus: true,
+        cmuEmployee: true,
         id: true,
       },
     });
@@ -45,14 +44,16 @@ export class CmuAffiliationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CmuAffiliation] })
   @ApiNestedQuery(CmuAffiliationFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<CmuAffiliation[]> {
+  async cmuAffiliations(
+    @common.Req() request: Request
+  ): Promise<CmuAffiliation[]> {
     const args = plainToClass(CmuAffiliationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.cmuAffiliations({
       ...args,
       select: {
         applicationId: true,
-        cmuEmployee: true,
         cmuStudentOrAlumnus: true,
+        cmuEmployee: true,
         id: true,
       },
     });
@@ -61,15 +62,15 @@ export class CmuAffiliationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CmuAffiliation })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async cmuAffiliation(
     @common.Param() params: CmuAffiliationWhereUniqueInput
   ): Promise<CmuAffiliation | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.cmuAffiliation({
       where: params,
       select: {
         applicationId: true,
-        cmuEmployee: true,
         cmuStudentOrAlumnus: true,
+        cmuEmployee: true,
         id: true,
       },
     });
@@ -84,18 +85,18 @@ export class CmuAffiliationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CmuAffiliation })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCmuAffiliation(
     @common.Param() params: CmuAffiliationWhereUniqueInput,
     @common.Body() data: CmuAffiliationUpdateInput
   ): Promise<CmuAffiliation | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCmuAffiliation({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          cmuEmployee: true,
           cmuStudentOrAlumnus: true,
+          cmuEmployee: true,
           id: true,
         },
       });
@@ -112,16 +113,16 @@ export class CmuAffiliationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CmuAffiliation })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCmuAffiliation(
     @common.Param() params: CmuAffiliationWhereUniqueInput
   ): Promise<CmuAffiliation | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCmuAffiliation({
         where: params,
         select: {
           applicationId: true,
-          cmuEmployee: true,
           cmuStudentOrAlumnus: true,
+          cmuEmployee: true,
           id: true,
         },
       });

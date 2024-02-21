@@ -6,8 +6,8 @@ export const AdmissionCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Code" source="code" />
         <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Code" source="code" />
       </SimpleForm>
     </Create>
   );

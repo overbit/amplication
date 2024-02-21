@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LanguageAssessment } from "@prisma/client";
+import {
+  Prisma,
+  LanguageAssessment as PrismaLanguageAssessment,
+} from "@prisma/client";
 
 export class LanguageAssessmentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class LanguageAssessmentServiceBase {
     return this.prisma.languageAssessment.count(args);
   }
 
-  async findMany<T extends Prisma.LanguageAssessmentFindManyArgs>(
+  async languageAssessments<T extends Prisma.LanguageAssessmentFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LanguageAssessmentFindManyArgs>
-  ): Promise<LanguageAssessment[]> {
+  ): Promise<PrismaLanguageAssessment[]> {
     return this.prisma.languageAssessment.findMany(args);
   }
-  async findOne<T extends Prisma.LanguageAssessmentFindUniqueArgs>(
+  async languageAssessment<T extends Prisma.LanguageAssessmentFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LanguageAssessmentFindUniqueArgs>
-  ): Promise<LanguageAssessment | null> {
+  ): Promise<PrismaLanguageAssessment | null> {
     return this.prisma.languageAssessment.findUnique(args);
   }
-  async create<T extends Prisma.LanguageAssessmentCreateArgs>(
+  async createLanguageAssessment<T extends Prisma.LanguageAssessmentCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LanguageAssessmentCreateArgs>
-  ): Promise<LanguageAssessment> {
+  ): Promise<PrismaLanguageAssessment> {
     return this.prisma.languageAssessment.create<T>(args);
   }
-  async update<T extends Prisma.LanguageAssessmentUpdateArgs>(
+  async updateLanguageAssessment<T extends Prisma.LanguageAssessmentUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LanguageAssessmentUpdateArgs>
-  ): Promise<LanguageAssessment> {
+  ): Promise<PrismaLanguageAssessment> {
     return this.prisma.languageAssessment.update<T>(args);
   }
-  async delete<T extends Prisma.LanguageAssessmentDeleteArgs>(
+  async deleteLanguageAssessment<T extends Prisma.LanguageAssessmentDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.LanguageAssessmentDeleteArgs>
-  ): Promise<LanguageAssessment> {
+  ): Promise<PrismaLanguageAssessment> {
     return this.prisma.languageAssessment.delete(args);
   }
 }

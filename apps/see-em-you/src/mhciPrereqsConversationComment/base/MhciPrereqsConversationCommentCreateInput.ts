@@ -11,10 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, ValidateNested, IsOptional } from "class-validator";
-import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
-import { Type } from "class-transformer";
+import { IsInt, IsString, IsOptional, ValidateNested } from "class-validator";
 import { MhciPrereqWhereUniqueInput } from "../../mhciPrereq/base/MhciPrereqWhereUniqueInput";
+import { Type } from "class-transformer";
+import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 
 @InputType()
 class MhciPrereqsConversationCommentCreateInput {
@@ -33,24 +33,6 @@ class MhciPrereqsConversationCommentCreateInput {
   @IsString()
   @Field(() => String)
   comment!: string;
-
-  @ApiProperty({
-    required: true,
-    type: () => LuUsersUsertypeWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertypeWhereUniqueInput)
-  @Field(() => LuUsersUsertypeWhereUniqueInput)
-  luUsersUsertypes!: LuUsersUsertypeWhereUniqueInput;
-
-  @ApiProperty({
-    required: true,
-    type: () => MhciPrereqWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereqWhereUniqueInput)
-  @Field(() => MhciPrereqWhereUniqueInput)
-  mhciPrereqs!: MhciPrereqWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -73,6 +55,24 @@ class MhciPrereqsConversationCommentCreateInput {
     nullable: true,
   })
   programId?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => MhciPrereqWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => MhciPrereqWhereUniqueInput)
+  @Field(() => MhciPrereqWhereUniqueInput)
+  mhciPrereqs!: MhciPrereqWhereUniqueInput;
+
+  @ApiProperty({
+    required: true,
+    type: () => LuUsersUsertypeWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertypeWhereUniqueInput)
+  @Field(() => LuUsersUsertypeWhereUniqueInput)
+  luUsersUsertypes!: LuUsersUsertypeWhereUniqueInput;
 }
 
 export { MhciPrereqsConversationCommentCreateInput as MhciPrereqsConversationCommentCreateInput };

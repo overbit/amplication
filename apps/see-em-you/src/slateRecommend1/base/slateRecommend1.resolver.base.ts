@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateRecommend1Args } from "./CreateSlateRecommend1Args";
-import { UpdateSlateRecommend1Args } from "./UpdateSlateRecommend1Args";
-import { DeleteSlateRecommend1Args } from "./DeleteSlateRecommend1Args";
+import { SlateRecommend1 } from "./SlateRecommend1";
 import { SlateRecommend1CountArgs } from "./SlateRecommend1CountArgs";
 import { SlateRecommend1FindManyArgs } from "./SlateRecommend1FindManyArgs";
 import { SlateRecommend1FindUniqueArgs } from "./SlateRecommend1FindUniqueArgs";
-import { SlateRecommend1 } from "./SlateRecommend1";
+import { CreateSlateRecommend1Args } from "./CreateSlateRecommend1Args";
+import { UpdateSlateRecommend1Args } from "./UpdateSlateRecommend1Args";
+import { DeleteSlateRecommend1Args } from "./DeleteSlateRecommend1Args";
 import { SlateRecommend1Service } from "../slateRecommend1.service";
 @graphql.Resolver(() => SlateRecommend1)
 export class SlateRecommend1ResolverBase {
@@ -38,14 +38,14 @@ export class SlateRecommend1ResolverBase {
   async slateRecommend1s(
     @graphql.Args() args: SlateRecommend1FindManyArgs
   ): Promise<SlateRecommend1[]> {
-    return this.service.findMany(args);
+    return this.service.slateRecommend1s(args);
   }
 
   @graphql.Query(() => SlateRecommend1, { nullable: true })
   async slateRecommend1(
     @graphql.Args() args: SlateRecommend1FindUniqueArgs
   ): Promise<SlateRecommend1 | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateRecommend1(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateRecommend1ResolverBase {
   async createSlateRecommend1(
     @graphql.Args() args: CreateSlateRecommend1Args
   ): Promise<SlateRecommend1> {
-    return await this.service.create({
+    return await this.service.createSlateRecommend1({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateRecommend1ResolverBase {
     @graphql.Args() args: UpdateSlateRecommend1Args
   ): Promise<SlateRecommend1 | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateRecommend1({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateRecommend1ResolverBase {
     @graphql.Args() args: DeleteSlateRecommend1Args
   ): Promise<SlateRecommend1 | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateRecommend1(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -19,49 +19,49 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationSlateGuid: "exampleApplicationSlateGuid",
-  email: "exampleEmail",
-  fileName: "exampleFileName",
-  id: 42,
   materialExport1: "exampleMaterialExport1",
+  fileName: "exampleFileName",
   materialName: "exampleMaterialName",
   name: "exampleName",
+  email: "exampleEmail",
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationSlateGuid: "exampleApplicationSlateGuid",
-  email: "exampleEmail",
-  fileName: "exampleFileName",
-  id: 42,
   materialExport1: "exampleMaterialExport1",
+  fileName: "exampleFileName",
   materialName: "exampleMaterialName",
   name: "exampleName",
+  email: "exampleEmail",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationSlateGuid: "exampleApplicationSlateGuid",
-    email: "exampleEmail",
-    fileName: "exampleFileName",
-    id: 42,
     materialExport1: "exampleMaterialExport1",
+    fileName: "exampleFileName",
     materialName: "exampleMaterialName",
     name: "exampleName",
+    email: "exampleEmail",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationSlateGuid: "exampleApplicationSlateGuid",
-  email: "exampleEmail",
-  fileName: "exampleFileName",
-  id: 42,
   materialExport1: "exampleMaterialExport1",
+  fileName: "exampleFileName",
   materialName: "exampleMaterialName",
   name: "exampleName",
+  email: "exampleEmail",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createSlateMaterial() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slateMaterials: () => FIND_MANY_RESULT,
+  slateMaterial: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

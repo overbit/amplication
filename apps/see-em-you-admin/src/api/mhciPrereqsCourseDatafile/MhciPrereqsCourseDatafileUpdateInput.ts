@@ -2,8 +2,8 @@ import { MhciPrereqsCourseWhereUniqueInput } from "../mhciPrereqsCourse/MhciPrer
 
 export type MhciPrereqsCourseDatafileUpdateInput = {
   datafileinfoId?: number | null;
-  mhciPrereqsCourses?: MhciPrereqsCourseWhereUniqueInput;
-  newFileUploaded?: boolean;
   note?: string | null;
   submittedToReviewer?: boolean;
+  newFileUploaded?: boolean;
+  mhciPrereqsCourses?: MhciPrereqsCourseWhereUniqueInput;
 };

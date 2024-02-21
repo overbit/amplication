@@ -12,8 +12,8 @@ export const StateCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <TextInput label="Abbrev" source="abbrev" />
-        <NumberInput step={1} label="Country Id" source="countryId" />
         <TextInput label="Name" source="name" />
+        <NumberInput step={1} label="Country Id" source="countryId" />
       </SimpleForm>
     </Create>
   );

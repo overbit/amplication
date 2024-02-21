@@ -1,8 +1,8 @@
 export type Duolingoscore = {
   applicationId: number;
-  duolingodataId: number | null;
-  id: number;
-  matchDate: Date | null;
   testdate: Date;
   testemail: string | null;
+  duolingodataId: number | null;
+  matchDate: Date | null;
+  id: number;
 };

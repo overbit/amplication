@@ -2,15 +2,15 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type UserOrderByInput = {
   email?: SortOrder;
-  firstname?: SortOrder;
-  firstNamePref?: SortOrder;
-  guid?: SortOrder;
-  id?: SortOrder;
-  initials?: SortOrder;
-  lastname?: SortOrder;
-  middlename?: SortOrder;
-  signupDate?: SortOrder;
-  suffix?: SortOrder;
   title?: SortOrder;
+  firstname?: SortOrder;
+  middlename?: SortOrder;
+  lastname?: SortOrder;
+  suffix?: SortOrder;
+  initials?: SortOrder;
+  signupDate?: SortOrder;
   verified?: SortOrder;
+  guid?: SortOrder;
+  firstNamePref?: SortOrder;
+  id?: SortOrder;
 };

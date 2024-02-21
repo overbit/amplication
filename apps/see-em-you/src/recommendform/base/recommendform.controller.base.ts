@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RecommendformService } from "../recommendform.service";
 import { RecommendformCreateInput } from "./RecommendformCreateInput";
-import { RecommendformWhereInput } from "./RecommendformWhereInput";
-import { RecommendformWhereUniqueInput } from "./RecommendformWhereUniqueInput";
-import { RecommendformFindManyArgs } from "./RecommendformFindManyArgs";
-import { RecommendformUpdateInput } from "./RecommendformUpdateInput";
 import { Recommendform } from "./Recommendform";
+import { RecommendformFindManyArgs } from "./RecommendformFindManyArgs";
+import { RecommendformWhereUniqueInput } from "./RecommendformWhereUniqueInput";
+import { RecommendformUpdateInput } from "./RecommendformUpdateInput";
 
 export class RecommendformControllerBase {
   constructor(protected readonly service: RecommendformService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Recommendform })
-  async create(
+  async createRecommendform(
     @common.Body() data: RecommendformCreateInput
   ): Promise<Recommendform> {
-    return await this.service.create({
+    return await this.service.createRecommendform({
       data: data,
       select: {
+        recommendId: true,
         formId: true,
-        id: true,
         questionId: true,
         questionKey: true,
-        recommendId: true,
         response: true,
+        id: true,
       },
     });
   }
@@ -47,17 +46,19 @@ export class RecommendformControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Recommendform] })
   @ApiNestedQuery(RecommendformFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Recommendform[]> {
+  async recommendforms(
+    @common.Req() request: Request
+  ): Promise<Recommendform[]> {
     const args = plainToClass(RecommendformFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.recommendforms({
       ...args,
       select: {
+        recommendId: true,
         formId: true,
-        id: true,
         questionId: true,
         questionKey: true,
-        recommendId: true,
         response: true,
+        id: true,
       },
     });
   }
@@ -65,18 +66,18 @@ export class RecommendformControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Recommendform })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async recommendform(
     @common.Param() params: RecommendformWhereUniqueInput
   ): Promise<Recommendform | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.recommendform({
       where: params,
       select: {
+        recommendId: true,
         formId: true,
-        id: true,
         questionId: true,
         questionKey: true,
-        recommendId: true,
         response: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -90,21 +91,21 @@ export class RecommendformControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Recommendform })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRecommendform(
     @common.Param() params: RecommendformWhereUniqueInput,
     @common.Body() data: RecommendformUpdateInput
   ): Promise<Recommendform | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecommendform({
         where: params,
         data: data,
         select: {
+          recommendId: true,
           formId: true,
-          id: true,
           questionId: true,
           questionKey: true,
-          recommendId: true,
           response: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -120,19 +121,19 @@ export class RecommendformControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Recommendform })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRecommendform(
     @common.Param() params: RecommendformWhereUniqueInput
   ): Promise<Recommendform | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRecommendform({
         where: params,
         select: {
+          recommendId: true,
           formId: true,
-          id: true,
           questionId: true,
           questionKey: true,
-          recommendId: true,
           response: true,
+          id: true,
         },
       });
     } catch (error) {

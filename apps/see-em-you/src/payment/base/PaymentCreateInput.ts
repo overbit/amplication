@@ -11,30 +11,29 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import {
-  ValidateNested,
   IsInt,
   IsNumber,
   IsDate,
   IsEnum,
+  ValidateNested,
   IsOptional,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { Decimal } from "decimal.js";
+import { Type } from "class-transformer";
 import { EnumPaymentPaymentStatus } from "./EnumPaymentPaymentStatus";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { PaymentVoucherWhereUniqueInput } from "../../paymentVoucher/base/PaymentVoucherWhereUniqueInput";
 
 @InputType()
 class PaymentCreateInput {
   @ApiProperty({
     required: true,
-    type: () => ApplicationWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
+  @IsInt()
+  @Field(() => Number)
+  paymentId!: number;
 
   @ApiProperty({
     required: true,
@@ -42,7 +41,7 @@ class PaymentCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  lastModUserId!: number;
+  paymentType!: number;
 
   @ApiProperty({
     required: true,
@@ -51,14 +50,6 @@ class PaymentCreateInput {
   @IsNumber()
   @Field(() => Float)
   paymentAmount!: Decimal;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  paymentId!: number;
 
   @ApiProperty({
     required: true,
@@ -82,7 +73,16 @@ class PaymentCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  paymentType!: number;
+  lastModUserId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 
   @ApiProperty({
     required: false,

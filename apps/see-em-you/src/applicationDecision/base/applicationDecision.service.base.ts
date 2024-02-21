@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ApplicationDecision } from "@prisma/client";
+import {
+  Prisma,
+  ApplicationDecision as PrismaApplicationDecision,
+} from "@prisma/client";
 
 export class ApplicationDecisionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,35 @@ export class ApplicationDecisionServiceBase {
     return this.prisma.applicationDecision.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicationDecisionFindManyArgs>(
+  async applicationDecisions<T extends Prisma.ApplicationDecisionFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionFindManyArgs>
-  ): Promise<ApplicationDecision[]> {
+  ): Promise<PrismaApplicationDecision[]> {
     return this.prisma.applicationDecision.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicationDecisionFindUniqueArgs>(
+  async applicationDecision<T extends Prisma.ApplicationDecisionFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionFindUniqueArgs>
-  ): Promise<ApplicationDecision | null> {
+  ): Promise<PrismaApplicationDecision | null> {
     return this.prisma.applicationDecision.findUnique(args);
   }
-  async create<T extends Prisma.ApplicationDecisionCreateArgs>(
+  async createApplicationDecision<
+    T extends Prisma.ApplicationDecisionCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionCreateArgs>
-  ): Promise<ApplicationDecision> {
+  ): Promise<PrismaApplicationDecision> {
     return this.prisma.applicationDecision.create<T>(args);
   }
-  async update<T extends Prisma.ApplicationDecisionUpdateArgs>(
+  async updateApplicationDecision<
+    T extends Prisma.ApplicationDecisionUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionUpdateArgs>
-  ): Promise<ApplicationDecision> {
+  ): Promise<PrismaApplicationDecision> {
     return this.prisma.applicationDecision.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicationDecisionDeleteArgs>(
+  async deleteApplicationDecision<
+    T extends Prisma.ApplicationDecisionDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionDeleteArgs>
-  ): Promise<ApplicationDecision> {
+  ): Promise<PrismaApplicationDecision> {
     return this.prisma.applicationDecision.delete(args);
   }
 }

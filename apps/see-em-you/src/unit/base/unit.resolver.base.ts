@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUnitArgs } from "./CreateUnitArgs";
-import { UpdateUnitArgs } from "./UpdateUnitArgs";
-import { DeleteUnitArgs } from "./DeleteUnitArgs";
+import { Unit } from "./Unit";
 import { UnitCountArgs } from "./UnitCountArgs";
 import { UnitFindManyArgs } from "./UnitFindManyArgs";
 import { UnitFindUniqueArgs } from "./UnitFindUniqueArgs";
-import { Unit } from "./Unit";
+import { CreateUnitArgs } from "./CreateUnitArgs";
+import { UpdateUnitArgs } from "./UpdateUnitArgs";
+import { DeleteUnitArgs } from "./DeleteUnitArgs";
 import { DomainUnitFindManyArgs } from "../../domainUnit/base/DomainUnitFindManyArgs";
 import { DomainUnit } from "../../domainUnit/base/DomainUnit";
 import { UnitService } from "../unit.service";
@@ -38,12 +38,12 @@ export class UnitResolverBase {
 
   @graphql.Query(() => [Unit])
   async units(@graphql.Args() args: UnitFindManyArgs): Promise<Unit[]> {
-    return this.service.findMany(args);
+    return this.service.units(args);
   }
 
   @graphql.Query(() => Unit, { nullable: true })
   async unit(@graphql.Args() args: UnitFindUniqueArgs): Promise<Unit | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.unit(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class UnitResolverBase {
 
   @graphql.Mutation(() => Unit)
   async createUnit(@graphql.Args() args: CreateUnitArgs): Promise<Unit> {
-    return await this.service.create({
+    return await this.service.createUnit({
       ...args,
       data: args.data,
     });
@@ -61,7 +61,7 @@ export class UnitResolverBase {
   @graphql.Mutation(() => Unit)
   async updateUnit(@graphql.Args() args: UpdateUnitArgs): Promise<Unit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUnit({
         ...args,
         data: args.data,
       });
@@ -78,7 +78,7 @@ export class UnitResolverBase {
   @graphql.Mutation(() => Unit)
   async deleteUnit(@graphql.Args() args: DeleteUnitArgs): Promise<Unit | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUnit(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -90,7 +90,7 @@ export class UnitResolverBase {
   }
 
   @graphql.ResolveField(() => [DomainUnit], { name: "domainUnit" })
-  async resolveFieldDomainUnit(
+  async findDomainUnit(
     @graphql.Parent() parent: Unit,
     @graphql.Args() args: DomainUnitFindManyArgs
   ): Promise<DomainUnit[]> {

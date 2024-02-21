@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString, ValidateNested } from "class-validator";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 import { Type } from "class-transformer";
 
@@ -19,14 +19,14 @@ import { Type } from "class-transformer";
 class MhciPrereqsDesignPortfolio {
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  applicationId!: number | null;
+  url!: string | null;
 
   @ApiProperty({
     required: false,
@@ -40,22 +40,6 @@ class MhciPrereqsDesignPortfolio {
   description!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: () => LuUsersUsertype,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertype)
-  luUsersUsertypes?: LuUsersUsertype;
-
-  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -64,7 +48,7 @@ class MhciPrereqsDesignPortfolio {
   @Field(() => Number, {
     nullable: true,
   })
-  periodId!: number | null;
+  applicationId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -79,14 +63,30 @@ class MhciPrereqsDesignPortfolio {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  url!: string | null;
+  periodId!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => LuUsersUsertype,
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertype)
+  luUsersUsertypes?: LuUsersUsertype;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { MhciPrereqsDesignPortfolio as MhciPrereqsDesignPortfolio };

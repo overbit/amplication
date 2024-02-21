@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RegistrationFeePaymentService } from "../registrationFeePayment.service";
 import { RegistrationFeePaymentCreateInput } from "./RegistrationFeePaymentCreateInput";
-import { RegistrationFeePaymentWhereInput } from "./RegistrationFeePaymentWhereInput";
-import { RegistrationFeePaymentWhereUniqueInput } from "./RegistrationFeePaymentWhereUniqueInput";
-import { RegistrationFeePaymentFindManyArgs } from "./RegistrationFeePaymentFindManyArgs";
-import { RegistrationFeePaymentUpdateInput } from "./RegistrationFeePaymentUpdateInput";
 import { RegistrationFeePayment } from "./RegistrationFeePayment";
+import { RegistrationFeePaymentFindManyArgs } from "./RegistrationFeePaymentFindManyArgs";
+import { RegistrationFeePaymentWhereUniqueInput } from "./RegistrationFeePaymentWhereUniqueInput";
+import { RegistrationFeePaymentUpdateInput } from "./RegistrationFeePaymentUpdateInput";
 
 export class RegistrationFeePaymentControllerBase {
   constructor(protected readonly service: RegistrationFeePaymentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RegistrationFeePayment })
-  async create(
+  async createRegistrationFeePayment(
     @common.Body() data: RegistrationFeePaymentCreateInput
   ): Promise<RegistrationFeePayment> {
-    return await this.service.create({
+    return await this.service.createRegistrationFeePayment({
       data: {
         ...data,
 
@@ -40,20 +39,21 @@ export class RegistrationFeePaymentControllerBase {
         },
       },
       select: {
+        departmentId: true,
+        paymentType: true,
+        paymentAmount: true,
+        paymentIntentDate: true,
+        payment_status: true,
+        lastModTime: true,
+        lastModUserId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        departmentId: true,
         id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
-        paymentIntentDate: true,
-        payment_status: true,
-        paymentType: true,
       },
     });
   }
@@ -61,30 +61,31 @@ export class RegistrationFeePaymentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RegistrationFeePayment] })
   @ApiNestedQuery(RegistrationFeePaymentFindManyArgs)
-  async findMany(
+  async registrationFeePayments(
     @common.Req() request: Request
   ): Promise<RegistrationFeePayment[]> {
     const args = plainToClass(
       RegistrationFeePaymentFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.registrationFeePayments({
       ...args,
       select: {
+        departmentId: true,
+        paymentType: true,
+        paymentAmount: true,
+        paymentIntentDate: true,
+        payment_status: true,
+        lastModTime: true,
+        lastModUserId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        departmentId: true,
         id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
-        paymentIntentDate: true,
-        payment_status: true,
-        paymentType: true,
       },
     });
   }
@@ -92,26 +93,27 @@ export class RegistrationFeePaymentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RegistrationFeePayment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async registrationFeePayment(
     @common.Param() params: RegistrationFeePaymentWhereUniqueInput
   ): Promise<RegistrationFeePayment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.registrationFeePayment({
       where: params,
       select: {
+        departmentId: true,
+        paymentType: true,
+        paymentAmount: true,
+        paymentIntentDate: true,
+        payment_status: true,
+        lastModTime: true,
+        lastModUserId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        departmentId: true,
         id: true,
-        lastModTime: true,
-        lastModUserId: true,
-        paymentAmount: true,
-        paymentIntentDate: true,
-        payment_status: true,
-        paymentType: true,
       },
     });
     if (result === null) {
@@ -125,12 +127,12 @@ export class RegistrationFeePaymentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RegistrationFeePayment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRegistrationFeePayment(
     @common.Param() params: RegistrationFeePaymentWhereUniqueInput,
     @common.Body() data: RegistrationFeePaymentUpdateInput
   ): Promise<RegistrationFeePayment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRegistrationFeePayment({
         where: params,
         data: {
           ...data,
@@ -140,20 +142,21 @@ export class RegistrationFeePaymentControllerBase {
           },
         },
         select: {
+          departmentId: true,
+          paymentType: true,
+          paymentAmount: true,
+          paymentIntentDate: true,
+          payment_status: true,
+          lastModTime: true,
+          lastModUserId: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          departmentId: true,
           id: true,
-          lastModTime: true,
-          lastModUserId: true,
-          paymentAmount: true,
-          paymentIntentDate: true,
-          payment_status: true,
-          paymentType: true,
         },
       });
     } catch (error) {
@@ -169,27 +172,28 @@ export class RegistrationFeePaymentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RegistrationFeePayment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRegistrationFeePayment(
     @common.Param() params: RegistrationFeePaymentWhereUniqueInput
   ): Promise<RegistrationFeePayment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRegistrationFeePayment({
         where: params,
         select: {
+          departmentId: true,
+          paymentType: true,
+          paymentAmount: true,
+          paymentIntentDate: true,
+          payment_status: true,
+          lastModTime: true,
+          lastModUserId: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          departmentId: true,
           id: true,
-          lastModTime: true,
-          lastModUserId: true,
-          paymentAmount: true,
-          paymentIntentDate: true,
-          payment_status: true,
-          paymentType: true,
         },
       });
     } catch (error) {

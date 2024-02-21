@@ -1,14 +1,14 @@
 export type CashnetDirectUpdateInput = {
-  amount?: number | null;
+  batch?: number | null;
+  station?: number | null;
+  txNumber?: number | null;
+  transType?: string | null;
+  status?: string | null;
+  custCode?: number | null;
+  name?: string | null;
   appEmail?: string | null;
   appId?: number | null;
-  batch?: number | null;
-  custCode?: number | null;
   dept?: string | null;
-  name?: string | null;
   paymentType?: string | null;
-  station?: number | null;
-  status?: string | null;
-  transType?: string | null;
-  txNumber?: number | null;
+  amount?: number | null;
 };

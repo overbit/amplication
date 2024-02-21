@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateOrg } from "@prisma/client";
+import { Prisma, SlateOrg as PrismaSlateOrg } from "@prisma/client";
 
 export class SlateOrgServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateOrgServiceBase {
     return this.prisma.slateOrg.count(args);
   }
 
-  async findMany<T extends Prisma.SlateOrgFindManyArgs>(
+  async slateOrgs<T extends Prisma.SlateOrgFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgFindManyArgs>
-  ): Promise<SlateOrg[]> {
+  ): Promise<PrismaSlateOrg[]> {
     return this.prisma.slateOrg.findMany(args);
   }
-  async findOne<T extends Prisma.SlateOrgFindUniqueArgs>(
+  async slateOrg<T extends Prisma.SlateOrgFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgFindUniqueArgs>
-  ): Promise<SlateOrg | null> {
+  ): Promise<PrismaSlateOrg | null> {
     return this.prisma.slateOrg.findUnique(args);
   }
-  async create<T extends Prisma.SlateOrgCreateArgs>(
+  async createSlateOrg<T extends Prisma.SlateOrgCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgCreateArgs>
-  ): Promise<SlateOrg> {
+  ): Promise<PrismaSlateOrg> {
     return this.prisma.slateOrg.create<T>(args);
   }
-  async update<T extends Prisma.SlateOrgUpdateArgs>(
+  async updateSlateOrg<T extends Prisma.SlateOrgUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgUpdateArgs>
-  ): Promise<SlateOrg> {
+  ): Promise<PrismaSlateOrg> {
     return this.prisma.slateOrg.update<T>(args);
   }
-  async delete<T extends Prisma.SlateOrgDeleteArgs>(
+  async deleteSlateOrg<T extends Prisma.SlateOrgDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateOrgDeleteArgs>
-  ): Promise<SlateOrg> {
+  ): Promise<PrismaSlateOrg> {
     return this.prisma.slateOrg.delete(args);
   }
 }

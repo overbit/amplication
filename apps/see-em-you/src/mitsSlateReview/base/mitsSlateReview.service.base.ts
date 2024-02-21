@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateReview } from "@prisma/client";
+import {
+  Prisma,
+  MitsSlateReview as PrismaMitsSlateReview,
+} from "@prisma/client";
 
 export class MitsSlateReviewServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class MitsSlateReviewServiceBase {
     return this.prisma.mitsSlateReview.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateReviewFindManyArgs>(
+  async mitsSlateReviews<T extends Prisma.MitsSlateReviewFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateReviewFindManyArgs>
-  ): Promise<MitsSlateReview[]> {
+  ): Promise<PrismaMitsSlateReview[]> {
     return this.prisma.mitsSlateReview.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateReviewFindUniqueArgs>(
+  async mitsSlateReview<T extends Prisma.MitsSlateReviewFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateReviewFindUniqueArgs>
-  ): Promise<MitsSlateReview | null> {
+  ): Promise<PrismaMitsSlateReview | null> {
     return this.prisma.mitsSlateReview.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateReviewCreateArgs>(
+  async createMitsSlateReview<T extends Prisma.MitsSlateReviewCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateReviewCreateArgs>
-  ): Promise<MitsSlateReview> {
+  ): Promise<PrismaMitsSlateReview> {
     return this.prisma.mitsSlateReview.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateReviewUpdateArgs>(
+  async updateMitsSlateReview<T extends Prisma.MitsSlateReviewUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateReviewUpdateArgs>
-  ): Promise<MitsSlateReview> {
+  ): Promise<PrismaMitsSlateReview> {
     return this.prisma.mitsSlateReview.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateReviewDeleteArgs>(
+  async deleteMitsSlateReview<T extends Prisma.MitsSlateReviewDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateReviewDeleteArgs>
-  ): Promise<MitsSlateReview> {
+  ): Promise<PrismaMitsSlateReview> {
     return this.prisma.mitsSlateReview.delete(args);
   }
 }

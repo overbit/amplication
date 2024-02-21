@@ -18,58 +18,58 @@ import { ApplicationDecisionIniService } from "../applicationDecisionIni.service
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  admissionProgramId: 42,
-  admissionStatus: 42,
   applicationId: 42,
+  admissionProgramId: 42,
   choice: 42,
+  admissionStatus: 42,
   comments: "exampleComments",
-  id: "exampleId",
   scholarshipAmt: 42.424242424,
   scholarshipComments: "exampleScholarshipComments",
   timestamp: new Date(),
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  admissionProgramId: 42,
-  admissionStatus: 42,
   applicationId: 42,
+  admissionProgramId: 42,
   choice: 42,
+  admissionStatus: 42,
   comments: "exampleComments",
-  id: "exampleId",
   scholarshipAmt: 42.424242424,
   scholarshipComments: "exampleScholarshipComments",
   timestamp: new Date(),
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    admissionProgramId: 42,
-    admissionStatus: 42,
     applicationId: 42,
+    admissionProgramId: 42,
     choice: 42,
+    admissionStatus: 42,
     comments: "exampleComments",
-    id: "exampleId",
     scholarshipAmt: 42.424242424,
     scholarshipComments: "exampleScholarshipComments",
     timestamp: new Date(),
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  admissionProgramId: 42,
-  admissionStatus: 42,
   applicationId: 42,
+  admissionProgramId: 42,
   choice: 42,
+  admissionStatus: 42,
   comments: "exampleComments",
-  id: "exampleId",
   scholarshipAmt: 42.424242424,
   scholarshipComments: "exampleScholarshipComments",
   timestamp: new Date(),
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createApplicationDecisionIni() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  applicationDecisionInis: () => FIND_MANY_RESULT,
+  applicationDecisionIni: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

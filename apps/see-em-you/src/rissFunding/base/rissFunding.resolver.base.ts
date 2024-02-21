@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRissFundingArgs } from "./CreateRissFundingArgs";
-import { UpdateRissFundingArgs } from "./UpdateRissFundingArgs";
-import { DeleteRissFundingArgs } from "./DeleteRissFundingArgs";
+import { RissFunding } from "./RissFunding";
 import { RissFundingCountArgs } from "./RissFundingCountArgs";
 import { RissFundingFindManyArgs } from "./RissFundingFindManyArgs";
 import { RissFundingFindUniqueArgs } from "./RissFundingFindUniqueArgs";
-import { RissFunding } from "./RissFunding";
+import { CreateRissFundingArgs } from "./CreateRissFundingArgs";
+import { UpdateRissFundingArgs } from "./UpdateRissFundingArgs";
+import { DeleteRissFundingArgs } from "./DeleteRissFundingArgs";
 import { Application } from "../../application/base/Application";
 import { RissFundingService } from "../rissFunding.service";
 @graphql.Resolver(() => RissFunding)
@@ -39,14 +39,14 @@ export class RissFundingResolverBase {
   async rissFundings(
     @graphql.Args() args: RissFundingFindManyArgs
   ): Promise<RissFunding[]> {
-    return this.service.findMany(args);
+    return this.service.rissFundings(args);
   }
 
   @graphql.Query(() => RissFunding, { nullable: true })
   async rissFunding(
     @graphql.Args() args: RissFundingFindUniqueArgs
   ): Promise<RissFunding | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.rissFunding(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class RissFundingResolverBase {
   async createRissFunding(
     @graphql.Args() args: CreateRissFundingArgs
   ): Promise<RissFunding> {
-    return await this.service.create({
+    return await this.service.createRissFunding({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class RissFundingResolverBase {
     @graphql.Args() args: UpdateRissFundingArgs
   ): Promise<RissFunding | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRissFunding({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class RissFundingResolverBase {
     @graphql.Args() args: DeleteRissFundingArgs
   ): Promise<RissFunding | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRissFunding(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class RissFundingResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: RissFunding
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

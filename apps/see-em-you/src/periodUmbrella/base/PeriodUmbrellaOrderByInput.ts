@@ -61,7 +61,7 @@ class PeriodUmbrellaOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  umbrellaName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +83,7 @@ class PeriodUmbrellaOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  umbrellaName?: SortOrder;
+  id?: SortOrder;
 }
 
 export { PeriodUmbrellaOrderByInput as PeriodUmbrellaOrderByInput };

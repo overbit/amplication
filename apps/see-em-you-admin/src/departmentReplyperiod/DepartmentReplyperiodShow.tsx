@@ -8,9 +8,9 @@ export const DepartmentReplyperiodShow = (
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Dept Id" source="deptId" />
+        <TextField label="Start" source="start" />
         <TextField label="End" source="end" />
         <TextField label="Id" source="id" />
-        <TextField label="Start" source="start" />
       </SimpleShowLayout>
     </Show>
   );

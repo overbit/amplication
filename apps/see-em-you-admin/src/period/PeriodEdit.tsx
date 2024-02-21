@@ -4,11 +4,11 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  NumberInput,
   TextInput,
   DateTimeInput,
-  NumberInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 
 import { AaDepartmentTitle } from "../aaDepartment/AaDepartmentTitle";
@@ -19,6 +19,16 @@ export const PeriodEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Unit Id" source="unitId" />
+        <NumberInput step={1} label="Period Type Id" source="periodTypeId" />
+        <TextInput label="Description" source="description" />
+        <DateTimeInput label="Start Date" source="startDate" />
+        <DateTimeInput label="End Date" source="endDate" />
+        <NumberInput
+          step={1}
+          label="Parent Period Id"
+          source="parentPeriodId"
+        />
         <ReferenceArrayInput
           source="aaDepartment"
           reference="AaDepartment"
@@ -35,13 +45,6 @@ export const PeriodEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={CohortTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Description" source="description" />
-        <DateTimeInput label="End Date" source="endDate" />
-        <NumberInput
-          step={1}
-          label="Parent Period Id"
-          source="parentPeriodId"
-        />
         <ReferenceArrayInput
           source="periodApplication"
           reference="PeriodApplication"
@@ -50,9 +53,6 @@ export const PeriodEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={PeriodApplicationTitle} />
         </ReferenceArrayInput>
-        <NumberInput step={1} label="Period Type Id" source="periodTypeId" />
-        <DateTimeInput label="Start Date" source="startDate" />
-        <NumberInput step={1} label="Unit Id" source="unitId" />
       </SimpleForm>
     </Edit>
   );

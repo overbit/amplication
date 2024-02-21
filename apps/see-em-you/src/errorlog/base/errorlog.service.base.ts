@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Errorlog } from "@prisma/client";
+import { Prisma, Errorlog as PrismaErrorlog } from "@prisma/client";
 
 export class ErrorlogServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ErrorlogServiceBase {
     return this.prisma.errorlog.count(args);
   }
 
-  async findMany<T extends Prisma.ErrorlogFindManyArgs>(
+  async errorlogs<T extends Prisma.ErrorlogFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ErrorlogFindManyArgs>
-  ): Promise<Errorlog[]> {
+  ): Promise<PrismaErrorlog[]> {
     return this.prisma.errorlog.findMany(args);
   }
-  async findOne<T extends Prisma.ErrorlogFindUniqueArgs>(
+  async errorlog<T extends Prisma.ErrorlogFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ErrorlogFindUniqueArgs>
-  ): Promise<Errorlog | null> {
+  ): Promise<PrismaErrorlog | null> {
     return this.prisma.errorlog.findUnique(args);
   }
-  async create<T extends Prisma.ErrorlogCreateArgs>(
+  async createErrorlog<T extends Prisma.ErrorlogCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ErrorlogCreateArgs>
-  ): Promise<Errorlog> {
+  ): Promise<PrismaErrorlog> {
     return this.prisma.errorlog.create<T>(args);
   }
-  async update<T extends Prisma.ErrorlogUpdateArgs>(
+  async updateErrorlog<T extends Prisma.ErrorlogUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ErrorlogUpdateArgs>
-  ): Promise<Errorlog> {
+  ): Promise<PrismaErrorlog> {
     return this.prisma.errorlog.update<T>(args);
   }
-  async delete<T extends Prisma.ErrorlogDeleteArgs>(
+  async deleteErrorlog<T extends Prisma.ErrorlogDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ErrorlogDeleteArgs>
-  ): Promise<Errorlog> {
+  ): Promise<PrismaErrorlog> {
     return this.prisma.errorlog.delete(args);
   }
 }

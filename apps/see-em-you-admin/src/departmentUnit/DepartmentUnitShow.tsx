@@ -6,8 +6,8 @@ export const DepartmentUnitShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
         <TextField label="Unit Id" source="unitId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

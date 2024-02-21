@@ -18,46 +18,46 @@ import { RecyclableSelectionService } from "../recyclableSelection.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationId: 42,
-  departmentId: 42,
-  id: 42,
-  luUsersUsertypesId: 42,
-  periodId: 42,
   usersId: 42,
+  luUsersUsertypesId: 42,
+  departmentId: 42,
+  periodId: 42,
+  applicationId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  applicationId: 42,
-  departmentId: 42,
-  id: 42,
-  luUsersUsertypesId: 42,
-  periodId: 42,
   usersId: 42,
+  luUsersUsertypesId: 42,
+  departmentId: 42,
+  periodId: 42,
+  applicationId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    applicationId: 42,
-    departmentId: 42,
-    id: 42,
-    luUsersUsertypesId: 42,
-    periodId: 42,
     usersId: 42,
+    luUsersUsertypesId: 42,
+    departmentId: 42,
+    periodId: 42,
+    applicationId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationId: 42,
-  departmentId: 42,
-  id: 42,
-  luUsersUsertypesId: 42,
-  periodId: 42,
   usersId: 42,
+  luUsersUsertypesId: 42,
+  departmentId: 42,
+  periodId: 42,
+  applicationId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createRecyclableSelection() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  recyclableSelections: () => FIND_MANY_RESULT,
+  recyclableSelection: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

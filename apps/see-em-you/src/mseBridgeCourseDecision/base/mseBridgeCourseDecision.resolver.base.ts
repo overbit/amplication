@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMseBridgeCourseDecisionArgs } from "./CreateMseBridgeCourseDecisionArgs";
-import { UpdateMseBridgeCourseDecisionArgs } from "./UpdateMseBridgeCourseDecisionArgs";
-import { DeleteMseBridgeCourseDecisionArgs } from "./DeleteMseBridgeCourseDecisionArgs";
+import { MseBridgeCourseDecision } from "./MseBridgeCourseDecision";
 import { MseBridgeCourseDecisionCountArgs } from "./MseBridgeCourseDecisionCountArgs";
 import { MseBridgeCourseDecisionFindManyArgs } from "./MseBridgeCourseDecisionFindManyArgs";
 import { MseBridgeCourseDecisionFindUniqueArgs } from "./MseBridgeCourseDecisionFindUniqueArgs";
-import { MseBridgeCourseDecision } from "./MseBridgeCourseDecision";
+import { CreateMseBridgeCourseDecisionArgs } from "./CreateMseBridgeCourseDecisionArgs";
+import { UpdateMseBridgeCourseDecisionArgs } from "./UpdateMseBridgeCourseDecisionArgs";
+import { DeleteMseBridgeCourseDecisionArgs } from "./DeleteMseBridgeCourseDecisionArgs";
 import { MseBridgeCourseDecisionService } from "../mseBridgeCourseDecision.service";
 @graphql.Resolver(() => MseBridgeCourseDecision)
 export class MseBridgeCourseDecisionResolverBase {
@@ -38,14 +38,14 @@ export class MseBridgeCourseDecisionResolverBase {
   async mseBridgeCourseDecisions(
     @graphql.Args() args: MseBridgeCourseDecisionFindManyArgs
   ): Promise<MseBridgeCourseDecision[]> {
-    return this.service.findMany(args);
+    return this.service.mseBridgeCourseDecisions(args);
   }
 
   @graphql.Query(() => MseBridgeCourseDecision, { nullable: true })
   async mseBridgeCourseDecision(
     @graphql.Args() args: MseBridgeCourseDecisionFindUniqueArgs
   ): Promise<MseBridgeCourseDecision | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mseBridgeCourseDecision(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MseBridgeCourseDecisionResolverBase {
   async createMseBridgeCourseDecision(
     @graphql.Args() args: CreateMseBridgeCourseDecisionArgs
   ): Promise<MseBridgeCourseDecision> {
-    return await this.service.create({
+    return await this.service.createMseBridgeCourseDecision({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MseBridgeCourseDecisionResolverBase {
     @graphql.Args() args: UpdateMseBridgeCourseDecisionArgs
   ): Promise<MseBridgeCourseDecision | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseBridgeCourseDecision({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MseBridgeCourseDecisionResolverBase {
     @graphql.Args() args: DeleteMseBridgeCourseDecisionArgs
   ): Promise<MseBridgeCourseDecision | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMseBridgeCourseDecision(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

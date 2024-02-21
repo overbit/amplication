@@ -28,7 +28,18 @@ class VisatypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  addedFor?: SortOrder;
+  name?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  short?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,29 +61,18 @@ class VisatypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  addedFor?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  name?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  short?: SortOrder;
 }
 
 export { VisatypeOrderByInput as VisatypeOrderByInput };

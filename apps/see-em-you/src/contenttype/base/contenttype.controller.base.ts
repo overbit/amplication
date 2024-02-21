@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ContenttypeService } from "../contenttype.service";
 import { ContenttypeCreateInput } from "./ContenttypeCreateInput";
-import { ContenttypeWhereInput } from "./ContenttypeWhereInput";
-import { ContenttypeWhereUniqueInput } from "./ContenttypeWhereUniqueInput";
-import { ContenttypeFindManyArgs } from "./ContenttypeFindManyArgs";
-import { ContenttypeUpdateInput } from "./ContenttypeUpdateInput";
 import { Contenttype } from "./Contenttype";
+import { ContenttypeFindManyArgs } from "./ContenttypeFindManyArgs";
+import { ContenttypeWhereUniqueInput } from "./ContenttypeWhereUniqueInput";
+import { ContenttypeUpdateInput } from "./ContenttypeUpdateInput";
 
 export class ContenttypeControllerBase {
   constructor(protected readonly service: ContenttypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Contenttype })
-  async create(
+  async createContenttype(
     @common.Body() data: ContenttypeCreateInput
   ): Promise<Contenttype> {
-    return await this.service.create({
+    return await this.service.createContenttype({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -43,13 +42,13 @@ export class ContenttypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Contenttype] })
   @ApiNestedQuery(ContenttypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Contenttype[]> {
+  async contenttypes(@common.Req() request: Request): Promise<Contenttype[]> {
     const args = plainToClass(ContenttypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.contenttypes({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -57,14 +56,14 @@ export class ContenttypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Contenttype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async contenttype(
     @common.Param() params: ContenttypeWhereUniqueInput
   ): Promise<Contenttype | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.contenttype({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -78,17 +77,17 @@ export class ContenttypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Contenttype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateContenttype(
     @common.Param() params: ContenttypeWhereUniqueInput,
     @common.Body() data: ContenttypeUpdateInput
   ): Promise<Contenttype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateContenttype({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -104,15 +103,15 @@ export class ContenttypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Contenttype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteContenttype(
     @common.Param() params: ContenttypeWhereUniqueInput
   ): Promise<Contenttype | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteContenttype({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {

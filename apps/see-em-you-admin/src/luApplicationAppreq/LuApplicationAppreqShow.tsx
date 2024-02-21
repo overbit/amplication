@@ -4,10 +4,10 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  ReferenceField,
   TextField,
-  BooleanField,
   DateField,
+  BooleanField,
+  ReferenceField,
 } from "react-admin";
 
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
@@ -18,6 +18,9 @@ export const LuApplicationAppreqShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Req Id" source="reqId" />
+        <DateField source="lastModified" label="Last Modified" />
+        <BooleanField label="Completed" source="completed" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -25,10 +28,7 @@ export const LuApplicationAppreqShow = (
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <BooleanField label="Completed" source="completed" />
         <TextField label="Id" source="id" />
-        <DateField source="lastModified" label="Last Modified" />
-        <TextField label="Req Id" source="reqId" />
       </SimpleShowLayout>
     </Show>
   );

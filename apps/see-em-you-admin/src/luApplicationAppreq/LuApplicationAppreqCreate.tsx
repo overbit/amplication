@@ -4,10 +4,10 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  NumberInput,
+  BooleanInput,
   ReferenceInput,
   SelectInput,
-  BooleanInput,
-  NumberInput,
 } from "react-admin";
 
 import { ApplicationTitle } from "../application/ApplicationTitle";
@@ -18,6 +18,8 @@ export const LuApplicationAppreqCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Req Id" source="reqId" />
+        <BooleanInput label="Completed" source="completed" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -25,8 +27,6 @@ export const LuApplicationAppreqCreate = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <BooleanInput label="Completed" source="completed" />
-        <NumberInput step={1} label="Req Id" source="reqId" />
       </SimpleForm>
     </Create>
   );

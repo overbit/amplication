@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
 
@@ -14,6 +14,8 @@ export const LuApplicationGroupShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Group Id" source="groupId" />
+        <TextField label="Round" source="round" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -21,9 +23,7 @@ export const LuApplicationGroupShow = (
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Group Id" source="groupId" />
         <TextField label="Id" source="id" />
-        <TextField label="Round" source="round" />
       </SimpleShowLayout>
     </Show>
   );

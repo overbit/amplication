@@ -5,8 +5,8 @@ export const UnitPeriodCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Period Id" source="periodId" />
         <NumberInput step={1} label="Unit Id" source="unitId" />
+        <NumberInput step={1} label="Period Id" source="periodId" />
       </SimpleForm>
     </Create>
   );

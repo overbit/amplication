@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, IniSupportingCoursework } from "@prisma/client";
+import {
+  Prisma,
+  IniSupportingCoursework as PrismaIniSupportingCoursework,
+} from "@prisma/client";
 
 export class IniSupportingCourseworkServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class IniSupportingCourseworkServiceBase {
     return this.prisma.iniSupportingCoursework.count(args);
   }
 
-  async findMany<T extends Prisma.IniSupportingCourseworkFindManyArgs>(
+  async iniSupportingCourseworks<
+    T extends Prisma.IniSupportingCourseworkFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkFindManyArgs>
-  ): Promise<IniSupportingCoursework[]> {
+  ): Promise<PrismaIniSupportingCoursework[]> {
     return this.prisma.iniSupportingCoursework.findMany(args);
   }
-  async findOne<T extends Prisma.IniSupportingCourseworkFindUniqueArgs>(
+  async iniSupportingCoursework<
+    T extends Prisma.IniSupportingCourseworkFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkFindUniqueArgs>
-  ): Promise<IniSupportingCoursework | null> {
+  ): Promise<PrismaIniSupportingCoursework | null> {
     return this.prisma.iniSupportingCoursework.findUnique(args);
   }
-  async create<T extends Prisma.IniSupportingCourseworkCreateArgs>(
+  async createIniSupportingCoursework<
+    T extends Prisma.IniSupportingCourseworkCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkCreateArgs>
-  ): Promise<IniSupportingCoursework> {
+  ): Promise<PrismaIniSupportingCoursework> {
     return this.prisma.iniSupportingCoursework.create<T>(args);
   }
-  async update<T extends Prisma.IniSupportingCourseworkUpdateArgs>(
+  async updateIniSupportingCoursework<
+    T extends Prisma.IniSupportingCourseworkUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkUpdateArgs>
-  ): Promise<IniSupportingCoursework> {
+  ): Promise<PrismaIniSupportingCoursework> {
     return this.prisma.iniSupportingCoursework.update<T>(args);
   }
-  async delete<T extends Prisma.IniSupportingCourseworkDeleteArgs>(
+  async deleteIniSupportingCoursework<
+    T extends Prisma.IniSupportingCourseworkDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.IniSupportingCourseworkDeleteArgs>
-  ): Promise<IniSupportingCoursework> {
+  ): Promise<PrismaIniSupportingCoursework> {
     return this.prisma.iniSupportingCoursework.delete(args);
   }
 }

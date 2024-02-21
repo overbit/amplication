@@ -12,10 +12,10 @@ export const LuReviewInterestList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Code" source="code" />
         <TextField label="Id" source="id" />
-        <TextField label="Program Id" source="programId" />
         <TextField label="Review Id" source="reviewId" />
+        <TextField label="Program Id" source="programId" />
+        <TextField label="Code" source="code" />
       </Datagrid>
     </List>
   );

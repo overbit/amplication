@@ -12,12 +12,12 @@ export const RejectionWaiverCreate = (
           label="Lu Application Programs Id"
           source="luApplicationProgramsId"
         />
+        <NumberInput step={1} label="Waived" source="waived" />
         <NumberInput
           step={1}
           label="Permitted Program Id"
           source="permittedProgramId"
         />
-        <NumberInput step={1} label="Waived" source="waived" />
       </SimpleForm>
     </Create>
   );

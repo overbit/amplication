@@ -3,20 +3,20 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  BooleanField,
   TextField,
+  BooleanField,
 } from "react-admin";
 
 export const VoucherShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Code" source="code" />
         <BooleanField label="Active" source="active" />
         <BooleanField label="Allow Multiple" source="allowMultiple" />
-        <TextField label="Code" source="code" />
-        <TextField label="Id" source="id" />
         <TextField label="Pretty Code" source="prettyCode" />
         <TextField label="Prog" source="prog" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

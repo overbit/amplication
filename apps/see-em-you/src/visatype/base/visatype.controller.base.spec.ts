@@ -18,42 +18,42 @@ import { VisatypeService } from "../visatype.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  addedFor: "exampleAddedFor",
-  description: "exampleDescription",
-  id: 42,
   name: "exampleName",
   short: "exampleShort",
+  description: "exampleDescription",
+  addedFor: "exampleAddedFor",
+  id: 42,
 };
 const CREATE_RESULT = {
-  addedFor: "exampleAddedFor",
-  description: "exampleDescription",
-  id: 42,
   name: "exampleName",
   short: "exampleShort",
+  description: "exampleDescription",
+  addedFor: "exampleAddedFor",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    addedFor: "exampleAddedFor",
-    description: "exampleDescription",
-    id: 42,
     name: "exampleName",
     short: "exampleShort",
+    description: "exampleDescription",
+    addedFor: "exampleAddedFor",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  addedFor: "exampleAddedFor",
-  description: "exampleDescription",
-  id: 42,
   name: "exampleName",
   short: "exampleShort",
+  description: "exampleDescription",
+  addedFor: "exampleAddedFor",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createVisatype() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  visatypes: () => FIND_MANY_RESULT,
+  visatype: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

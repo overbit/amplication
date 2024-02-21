@@ -24,15 +24,12 @@ class ProgramGroupCreateInput {
   periodId!: number;
 
   @ApiProperty({
-    required: false,
-    type: String,
+    required: true,
+    type: Number,
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  programGroupDescription?: string | null;
+  @IsInt()
+  @Field(() => Number)
+  unitId!: number;
 
   @ApiProperty({
     required: true,
@@ -51,12 +48,15 @@ class ProgramGroupCreateInput {
   programGroupNameShort!: string;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  unitId!: number;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  programGroupDescription?: string | null;
 }
 
 export { ProgramGroupCreateInput as ProgramGroupCreateInput };

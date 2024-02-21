@@ -29,14 +29,6 @@ class PhoneScreenCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  languageScreen!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   reviewerId!: number;
 
   @ApiProperty({
@@ -46,6 +38,14 @@ class PhoneScreenCreateInput {
   @IsInt()
   @Field(() => Number)
   technicalScreen!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  languageScreen!: number;
 }
 
 export { PhoneScreenCreateInput as PhoneScreenCreateInput };

@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class GresubjectscoreWhereInput {
@@ -28,6 +29,17 @@ class GresubjectscoreWhereInput {
     nullable: true,
   })
   application?: ApplicationWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { GresubjectscoreWhereInput as GresubjectscoreWhereInput };

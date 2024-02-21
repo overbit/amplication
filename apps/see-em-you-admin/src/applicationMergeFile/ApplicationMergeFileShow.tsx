@@ -13,10 +13,10 @@ export const ApplicationMergeFileShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Guid" source="guid" />
         <TextField label="Id" source="id" />
-        <DateField source="mergeDate" label="Merge Date" />
+        <TextField label="Guid" source="guid" />
         <TextField label="Merge File" source="mergeFile" />
+        <DateField source="mergeDate" label="Merge Date" />
       </SimpleShowLayout>
     </Show>
   );

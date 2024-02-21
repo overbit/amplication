@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuUsersUsertypeService } from "../luUsersUsertype.service";
 import { LuUsersUsertypeCreateInput } from "./LuUsersUsertypeCreateInput";
-import { LuUsersUsertypeWhereInput } from "./LuUsersUsertypeWhereInput";
-import { LuUsersUsertypeWhereUniqueInput } from "./LuUsersUsertypeWhereUniqueInput";
-import { LuUsersUsertypeFindManyArgs } from "./LuUsersUsertypeFindManyArgs";
-import { LuUsersUsertypeUpdateInput } from "./LuUsersUsertypeUpdateInput";
 import { LuUsersUsertype } from "./LuUsersUsertype";
+import { LuUsersUsertypeFindManyArgs } from "./LuUsersUsertypeFindManyArgs";
+import { LuUsersUsertypeWhereUniqueInput } from "./LuUsersUsertypeWhereUniqueInput";
+import { LuUsersUsertypeUpdateInput } from "./LuUsersUsertypeUpdateInput";
 import { MhciPrereqsConversationCommentFindManyArgs } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentFindManyArgs";
 import { MhciPrereqsConversationComment } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationComment";
 import { MhciPrereqsConversationCommentWhereUniqueInput } from "../../mhciPrereqsConversationComment/base/MhciPrereqsConversationCommentWhereUniqueInput";
@@ -40,26 +39,32 @@ export class LuUsersUsertypeControllerBase {
   constructor(protected readonly service: LuUsersUsertypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuUsersUsertype })
-  async create(
+  async createLuUsersUsertype(
     @common.Body() data: LuUsersUsertypeCreateInput
   ): Promise<LuUsersUsertype> {
-    return await this.service.create({
+    return await this.service.createLuUsersUsertype({
       data: {
         ...data,
+
+        users: {
+          connect: data.users,
+        },
 
         mhciPrereqsProgrammingSamples: data.mhciPrereqsProgrammingSamples
           ? {
               connect: data.mhciPrereqsProgrammingSamples,
             }
           : undefined,
-
-        users: {
-          connect: data.users,
-        },
       },
       select: {
+        usertypeId: true,
         domain: true,
-        id: true,
+
+        users: {
+          select: {
+            id: true,
+          },
+        },
 
         mhciPrereqsProgrammingSamples: {
           select: {
@@ -67,13 +72,7 @@ export class LuUsersUsertypeControllerBase {
           },
         },
 
-        users: {
-          select: {
-            id: true,
-          },
-        },
-
-        usertypeId: true,
+        id: true,
       },
     });
   }
@@ -81,19 +80,15 @@ export class LuUsersUsertypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuUsersUsertype] })
   @ApiNestedQuery(LuUsersUsertypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<LuUsersUsertype[]> {
+  async luUsersUsertypes(
+    @common.Req() request: Request
+  ): Promise<LuUsersUsertype[]> {
     const args = plainToClass(LuUsersUsertypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luUsersUsertypes({
       ...args,
       select: {
+        usertypeId: true,
         domain: true,
-        id: true,
-
-        mhciPrereqsProgrammingSamples: {
-          select: {
-            id: true,
-          },
-        },
 
         users: {
           select: {
@@ -101,7 +96,13 @@ export class LuUsersUsertypeControllerBase {
           },
         },
 
-        usertypeId: true,
+        mhciPrereqsProgrammingSamples: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
       },
     });
   }
@@ -109,20 +110,14 @@ export class LuUsersUsertypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luUsersUsertype(
     @common.Param() params: LuUsersUsertypeWhereUniqueInput
   ): Promise<LuUsersUsertype | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luUsersUsertype({
       where: params,
       select: {
+        usertypeId: true,
         domain: true,
-        id: true,
-
-        mhciPrereqsProgrammingSamples: {
-          select: {
-            id: true,
-          },
-        },
 
         users: {
           select: {
@@ -130,7 +125,13 @@ export class LuUsersUsertypeControllerBase {
           },
         },
 
-        usertypeId: true,
+        mhciPrereqsProgrammingSamples: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -144,29 +145,35 @@ export class LuUsersUsertypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuUsersUsertype(
     @common.Param() params: LuUsersUsertypeWhereUniqueInput,
     @common.Body() data: LuUsersUsertypeUpdateInput
   ): Promise<LuUsersUsertype | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuUsersUsertype({
         where: params,
         data: {
           ...data,
+
+          users: {
+            connect: data.users,
+          },
 
           mhciPrereqsProgrammingSamples: data.mhciPrereqsProgrammingSamples
             ? {
                 connect: data.mhciPrereqsProgrammingSamples,
               }
             : undefined,
-
-          users: {
-            connect: data.users,
-          },
         },
         select: {
+          usertypeId: true,
           domain: true,
-          id: true,
+
+          users: {
+            select: {
+              id: true,
+            },
+          },
 
           mhciPrereqsProgrammingSamples: {
             select: {
@@ -174,13 +181,7 @@ export class LuUsersUsertypeControllerBase {
             },
           },
 
-          users: {
-            select: {
-              id: true,
-            },
-          },
-
-          usertypeId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -196,21 +197,15 @@ export class LuUsersUsertypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertype })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuUsersUsertype(
     @common.Param() params: LuUsersUsertypeWhereUniqueInput
   ): Promise<LuUsersUsertype | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuUsersUsertype({
         where: params,
         select: {
+          usertypeId: true,
           domain: true,
-          id: true,
-
-          mhciPrereqsProgrammingSamples: {
-            select: {
-              id: true,
-            },
-          },
 
           users: {
             select: {
@@ -218,7 +213,13 @@ export class LuUsersUsertypeControllerBase {
             },
           },
 
-          usertypeId: true,
+          mhciPrereqsProgrammingSamples: {
+            select: {
+              id: true,
+            },
+          },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -233,7 +234,7 @@ export class LuUsersUsertypeControllerBase {
 
   @common.Get("/:id/mhciPrereqsConversationComments")
   @ApiNestedQuery(MhciPrereqsConversationCommentFindManyArgs)
-  async findManyMhciPrereqsConversationComments(
+  async findMhciPrereqsConversationComments(
     @common.Req() request: Request,
     @common.Param() params: LuUsersUsertypeWhereUniqueInput
   ): Promise<MhciPrereqsConversationComment[]> {
@@ -248,13 +249,9 @@ export class LuUsersUsertypeControllerBase {
         select: {
           applicationId: true,
           comment: true,
-          id: true,
-
-          luUsersUsertypes: {
-            select: {
-              id: true,
-            },
-          },
+          timestamp: true,
+          periodId: true,
+          programId: true,
 
           mhciPrereqs: {
             select: {
@@ -262,9 +259,13 @@ export class LuUsersUsertypeControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          timestamp: true,
+          luUsersUsertypes: {
+            select: {
+              id: true,
+            },
+          },
+
+          id: true,
         },
       }
     );
@@ -286,7 +287,7 @@ export class LuUsersUsertypeControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -303,7 +304,7 @@ export class LuUsersUsertypeControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -320,7 +321,7 @@ export class LuUsersUsertypeControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -329,7 +330,7 @@ export class LuUsersUsertypeControllerBase {
 
   @common.Get("/:id/mhciPrereqsCourses")
   @ApiNestedQuery(MhciPrereqsCourseFindManyArgs)
-  async findManyMhciPrereqsCourses(
+  async findMhciPrereqsCourses(
     @common.Req() request: Request,
     @common.Param() params: LuUsersUsertypeWhereUniqueInput
   ): Promise<MhciPrereqsCourse[]> {
@@ -337,14 +338,20 @@ export class LuUsersUsertypeControllerBase {
     const results = await this.service.findMhciPrereqsCourses(params.id, {
       ...query,
       select: {
+        course_type: true,
+        studentCourseName: true,
+        studentCourseTime: true,
+        studentCourseInstitution: true,
+        studentCourseGrade: true,
+        submittedToReviewer: true,
+        periodId: true,
+        programId: true,
+
         application: {
           select: {
             id: true,
           },
         },
-
-        course_type: true,
-        id: true,
 
         luUsersUsertypes: {
           select: {
@@ -352,13 +359,7 @@ export class LuUsersUsertypeControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        studentCourseGrade: true,
-        studentCourseInstitution: true,
-        studentCourseName: true,
-        studentCourseTime: true,
-        submittedToReviewer: true,
+        id: true,
       },
     });
     if (results === null) {
@@ -379,7 +380,7 @@ export class LuUsersUsertypeControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -396,7 +397,7 @@ export class LuUsersUsertypeControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -413,7 +414,7 @@ export class LuUsersUsertypeControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -422,7 +423,7 @@ export class LuUsersUsertypeControllerBase {
 
   @common.Get("/:id/mhciPrereqsDesignPortfolios")
   @ApiNestedQuery(MhciPrereqsDesignPortfolioFindManyArgs)
-  async findManyMhciPrereqsDesignPortfolios(
+  async findMhciPrereqsDesignPortfolios(
     @common.Req() request: Request,
     @common.Param() params: LuUsersUsertypeWhereUniqueInput
   ): Promise<MhciPrereqsDesignPortfolio[]> {
@@ -435,9 +436,11 @@ export class LuUsersUsertypeControllerBase {
       {
         ...query,
         select: {
-          applicationId: true,
+          url: true,
           description: true,
-          id: true,
+          applicationId: true,
+          programId: true,
+          periodId: true,
 
           luUsersUsertypes: {
             select: {
@@ -445,9 +448,7 @@ export class LuUsersUsertypeControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          url: true,
+          id: true,
         },
       }
     );
@@ -469,7 +470,7 @@ export class LuUsersUsertypeControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -486,7 +487,7 @@ export class LuUsersUsertypeControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -503,7 +504,7 @@ export class LuUsersUsertypeControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -512,7 +513,7 @@ export class LuUsersUsertypeControllerBase {
 
   @common.Get("/:id/mhciPrereqsProgrammingTests")
   @ApiNestedQuery(MhciPrereqsProgrammingTestFindManyArgs)
-  async findManyMhciPrereqsProgrammingTests(
+  async findMhciPrereqsProgrammingTests(
     @common.Req() request: Request,
     @common.Param() params: LuUsersUsertypeWhereUniqueInput
   ): Promise<MhciPrereqsProgrammingTest[]> {
@@ -525,9 +526,10 @@ export class LuUsersUsertypeControllerBase {
       {
         ...query,
         select: {
-          applicationId: true,
           downloadTimestamp: true,
-          id: true,
+          uploadDatafileinfoId: true,
+          applicationId: true,
+          periodId: true,
 
           luUsersUsertypes: {
             select: {
@@ -535,8 +537,7 @@ export class LuUsersUsertypeControllerBase {
             },
           },
 
-          periodId: true,
-          uploadDatafileinfoId: true,
+          id: true,
         },
       }
     );
@@ -558,7 +559,7 @@ export class LuUsersUsertypeControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -575,7 +576,7 @@ export class LuUsersUsertypeControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },
@@ -592,7 +593,7 @@ export class LuUsersUsertypeControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateLuUsersUsertype({
       where: params,
       data,
       select: { id: true },

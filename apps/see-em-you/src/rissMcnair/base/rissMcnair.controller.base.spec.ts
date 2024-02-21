@@ -18,34 +18,34 @@ import { RissMcnairService } from "../rissMcnair.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  site: "exampleSite",
   contact: "exampleContact",
   id: 42,
-  site: "exampleSite",
 };
 const CREATE_RESULT = {
+  site: "exampleSite",
   contact: "exampleContact",
   id: 42,
-  site: "exampleSite",
 };
 const FIND_MANY_RESULT = [
   {
+    site: "exampleSite",
     contact: "exampleContact",
     id: 42,
-    site: "exampleSite",
   },
 ];
 const FIND_ONE_RESULT = {
+  site: "exampleSite",
   contact: "exampleContact",
   id: 42,
-  site: "exampleSite",
 };
 
 const service = {
-  create() {
+  createRissMcnair() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  rissMcnairs: () => FIND_MANY_RESULT,
+  rissMcnair: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DatafileTypeService } from "../datafileType.service";
 import { DatafileTypeCreateInput } from "./DatafileTypeCreateInput";
-import { DatafileTypeWhereInput } from "./DatafileTypeWhereInput";
-import { DatafileTypeWhereUniqueInput } from "./DatafileTypeWhereUniqueInput";
-import { DatafileTypeFindManyArgs } from "./DatafileTypeFindManyArgs";
-import { DatafileTypeUpdateInput } from "./DatafileTypeUpdateInput";
 import { DatafileType } from "./DatafileType";
+import { DatafileTypeFindManyArgs } from "./DatafileTypeFindManyArgs";
+import { DatafileTypeWhereUniqueInput } from "./DatafileTypeWhereUniqueInput";
+import { DatafileTypeUpdateInput } from "./DatafileTypeUpdateInput";
 
 export class DatafileTypeControllerBase {
   constructor(protected readonly service: DatafileTypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DatafileType })
-  async create(
+  async createDatafileType(
     @common.Body() data: DatafileTypeCreateInput
   ): Promise<DatafileType> {
-    return await this.service.create({
+    return await this.service.createDatafileType({
       data: data,
       select: {
         datafileType: true,
@@ -43,9 +42,9 @@ export class DatafileTypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DatafileType] })
   @ApiNestedQuery(DatafileTypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DatafileType[]> {
+  async datafileTypes(@common.Req() request: Request): Promise<DatafileType[]> {
     const args = plainToClass(DatafileTypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.datafileTypes({
       ...args,
       select: {
         datafileType: true,
@@ -57,10 +56,10 @@ export class DatafileTypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DatafileType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async datafileType(
     @common.Param() params: DatafileTypeWhereUniqueInput
   ): Promise<DatafileType | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.datafileType({
       where: params,
       select: {
         datafileType: true,
@@ -78,12 +77,12 @@ export class DatafileTypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DatafileType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDatafileType(
     @common.Param() params: DatafileTypeWhereUniqueInput,
     @common.Body() data: DatafileTypeUpdateInput
   ): Promise<DatafileType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDatafileType({
         where: params,
         data: data,
         select: {
@@ -104,11 +103,11 @@ export class DatafileTypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DatafileType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDatafileType(
     @common.Param() params: DatafileTypeWhereUniqueInput
   ): Promise<DatafileType | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDatafileType({
         where: params,
         select: {
           datafileType: true,

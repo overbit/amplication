@@ -21,14 +21,6 @@ class JiraIssueCreateInput {
     type: Number,
   })
   @IsInt()
-  @Field(() => GraphQLBigInt)
-  jiraId!: bigint;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
   @Field(() => Number)
   jiraIssueId!: number;
 
@@ -39,6 +31,14 @@ class JiraIssueCreateInput {
   @IsString()
   @Field(() => String)
   jiraProject!: string;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => GraphQLBigInt)
+  jiraId!: bigint;
 }
 
 export { JiraIssueCreateInput as JiraIssueCreateInput };

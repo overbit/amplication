@@ -18,62 +18,62 @@ import { SlateIeltService } from "../slateIelt.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  first: "exampleFirst",
   id: "exampleId",
-  ieltsListening: "exampleIeltsListening",
-  ieltsOverallBandScore: "exampleIeltsOverallBandScore",
-  ieltsReading: "exampleIeltsReading",
-  ieltsSpeaking: "exampleIeltsSpeaking",
-  ieltsWriting: "exampleIeltsWriting",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
+  ieltsOverallBandScore: "exampleIeltsOverallBandScore",
+  ieltsListening: "exampleIeltsListening",
+  ieltsReading: "exampleIeltsReading",
+  ieltsWriting: "exampleIeltsWriting",
+  ieltsSpeaking: "exampleIeltsSpeaking",
 };
 const CREATE_RESULT = {
-  first: "exampleFirst",
   id: "exampleId",
-  ieltsListening: "exampleIeltsListening",
-  ieltsOverallBandScore: "exampleIeltsOverallBandScore",
-  ieltsReading: "exampleIeltsReading",
-  ieltsSpeaking: "exampleIeltsSpeaking",
-  ieltsWriting: "exampleIeltsWriting",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
+  ieltsOverallBandScore: "exampleIeltsOverallBandScore",
+  ieltsListening: "exampleIeltsListening",
+  ieltsReading: "exampleIeltsReading",
+  ieltsWriting: "exampleIeltsWriting",
+  ieltsSpeaking: "exampleIeltsSpeaking",
 };
 const FIND_MANY_RESULT = [
   {
-    first: "exampleFirst",
     id: "exampleId",
-    ieltsListening: "exampleIeltsListening",
-    ieltsOverallBandScore: "exampleIeltsOverallBandScore",
-    ieltsReading: "exampleIeltsReading",
-    ieltsSpeaking: "exampleIeltsSpeaking",
-    ieltsWriting: "exampleIeltsWriting",
-    last: "exampleLast",
-    middle: "exampleMiddle",
     prefix: "examplePrefix",
+    first: "exampleFirst",
+    middle: "exampleMiddle",
+    last: "exampleLast",
+    ieltsOverallBandScore: "exampleIeltsOverallBandScore",
+    ieltsListening: "exampleIeltsListening",
+    ieltsReading: "exampleIeltsReading",
+    ieltsWriting: "exampleIeltsWriting",
+    ieltsSpeaking: "exampleIeltsSpeaking",
   },
 ];
 const FIND_ONE_RESULT = {
-  first: "exampleFirst",
   id: "exampleId",
-  ieltsListening: "exampleIeltsListening",
-  ieltsOverallBandScore: "exampleIeltsOverallBandScore",
-  ieltsReading: "exampleIeltsReading",
-  ieltsSpeaking: "exampleIeltsSpeaking",
-  ieltsWriting: "exampleIeltsWriting",
-  last: "exampleLast",
-  middle: "exampleMiddle",
   prefix: "examplePrefix",
+  first: "exampleFirst",
+  middle: "exampleMiddle",
+  last: "exampleLast",
+  ieltsOverallBandScore: "exampleIeltsOverallBandScore",
+  ieltsListening: "exampleIeltsListening",
+  ieltsReading: "exampleIeltsReading",
+  ieltsWriting: "exampleIeltsWriting",
+  ieltsSpeaking: "exampleIeltsSpeaking",
 };
 
 const service = {
-  create() {
+  createSlateIelt() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slateIelts: () => FIND_MANY_RESULT,
+  slateIelt: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

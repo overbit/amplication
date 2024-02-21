@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMseRiskFactorArgs } from "./CreateMseRiskFactorArgs";
-import { UpdateMseRiskFactorArgs } from "./UpdateMseRiskFactorArgs";
-import { DeleteMseRiskFactorArgs } from "./DeleteMseRiskFactorArgs";
+import { MseRiskFactor } from "./MseRiskFactor";
 import { MseRiskFactorCountArgs } from "./MseRiskFactorCountArgs";
 import { MseRiskFactorFindManyArgs } from "./MseRiskFactorFindManyArgs";
 import { MseRiskFactorFindUniqueArgs } from "./MseRiskFactorFindUniqueArgs";
-import { MseRiskFactor } from "./MseRiskFactor";
+import { CreateMseRiskFactorArgs } from "./CreateMseRiskFactorArgs";
+import { UpdateMseRiskFactorArgs } from "./UpdateMseRiskFactorArgs";
+import { DeleteMseRiskFactorArgs } from "./DeleteMseRiskFactorArgs";
 import { MseRiskFactorService } from "../mseRiskFactor.service";
 @graphql.Resolver(() => MseRiskFactor)
 export class MseRiskFactorResolverBase {
@@ -38,14 +38,14 @@ export class MseRiskFactorResolverBase {
   async mseRiskFactors(
     @graphql.Args() args: MseRiskFactorFindManyArgs
   ): Promise<MseRiskFactor[]> {
-    return this.service.findMany(args);
+    return this.service.mseRiskFactors(args);
   }
 
   @graphql.Query(() => MseRiskFactor, { nullable: true })
   async mseRiskFactor(
     @graphql.Args() args: MseRiskFactorFindUniqueArgs
   ): Promise<MseRiskFactor | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mseRiskFactor(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MseRiskFactorResolverBase {
   async createMseRiskFactor(
     @graphql.Args() args: CreateMseRiskFactorArgs
   ): Promise<MseRiskFactor> {
-    return await this.service.create({
+    return await this.service.createMseRiskFactor({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MseRiskFactorResolverBase {
     @graphql.Args() args: UpdateMseRiskFactorArgs
   ): Promise<MseRiskFactor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseRiskFactor({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MseRiskFactorResolverBase {
     @graphql.Args() args: DeleteMseRiskFactorArgs
   ): Promise<MseRiskFactor | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMseRiskFactor(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

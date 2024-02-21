@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SemPreviousCourse } from "@prisma/client";
+import {
+  Prisma,
+  SemPreviousCourse as PrismaSemPreviousCourse,
+} from "@prisma/client";
 
 export class SemPreviousCourseServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class SemPreviousCourseServiceBase {
     return this.prisma.semPreviousCourse.count(args);
   }
 
-  async findMany<T extends Prisma.SemPreviousCourseFindManyArgs>(
+  async semPreviousCourses<T extends Prisma.SemPreviousCourseFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SemPreviousCourseFindManyArgs>
-  ): Promise<SemPreviousCourse[]> {
+  ): Promise<PrismaSemPreviousCourse[]> {
     return this.prisma.semPreviousCourse.findMany(args);
   }
-  async findOne<T extends Prisma.SemPreviousCourseFindUniqueArgs>(
+  async semPreviousCourse<T extends Prisma.SemPreviousCourseFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SemPreviousCourseFindUniqueArgs>
-  ): Promise<SemPreviousCourse | null> {
+  ): Promise<PrismaSemPreviousCourse | null> {
     return this.prisma.semPreviousCourse.findUnique(args);
   }
-  async create<T extends Prisma.SemPreviousCourseCreateArgs>(
+  async createSemPreviousCourse<T extends Prisma.SemPreviousCourseCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SemPreviousCourseCreateArgs>
-  ): Promise<SemPreviousCourse> {
+  ): Promise<PrismaSemPreviousCourse> {
     return this.prisma.semPreviousCourse.create<T>(args);
   }
-  async update<T extends Prisma.SemPreviousCourseUpdateArgs>(
+  async updateSemPreviousCourse<T extends Prisma.SemPreviousCourseUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SemPreviousCourseUpdateArgs>
-  ): Promise<SemPreviousCourse> {
+  ): Promise<PrismaSemPreviousCourse> {
     return this.prisma.semPreviousCourse.update<T>(args);
   }
-  async delete<T extends Prisma.SemPreviousCourseDeleteArgs>(
+  async deleteSemPreviousCourse<T extends Prisma.SemPreviousCourseDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SemPreviousCourseDeleteArgs>
-  ): Promise<SemPreviousCourse> {
+  ): Promise<PrismaSemPreviousCourse> {
     return this.prisma.semPreviousCourse.delete(args);
   }
 }

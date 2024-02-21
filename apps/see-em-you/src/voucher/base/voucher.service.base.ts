@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Voucher } from "@prisma/client";
+import { Prisma, Voucher as PrismaVoucher } from "@prisma/client";
 
 export class VoucherServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class VoucherServiceBase {
     return this.prisma.voucher.count(args);
   }
 
-  async findMany<T extends Prisma.VoucherFindManyArgs>(
+  async vouchers<T extends Prisma.VoucherFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherFindManyArgs>
-  ): Promise<Voucher[]> {
+  ): Promise<PrismaVoucher[]> {
     return this.prisma.voucher.findMany(args);
   }
-  async findOne<T extends Prisma.VoucherFindUniqueArgs>(
+  async voucher<T extends Prisma.VoucherFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherFindUniqueArgs>
-  ): Promise<Voucher | null> {
+  ): Promise<PrismaVoucher | null> {
     return this.prisma.voucher.findUnique(args);
   }
-  async create<T extends Prisma.VoucherCreateArgs>(
+  async createVoucher<T extends Prisma.VoucherCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherCreateArgs>
-  ): Promise<Voucher> {
+  ): Promise<PrismaVoucher> {
     return this.prisma.voucher.create<T>(args);
   }
-  async update<T extends Prisma.VoucherUpdateArgs>(
+  async updateVoucher<T extends Prisma.VoucherUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherUpdateArgs>
-  ): Promise<Voucher> {
+  ): Promise<PrismaVoucher> {
     return this.prisma.voucher.update<T>(args);
   }
-  async delete<T extends Prisma.VoucherDeleteArgs>(
+  async deleteVoucher<T extends Prisma.VoucherDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.VoucherDeleteArgs>
-  ): Promise<Voucher> {
+  ): Promise<PrismaVoucher> {
     return this.prisma.voucher.delete(args);
   }
 }

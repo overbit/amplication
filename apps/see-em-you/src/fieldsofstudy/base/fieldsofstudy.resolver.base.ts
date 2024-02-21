@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateFieldsofstudyArgs } from "./CreateFieldsofstudyArgs";
-import { UpdateFieldsofstudyArgs } from "./UpdateFieldsofstudyArgs";
-import { DeleteFieldsofstudyArgs } from "./DeleteFieldsofstudyArgs";
+import { Fieldsofstudy } from "./Fieldsofstudy";
 import { FieldsofstudyCountArgs } from "./FieldsofstudyCountArgs";
 import { FieldsofstudyFindManyArgs } from "./FieldsofstudyFindManyArgs";
 import { FieldsofstudyFindUniqueArgs } from "./FieldsofstudyFindUniqueArgs";
-import { Fieldsofstudy } from "./Fieldsofstudy";
+import { CreateFieldsofstudyArgs } from "./CreateFieldsofstudyArgs";
+import { UpdateFieldsofstudyArgs } from "./UpdateFieldsofstudyArgs";
+import { DeleteFieldsofstudyArgs } from "./DeleteFieldsofstudyArgs";
 import { ProgramModelFindManyArgs } from "../../programModel/base/ProgramModelFindManyArgs";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
 import { FieldsofstudyService } from "../fieldsofstudy.service";
@@ -40,14 +40,14 @@ export class FieldsofstudyResolverBase {
   async fieldsofstudies(
     @graphql.Args() args: FieldsofstudyFindManyArgs
   ): Promise<Fieldsofstudy[]> {
-    return this.service.findMany(args);
+    return this.service.fieldsofstudies(args);
   }
 
   @graphql.Query(() => Fieldsofstudy, { nullable: true })
   async fieldsofstudy(
     @graphql.Args() args: FieldsofstudyFindUniqueArgs
   ): Promise<Fieldsofstudy | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.fieldsofstudy(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class FieldsofstudyResolverBase {
   async createFieldsofstudy(
     @graphql.Args() args: CreateFieldsofstudyArgs
   ): Promise<Fieldsofstudy> {
-    return await this.service.create({
+    return await this.service.createFieldsofstudy({
       ...args,
       data: args.data,
     });
@@ -69,7 +69,7 @@ export class FieldsofstudyResolverBase {
     @graphql.Args() args: UpdateFieldsofstudyArgs
   ): Promise<Fieldsofstudy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateFieldsofstudy({
         ...args,
         data: args.data,
       });
@@ -88,7 +88,7 @@ export class FieldsofstudyResolverBase {
     @graphql.Args() args: DeleteFieldsofstudyArgs
   ): Promise<Fieldsofstudy | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteFieldsofstudy(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -100,7 +100,7 @@ export class FieldsofstudyResolverBase {
   }
 
   @graphql.ResolveField(() => [ProgramModel], { name: "programs" })
-  async resolveFieldPrograms(
+  async findPrograms(
     @graphql.Parent() parent: Fieldsofstudy,
     @graphql.Args() args: ProgramModelFindManyArgs
   ): Promise<ProgramModel[]> {

@@ -18,39 +18,38 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateEmployService } from "../slateEmploy.service";
 import { SlateEmployCreateInput } from "./SlateEmployCreateInput";
-import { SlateEmployWhereInput } from "./SlateEmployWhereInput";
-import { SlateEmployWhereUniqueInput } from "./SlateEmployWhereUniqueInput";
-import { SlateEmployFindManyArgs } from "./SlateEmployFindManyArgs";
-import { SlateEmployUpdateInput } from "./SlateEmployUpdateInput";
 import { SlateEmploy } from "./SlateEmploy";
+import { SlateEmployFindManyArgs } from "./SlateEmployFindManyArgs";
+import { SlateEmployWhereUniqueInput } from "./SlateEmployWhereUniqueInput";
+import { SlateEmployUpdateInput } from "./SlateEmployUpdateInput";
 
 export class SlateEmployControllerBase {
   constructor(protected readonly service: SlateEmployService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateEmploy })
-  async create(
+  async createSlateEmploy(
     @common.Body() data: SlateEmployCreateInput
   ): Promise<SlateEmploy> {
-    return await this.service.create({
+    return await this.service.createSlateEmploy({
       data: data,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        job1From: true,
+        middle: true,
+        last: true,
         job1Organization: true,
+        jobNum1YearsOfExperience: true,
+        job1From: true,
         job1To: true,
         job2From: true,
-        job2Organization: true,
         job2To: true,
-        job3From: true,
-        job3Organization: true,
-        job3To: true,
-        jobNum1YearsOfExperience: true,
+        job2Organization: true,
         jobNum2YearsOfExperience: true,
+        job3Organization: true,
+        job3From: true,
+        job3To: true,
         jobNum3YearsOfExperience: true,
-        last: true,
-        middle: true,
-        prefix: true,
+        id: true,
       },
     });
   }
@@ -58,28 +57,28 @@ export class SlateEmployControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateEmploy] })
   @ApiNestedQuery(SlateEmployFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateEmploy[]> {
+  async slateEmploys(@common.Req() request: Request): Promise<SlateEmploy[]> {
     const args = plainToClass(SlateEmployFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateEmploys({
       ...args,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        job1From: true,
+        middle: true,
+        last: true,
         job1Organization: true,
+        jobNum1YearsOfExperience: true,
+        job1From: true,
         job1To: true,
         job2From: true,
-        job2Organization: true,
         job2To: true,
-        job3From: true,
-        job3Organization: true,
-        job3To: true,
-        jobNum1YearsOfExperience: true,
+        job2Organization: true,
         jobNum2YearsOfExperience: true,
+        job3Organization: true,
+        job3From: true,
+        job3To: true,
         jobNum3YearsOfExperience: true,
-        last: true,
-        middle: true,
-        prefix: true,
+        id: true,
       },
     });
   }
@@ -87,29 +86,29 @@ export class SlateEmployControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateEmploy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateEmploy(
     @common.Param() params: SlateEmployWhereUniqueInput
   ): Promise<SlateEmploy | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateEmploy({
       where: params,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        job1From: true,
+        middle: true,
+        last: true,
         job1Organization: true,
+        jobNum1YearsOfExperience: true,
+        job1From: true,
         job1To: true,
         job2From: true,
-        job2Organization: true,
         job2To: true,
-        job3From: true,
-        job3Organization: true,
-        job3To: true,
-        jobNum1YearsOfExperience: true,
+        job2Organization: true,
         jobNum2YearsOfExperience: true,
+        job3Organization: true,
+        job3From: true,
+        job3To: true,
         jobNum3YearsOfExperience: true,
-        last: true,
-        middle: true,
-        prefix: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -123,32 +122,32 @@ export class SlateEmployControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateEmploy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateEmploy(
     @common.Param() params: SlateEmployWhereUniqueInput,
     @common.Body() data: SlateEmployUpdateInput
   ): Promise<SlateEmploy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateEmploy({
         where: params,
         data: data,
         select: {
+          prefix: true,
           first: true,
-          id: true,
-          job1From: true,
+          middle: true,
+          last: true,
           job1Organization: true,
+          jobNum1YearsOfExperience: true,
+          job1From: true,
           job1To: true,
           job2From: true,
-          job2Organization: true,
           job2To: true,
-          job3From: true,
-          job3Organization: true,
-          job3To: true,
-          jobNum1YearsOfExperience: true,
+          job2Organization: true,
           jobNum2YearsOfExperience: true,
+          job3Organization: true,
+          job3From: true,
+          job3To: true,
           jobNum3YearsOfExperience: true,
-          last: true,
-          middle: true,
-          prefix: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -164,30 +163,30 @@ export class SlateEmployControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateEmploy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateEmploy(
     @common.Param() params: SlateEmployWhereUniqueInput
   ): Promise<SlateEmploy | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateEmploy({
         where: params,
         select: {
+          prefix: true,
           first: true,
-          id: true,
-          job1From: true,
+          middle: true,
+          last: true,
           job1Organization: true,
+          jobNum1YearsOfExperience: true,
+          job1From: true,
           job1To: true,
           job2From: true,
-          job2Organization: true,
           job2To: true,
-          job3From: true,
-          job3Organization: true,
-          job3To: true,
-          jobNum1YearsOfExperience: true,
+          job2Organization: true,
           jobNum2YearsOfExperience: true,
+          job3Organization: true,
+          job3From: true,
+          job3To: true,
           jobNum3YearsOfExperience: true,
-          last: true,
-          middle: true,
-          prefix: true,
+          id: true,
         },
       });
     } catch (error) {

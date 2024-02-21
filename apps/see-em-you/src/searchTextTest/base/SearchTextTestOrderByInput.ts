@@ -39,7 +39,7 @@ class SearchTextTestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationText?: SortOrder;
+  guid?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class SearchTextTestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  guid?: SortOrder;
+  applicationText?: SortOrder;
 
   @ApiProperty({
     required: false,

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Contenttype } from "@prisma/client";
+import { Prisma, Contenttype as PrismaContenttype } from "@prisma/client";
 
 export class ContenttypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ContenttypeServiceBase {
     return this.prisma.contenttype.count(args);
   }
 
-  async findMany<T extends Prisma.ContenttypeFindManyArgs>(
+  async contenttypes<T extends Prisma.ContenttypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContenttypeFindManyArgs>
-  ): Promise<Contenttype[]> {
+  ): Promise<PrismaContenttype[]> {
     return this.prisma.contenttype.findMany(args);
   }
-  async findOne<T extends Prisma.ContenttypeFindUniqueArgs>(
+  async contenttype<T extends Prisma.ContenttypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContenttypeFindUniqueArgs>
-  ): Promise<Contenttype | null> {
+  ): Promise<PrismaContenttype | null> {
     return this.prisma.contenttype.findUnique(args);
   }
-  async create<T extends Prisma.ContenttypeCreateArgs>(
+  async createContenttype<T extends Prisma.ContenttypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContenttypeCreateArgs>
-  ): Promise<Contenttype> {
+  ): Promise<PrismaContenttype> {
     return this.prisma.contenttype.create<T>(args);
   }
-  async update<T extends Prisma.ContenttypeUpdateArgs>(
+  async updateContenttype<T extends Prisma.ContenttypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContenttypeUpdateArgs>
-  ): Promise<Contenttype> {
+  ): Promise<PrismaContenttype> {
     return this.prisma.contenttype.update<T>(args);
   }
-  async delete<T extends Prisma.ContenttypeDeleteArgs>(
+  async deleteContenttype<T extends Prisma.ContenttypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContenttypeDeleteArgs>
-  ): Promise<Contenttype> {
+  ): Promise<PrismaContenttype> {
     return this.prisma.contenttype.delete(args);
   }
 }

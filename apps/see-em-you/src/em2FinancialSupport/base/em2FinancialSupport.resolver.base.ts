@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateEm2FinancialSupportArgs } from "./CreateEm2FinancialSupportArgs";
-import { UpdateEm2FinancialSupportArgs } from "./UpdateEm2FinancialSupportArgs";
-import { DeleteEm2FinancialSupportArgs } from "./DeleteEm2FinancialSupportArgs";
+import { Em2FinancialSupport } from "./Em2FinancialSupport";
 import { Em2FinancialSupportCountArgs } from "./Em2FinancialSupportCountArgs";
 import { Em2FinancialSupportFindManyArgs } from "./Em2FinancialSupportFindManyArgs";
 import { Em2FinancialSupportFindUniqueArgs } from "./Em2FinancialSupportFindUniqueArgs";
-import { Em2FinancialSupport } from "./Em2FinancialSupport";
+import { CreateEm2FinancialSupportArgs } from "./CreateEm2FinancialSupportArgs";
+import { UpdateEm2FinancialSupportArgs } from "./UpdateEm2FinancialSupportArgs";
+import { DeleteEm2FinancialSupportArgs } from "./DeleteEm2FinancialSupportArgs";
 import { Em2FinancialSupportService } from "../em2FinancialSupport.service";
 @graphql.Resolver(() => Em2FinancialSupport)
 export class Em2FinancialSupportResolverBase {
@@ -38,14 +38,14 @@ export class Em2FinancialSupportResolverBase {
   async em2FinancialSupports(
     @graphql.Args() args: Em2FinancialSupportFindManyArgs
   ): Promise<Em2FinancialSupport[]> {
-    return this.service.findMany(args);
+    return this.service.em2FinancialSupports(args);
   }
 
   @graphql.Query(() => Em2FinancialSupport, { nullable: true })
   async em2FinancialSupport(
     @graphql.Args() args: Em2FinancialSupportFindUniqueArgs
   ): Promise<Em2FinancialSupport | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.em2FinancialSupport(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class Em2FinancialSupportResolverBase {
   async createEm2FinancialSupport(
     @graphql.Args() args: CreateEm2FinancialSupportArgs
   ): Promise<Em2FinancialSupport> {
-    return await this.service.create({
+    return await this.service.createEm2FinancialSupport({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class Em2FinancialSupportResolverBase {
     @graphql.Args() args: UpdateEm2FinancialSupportArgs
   ): Promise<Em2FinancialSupport | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEm2FinancialSupport({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class Em2FinancialSupportResolverBase {
     @graphql.Args() args: DeleteEm2FinancialSupportArgs
   ): Promise<Em2FinancialSupport | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteEm2FinancialSupport(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -7,8 +7,8 @@ export const VoucherProgramCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Program Id" source="programId" />
         <NumberInput step={1} label="Voucher Id" source="voucherId" />
+        <NumberInput step={1} label="Program Id" source="programId" />
       </SimpleForm>
     </Create>
   );

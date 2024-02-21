@@ -8,12 +8,12 @@ export const CmuAffiliationCreate = (
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Cmu Employee" source="cmuEmployee" />
         <NumberInput
           step={1}
           label="Cmu Student Or Alumnus"
           source="cmuStudentOrAlumnus"
         />
+        <NumberInput step={1} label="Cmu Employee" source="cmuEmployee" />
       </SimpleForm>
     </Create>
   );

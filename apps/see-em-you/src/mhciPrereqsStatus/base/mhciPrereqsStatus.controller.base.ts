@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqsStatusService } from "../mhciPrereqsStatus.service";
 import { MhciPrereqsStatusCreateInput } from "./MhciPrereqsStatusCreateInput";
-import { MhciPrereqsStatusWhereInput } from "./MhciPrereqsStatusWhereInput";
-import { MhciPrereqsStatusWhereUniqueInput } from "./MhciPrereqsStatusWhereUniqueInput";
-import { MhciPrereqsStatusFindManyArgs } from "./MhciPrereqsStatusFindManyArgs";
-import { MhciPrereqsStatusUpdateInput } from "./MhciPrereqsStatusUpdateInput";
 import { MhciPrereqsStatus } from "./MhciPrereqsStatus";
+import { MhciPrereqsStatusFindManyArgs } from "./MhciPrereqsStatusFindManyArgs";
+import { MhciPrereqsStatusWhereUniqueInput } from "./MhciPrereqsStatusWhereUniqueInput";
+import { MhciPrereqsStatusUpdateInput } from "./MhciPrereqsStatusUpdateInput";
 
 export class MhciPrereqsStatusControllerBase {
   constructor(protected readonly service: MhciPrereqsStatusService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereqsStatus })
-  async create(
+  async createMhciPrereqsStatus(
     @common.Body() data: MhciPrereqsStatusCreateInput
   ): Promise<MhciPrereqsStatus> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsStatus({
       data: {
         ...data,
 
@@ -40,7 +39,12 @@ export class MhciPrereqsStatusControllerBase {
         },
       },
       select: {
-        id: true,
+        reviewerLuUsersUsertypesId: true,
+        reviewer_status: true,
+        reviewerExplanation: true,
+        reviewerTimestamp: true,
+        status3: true,
+        programId: true,
 
         mhciPrereqs: {
           select: {
@@ -48,12 +52,7 @@ export class MhciPrereqsStatusControllerBase {
           },
         },
 
-        programId: true,
-        reviewerExplanation: true,
-        reviewerLuUsersUsertypesId: true,
-        reviewer_status: true,
-        reviewerTimestamp: true,
-        status3: true,
+        id: true,
       },
     });
   }
@@ -61,12 +60,19 @@ export class MhciPrereqsStatusControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereqsStatus] })
   @ApiNestedQuery(MhciPrereqsStatusFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MhciPrereqsStatus[]> {
+  async mhciPrereqsStatuses(
+    @common.Req() request: Request
+  ): Promise<MhciPrereqsStatus[]> {
     const args = plainToClass(MhciPrereqsStatusFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciPrereqsStatuses({
       ...args,
       select: {
-        id: true,
+        reviewerLuUsersUsertypesId: true,
+        reviewer_status: true,
+        reviewerExplanation: true,
+        reviewerTimestamp: true,
+        status3: true,
+        programId: true,
 
         mhciPrereqs: {
           select: {
@@ -74,12 +80,7 @@ export class MhciPrereqsStatusControllerBase {
           },
         },
 
-        programId: true,
-        reviewerExplanation: true,
-        reviewerLuUsersUsertypesId: true,
-        reviewer_status: true,
-        reviewerTimestamp: true,
-        status3: true,
+        id: true,
       },
     });
   }
@@ -87,13 +88,18 @@ export class MhciPrereqsStatusControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereqsStatus(
     @common.Param() params: MhciPrereqsStatusWhereUniqueInput
   ): Promise<MhciPrereqsStatus | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereqsStatus({
       where: params,
       select: {
-        id: true,
+        reviewerLuUsersUsertypesId: true,
+        reviewer_status: true,
+        reviewerExplanation: true,
+        reviewerTimestamp: true,
+        status3: true,
+        programId: true,
 
         mhciPrereqs: {
           select: {
@@ -101,12 +107,7 @@ export class MhciPrereqsStatusControllerBase {
           },
         },
 
-        programId: true,
-        reviewerExplanation: true,
-        reviewerLuUsersUsertypesId: true,
-        reviewer_status: true,
-        reviewerTimestamp: true,
-        status3: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -120,12 +121,12 @@ export class MhciPrereqsStatusControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereqsStatus(
     @common.Param() params: MhciPrereqsStatusWhereUniqueInput,
     @common.Body() data: MhciPrereqsStatusUpdateInput
   ): Promise<MhciPrereqsStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsStatus({
         where: params,
         data: {
           ...data,
@@ -135,7 +136,12 @@ export class MhciPrereqsStatusControllerBase {
           },
         },
         select: {
-          id: true,
+          reviewerLuUsersUsertypesId: true,
+          reviewer_status: true,
+          reviewerExplanation: true,
+          reviewerTimestamp: true,
+          status3: true,
+          programId: true,
 
           mhciPrereqs: {
             select: {
@@ -143,12 +149,7 @@ export class MhciPrereqsStatusControllerBase {
             },
           },
 
-          programId: true,
-          reviewerExplanation: true,
-          reviewerLuUsersUsertypesId: true,
-          reviewer_status: true,
-          reviewerTimestamp: true,
-          status3: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -164,14 +165,19 @@ export class MhciPrereqsStatusControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereqsStatus(
     @common.Param() params: MhciPrereqsStatusWhereUniqueInput
   ): Promise<MhciPrereqsStatus | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereqsStatus({
         where: params,
         select: {
-          id: true,
+          reviewerLuUsersUsertypesId: true,
+          reviewer_status: true,
+          reviewerExplanation: true,
+          reviewerTimestamp: true,
+          status3: true,
+          programId: true,
 
           mhciPrereqs: {
             select: {
@@ -179,12 +185,7 @@ export class MhciPrereqsStatusControllerBase {
             },
           },
 
-          programId: true,
-          reviewerExplanation: true,
-          reviewerLuUsersUsertypesId: true,
-          reviewer_status: true,
-          reviewerTimestamp: true,
-          status3: true,
+          id: true,
         },
       });
     } catch (error) {

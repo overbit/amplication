@@ -18,22 +18,21 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { GenderService } from "../gender.service";
 import { GenderCreateInput } from "./GenderCreateInput";
-import { GenderWhereInput } from "./GenderWhereInput";
-import { GenderWhereUniqueInput } from "./GenderWhereUniqueInput";
-import { GenderFindManyArgs } from "./GenderFindManyArgs";
-import { GenderUpdateInput } from "./GenderUpdateInput";
 import { Gender } from "./Gender";
+import { GenderFindManyArgs } from "./GenderFindManyArgs";
+import { GenderWhereUniqueInput } from "./GenderWhereUniqueInput";
+import { GenderUpdateInput } from "./GenderUpdateInput";
 
 export class GenderControllerBase {
   constructor(protected readonly service: GenderService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Gender })
-  async create(@common.Body() data: GenderCreateInput): Promise<Gender> {
-    return await this.service.create({
+  async createGender(@common.Body() data: GenderCreateInput): Promise<Gender> {
+    return await this.service.createGender({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -41,13 +40,13 @@ export class GenderControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Gender] })
   @ApiNestedQuery(GenderFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Gender[]> {
+  async genders(@common.Req() request: Request): Promise<Gender[]> {
     const args = plainToClass(GenderFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.genders({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -55,14 +54,14 @@ export class GenderControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Gender })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async gender(
     @common.Param() params: GenderWhereUniqueInput
   ): Promise<Gender | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.gender({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -76,17 +75,17 @@ export class GenderControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Gender })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateGender(
     @common.Param() params: GenderWhereUniqueInput,
     @common.Body() data: GenderUpdateInput
   ): Promise<Gender | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGender({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -102,15 +101,15 @@ export class GenderControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Gender })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteGender(
     @common.Param() params: GenderWhereUniqueInput
   ): Promise<Gender | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteGender({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {

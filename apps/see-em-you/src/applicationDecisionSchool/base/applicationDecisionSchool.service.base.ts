@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ApplicationDecisionSchool } from "@prisma/client";
+import {
+  Prisma,
+  ApplicationDecisionSchool as PrismaApplicationDecisionSchool,
+} from "@prisma/client";
 
 export class ApplicationDecisionSchoolServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ApplicationDecisionSchoolServiceBase {
     return this.prisma.applicationDecisionSchool.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicationDecisionSchoolFindManyArgs>(
+  async applicationDecisionSchools<
+    T extends Prisma.ApplicationDecisionSchoolFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionSchoolFindManyArgs>
-  ): Promise<ApplicationDecisionSchool[]> {
+  ): Promise<PrismaApplicationDecisionSchool[]> {
     return this.prisma.applicationDecisionSchool.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicationDecisionSchoolFindUniqueArgs>(
+  async applicationDecisionSchool<
+    T extends Prisma.ApplicationDecisionSchoolFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionSchoolFindUniqueArgs>
-  ): Promise<ApplicationDecisionSchool | null> {
+  ): Promise<PrismaApplicationDecisionSchool | null> {
     return this.prisma.applicationDecisionSchool.findUnique(args);
   }
-  async create<T extends Prisma.ApplicationDecisionSchoolCreateArgs>(
+  async createApplicationDecisionSchool<
+    T extends Prisma.ApplicationDecisionSchoolCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionSchoolCreateArgs>
-  ): Promise<ApplicationDecisionSchool> {
+  ): Promise<PrismaApplicationDecisionSchool> {
     return this.prisma.applicationDecisionSchool.create<T>(args);
   }
-  async update<T extends Prisma.ApplicationDecisionSchoolUpdateArgs>(
+  async updateApplicationDecisionSchool<
+    T extends Prisma.ApplicationDecisionSchoolUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionSchoolUpdateArgs>
-  ): Promise<ApplicationDecisionSchool> {
+  ): Promise<PrismaApplicationDecisionSchool> {
     return this.prisma.applicationDecisionSchool.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicationDecisionSchoolDeleteArgs>(
+  async deleteApplicationDecisionSchool<
+    T extends Prisma.ApplicationDecisionSchoolDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationDecisionSchoolDeleteArgs>
-  ): Promise<ApplicationDecisionSchool> {
+  ): Promise<PrismaApplicationDecisionSchool> {
     return this.prisma.applicationDecisionSchool.delete(args);
   }
 }

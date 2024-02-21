@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MhciSlateToefl } from "@prisma/client";
+import { Prisma, MhciSlateToefl as PrismaMhciSlateToefl } from "@prisma/client";
 
 export class MhciSlateToeflServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MhciSlateToeflServiceBase {
     return this.prisma.mhciSlateToefl.count(args);
   }
 
-  async findMany<T extends Prisma.MhciSlateToeflFindManyArgs>(
+  async mhciSlateToefls<T extends Prisma.MhciSlateToeflFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateToeflFindManyArgs>
-  ): Promise<MhciSlateToefl[]> {
+  ): Promise<PrismaMhciSlateToefl[]> {
     return this.prisma.mhciSlateToefl.findMany(args);
   }
-  async findOne<T extends Prisma.MhciSlateToeflFindUniqueArgs>(
+  async mhciSlateToefl<T extends Prisma.MhciSlateToeflFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateToeflFindUniqueArgs>
-  ): Promise<MhciSlateToefl | null> {
+  ): Promise<PrismaMhciSlateToefl | null> {
     return this.prisma.mhciSlateToefl.findUnique(args);
   }
-  async create<T extends Prisma.MhciSlateToeflCreateArgs>(
+  async createMhciSlateToefl<T extends Prisma.MhciSlateToeflCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateToeflCreateArgs>
-  ): Promise<MhciSlateToefl> {
+  ): Promise<PrismaMhciSlateToefl> {
     return this.prisma.mhciSlateToefl.create<T>(args);
   }
-  async update<T extends Prisma.MhciSlateToeflUpdateArgs>(
+  async updateMhciSlateToefl<T extends Prisma.MhciSlateToeflUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateToeflUpdateArgs>
-  ): Promise<MhciSlateToefl> {
+  ): Promise<PrismaMhciSlateToefl> {
     return this.prisma.mhciSlateToefl.update<T>(args);
   }
-  async delete<T extends Prisma.MhciSlateToeflDeleteArgs>(
+  async deleteMhciSlateToefl<T extends Prisma.MhciSlateToeflDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciSlateToeflDeleteArgs>
-  ): Promise<MhciSlateToefl> {
+  ): Promise<PrismaMhciSlateToefl> {
     return this.prisma.mhciSlateToefl.delete(args);
   }
 }

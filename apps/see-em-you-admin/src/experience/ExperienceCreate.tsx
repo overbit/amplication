@@ -4,11 +4,11 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  NumberInput,
   TextInput,
+  DateTimeInput,
   ReferenceInput,
   SelectInput,
-  NumberInput,
-  DateTimeInput,
 } from "react-admin";
 
 import { ApplicationTitle } from "../application/ApplicationTitle";
@@ -17,7 +17,16 @@ export const ExperienceCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Datafile Id" source="datafileId" />
+        <NumberInput step={1} label="Experiencetype" source="experiencetype" />
+        <NumberInput step={1} label="Order Entered" source="orderEntered" />
+        <TextInput label="Company" source="company" />
+        <DateTimeInput label="Start Date" source="startDate" />
+        <TextInput label="End Date" source="endDate" />
+        <TextInput label="Years Exp" source="yearsExp" />
         <TextInput label="Address" source="address" />
+        <TextInput label="Job Title" source="jobTitle" />
+        <TextInput label="Job Description" source="jobDescription" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -25,15 +34,6 @@ export const ExperienceCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <TextInput label="Company" source="company" />
-        <NumberInput step={1} label="Datafile Id" source="datafileId" />
-        <TextInput label="End Date" source="endDate" />
-        <NumberInput step={1} label="Experiencetype" source="experiencetype" />
-        <TextInput label="Job Description" source="jobDescription" />
-        <TextInput label="Job Title" source="jobTitle" />
-        <NumberInput step={1} label="Order Entered" source="orderEntered" />
-        <DateTimeInput label="Start Date" source="startDate" />
-        <TextInput label="Years Exp" source="yearsExp" />
       </SimpleForm>
     </Create>
   );

@@ -19,49 +19,49 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  id: "exampleId",
-  interviewComments: "exampleInterviewComments",
+  reviewerId: 42,
   interviewDate: new Date(),
   interviewType: "exampleInterviewType",
   interviewTypeOther: "exampleInterviewTypeOther",
-  reviewerId: 42,
+  interviewComments: "exampleInterviewComments",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  id: "exampleId",
-  interviewComments: "exampleInterviewComments",
+  reviewerId: 42,
   interviewDate: new Date(),
   interviewType: "exampleInterviewType",
   interviewTypeOther: "exampleInterviewTypeOther",
-  reviewerId: 42,
+  interviewComments: "exampleInterviewComments",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    id: "exampleId",
-    interviewComments: "exampleInterviewComments",
+    reviewerId: 42,
     interviewDate: new Date(),
     interviewType: "exampleInterviewType",
     interviewTypeOther: "exampleInterviewTypeOther",
-    reviewerId: 42,
+    interviewComments: "exampleInterviewComments",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  id: "exampleId",
-  interviewComments: "exampleInterviewComments",
+  reviewerId: 42,
   interviewDate: new Date(),
   interviewType: "exampleInterviewType",
   interviewTypeOther: "exampleInterviewTypeOther",
-  reviewerId: 42,
+  interviewComments: "exampleInterviewComments",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createMseInterview() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mseInterviews: () => FIND_MANY_RESULT,
+  mseInterview: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

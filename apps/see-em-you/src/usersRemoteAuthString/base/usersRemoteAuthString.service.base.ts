@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, UsersRemoteAuthString } from "@prisma/client";
+import {
+  Prisma,
+  UsersRemoteAuthString as PrismaUsersRemoteAuthString,
+} from "@prisma/client";
 
 export class UsersRemoteAuthStringServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class UsersRemoteAuthStringServiceBase {
     return this.prisma.usersRemoteAuthString.count(args);
   }
 
-  async findMany<T extends Prisma.UsersRemoteAuthStringFindManyArgs>(
+  async usersRemoteAuthStrings<
+    T extends Prisma.UsersRemoteAuthStringFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.UsersRemoteAuthStringFindManyArgs>
-  ): Promise<UsersRemoteAuthString[]> {
+  ): Promise<PrismaUsersRemoteAuthString[]> {
     return this.prisma.usersRemoteAuthString.findMany(args);
   }
-  async findOne<T extends Prisma.UsersRemoteAuthStringFindUniqueArgs>(
+  async usersRemoteAuthString<
+    T extends Prisma.UsersRemoteAuthStringFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.UsersRemoteAuthStringFindUniqueArgs>
-  ): Promise<UsersRemoteAuthString | null> {
+  ): Promise<PrismaUsersRemoteAuthString | null> {
     return this.prisma.usersRemoteAuthString.findUnique(args);
   }
-  async create<T extends Prisma.UsersRemoteAuthStringCreateArgs>(
+  async createUsersRemoteAuthString<
+    T extends Prisma.UsersRemoteAuthStringCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.UsersRemoteAuthStringCreateArgs>
-  ): Promise<UsersRemoteAuthString> {
+  ): Promise<PrismaUsersRemoteAuthString> {
     return this.prisma.usersRemoteAuthString.create<T>(args);
   }
-  async update<T extends Prisma.UsersRemoteAuthStringUpdateArgs>(
+  async updateUsersRemoteAuthString<
+    T extends Prisma.UsersRemoteAuthStringUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.UsersRemoteAuthStringUpdateArgs>
-  ): Promise<UsersRemoteAuthString> {
+  ): Promise<PrismaUsersRemoteAuthString> {
     return this.prisma.usersRemoteAuthString.update<T>(args);
   }
-  async delete<T extends Prisma.UsersRemoteAuthStringDeleteArgs>(
+  async deleteUsersRemoteAuthString<
+    T extends Prisma.UsersRemoteAuthStringDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.UsersRemoteAuthStringDeleteArgs>
-  ): Promise<UsersRemoteAuthString> {
+  ): Promise<PrismaUsersRemoteAuthString> {
     return this.prisma.usersRemoteAuthString.delete(args);
   }
 }

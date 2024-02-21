@@ -22,14 +22,6 @@ class GrescoreMscsWaiver {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   waiverAgree!: number;
 
   @ApiProperty({
@@ -39,6 +31,14 @@ class GrescoreMscsWaiver {
   @Type(() => Date)
   @Field(() => Date)
   waiverTime!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { GrescoreMscsWaiver as GrescoreMscsWaiver };

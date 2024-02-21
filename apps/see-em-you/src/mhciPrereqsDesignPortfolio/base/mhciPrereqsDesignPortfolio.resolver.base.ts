@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsDesignPortfolioArgs } from "./CreateMhciPrereqsDesignPortfolioArgs";
-import { UpdateMhciPrereqsDesignPortfolioArgs } from "./UpdateMhciPrereqsDesignPortfolioArgs";
-import { DeleteMhciPrereqsDesignPortfolioArgs } from "./DeleteMhciPrereqsDesignPortfolioArgs";
+import { MhciPrereqsDesignPortfolio } from "./MhciPrereqsDesignPortfolio";
 import { MhciPrereqsDesignPortfolioCountArgs } from "./MhciPrereqsDesignPortfolioCountArgs";
 import { MhciPrereqsDesignPortfolioFindManyArgs } from "./MhciPrereqsDesignPortfolioFindManyArgs";
 import { MhciPrereqsDesignPortfolioFindUniqueArgs } from "./MhciPrereqsDesignPortfolioFindUniqueArgs";
-import { MhciPrereqsDesignPortfolio } from "./MhciPrereqsDesignPortfolio";
+import { CreateMhciPrereqsDesignPortfolioArgs } from "./CreateMhciPrereqsDesignPortfolioArgs";
+import { UpdateMhciPrereqsDesignPortfolioArgs } from "./UpdateMhciPrereqsDesignPortfolioArgs";
+import { DeleteMhciPrereqsDesignPortfolioArgs } from "./DeleteMhciPrereqsDesignPortfolioArgs";
 import { LuUsersUsertype } from "../../luUsersUsertype/base/LuUsersUsertype";
 import { MhciPrereqsDesignPortfolioService } from "../mhciPrereqsDesignPortfolio.service";
 @graphql.Resolver(() => MhciPrereqsDesignPortfolio)
@@ -39,14 +39,14 @@ export class MhciPrereqsDesignPortfolioResolverBase {
   async mhciPrereqsDesignPortfolios(
     @graphql.Args() args: MhciPrereqsDesignPortfolioFindManyArgs
   ): Promise<MhciPrereqsDesignPortfolio[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsDesignPortfolios(args);
   }
 
   @graphql.Query(() => MhciPrereqsDesignPortfolio, { nullable: true })
   async mhciPrereqsDesignPortfolio(
     @graphql.Args() args: MhciPrereqsDesignPortfolioFindUniqueArgs
   ): Promise<MhciPrereqsDesignPortfolio | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsDesignPortfolio(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class MhciPrereqsDesignPortfolioResolverBase {
   async createMhciPrereqsDesignPortfolio(
     @graphql.Args() args: CreateMhciPrereqsDesignPortfolioArgs
   ): Promise<MhciPrereqsDesignPortfolio> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsDesignPortfolio({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class MhciPrereqsDesignPortfolioResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsDesignPortfolioArgs
   ): Promise<MhciPrereqsDesignPortfolio | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsDesignPortfolio({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class MhciPrereqsDesignPortfolioResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsDesignPortfolioArgs
   ): Promise<MhciPrereqsDesignPortfolio | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsDesignPortfolio(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class MhciPrereqsDesignPortfolioResolverBase {
     nullable: true,
     name: "luUsersUsertypes",
   })
-  async resolveFieldLuUsersUsertypes(
+  async getLuUsersUsertypes(
     @graphql.Parent() parent: MhciPrereqsDesignPortfolio
   ): Promise<LuUsersUsertype | null> {
     const result = await this.service.getLuUsersUsertypes(parent.id);

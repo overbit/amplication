@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseLetterRecsDecision } from "@prisma/client";
+import {
+  Prisma,
+  MseLetterRecsDecision as PrismaMseLetterRecsDecision,
+} from "@prisma/client";
 
 export class MseLetterRecsDecisionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class MseLetterRecsDecisionServiceBase {
     return this.prisma.mseLetterRecsDecision.count(args);
   }
 
-  async findMany<T extends Prisma.MseLetterRecsDecisionFindManyArgs>(
+  async mseLetterRecsDecisions<
+    T extends Prisma.MseLetterRecsDecisionFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecsDecisionFindManyArgs>
-  ): Promise<MseLetterRecsDecision[]> {
+  ): Promise<PrismaMseLetterRecsDecision[]> {
     return this.prisma.mseLetterRecsDecision.findMany(args);
   }
-  async findOne<T extends Prisma.MseLetterRecsDecisionFindUniqueArgs>(
+  async mseLetterRecsDecision<
+    T extends Prisma.MseLetterRecsDecisionFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecsDecisionFindUniqueArgs>
-  ): Promise<MseLetterRecsDecision | null> {
+  ): Promise<PrismaMseLetterRecsDecision | null> {
     return this.prisma.mseLetterRecsDecision.findUnique(args);
   }
-  async create<T extends Prisma.MseLetterRecsDecisionCreateArgs>(
+  async createMseLetterRecsDecision<
+    T extends Prisma.MseLetterRecsDecisionCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecsDecisionCreateArgs>
-  ): Promise<MseLetterRecsDecision> {
+  ): Promise<PrismaMseLetterRecsDecision> {
     return this.prisma.mseLetterRecsDecision.create<T>(args);
   }
-  async update<T extends Prisma.MseLetterRecsDecisionUpdateArgs>(
+  async updateMseLetterRecsDecision<
+    T extends Prisma.MseLetterRecsDecisionUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecsDecisionUpdateArgs>
-  ): Promise<MseLetterRecsDecision> {
+  ): Promise<PrismaMseLetterRecsDecision> {
     return this.prisma.mseLetterRecsDecision.update<T>(args);
   }
-  async delete<T extends Prisma.MseLetterRecsDecisionDeleteArgs>(
+  async deleteMseLetterRecsDecision<
+    T extends Prisma.MseLetterRecsDecisionDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecsDecisionDeleteArgs>
-  ): Promise<MseLetterRecsDecision> {
+  ): Promise<PrismaMseLetterRecsDecision> {
     return this.prisma.mseLetterRecsDecision.delete(args);
   }
 }

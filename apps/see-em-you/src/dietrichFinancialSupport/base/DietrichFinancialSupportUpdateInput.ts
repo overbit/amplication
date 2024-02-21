@@ -35,17 +35,6 @@ class DietrichFinancialSupportUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  interestedB2Training?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   qualifiedAssistance?: number | null;
 
   @ApiProperty({
@@ -80,6 +69,17 @@ class DietrichFinancialSupportUpdateInput {
     nullable: true,
   })
   supportSources?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  interestedB2Training?: number | null;
 }
 
 export { DietrichFinancialSupportUpdateInput as DietrichFinancialSupportUpdateInput };

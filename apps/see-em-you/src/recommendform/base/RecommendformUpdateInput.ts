@@ -24,6 +24,17 @@ class RecommendformUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  recommendId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   formId?: number;
 
   @ApiProperty({
@@ -47,17 +58,6 @@ class RecommendformUpdateInput {
     nullable: true,
   })
   questionKey?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  recommendId?: number;
 
   @ApiProperty({
     required: false,

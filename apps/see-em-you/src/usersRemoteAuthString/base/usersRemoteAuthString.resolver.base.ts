@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUsersRemoteAuthStringArgs } from "./CreateUsersRemoteAuthStringArgs";
-import { UpdateUsersRemoteAuthStringArgs } from "./UpdateUsersRemoteAuthStringArgs";
-import { DeleteUsersRemoteAuthStringArgs } from "./DeleteUsersRemoteAuthStringArgs";
+import { UsersRemoteAuthString } from "./UsersRemoteAuthString";
 import { UsersRemoteAuthStringCountArgs } from "./UsersRemoteAuthStringCountArgs";
 import { UsersRemoteAuthStringFindManyArgs } from "./UsersRemoteAuthStringFindManyArgs";
 import { UsersRemoteAuthStringFindUniqueArgs } from "./UsersRemoteAuthStringFindUniqueArgs";
-import { UsersRemoteAuthString } from "./UsersRemoteAuthString";
+import { CreateUsersRemoteAuthStringArgs } from "./CreateUsersRemoteAuthStringArgs";
+import { UpdateUsersRemoteAuthStringArgs } from "./UpdateUsersRemoteAuthStringArgs";
+import { DeleteUsersRemoteAuthStringArgs } from "./DeleteUsersRemoteAuthStringArgs";
 import { UsersRemoteAuthStringService } from "../usersRemoteAuthString.service";
 @graphql.Resolver(() => UsersRemoteAuthString)
 export class UsersRemoteAuthStringResolverBase {
@@ -38,14 +38,14 @@ export class UsersRemoteAuthStringResolverBase {
   async usersRemoteAuthStrings(
     @graphql.Args() args: UsersRemoteAuthStringFindManyArgs
   ): Promise<UsersRemoteAuthString[]> {
-    return this.service.findMany(args);
+    return this.service.usersRemoteAuthStrings(args);
   }
 
   @graphql.Query(() => UsersRemoteAuthString, { nullable: true })
   async usersRemoteAuthString(
     @graphql.Args() args: UsersRemoteAuthStringFindUniqueArgs
   ): Promise<UsersRemoteAuthString | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.usersRemoteAuthString(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class UsersRemoteAuthStringResolverBase {
   async createUsersRemoteAuthString(
     @graphql.Args() args: CreateUsersRemoteAuthStringArgs
   ): Promise<UsersRemoteAuthString> {
-    return await this.service.create({
+    return await this.service.createUsersRemoteAuthString({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class UsersRemoteAuthStringResolverBase {
     @graphql.Args() args: UpdateUsersRemoteAuthStringArgs
   ): Promise<UsersRemoteAuthString | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsersRemoteAuthString({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class UsersRemoteAuthStringResolverBase {
     @graphql.Args() args: DeleteUsersRemoteAuthStringArgs
   ): Promise<UsersRemoteAuthString | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUsersRemoteAuthString(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

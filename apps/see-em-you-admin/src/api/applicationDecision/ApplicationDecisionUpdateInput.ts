@@ -1,13 +1,13 @@
 export type ApplicationDecisionUpdateInput = {
+  applicationId?: number;
+  programId?: number;
+  periodId?: number;
   admissionProgramId?: number;
   admissionStatus?: string | null;
-  applicationId?: number;
-  attendOtherUniversity?: number | null;
   comments?: string | null;
+  attendOtherUniversity?: number | null;
   otherChoiceLocation?: string | null;
-  periodId?: number;
-  programId?: number;
   visitCampus?: number | null;
-  visitComments?: number | null;
   visitHelpful?: number | null;
+  visitComments?: number | null;
 };

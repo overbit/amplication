@@ -11,22 +11,22 @@ export const MitsSlateRecommendEdit = (
           label="Application Slate Guid"
           source="applicationSlateGuid"
         />
-        <TextInput label="First" source="first" />
-        <TextInput label="Last" source="last" />
-        <TextInput label="Middle" source="middle" />
         <TextInput label="Prefix" source="prefix" />
-        <TextInput label="Reference1 Email" source="reference1Email" />
+        <TextInput label="First" source="first" />
+        <TextInput label="Middle" source="middle" />
+        <TextInput label="Last" source="last" />
+        <TextInput label="Reference1 Type" source="reference1Type" />
+        <TextInput label="Reference1 Submitted" source="reference1Submitted" />
         <TextInput label="Reference1 First" source="reference1First" />
-        <TextInput label="Reference1 Industry" source="reference1Industry" />
         <TextInput label="Reference1 Last" source="reference1Last" />
+        <TextInput label="Reference1 Industry" source="reference1Industry" />
         <TextInput
           label="Reference1 Organization"
           source="reference1Organization"
         />
-        <TextInput label="Reference1 Phone" source="reference1Phone" />
-        <TextInput label="Reference1 Submitted" source="reference1Submitted" />
         <TextInput label="Reference1 Title" source="reference1Title" />
-        <TextInput label="Reference1 Type" source="reference1Type" />
+        <TextInput label="Reference1 Email" source="reference1Email" />
+        <TextInput label="Reference1 Phone" source="reference1Phone" />
         <TextInput
           label="Reference Num1 Isrms Recommender Score1"
           source="referenceNum1IsrmsRecommenderScore1"

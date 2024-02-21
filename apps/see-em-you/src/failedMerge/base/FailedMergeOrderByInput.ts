@@ -39,7 +39,7 @@ class FailedMergeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  file?: SortOrder;
+  guid?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class FailedMergeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  guid?: SortOrder;
+  file?: SortOrder;
 
   @ApiProperty({
     required: false,

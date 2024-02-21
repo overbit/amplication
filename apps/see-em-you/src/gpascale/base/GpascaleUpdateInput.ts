@@ -24,7 +24,7 @@ class GpascaleUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  formula?: string | null;
+  name?: string;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class GpascaleUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  name?: string;
+  formula?: string | null;
 
   @ApiProperty({
     required: false,

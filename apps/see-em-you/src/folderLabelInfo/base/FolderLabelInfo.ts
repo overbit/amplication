@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsDate } from "class-validator";
+import { IsInt, IsDate, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -22,7 +22,18 @@ class FolderLabelInfo {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  periodId!: number;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  lastRanTime!: Date | null;
 
   @ApiProperty({
     required: false,
@@ -47,23 +58,12 @@ class FolderLabelInfo {
   lastLabelRow!: number | null;
 
   @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  lastRanTime!: Date | null;
-
-  @ApiProperty({
     required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  periodId!: number;
+  id!: number;
 }
 
 export { FolderLabelInfo as FolderLabelInfo };

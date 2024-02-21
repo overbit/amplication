@@ -29,7 +29,7 @@ class ProgramGroupRoleCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  roleId!: number;
+  usersId!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class ProgramGroupRoleCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  usersId!: number;
+  roleId!: number;
 }
 
 export { ProgramGroupRoleCreateInput as ProgramGroupRoleCreateInput };

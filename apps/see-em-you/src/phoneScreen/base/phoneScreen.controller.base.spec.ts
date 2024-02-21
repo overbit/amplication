@@ -19,41 +19,41 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  id: "exampleId",
-  languageScreen: 42,
   reviewerId: 42,
   technicalScreen: 42,
+  languageScreen: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  id: "exampleId",
-  languageScreen: 42,
   reviewerId: 42,
   technicalScreen: 42,
+  languageScreen: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    id: "exampleId",
-    languageScreen: 42,
     reviewerId: 42,
     technicalScreen: 42,
+    languageScreen: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  id: "exampleId",
-  languageScreen: 42,
   reviewerId: 42,
   technicalScreen: 42,
+  languageScreen: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createPhoneScreen() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  phoneScreens: () => FIND_MANY_RESULT,
+  phoneScreen: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

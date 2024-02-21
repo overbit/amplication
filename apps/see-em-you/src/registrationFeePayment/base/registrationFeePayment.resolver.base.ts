@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRegistrationFeePaymentArgs } from "./CreateRegistrationFeePaymentArgs";
-import { UpdateRegistrationFeePaymentArgs } from "./UpdateRegistrationFeePaymentArgs";
-import { DeleteRegistrationFeePaymentArgs } from "./DeleteRegistrationFeePaymentArgs";
+import { RegistrationFeePayment } from "./RegistrationFeePayment";
 import { RegistrationFeePaymentCountArgs } from "./RegistrationFeePaymentCountArgs";
 import { RegistrationFeePaymentFindManyArgs } from "./RegistrationFeePaymentFindManyArgs";
 import { RegistrationFeePaymentFindUniqueArgs } from "./RegistrationFeePaymentFindUniqueArgs";
-import { RegistrationFeePayment } from "./RegistrationFeePayment";
+import { CreateRegistrationFeePaymentArgs } from "./CreateRegistrationFeePaymentArgs";
+import { UpdateRegistrationFeePaymentArgs } from "./UpdateRegistrationFeePaymentArgs";
+import { DeleteRegistrationFeePaymentArgs } from "./DeleteRegistrationFeePaymentArgs";
 import { Application } from "../../application/base/Application";
 import { RegistrationFeePaymentService } from "../registrationFeePayment.service";
 @graphql.Resolver(() => RegistrationFeePayment)
@@ -39,14 +39,14 @@ export class RegistrationFeePaymentResolverBase {
   async registrationFeePayments(
     @graphql.Args() args: RegistrationFeePaymentFindManyArgs
   ): Promise<RegistrationFeePayment[]> {
-    return this.service.findMany(args);
+    return this.service.registrationFeePayments(args);
   }
 
   @graphql.Query(() => RegistrationFeePayment, { nullable: true })
   async registrationFeePayment(
     @graphql.Args() args: RegistrationFeePaymentFindUniqueArgs
   ): Promise<RegistrationFeePayment | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.registrationFeePayment(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class RegistrationFeePaymentResolverBase {
   async createRegistrationFeePayment(
     @graphql.Args() args: CreateRegistrationFeePaymentArgs
   ): Promise<RegistrationFeePayment> {
-    return await this.service.create({
+    return await this.service.createRegistrationFeePayment({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class RegistrationFeePaymentResolverBase {
     @graphql.Args() args: UpdateRegistrationFeePaymentArgs
   ): Promise<RegistrationFeePayment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRegistrationFeePayment({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class RegistrationFeePaymentResolverBase {
     @graphql.Args() args: DeleteRegistrationFeePaymentArgs
   ): Promise<RegistrationFeePayment | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRegistrationFeePayment(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class RegistrationFeePaymentResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: RegistrationFeePayment
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

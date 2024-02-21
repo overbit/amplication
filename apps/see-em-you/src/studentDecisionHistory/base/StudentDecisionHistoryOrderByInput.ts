@@ -28,7 +28,7 @@ class StudentDecisionHistoryOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  application_id?: SortOrder;
+  programId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,17 +72,6 @@ class StudentDecisionHistoryOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   insertDate?: SortOrder;
 
   @ApiProperty({
@@ -94,7 +83,18 @@ class StudentDecisionHistoryOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  programId?: SortOrder;
+  application_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { StudentDecisionHistoryOrderByInput as StudentDecisionHistoryOrderByInput };

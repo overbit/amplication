@@ -3,17 +3,17 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const VideoEssayEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Access Code" source="accessCode" />
         <NumberInput step={1} label="Application Id" source="applicationId" />
         <TextInput label="Url" source="url" />
+        <TextInput label="Access Code" source="accessCode" />
       </SimpleForm>
     </Edit>
   );

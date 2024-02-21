@@ -7,8 +7,8 @@ export const ReviewPositiveFactorOtherShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="Positive Factor Other" source="positiveFactorOther" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

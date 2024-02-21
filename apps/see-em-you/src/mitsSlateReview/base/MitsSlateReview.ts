@@ -24,15 +24,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  first!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  prefix!: string | null;
 
   @ApiProperty({
     required: false,
@@ -43,7 +35,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  last!: string | null;
+  first!: string | null;
 
   @ApiProperty({
     required: false,
@@ -65,7 +57,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum1AbilityToProgramComments!: string | null;
+  last!: string | null;
 
   @ApiProperty({
     required: false,
@@ -76,7 +68,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum1AbilityToProgramEvaluation!: string | null;
+  mseReviewFormNum1UserName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -87,183 +79,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum1Comments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1CsseEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1EnglishComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1EnglishEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1ExperienceComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1ExperienceEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1FoundationalKnowledgeComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1FoundationalKnowledgeEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1FromBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1IntoBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1MaturityLeadershipEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1MaturityLeadershpComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1MitsEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1MseEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1MsitEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1OtherRiskFactors!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum1RiskFactors!: string | null;
+  mseReviewFormNum1UserEmail!: string | null;
 
   @ApiProperty({
     required: false,
@@ -296,6 +112,116 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
+  mseReviewFormNum1FromBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1IntoBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1EnglishComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1EnglishEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1FoundationalKnowledgeComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1FoundationalKnowledgeEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1ExperienceComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1ExperienceEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1AbilityToProgramComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1AbilityToProgramEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   mseReviewFormNum1UnderstandingOfProgramComments!: string | null;
 
   @ApiProperty({
@@ -318,7 +244,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum1UserEmail!: string | null;
+  mseReviewFormNum1MaturityLeadershpComments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -329,7 +255,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum1UserName!: string | null;
+  mseReviewFormNum1MaturityLeadershipEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -340,7 +266,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2AbilityToProgramComments!: string | null;
+  mseReviewFormNum1Comments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -351,7 +277,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2AbilityToProgramEvaluation!: string | null;
+  mseReviewFormNum1RiskFactors!: string | null;
 
   @ApiProperty({
     required: false,
@@ -362,7 +288,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2Comments!: string | null;
+  mseReviewFormNum1OtherRiskFactors!: string | null;
 
   @ApiProperty({
     required: false,
@@ -373,7 +299,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2CsseEvaluation!: string | null;
+  mseReviewFormNum1MseEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -384,7 +310,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2EnglishComments!: string | null;
+  mseReviewFormNum1MsitEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -395,7 +321,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2EnglishEvaluation!: string | null;
+  mseReviewFormNum1CsseEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -406,7 +332,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2ExperienceComments!: string | null;
+  mseReviewFormNum2UserName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -417,128 +343,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2ExperienceEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2FoundationalKnowledgeComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2FoundationalKnowledgeEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2FromBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2IntoBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2MaturityLeadershipEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2MaturityLeadershpComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2MitsEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2MseEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2MsitEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2OtherRiskFactors!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum2RiskFactors!: string | null;
+  mseReviewFormNum2UserEmail!: string | null;
 
   @ApiProperty({
     required: false,
@@ -571,6 +376,116 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
+  mseReviewFormNum2FromBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2IntoBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2EnglishComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2EnglishEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2FoundationalKnowledgeComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2FoundationalKnowledgeEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2ExperienceComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2ExperienceEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2AbilityToProgramComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2AbilityToProgramEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   mseReviewFormNum2UnderstandingOfProgramComments!: string | null;
 
   @ApiProperty({
@@ -593,7 +508,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2UserEmail!: string | null;
+  mseReviewFormNum2MaturityLeadershpComments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -604,7 +519,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum2UserName!: string | null;
+  mseReviewFormNum2MaturityLeadershipEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -615,7 +530,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3AbilityToProgramComments!: string | null;
+  mseReviewFormNum2Comments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -626,7 +541,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3AbilityToProgramEvaluation!: string | null;
+  mseReviewFormNum2RiskFactors!: string | null;
 
   @ApiProperty({
     required: false,
@@ -637,7 +552,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3Comments!: string | null;
+  mseReviewFormNum2OtherRiskFactors!: string | null;
 
   @ApiProperty({
     required: false,
@@ -648,7 +563,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3CsseEvaluation!: string | null;
+  mseReviewFormNum2MseEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -659,7 +574,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3EnglishComments!: string | null;
+  mseReviewFormNum2MsitEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -670,7 +585,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3EnglishEvaluation!: string | null;
+  mseReviewFormNum2CsseEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -681,7 +596,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3ExperienceComments!: string | null;
+  mseReviewFormNum3UserName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -692,128 +607,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3ExperienceEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3FoundationalKnowledgeComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3FoundationalKnowledgeEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3FromBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3IntoBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3MaturityLeadershipEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3MaturityLeadershpComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3MitsEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3MseEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3MsitEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3OtherRiskFactors!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum3RiskFactors!: string | null;
+  mseReviewFormNum3UserEmail!: string | null;
 
   @ApiProperty({
     required: false,
@@ -846,6 +640,116 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
+  mseReviewFormNum3FromBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3IntoBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3EnglishComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3EnglishEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3FoundationalKnowledgeComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3FoundationalKnowledgeEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3ExperienceComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3ExperienceEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3AbilityToProgramComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3AbilityToProgramEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   mseReviewFormNum3UnderstandingOfProgramComments!: string | null;
 
   @ApiProperty({
@@ -868,7 +772,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3UserEmail!: string | null;
+  mseReviewFormNum3MaturityLeadershpComments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -879,7 +783,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum3UserName!: string | null;
+  mseReviewFormNum3MaturityLeadershipEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -890,7 +794,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4AbilityToProgramComments!: string | null;
+  mseReviewFormNum3Comments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -901,7 +805,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4AbilityToProgramEvaluation!: string | null;
+  mseReviewFormNum3RiskFactors!: string | null;
 
   @ApiProperty({
     required: false,
@@ -912,7 +816,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4Comments!: string | null;
+  mseReviewFormNum3OtherRiskFactors!: string | null;
 
   @ApiProperty({
     required: false,
@@ -923,7 +827,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4CsseEvaluation!: string | null;
+  mseReviewFormNum3MseEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -934,7 +838,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4EnglishComments!: string | null;
+  mseReviewFormNum3MsitEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -945,7 +849,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4EnglishEvaluation!: string | null;
+  mseReviewFormNum3CsseEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -956,7 +860,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4ExperienceComments!: string | null;
+  mseReviewFormNum4UserName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -967,128 +871,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4ExperienceEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4FoundationalKnowledgeComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4FoundationalKnowledgeEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4FromBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4IntoBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4MaturityLeadershipEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4MaturityLeadershpComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4MitsEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4MseEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4MsitEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4OtherRiskFactors!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum4RiskFactors!: string | null;
+  mseReviewFormNum4UserEmail!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1121,6 +904,116 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
+  mseReviewFormNum4FromBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4IntoBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4EnglishComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4EnglishEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4FoundationalKnowledgeComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4FoundationalKnowledgeEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4ExperienceComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4ExperienceEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4AbilityToProgramComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4AbilityToProgramEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   mseReviewFormNum4UnderstandingOfProgramComments!: string | null;
 
   @ApiProperty({
@@ -1143,7 +1036,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4UserEmail!: string | null;
+  mseReviewFormNum4MaturityLeadershpComments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1154,7 +1047,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum4UserName!: string | null;
+  mseReviewFormNum4MaturityLeadershipEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1165,7 +1058,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5AbilityToProgramComments!: string | null;
+  mseReviewFormNum4Comments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1176,7 +1069,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5AbilityToProgramEvaluation!: string | null;
+  mseReviewFormNum4RiskFactors!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1187,7 +1080,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5Comments!: string | null;
+  mseReviewFormNum4OtherRiskFactors!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1198,7 +1091,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5CsseEvaluation!: string | null;
+  mseReviewFormNum4MseEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1209,7 +1102,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5EnglishComments!: string | null;
+  mseReviewFormNum4MsitEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1220,7 +1113,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5EnglishEvaluation!: string | null;
+  mseReviewFormNum4CsseEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1231,7 +1124,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5ExperienceComments!: string | null;
+  mseReviewFormNum5UserName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1242,128 +1135,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5ExperienceEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5FoundationalKnowledgeComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5FoundationalKnowledgeEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5FromBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5IntoBin!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5MaturityLeadershipEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5MaturityLeadershpComments!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5MitsEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5MseEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5MsitEvaluation!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5OtherRiskFactors!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  mseReviewFormNum5RiskFactors!: string | null;
+  mseReviewFormNum5UserEmail!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1396,6 +1168,116 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
+  mseReviewFormNum5FromBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5IntoBin!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5EnglishComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5EnglishEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5FoundationalKnowledgeComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5FoundationalKnowledgeEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5ExperienceComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5ExperienceEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5AbilityToProgramComments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5AbilityToProgramEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   mseReviewFormNum5UnderstandingOfProgramComments!: string | null;
 
   @ApiProperty({
@@ -1418,7 +1300,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5UserEmail!: string | null;
+  mseReviewFormNum5MaturityLeadershpComments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1429,7 +1311,7 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  mseReviewFormNum5UserName!: string | null;
+  mseReviewFormNum5MaturityLeadershipEvaluation!: string | null;
 
   @ApiProperty({
     required: false,
@@ -1440,7 +1322,125 @@ class MitsSlateReview {
   @Field(() => String, {
     nullable: true,
   })
-  prefix!: string | null;
+  mseReviewFormNum5Comments!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5RiskFactors!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5OtherRiskFactors!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5MseEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5MsitEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5CsseEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum1MitsEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum2MitsEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum3MitsEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum4MitsEvaluation!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mseReviewFormNum5MitsEvaluation!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { MitsSlateReview as MitsSlateReview };

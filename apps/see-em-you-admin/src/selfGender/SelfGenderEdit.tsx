@@ -5,8 +5,8 @@ export const SelfGenderEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Gender Index" source="genderIndex" />
         <NumberInput step={1} label="User Id" source="userId" />
+        <NumberInput step={1} label="Gender Index" source="genderIndex" />
       </SimpleForm>
     </Edit>
   );

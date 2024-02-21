@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateScsUserArgs } from "./CreateScsUserArgs";
-import { UpdateScsUserArgs } from "./UpdateScsUserArgs";
-import { DeleteScsUserArgs } from "./DeleteScsUserArgs";
+import { ScsUser } from "./ScsUser";
 import { ScsUserCountArgs } from "./ScsUserCountArgs";
 import { ScsUserFindManyArgs } from "./ScsUserFindManyArgs";
 import { ScsUserFindUniqueArgs } from "./ScsUserFindUniqueArgs";
-import { ScsUser } from "./ScsUser";
+import { CreateScsUserArgs } from "./CreateScsUserArgs";
+import { UpdateScsUserArgs } from "./UpdateScsUserArgs";
+import { DeleteScsUserArgs } from "./DeleteScsUserArgs";
 import { ScsUserService } from "../scsUser.service";
 @graphql.Resolver(() => ScsUser)
 export class ScsUserResolverBase {
@@ -38,14 +38,14 @@ export class ScsUserResolverBase {
   async scsUsers(
     @graphql.Args() args: ScsUserFindManyArgs
   ): Promise<ScsUser[]> {
-    return this.service.findMany(args);
+    return this.service.scsUsers(args);
   }
 
   @graphql.Query(() => ScsUser, { nullable: true })
   async scsUser(
     @graphql.Args() args: ScsUserFindUniqueArgs
   ): Promise<ScsUser | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.scsUser(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ScsUserResolverBase {
   async createScsUser(
     @graphql.Args() args: CreateScsUserArgs
   ): Promise<ScsUser> {
-    return await this.service.create({
+    return await this.service.createScsUser({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ScsUserResolverBase {
     @graphql.Args() args: UpdateScsUserArgs
   ): Promise<ScsUser | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateScsUser({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ScsUserResolverBase {
     @graphql.Args() args: DeleteScsUserArgs
   ): Promise<ScsUser | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteScsUser(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

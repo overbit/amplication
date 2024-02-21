@@ -7,9 +7,9 @@ export const ApplicantIpedsRaceShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
-        <TextField label="Ipeds Race Id" source="ipedsRaceId" />
         <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Ipeds Race Id" source="ipedsRaceId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, VeteranInfo } from "@prisma/client";
+import { Prisma, VeteranInfo as PrismaVeteranInfo } from "@prisma/client";
 
 export class VeteranInfoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class VeteranInfoServiceBase {
     return this.prisma.veteranInfo.count(args);
   }
 
-  async findMany<T extends Prisma.VeteranInfoFindManyArgs>(
+  async veteranInfos<T extends Prisma.VeteranInfoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.VeteranInfoFindManyArgs>
-  ): Promise<VeteranInfo[]> {
+  ): Promise<PrismaVeteranInfo[]> {
     return this.prisma.veteranInfo.findMany(args);
   }
-  async findOne<T extends Prisma.VeteranInfoFindUniqueArgs>(
+  async veteranInfo<T extends Prisma.VeteranInfoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.VeteranInfoFindUniqueArgs>
-  ): Promise<VeteranInfo | null> {
+  ): Promise<PrismaVeteranInfo | null> {
     return this.prisma.veteranInfo.findUnique(args);
   }
-  async create<T extends Prisma.VeteranInfoCreateArgs>(
+  async createVeteranInfo<T extends Prisma.VeteranInfoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VeteranInfoCreateArgs>
-  ): Promise<VeteranInfo> {
+  ): Promise<PrismaVeteranInfo> {
     return this.prisma.veteranInfo.create<T>(args);
   }
-  async update<T extends Prisma.VeteranInfoUpdateArgs>(
+  async updateVeteranInfo<T extends Prisma.VeteranInfoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.VeteranInfoUpdateArgs>
-  ): Promise<VeteranInfo> {
+  ): Promise<PrismaVeteranInfo> {
     return this.prisma.veteranInfo.update<T>(args);
   }
-  async delete<T extends Prisma.VeteranInfoDeleteArgs>(
+  async deleteVeteranInfo<T extends Prisma.VeteranInfoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.VeteranInfoDeleteArgs>
-  ): Promise<VeteranInfo> {
+  ): Promise<PrismaVeteranInfo> {
     return this.prisma.veteranInfo.delete(args);
   }
 }

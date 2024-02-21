@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuUserDepartmentService } from "../luUserDepartment.service";
 import { LuUserDepartmentCreateInput } from "./LuUserDepartmentCreateInput";
-import { LuUserDepartmentWhereInput } from "./LuUserDepartmentWhereInput";
-import { LuUserDepartmentWhereUniqueInput } from "./LuUserDepartmentWhereUniqueInput";
-import { LuUserDepartmentFindManyArgs } from "./LuUserDepartmentFindManyArgs";
-import { LuUserDepartmentUpdateInput } from "./LuUserDepartmentUpdateInput";
 import { LuUserDepartment } from "./LuUserDepartment";
+import { LuUserDepartmentFindManyArgs } from "./LuUserDepartmentFindManyArgs";
+import { LuUserDepartmentWhereUniqueInput } from "./LuUserDepartmentWhereUniqueInput";
+import { LuUserDepartmentUpdateInput } from "./LuUserDepartmentUpdateInput";
 
 export class LuUserDepartmentControllerBase {
   constructor(protected readonly service: LuUserDepartmentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuUserDepartment })
-  async create(
+  async createLuUserDepartment(
     @common.Body() data: LuUserDepartmentCreateInput
   ): Promise<LuUserDepartment> {
-    return await this.service.create({
+    return await this.service.createLuUserDepartment({
       data: data,
       select: {
+        userId: true,
         departmentId: true,
         id: true,
-        userId: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class LuUserDepartmentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuUserDepartment] })
   @ApiNestedQuery(LuUserDepartmentFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<LuUserDepartment[]> {
+  async luUserDepartments(
+    @common.Req() request: Request
+  ): Promise<LuUserDepartment[]> {
     const args = plainToClass(LuUserDepartmentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luUserDepartments({
       ...args,
       select: {
+        userId: true,
         departmentId: true,
         id: true,
-        userId: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class LuUserDepartmentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuUserDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luUserDepartment(
     @common.Param() params: LuUserDepartmentWhereUniqueInput
   ): Promise<LuUserDepartment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luUserDepartment({
       where: params,
       select: {
+        userId: true,
         departmentId: true,
         id: true,
-        userId: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class LuUserDepartmentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuUserDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuUserDepartment(
     @common.Param() params: LuUserDepartmentWhereUniqueInput,
     @common.Body() data: LuUserDepartmentUpdateInput
   ): Promise<LuUserDepartment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuUserDepartment({
         where: params,
         data: data,
         select: {
+          userId: true,
           departmentId: true,
           id: true,
-          userId: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class LuUserDepartmentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuUserDepartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuUserDepartment(
     @common.Param() params: LuUserDepartmentWhereUniqueInput
   ): Promise<LuUserDepartment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuUserDepartment({
         where: params,
         select: {
+          userId: true,
           departmentId: true,
           id: true,
-          userId: true,
         },
       });
     } catch (error) {

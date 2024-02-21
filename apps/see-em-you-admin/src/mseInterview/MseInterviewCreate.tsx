@@ -4,8 +4,8 @@ import {
   SimpleForm,
   CreateProps,
   NumberInput,
-  TextInput,
   DateTimeInput,
+  TextInput,
 } from "react-admin";
 
 export const MseInterviewCreate = (props: CreateProps): React.ReactElement => {
@@ -13,11 +13,11 @@ export const MseInterviewCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <TextInput label="Interview Comments" source="interviewComments" />
+        <NumberInput step={1} label="Reviewer Id" source="reviewerId" />
         <DateTimeInput label="Interview Date" source="interviewDate" />
         <TextInput label="Interview Type" source="interviewType" />
         <TextInput label="Interview Type Other" source="interviewTypeOther" />
-        <NumberInput step={1} label="Reviewer Id" source="reviewerId" />
+        <TextInput label="Interview Comments" source="interviewComments" />
       </SimpleForm>
     </Create>
   );

@@ -18,36 +18,34 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MitsSlateRecommend3Service } from "../mitsSlateRecommend3.service";
 import { MitsSlateRecommend3CreateInput } from "./MitsSlateRecommend3CreateInput";
-import { MitsSlateRecommend3WhereInput } from "./MitsSlateRecommend3WhereInput";
-import { MitsSlateRecommend3WhereUniqueInput } from "./MitsSlateRecommend3WhereUniqueInput";
-import { MitsSlateRecommend3FindManyArgs } from "./MitsSlateRecommend3FindManyArgs";
-import { MitsSlateRecommend3UpdateInput } from "./MitsSlateRecommend3UpdateInput";
 import { MitsSlateRecommend3 } from "./MitsSlateRecommend3";
+import { MitsSlateRecommend3FindManyArgs } from "./MitsSlateRecommend3FindManyArgs";
+import { MitsSlateRecommend3WhereUniqueInput } from "./MitsSlateRecommend3WhereUniqueInput";
+import { MitsSlateRecommend3UpdateInput } from "./MitsSlateRecommend3UpdateInput";
 
 export class MitsSlateRecommend3ControllerBase {
   constructor(protected readonly service: MitsSlateRecommend3Service) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MitsSlateRecommend3 })
-  async create(
+  async createMitsSlateRecommend3(
     @common.Body() data: MitsSlateRecommend3CreateInput
   ): Promise<MitsSlateRecommend3> {
-    return await this.service.create({
+    return await this.service.createMitsSlateRecommend3({
       data: data,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference3Email: true,
-        reference3First: true,
-        reference3Industry: true,
-        reference3Last: true,
-        reference3Organization: true,
-        reference3Phone: true,
-        reference3Submitted: true,
-        reference3Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference3Type: true,
+        reference3Submitted: true,
+        reference3First: true,
+        reference3Last: true,
+        reference3Industry: true,
+        reference3Organization: true,
+        reference3Title: true,
+        reference3Email: true,
+        reference3Phone: true,
         referenceNum3IsrmsRecommenderScore1: true,
         referenceNum3IsrmsRecommenderScore10: true,
         referenceNum3IsrmsRecommenderScore11: true,
@@ -76,6 +74,7 @@ export class MitsSlateRecommend3ControllerBase {
         referenceNum3RecommenderScore6: true,
         referenceNum3RecommenderScore7: true,
         referenceNum3RecommenderScore8: true,
+        id: true,
       },
     });
   }
@@ -83,27 +82,26 @@ export class MitsSlateRecommend3ControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MitsSlateRecommend3] })
   @ApiNestedQuery(MitsSlateRecommend3FindManyArgs)
-  async findMany(
+  async mitsSlateRecommend3s(
     @common.Req() request: Request
   ): Promise<MitsSlateRecommend3[]> {
     const args = plainToClass(MitsSlateRecommend3FindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mitsSlateRecommend3s({
       ...args,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference3Email: true,
-        reference3First: true,
-        reference3Industry: true,
-        reference3Last: true,
-        reference3Organization: true,
-        reference3Phone: true,
-        reference3Submitted: true,
-        reference3Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference3Type: true,
+        reference3Submitted: true,
+        reference3First: true,
+        reference3Last: true,
+        reference3Industry: true,
+        reference3Organization: true,
+        reference3Title: true,
+        reference3Email: true,
+        reference3Phone: true,
         referenceNum3IsrmsRecommenderScore1: true,
         referenceNum3IsrmsRecommenderScore10: true,
         referenceNum3IsrmsRecommenderScore11: true,
@@ -132,6 +130,7 @@ export class MitsSlateRecommend3ControllerBase {
         referenceNum3RecommenderScore6: true,
         referenceNum3RecommenderScore7: true,
         referenceNum3RecommenderScore8: true,
+        id: true,
       },
     });
   }
@@ -139,26 +138,25 @@ export class MitsSlateRecommend3ControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateRecommend3 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mitsSlateRecommend3(
     @common.Param() params: MitsSlateRecommend3WhereUniqueInput
   ): Promise<MitsSlateRecommend3 | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mitsSlateRecommend3({
       where: params,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference3Email: true,
-        reference3First: true,
-        reference3Industry: true,
-        reference3Last: true,
-        reference3Organization: true,
-        reference3Phone: true,
-        reference3Submitted: true,
-        reference3Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference3Type: true,
+        reference3Submitted: true,
+        reference3First: true,
+        reference3Last: true,
+        reference3Industry: true,
+        reference3Organization: true,
+        reference3Title: true,
+        reference3Email: true,
+        reference3Phone: true,
         referenceNum3IsrmsRecommenderScore1: true,
         referenceNum3IsrmsRecommenderScore10: true,
         referenceNum3IsrmsRecommenderScore11: true,
@@ -187,6 +185,7 @@ export class MitsSlateRecommend3ControllerBase {
         referenceNum3RecommenderScore6: true,
         referenceNum3RecommenderScore7: true,
         referenceNum3RecommenderScore8: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -200,29 +199,28 @@ export class MitsSlateRecommend3ControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateRecommend3 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMitsSlateRecommend3(
     @common.Param() params: MitsSlateRecommend3WhereUniqueInput,
     @common.Body() data: MitsSlateRecommend3UpdateInput
   ): Promise<MitsSlateRecommend3 | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateRecommend3({
         where: params,
         data: data,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
-          reference3Email: true,
-          reference3First: true,
-          reference3Industry: true,
-          reference3Last: true,
-          reference3Organization: true,
-          reference3Phone: true,
-          reference3Submitted: true,
-          reference3Title: true,
+          first: true,
+          middle: true,
+          last: true,
           reference3Type: true,
+          reference3Submitted: true,
+          reference3First: true,
+          reference3Last: true,
+          reference3Industry: true,
+          reference3Organization: true,
+          reference3Title: true,
+          reference3Email: true,
+          reference3Phone: true,
           referenceNum3IsrmsRecommenderScore1: true,
           referenceNum3IsrmsRecommenderScore10: true,
           referenceNum3IsrmsRecommenderScore11: true,
@@ -251,6 +249,7 @@ export class MitsSlateRecommend3ControllerBase {
           referenceNum3RecommenderScore6: true,
           referenceNum3RecommenderScore7: true,
           referenceNum3RecommenderScore8: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -266,27 +265,26 @@ export class MitsSlateRecommend3ControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateRecommend3 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMitsSlateRecommend3(
     @common.Param() params: MitsSlateRecommend3WhereUniqueInput
   ): Promise<MitsSlateRecommend3 | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMitsSlateRecommend3({
         where: params,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
-          reference3Email: true,
-          reference3First: true,
-          reference3Industry: true,
-          reference3Last: true,
-          reference3Organization: true,
-          reference3Phone: true,
-          reference3Submitted: true,
-          reference3Title: true,
+          first: true,
+          middle: true,
+          last: true,
           reference3Type: true,
+          reference3Submitted: true,
+          reference3First: true,
+          reference3Last: true,
+          reference3Industry: true,
+          reference3Organization: true,
+          reference3Title: true,
+          reference3Email: true,
+          reference3Phone: true,
           referenceNum3IsrmsRecommenderScore1: true,
           referenceNum3IsrmsRecommenderScore10: true,
           referenceNum3IsrmsRecommenderScore11: true,
@@ -315,6 +313,7 @@ export class MitsSlateRecommend3ControllerBase {
           referenceNum3RecommenderScore6: true,
           referenceNum3RecommenderScore7: true,
           referenceNum3RecommenderScore8: true,
+          id: true,
         },
       });
     } catch (error) {

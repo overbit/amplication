@@ -28,29 +28,7 @@ class RecyclableSelectionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  departmentId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
+  usersId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,6 +50,17 @@ class RecyclableSelectionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  departmentId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   periodId?: SortOrder;
 
   @ApiProperty({
@@ -83,7 +72,18 @@ class RecyclableSelectionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usersId?: SortOrder;
+  applicationId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { RecyclableSelectionOrderByInput as RecyclableSelectionOrderByInput };

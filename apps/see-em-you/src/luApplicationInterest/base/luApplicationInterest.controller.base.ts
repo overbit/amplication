@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuApplicationInterestService } from "../luApplicationInterest.service";
 import { LuApplicationInterestCreateInput } from "./LuApplicationInterestCreateInput";
-import { LuApplicationInterestWhereInput } from "./LuApplicationInterestWhereInput";
-import { LuApplicationInterestWhereUniqueInput } from "./LuApplicationInterestWhereUniqueInput";
-import { LuApplicationInterestFindManyArgs } from "./LuApplicationInterestFindManyArgs";
-import { LuApplicationInterestUpdateInput } from "./LuApplicationInterestUpdateInput";
 import { LuApplicationInterest } from "./LuApplicationInterest";
+import { LuApplicationInterestFindManyArgs } from "./LuApplicationInterestFindManyArgs";
+import { LuApplicationInterestWhereUniqueInput } from "./LuApplicationInterestWhereUniqueInput";
+import { LuApplicationInterestUpdateInput } from "./LuApplicationInterestUpdateInput";
 
 export class LuApplicationInterestControllerBase {
   constructor(protected readonly service: LuApplicationInterestService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuApplicationInterest })
-  async create(
+  async createLuApplicationInterest(
     @common.Body() data: LuApplicationInterestCreateInput
   ): Promise<LuApplicationInterest> {
-    return await this.service.create({
+    return await this.service.createLuApplicationInterest({
       data: data,
       select: {
         appProgramId: true,
+        interestId: true,
         choice: true,
         id: true,
-        interestId: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class LuApplicationInterestControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuApplicationInterest] })
   @ApiNestedQuery(LuApplicationInterestFindManyArgs)
-  async findMany(
+  async luApplicationInterests(
     @common.Req() request: Request
   ): Promise<LuApplicationInterest[]> {
     const args = plainToClass(LuApplicationInterestFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luApplicationInterests({
       ...args,
       select: {
         appProgramId: true,
+        interestId: true,
         choice: true,
         id: true,
-        interestId: true,
       },
     });
   }
@@ -63,16 +62,16 @@ export class LuApplicationInterestControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationInterest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luApplicationInterest(
     @common.Param() params: LuApplicationInterestWhereUniqueInput
   ): Promise<LuApplicationInterest | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luApplicationInterest({
       where: params,
       select: {
         appProgramId: true,
+        interestId: true,
         choice: true,
         id: true,
-        interestId: true,
       },
     });
     if (result === null) {
@@ -86,19 +85,19 @@ export class LuApplicationInterestControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationInterest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuApplicationInterest(
     @common.Param() params: LuApplicationInterestWhereUniqueInput,
     @common.Body() data: LuApplicationInterestUpdateInput
   ): Promise<LuApplicationInterest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationInterest({
         where: params,
         data: data,
         select: {
           appProgramId: true,
+          interestId: true,
           choice: true,
           id: true,
-          interestId: true,
         },
       });
     } catch (error) {
@@ -114,17 +113,17 @@ export class LuApplicationInterestControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationInterest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuApplicationInterest(
     @common.Param() params: LuApplicationInterestWhereUniqueInput
   ): Promise<LuApplicationInterest | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuApplicationInterest({
         where: params,
         select: {
           appProgramId: true,
+          interestId: true,
           choice: true,
           id: true,
-          interestId: true,
         },
       });
     } catch (error) {

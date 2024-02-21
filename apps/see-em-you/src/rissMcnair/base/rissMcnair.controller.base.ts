@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RissMcnairService } from "../rissMcnair.service";
 import { RissMcnairCreateInput } from "./RissMcnairCreateInput";
-import { RissMcnairWhereInput } from "./RissMcnairWhereInput";
-import { RissMcnairWhereUniqueInput } from "./RissMcnairWhereUniqueInput";
-import { RissMcnairFindManyArgs } from "./RissMcnairFindManyArgs";
-import { RissMcnairUpdateInput } from "./RissMcnairUpdateInput";
 import { RissMcnair } from "./RissMcnair";
+import { RissMcnairFindManyArgs } from "./RissMcnairFindManyArgs";
+import { RissMcnairWhereUniqueInput } from "./RissMcnairWhereUniqueInput";
+import { RissMcnairUpdateInput } from "./RissMcnairUpdateInput";
 
 export class RissMcnairControllerBase {
   constructor(protected readonly service: RissMcnairService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RissMcnair })
-  async create(
+  async createRissMcnair(
     @common.Body() data: RissMcnairCreateInput
   ): Promise<RissMcnair> {
-    return await this.service.create({
+    return await this.service.createRissMcnair({
       data: {
         ...data,
 
@@ -42,15 +41,16 @@ export class RissMcnairControllerBase {
           : undefined,
       },
       select: {
+        site: true,
+        contact: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        contact: true,
         id: true,
-        site: true,
       },
     });
   }
@@ -58,20 +58,21 @@ export class RissMcnairControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RissMcnair] })
   @ApiNestedQuery(RissMcnairFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<RissMcnair[]> {
+  async rissMcnairs(@common.Req() request: Request): Promise<RissMcnair[]> {
     const args = plainToClass(RissMcnairFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.rissMcnairs({
       ...args,
       select: {
+        site: true,
+        contact: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        contact: true,
         id: true,
-        site: true,
       },
     });
   }
@@ -79,21 +80,22 @@ export class RissMcnairControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RissMcnair })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async rissMcnair(
     @common.Param() params: RissMcnairWhereUniqueInput
   ): Promise<RissMcnair | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.rissMcnair({
       where: params,
       select: {
+        site: true,
+        contact: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        contact: true,
         id: true,
-        site: true,
       },
     });
     if (result === null) {
@@ -107,12 +109,12 @@ export class RissMcnairControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RissMcnair })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRissMcnair(
     @common.Param() params: RissMcnairWhereUniqueInput,
     @common.Body() data: RissMcnairUpdateInput
   ): Promise<RissMcnair | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRissMcnair({
         where: params,
         data: {
           ...data,
@@ -124,15 +126,16 @@ export class RissMcnairControllerBase {
             : undefined,
         },
         select: {
+          site: true,
+          contact: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          contact: true,
           id: true,
-          site: true,
         },
       });
     } catch (error) {
@@ -148,22 +151,23 @@ export class RissMcnairControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RissMcnair })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRissMcnair(
     @common.Param() params: RissMcnairWhereUniqueInput
   ): Promise<RissMcnair | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRissMcnair({
         where: params,
         select: {
+          site: true,
+          contact: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          contact: true,
           id: true,
-          site: true,
         },
       });
     } catch (error) {

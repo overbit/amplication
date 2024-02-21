@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuApplicationProgramService } from "../luApplicationProgram.service";
 import { LuApplicationProgramCreateInput } from "./LuApplicationProgramCreateInput";
-import { LuApplicationProgramWhereInput } from "./LuApplicationProgramWhereInput";
-import { LuApplicationProgramWhereUniqueInput } from "./LuApplicationProgramWhereUniqueInput";
-import { LuApplicationProgramFindManyArgs } from "./LuApplicationProgramFindManyArgs";
-import { LuApplicationProgramUpdateInput } from "./LuApplicationProgramUpdateInput";
 import { LuApplicationProgram } from "./LuApplicationProgram";
+import { LuApplicationProgramFindManyArgs } from "./LuApplicationProgramFindManyArgs";
+import { LuApplicationProgramWhereUniqueInput } from "./LuApplicationProgramWhereUniqueInput";
+import { LuApplicationProgramUpdateInput } from "./LuApplicationProgramUpdateInput";
 
 export class LuApplicationProgramControllerBase {
   constructor(protected readonly service: LuApplicationProgramService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuApplicationProgram })
-  async create(
+  async createLuApplicationProgram(
     @common.Body() data: LuApplicationProgramCreateInput
   ): Promise<LuApplicationProgram> {
-    return await this.service.create({
+    return await this.service.createLuApplicationProgram({
       data: {
         ...data,
 
@@ -44,9 +43,18 @@ export class LuApplicationProgramControllerBase {
         },
       },
       select: {
+        choice: true,
+        round2: true,
+        decision: true,
         admissionStatus: true,
         admit: true,
         admitComments: true,
+        faccontact: true,
+        stucontact: true,
+        scholarshipAmt: true,
+        scholarshipComments: true,
+        ltichoice: true,
+        msecertchoice: true,
 
         application: {
           select: {
@@ -54,23 +62,13 @@ export class LuApplicationProgramControllerBase {
           },
         },
 
-        choice: true,
-        decision: true,
-        faccontact: true,
-        id: true,
-        ltichoice: true,
-        msecertchoice: true,
-
         programs: {
           select: {
             id: true,
           },
         },
 
-        round2: true,
-        scholarshipAmt: true,
-        scholarshipComments: true,
-        stucontact: true,
+        id: true,
       },
     });
   }
@@ -78,16 +76,25 @@ export class LuApplicationProgramControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuApplicationProgram] })
   @ApiNestedQuery(LuApplicationProgramFindManyArgs)
-  async findMany(
+  async luApplicationPrograms(
     @common.Req() request: Request
   ): Promise<LuApplicationProgram[]> {
     const args = plainToClass(LuApplicationProgramFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luApplicationPrograms({
       ...args,
       select: {
+        choice: true,
+        round2: true,
+        decision: true,
         admissionStatus: true,
         admit: true,
         admitComments: true,
+        faccontact: true,
+        stucontact: true,
+        scholarshipAmt: true,
+        scholarshipComments: true,
+        ltichoice: true,
+        msecertchoice: true,
 
         application: {
           select: {
@@ -95,23 +102,13 @@ export class LuApplicationProgramControllerBase {
           },
         },
 
-        choice: true,
-        decision: true,
-        faccontact: true,
-        id: true,
-        ltichoice: true,
-        msecertchoice: true,
-
         programs: {
           select: {
             id: true,
           },
         },
 
-        round2: true,
-        scholarshipAmt: true,
-        scholarshipComments: true,
-        stucontact: true,
+        id: true,
       },
     });
   }
@@ -119,15 +116,24 @@ export class LuApplicationProgramControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luApplicationProgram(
     @common.Param() params: LuApplicationProgramWhereUniqueInput
   ): Promise<LuApplicationProgram | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luApplicationProgram({
       where: params,
       select: {
+        choice: true,
+        round2: true,
+        decision: true,
         admissionStatus: true,
         admit: true,
         admitComments: true,
+        faccontact: true,
+        stucontact: true,
+        scholarshipAmt: true,
+        scholarshipComments: true,
+        ltichoice: true,
+        msecertchoice: true,
 
         application: {
           select: {
@@ -135,23 +141,13 @@ export class LuApplicationProgramControllerBase {
           },
         },
 
-        choice: true,
-        decision: true,
-        faccontact: true,
-        id: true,
-        ltichoice: true,
-        msecertchoice: true,
-
         programs: {
           select: {
             id: true,
           },
         },
 
-        round2: true,
-        scholarshipAmt: true,
-        scholarshipComments: true,
-        stucontact: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -165,12 +161,12 @@ export class LuApplicationProgramControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuApplicationProgram(
     @common.Param() params: LuApplicationProgramWhereUniqueInput,
     @common.Body() data: LuApplicationProgramUpdateInput
   ): Promise<LuApplicationProgram | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationProgram({
         where: params,
         data: {
           ...data,
@@ -184,9 +180,18 @@ export class LuApplicationProgramControllerBase {
           },
         },
         select: {
+          choice: true,
+          round2: true,
+          decision: true,
           admissionStatus: true,
           admit: true,
           admitComments: true,
+          faccontact: true,
+          stucontact: true,
+          scholarshipAmt: true,
+          scholarshipComments: true,
+          ltichoice: true,
+          msecertchoice: true,
 
           application: {
             select: {
@@ -194,23 +199,13 @@ export class LuApplicationProgramControllerBase {
             },
           },
 
-          choice: true,
-          decision: true,
-          faccontact: true,
-          id: true,
-          ltichoice: true,
-          msecertchoice: true,
-
           programs: {
             select: {
               id: true,
             },
           },
 
-          round2: true,
-          scholarshipAmt: true,
-          scholarshipComments: true,
-          stucontact: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -226,16 +221,25 @@ export class LuApplicationProgramControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuApplicationProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuApplicationProgram(
     @common.Param() params: LuApplicationProgramWhereUniqueInput
   ): Promise<LuApplicationProgram | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuApplicationProgram({
         where: params,
         select: {
+          choice: true,
+          round2: true,
+          decision: true,
           admissionStatus: true,
           admit: true,
           admitComments: true,
+          faccontact: true,
+          stucontact: true,
+          scholarshipAmt: true,
+          scholarshipComments: true,
+          ltichoice: true,
+          msecertchoice: true,
 
           application: {
             select: {
@@ -243,23 +247,13 @@ export class LuApplicationProgramControllerBase {
             },
           },
 
-          choice: true,
-          decision: true,
-          faccontact: true,
-          id: true,
-          ltichoice: true,
-          msecertchoice: true,
-
           programs: {
             select: {
               id: true,
             },
           },
 
-          round2: true,
-          scholarshipAmt: true,
-          scholarshipComments: true,
-          stucontact: true,
+          id: true,
         },
       });
     } catch (error) {

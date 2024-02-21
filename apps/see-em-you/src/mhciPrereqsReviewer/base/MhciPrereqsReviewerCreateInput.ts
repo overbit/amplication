@@ -11,25 +11,17 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsString, IsInt } from "class-validator";
+import { IsInt, IsString, IsBoolean } from "class-validator";
 
 @InputType()
 class MhciPrereqsReviewerCreateInput {
   @ApiProperty({
     required: true,
-    type: Boolean,
+    type: Number,
   })
-  @IsBoolean()
-  @Field(() => Boolean)
-  emailNotification!: boolean;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  placeoutPeriodId!: string;
+  @IsInt()
+  @Field(() => Number)
+  reviewerLuuId!: number;
 
   @ApiProperty({
     required: true,
@@ -41,11 +33,19 @@ class MhciPrereqsReviewerCreateInput {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  reviewerLuuId!: number;
+  @IsString()
+  @Field(() => String)
+  placeoutPeriodId!: string;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  emailNotification!: boolean;
 }
 
 export { MhciPrereqsReviewerCreateInput as MhciPrereqsReviewerCreateInput };

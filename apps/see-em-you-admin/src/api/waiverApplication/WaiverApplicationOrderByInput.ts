@@ -1,10 +1,10 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type WaiverApplicationOrderByInput = {
-  applicationId?: SortOrder;
-  createDate?: SortOrder;
-  datafileId?: SortOrder;
   id?: SortOrder;
+  applicationId?: SortOrder;
   orgId?: SortOrder;
+  datafileId?: SortOrder;
+  createDate?: SortOrder;
   updateDate?: SortOrder;
 };

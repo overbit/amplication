@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  BooleanField,
   TextField,
+  BooleanField,
 } from "react-admin";
 
 export const MhciPrereqsReviewerShow = (
@@ -13,11 +13,11 @@ export const MhciPrereqsReviewerShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Reviewer Luu Id" source="reviewerLuuId" />
+        <TextField label="Prereq Type" source="prereqType" />
+        <TextField label="Placeout Period Id" source="placeoutPeriodId" />
         <BooleanField label="Email Notification" source="emailNotification" />
         <TextField label="Id" source="id" />
-        <TextField label="Placeout Period Id" source="placeoutPeriodId" />
-        <TextField label="Prereq Type" source="prereqType" />
-        <TextField label="Reviewer Luu Id" source="reviewerLuuId" />
       </SimpleShowLayout>
     </Show>
   );

@@ -11,18 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt, IsOptional } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @InputType()
 class DecisionAoiRankCreateInput {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  decision!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -37,7 +29,23 @@ class DecisionAoiRankCreateInput {
   })
   @IsInt()
   @Field(() => Number)
+  periodId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   interestId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  decision!: string;
 
   @ApiProperty({
     required: true,
@@ -46,14 +54,6 @@ class DecisionAoiRankCreateInput {
   @IsInt()
   @Field(() => Number)
   luUsersUsertypesId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
 
   @ApiProperty({
     required: false,

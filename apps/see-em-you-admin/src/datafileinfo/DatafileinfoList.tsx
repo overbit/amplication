@@ -12,14 +12,14 @@ export const DatafileinfoList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Extension" source="extension" />
-        <TextField label="Id" source="id" />
-        <TextField label="Moddate" source="moddate" />
-        <TextField label="Section" source="section" />
-        <TextField label="Size" source="size" />
         <TextField label="Type Field" source="typeField" />
-        <TextField label="Userdata" source="userdata" />
+        <TextField label="Extension" source="extension" />
+        <TextField label="Size" source="size" />
         <TextField label="User Id" source="userId" />
+        <TextField label="Section" source="section" />
+        <TextField label="Moddate" source="moddate" />
+        <TextField label="Userdata" source="userdata" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

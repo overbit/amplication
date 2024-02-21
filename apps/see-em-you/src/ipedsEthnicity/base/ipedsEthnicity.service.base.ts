@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, IpedsEthnicity } from "@prisma/client";
+import { Prisma, IpedsEthnicity as PrismaIpedsEthnicity } from "@prisma/client";
 
 export class IpedsEthnicityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class IpedsEthnicityServiceBase {
     return this.prisma.ipedsEthnicity.count(args);
   }
 
-  async findMany<T extends Prisma.IpedsEthnicityFindManyArgs>(
+  async ipedsEthnicities<T extends Prisma.IpedsEthnicityFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.IpedsEthnicityFindManyArgs>
-  ): Promise<IpedsEthnicity[]> {
+  ): Promise<PrismaIpedsEthnicity[]> {
     return this.prisma.ipedsEthnicity.findMany(args);
   }
-  async findOne<T extends Prisma.IpedsEthnicityFindUniqueArgs>(
+  async ipedsEthnicity<T extends Prisma.IpedsEthnicityFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.IpedsEthnicityFindUniqueArgs>
-  ): Promise<IpedsEthnicity | null> {
+  ): Promise<PrismaIpedsEthnicity | null> {
     return this.prisma.ipedsEthnicity.findUnique(args);
   }
-  async create<T extends Prisma.IpedsEthnicityCreateArgs>(
+  async createIpedsEthnicity<T extends Prisma.IpedsEthnicityCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.IpedsEthnicityCreateArgs>
-  ): Promise<IpedsEthnicity> {
+  ): Promise<PrismaIpedsEthnicity> {
     return this.prisma.ipedsEthnicity.create<T>(args);
   }
-  async update<T extends Prisma.IpedsEthnicityUpdateArgs>(
+  async updateIpedsEthnicity<T extends Prisma.IpedsEthnicityUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.IpedsEthnicityUpdateArgs>
-  ): Promise<IpedsEthnicity> {
+  ): Promise<PrismaIpedsEthnicity> {
     return this.prisma.ipedsEthnicity.update<T>(args);
   }
-  async delete<T extends Prisma.IpedsEthnicityDeleteArgs>(
+  async deleteIpedsEthnicity<T extends Prisma.IpedsEthnicityDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.IpedsEthnicityDeleteArgs>
-  ): Promise<IpedsEthnicity> {
+  ): Promise<PrismaIpedsEthnicity> {
     return this.prisma.ipedsEthnicity.delete(args);
   }
 }

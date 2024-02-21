@@ -35,7 +35,7 @@ class DepartmentEnableRecyclingUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  enableRecycling?: number;
+  periodId?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class DepartmentEnableRecyclingUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  periodId?: number;
+  enableRecycling?: number;
 
   @ApiProperty({
     required: false,

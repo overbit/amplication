@@ -1,7 +1,7 @@
 export type LuReviewerGroup = {
+  reviewerId: number;
   departmentId: number | null;
   groupId: number;
-  id: number;
-  reviewerId: number;
   round: number;
+  id: number;
 };

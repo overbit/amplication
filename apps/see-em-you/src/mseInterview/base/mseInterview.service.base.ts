@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseInterview } from "@prisma/client";
+import { Prisma, MseInterview as PrismaMseInterview } from "@prisma/client";
 
 export class MseInterviewServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MseInterviewServiceBase {
     return this.prisma.mseInterview.count(args);
   }
 
-  async findMany<T extends Prisma.MseInterviewFindManyArgs>(
+  async mseInterviews<T extends Prisma.MseInterviewFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseInterviewFindManyArgs>
-  ): Promise<MseInterview[]> {
+  ): Promise<PrismaMseInterview[]> {
     return this.prisma.mseInterview.findMany(args);
   }
-  async findOne<T extends Prisma.MseInterviewFindUniqueArgs>(
+  async mseInterview<T extends Prisma.MseInterviewFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseInterviewFindUniqueArgs>
-  ): Promise<MseInterview | null> {
+  ): Promise<PrismaMseInterview | null> {
     return this.prisma.mseInterview.findUnique(args);
   }
-  async create<T extends Prisma.MseInterviewCreateArgs>(
+  async createMseInterview<T extends Prisma.MseInterviewCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseInterviewCreateArgs>
-  ): Promise<MseInterview> {
+  ): Promise<PrismaMseInterview> {
     return this.prisma.mseInterview.create<T>(args);
   }
-  async update<T extends Prisma.MseInterviewUpdateArgs>(
+  async updateMseInterview<T extends Prisma.MseInterviewUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseInterviewUpdateArgs>
-  ): Promise<MseInterview> {
+  ): Promise<PrismaMseInterview> {
     return this.prisma.mseInterview.update<T>(args);
   }
-  async delete<T extends Prisma.MseInterviewDeleteArgs>(
+  async deleteMseInterview<T extends Prisma.MseInterviewDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseInterviewDeleteArgs>
-  ): Promise<MseInterview> {
+  ): Promise<PrismaMseInterview> {
     return this.prisma.mseInterview.delete(args);
   }
 }

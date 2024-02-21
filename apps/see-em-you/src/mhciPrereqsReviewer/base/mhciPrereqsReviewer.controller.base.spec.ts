@@ -18,42 +18,42 @@ import { MhciPrereqsReviewerService } from "../mhciPrereqsReviewer.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  reviewerLuuId: 42,
+  prereqType: "examplePrereqType",
+  placeoutPeriodId: "examplePlaceoutPeriodId",
   emailNotification: "true",
   id: 42,
-  placeoutPeriodId: "examplePlaceoutPeriodId",
-  prereqType: "examplePrereqType",
-  reviewerLuuId: 42,
 };
 const CREATE_RESULT = {
+  reviewerLuuId: 42,
+  prereqType: "examplePrereqType",
+  placeoutPeriodId: "examplePlaceoutPeriodId",
   emailNotification: "true",
   id: 42,
-  placeoutPeriodId: "examplePlaceoutPeriodId",
-  prereqType: "examplePrereqType",
-  reviewerLuuId: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    reviewerLuuId: 42,
+    prereqType: "examplePrereqType",
+    placeoutPeriodId: "examplePlaceoutPeriodId",
     emailNotification: "true",
     id: 42,
-    placeoutPeriodId: "examplePlaceoutPeriodId",
-    prereqType: "examplePrereqType",
-    reviewerLuuId: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  reviewerLuuId: 42,
+  prereqType: "examplePrereqType",
+  placeoutPeriodId: "examplePlaceoutPeriodId",
   emailNotification: "true",
   id: 42,
-  placeoutPeriodId: "examplePlaceoutPeriodId",
-  prereqType: "examplePrereqType",
-  reviewerLuuId: 42,
 };
 
 const service = {
-  create() {
+  createMhciPrereqsReviewer() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mhciPrereqsReviewers: () => FIND_MANY_RESULT,
+  mhciPrereqsReviewer: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePositiveFactorArgs } from "./CreatePositiveFactorArgs";
-import { UpdatePositiveFactorArgs } from "./UpdatePositiveFactorArgs";
-import { DeletePositiveFactorArgs } from "./DeletePositiveFactorArgs";
+import { PositiveFactor } from "./PositiveFactor";
 import { PositiveFactorCountArgs } from "./PositiveFactorCountArgs";
 import { PositiveFactorFindManyArgs } from "./PositiveFactorFindManyArgs";
 import { PositiveFactorFindUniqueArgs } from "./PositiveFactorFindUniqueArgs";
-import { PositiveFactor } from "./PositiveFactor";
+import { CreatePositiveFactorArgs } from "./CreatePositiveFactorArgs";
+import { UpdatePositiveFactorArgs } from "./UpdatePositiveFactorArgs";
+import { DeletePositiveFactorArgs } from "./DeletePositiveFactorArgs";
 import { PositiveFactorService } from "../positiveFactor.service";
 @graphql.Resolver(() => PositiveFactor)
 export class PositiveFactorResolverBase {
@@ -38,14 +38,14 @@ export class PositiveFactorResolverBase {
   async positiveFactors(
     @graphql.Args() args: PositiveFactorFindManyArgs
   ): Promise<PositiveFactor[]> {
-    return this.service.findMany(args);
+    return this.service.positiveFactors(args);
   }
 
   @graphql.Query(() => PositiveFactor, { nullable: true })
   async positiveFactor(
     @graphql.Args() args: PositiveFactorFindUniqueArgs
   ): Promise<PositiveFactor | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.positiveFactor(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PositiveFactorResolverBase {
   async createPositiveFactor(
     @graphql.Args() args: CreatePositiveFactorArgs
   ): Promise<PositiveFactor> {
-    return await this.service.create({
+    return await this.service.createPositiveFactor({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PositiveFactorResolverBase {
     @graphql.Args() args: UpdatePositiveFactorArgs
   ): Promise<PositiveFactor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePositiveFactor({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PositiveFactorResolverBase {
     @graphql.Args() args: DeletePositiveFactorArgs
   ): Promise<PositiveFactor | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePositiveFactor(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

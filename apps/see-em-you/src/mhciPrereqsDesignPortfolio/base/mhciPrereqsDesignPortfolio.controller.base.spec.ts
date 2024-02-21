@@ -18,46 +18,46 @@ import { MhciPrereqsDesignPortfolioService } from "../mhciPrereqsDesignPortfolio
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  applicationId: 42,
-  description: "exampleDescription",
-  id: 42,
-  periodId: 42,
-  programId: 42,
   url: "exampleUrl",
+  description: "exampleDescription",
+  applicationId: 42,
+  programId: 42,
+  periodId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  applicationId: 42,
-  description: "exampleDescription",
-  id: 42,
-  periodId: 42,
-  programId: 42,
   url: "exampleUrl",
+  description: "exampleDescription",
+  applicationId: 42,
+  programId: 42,
+  periodId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    applicationId: 42,
-    description: "exampleDescription",
-    id: 42,
-    periodId: 42,
-    programId: 42,
     url: "exampleUrl",
+    description: "exampleDescription",
+    applicationId: 42,
+    programId: 42,
+    periodId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  applicationId: 42,
-  description: "exampleDescription",
-  id: 42,
-  periodId: 42,
-  programId: 42,
   url: "exampleUrl",
+  description: "exampleDescription",
+  applicationId: 42,
+  programId: 42,
+  periodId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMhciPrereqsDesignPortfolio() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mhciPrereqsDesignPortfolios: () => FIND_MANY_RESULT,
+  mhciPrereqsDesignPortfolio: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

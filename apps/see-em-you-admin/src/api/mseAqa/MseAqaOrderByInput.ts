@@ -1,19 +1,19 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MseAqaOrderByInput = {
-  application_id?: SortOrder;
-  englishComments?: SortOrder;
-  englishRating?: SortOrder;
-  experienceComments?: SortOrder;
-  experienceRating?: SortOrder;
-  foundationalComments?: SortOrder;
-  foundationalRating?: SortOrder;
-  id?: SortOrder;
-  maturityComments?: SortOrder;
-  maturityRating?: SortOrder;
-  programmingComments?: SortOrder;
-  programmingRating?: SortOrder;
   reviewerId?: SortOrder;
+  englishComments?: SortOrder;
+  programmingComments?: SortOrder;
+  foundationalComments?: SortOrder;
+  maturityComments?: SortOrder;
   understandingComments?: SortOrder;
+  experienceComments?: SortOrder;
+  englishRating?: SortOrder;
+  programmingRating?: SortOrder;
+  foundationalRating?: SortOrder;
+  maturityRating?: SortOrder;
   understandingRating?: SortOrder;
+  experienceRating?: SortOrder;
+  application_id?: SortOrder;
+  id?: SortOrder;
 };

@@ -1,6 +1,6 @@
 export type Gpascale = {
-  formula: string | null;
-  id: number;
   name: string;
+  formula: string | null;
   sortorder: number;
+  id: number;
 };

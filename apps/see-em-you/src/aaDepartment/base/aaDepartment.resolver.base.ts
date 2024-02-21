@@ -13,15 +13,15 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAaDepartmentArgs } from "./CreateAaDepartmentArgs";
-import { UpdateAaDepartmentArgs } from "./UpdateAaDepartmentArgs";
-import { DeleteAaDepartmentArgs } from "./DeleteAaDepartmentArgs";
+import { AaDepartment } from "./AaDepartment";
 import { AaDepartmentCountArgs } from "./AaDepartmentCountArgs";
 import { AaDepartmentFindManyArgs } from "./AaDepartmentFindManyArgs";
 import { AaDepartmentFindUniqueArgs } from "./AaDepartmentFindUniqueArgs";
-import { AaDepartment } from "./AaDepartment";
-import { Department } from "../../department/base/Department";
+import { CreateAaDepartmentArgs } from "./CreateAaDepartmentArgs";
+import { UpdateAaDepartmentArgs } from "./UpdateAaDepartmentArgs";
+import { DeleteAaDepartmentArgs } from "./DeleteAaDepartmentArgs";
 import { Period } from "../../period/base/Period";
+import { Department } from "../../department/base/Department";
 import { AaDepartmentService } from "../aaDepartment.service";
 @graphql.Resolver(() => AaDepartment)
 export class AaDepartmentResolverBase {
@@ -40,14 +40,14 @@ export class AaDepartmentResolverBase {
   async aaDepartments(
     @graphql.Args() args: AaDepartmentFindManyArgs
   ): Promise<AaDepartment[]> {
-    return this.service.findMany(args);
+    return this.service.aaDepartments(args);
   }
 
   @graphql.Query(() => AaDepartment, { nullable: true })
   async aaDepartment(
     @graphql.Args() args: AaDepartmentFindUniqueArgs
   ): Promise<AaDepartment | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.aaDepartment(args);
     if (result === null) {
       return null;
     }
@@ -58,20 +58,20 @@ export class AaDepartmentResolverBase {
   async createAaDepartment(
     @graphql.Args() args: CreateAaDepartmentArgs
   ): Promise<AaDepartment> {
-    return await this.service.create({
+    return await this.service.createAaDepartment({
       ...args,
       data: {
         ...args.data,
-
-        department: {
-          connect: args.data.department,
-        },
 
         period: args.data.period
           ? {
               connect: args.data.period,
             }
           : undefined,
+
+        department: {
+          connect: args.data.department,
+        },
       },
     });
   }
@@ -81,20 +81,20 @@ export class AaDepartmentResolverBase {
     @graphql.Args() args: UpdateAaDepartmentArgs
   ): Promise<AaDepartment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAaDepartment({
         ...args,
         data: {
           ...args.data,
-
-          department: {
-            connect: args.data.department,
-          },
 
           period: args.data.period
             ? {
                 connect: args.data.period,
               }
             : undefined,
+
+          department: {
+            connect: args.data.department,
+          },
         },
       });
     } catch (error) {
@@ -112,7 +112,7 @@ export class AaDepartmentResolverBase {
     @graphql.Args() args: DeleteAaDepartmentArgs
   ): Promise<AaDepartment | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAaDepartment(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -123,14 +123,14 @@ export class AaDepartmentResolverBase {
     }
   }
 
-  @graphql.ResolveField(() => Department, {
+  @graphql.ResolveField(() => Period, {
     nullable: true,
-    name: "department",
+    name: "period",
   })
-  async resolveFieldDepartment(
+  async getPeriod(
     @graphql.Parent() parent: AaDepartment
-  ): Promise<Department | null> {
-    const result = await this.service.getDepartment(parent.id);
+  ): Promise<Period | null> {
+    const result = await this.service.getPeriod(parent.id);
 
     if (!result) {
       return null;
@@ -138,14 +138,14 @@ export class AaDepartmentResolverBase {
     return result;
   }
 
-  @graphql.ResolveField(() => Period, {
+  @graphql.ResolveField(() => Department, {
     nullable: true,
-    name: "period",
+    name: "department",
   })
-  async resolveFieldPeriod(
+  async getDepartment(
     @graphql.Parent() parent: AaDepartment
-  ): Promise<Period | null> {
-    const result = await this.service.getPeriod(parent.id);
+  ): Promise<Department | null> {
+    const result = await this.service.getDepartment(parent.id);
 
     if (!result) {
       return null;

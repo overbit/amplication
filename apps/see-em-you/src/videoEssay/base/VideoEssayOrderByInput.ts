@@ -28,17 +28,6 @@ class VideoEssayOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  accessCode?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   applicationId?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,7 @@ class VideoEssayOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  url?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +50,18 @@ class VideoEssayOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  url?: SortOrder;
+  accessCode?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { VideoEssayOrderByInput as VideoEssayOrderByInput };

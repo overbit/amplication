@@ -18,25 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { EtsConfigService } from "../etsConfig.service";
 import { EtsConfigCreateInput } from "./EtsConfigCreateInput";
-import { EtsConfigWhereInput } from "./EtsConfigWhereInput";
-import { EtsConfigWhereUniqueInput } from "./EtsConfigWhereUniqueInput";
-import { EtsConfigFindManyArgs } from "./EtsConfigFindManyArgs";
-import { EtsConfigUpdateInput } from "./EtsConfigUpdateInput";
 import { EtsConfig } from "./EtsConfig";
+import { EtsConfigFindManyArgs } from "./EtsConfigFindManyArgs";
+import { EtsConfigWhereUniqueInput } from "./EtsConfigWhereUniqueInput";
+import { EtsConfigUpdateInput } from "./EtsConfigUpdateInput";
 
 export class EtsConfigControllerBase {
   constructor(protected readonly service: EtsConfigService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: EtsConfig })
-  async create(@common.Body() data: EtsConfigCreateInput): Promise<EtsConfig> {
-    return await this.service.create({
+  async createEtsConfig(
+    @common.Body() data: EtsConfigCreateInput
+  ): Promise<EtsConfig> {
+    return await this.service.createEtsConfig({
       data: data,
       select: {
-        id: true,
-        login: true,
-        password: true,
         testName: true,
         wsdl: true,
+        login: true,
+        password: true,
+        id: true,
       },
     });
   }
@@ -44,16 +45,16 @@ export class EtsConfigControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [EtsConfig] })
   @ApiNestedQuery(EtsConfigFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<EtsConfig[]> {
+  async etsConfigs(@common.Req() request: Request): Promise<EtsConfig[]> {
     const args = plainToClass(EtsConfigFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.etsConfigs({
       ...args,
       select: {
-        id: true,
-        login: true,
-        password: true,
         testName: true,
         wsdl: true,
+        login: true,
+        password: true,
+        id: true,
       },
     });
   }
@@ -61,17 +62,17 @@ export class EtsConfigControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: EtsConfig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async etsConfig(
     @common.Param() params: EtsConfigWhereUniqueInput
   ): Promise<EtsConfig | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.etsConfig({
       where: params,
       select: {
-        id: true,
-        login: true,
-        password: true,
         testName: true,
         wsdl: true,
+        login: true,
+        password: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -85,20 +86,20 @@ export class EtsConfigControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: EtsConfig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateEtsConfig(
     @common.Param() params: EtsConfigWhereUniqueInput,
     @common.Body() data: EtsConfigUpdateInput
   ): Promise<EtsConfig | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEtsConfig({
         where: params,
         data: data,
         select: {
-          id: true,
-          login: true,
-          password: true,
           testName: true,
           wsdl: true,
+          login: true,
+          password: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -114,18 +115,18 @@ export class EtsConfigControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: EtsConfig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteEtsConfig(
     @common.Param() params: EtsConfigWhereUniqueInput
   ): Promise<EtsConfig | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteEtsConfig({
         where: params,
         select: {
-          id: true,
-          login: true,
-          password: true,
           testName: true,
           wsdl: true,
+          login: true,
+          password: true,
+          id: true,
         },
       });
     } catch (error) {

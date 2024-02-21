@@ -18,42 +18,42 @@ import { PromotionHistoryService } from "../promotionHistory.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
   programId: 42,
-  round: 42,
   statusTime: new Date(),
+  round: 42,
   usersId: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
   programId: 42,
-  round: 42,
   statusTime: new Date(),
+  round: 42,
   usersId: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
     programId: 42,
-    round: 42,
     statusTime: new Date(),
+    round: 42,
     usersId: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
   programId: 42,
-  round: 42,
   statusTime: new Date(),
+  round: 42,
   usersId: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createPromotionHistory() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  promotionHistories: () => FIND_MANY_RESULT,
+  promotionHistory: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

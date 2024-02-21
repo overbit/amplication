@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUnitPeriodArgs } from "./CreateUnitPeriodArgs";
-import { UpdateUnitPeriodArgs } from "./UpdateUnitPeriodArgs";
-import { DeleteUnitPeriodArgs } from "./DeleteUnitPeriodArgs";
+import { UnitPeriod } from "./UnitPeriod";
 import { UnitPeriodCountArgs } from "./UnitPeriodCountArgs";
 import { UnitPeriodFindManyArgs } from "./UnitPeriodFindManyArgs";
 import { UnitPeriodFindUniqueArgs } from "./UnitPeriodFindUniqueArgs";
-import { UnitPeriod } from "./UnitPeriod";
+import { CreateUnitPeriodArgs } from "./CreateUnitPeriodArgs";
+import { UpdateUnitPeriodArgs } from "./UpdateUnitPeriodArgs";
+import { DeleteUnitPeriodArgs } from "./DeleteUnitPeriodArgs";
 import { UnitPeriodService } from "../unitPeriod.service";
 @graphql.Resolver(() => UnitPeriod)
 export class UnitPeriodResolverBase {
@@ -38,14 +38,14 @@ export class UnitPeriodResolverBase {
   async unitPeriods(
     @graphql.Args() args: UnitPeriodFindManyArgs
   ): Promise<UnitPeriod[]> {
-    return this.service.findMany(args);
+    return this.service.unitPeriods(args);
   }
 
   @graphql.Query(() => UnitPeriod, { nullable: true })
   async unitPeriod(
     @graphql.Args() args: UnitPeriodFindUniqueArgs
   ): Promise<UnitPeriod | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.unitPeriod(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class UnitPeriodResolverBase {
   async createUnitPeriod(
     @graphql.Args() args: CreateUnitPeriodArgs
   ): Promise<UnitPeriod> {
-    return await this.service.create({
+    return await this.service.createUnitPeriod({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class UnitPeriodResolverBase {
     @graphql.Args() args: UpdateUnitPeriodArgs
   ): Promise<UnitPeriod | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUnitPeriod({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class UnitPeriodResolverBase {
     @graphql.Args() args: DeleteUnitPeriodArgs
   ): Promise<UnitPeriod | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUnitPeriod(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

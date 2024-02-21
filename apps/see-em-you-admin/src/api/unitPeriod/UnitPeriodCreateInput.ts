@@ -1,4 +1,4 @@
 export type UnitPeriodCreateInput = {
-  periodId: number;
   unitId: number;
+  periodId: number;
 };

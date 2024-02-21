@@ -1,9 +1,9 @@
 export type VeteranInfoCreateInput = {
-  branch?: string | null;
-  discharge?: string | null;
-  enddate?: Date | null;
-  startdate?: Date | null;
+  userId: number;
   status?: string | null;
   statusEnroll?: string | null;
-  userId: number;
+  branch?: string | null;
+  startdate?: Date | null;
+  enddate?: Date | null;
+  discharge?: string | null;
 };

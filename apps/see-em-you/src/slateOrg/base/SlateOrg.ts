@@ -24,37 +24,7 @@ class SlateOrg {
   @Field(() => String, {
     nullable: true,
   })
-  category!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  city!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  country!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  status!: string | null;
 
   @ApiProperty({
     required: false,
@@ -76,7 +46,7 @@ class SlateOrg {
   @Field(() => String, {
     nullable: true,
   })
-  numActiveApplicationsWithSchoolKeyInDatabase!: string | null;
+  sharedName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -87,7 +57,7 @@ class SlateOrg {
   @Field(() => String, {
     nullable: true,
   })
-  numRecordsWithSchoolKeyInDatabase!: string | null;
+  street!: string | null;
 
   @ApiProperty({
     required: false,
@@ -98,18 +68,7 @@ class SlateOrg {
   @Field(() => String, {
     nullable: true,
   })
-  orgType!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  postal!: string | null;
+  city!: string | null;
 
   @ApiProperty({
     required: false,
@@ -131,7 +90,7 @@ class SlateOrg {
   @Field(() => String, {
     nullable: true,
   })
-  sharedName!: string | null;
+  postal!: string | null;
 
   @ApiProperty({
     required: false,
@@ -142,7 +101,7 @@ class SlateOrg {
   @Field(() => String, {
     nullable: true,
   })
-  status!: string | null;
+  country!: string | null;
 
   @ApiProperty({
     required: false,
@@ -153,7 +112,48 @@ class SlateOrg {
   @Field(() => String, {
     nullable: true,
   })
-  street!: string | null;
+  category!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  orgType!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  numRecordsWithSchoolKeyInDatabase!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  numActiveApplicationsWithSchoolKeyInDatabase!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { SlateOrg as SlateOrg };

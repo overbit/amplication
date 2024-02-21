@@ -19,37 +19,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  disabilityType: 42,
   hasDisability: 42,
+  disabilityType: 42,
   id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  disabilityType: 42,
   hasDisability: 42,
+  disabilityType: 42,
   id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    disabilityType: 42,
     hasDisability: 42,
+    disabilityType: 42,
     id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  disabilityType: 42,
   hasDisability: 42,
+  disabilityType: 42,
   id: 42,
 };
 
 const service = {
-  create() {
+  createDisability() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  disabilities: () => FIND_MANY_RESULT,
+  disability: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

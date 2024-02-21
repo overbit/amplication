@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Program } from "@prisma/client";
+import { Prisma, Program as PrismaProgram } from "@prisma/client";
 
 export class ProgramServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ProgramServiceBase {
     return this.prisma.program.count(args);
   }
 
-  async findMany<T extends Prisma.ProgramFindManyArgs>(
+  async programs<T extends Prisma.ProgramFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramFindManyArgs>
-  ): Promise<Program[]> {
+  ): Promise<PrismaProgram[]> {
     return this.prisma.program.findMany(args);
   }
-  async findOne<T extends Prisma.ProgramFindUniqueArgs>(
+  async program<T extends Prisma.ProgramFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramFindUniqueArgs>
-  ): Promise<Program | null> {
+  ): Promise<PrismaProgram | null> {
     return this.prisma.program.findUnique(args);
   }
-  async create<T extends Prisma.ProgramCreateArgs>(
+  async createProgram<T extends Prisma.ProgramCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramCreateArgs>
-  ): Promise<Program> {
+  ): Promise<PrismaProgram> {
     return this.prisma.program.create<T>(args);
   }
-  async update<T extends Prisma.ProgramUpdateArgs>(
+  async updateProgram<T extends Prisma.ProgramUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramUpdateArgs>
-  ): Promise<Program> {
+  ): Promise<PrismaProgram> {
     return this.prisma.program.update<T>(args);
   }
-  async delete<T extends Prisma.ProgramDeleteArgs>(
+  async deleteProgram<T extends Prisma.ProgramDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ProgramDeleteArgs>
-  ): Promise<Program> {
+  ): Promise<PrismaProgram> {
     return this.prisma.program.delete(args);
   }
 }

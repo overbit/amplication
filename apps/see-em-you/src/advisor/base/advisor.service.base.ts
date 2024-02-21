@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Advisor } from "@prisma/client";
+import { Prisma, Advisor as PrismaAdvisor } from "@prisma/client";
 
 export class AdvisorServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class AdvisorServiceBase {
     return this.prisma.advisor.count(args);
   }
 
-  async findMany<T extends Prisma.AdvisorFindManyArgs>(
+  async advisors<T extends Prisma.AdvisorFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdvisorFindManyArgs>
-  ): Promise<Advisor[]> {
+  ): Promise<PrismaAdvisor[]> {
     return this.prisma.advisor.findMany(args);
   }
-  async findOne<T extends Prisma.AdvisorFindUniqueArgs>(
+  async advisor<T extends Prisma.AdvisorFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdvisorFindUniqueArgs>
-  ): Promise<Advisor | null> {
+  ): Promise<PrismaAdvisor | null> {
     return this.prisma.advisor.findUnique(args);
   }
-  async create<T extends Prisma.AdvisorCreateArgs>(
+  async createAdvisor<T extends Prisma.AdvisorCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdvisorCreateArgs>
-  ): Promise<Advisor> {
+  ): Promise<PrismaAdvisor> {
     return this.prisma.advisor.create<T>(args);
   }
-  async update<T extends Prisma.AdvisorUpdateArgs>(
+  async updateAdvisor<T extends Prisma.AdvisorUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdvisorUpdateArgs>
-  ): Promise<Advisor> {
+  ): Promise<PrismaAdvisor> {
     return this.prisma.advisor.update<T>(args);
   }
-  async delete<T extends Prisma.AdvisorDeleteArgs>(
+  async deleteAdvisor<T extends Prisma.AdvisorDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AdvisorDeleteArgs>
-  ): Promise<Advisor> {
+  ): Promise<PrismaAdvisor> {
     return this.prisma.advisor.delete(args);
   }
 }

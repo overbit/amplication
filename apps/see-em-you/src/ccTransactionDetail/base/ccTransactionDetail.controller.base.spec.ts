@@ -20,64 +20,64 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   ccId: 42,
   date: new Date(),
-  id: "exampleId",
-  itemGlString: "exampleItemGlString",
-  itemName: "exampleItemName",
-  itemPriceEach: 42.42,
-  itemQty: 42.42,
-  paymentId: 42,
-  reportDate: new Date(),
   time: new Date(),
+  reportDate: new Date(),
+  paymentId: 42,
   transactionType: "exampleTransactionType",
+  itemName: "exampleItemName",
+  itemQty: 42.42,
+  itemPriceEach: 42.42,
+  itemGlString: "exampleItemGlString",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
   ccId: 42,
   date: new Date(),
-  id: "exampleId",
-  itemGlString: "exampleItemGlString",
-  itemName: "exampleItemName",
-  itemPriceEach: 42.42,
-  itemQty: 42.42,
-  paymentId: 42,
-  reportDate: new Date(),
   time: new Date(),
+  reportDate: new Date(),
+  paymentId: 42,
   transactionType: "exampleTransactionType",
+  itemName: "exampleItemName",
+  itemQty: 42.42,
+  itemPriceEach: 42.42,
+  itemGlString: "exampleItemGlString",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
     ccId: 42,
     date: new Date(),
-    id: "exampleId",
-    itemGlString: "exampleItemGlString",
-    itemName: "exampleItemName",
-    itemPriceEach: 42.42,
-    itemQty: 42.42,
-    paymentId: 42,
-    reportDate: new Date(),
     time: new Date(),
+    reportDate: new Date(),
+    paymentId: 42,
     transactionType: "exampleTransactionType",
+    itemName: "exampleItemName",
+    itemQty: 42.42,
+    itemPriceEach: 42.42,
+    itemGlString: "exampleItemGlString",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
   ccId: 42,
   date: new Date(),
-  id: "exampleId",
-  itemGlString: "exampleItemGlString",
-  itemName: "exampleItemName",
-  itemPriceEach: 42.42,
-  itemQty: 42.42,
-  paymentId: 42,
-  reportDate: new Date(),
   time: new Date(),
+  reportDate: new Date(),
+  paymentId: 42,
   transactionType: "exampleTransactionType",
+  itemName: "exampleItemName",
+  itemQty: 42.42,
+  itemPriceEach: 42.42,
+  itemGlString: "exampleItemGlString",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createCcTransactionDetail() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ccTransactionDetails: () => FIND_MANY_RESULT,
+  ccTransactionDetail: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -155,8 +155,8 @@ describe("CcTransactionDetail", () => {
       .expect({
         ...CREATE_RESULT,
         date: CREATE_RESULT.date.toISOString(),
-        reportDate: CREATE_RESULT.reportDate.toISOString(),
         time: CREATE_RESULT.time.toISOString(),
+        reportDate: CREATE_RESULT.reportDate.toISOString(),
       });
   });
 
@@ -168,8 +168,8 @@ describe("CcTransactionDetail", () => {
         {
           ...FIND_MANY_RESULT[0],
           date: FIND_MANY_RESULT[0].date.toISOString(),
-          reportDate: FIND_MANY_RESULT[0].reportDate.toISOString(),
           time: FIND_MANY_RESULT[0].time.toISOString(),
+          reportDate: FIND_MANY_RESULT[0].reportDate.toISOString(),
         },
       ]);
   });
@@ -192,8 +192,8 @@ describe("CcTransactionDetail", () => {
       .expect({
         ...FIND_ONE_RESULT,
         date: FIND_ONE_RESULT.date.toISOString(),
-        reportDate: FIND_ONE_RESULT.reportDate.toISOString(),
         time: FIND_ONE_RESULT.time.toISOString(),
+        reportDate: FIND_ONE_RESULT.reportDate.toISOString(),
       });
   });
 
@@ -206,8 +206,8 @@ describe("CcTransactionDetail", () => {
       .expect({
         ...CREATE_RESULT,
         date: CREATE_RESULT.date.toISOString(),
-        reportDate: CREATE_RESULT.reportDate.toISOString(),
         time: CREATE_RESULT.time.toISOString(),
+        reportDate: CREATE_RESULT.reportDate.toISOString(),
       })
       .then(function () {
         agent

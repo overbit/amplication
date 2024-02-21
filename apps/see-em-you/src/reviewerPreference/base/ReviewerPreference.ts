@@ -16,14 +16,6 @@ import { IsInt, IsOptional } from "class-validator";
 @ObjectType()
 class ReviewerPreference {
   @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -33,6 +25,14 @@ class ReviewerPreference {
     nullable: true,
   })
   viewMode!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { ReviewerPreference as ReviewerPreference };

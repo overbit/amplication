@@ -18,36 +18,34 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateRecommend3Service } from "../slateRecommend3.service";
 import { SlateRecommend3CreateInput } from "./SlateRecommend3CreateInput";
-import { SlateRecommend3WhereInput } from "./SlateRecommend3WhereInput";
-import { SlateRecommend3WhereUniqueInput } from "./SlateRecommend3WhereUniqueInput";
-import { SlateRecommend3FindManyArgs } from "./SlateRecommend3FindManyArgs";
-import { SlateRecommend3UpdateInput } from "./SlateRecommend3UpdateInput";
 import { SlateRecommend3 } from "./SlateRecommend3";
+import { SlateRecommend3FindManyArgs } from "./SlateRecommend3FindManyArgs";
+import { SlateRecommend3WhereUniqueInput } from "./SlateRecommend3WhereUniqueInput";
+import { SlateRecommend3UpdateInput } from "./SlateRecommend3UpdateInput";
 
 export class SlateRecommend3ControllerBase {
   constructor(protected readonly service: SlateRecommend3Service) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateRecommend3 })
-  async create(
+  async createSlateRecommend3(
     @common.Body() data: SlateRecommend3CreateInput
   ): Promise<SlateRecommend3> {
-    return await this.service.create({
+    return await this.service.createSlateRecommend3({
       data: data,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference3Email: true,
-        reference3First: true,
-        reference3Industry: true,
-        reference3Last: true,
-        reference3Organization: true,
-        reference3Phone: true,
-        reference3Submitted: true,
-        reference3Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference3Type: true,
+        reference3Submitted: true,
+        reference3First: true,
+        reference3Last: true,
+        reference3Industry: true,
+        reference3Organization: true,
+        reference3Title: true,
+        reference3Email: true,
+        reference3Phone: true,
         referenceNum3IsrmsRecommenderScore1: true,
         referenceNum3IsrmsRecommenderScore10: true,
         referenceNum3IsrmsRecommenderScore11: true,
@@ -76,6 +74,7 @@ export class SlateRecommend3ControllerBase {
         referenceNum3RecommenderScore6: true,
         referenceNum3RecommenderScore7: true,
         referenceNum3RecommenderScore8: true,
+        id: true,
       },
     });
   }
@@ -83,25 +82,26 @@ export class SlateRecommend3ControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateRecommend3] })
   @ApiNestedQuery(SlateRecommend3FindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateRecommend3[]> {
+  async slateRecommend3s(
+    @common.Req() request: Request
+  ): Promise<SlateRecommend3[]> {
     const args = plainToClass(SlateRecommend3FindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateRecommend3s({
       ...args,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference3Email: true,
-        reference3First: true,
-        reference3Industry: true,
-        reference3Last: true,
-        reference3Organization: true,
-        reference3Phone: true,
-        reference3Submitted: true,
-        reference3Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference3Type: true,
+        reference3Submitted: true,
+        reference3First: true,
+        reference3Last: true,
+        reference3Industry: true,
+        reference3Organization: true,
+        reference3Title: true,
+        reference3Email: true,
+        reference3Phone: true,
         referenceNum3IsrmsRecommenderScore1: true,
         referenceNum3IsrmsRecommenderScore10: true,
         referenceNum3IsrmsRecommenderScore11: true,
@@ -130,6 +130,7 @@ export class SlateRecommend3ControllerBase {
         referenceNum3RecommenderScore6: true,
         referenceNum3RecommenderScore7: true,
         referenceNum3RecommenderScore8: true,
+        id: true,
       },
     });
   }
@@ -137,26 +138,25 @@ export class SlateRecommend3ControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateRecommend3 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateRecommend3(
     @common.Param() params: SlateRecommend3WhereUniqueInput
   ): Promise<SlateRecommend3 | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateRecommend3({
       where: params,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
-        reference3Email: true,
-        reference3First: true,
-        reference3Industry: true,
-        reference3Last: true,
-        reference3Organization: true,
-        reference3Phone: true,
-        reference3Submitted: true,
-        reference3Title: true,
+        first: true,
+        middle: true,
+        last: true,
         reference3Type: true,
+        reference3Submitted: true,
+        reference3First: true,
+        reference3Last: true,
+        reference3Industry: true,
+        reference3Organization: true,
+        reference3Title: true,
+        reference3Email: true,
+        reference3Phone: true,
         referenceNum3IsrmsRecommenderScore1: true,
         referenceNum3IsrmsRecommenderScore10: true,
         referenceNum3IsrmsRecommenderScore11: true,
@@ -185,6 +185,7 @@ export class SlateRecommend3ControllerBase {
         referenceNum3RecommenderScore6: true,
         referenceNum3RecommenderScore7: true,
         referenceNum3RecommenderScore8: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -198,29 +199,28 @@ export class SlateRecommend3ControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateRecommend3 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateRecommend3(
     @common.Param() params: SlateRecommend3WhereUniqueInput,
     @common.Body() data: SlateRecommend3UpdateInput
   ): Promise<SlateRecommend3 | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateRecommend3({
         where: params,
         data: data,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
-          reference3Email: true,
-          reference3First: true,
-          reference3Industry: true,
-          reference3Last: true,
-          reference3Organization: true,
-          reference3Phone: true,
-          reference3Submitted: true,
-          reference3Title: true,
+          first: true,
+          middle: true,
+          last: true,
           reference3Type: true,
+          reference3Submitted: true,
+          reference3First: true,
+          reference3Last: true,
+          reference3Industry: true,
+          reference3Organization: true,
+          reference3Title: true,
+          reference3Email: true,
+          reference3Phone: true,
           referenceNum3IsrmsRecommenderScore1: true,
           referenceNum3IsrmsRecommenderScore10: true,
           referenceNum3IsrmsRecommenderScore11: true,
@@ -249,6 +249,7 @@ export class SlateRecommend3ControllerBase {
           referenceNum3RecommenderScore6: true,
           referenceNum3RecommenderScore7: true,
           referenceNum3RecommenderScore8: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -264,27 +265,26 @@ export class SlateRecommend3ControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateRecommend3 })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateRecommend3(
     @common.Param() params: SlateRecommend3WhereUniqueInput
   ): Promise<SlateRecommend3 | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateRecommend3({
         where: params,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
-          reference3Email: true,
-          reference3First: true,
-          reference3Industry: true,
-          reference3Last: true,
-          reference3Organization: true,
-          reference3Phone: true,
-          reference3Submitted: true,
-          reference3Title: true,
+          first: true,
+          middle: true,
+          last: true,
           reference3Type: true,
+          reference3Submitted: true,
+          reference3First: true,
+          reference3Last: true,
+          reference3Industry: true,
+          reference3Organization: true,
+          reference3Title: true,
+          reference3Email: true,
+          reference3Phone: true,
           referenceNum3IsrmsRecommenderScore1: true,
           referenceNum3IsrmsRecommenderScore10: true,
           referenceNum3IsrmsRecommenderScore11: true,
@@ -313,6 +313,7 @@ export class SlateRecommend3ControllerBase {
           referenceNum3RecommenderScore6: true,
           referenceNum3RecommenderScore7: true,
           referenceNum3RecommenderScore8: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReviewPositiveFactorArgs } from "./CreateReviewPositiveFactorArgs";
-import { UpdateReviewPositiveFactorArgs } from "./UpdateReviewPositiveFactorArgs";
-import { DeleteReviewPositiveFactorArgs } from "./DeleteReviewPositiveFactorArgs";
+import { ReviewPositiveFactor } from "./ReviewPositiveFactor";
 import { ReviewPositiveFactorCountArgs } from "./ReviewPositiveFactorCountArgs";
 import { ReviewPositiveFactorFindManyArgs } from "./ReviewPositiveFactorFindManyArgs";
 import { ReviewPositiveFactorFindUniqueArgs } from "./ReviewPositiveFactorFindUniqueArgs";
-import { ReviewPositiveFactor } from "./ReviewPositiveFactor";
+import { CreateReviewPositiveFactorArgs } from "./CreateReviewPositiveFactorArgs";
+import { UpdateReviewPositiveFactorArgs } from "./UpdateReviewPositiveFactorArgs";
+import { DeleteReviewPositiveFactorArgs } from "./DeleteReviewPositiveFactorArgs";
 import { ReviewPositiveFactorService } from "../reviewPositiveFactor.service";
 @graphql.Resolver(() => ReviewPositiveFactor)
 export class ReviewPositiveFactorResolverBase {
@@ -38,14 +38,14 @@ export class ReviewPositiveFactorResolverBase {
   async reviewPositiveFactors(
     @graphql.Args() args: ReviewPositiveFactorFindManyArgs
   ): Promise<ReviewPositiveFactor[]> {
-    return this.service.findMany(args);
+    return this.service.reviewPositiveFactors(args);
   }
 
   @graphql.Query(() => ReviewPositiveFactor, { nullable: true })
   async reviewPositiveFactor(
     @graphql.Args() args: ReviewPositiveFactorFindUniqueArgs
   ): Promise<ReviewPositiveFactor | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reviewPositiveFactor(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ReviewPositiveFactorResolverBase {
   async createReviewPositiveFactor(
     @graphql.Args() args: CreateReviewPositiveFactorArgs
   ): Promise<ReviewPositiveFactor> {
-    return await this.service.create({
+    return await this.service.createReviewPositiveFactor({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ReviewPositiveFactorResolverBase {
     @graphql.Args() args: UpdateReviewPositiveFactorArgs
   ): Promise<ReviewPositiveFactor | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewPositiveFactor({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ReviewPositiveFactorResolverBase {
     @graphql.Args() args: DeleteReviewPositiveFactorArgs
   ): Promise<ReviewPositiveFactor | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReviewPositiveFactor(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

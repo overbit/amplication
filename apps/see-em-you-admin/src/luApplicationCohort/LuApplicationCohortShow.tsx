@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
 
@@ -14,6 +14,7 @@ export const LuApplicationCohortShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Cohort Id" source="cohortId" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -21,7 +22,6 @@ export const LuApplicationCohortShow = (
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Cohort Id" source="cohortId" />
         <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>

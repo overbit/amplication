@@ -1,21 +1,21 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MitsSlateEmployOrderByInput = {
+  prefix?: SortOrder;
   first?: SortOrder;
-  id?: SortOrder;
-  job1From?: SortOrder;
+  middle?: SortOrder;
+  last?: SortOrder;
   job1Organization?: SortOrder;
+  jobNum1YearsOfExperience?: SortOrder;
+  job1From?: SortOrder;
   job1To?: SortOrder;
   job2From?: SortOrder;
-  job2Organization?: SortOrder;
   job2To?: SortOrder;
-  job3From?: SortOrder;
-  job3Organization?: SortOrder;
-  job3To?: SortOrder;
-  jobNum1YearsOfExperience?: SortOrder;
+  job2Organization?: SortOrder;
   jobNum2YearsOfExperience?: SortOrder;
+  job3Organization?: SortOrder;
+  job3From?: SortOrder;
+  job3To?: SortOrder;
   jobNum3YearsOfExperience?: SortOrder;
-  last?: SortOrder;
-  middle?: SortOrder;
-  prefix?: SortOrder;
+  id?: SortOrder;
 };

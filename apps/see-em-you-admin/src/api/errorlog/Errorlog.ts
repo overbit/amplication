@@ -1,10 +1,10 @@
 export type Errorlog = {
+  usersId: number | null;
+  luUsersUsertypesId: number | null;
+  usertypeId: number | null;
   applicationId: number | null;
   client: string;
-  id: number;
-  luUsersUsertypesId: number | null;
-  message: string;
   timestamp: Date;
-  usersId: number | null;
-  usertypeId: number | null;
+  message: string;
+  id: number;
 };

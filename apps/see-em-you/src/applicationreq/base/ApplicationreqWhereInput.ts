@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ProgramsApplicationreqListRelationFilter } from "../../programsApplicationreq/base/ProgramsApplicationreqListRelationFilter";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class ApplicationreqWhereInput {
@@ -28,6 +29,17 @@ class ApplicationreqWhereInput {
     nullable: true,
   })
   programsApplicationreqs?: ProgramsApplicationreqListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { ApplicationreqWhereInput as ApplicationreqWhereInput };

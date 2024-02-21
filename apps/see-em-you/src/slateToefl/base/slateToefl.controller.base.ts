@@ -18,32 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateToeflService } from "../slateToefl.service";
 import { SlateToeflCreateInput } from "./SlateToeflCreateInput";
-import { SlateToeflWhereInput } from "./SlateToeflWhereInput";
-import { SlateToeflWhereUniqueInput } from "./SlateToeflWhereUniqueInput";
-import { SlateToeflFindManyArgs } from "./SlateToeflFindManyArgs";
-import { SlateToeflUpdateInput } from "./SlateToeflUpdateInput";
 import { SlateToefl } from "./SlateToefl";
+import { SlateToeflFindManyArgs } from "./SlateToeflFindManyArgs";
+import { SlateToeflWhereUniqueInput } from "./SlateToeflWhereUniqueInput";
+import { SlateToeflUpdateInput } from "./SlateToeflUpdateInput";
 
 export class SlateToeflControllerBase {
   constructor(protected readonly service: SlateToeflService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateToefl })
-  async create(
+  async createSlateToefl(
     @common.Body() data: SlateToeflCreateInput
   ): Promise<SlateToefl> {
-    return await this.service.create({
+    return await this.service.createSlateToefl({
       data: data,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
   }
@@ -51,21 +50,21 @@ export class SlateToeflControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateToefl] })
   @ApiNestedQuery(SlateToeflFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateToefl[]> {
+  async slateToefls(@common.Req() request: Request): Promise<SlateToefl[]> {
     const args = plainToClass(SlateToeflFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateToefls({
       ...args,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
   }
@@ -73,22 +72,22 @@ export class SlateToeflControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateToefl(
     @common.Param() params: SlateToeflWhereUniqueInput
   ): Promise<SlateToefl | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateToefl({
       where: params,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -102,25 +101,25 @@ export class SlateToeflControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateToefl(
     @common.Param() params: SlateToeflWhereUniqueInput,
     @common.Body() data: SlateToeflUpdateInput
   ): Promise<SlateToefl | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateToefl({
         where: params,
         data: data,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          toeflTotal: true,
           toeflListening: true,
           toeflReading: true,
-          toeflSpeaking: true,
           toeflStructureWrittenExpression: true,
-          toeflTotal: true,
+          toeflSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -136,23 +135,23 @@ export class SlateToeflControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateToefl(
     @common.Param() params: SlateToeflWhereUniqueInput
   ): Promise<SlateToefl | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateToefl({
         where: params,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          toeflTotal: true,
           toeflListening: true,
           toeflReading: true,
-          toeflSpeaking: true,
           toeflStructureWrittenExpression: true,
-          toeflTotal: true,
+          toeflSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {

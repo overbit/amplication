@@ -10,8 +10,8 @@ import {
   SelectInput,
 } from "react-admin";
 
-import { LuUsersUsertypeTitle } from "../luUsersUsertype/LuUsersUsertypeTitle";
 import { MhciPrereqTitle } from "../mhciPrereq/MhciPrereqTitle";
+import { LuUsersUsertypeTitle } from "../luUsersUsertype/LuUsersUsertypeTitle";
 
 export const MhciPrereqsConversationCommentEdit = (
   props: EditProps
@@ -21,13 +21,8 @@ export const MhciPrereqsConversationCommentEdit = (
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
         <TextInput label="Comment" source="comment" />
-        <ReferenceInput
-          source="luUsersUsertypes.id"
-          reference="LuUsersUsertype"
-          label="Lu Users Usertypes"
-        >
-          <SelectInput optionText={LuUsersUsertypeTitle} />
-        </ReferenceInput>
+        <NumberInput step={1} label="Period Id" source="periodId" />
+        <NumberInput step={1} label="Program Id" source="programId" />
         <ReferenceInput
           source="mhciPrereqs.id"
           reference="MhciPrereq"
@@ -35,8 +30,13 @@ export const MhciPrereqsConversationCommentEdit = (
         >
           <SelectInput optionText={MhciPrereqTitle} />
         </ReferenceInput>
-        <NumberInput step={1} label="Period Id" source="periodId" />
-        <NumberInput step={1} label="Program Id" source="programId" />
+        <ReferenceInput
+          source="luUsersUsertypes.id"
+          reference="LuUsersUsertype"
+          label="Lu Users Usertypes"
+        >
+          <SelectInput optionText={LuUsersUsertypeTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );

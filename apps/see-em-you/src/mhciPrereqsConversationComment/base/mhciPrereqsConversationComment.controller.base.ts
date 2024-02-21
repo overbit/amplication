@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciPrereqsConversationCommentService } from "../mhciPrereqsConversationComment.service";
 import { MhciPrereqsConversationCommentCreateInput } from "./MhciPrereqsConversationCommentCreateInput";
-import { MhciPrereqsConversationCommentWhereInput } from "./MhciPrereqsConversationCommentWhereInput";
-import { MhciPrereqsConversationCommentWhereUniqueInput } from "./MhciPrereqsConversationCommentWhereUniqueInput";
-import { MhciPrereqsConversationCommentFindManyArgs } from "./MhciPrereqsConversationCommentFindManyArgs";
-import { MhciPrereqsConversationCommentUpdateInput } from "./MhciPrereqsConversationCommentUpdateInput";
 import { MhciPrereqsConversationComment } from "./MhciPrereqsConversationComment";
+import { MhciPrereqsConversationCommentFindManyArgs } from "./MhciPrereqsConversationCommentFindManyArgs";
+import { MhciPrereqsConversationCommentWhereUniqueInput } from "./MhciPrereqsConversationCommentWhereUniqueInput";
+import { MhciPrereqsConversationCommentUpdateInput } from "./MhciPrereqsConversationCommentUpdateInput";
 
 export class MhciPrereqsConversationCommentControllerBase {
   constructor(
@@ -30,31 +29,27 @@ export class MhciPrereqsConversationCommentControllerBase {
   ) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciPrereqsConversationComment })
-  async create(
+  async createMhciPrereqsConversationComment(
     @common.Body() data: MhciPrereqsConversationCommentCreateInput
   ): Promise<MhciPrereqsConversationComment> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsConversationComment({
       data: {
         ...data,
 
-        luUsersUsertypes: {
-          connect: data.luUsersUsertypes,
-        },
-
         mhciPrereqs: {
           connect: data.mhciPrereqs,
+        },
+
+        luUsersUsertypes: {
+          connect: data.luUsersUsertypes,
         },
       },
       select: {
         applicationId: true,
         comment: true,
-        id: true,
-
-        luUsersUsertypes: {
-          select: {
-            id: true,
-          },
-        },
+        timestamp: true,
+        periodId: true,
+        programId: true,
 
         mhciPrereqs: {
           select: {
@@ -62,9 +57,13 @@ export class MhciPrereqsConversationCommentControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        timestamp: true,
+        luUsersUsertypes: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
       },
     });
   }
@@ -72,25 +71,21 @@ export class MhciPrereqsConversationCommentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciPrereqsConversationComment] })
   @ApiNestedQuery(MhciPrereqsConversationCommentFindManyArgs)
-  async findMany(
+  async mhciPrereqsConversationComments(
     @common.Req() request: Request
   ): Promise<MhciPrereqsConversationComment[]> {
     const args = plainToClass(
       MhciPrereqsConversationCommentFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.mhciPrereqsConversationComments({
       ...args,
       select: {
         applicationId: true,
         comment: true,
-        id: true,
-
-        luUsersUsertypes: {
-          select: {
-            id: true,
-          },
-        },
+        timestamp: true,
+        periodId: true,
+        programId: true,
 
         mhciPrereqs: {
           select: {
@@ -98,9 +93,13 @@ export class MhciPrereqsConversationCommentControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        timestamp: true,
+        luUsersUsertypes: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
       },
     });
   }
@@ -108,21 +107,17 @@ export class MhciPrereqsConversationCommentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsConversationComment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciPrereqsConversationComment(
     @common.Param() params: MhciPrereqsConversationCommentWhereUniqueInput
   ): Promise<MhciPrereqsConversationComment | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciPrereqsConversationComment({
       where: params,
       select: {
         applicationId: true,
         comment: true,
-        id: true,
-
-        luUsersUsertypes: {
-          select: {
-            id: true,
-          },
-        },
+        timestamp: true,
+        periodId: true,
+        programId: true,
 
         mhciPrereqs: {
           select: {
@@ -130,9 +125,13 @@ export class MhciPrereqsConversationCommentControllerBase {
           },
         },
 
-        periodId: true,
-        programId: true,
-        timestamp: true,
+        luUsersUsertypes: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -146,34 +145,30 @@ export class MhciPrereqsConversationCommentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsConversationComment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciPrereqsConversationComment(
     @common.Param() params: MhciPrereqsConversationCommentWhereUniqueInput,
     @common.Body() data: MhciPrereqsConversationCommentUpdateInput
   ): Promise<MhciPrereqsConversationComment | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsConversationComment({
         where: params,
         data: {
           ...data,
 
-          luUsersUsertypes: {
-            connect: data.luUsersUsertypes,
-          },
-
           mhciPrereqs: {
             connect: data.mhciPrereqs,
+          },
+
+          luUsersUsertypes: {
+            connect: data.luUsersUsertypes,
           },
         },
         select: {
           applicationId: true,
           comment: true,
-          id: true,
-
-          luUsersUsertypes: {
-            select: {
-              id: true,
-            },
-          },
+          timestamp: true,
+          periodId: true,
+          programId: true,
 
           mhciPrereqs: {
             select: {
@@ -181,9 +176,13 @@ export class MhciPrereqsConversationCommentControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          timestamp: true,
+          luUsersUsertypes: {
+            select: {
+              id: true,
+            },
+          },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -199,22 +198,18 @@ export class MhciPrereqsConversationCommentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciPrereqsConversationComment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciPrereqsConversationComment(
     @common.Param() params: MhciPrereqsConversationCommentWhereUniqueInput
   ): Promise<MhciPrereqsConversationComment | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciPrereqsConversationComment({
         where: params,
         select: {
           applicationId: true,
           comment: true,
-          id: true,
-
-          luUsersUsertypes: {
-            select: {
-              id: true,
-            },
-          },
+          timestamp: true,
+          periodId: true,
+          programId: true,
 
           mhciPrereqs: {
             select: {
@@ -222,9 +217,13 @@ export class MhciPrereqsConversationCommentControllerBase {
             },
           },
 
-          periodId: true,
-          programId: true,
-          timestamp: true,
+          luUsersUsertypes: {
+            select: {
+              id: true,
+            },
+          },
+
+          id: true,
         },
       });
     } catch (error) {

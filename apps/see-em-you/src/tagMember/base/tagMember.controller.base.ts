@@ -18,18 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { TagMemberService } from "../tagMember.service";
 import { TagMemberCreateInput } from "./TagMemberCreateInput";
-import { TagMemberWhereInput } from "./TagMemberWhereInput";
-import { TagMemberWhereUniqueInput } from "./TagMemberWhereUniqueInput";
-import { TagMemberFindManyArgs } from "./TagMemberFindManyArgs";
-import { TagMemberUpdateInput } from "./TagMemberUpdateInput";
 import { TagMember } from "./TagMember";
+import { TagMemberFindManyArgs } from "./TagMemberFindManyArgs";
+import { TagMemberWhereUniqueInput } from "./TagMemberWhereUniqueInput";
+import { TagMemberUpdateInput } from "./TagMemberUpdateInput";
 
 export class TagMemberControllerBase {
   constructor(protected readonly service: TagMemberService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: TagMember })
-  async create(@common.Body() data: TagMemberCreateInput): Promise<TagMember> {
-    return await this.service.create({
+  async createTagMember(
+    @common.Body() data: TagMemberCreateInput
+  ): Promise<TagMember> {
+    return await this.service.createTagMember({
       data: {
         ...data,
 
@@ -40,6 +41,8 @@ export class TagMemberControllerBase {
           : undefined,
       },
       select: {
+        tagInstanceId: true,
+
         application: {
           select: {
             id: true,
@@ -47,7 +50,6 @@ export class TagMemberControllerBase {
         },
 
         id: true,
-        tagInstanceId: true,
       },
     });
   }
@@ -55,11 +57,13 @@ export class TagMemberControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [TagMember] })
   @ApiNestedQuery(TagMemberFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<TagMember[]> {
+  async tagMembers(@common.Req() request: Request): Promise<TagMember[]> {
     const args = plainToClass(TagMemberFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.tagMembers({
       ...args,
       select: {
+        tagInstanceId: true,
+
         application: {
           select: {
             id: true,
@@ -67,7 +71,6 @@ export class TagMemberControllerBase {
         },
 
         id: true,
-        tagInstanceId: true,
       },
     });
   }
@@ -75,12 +78,14 @@ export class TagMemberControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: TagMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async tagMember(
     @common.Param() params: TagMemberWhereUniqueInput
   ): Promise<TagMember | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.tagMember({
       where: params,
       select: {
+        tagInstanceId: true,
+
         application: {
           select: {
             id: true,
@@ -88,7 +93,6 @@ export class TagMemberControllerBase {
         },
 
         id: true,
-        tagInstanceId: true,
       },
     });
     if (result === null) {
@@ -102,12 +106,12 @@ export class TagMemberControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: TagMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateTagMember(
     @common.Param() params: TagMemberWhereUniqueInput,
     @common.Body() data: TagMemberUpdateInput
   ): Promise<TagMember | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateTagMember({
         where: params,
         data: {
           ...data,
@@ -119,6 +123,8 @@ export class TagMemberControllerBase {
             : undefined,
         },
         select: {
+          tagInstanceId: true,
+
           application: {
             select: {
               id: true,
@@ -126,7 +132,6 @@ export class TagMemberControllerBase {
           },
 
           id: true,
-          tagInstanceId: true,
         },
       });
     } catch (error) {
@@ -142,13 +147,15 @@ export class TagMemberControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: TagMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteTagMember(
     @common.Param() params: TagMemberWhereUniqueInput
   ): Promise<TagMember | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteTagMember({
         where: params,
         select: {
+          tagInstanceId: true,
+
           application: {
             select: {
               id: true,
@@ -156,7 +163,6 @@ export class TagMemberControllerBase {
           },
 
           id: true,
-          tagInstanceId: true,
         },
       });
     } catch (error) {

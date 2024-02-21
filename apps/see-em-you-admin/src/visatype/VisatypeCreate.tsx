@@ -5,10 +5,10 @@ export const VisatypeCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Added For" source="addedFor" />
-        <TextInput label="Description" source="description" />
         <TextInput label="Name" source="name" />
         <TextInput label="Short" source="short" />
+        <TextInput label="Description" source="description" />
+        <TextInput label="Added For" source="addedFor" />
       </SimpleForm>
     </Create>
   );

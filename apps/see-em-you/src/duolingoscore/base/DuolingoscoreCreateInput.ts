@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsDate, IsString } from "class-validator";
+import { IsInt, IsDate, IsString, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -23,6 +23,25 @@ class DuolingoscoreCreateInput {
   @IsInt()
   @Field(() => Number)
   applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  testdate!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  testemail?: string | null;
 
   @ApiProperty({
     required: false,
@@ -45,25 +64,6 @@ class DuolingoscoreCreateInput {
     nullable: true,
   })
   matchDate?: Date | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  testdate!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  testemail?: string | null;
 }
 
 export { DuolingoscoreCreateInput as DuolingoscoreCreateInput };

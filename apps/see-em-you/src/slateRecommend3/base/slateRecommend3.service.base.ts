@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateRecommend3 } from "@prisma/client";
+import {
+  Prisma,
+  SlateRecommend3 as PrismaSlateRecommend3,
+} from "@prisma/client";
 
 export class SlateRecommend3ServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class SlateRecommend3ServiceBase {
     return this.prisma.slateRecommend3.count(args);
   }
 
-  async findMany<T extends Prisma.SlateRecommend3FindManyArgs>(
+  async slateRecommend3s<T extends Prisma.SlateRecommend3FindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend3FindManyArgs>
-  ): Promise<SlateRecommend3[]> {
+  ): Promise<PrismaSlateRecommend3[]> {
     return this.prisma.slateRecommend3.findMany(args);
   }
-  async findOne<T extends Prisma.SlateRecommend3FindUniqueArgs>(
+  async slateRecommend3<T extends Prisma.SlateRecommend3FindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend3FindUniqueArgs>
-  ): Promise<SlateRecommend3 | null> {
+  ): Promise<PrismaSlateRecommend3 | null> {
     return this.prisma.slateRecommend3.findUnique(args);
   }
-  async create<T extends Prisma.SlateRecommend3CreateArgs>(
+  async createSlateRecommend3<T extends Prisma.SlateRecommend3CreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend3CreateArgs>
-  ): Promise<SlateRecommend3> {
+  ): Promise<PrismaSlateRecommend3> {
     return this.prisma.slateRecommend3.create<T>(args);
   }
-  async update<T extends Prisma.SlateRecommend3UpdateArgs>(
+  async updateSlateRecommend3<T extends Prisma.SlateRecommend3UpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend3UpdateArgs>
-  ): Promise<SlateRecommend3> {
+  ): Promise<PrismaSlateRecommend3> {
     return this.prisma.slateRecommend3.update<T>(args);
   }
-  async delete<T extends Prisma.SlateRecommend3DeleteArgs>(
+  async deleteSlateRecommend3<T extends Prisma.SlateRecommend3DeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateRecommend3DeleteArgs>
-  ): Promise<SlateRecommend3> {
+  ): Promise<PrismaSlateRecommend3> {
     return this.prisma.slateRecommend3.delete(args);
   }
 }

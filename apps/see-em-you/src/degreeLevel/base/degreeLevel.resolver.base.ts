@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDegreeLevelArgs } from "./CreateDegreeLevelArgs";
-import { UpdateDegreeLevelArgs } from "./UpdateDegreeLevelArgs";
-import { DeleteDegreeLevelArgs } from "./DeleteDegreeLevelArgs";
+import { DegreeLevel } from "./DegreeLevel";
 import { DegreeLevelCountArgs } from "./DegreeLevelCountArgs";
 import { DegreeLevelFindManyArgs } from "./DegreeLevelFindManyArgs";
 import { DegreeLevelFindUniqueArgs } from "./DegreeLevelFindUniqueArgs";
-import { DegreeLevel } from "./DegreeLevel";
+import { CreateDegreeLevelArgs } from "./CreateDegreeLevelArgs";
+import { UpdateDegreeLevelArgs } from "./UpdateDegreeLevelArgs";
+import { DeleteDegreeLevelArgs } from "./DeleteDegreeLevelArgs";
 import { DegreeLevelService } from "../degreeLevel.service";
 @graphql.Resolver(() => DegreeLevel)
 export class DegreeLevelResolverBase {
@@ -38,14 +38,14 @@ export class DegreeLevelResolverBase {
   async degreeLevels(
     @graphql.Args() args: DegreeLevelFindManyArgs
   ): Promise<DegreeLevel[]> {
-    return this.service.findMany(args);
+    return this.service.degreeLevels(args);
   }
 
   @graphql.Query(() => DegreeLevel, { nullable: true })
   async degreeLevel(
     @graphql.Args() args: DegreeLevelFindUniqueArgs
   ): Promise<DegreeLevel | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.degreeLevel(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class DegreeLevelResolverBase {
   async createDegreeLevel(
     @graphql.Args() args: CreateDegreeLevelArgs
   ): Promise<DegreeLevel> {
-    return await this.service.create({
+    return await this.service.createDegreeLevel({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class DegreeLevelResolverBase {
     @graphql.Args() args: UpdateDegreeLevelArgs
   ): Promise<DegreeLevel | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDegreeLevel({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class DegreeLevelResolverBase {
     @graphql.Args() args: DeleteDegreeLevelArgs
   ): Promise<DegreeLevel | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDegreeLevel(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

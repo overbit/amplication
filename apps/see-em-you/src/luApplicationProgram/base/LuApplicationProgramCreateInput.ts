@@ -12,19 +12,49 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
+  IsInt,
   IsString,
   IsOptional,
-  ValidateNested,
-  IsInt,
   IsNumber,
+  ValidateNested,
 } from "class-validator";
+import { Decimal } from "decimal.js";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import { Type } from "class-transformer";
 import { ProgramModelWhereUniqueInput } from "../../programModel/base/ProgramModelWhereUniqueInput";
-import { Decimal } from "decimal.js";
 
 @InputType()
 class LuApplicationProgramCreateInput {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  choice!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  round2?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  decision?: string | null;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -59,34 +89,6 @@ class LuApplicationProgramCreateInput {
   admitComments?: string | null;
 
   @ApiProperty({
-    required: true,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  choice!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  decision?: string | null;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -106,38 +108,7 @@ class LuApplicationProgramCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  ltichoice?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  msecertchoice?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: () => ProgramModelWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ProgramModelWhereUniqueInput)
-  @Field(() => ProgramModelWhereUniqueInput)
-  programs!: ProgramModelWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  round2?: string | null;
+  stucontact?: string | null;
 
   @ApiProperty({
     required: false,
@@ -170,7 +141,36 @@ class LuApplicationProgramCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  stucontact?: string | null;
+  ltichoice?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  msecertchoice?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
+
+  @ApiProperty({
+    required: true,
+    type: () => ProgramModelWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ProgramModelWhereUniqueInput)
+  @Field(() => ProgramModelWhereUniqueInput)
+  programs!: ProgramModelWhereUniqueInput;
 }
 
 export { LuApplicationProgramCreateInput as LuApplicationProgramCreateInput };

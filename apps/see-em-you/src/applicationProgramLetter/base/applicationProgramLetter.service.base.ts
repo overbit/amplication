@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ApplicationProgramLetter } from "@prisma/client";
+import {
+  Prisma,
+  ApplicationProgramLetter as PrismaApplicationProgramLetter,
+} from "@prisma/client";
 
 export class ApplicationProgramLetterServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ApplicationProgramLetterServiceBase {
     return this.prisma.applicationProgramLetter.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicationProgramLetterFindManyArgs>(
+  async applicationProgramLetters<
+    T extends Prisma.ApplicationProgramLetterFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationProgramLetterFindManyArgs>
-  ): Promise<ApplicationProgramLetter[]> {
+  ): Promise<PrismaApplicationProgramLetter[]> {
     return this.prisma.applicationProgramLetter.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicationProgramLetterFindUniqueArgs>(
+  async applicationProgramLetter<
+    T extends Prisma.ApplicationProgramLetterFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationProgramLetterFindUniqueArgs>
-  ): Promise<ApplicationProgramLetter | null> {
+  ): Promise<PrismaApplicationProgramLetter | null> {
     return this.prisma.applicationProgramLetter.findUnique(args);
   }
-  async create<T extends Prisma.ApplicationProgramLetterCreateArgs>(
+  async createApplicationProgramLetter<
+    T extends Prisma.ApplicationProgramLetterCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationProgramLetterCreateArgs>
-  ): Promise<ApplicationProgramLetter> {
+  ): Promise<PrismaApplicationProgramLetter> {
     return this.prisma.applicationProgramLetter.create<T>(args);
   }
-  async update<T extends Prisma.ApplicationProgramLetterUpdateArgs>(
+  async updateApplicationProgramLetter<
+    T extends Prisma.ApplicationProgramLetterUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationProgramLetterUpdateArgs>
-  ): Promise<ApplicationProgramLetter> {
+  ): Promise<PrismaApplicationProgramLetter> {
     return this.prisma.applicationProgramLetter.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicationProgramLetterDeleteArgs>(
+  async deleteApplicationProgramLetter<
+    T extends Prisma.ApplicationProgramLetterDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationProgramLetterDeleteArgs>
-  ): Promise<ApplicationProgramLetter> {
+  ): Promise<PrismaApplicationProgramLetter> {
     return this.prisma.applicationProgramLetter.delete(args);
   }
 }

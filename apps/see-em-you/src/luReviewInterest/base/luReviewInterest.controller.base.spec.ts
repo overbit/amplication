@@ -18,38 +18,38 @@ import { LuReviewInterestService } from "../luReviewInterest.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  code: 42,
   id: 42,
-  programId: 42,
   reviewId: 42,
+  programId: 42,
+  code: 42,
 };
 const CREATE_RESULT = {
-  code: 42,
   id: 42,
-  programId: 42,
   reviewId: 42,
+  programId: 42,
+  code: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    code: 42,
     id: 42,
-    programId: 42,
     reviewId: 42,
+    programId: 42,
+    code: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  code: 42,
   id: 42,
-  programId: 42,
   reviewId: 42,
+  programId: 42,
+  code: 42,
 };
 
 const service = {
-  create() {
+  createLuReviewInterest() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luReviewInterests: () => FIND_MANY_RESULT,
+  luReviewInterest: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

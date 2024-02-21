@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationMergeFileService } from "../applicationMergeFile.service";
 import { ApplicationMergeFileCreateInput } from "./ApplicationMergeFileCreateInput";
-import { ApplicationMergeFileWhereInput } from "./ApplicationMergeFileWhereInput";
-import { ApplicationMergeFileWhereUniqueInput } from "./ApplicationMergeFileWhereUniqueInput";
-import { ApplicationMergeFileFindManyArgs } from "./ApplicationMergeFileFindManyArgs";
-import { ApplicationMergeFileUpdateInput } from "./ApplicationMergeFileUpdateInput";
 import { ApplicationMergeFile } from "./ApplicationMergeFile";
+import { ApplicationMergeFileFindManyArgs } from "./ApplicationMergeFileFindManyArgs";
+import { ApplicationMergeFileWhereUniqueInput } from "./ApplicationMergeFileWhereUniqueInput";
+import { ApplicationMergeFileUpdateInput } from "./ApplicationMergeFileUpdateInput";
 
 export class ApplicationMergeFileControllerBase {
   constructor(protected readonly service: ApplicationMergeFileService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicationMergeFile })
-  async create(
+  async createApplicationMergeFile(
     @common.Body() data: ApplicationMergeFileCreateInput
   ): Promise<ApplicationMergeFile> {
-    return await this.service.create({
+    return await this.service.createApplicationMergeFile({
       data: data,
       select: {
-        guid: true,
         id: true,
-        mergeDate: true,
+        guid: true,
         mergeFile: true,
+        mergeDate: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class ApplicationMergeFileControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicationMergeFile] })
   @ApiNestedQuery(ApplicationMergeFileFindManyArgs)
-  async findMany(
+  async applicationMergeFiles(
     @common.Req() request: Request
   ): Promise<ApplicationMergeFile[]> {
     const args = plainToClass(ApplicationMergeFileFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.applicationMergeFiles({
       ...args,
       select: {
-        guid: true,
         id: true,
-        mergeDate: true,
+        guid: true,
         mergeFile: true,
+        mergeDate: true,
       },
     });
   }
@@ -63,16 +62,16 @@ export class ApplicationMergeFileControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicationMergeFile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationMergeFile(
     @common.Param() params: ApplicationMergeFileWhereUniqueInput
   ): Promise<ApplicationMergeFile | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationMergeFile({
       where: params,
       select: {
-        guid: true,
         id: true,
-        mergeDate: true,
+        guid: true,
         mergeFile: true,
+        mergeDate: true,
       },
     });
     if (result === null) {
@@ -86,19 +85,19 @@ export class ApplicationMergeFileControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicationMergeFile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationMergeFile(
     @common.Param() params: ApplicationMergeFileWhereUniqueInput,
     @common.Body() data: ApplicationMergeFileUpdateInput
   ): Promise<ApplicationMergeFile | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationMergeFile({
         where: params,
         data: data,
         select: {
-          guid: true,
           id: true,
-          mergeDate: true,
+          guid: true,
           mergeFile: true,
+          mergeDate: true,
         },
       });
     } catch (error) {
@@ -114,17 +113,17 @@ export class ApplicationMergeFileControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicationMergeFile })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationMergeFile(
     @common.Param() params: ApplicationMergeFileWhereUniqueInput
   ): Promise<ApplicationMergeFile | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationMergeFile({
         where: params,
         select: {
-          guid: true,
           id: true,
-          mergeDate: true,
+          guid: true,
           mergeFile: true,
+          mergeDate: true,
         },
       });
     } catch (error) {

@@ -28,6 +28,17 @@ class SlateProgramOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  prefix?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   first?: SortOrder;
 
   @ApiProperty({
@@ -39,7 +50,7 @@ class SlateProgramOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  middle?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -51,17 +62,6 @@ class SlateProgramOrderByInput {
     nullable: true,
   })
   last?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  middle?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,7 +105,7 @@ class SlateProgramOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  prefix?: SortOrder;
+  id?: SortOrder;
 }
 
 export { SlateProgramOrderByInput as SlateProgramOrderByInput };

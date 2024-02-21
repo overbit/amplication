@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciSlateAppSchoolArgs } from "./CreateMhciSlateAppSchoolArgs";
-import { UpdateMhciSlateAppSchoolArgs } from "./UpdateMhciSlateAppSchoolArgs";
-import { DeleteMhciSlateAppSchoolArgs } from "./DeleteMhciSlateAppSchoolArgs";
+import { MhciSlateAppSchool } from "./MhciSlateAppSchool";
 import { MhciSlateAppSchoolCountArgs } from "./MhciSlateAppSchoolCountArgs";
 import { MhciSlateAppSchoolFindManyArgs } from "./MhciSlateAppSchoolFindManyArgs";
 import { MhciSlateAppSchoolFindUniqueArgs } from "./MhciSlateAppSchoolFindUniqueArgs";
-import { MhciSlateAppSchool } from "./MhciSlateAppSchool";
+import { CreateMhciSlateAppSchoolArgs } from "./CreateMhciSlateAppSchoolArgs";
+import { UpdateMhciSlateAppSchoolArgs } from "./UpdateMhciSlateAppSchoolArgs";
+import { DeleteMhciSlateAppSchoolArgs } from "./DeleteMhciSlateAppSchoolArgs";
 import { MhciSlateAppSchoolService } from "../mhciSlateAppSchool.service";
 @graphql.Resolver(() => MhciSlateAppSchool)
 export class MhciSlateAppSchoolResolverBase {
@@ -38,14 +38,14 @@ export class MhciSlateAppSchoolResolverBase {
   async mhciSlateAppSchools(
     @graphql.Args() args: MhciSlateAppSchoolFindManyArgs
   ): Promise<MhciSlateAppSchool[]> {
-    return this.service.findMany(args);
+    return this.service.mhciSlateAppSchools(args);
   }
 
   @graphql.Query(() => MhciSlateAppSchool, { nullable: true })
   async mhciSlateAppSchool(
     @graphql.Args() args: MhciSlateAppSchoolFindUniqueArgs
   ): Promise<MhciSlateAppSchool | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciSlateAppSchool(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MhciSlateAppSchoolResolverBase {
   async createMhciSlateAppSchool(
     @graphql.Args() args: CreateMhciSlateAppSchoolArgs
   ): Promise<MhciSlateAppSchool> {
-    return await this.service.create({
+    return await this.service.createMhciSlateAppSchool({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MhciSlateAppSchoolResolverBase {
     @graphql.Args() args: UpdateMhciSlateAppSchoolArgs
   ): Promise<MhciSlateAppSchool | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciSlateAppSchool({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MhciSlateAppSchoolResolverBase {
     @graphql.Args() args: DeleteMhciSlateAppSchoolArgs
   ): Promise<MhciSlateAppSchool | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciSlateAppSchool(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

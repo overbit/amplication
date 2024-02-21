@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SlateTestScore } from "@prisma/client";
+import { Prisma, SlateTestScore as PrismaSlateTestScore } from "@prisma/client";
 
 export class SlateTestScoreServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SlateTestScoreServiceBase {
     return this.prisma.slateTestScore.count(args);
   }
 
-  async findMany<T extends Prisma.SlateTestScoreFindManyArgs>(
+  async slateTestScores<T extends Prisma.SlateTestScoreFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateTestScoreFindManyArgs>
-  ): Promise<SlateTestScore[]> {
+  ): Promise<PrismaSlateTestScore[]> {
     return this.prisma.slateTestScore.findMany(args);
   }
-  async findOne<T extends Prisma.SlateTestScoreFindUniqueArgs>(
+  async slateTestScore<T extends Prisma.SlateTestScoreFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateTestScoreFindUniqueArgs>
-  ): Promise<SlateTestScore | null> {
+  ): Promise<PrismaSlateTestScore | null> {
     return this.prisma.slateTestScore.findUnique(args);
   }
-  async create<T extends Prisma.SlateTestScoreCreateArgs>(
+  async createSlateTestScore<T extends Prisma.SlateTestScoreCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateTestScoreCreateArgs>
-  ): Promise<SlateTestScore> {
+  ): Promise<PrismaSlateTestScore> {
     return this.prisma.slateTestScore.create<T>(args);
   }
-  async update<T extends Prisma.SlateTestScoreUpdateArgs>(
+  async updateSlateTestScore<T extends Prisma.SlateTestScoreUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateTestScoreUpdateArgs>
-  ): Promise<SlateTestScore> {
+  ): Promise<PrismaSlateTestScore> {
     return this.prisma.slateTestScore.update<T>(args);
   }
-  async delete<T extends Prisma.SlateTestScoreDeleteArgs>(
+  async deleteSlateTestScore<T extends Prisma.SlateTestScoreDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SlateTestScoreDeleteArgs>
-  ): Promise<SlateTestScore> {
+  ): Promise<PrismaSlateTestScore> {
     return this.prisma.slateTestScore.delete(args);
   }
 }

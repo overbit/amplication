@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @InputType()
 class GroupRankCommentCreateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  comment?: string | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -40,7 +29,7 @@ class GroupRankCommentCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  luUsersUsertypesId!: number;
+  round!: number;
 
   @ApiProperty({
     required: true,
@@ -56,7 +45,18 @@ class GroupRankCommentCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  round!: number;
+  luUsersUsertypesId!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  comment?: string | null;
 }
 
 export { GroupRankCommentCreateInput as GroupRankCommentCreateInput };

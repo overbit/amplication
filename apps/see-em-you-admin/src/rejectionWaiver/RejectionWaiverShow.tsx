@@ -5,13 +5,13 @@ export const RejectionWaiverShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField
           label="Lu Application Programs Id"
           source="luApplicationProgramsId"
         />
-        <TextField label="Permitted Program Id" source="permittedProgramId" />
         <TextField label="Waived" source="waived" />
+        <TextField label="Permitted Program Id" source="permittedProgramId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

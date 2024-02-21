@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUserArgs } from "./CreateUserArgs";
-import { UpdateUserArgs } from "./UpdateUserArgs";
-import { DeleteUserArgs } from "./DeleteUserArgs";
+import { User } from "./User";
 import { UserCountArgs } from "./UserCountArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
-import { User } from "./User";
+import { CreateUserArgs } from "./CreateUserArgs";
+import { UpdateUserArgs } from "./UpdateUserArgs";
+import { DeleteUserArgs } from "./DeleteUserArgs";
 import { ApplicationAdminNoteFindManyArgs } from "../../applicationAdminNote/base/ApplicationAdminNoteFindManyArgs";
 import { ApplicationAdminNote } from "../../applicationAdminNote/base/ApplicationAdminNote";
 import { LuUsersUsertypeFindManyArgs } from "../../luUsersUsertype/base/LuUsersUsertypeFindManyArgs";
@@ -40,12 +40,12 @@ export class UserResolverBase {
 
   @graphql.Query(() => [User])
   async users(@graphql.Args() args: UserFindManyArgs): Promise<User[]> {
-    return this.service.findMany(args);
+    return this.service.users(args);
   }
 
   @graphql.Query(() => User, { nullable: true })
   async user(@graphql.Args() args: UserFindUniqueArgs): Promise<User | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.user(args);
     if (result === null) {
       return null;
     }
@@ -54,7 +54,7 @@ export class UserResolverBase {
 
   @graphql.Mutation(() => User)
   async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
-    return await this.service.create({
+    return await this.service.createUser({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class UserResolverBase {
   @graphql.Mutation(() => User)
   async updateUser(@graphql.Args() args: UpdateUserArgs): Promise<User | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUser({
         ...args,
         data: args.data,
       });
@@ -80,7 +80,7 @@ export class UserResolverBase {
   @graphql.Mutation(() => User)
   async deleteUser(@graphql.Args() args: DeleteUserArgs): Promise<User | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUser(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -94,7 +94,7 @@ export class UserResolverBase {
   @graphql.ResolveField(() => [ApplicationAdminNote], {
     name: "applicationAdminNote",
   })
-  async resolveFieldApplicationAdminNote(
+  async findApplicationAdminNote(
     @graphql.Parent() parent: User,
     @graphql.Args() args: ApplicationAdminNoteFindManyArgs
   ): Promise<ApplicationAdminNote[]> {
@@ -111,7 +111,7 @@ export class UserResolverBase {
   }
 
   @graphql.ResolveField(() => [LuUsersUsertype], { name: "luUsersUsertypes" })
-  async resolveFieldLuUsersUsertypes(
+  async findLuUsersUsertypes(
     @graphql.Parent() parent: User,
     @graphql.Args() args: LuUsersUsertypeFindManyArgs
   ): Promise<LuUsersUsertype[]> {

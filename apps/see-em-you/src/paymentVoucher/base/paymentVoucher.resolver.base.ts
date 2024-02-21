@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePaymentVoucherArgs } from "./CreatePaymentVoucherArgs";
-import { UpdatePaymentVoucherArgs } from "./UpdatePaymentVoucherArgs";
-import { DeletePaymentVoucherArgs } from "./DeletePaymentVoucherArgs";
+import { PaymentVoucher } from "./PaymentVoucher";
 import { PaymentVoucherCountArgs } from "./PaymentVoucherCountArgs";
 import { PaymentVoucherFindManyArgs } from "./PaymentVoucherFindManyArgs";
 import { PaymentVoucherFindUniqueArgs } from "./PaymentVoucherFindUniqueArgs";
-import { PaymentVoucher } from "./PaymentVoucher";
+import { CreatePaymentVoucherArgs } from "./CreatePaymentVoucherArgs";
+import { UpdatePaymentVoucherArgs } from "./UpdatePaymentVoucherArgs";
+import { DeletePaymentVoucherArgs } from "./DeletePaymentVoucherArgs";
 import { Payment } from "../../payment/base/Payment";
 import { PaymentVoucherService } from "../paymentVoucher.service";
 @graphql.Resolver(() => PaymentVoucher)
@@ -39,14 +39,14 @@ export class PaymentVoucherResolverBase {
   async paymentVouchers(
     @graphql.Args() args: PaymentVoucherFindManyArgs
   ): Promise<PaymentVoucher[]> {
-    return this.service.findMany(args);
+    return this.service.paymentVouchers(args);
   }
 
   @graphql.Query(() => PaymentVoucher, { nullable: true })
   async paymentVoucher(
     @graphql.Args() args: PaymentVoucherFindUniqueArgs
   ): Promise<PaymentVoucher | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.paymentVoucher(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class PaymentVoucherResolverBase {
   async createPaymentVoucher(
     @graphql.Args() args: CreatePaymentVoucherArgs
   ): Promise<PaymentVoucher> {
-    return await this.service.create({
+    return await this.service.createPaymentVoucher({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class PaymentVoucherResolverBase {
     @graphql.Args() args: UpdatePaymentVoucherArgs
   ): Promise<PaymentVoucher | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePaymentVoucher({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class PaymentVoucherResolverBase {
     @graphql.Args() args: DeletePaymentVoucherArgs
   ): Promise<PaymentVoucher | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePaymentVoucher(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class PaymentVoucherResolverBase {
     nullable: true,
     name: "payment",
   })
-  async resolveFieldPayment(
+  async getPayment(
     @graphql.Parent() parent: PaymentVoucher
   ): Promise<Payment | null> {
     const result = await this.service.getPayment(parent.id);

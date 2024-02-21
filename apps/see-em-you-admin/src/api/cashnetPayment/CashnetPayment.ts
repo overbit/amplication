@@ -1,14 +1,14 @@
 import { Application } from "../application/Application";
 
 export type CashnetPayment = {
-  amount: number | null;
-  applicantEmail: string;
+  transactionId: number;
   applicantName: string;
-  application?: Application;
-  id: number;
+  applicantEmail: string;
   merchant: number;
   status: string;
-  transactionId: number;
   transactionTime: Date;
   transactionType: string;
+  amount: number | null;
+  application?: Application;
+  id: number;
 };

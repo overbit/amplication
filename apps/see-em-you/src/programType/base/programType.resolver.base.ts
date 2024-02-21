@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateProgramTypeArgs } from "./CreateProgramTypeArgs";
-import { UpdateProgramTypeArgs } from "./UpdateProgramTypeArgs";
-import { DeleteProgramTypeArgs } from "./DeleteProgramTypeArgs";
+import { ProgramType } from "./ProgramType";
 import { ProgramTypeCountArgs } from "./ProgramTypeCountArgs";
 import { ProgramTypeFindManyArgs } from "./ProgramTypeFindManyArgs";
 import { ProgramTypeFindUniqueArgs } from "./ProgramTypeFindUniqueArgs";
-import { ProgramType } from "./ProgramType";
+import { CreateProgramTypeArgs } from "./CreateProgramTypeArgs";
+import { UpdateProgramTypeArgs } from "./UpdateProgramTypeArgs";
+import { DeleteProgramTypeArgs } from "./DeleteProgramTypeArgs";
 import { ProgramTypeService } from "../programType.service";
 @graphql.Resolver(() => ProgramType)
 export class ProgramTypeResolverBase {
@@ -38,14 +38,14 @@ export class ProgramTypeResolverBase {
   async programTypes(
     @graphql.Args() args: ProgramTypeFindManyArgs
   ): Promise<ProgramType[]> {
-    return this.service.findMany(args);
+    return this.service.programTypes(args);
   }
 
   @graphql.Query(() => ProgramType, { nullable: true })
   async programType(
     @graphql.Args() args: ProgramTypeFindUniqueArgs
   ): Promise<ProgramType | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.programType(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ProgramTypeResolverBase {
   async createProgramType(
     @graphql.Args() args: CreateProgramTypeArgs
   ): Promise<ProgramType> {
-    return await this.service.create({
+    return await this.service.createProgramType({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ProgramTypeResolverBase {
     @graphql.Args() args: UpdateProgramTypeArgs
   ): Promise<ProgramType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramType({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ProgramTypeResolverBase {
     @graphql.Args() args: DeleteProgramTypeArgs
   ): Promise<ProgramType | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteProgramType(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

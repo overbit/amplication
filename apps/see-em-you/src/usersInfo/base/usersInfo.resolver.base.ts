@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUsersInfoArgs } from "./CreateUsersInfoArgs";
-import { UpdateUsersInfoArgs } from "./UpdateUsersInfoArgs";
-import { DeleteUsersInfoArgs } from "./DeleteUsersInfoArgs";
+import { UsersInfo } from "./UsersInfo";
 import { UsersInfoCountArgs } from "./UsersInfoCountArgs";
 import { UsersInfoFindManyArgs } from "./UsersInfoFindManyArgs";
 import { UsersInfoFindUniqueArgs } from "./UsersInfoFindUniqueArgs";
-import { UsersInfo } from "./UsersInfo";
+import { CreateUsersInfoArgs } from "./CreateUsersInfoArgs";
+import { UpdateUsersInfoArgs } from "./UpdateUsersInfoArgs";
+import { DeleteUsersInfoArgs } from "./DeleteUsersInfoArgs";
 import { UsersInfoService } from "../usersInfo.service";
 @graphql.Resolver(() => UsersInfo)
 export class UsersInfoResolverBase {
@@ -38,14 +38,14 @@ export class UsersInfoResolverBase {
   async usersInfos(
     @graphql.Args() args: UsersInfoFindManyArgs
   ): Promise<UsersInfo[]> {
-    return this.service.findMany(args);
+    return this.service.usersInfos(args);
   }
 
   @graphql.Query(() => UsersInfo, { nullable: true })
   async usersInfo(
     @graphql.Args() args: UsersInfoFindUniqueArgs
   ): Promise<UsersInfo | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.usersInfo(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class UsersInfoResolverBase {
   async createUsersInfo(
     @graphql.Args() args: CreateUsersInfoArgs
   ): Promise<UsersInfo> {
-    return await this.service.create({
+    return await this.service.createUsersInfo({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class UsersInfoResolverBase {
     @graphql.Args() args: UpdateUsersInfoArgs
   ): Promise<UsersInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsersInfo({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class UsersInfoResolverBase {
     @graphql.Args() args: DeleteUsersInfoArgs
   ): Promise<UsersInfo | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUsersInfo(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

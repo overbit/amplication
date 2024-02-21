@@ -1,7 +1,7 @@
 import { VeteranInfo as TVeteranInfo } from "../api/veteranInfo/VeteranInfo";
 
-export const VETERANINFO_TITLE_FIELD = "branch";
+export const VETERANINFO_TITLE_FIELD = "status";
 
 export const VeteranInfoTitle = (record: TVeteranInfo): string => {
-  return record.branch?.toString() || String(record.id);
+  return record.status?.toString() || String(record.id);
 };

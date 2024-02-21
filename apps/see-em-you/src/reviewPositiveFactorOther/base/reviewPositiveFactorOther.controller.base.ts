@@ -18,24 +18,23 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ReviewPositiveFactorOtherService } from "../reviewPositiveFactorOther.service";
 import { ReviewPositiveFactorOtherCreateInput } from "./ReviewPositiveFactorOtherCreateInput";
-import { ReviewPositiveFactorOtherWhereInput } from "./ReviewPositiveFactorOtherWhereInput";
-import { ReviewPositiveFactorOtherWhereUniqueInput } from "./ReviewPositiveFactorOtherWhereUniqueInput";
-import { ReviewPositiveFactorOtherFindManyArgs } from "./ReviewPositiveFactorOtherFindManyArgs";
-import { ReviewPositiveFactorOtherUpdateInput } from "./ReviewPositiveFactorOtherUpdateInput";
 import { ReviewPositiveFactorOther } from "./ReviewPositiveFactorOther";
+import { ReviewPositiveFactorOtherFindManyArgs } from "./ReviewPositiveFactorOtherFindManyArgs";
+import { ReviewPositiveFactorOtherWhereUniqueInput } from "./ReviewPositiveFactorOtherWhereUniqueInput";
+import { ReviewPositiveFactorOtherUpdateInput } from "./ReviewPositiveFactorOtherUpdateInput";
 
 export class ReviewPositiveFactorOtherControllerBase {
   constructor(protected readonly service: ReviewPositiveFactorOtherService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ReviewPositiveFactorOther })
-  async create(
+  async createReviewPositiveFactorOther(
     @common.Body() data: ReviewPositiveFactorOtherCreateInput
   ): Promise<ReviewPositiveFactorOther> {
-    return await this.service.create({
+    return await this.service.createReviewPositiveFactorOther({
       data: data,
       select: {
-        id: true,
         positiveFactorOther: true,
+        id: true,
       },
     });
   }
@@ -43,18 +42,18 @@ export class ReviewPositiveFactorOtherControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ReviewPositiveFactorOther] })
   @ApiNestedQuery(ReviewPositiveFactorOtherFindManyArgs)
-  async findMany(
+  async reviewPositiveFactorOthers(
     @common.Req() request: Request
   ): Promise<ReviewPositiveFactorOther[]> {
     const args = plainToClass(
       ReviewPositiveFactorOtherFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.reviewPositiveFactorOthers({
       ...args,
       select: {
-        id: true,
         positiveFactorOther: true,
+        id: true,
       },
     });
   }
@@ -62,14 +61,14 @@ export class ReviewPositiveFactorOtherControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ReviewPositiveFactorOther })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async reviewPositiveFactorOther(
     @common.Param() params: ReviewPositiveFactorOtherWhereUniqueInput
   ): Promise<ReviewPositiveFactorOther | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.reviewPositiveFactorOther({
       where: params,
       select: {
-        id: true,
         positiveFactorOther: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -83,17 +82,17 @@ export class ReviewPositiveFactorOtherControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ReviewPositiveFactorOther })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateReviewPositiveFactorOther(
     @common.Param() params: ReviewPositiveFactorOtherWhereUniqueInput,
     @common.Body() data: ReviewPositiveFactorOtherUpdateInput
   ): Promise<ReviewPositiveFactorOther | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewPositiveFactorOther({
         where: params,
         data: data,
         select: {
-          id: true,
           positiveFactorOther: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -109,15 +108,15 @@ export class ReviewPositiveFactorOtherControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ReviewPositiveFactorOther })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteReviewPositiveFactorOther(
     @common.Param() params: ReviewPositiveFactorOtherWhereUniqueInput
   ): Promise<ReviewPositiveFactorOther | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteReviewPositiveFactorOther({
         where: params,
         select: {
-          id: true,
           positiveFactorOther: true,
+          id: true,
         },
       });
     } catch (error) {

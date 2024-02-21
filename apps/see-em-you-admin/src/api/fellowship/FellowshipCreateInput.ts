@@ -1,13 +1,13 @@
 import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 
 export type FellowshipCreateInput = {
+  name?: string | null;
   amount?: string | null;
-  application: ApplicationWhereUniqueInput;
+  status?: string | null;
   appliedDate?: Date | null;
   awardDate?: Date | null;
-  datafileId?: number | null;
   duration?: number | null;
-  name?: string | null;
+  datafileId?: number | null;
   short?: number | null;
-  status?: string | null;
+  application: ApplicationWhereUniqueInput;
 };

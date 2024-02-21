@@ -21,22 +21,6 @@ class GroupRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  grank!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   groupId!: number;
 
   @ApiProperty({
@@ -45,7 +29,7 @@ class GroupRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  luUsersUsertypesId!: number;
+  round!: number;
 
   @ApiProperty({
     required: true,
@@ -61,7 +45,23 @@ class GroupRankMemberCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  round!: number;
+  applicationId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  luUsersUsertypesId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  grank!: number;
 }
 
 export { GroupRankMemberCreateInput as GroupRankMemberCreateInput };

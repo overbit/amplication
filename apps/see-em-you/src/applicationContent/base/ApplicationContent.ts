@@ -11,22 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsOptional, IsInt, IsString } from "class-validator";
+import { IsInt, IsString, IsOptional, IsBoolean } from "class-validator";
 import { GraphQLBigInt } from "../../util/GraphQLBigInt";
 
 @ObjectType()
 class ApplicationContent {
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  desired!: boolean | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -34,6 +23,17 @@ class ApplicationContent {
   @IsInt()
   @Field(() => GraphQLBigInt)
   id!: bigint;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  sectionIdentifier!: string | null;
 
   @ApiProperty({
     required: false,
@@ -55,18 +55,18 @@ class ApplicationContent {
   @Field(() => Boolean, {
     nullable: true,
   })
-  required!: boolean | null;
+  desired!: boolean | null;
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Boolean,
   })
-  @IsString()
+  @IsBoolean()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Boolean, {
     nullable: true,
   })
-  sectionIdentifier!: string | null;
+  required!: boolean | null;
 }
 
 export { ApplicationContent as ApplicationContent };

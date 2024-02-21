@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateParentInfoArgs } from "./CreateParentInfoArgs";
-import { UpdateParentInfoArgs } from "./UpdateParentInfoArgs";
-import { DeleteParentInfoArgs } from "./DeleteParentInfoArgs";
+import { ParentInfo } from "./ParentInfo";
 import { ParentInfoCountArgs } from "./ParentInfoCountArgs";
 import { ParentInfoFindManyArgs } from "./ParentInfoFindManyArgs";
 import { ParentInfoFindUniqueArgs } from "./ParentInfoFindUniqueArgs";
-import { ParentInfo } from "./ParentInfo";
+import { CreateParentInfoArgs } from "./CreateParentInfoArgs";
+import { UpdateParentInfoArgs } from "./UpdateParentInfoArgs";
+import { DeleteParentInfoArgs } from "./DeleteParentInfoArgs";
 import { ParentInfoService } from "../parentInfo.service";
 @graphql.Resolver(() => ParentInfo)
 export class ParentInfoResolverBase {
@@ -38,14 +38,14 @@ export class ParentInfoResolverBase {
   async parentInfos(
     @graphql.Args() args: ParentInfoFindManyArgs
   ): Promise<ParentInfo[]> {
-    return this.service.findMany(args);
+    return this.service.parentInfos(args);
   }
 
   @graphql.Query(() => ParentInfo, { nullable: true })
   async parentInfo(
     @graphql.Args() args: ParentInfoFindUniqueArgs
   ): Promise<ParentInfo | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.parentInfo(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ParentInfoResolverBase {
   async createParentInfo(
     @graphql.Args() args: CreateParentInfoArgs
   ): Promise<ParentInfo> {
-    return await this.service.create({
+    return await this.service.createParentInfo({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ParentInfoResolverBase {
     @graphql.Args() args: UpdateParentInfoArgs
   ): Promise<ParentInfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateParentInfo({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ParentInfoResolverBase {
     @graphql.Args() args: DeleteParentInfoArgs
   ): Promise<ParentInfo | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteParentInfo(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

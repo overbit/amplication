@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsOptional, IsString } from "class-validator";
 
 @InputType()
 class GroupRankUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  comment?: string | null;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -46,7 +35,7 @@ class GroupRankUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  luUsersUsertypesId?: number;
+  round?: number;
 
   @ApiProperty({
     required: false,
@@ -61,6 +50,28 @@ class GroupRankUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  luUsersUsertypesId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  comment?: string | null;
+
+  @ApiProperty({
+    required: false,
     type: String,
   })
   @IsString()
@@ -69,17 +80,6 @@ class GroupRankUpdateInput {
     nullable: true,
   })
   ranking?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  round?: number;
 }
 
 export { GroupRankUpdateInput as GroupRankUpdateInput };

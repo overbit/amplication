@@ -15,9 +15,9 @@ export const PeriodUmbrellaList = (props: ListProps): React.ReactElement => {
         <TextField label="Admission Term" source="admissionTerm" />
         <TextField label="Admission Year" source="admissionYear" />
         <TextField label="Higher Fee Date" source="higherFeeDate" />
-        <TextField label="Id" source="id" />
-        <TextField label="Last Payment Date" source="lastPaymentDate" />
         <TextField label="Umbrella Name" source="umbrellaName" />
+        <TextField label="Last Payment Date" source="lastPaymentDate" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

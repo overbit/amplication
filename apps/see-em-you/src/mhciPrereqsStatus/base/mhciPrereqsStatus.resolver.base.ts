@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsStatusArgs } from "./CreateMhciPrereqsStatusArgs";
-import { UpdateMhciPrereqsStatusArgs } from "./UpdateMhciPrereqsStatusArgs";
-import { DeleteMhciPrereqsStatusArgs } from "./DeleteMhciPrereqsStatusArgs";
+import { MhciPrereqsStatus } from "./MhciPrereqsStatus";
 import { MhciPrereqsStatusCountArgs } from "./MhciPrereqsStatusCountArgs";
 import { MhciPrereqsStatusFindManyArgs } from "./MhciPrereqsStatusFindManyArgs";
 import { MhciPrereqsStatusFindUniqueArgs } from "./MhciPrereqsStatusFindUniqueArgs";
-import { MhciPrereqsStatus } from "./MhciPrereqsStatus";
+import { CreateMhciPrereqsStatusArgs } from "./CreateMhciPrereqsStatusArgs";
+import { UpdateMhciPrereqsStatusArgs } from "./UpdateMhciPrereqsStatusArgs";
+import { DeleteMhciPrereqsStatusArgs } from "./DeleteMhciPrereqsStatusArgs";
 import { MhciPrereq } from "../../mhciPrereq/base/MhciPrereq";
 import { MhciPrereqsStatusService } from "../mhciPrereqsStatus.service";
 @graphql.Resolver(() => MhciPrereqsStatus)
@@ -39,14 +39,14 @@ export class MhciPrereqsStatusResolverBase {
   async mhciPrereqsStatuses(
     @graphql.Args() args: MhciPrereqsStatusFindManyArgs
   ): Promise<MhciPrereqsStatus[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsStatuses(args);
   }
 
   @graphql.Query(() => MhciPrereqsStatus, { nullable: true })
   async mhciPrereqsStatus(
     @graphql.Args() args: MhciPrereqsStatusFindUniqueArgs
   ): Promise<MhciPrereqsStatus | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsStatus(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class MhciPrereqsStatusResolverBase {
   async createMhciPrereqsStatus(
     @graphql.Args() args: CreateMhciPrereqsStatusArgs
   ): Promise<MhciPrereqsStatus> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsStatus({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class MhciPrereqsStatusResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsStatusArgs
   ): Promise<MhciPrereqsStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsStatus({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class MhciPrereqsStatusResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsStatusArgs
   ): Promise<MhciPrereqsStatus | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsStatus(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class MhciPrereqsStatusResolverBase {
     nullable: true,
     name: "mhciPrereqs",
   })
-  async resolveFieldMhciPrereqs(
+  async getMhciPrereqs(
     @graphql.Parent() parent: MhciPrereqsStatus
   ): Promise<MhciPrereq | null> {
     const result = await this.service.getMhciPrereqs(parent.id);

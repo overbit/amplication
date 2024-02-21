@@ -18,38 +18,38 @@ import { RiskFactorService } from "../riskFactor.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  riskFactor: "exampleRiskFactor",
   arrayIndex: 42,
   departmentId: 42,
   id: 42,
-  riskFactor: "exampleRiskFactor",
 };
 const CREATE_RESULT = {
+  riskFactor: "exampleRiskFactor",
   arrayIndex: 42,
   departmentId: 42,
   id: 42,
-  riskFactor: "exampleRiskFactor",
 };
 const FIND_MANY_RESULT = [
   {
+    riskFactor: "exampleRiskFactor",
     arrayIndex: 42,
     departmentId: 42,
     id: 42,
-    riskFactor: "exampleRiskFactor",
   },
 ];
 const FIND_ONE_RESULT = {
+  riskFactor: "exampleRiskFactor",
   arrayIndex: 42,
   departmentId: 42,
   id: 42,
-  riskFactor: "exampleRiskFactor",
 };
 
 const service = {
-  create() {
+  createRiskFactor() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  riskFactors: () => FIND_MANY_RESULT,
+  riskFactor: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

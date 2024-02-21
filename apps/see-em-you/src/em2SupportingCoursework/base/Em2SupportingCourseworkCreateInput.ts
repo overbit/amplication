@@ -32,17 +32,6 @@ class Em2SupportingCourseworkCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  dataStructuresNumber?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   dataStructuresTitle?: string | null;
 
   @ApiProperty({
@@ -54,7 +43,7 @@ class Em2SupportingCourseworkCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  makerkitsDescription?: string | null;
+  dataStructuresNumber?: string | null;
 
   @ApiProperty({
     required: false,
@@ -65,7 +54,18 @@ class Em2SupportingCourseworkCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  makerkitsDescription2?: string | null;
+  statisticsTitle?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  statisticsNumber?: string | null;
 
   @ApiProperty({
     required: false,
@@ -103,7 +103,7 @@ class Em2SupportingCourseworkCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  statisticsNumber?: string | null;
+  makerkitsDescription?: string | null;
 
   @ApiProperty({
     required: false,
@@ -114,7 +114,7 @@ class Em2SupportingCourseworkCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  statisticsTitle?: string | null;
+  makerkitsDescription2?: string | null;
 }
 
 export { Em2SupportingCourseworkCreateInput as Em2SupportingCourseworkCreateInput };

@@ -28,17 +28,6 @@ class ReviewRiskFactorOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   reviewId?: SortOrder;
 
   @ApiProperty({
@@ -51,6 +40,17 @@ class ReviewRiskFactorOrderByInput {
     nullable: true,
   })
   riskFactorId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { ReviewRiskFactorOrderByInput as ReviewRiskFactorOrderByInput };

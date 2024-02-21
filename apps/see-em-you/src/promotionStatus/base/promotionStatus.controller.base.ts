@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PromotionStatusService } from "../promotionStatus.service";
 import { PromotionStatusCreateInput } from "./PromotionStatusCreateInput";
-import { PromotionStatusWhereInput } from "./PromotionStatusWhereInput";
-import { PromotionStatusWhereUniqueInput } from "./PromotionStatusWhereUniqueInput";
-import { PromotionStatusFindManyArgs } from "./PromotionStatusFindManyArgs";
-import { PromotionStatusUpdateInput } from "./PromotionStatusUpdateInput";
 import { PromotionStatus } from "./PromotionStatus";
+import { PromotionStatusFindManyArgs } from "./PromotionStatusFindManyArgs";
+import { PromotionStatusWhereUniqueInput } from "./PromotionStatusWhereUniqueInput";
+import { PromotionStatusUpdateInput } from "./PromotionStatusUpdateInput";
 
 export class PromotionStatusControllerBase {
   constructor(protected readonly service: PromotionStatusService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PromotionStatus })
-  async create(
+  async createPromotionStatus(
     @common.Body() data: PromotionStatusCreateInput
   ): Promise<PromotionStatus> {
-    return await this.service.create({
+    return await this.service.createPromotionStatus({
       data: data,
       select: {
         applicationId: true,
         departmentId: true,
-        id: true,
         round: true,
         statusTime: true,
+        id: true,
       },
     });
   }
@@ -46,16 +45,18 @@ export class PromotionStatusControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PromotionStatus] })
   @ApiNestedQuery(PromotionStatusFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PromotionStatus[]> {
+  async promotionStatuses(
+    @common.Req() request: Request
+  ): Promise<PromotionStatus[]> {
     const args = plainToClass(PromotionStatusFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.promotionStatuses({
       ...args,
       select: {
         applicationId: true,
         departmentId: true,
-        id: true,
         round: true,
         statusTime: true,
+        id: true,
       },
     });
   }
@@ -63,17 +64,17 @@ export class PromotionStatusControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PromotionStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async promotionStatus(
     @common.Param() params: PromotionStatusWhereUniqueInput
   ): Promise<PromotionStatus | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.promotionStatus({
       where: params,
       select: {
         applicationId: true,
         departmentId: true,
-        id: true,
         round: true,
         statusTime: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -87,20 +88,20 @@ export class PromotionStatusControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PromotionStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePromotionStatus(
     @common.Param() params: PromotionStatusWhereUniqueInput,
     @common.Body() data: PromotionStatusUpdateInput
   ): Promise<PromotionStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePromotionStatus({
         where: params,
         data: data,
         select: {
           applicationId: true,
           departmentId: true,
-          id: true,
           round: true,
           statusTime: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -116,18 +117,18 @@ export class PromotionStatusControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PromotionStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePromotionStatus(
     @common.Param() params: PromotionStatusWhereUniqueInput
   ): Promise<PromotionStatus | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePromotionStatus({
         where: params,
         select: {
           applicationId: true,
           departmentId: true,
-          id: true,
           round: true,
           statusTime: true,
+          id: true,
         },
       });
     } catch (error) {

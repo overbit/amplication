@@ -39,6 +39,17 @@ class LangProfRecommendOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  recUserId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   content?: SortOrder;
 
   @ApiProperty({
@@ -61,17 +72,6 @@ class LangProfRecommendOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   langProfRecId?: SortOrder;
 
   @ApiProperty({
@@ -83,29 +83,7 @@ class LangProfRecommendOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  languageSpecialization?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  lastReminderSent?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  recUserId?: SortOrder;
+  submitted?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -127,7 +105,29 @@ class LangProfRecommendOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  submitted?: SortOrder;
+  lastReminderSent?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  languageSpecialization?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { LangProfRecommendOrderByInput as LangProfRecommendOrderByInput };

@@ -11,22 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsOptional, IsDate } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class CcTransactionReportUpdateInput {
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  lastModDate?: Date;
-
   @ApiProperty({
     required: false,
     type: Number,
@@ -37,6 +26,17 @@ class CcTransactionReportUpdateInput {
     nullable: true,
   })
   size?: number;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  lastModDate?: Date;
 }
 
 export { CcTransactionReportUpdateInput as CcTransactionReportUpdateInput };

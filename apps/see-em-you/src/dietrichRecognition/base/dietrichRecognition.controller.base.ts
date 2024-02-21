@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DietrichRecognitionService } from "../dietrichRecognition.service";
 import { DietrichRecognitionCreateInput } from "./DietrichRecognitionCreateInput";
-import { DietrichRecognitionWhereInput } from "./DietrichRecognitionWhereInput";
-import { DietrichRecognitionWhereUniqueInput } from "./DietrichRecognitionWhereUniqueInput";
-import { DietrichRecognitionFindManyArgs } from "./DietrichRecognitionFindManyArgs";
-import { DietrichRecognitionUpdateInput } from "./DietrichRecognitionUpdateInput";
 import { DietrichRecognition } from "./DietrichRecognition";
+import { DietrichRecognitionFindManyArgs } from "./DietrichRecognitionFindManyArgs";
+import { DietrichRecognitionWhereUniqueInput } from "./DietrichRecognitionWhereUniqueInput";
+import { DietrichRecognitionUpdateInput } from "./DietrichRecognitionUpdateInput";
 
 export class DietrichRecognitionControllerBase {
   constructor(protected readonly service: DietrichRecognitionService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DietrichRecognition })
-  async create(
+  async createDietrichRecognition(
     @common.Body() data: DietrichRecognitionCreateInput
   ): Promise<DietrichRecognition> {
-    return await this.service.create({
+    return await this.service.createDietrichRecognition({
       data: data,
       select: {
         applicationId: true,
@@ -44,11 +43,11 @@ export class DietrichRecognitionControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DietrichRecognition] })
   @ApiNestedQuery(DietrichRecognitionFindManyArgs)
-  async findMany(
+  async dietrichRecognitions(
     @common.Req() request: Request
   ): Promise<DietrichRecognition[]> {
     const args = plainToClass(DietrichRecognitionFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.dietrichRecognitions({
       ...args,
       select: {
         applicationId: true,
@@ -61,10 +60,10 @@ export class DietrichRecognitionControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DietrichRecognition })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async dietrichRecognition(
     @common.Param() params: DietrichRecognitionWhereUniqueInput
   ): Promise<DietrichRecognition | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.dietrichRecognition({
       where: params,
       select: {
         applicationId: true,
@@ -83,12 +82,12 @@ export class DietrichRecognitionControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DietrichRecognition })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDietrichRecognition(
     @common.Param() params: DietrichRecognitionWhereUniqueInput,
     @common.Body() data: DietrichRecognitionUpdateInput
   ): Promise<DietrichRecognition | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDietrichRecognition({
         where: params,
         data: data,
         select: {
@@ -110,11 +109,11 @@ export class DietrichRecognitionControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DietrichRecognition })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDietrichRecognition(
     @common.Param() params: DietrichRecognitionWhereUniqueInput
   ): Promise<DietrichRecognition | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDietrichRecognition({
         where: params,
         select: {
           applicationId: true,

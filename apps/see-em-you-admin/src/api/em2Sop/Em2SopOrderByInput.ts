@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type Em2SopOrderByInput = {
-  additionalInfo?: SortOrder;
   applicationId?: SortOrder;
-  background?: SortOrder;
-  id?: SortOrder;
   objective?: SortOrder;
+  background?: SortOrder;
   researchExperience?: SortOrder;
   taInterest?: SortOrder;
+  additionalInfo?: SortOrder;
+  id?: SortOrder;
 };

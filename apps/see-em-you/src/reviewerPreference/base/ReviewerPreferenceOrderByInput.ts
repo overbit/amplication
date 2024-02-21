@@ -28,7 +28,7 @@ class ReviewerPreferenceOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  viewMode?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class ReviewerPreferenceOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  viewMode?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ReviewerPreferenceOrderByInput as ReviewerPreferenceOrderByInput };

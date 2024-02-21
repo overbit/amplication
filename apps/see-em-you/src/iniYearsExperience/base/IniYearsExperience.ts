@@ -37,7 +37,7 @@ class IniYearsExperience {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  relevantIndustry!: number;
 
   @ApiProperty({
     required: true,
@@ -45,7 +45,7 @@ class IniYearsExperience {
   })
   @IsInt()
   @Field(() => Number)
-  relevantIndustry!: number;
+  id!: number;
 }
 
 export { IniYearsExperience as IniYearsExperience };

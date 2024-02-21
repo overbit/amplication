@@ -1,15 +1,15 @@
 import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 
 export type ExperienceUpdateInput = {
-  address?: string | null;
-  application?: ApplicationWhereUniqueInput;
-  company?: string | null;
   datafileId?: number | null;
-  endDate?: string | null;
   experiencetype?: number | null;
-  jobDescription?: string | null;
-  jobTitle?: string | null;
   orderEntered?: number | null;
+  company?: string | null;
   startDate?: Date | null;
+  endDate?: string | null;
   yearsExp?: string | null;
+  address?: string | null;
+  jobTitle?: string | null;
+  jobDescription?: string | null;
+  application?: ApplicationWhereUniqueInput;
 };

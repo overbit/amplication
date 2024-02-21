@@ -1,6 +1,6 @@
 export type ApplicationMergeFile = {
-  guid: string;
   id: number;
-  mergeDate: Date;
+  guid: string;
   mergeFile: string;
+  mergeDate: Date;
 };

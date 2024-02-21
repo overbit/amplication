@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { VideoEssayService } from "../videoEssay.service";
 import { VideoEssayCreateInput } from "./VideoEssayCreateInput";
-import { VideoEssayWhereInput } from "./VideoEssayWhereInput";
-import { VideoEssayWhereUniqueInput } from "./VideoEssayWhereUniqueInput";
-import { VideoEssayFindManyArgs } from "./VideoEssayFindManyArgs";
-import { VideoEssayUpdateInput } from "./VideoEssayUpdateInput";
 import { VideoEssay } from "./VideoEssay";
+import { VideoEssayFindManyArgs } from "./VideoEssayFindManyArgs";
+import { VideoEssayWhereUniqueInput } from "./VideoEssayWhereUniqueInput";
+import { VideoEssayUpdateInput } from "./VideoEssayUpdateInput";
 
 export class VideoEssayControllerBase {
   constructor(protected readonly service: VideoEssayService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: VideoEssay })
-  async create(
+  async createVideoEssay(
     @common.Body() data: VideoEssayCreateInput
   ): Promise<VideoEssay> {
-    return await this.service.create({
+    return await this.service.createVideoEssay({
       data: data,
       select: {
-        accessCode: true,
         applicationId: true,
-        id: true,
         url: true,
+        accessCode: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,15 @@ export class VideoEssayControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [VideoEssay] })
   @ApiNestedQuery(VideoEssayFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<VideoEssay[]> {
+  async videoEssays(@common.Req() request: Request): Promise<VideoEssay[]> {
     const args = plainToClass(VideoEssayFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.videoEssays({
       ...args,
       select: {
-        accessCode: true,
         applicationId: true,
-        id: true,
         url: true,
+        accessCode: true,
+        id: true,
       },
     });
   }
@@ -61,16 +60,16 @@ export class VideoEssayControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: VideoEssay })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async videoEssay(
     @common.Param() params: VideoEssayWhereUniqueInput
   ): Promise<VideoEssay | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.videoEssay({
       where: params,
       select: {
-        accessCode: true,
         applicationId: true,
-        id: true,
         url: true,
+        accessCode: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +83,19 @@ export class VideoEssayControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: VideoEssay })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateVideoEssay(
     @common.Param() params: VideoEssayWhereUniqueInput,
     @common.Body() data: VideoEssayUpdateInput
   ): Promise<VideoEssay | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVideoEssay({
         where: params,
         data: data,
         select: {
-          accessCode: true,
           applicationId: true,
-          id: true,
           url: true,
+          accessCode: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +111,17 @@ export class VideoEssayControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: VideoEssay })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteVideoEssay(
     @common.Param() params: VideoEssayWhereUniqueInput
   ): Promise<VideoEssay | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteVideoEssay({
         where: params,
         select: {
-          accessCode: true,
           applicationId: true,
-          id: true,
           url: true,
+          accessCode: true,
+          id: true,
         },
       });
     } catch (error) {

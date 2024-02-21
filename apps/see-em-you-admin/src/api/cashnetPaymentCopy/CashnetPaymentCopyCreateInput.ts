@@ -1,10 +1,10 @@
 export type CashnetPaymentCopyCreateInput = {
-  amount?: number | null;
   appId: number;
-  applicantEmail: string;
+  transactionId: number;
   applicantName: string;
+  applicantEmail: string;
   merchant: number;
   status: string;
-  transactionId: number;
   transactionType: string;
+  amount?: number | null;
 };

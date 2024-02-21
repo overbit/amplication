@@ -29,22 +29,6 @@ class DepartmentEnableRecycling {
   })
   @IsInt()
   @Field(() => Number)
-  enableRecycling!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   periodId!: number;
 
   @ApiProperty({
@@ -53,7 +37,23 @@ class DepartmentEnableRecycling {
   })
   @IsInt()
   @Field(() => Number)
+  enableRecycling!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   usersId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { DepartmentEnableRecycling as DepartmentEnableRecycling };

@@ -18,50 +18,50 @@ import { SlateOrgsAllService } from "../slateOrgsAll.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  localName: "exampleLocalName",
+  sharedName: "exampleSharedName",
+  slateOrgsAllId: "exampleSlateOrgsAllId",
+  name: "exampleName",
   awId: "exampleAwId",
   awName: "exampleAwName",
   id: "exampleId",
-  localName: "exampleLocalName",
-  name: "exampleName",
-  sharedName: "exampleSharedName",
-  slateOrgsAllId: "exampleSlateOrgsAllId",
 };
 const CREATE_RESULT = {
+  localName: "exampleLocalName",
+  sharedName: "exampleSharedName",
+  slateOrgsAllId: "exampleSlateOrgsAllId",
+  name: "exampleName",
   awId: "exampleAwId",
   awName: "exampleAwName",
   id: "exampleId",
-  localName: "exampleLocalName",
-  name: "exampleName",
-  sharedName: "exampleSharedName",
-  slateOrgsAllId: "exampleSlateOrgsAllId",
 };
 const FIND_MANY_RESULT = [
   {
+    localName: "exampleLocalName",
+    sharedName: "exampleSharedName",
+    slateOrgsAllId: "exampleSlateOrgsAllId",
+    name: "exampleName",
     awId: "exampleAwId",
     awName: "exampleAwName",
     id: "exampleId",
-    localName: "exampleLocalName",
-    name: "exampleName",
-    sharedName: "exampleSharedName",
-    slateOrgsAllId: "exampleSlateOrgsAllId",
   },
 ];
 const FIND_ONE_RESULT = {
+  localName: "exampleLocalName",
+  sharedName: "exampleSharedName",
+  slateOrgsAllId: "exampleSlateOrgsAllId",
+  name: "exampleName",
   awId: "exampleAwId",
   awName: "exampleAwName",
   id: "exampleId",
-  localName: "exampleLocalName",
-  name: "exampleName",
-  sharedName: "exampleSharedName",
-  slateOrgsAllId: "exampleSlateOrgsAllId",
 };
 
 const service = {
-  create() {
+  createSlateOrgsAll() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slateOrgsAlls: () => FIND_MANY_RESULT,
+  slateOrgsAll: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

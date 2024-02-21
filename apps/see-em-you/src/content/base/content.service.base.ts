@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Content } from "@prisma/client";
+import { Prisma, Content as PrismaContent } from "@prisma/client";
 
 export class ContentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ContentServiceBase {
     return this.prisma.content.count(args);
   }
 
-  async findMany<T extends Prisma.ContentFindManyArgs>(
+  async contents<T extends Prisma.ContentFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentFindManyArgs>
-  ): Promise<Content[]> {
+  ): Promise<PrismaContent[]> {
     return this.prisma.content.findMany(args);
   }
-  async findOne<T extends Prisma.ContentFindUniqueArgs>(
+  async content<T extends Prisma.ContentFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentFindUniqueArgs>
-  ): Promise<Content | null> {
+  ): Promise<PrismaContent | null> {
     return this.prisma.content.findUnique(args);
   }
-  async create<T extends Prisma.ContentCreateArgs>(
+  async createContent<T extends Prisma.ContentCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentCreateArgs>
-  ): Promise<Content> {
+  ): Promise<PrismaContent> {
     return this.prisma.content.create<T>(args);
   }
-  async update<T extends Prisma.ContentUpdateArgs>(
+  async updateContent<T extends Prisma.ContentUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentUpdateArgs>
-  ): Promise<Content> {
+  ): Promise<PrismaContent> {
     return this.prisma.content.update<T>(args);
   }
-  async delete<T extends Prisma.ContentDeleteArgs>(
+  async deleteContent<T extends Prisma.ContentDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ContentDeleteArgs>
-  ): Promise<Content> {
+  ): Promise<PrismaContent> {
     return this.prisma.content.delete(args);
   }
 }

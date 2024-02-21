@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DepartmentUnitService } from "../departmentUnit.service";
 import { DepartmentUnitCreateInput } from "./DepartmentUnitCreateInput";
-import { DepartmentUnitWhereInput } from "./DepartmentUnitWhereInput";
-import { DepartmentUnitWhereUniqueInput } from "./DepartmentUnitWhereUniqueInput";
-import { DepartmentUnitFindManyArgs } from "./DepartmentUnitFindManyArgs";
-import { DepartmentUnitUpdateInput } from "./DepartmentUnitUpdateInput";
 import { DepartmentUnit } from "./DepartmentUnit";
+import { DepartmentUnitFindManyArgs } from "./DepartmentUnitFindManyArgs";
+import { DepartmentUnitWhereUniqueInput } from "./DepartmentUnitWhereUniqueInput";
+import { DepartmentUnitUpdateInput } from "./DepartmentUnitUpdateInput";
 
 export class DepartmentUnitControllerBase {
   constructor(protected readonly service: DepartmentUnitService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DepartmentUnit })
-  async create(
+  async createDepartmentUnit(
     @common.Body() data: DepartmentUnitCreateInput
   ): Promise<DepartmentUnit> {
-    return await this.service.create({
+    return await this.service.createDepartmentUnit({
       data: data,
       select: {
         departmentId: true,
-        id: true,
         unitId: true,
+        id: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class DepartmentUnitControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DepartmentUnit] })
   @ApiNestedQuery(DepartmentUnitFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DepartmentUnit[]> {
+  async departmentUnits(
+    @common.Req() request: Request
+  ): Promise<DepartmentUnit[]> {
     const args = plainToClass(DepartmentUnitFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.departmentUnits({
       ...args,
       select: {
         departmentId: true,
-        id: true,
         unitId: true,
+        id: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class DepartmentUnitControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DepartmentUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async departmentUnit(
     @common.Param() params: DepartmentUnitWhereUniqueInput
   ): Promise<DepartmentUnit | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.departmentUnit({
       where: params,
       select: {
         departmentId: true,
-        id: true,
         unitId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class DepartmentUnitControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DepartmentUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDepartmentUnit(
     @common.Param() params: DepartmentUnitWhereUniqueInput,
     @common.Body() data: DepartmentUnitUpdateInput
   ): Promise<DepartmentUnit | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDepartmentUnit({
         where: params,
         data: data,
         select: {
           departmentId: true,
-          id: true,
           unitId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class DepartmentUnitControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DepartmentUnit })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDepartmentUnit(
     @common.Param() params: DepartmentUnitWhereUniqueInput
   ): Promise<DepartmentUnit | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDepartmentUnit({
         where: params,
         select: {
           departmentId: true,
-          id: true,
           unitId: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -12,9 +12,9 @@ export const CommitteeList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="User Id" source="userId" />
         <TextField label="Group Id" source="groupId" />
         <TextField label="Id" source="id" />
-        <TextField label="User Id" source="userId" />
       </Datagrid>
     </List>
   );

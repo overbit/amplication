@@ -20,10 +20,10 @@ export const PaymentVoucherList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Datafileinfo Id" source="datafileinfoId" />
-        <TextField label="Id" source="id" />
         <ReferenceField label="Payment" source="payment.id" reference="Payment">
           <TextField source={PAYMENT_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

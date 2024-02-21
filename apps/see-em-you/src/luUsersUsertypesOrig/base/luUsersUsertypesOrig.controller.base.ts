@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { LuUsersUsertypesOrigService } from "../luUsersUsertypesOrig.service";
 import { LuUsersUsertypesOrigCreateInput } from "./LuUsersUsertypesOrigCreateInput";
-import { LuUsersUsertypesOrigWhereInput } from "./LuUsersUsertypesOrigWhereInput";
-import { LuUsersUsertypesOrigWhereUniqueInput } from "./LuUsersUsertypesOrigWhereUniqueInput";
-import { LuUsersUsertypesOrigFindManyArgs } from "./LuUsersUsertypesOrigFindManyArgs";
-import { LuUsersUsertypesOrigUpdateInput } from "./LuUsersUsertypesOrigUpdateInput";
 import { LuUsersUsertypesOrig } from "./LuUsersUsertypesOrig";
+import { LuUsersUsertypesOrigFindManyArgs } from "./LuUsersUsertypesOrigFindManyArgs";
+import { LuUsersUsertypesOrigWhereUniqueInput } from "./LuUsersUsertypesOrigWhereUniqueInput";
+import { LuUsersUsertypesOrigUpdateInput } from "./LuUsersUsertypesOrigUpdateInput";
 
 export class LuUsersUsertypesOrigControllerBase {
   constructor(protected readonly service: LuUsersUsertypesOrigService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LuUsersUsertypesOrig })
-  async create(
+  async createLuUsersUsertypesOrig(
     @common.Body() data: LuUsersUsertypesOrigCreateInput
   ): Promise<LuUsersUsertypesOrig> {
-    return await this.service.create({
+    return await this.service.createLuUsersUsertypesOrig({
       data: data,
       select: {
-        domain: true,
-        id: true,
         userId: true,
         usertypeId: true,
+        domain: true,
+        id: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class LuUsersUsertypesOrigControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [LuUsersUsertypesOrig] })
   @ApiNestedQuery(LuUsersUsertypesOrigFindManyArgs)
-  async findMany(
+  async luUsersUsertypesOrigs(
     @common.Req() request: Request
   ): Promise<LuUsersUsertypesOrig[]> {
     const args = plainToClass(LuUsersUsertypesOrigFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.luUsersUsertypesOrigs({
       ...args,
       select: {
-        domain: true,
-        id: true,
         userId: true,
         usertypeId: true,
+        domain: true,
+        id: true,
       },
     });
   }
@@ -63,16 +62,16 @@ export class LuUsersUsertypesOrigControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertypesOrig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async luUsersUsertypesOrig(
     @common.Param() params: LuUsersUsertypesOrigWhereUniqueInput
   ): Promise<LuUsersUsertypesOrig | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.luUsersUsertypesOrig({
       where: params,
       select: {
-        domain: true,
-        id: true,
         userId: true,
         usertypeId: true,
+        domain: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -86,19 +85,19 @@ export class LuUsersUsertypesOrigControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertypesOrig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateLuUsersUsertypesOrig(
     @common.Param() params: LuUsersUsertypesOrigWhereUniqueInput,
     @common.Body() data: LuUsersUsertypesOrigUpdateInput
   ): Promise<LuUsersUsertypesOrig | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuUsersUsertypesOrig({
         where: params,
         data: data,
         select: {
-          domain: true,
-          id: true,
           userId: true,
           usertypeId: true,
+          domain: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -114,17 +113,17 @@ export class LuUsersUsertypesOrigControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: LuUsersUsertypesOrig })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteLuUsersUsertypesOrig(
     @common.Param() params: LuUsersUsertypesOrigWhereUniqueInput
   ): Promise<LuUsersUsertypesOrig | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteLuUsersUsertypesOrig({
         where: params,
         select: {
-          domain: true,
-          id: true,
           userId: true,
           usertypeId: true,
+          domain: true,
+          id: true,
         },
       });
     } catch (error) {

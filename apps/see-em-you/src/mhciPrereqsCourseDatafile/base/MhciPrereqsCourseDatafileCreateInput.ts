@@ -14,9 +14,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
   IsOptional,
-  ValidateNested,
-  IsBoolean,
   IsString,
+  IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { MhciPrereqsCourseWhereUniqueInput } from "../../mhciPrereqsCourse/base/MhciPrereqsCourseWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -33,23 +33,6 @@ class MhciPrereqsCourseDatafileCreateInput {
     nullable: true,
   })
   datafileinfoId?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: () => MhciPrereqsCourseWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereqsCourseWhereUniqueInput)
-  @Field(() => MhciPrereqsCourseWhereUniqueInput)
-  mhciPrereqsCourses!: MhciPrereqsCourseWhereUniqueInput;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  newFileUploaded!: boolean;
 
   @ApiProperty({
     required: false,
@@ -69,6 +52,23 @@ class MhciPrereqsCourseDatafileCreateInput {
   @IsBoolean()
   @Field(() => Boolean)
   submittedToReviewer!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  newFileUploaded!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: () => MhciPrereqsCourseWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => MhciPrereqsCourseWhereUniqueInput)
+  @Field(() => MhciPrereqsCourseWhereUniqueInput)
+  mhciPrereqsCourses!: MhciPrereqsCourseWhereUniqueInput;
 }
 
 export { MhciPrereqsCourseDatafileCreateInput as MhciPrereqsCourseDatafileCreateInput };

@@ -8,9 +8,9 @@ export const MseBridgeCourseDecisionShow = (
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
+        <TextField label="Program Id" source="programId" />
         <TextField label="Course Id" source="courseId" />
         <TextField label="Id" source="id" />
-        <TextField label="Program Id" source="programId" />
       </SimpleShowLayout>
     </Show>
   );

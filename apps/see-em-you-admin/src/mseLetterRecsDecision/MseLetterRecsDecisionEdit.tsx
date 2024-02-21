@@ -7,12 +7,12 @@ export const MseLetterRecsDecisionEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Algorithms" source="algorithms" />
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Data Structures" source="dataStructures" />
-        <NumberInput step={1} label="Discrete" source="discrete" />
-        <NumberInput step={1} label="Java" source="java" />
         <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Java" source="java" />
+        <NumberInput step={1} label="Discrete" source="discrete" />
+        <NumberInput step={1} label="Algorithms" source="algorithms" />
+        <NumberInput step={1} label="Data Structures" source="dataStructures" />
       </SimpleForm>
     </Edit>
   );

@@ -11,13 +11,29 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsDate, IsNumber, IsEnum } from "class-validator";
-import { Type } from "class-transformer";
+import { IsInt, IsNumber, IsDate, IsEnum } from "class-validator";
 import { Decimal } from "decimal.js";
+import { Type } from "class-transformer";
 import { EnumPaymentAuditPaymentStatus } from "./EnumPaymentAuditPaymentStatus";
 
 @ObjectType()
 class PaymentAudit {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  paymentId!: number;
+
   @ApiProperty({
     required: true,
     type: Number,
@@ -32,23 +48,7 @@ class PaymentAudit {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  lastModTime!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  lastModUserId!: number;
+  paymentType!: number;
 
   @ApiProperty({
     required: true,
@@ -57,14 +57,6 @@ class PaymentAudit {
   @IsNumber()
   @Field(() => Float)
   paymentAmount!: Decimal;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  paymentId!: number;
 
   @ApiProperty({
     required: true,
@@ -86,11 +78,19 @@ class PaymentAudit {
 
   @ApiProperty({
     required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  lastModTime!: Date;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  paymentType!: number;
+  lastModUserId!: number;
 
   @ApiProperty({
     required: true,

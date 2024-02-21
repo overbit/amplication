@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCcTransactionArgs } from "./CreateCcTransactionArgs";
-import { UpdateCcTransactionArgs } from "./UpdateCcTransactionArgs";
-import { DeleteCcTransactionArgs } from "./DeleteCcTransactionArgs";
+import { CcTransaction } from "./CcTransaction";
 import { CcTransactionCountArgs } from "./CcTransactionCountArgs";
 import { CcTransactionFindManyArgs } from "./CcTransactionFindManyArgs";
 import { CcTransactionFindUniqueArgs } from "./CcTransactionFindUniqueArgs";
-import { CcTransaction } from "./CcTransaction";
+import { CreateCcTransactionArgs } from "./CreateCcTransactionArgs";
+import { UpdateCcTransactionArgs } from "./UpdateCcTransactionArgs";
+import { DeleteCcTransactionArgs } from "./DeleteCcTransactionArgs";
 import { CcTransactionService } from "../ccTransaction.service";
 @graphql.Resolver(() => CcTransaction)
 export class CcTransactionResolverBase {
@@ -38,14 +38,14 @@ export class CcTransactionResolverBase {
   async ccTransactions(
     @graphql.Args() args: CcTransactionFindManyArgs
   ): Promise<CcTransaction[]> {
-    return this.service.findMany(args);
+    return this.service.ccTransactions(args);
   }
 
   @graphql.Query(() => CcTransaction, { nullable: true })
   async ccTransaction(
     @graphql.Args() args: CcTransactionFindUniqueArgs
   ): Promise<CcTransaction | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.ccTransaction(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class CcTransactionResolverBase {
   async createCcTransaction(
     @graphql.Args() args: CreateCcTransactionArgs
   ): Promise<CcTransaction> {
-    return await this.service.create({
+    return await this.service.createCcTransaction({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class CcTransactionResolverBase {
     @graphql.Args() args: UpdateCcTransactionArgs
   ): Promise<CcTransaction | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcTransaction({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class CcTransactionResolverBase {
     @graphql.Args() args: DeleteCcTransactionArgs
   ): Promise<CcTransaction | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCcTransaction(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

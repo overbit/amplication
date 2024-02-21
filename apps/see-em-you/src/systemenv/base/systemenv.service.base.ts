@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Systemenv } from "@prisma/client";
+import { Prisma, Systemenv as PrismaSystemenv } from "@prisma/client";
 
 export class SystemenvServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SystemenvServiceBase {
     return this.prisma.systemenv.count(args);
   }
 
-  async findMany<T extends Prisma.SystemenvFindManyArgs>(
+  async systemenvs<T extends Prisma.SystemenvFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SystemenvFindManyArgs>
-  ): Promise<Systemenv[]> {
+  ): Promise<PrismaSystemenv[]> {
     return this.prisma.systemenv.findMany(args);
   }
-  async findOne<T extends Prisma.SystemenvFindUniqueArgs>(
+  async systemenv<T extends Prisma.SystemenvFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SystemenvFindUniqueArgs>
-  ): Promise<Systemenv | null> {
+  ): Promise<PrismaSystemenv | null> {
     return this.prisma.systemenv.findUnique(args);
   }
-  async create<T extends Prisma.SystemenvCreateArgs>(
+  async createSystemenv<T extends Prisma.SystemenvCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SystemenvCreateArgs>
-  ): Promise<Systemenv> {
+  ): Promise<PrismaSystemenv> {
     return this.prisma.systemenv.create<T>(args);
   }
-  async update<T extends Prisma.SystemenvUpdateArgs>(
+  async updateSystemenv<T extends Prisma.SystemenvUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SystemenvUpdateArgs>
-  ): Promise<Systemenv> {
+  ): Promise<PrismaSystemenv> {
     return this.prisma.systemenv.update<T>(args);
   }
-  async delete<T extends Prisma.SystemenvDeleteArgs>(
+  async deleteSystemenv<T extends Prisma.SystemenvDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SystemenvDeleteArgs>
-  ): Promise<Systemenv> {
+  ): Promise<PrismaSystemenv> {
     return this.prisma.systemenv.delete(args);
   }
 }

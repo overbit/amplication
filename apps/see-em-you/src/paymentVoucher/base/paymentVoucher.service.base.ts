@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PaymentVoucher, Payment } from "@prisma/client";
+import {
+  Prisma,
+  PaymentVoucher as PrismaPaymentVoucher,
+  Payment as PrismaPayment,
+} from "@prisma/client";
 
 export class PaymentVoucherServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class PaymentVoucherServiceBase {
     return this.prisma.paymentVoucher.count(args);
   }
 
-  async findMany<T extends Prisma.PaymentVoucherFindManyArgs>(
+  async paymentVouchers<T extends Prisma.PaymentVoucherFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentVoucherFindManyArgs>
-  ): Promise<PaymentVoucher[]> {
+  ): Promise<PrismaPaymentVoucher[]> {
     return this.prisma.paymentVoucher.findMany(args);
   }
-  async findOne<T extends Prisma.PaymentVoucherFindUniqueArgs>(
+  async paymentVoucher<T extends Prisma.PaymentVoucherFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentVoucherFindUniqueArgs>
-  ): Promise<PaymentVoucher | null> {
+  ): Promise<PrismaPaymentVoucher | null> {
     return this.prisma.paymentVoucher.findUnique(args);
   }
-  async create<T extends Prisma.PaymentVoucherCreateArgs>(
+  async createPaymentVoucher<T extends Prisma.PaymentVoucherCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentVoucherCreateArgs>
-  ): Promise<PaymentVoucher> {
+  ): Promise<PrismaPaymentVoucher> {
     return this.prisma.paymentVoucher.create<T>(args);
   }
-  async update<T extends Prisma.PaymentVoucherUpdateArgs>(
+  async updatePaymentVoucher<T extends Prisma.PaymentVoucherUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentVoucherUpdateArgs>
-  ): Promise<PaymentVoucher> {
+  ): Promise<PrismaPaymentVoucher> {
     return this.prisma.paymentVoucher.update<T>(args);
   }
-  async delete<T extends Prisma.PaymentVoucherDeleteArgs>(
+  async deletePaymentVoucher<T extends Prisma.PaymentVoucherDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentVoucherDeleteArgs>
-  ): Promise<PaymentVoucher> {
+  ): Promise<PrismaPaymentVoucher> {
     return this.prisma.paymentVoucher.delete(args);
   }
 
-  async getPayment(parentId: number): Promise<Payment | null> {
+  async getPayment(parentId: number): Promise<PrismaPayment | null> {
     return this.prisma.paymentVoucher
       .findUnique({
         where: { id: parentId },

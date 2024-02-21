@@ -11,18 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt } from "class-validator";
+import { IsInt, IsString } from "class-validator";
 
 @ObjectType()
 class ReviewRiskFactor {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -38,6 +30,14 @@ class ReviewRiskFactor {
   @IsInt()
   @Field(() => Number)
   riskFactorId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { ReviewRiskFactor as ReviewRiskFactor };

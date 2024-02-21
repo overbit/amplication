@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, RissFunding, Application } from "@prisma/client";
+import {
+  Prisma,
+  RissFunding as PrismaRissFunding,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class RissFundingServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class RissFundingServiceBase {
     return this.prisma.rissFunding.count(args);
   }
 
-  async findMany<T extends Prisma.RissFundingFindManyArgs>(
+  async rissFundings<T extends Prisma.RissFundingFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissFundingFindManyArgs>
-  ): Promise<RissFunding[]> {
+  ): Promise<PrismaRissFunding[]> {
     return this.prisma.rissFunding.findMany(args);
   }
-  async findOne<T extends Prisma.RissFundingFindUniqueArgs>(
+  async rissFunding<T extends Prisma.RissFundingFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissFundingFindUniqueArgs>
-  ): Promise<RissFunding | null> {
+  ): Promise<PrismaRissFunding | null> {
     return this.prisma.rissFunding.findUnique(args);
   }
-  async create<T extends Prisma.RissFundingCreateArgs>(
+  async createRissFunding<T extends Prisma.RissFundingCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissFundingCreateArgs>
-  ): Promise<RissFunding> {
+  ): Promise<PrismaRissFunding> {
     return this.prisma.rissFunding.create<T>(args);
   }
-  async update<T extends Prisma.RissFundingUpdateArgs>(
+  async updateRissFunding<T extends Prisma.RissFundingUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissFundingUpdateArgs>
-  ): Promise<RissFunding> {
+  ): Promise<PrismaRissFunding> {
     return this.prisma.rissFunding.update<T>(args);
   }
-  async delete<T extends Prisma.RissFundingDeleteArgs>(
+  async deleteRissFunding<T extends Prisma.RissFundingDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RissFundingDeleteArgs>
-  ): Promise<RissFunding> {
+  ): Promise<PrismaRissFunding> {
     return this.prisma.rissFunding.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.rissFunding
       .findUnique({
         where: { id: parentId },

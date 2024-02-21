@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePromotionHistoryCopyArgs } from "./CreatePromotionHistoryCopyArgs";
-import { UpdatePromotionHistoryCopyArgs } from "./UpdatePromotionHistoryCopyArgs";
-import { DeletePromotionHistoryCopyArgs } from "./DeletePromotionHistoryCopyArgs";
+import { PromotionHistoryCopy } from "./PromotionHistoryCopy";
 import { PromotionHistoryCopyCountArgs } from "./PromotionHistoryCopyCountArgs";
 import { PromotionHistoryCopyFindManyArgs } from "./PromotionHistoryCopyFindManyArgs";
 import { PromotionHistoryCopyFindUniqueArgs } from "./PromotionHistoryCopyFindUniqueArgs";
-import { PromotionHistoryCopy } from "./PromotionHistoryCopy";
+import { CreatePromotionHistoryCopyArgs } from "./CreatePromotionHistoryCopyArgs";
+import { UpdatePromotionHistoryCopyArgs } from "./UpdatePromotionHistoryCopyArgs";
+import { DeletePromotionHistoryCopyArgs } from "./DeletePromotionHistoryCopyArgs";
 import { PromotionHistoryCopyService } from "../promotionHistoryCopy.service";
 @graphql.Resolver(() => PromotionHistoryCopy)
 export class PromotionHistoryCopyResolverBase {
@@ -38,14 +38,14 @@ export class PromotionHistoryCopyResolverBase {
   async promotionHistoryCopies(
     @graphql.Args() args: PromotionHistoryCopyFindManyArgs
   ): Promise<PromotionHistoryCopy[]> {
-    return this.service.findMany(args);
+    return this.service.promotionHistoryCopies(args);
   }
 
   @graphql.Query(() => PromotionHistoryCopy, { nullable: true })
   async promotionHistoryCopy(
     @graphql.Args() args: PromotionHistoryCopyFindUniqueArgs
   ): Promise<PromotionHistoryCopy | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.promotionHistoryCopy(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PromotionHistoryCopyResolverBase {
   async createPromotionHistoryCopy(
     @graphql.Args() args: CreatePromotionHistoryCopyArgs
   ): Promise<PromotionHistoryCopy> {
-    return await this.service.create({
+    return await this.service.createPromotionHistoryCopy({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PromotionHistoryCopyResolverBase {
     @graphql.Args() args: UpdatePromotionHistoryCopyArgs
   ): Promise<PromotionHistoryCopy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePromotionHistoryCopy({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PromotionHistoryCopyResolverBase {
     @graphql.Args() args: DeletePromotionHistoryCopyArgs
   ): Promise<PromotionHistoryCopy | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePromotionHistoryCopy(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

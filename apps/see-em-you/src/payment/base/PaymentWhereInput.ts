@@ -15,6 +15,7 @@ import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationW
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { PaymentVoucherWhereUniqueInput } from "../../paymentVoucher/base/PaymentVoucherWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class PaymentWhereInput {
@@ -41,6 +42,17 @@ class PaymentWhereInput {
     nullable: true,
   })
   paymentVoucher?: PaymentVoucherWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { PaymentWhereInput as PaymentWhereInput };

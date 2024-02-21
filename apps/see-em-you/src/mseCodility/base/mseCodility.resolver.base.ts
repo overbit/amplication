@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMseCodilityArgs } from "./CreateMseCodilityArgs";
-import { UpdateMseCodilityArgs } from "./UpdateMseCodilityArgs";
-import { DeleteMseCodilityArgs } from "./DeleteMseCodilityArgs";
+import { MseCodility } from "./MseCodility";
 import { MseCodilityCountArgs } from "./MseCodilityCountArgs";
 import { MseCodilityFindManyArgs } from "./MseCodilityFindManyArgs";
 import { MseCodilityFindUniqueArgs } from "./MseCodilityFindUniqueArgs";
-import { MseCodility } from "./MseCodility";
+import { CreateMseCodilityArgs } from "./CreateMseCodilityArgs";
+import { UpdateMseCodilityArgs } from "./UpdateMseCodilityArgs";
+import { DeleteMseCodilityArgs } from "./DeleteMseCodilityArgs";
 import { Application } from "../../application/base/Application";
 import { MseCodilityService } from "../mseCodility.service";
 @graphql.Resolver(() => MseCodility)
@@ -39,14 +39,14 @@ export class MseCodilityResolverBase {
   async mseCodilities(
     @graphql.Args() args: MseCodilityFindManyArgs
   ): Promise<MseCodility[]> {
-    return this.service.findMany(args);
+    return this.service.mseCodilities(args);
   }
 
   @graphql.Query(() => MseCodility, { nullable: true })
   async mseCodility(
     @graphql.Args() args: MseCodilityFindUniqueArgs
   ): Promise<MseCodility | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mseCodility(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class MseCodilityResolverBase {
   async createMseCodility(
     @graphql.Args() args: CreateMseCodilityArgs
   ): Promise<MseCodility> {
-    return await this.service.create({
+    return await this.service.createMseCodility({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class MseCodilityResolverBase {
     @graphql.Args() args: UpdateMseCodilityArgs
   ): Promise<MseCodility | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseCodility({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class MseCodilityResolverBase {
     @graphql.Args() args: DeleteMseCodilityArgs
   ): Promise<MseCodility | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMseCodility(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class MseCodilityResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: MseCodility
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

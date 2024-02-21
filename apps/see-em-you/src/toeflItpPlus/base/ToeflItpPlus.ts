@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsDate, IsString } from "class-validator";
+import { IsInt, IsDate, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -26,22 +26,14 @@ class ToeflItpPlus {
 
   @ApiProperty({
     required: false,
-    type: Number,
   })
-  @IsInt()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => Date, {
     nullable: true,
   })
-  datafileId!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  testdate!: Date | null;
 
   @ApiProperty({
     required: false,
@@ -63,17 +55,6 @@ class ToeflItpPlus {
   @Field(() => Number, {
     nullable: true,
   })
-  overallscore!: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   readingscore!: number | null;
 
   @ApiProperty({
@@ -85,29 +66,18 @@ class ToeflItpPlus {
   @Field(() => Number, {
     nullable: true,
   })
-  scorereceived!: number | null;
+  writingscore!: number | null;
 
   @ApiProperty({
     required: false,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsInt()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => Number, {
     nullable: true,
   })
-  testdate!: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  testEmail!: string | null;
+  overallscore!: number | null;
 
   @ApiProperty({
     required: false,
@@ -129,7 +99,37 @@ class ToeflItpPlus {
   @Field(() => Number, {
     nullable: true,
   })
-  writingscore!: number | null;
+  scorereceived!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  datafileId!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  testEmail!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { ToeflItpPlus as ToeflItpPlus };

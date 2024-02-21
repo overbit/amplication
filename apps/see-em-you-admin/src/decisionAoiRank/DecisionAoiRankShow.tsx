@@ -11,14 +11,14 @@ export const DecisionAoiRankShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Decision" source="decision" />
         <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Interest Id" source="interestId" />
-        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
         <TextField label="Period Id" source="periodId" />
-        <TextField label="Ranking" source="ranking" />
+        <TextField label="Interest Id" source="interestId" />
+        <TextField label="Decision" source="decision" />
         <DateField source="timestamp" label="Timestamp" />
+        <TextField label="Lu Users Usertypes Id" source="luUsersUsertypesId" />
+        <TextField label="Ranking" source="ranking" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

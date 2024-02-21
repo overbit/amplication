@@ -6,9 +6,9 @@ export const StateShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Abbrev" source="abbrev" />
+        <TextField label="Name" source="name" />
         <TextField label="Country Id" source="countryId" />
         <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
       </SimpleShowLayout>
     </Show>
   );

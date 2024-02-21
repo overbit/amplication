@@ -21,7 +21,7 @@ class LuDegreesApplicationreq {
   })
   @IsInt()
   @Field(() => Number)
-  appreqId!: number;
+  degreeId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class LuDegreesApplicationreq {
   })
   @IsInt()
   @Field(() => Number)
-  degreeId!: number;
+  appreqId!: number;
 
   @ApiProperty({
     required: true,

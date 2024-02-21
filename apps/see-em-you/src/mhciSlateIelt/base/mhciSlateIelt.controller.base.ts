@@ -18,32 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MhciSlateIeltService } from "../mhciSlateIelt.service";
 import { MhciSlateIeltCreateInput } from "./MhciSlateIeltCreateInput";
-import { MhciSlateIeltWhereInput } from "./MhciSlateIeltWhereInput";
-import { MhciSlateIeltWhereUniqueInput } from "./MhciSlateIeltWhereUniqueInput";
-import { MhciSlateIeltFindManyArgs } from "./MhciSlateIeltFindManyArgs";
-import { MhciSlateIeltUpdateInput } from "./MhciSlateIeltUpdateInput";
 import { MhciSlateIelt } from "./MhciSlateIelt";
+import { MhciSlateIeltFindManyArgs } from "./MhciSlateIeltFindManyArgs";
+import { MhciSlateIeltWhereUniqueInput } from "./MhciSlateIeltWhereUniqueInput";
+import { MhciSlateIeltUpdateInput } from "./MhciSlateIeltUpdateInput";
 
 export class MhciSlateIeltControllerBase {
   constructor(protected readonly service: MhciSlateIeltService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MhciSlateIelt })
-  async create(
+  async createMhciSlateIelt(
     @common.Body() data: MhciSlateIeltCreateInput
   ): Promise<MhciSlateIelt> {
-    return await this.service.create({
+    return await this.service.createMhciSlateIelt({
       data: data,
       select: {
-        first: true,
-        id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
+        id: true,
       },
     });
   }
@@ -51,21 +50,23 @@ export class MhciSlateIeltControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MhciSlateIelt] })
   @ApiNestedQuery(MhciSlateIeltFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MhciSlateIelt[]> {
+  async mhciSlateIelts(
+    @common.Req() request: Request
+  ): Promise<MhciSlateIelt[]> {
     const args = plainToClass(MhciSlateIeltFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mhciSlateIelts({
       ...args,
       select: {
-        first: true,
-        id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
+        id: true,
       },
     });
   }
@@ -73,22 +74,22 @@ export class MhciSlateIeltControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mhciSlateIelt(
     @common.Param() params: MhciSlateIeltWhereUniqueInput
   ): Promise<MhciSlateIelt | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mhciSlateIelt({
       where: params,
       select: {
-        first: true,
-        id: true,
-        ieltsListening: true,
-        ieltsOverallBandScore: true,
-        ieltsReading: true,
-        ieltsSpeaking: true,
-        ieltsWriting: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        ieltsOverallBandScore: true,
+        ieltsListening: true,
+        ieltsReading: true,
+        ieltsWriting: true,
+        ieltsSpeaking: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -102,25 +103,25 @@ export class MhciSlateIeltControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMhciSlateIelt(
     @common.Param() params: MhciSlateIeltWhereUniqueInput,
     @common.Body() data: MhciSlateIeltUpdateInput
   ): Promise<MhciSlateIelt | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciSlateIelt({
         where: params,
         data: data,
         select: {
-          first: true,
-          id: true,
-          ieltsListening: true,
-          ieltsOverallBandScore: true,
-          ieltsReading: true,
-          ieltsSpeaking: true,
-          ieltsWriting: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          ieltsOverallBandScore: true,
+          ieltsListening: true,
+          ieltsReading: true,
+          ieltsWriting: true,
+          ieltsSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -136,23 +137,23 @@ export class MhciSlateIeltControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MhciSlateIelt })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMhciSlateIelt(
     @common.Param() params: MhciSlateIeltWhereUniqueInput
   ): Promise<MhciSlateIelt | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMhciSlateIelt({
         where: params,
         select: {
-          first: true,
-          id: true,
-          ieltsListening: true,
-          ieltsOverallBandScore: true,
-          ieltsReading: true,
-          ieltsSpeaking: true,
-          ieltsWriting: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          ieltsOverallBandScore: true,
+          ieltsListening: true,
+          ieltsReading: true,
+          ieltsWriting: true,
+          ieltsSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {

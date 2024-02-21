@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateDepartmentArgs } from "./CreateDepartmentArgs";
-import { UpdateDepartmentArgs } from "./UpdateDepartmentArgs";
-import { DeleteDepartmentArgs } from "./DeleteDepartmentArgs";
+import { Department } from "./Department";
 import { DepartmentCountArgs } from "./DepartmentCountArgs";
 import { DepartmentFindManyArgs } from "./DepartmentFindManyArgs";
 import { DepartmentFindUniqueArgs } from "./DepartmentFindUniqueArgs";
-import { Department } from "./Department";
+import { CreateDepartmentArgs } from "./CreateDepartmentArgs";
+import { UpdateDepartmentArgs } from "./UpdateDepartmentArgs";
+import { DeleteDepartmentArgs } from "./DeleteDepartmentArgs";
 import { AaDepartmentFindManyArgs } from "../../aaDepartment/base/AaDepartmentFindManyArgs";
 import { AaDepartment } from "../../aaDepartment/base/AaDepartment";
 import { DepartmentService } from "../department.service";
@@ -40,14 +40,14 @@ export class DepartmentResolverBase {
   async departments(
     @graphql.Args() args: DepartmentFindManyArgs
   ): Promise<Department[]> {
-    return this.service.findMany(args);
+    return this.service.departments(args);
   }
 
   @graphql.Query(() => Department, { nullable: true })
   async department(
     @graphql.Args() args: DepartmentFindUniqueArgs
   ): Promise<Department | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.department(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class DepartmentResolverBase {
   async createDepartment(
     @graphql.Args() args: CreateDepartmentArgs
   ): Promise<Department> {
-    return await this.service.create({
+    return await this.service.createDepartment({
       ...args,
       data: args.data,
     });
@@ -69,7 +69,7 @@ export class DepartmentResolverBase {
     @graphql.Args() args: UpdateDepartmentArgs
   ): Promise<Department | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDepartment({
         ...args,
         data: args.data,
       });
@@ -88,7 +88,7 @@ export class DepartmentResolverBase {
     @graphql.Args() args: DeleteDepartmentArgs
   ): Promise<Department | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteDepartment(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -100,7 +100,7 @@ export class DepartmentResolverBase {
   }
 
   @graphql.ResolveField(() => [AaDepartment], { name: "aaDepartment" })
-  async resolveFieldAaDepartment(
+  async findAaDepartment(
     @graphql.Parent() parent: Department,
     @graphql.Args() args: AaDepartmentFindManyArgs
   ): Promise<AaDepartment[]> {

@@ -18,42 +18,42 @@ import { EtsConfigService } from "../etsConfig.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
-  login: "exampleLogin",
-  password: "examplePassword",
   testName: "exampleTestName",
   wsdl: "exampleWsdl",
+  login: "exampleLogin",
+  password: "examplePassword",
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
-  login: "exampleLogin",
-  password: "examplePassword",
   testName: "exampleTestName",
   wsdl: "exampleWsdl",
+  login: "exampleLogin",
+  password: "examplePassword",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
-    login: "exampleLogin",
-    password: "examplePassword",
     testName: "exampleTestName",
     wsdl: "exampleWsdl",
+    login: "exampleLogin",
+    password: "examplePassword",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
-  login: "exampleLogin",
-  password: "examplePassword",
   testName: "exampleTestName",
   wsdl: "exampleWsdl",
+  login: "exampleLogin",
+  password: "examplePassword",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createEtsConfig() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  etsConfigs: () => FIND_MANY_RESULT,
+  etsConfig: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

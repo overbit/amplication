@@ -28,17 +28,6 @@ class SearchTextTestUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  applicationText?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -47,6 +36,17 @@ class SearchTextTestUpdateInput {
     nullable: true,
   })
   guid?: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  applicationText?: string | null;
 }
 
 export { SearchTextTestUpdateInput as SearchTextTestUpdateInput };

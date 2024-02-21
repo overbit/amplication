@@ -12,14 +12,14 @@ export const ContentList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Name" source="name" />
         <TextField label="Content" source="content" />
         <TextField label="Contenttype Id" source="contenttypeId" />
-        <TextField label="Department Id" source="departmentId" />
         <TextField label="Domain Id" source="domainId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Modifiedby" source="modifiedby" />
         <TextField label="Modifieddate" source="modifieddate" />
-        <TextField label="Name" source="name" />
+        <TextField label="Modifiedby" source="modifiedby" />
+        <TextField label="Department Id" source="departmentId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

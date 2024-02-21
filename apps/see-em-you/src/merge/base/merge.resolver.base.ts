@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMergeArgs } from "./CreateMergeArgs";
-import { UpdateMergeArgs } from "./UpdateMergeArgs";
-import { DeleteMergeArgs } from "./DeleteMergeArgs";
+import { Merge } from "./Merge";
 import { MergeCountArgs } from "./MergeCountArgs";
 import { MergeFindManyArgs } from "./MergeFindManyArgs";
 import { MergeFindUniqueArgs } from "./MergeFindUniqueArgs";
-import { Merge } from "./Merge";
+import { CreateMergeArgs } from "./CreateMergeArgs";
+import { UpdateMergeArgs } from "./UpdateMergeArgs";
+import { DeleteMergeArgs } from "./DeleteMergeArgs";
 import { MergeService } from "../merge.service";
 @graphql.Resolver(() => Merge)
 export class MergeResolverBase {
@@ -36,14 +36,14 @@ export class MergeResolverBase {
 
   @graphql.Query(() => [Merge])
   async merges(@graphql.Args() args: MergeFindManyArgs): Promise<Merge[]> {
-    return this.service.findMany(args);
+    return this.service.merges(args);
   }
 
   @graphql.Query(() => Merge, { nullable: true })
   async merge(
     @graphql.Args() args: MergeFindUniqueArgs
   ): Promise<Merge | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.merge(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class MergeResolverBase {
 
   @graphql.Mutation(() => Merge)
   async createMerge(@graphql.Args() args: CreateMergeArgs): Promise<Merge> {
-    return await this.service.create({
+    return await this.service.createMerge({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class MergeResolverBase {
     @graphql.Args() args: UpdateMergeArgs
   ): Promise<Merge | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMerge({
         ...args,
         data: args.data,
       });
@@ -82,7 +82,7 @@ export class MergeResolverBase {
     @graphql.Args() args: DeleteMergeArgs
   ): Promise<Merge | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMerge(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

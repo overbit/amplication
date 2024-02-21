@@ -18,46 +18,46 @@ import { StudentDecisionHistoryService } from "../studentDecisionHistory.service
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  programId: 42,
   decision: "exampleDecision",
   deferralSemester: "exampleDeferralSemester",
   deferralYear: "exampleDeferralYear",
-  id: 42,
   insertDate: new Date(),
-  programId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
+  programId: 42,
   decision: "exampleDecision",
   deferralSemester: "exampleDeferralSemester",
   deferralYear: "exampleDeferralYear",
-  id: 42,
   insertDate: new Date(),
-  programId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    programId: 42,
     decision: "exampleDecision",
     deferralSemester: "exampleDeferralSemester",
     deferralYear: "exampleDeferralYear",
-    id: 42,
     insertDate: new Date(),
-    programId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  programId: 42,
   decision: "exampleDecision",
   deferralSemester: "exampleDeferralSemester",
   deferralYear: "exampleDeferralYear",
-  id: 42,
   insertDate: new Date(),
-  programId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createStudentDecisionHistory() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  studentDecisionHistories: () => FIND_MANY_RESULT,
+  studentDecisionHistory: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -7,12 +7,12 @@ export const ApplicantIpedsRaceEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Ipeds Race Id" source="ipedsRaceId" />
         <NumberInput
           step={1}
           label="Lu Users Usertypes Id"
           source="luUsersUsertypesId"
         />
+        <NumberInput step={1} label="Ipeds Race Id" source="ipedsRaceId" />
       </SimpleForm>
     </Edit>
   );

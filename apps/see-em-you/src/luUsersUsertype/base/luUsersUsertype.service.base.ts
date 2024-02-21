@@ -13,13 +13,13 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  LuUsersUsertype,
-  MhciPrereqsConversationComment,
-  MhciPrereqsCourse,
-  MhciPrereqsDesignPortfolio,
-  MhciPrereqsProgrammingTest,
-  MhciPrereqsProgrammingSample,
-  User,
+  LuUsersUsertype as PrismaLuUsersUsertype,
+  MhciPrereqsConversationComment as PrismaMhciPrereqsConversationComment,
+  MhciPrereqsCourse as PrismaMhciPrereqsCourse,
+  MhciPrereqsDesignPortfolio as PrismaMhciPrereqsDesignPortfolio,
+  MhciPrereqsProgrammingTest as PrismaMhciPrereqsProgrammingTest,
+  User as PrismaUser,
+  MhciPrereqsProgrammingSample as PrismaMhciPrereqsProgrammingSample,
 } from "@prisma/client";
 
 export class LuUsersUsertypeServiceBase {
@@ -31,36 +31,36 @@ export class LuUsersUsertypeServiceBase {
     return this.prisma.luUsersUsertype.count(args);
   }
 
-  async findMany<T extends Prisma.LuUsersUsertypeFindManyArgs>(
+  async luUsersUsertypes<T extends Prisma.LuUsersUsertypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypeFindManyArgs>
-  ): Promise<LuUsersUsertype[]> {
+  ): Promise<PrismaLuUsersUsertype[]> {
     return this.prisma.luUsersUsertype.findMany(args);
   }
-  async findOne<T extends Prisma.LuUsersUsertypeFindUniqueArgs>(
+  async luUsersUsertype<T extends Prisma.LuUsersUsertypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypeFindUniqueArgs>
-  ): Promise<LuUsersUsertype | null> {
+  ): Promise<PrismaLuUsersUsertype | null> {
     return this.prisma.luUsersUsertype.findUnique(args);
   }
-  async create<T extends Prisma.LuUsersUsertypeCreateArgs>(
+  async createLuUsersUsertype<T extends Prisma.LuUsersUsertypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypeCreateArgs>
-  ): Promise<LuUsersUsertype> {
+  ): Promise<PrismaLuUsersUsertype> {
     return this.prisma.luUsersUsertype.create<T>(args);
   }
-  async update<T extends Prisma.LuUsersUsertypeUpdateArgs>(
+  async updateLuUsersUsertype<T extends Prisma.LuUsersUsertypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypeUpdateArgs>
-  ): Promise<LuUsersUsertype> {
+  ): Promise<PrismaLuUsersUsertype> {
     return this.prisma.luUsersUsertype.update<T>(args);
   }
-  async delete<T extends Prisma.LuUsersUsertypeDeleteArgs>(
+  async deleteLuUsersUsertype<T extends Prisma.LuUsersUsertypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.LuUsersUsertypeDeleteArgs>
-  ): Promise<LuUsersUsertype> {
+  ): Promise<PrismaLuUsersUsertype> {
     return this.prisma.luUsersUsertype.delete(args);
   }
 
   async findMhciPrereqsConversationComments(
     parentId: number,
     args: Prisma.MhciPrereqsConversationCommentFindManyArgs
-  ): Promise<MhciPrereqsConversationComment[]> {
+  ): Promise<PrismaMhciPrereqsConversationComment[]> {
     return this.prisma.luUsersUsertype
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -71,7 +71,7 @@ export class LuUsersUsertypeServiceBase {
   async findMhciPrereqsCourses(
     parentId: number,
     args: Prisma.MhciPrereqsCourseFindManyArgs
-  ): Promise<MhciPrereqsCourse[]> {
+  ): Promise<PrismaMhciPrereqsCourse[]> {
     return this.prisma.luUsersUsertype
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -82,7 +82,7 @@ export class LuUsersUsertypeServiceBase {
   async findMhciPrereqsDesignPortfolios(
     parentId: number,
     args: Prisma.MhciPrereqsDesignPortfolioFindManyArgs
-  ): Promise<MhciPrereqsDesignPortfolio[]> {
+  ): Promise<PrismaMhciPrereqsDesignPortfolio[]> {
     return this.prisma.luUsersUsertype
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -93,7 +93,7 @@ export class LuUsersUsertypeServiceBase {
   async findMhciPrereqsProgrammingTests(
     parentId: number,
     args: Prisma.MhciPrereqsProgrammingTestFindManyArgs
-  ): Promise<MhciPrereqsProgrammingTest[]> {
+  ): Promise<PrismaMhciPrereqsProgrammingTest[]> {
     return this.prisma.luUsersUsertype
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -101,21 +101,21 @@ export class LuUsersUsertypeServiceBase {
       .mhciPrereqsProgrammingTests(args);
   }
 
-  async getMhciPrereqsProgrammingSamples(
-    parentId: number
-  ): Promise<MhciPrereqsProgrammingSample | null> {
-    return this.prisma.luUsersUsertype
-      .findUnique({
-        where: { id: parentId },
-      })
-      .mhciPrereqsProgrammingSamples();
-  }
-
-  async getUsers(parentId: number): Promise<User | null> {
+  async getUsers(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.luUsersUsertype
       .findUnique({
         where: { id: parentId },
       })
       .users();
+  }
+
+  async getMhciPrereqsProgrammingSamples(
+    parentId: number
+  ): Promise<PrismaMhciPrereqsProgrammingSample | null> {
+    return this.prisma.luUsersUsertype
+      .findUnique({
+        where: { id: parentId },
+      })
+      .mhciPrereqsProgrammingSamples();
   }
 }

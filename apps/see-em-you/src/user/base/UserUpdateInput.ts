@@ -11,31 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationAdminNoteUpdateManyWithoutUsersInput } from "./ApplicationAdminNoteUpdateManyWithoutUsersInput";
 import {
-  ValidateNested,
-  IsOptional,
   IsString,
+  IsOptional,
   IsDate,
   IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { ApplicationAdminNoteUpdateManyWithoutUsersInput } from "./ApplicationAdminNoteUpdateManyWithoutUsersInput";
 import { LuUsersUsertypeUpdateManyWithoutUsersInput } from "./LuUsersUsertypeUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: () => ApplicationAdminNoteUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationAdminNoteUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => ApplicationAdminNoteUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  applicationAdminNote?: ApplicationAdminNoteUpdateManyWithoutUsersInput;
-
   @ApiProperty({
     required: false,
     type: String,
@@ -46,6 +34,17 @@ class UserUpdateInput {
     nullable: true,
   })
   email?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  title?: string | null;
 
   @ApiProperty({
     required: false,
@@ -67,29 +66,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  firstNamePref?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  guid?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  initials?: string | null;
+  middlename?: string | null;
 
   @ApiProperty({
     required: false,
@@ -101,40 +78,6 @@ class UserUpdateInput {
     nullable: true,
   })
   lastname?: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => LuUsersUsertypeUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertypeUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => LuUsersUsertypeUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  luUsersUsertypes?: LuUsersUsertypeUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  middlename?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  signupDate?: Date;
 
   @ApiProperty({
     required: false,
@@ -156,7 +99,18 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  title?: string | null;
+  initials?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  signupDate?: Date;
 
   @ApiProperty({
     required: false,
@@ -168,6 +122,52 @@ class UserUpdateInput {
     nullable: true,
   })
   verified?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  guid?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  firstNamePref?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationAdminNoteUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationAdminNoteUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => ApplicationAdminNoteUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  applicationAdminNote?: ApplicationAdminNoteUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => LuUsersUsertypeUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertypeUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => LuUsersUsertypeUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  luUsersUsertypes?: LuUsersUsertypeUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };

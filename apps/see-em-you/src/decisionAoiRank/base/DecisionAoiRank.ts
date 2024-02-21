@@ -11,19 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt, IsOptional, IsDate } from "class-validator";
+import { IsInt, IsString, IsDate, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class DecisionAoiRank {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  decision!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -34,11 +26,11 @@ class DecisionAoiRank {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: Number,
   })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
 
   @ApiProperty({
     required: true,
@@ -50,11 +42,19 @@ class DecisionAoiRank {
 
   @ApiProperty({
     required: true,
-    type: Number,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  luUsersUsertypesId!: number;
+  @IsString()
+  @Field(() => String)
+  decision!: string;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  timestamp!: Date;
 
   @ApiProperty({
     required: true,
@@ -62,7 +62,7 @@ class DecisionAoiRank {
   })
   @IsInt()
   @Field(() => Number)
-  periodId!: number;
+  luUsersUsertypesId!: number;
 
   @ApiProperty({
     required: false,
@@ -77,11 +77,11 @@ class DecisionAoiRank {
 
   @ApiProperty({
     required: true,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  timestamp!: Date;
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { DecisionAoiRank as DecisionAoiRank };

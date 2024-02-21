@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Highschool } from "@prisma/client";
+import { Prisma, Highschool as PrismaHighschool } from "@prisma/client";
 
 export class HighschoolServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class HighschoolServiceBase {
     return this.prisma.highschool.count(args);
   }
 
-  async findMany<T extends Prisma.HighschoolFindManyArgs>(
+  async highschools<T extends Prisma.HighschoolFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.HighschoolFindManyArgs>
-  ): Promise<Highschool[]> {
+  ): Promise<PrismaHighschool[]> {
     return this.prisma.highschool.findMany(args);
   }
-  async findOne<T extends Prisma.HighschoolFindUniqueArgs>(
+  async highschool<T extends Prisma.HighschoolFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.HighschoolFindUniqueArgs>
-  ): Promise<Highschool | null> {
+  ): Promise<PrismaHighschool | null> {
     return this.prisma.highschool.findUnique(args);
   }
-  async create<T extends Prisma.HighschoolCreateArgs>(
+  async createHighschool<T extends Prisma.HighschoolCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.HighschoolCreateArgs>
-  ): Promise<Highschool> {
+  ): Promise<PrismaHighschool> {
     return this.prisma.highschool.create<T>(args);
   }
-  async update<T extends Prisma.HighschoolUpdateArgs>(
+  async updateHighschool<T extends Prisma.HighschoolUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.HighschoolUpdateArgs>
-  ): Promise<Highschool> {
+  ): Promise<PrismaHighschool> {
     return this.prisma.highschool.update<T>(args);
   }
-  async delete<T extends Prisma.HighschoolDeleteArgs>(
+  async deleteHighschool<T extends Prisma.HighschoolDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.HighschoolDeleteArgs>
-  ): Promise<Highschool> {
+  ): Promise<PrismaHighschool> {
     return this.prisma.highschool.delete(args);
   }
 }

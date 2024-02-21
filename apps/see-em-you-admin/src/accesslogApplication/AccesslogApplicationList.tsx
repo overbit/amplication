@@ -14,8 +14,8 @@ export const AccesslogApplicationList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Active" source="active" />
         <TextField label="App Id" source="appId" />
+        <TextField label="Active" source="active" />
         <TextField label="Id" source="id" />
       </Datagrid>
     </List>

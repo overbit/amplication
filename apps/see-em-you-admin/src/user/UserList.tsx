@@ -19,17 +19,17 @@ export const UserList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Email" source="email" />
-        <TextField label="Firstname" source="firstname" />
-        <TextField label="First Name Pref" source="firstNamePref" />
-        <TextField label="Guid" source="guid" />
-        <TextField label="Id" source="id" />
-        <TextField label="Initials" source="initials" />
-        <TextField label="Lastname" source="lastname" />
-        <TextField label="Middlename" source="middlename" />
-        <TextField label="Signup Date" source="signupDate" />
-        <TextField label="Suffix" source="suffix" />
         <TextField label="Title" source="title" />
+        <TextField label="Firstname" source="firstname" />
+        <TextField label="Middlename" source="middlename" />
+        <TextField label="Lastname" source="lastname" />
+        <TextField label="Suffix" source="suffix" />
+        <TextField label="Initials" source="initials" />
+        <TextField label="Signup Date" source="signupDate" />
         <BooleanField label="Verified" source="verified" />
+        <TextField label="Guid" source="guid" />
+        <TextField label="First Name Pref" source="firstNamePref" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

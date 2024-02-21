@@ -11,35 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
-import { ValidateNested, IsBoolean, IsInt, IsDate } from "class-validator";
+import { IsInt, IsDate, IsBoolean, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
+import { Application } from "../../application/base/Application";
 
 @ObjectType()
 class LuApplicationAppreq {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  completed!: boolean;
-
   @ApiProperty({
     required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  reqId!: number;
 
   @ApiProperty({
     required: true,
@@ -51,11 +35,27 @@ class LuApplicationAppreq {
 
   @ApiProperty({
     required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  completed!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  reqId!: number;
+  id!: number;
 }
 
 export { LuApplicationAppreq as LuApplicationAppreq };

@@ -28,7 +28,18 @@ class LuProgramsRecommendationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  programId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  recommendationtypeId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,18 +61,7 @@ class LuProgramsRecommendationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  programId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  recommendationtypeId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { LuProgramsRecommendationOrderByInput as LuProgramsRecommendationOrderByInput };

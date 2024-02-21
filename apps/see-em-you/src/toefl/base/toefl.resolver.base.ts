@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateToeflArgs } from "./CreateToeflArgs";
-import { UpdateToeflArgs } from "./UpdateToeflArgs";
-import { DeleteToeflArgs } from "./DeleteToeflArgs";
+import { Toefl } from "./Toefl";
 import { ToeflCountArgs } from "./ToeflCountArgs";
 import { ToeflFindManyArgs } from "./ToeflFindManyArgs";
 import { ToeflFindUniqueArgs } from "./ToeflFindUniqueArgs";
-import { Toefl } from "./Toefl";
+import { CreateToeflArgs } from "./CreateToeflArgs";
+import { UpdateToeflArgs } from "./UpdateToeflArgs";
+import { DeleteToeflArgs } from "./DeleteToeflArgs";
 import { ToeflService } from "../toefl.service";
 @graphql.Resolver(() => Toefl)
 export class ToeflResolverBase {
@@ -36,14 +36,14 @@ export class ToeflResolverBase {
 
   @graphql.Query(() => [Toefl])
   async toefls(@graphql.Args() args: ToeflFindManyArgs): Promise<Toefl[]> {
-    return this.service.findMany(args);
+    return this.service.toefls(args);
   }
 
   @graphql.Query(() => Toefl, { nullable: true })
   async toefl(
     @graphql.Args() args: ToeflFindUniqueArgs
   ): Promise<Toefl | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.toefl(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class ToeflResolverBase {
 
   @graphql.Mutation(() => Toefl)
   async createToefl(@graphql.Args() args: CreateToeflArgs): Promise<Toefl> {
-    return await this.service.create({
+    return await this.service.createToefl({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class ToeflResolverBase {
     @graphql.Args() args: UpdateToeflArgs
   ): Promise<Toefl | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateToefl({
         ...args,
         data: args.data,
       });
@@ -82,7 +82,7 @@ export class ToeflResolverBase {
     @graphql.Args() args: DeleteToeflArgs
   ): Promise<Toefl | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteToefl(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

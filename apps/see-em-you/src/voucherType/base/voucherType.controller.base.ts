@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { VoucherTypeService } from "../voucherType.service";
 import { VoucherTypeCreateInput } from "./VoucherTypeCreateInput";
-import { VoucherTypeWhereInput } from "./VoucherTypeWhereInput";
-import { VoucherTypeWhereUniqueInput } from "./VoucherTypeWhereUniqueInput";
-import { VoucherTypeFindManyArgs } from "./VoucherTypeFindManyArgs";
-import { VoucherTypeUpdateInput } from "./VoucherTypeUpdateInput";
 import { VoucherType } from "./VoucherType";
+import { VoucherTypeFindManyArgs } from "./VoucherTypeFindManyArgs";
+import { VoucherTypeWhereUniqueInput } from "./VoucherTypeWhereUniqueInput";
+import { VoucherTypeUpdateInput } from "./VoucherTypeUpdateInput";
 
 export class VoucherTypeControllerBase {
   constructor(protected readonly service: VoucherTypeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: VoucherType })
-  async create(
+  async createVoucherType(
     @common.Body() data: VoucherTypeCreateInput
   ): Promise<VoucherType> {
-    return await this.service.create({
+    return await this.service.createVoucherType({
       data: data,
       select: {
         description: true,
-        id: true,
         prefix: true,
+        id: true,
       },
     });
   }
@@ -44,14 +43,14 @@ export class VoucherTypeControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [VoucherType] })
   @ApiNestedQuery(VoucherTypeFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<VoucherType[]> {
+  async voucherTypes(@common.Req() request: Request): Promise<VoucherType[]> {
     const args = plainToClass(VoucherTypeFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.voucherTypes({
       ...args,
       select: {
         description: true,
-        id: true,
         prefix: true,
+        id: true,
       },
     });
   }
@@ -59,15 +58,15 @@ export class VoucherTypeControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: VoucherType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async voucherType(
     @common.Param() params: VoucherTypeWhereUniqueInput
   ): Promise<VoucherType | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.voucherType({
       where: params,
       select: {
         description: true,
-        id: true,
         prefix: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,18 +80,18 @@ export class VoucherTypeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: VoucherType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateVoucherType(
     @common.Param() params: VoucherTypeWhereUniqueInput,
     @common.Body() data: VoucherTypeUpdateInput
   ): Promise<VoucherType | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVoucherType({
         where: params,
         data: data,
         select: {
           description: true,
-          id: true,
           prefix: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -108,16 +107,16 @@ export class VoucherTypeControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: VoucherType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteVoucherType(
     @common.Param() params: VoucherTypeWhereUniqueInput
   ): Promise<VoucherType | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteVoucherType({
         where: params,
         select: {
           description: true,
-          id: true,
           prefix: true,
+          id: true,
         },
       });
     } catch (error) {

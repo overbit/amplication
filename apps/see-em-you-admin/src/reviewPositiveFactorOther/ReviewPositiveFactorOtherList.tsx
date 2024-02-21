@@ -14,8 +14,8 @@ export const ReviewPositiveFactorOtherList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Positive Factor Other" source="positiveFactorOther" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

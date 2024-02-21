@@ -11,42 +11,30 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 import {
-  ValidateNested,
-  IsOptional,
-  IsInt,
-  IsNumber,
   IsDate,
+  IsOptional,
+  IsNumber,
+  IsInt,
   IsString,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { Decimal } from "decimal.js";
+import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
 
 @InputType()
 class IeltsscoreUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => ApplicationWhereUniqueInput,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => ApplicationWhereUniqueInput, {
+  @Field(() => Date, {
     nullable: true,
   })
-  application?: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  datafileId?: number | null;
+  testdate?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -68,7 +56,7 @@ class IeltsscoreUpdateInput {
   @Field(() => Float, {
     nullable: true,
   })
-  overallscore?: Decimal | null;
+  readingscore?: Decimal | null;
 
   @ApiProperty({
     required: false,
@@ -79,7 +67,29 @@ class IeltsscoreUpdateInput {
   @Field(() => Float, {
     nullable: true,
   })
-  readingscore?: Decimal | null;
+  writingscore?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  speakingscore?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  overallscore?: Decimal | null;
 
   @ApiProperty({
     required: false,
@@ -96,23 +106,12 @@ class IeltsscoreUpdateInput {
     required: false,
     type: Number,
   })
-  @IsNumber()
+  @IsInt()
   @IsOptional()
-  @Field(() => Float, {
+  @Field(() => Number, {
     nullable: true,
   })
-  speakingscore?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  testdate?: Date | null;
+  datafileId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -127,14 +126,15 @@ class IeltsscoreUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsNumber()
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
   @IsOptional()
-  @Field(() => Float, {
+  @Field(() => ApplicationWhereUniqueInput, {
     nullable: true,
   })
-  writingscore?: Decimal | null;
+  application?: ApplicationWhereUniqueInput;
 }
 
 export { IeltsscoreUpdateInput as IeltsscoreUpdateInput };

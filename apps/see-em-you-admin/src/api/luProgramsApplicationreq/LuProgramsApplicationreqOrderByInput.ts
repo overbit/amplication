@@ -1,8 +1,8 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type LuProgramsApplicationreqOrderByInput = {
-  appreqId?: SortOrder;
   degreeId?: SortOrder;
-  id?: SortOrder;
+  appreqId?: SortOrder;
   programId?: SortOrder;
+  id?: SortOrder;
 };

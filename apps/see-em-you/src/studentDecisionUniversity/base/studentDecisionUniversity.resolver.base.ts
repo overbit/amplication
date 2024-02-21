@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateStudentDecisionUniversityArgs } from "./CreateStudentDecisionUniversityArgs";
-import { UpdateStudentDecisionUniversityArgs } from "./UpdateStudentDecisionUniversityArgs";
-import { DeleteStudentDecisionUniversityArgs } from "./DeleteStudentDecisionUniversityArgs";
+import { StudentDecisionUniversity } from "./StudentDecisionUniversity";
 import { StudentDecisionUniversityCountArgs } from "./StudentDecisionUniversityCountArgs";
 import { StudentDecisionUniversityFindManyArgs } from "./StudentDecisionUniversityFindManyArgs";
 import { StudentDecisionUniversityFindUniqueArgs } from "./StudentDecisionUniversityFindUniqueArgs";
-import { StudentDecisionUniversity } from "./StudentDecisionUniversity";
+import { CreateStudentDecisionUniversityArgs } from "./CreateStudentDecisionUniversityArgs";
+import { UpdateStudentDecisionUniversityArgs } from "./UpdateStudentDecisionUniversityArgs";
+import { DeleteStudentDecisionUniversityArgs } from "./DeleteStudentDecisionUniversityArgs";
 import { StudentDecisionUniversityService } from "../studentDecisionUniversity.service";
 @graphql.Resolver(() => StudentDecisionUniversity)
 export class StudentDecisionUniversityResolverBase {
@@ -38,14 +38,14 @@ export class StudentDecisionUniversityResolverBase {
   async studentDecisionUniversities(
     @graphql.Args() args: StudentDecisionUniversityFindManyArgs
   ): Promise<StudentDecisionUniversity[]> {
-    return this.service.findMany(args);
+    return this.service.studentDecisionUniversities(args);
   }
 
   @graphql.Query(() => StudentDecisionUniversity, { nullable: true })
   async studentDecisionUniversity(
     @graphql.Args() args: StudentDecisionUniversityFindUniqueArgs
   ): Promise<StudentDecisionUniversity | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.studentDecisionUniversity(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class StudentDecisionUniversityResolverBase {
   async createStudentDecisionUniversity(
     @graphql.Args() args: CreateStudentDecisionUniversityArgs
   ): Promise<StudentDecisionUniversity> {
-    return await this.service.create({
+    return await this.service.createStudentDecisionUniversity({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class StudentDecisionUniversityResolverBase {
     @graphql.Args() args: UpdateStudentDecisionUniversityArgs
   ): Promise<StudentDecisionUniversity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateStudentDecisionUniversity({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class StudentDecisionUniversityResolverBase {
     @graphql.Args() args: DeleteStudentDecisionUniversityArgs
   ): Promise<StudentDecisionUniversity | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteStudentDecisionUniversity(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

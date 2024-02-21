@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PhoneScreenService } from "../phoneScreen.service";
 import { PhoneScreenCreateInput } from "./PhoneScreenCreateInput";
-import { PhoneScreenWhereInput } from "./PhoneScreenWhereInput";
-import { PhoneScreenWhereUniqueInput } from "./PhoneScreenWhereUniqueInput";
-import { PhoneScreenFindManyArgs } from "./PhoneScreenFindManyArgs";
-import { PhoneScreenUpdateInput } from "./PhoneScreenUpdateInput";
 import { PhoneScreen } from "./PhoneScreen";
+import { PhoneScreenFindManyArgs } from "./PhoneScreenFindManyArgs";
+import { PhoneScreenWhereUniqueInput } from "./PhoneScreenWhereUniqueInput";
+import { PhoneScreenUpdateInput } from "./PhoneScreenUpdateInput";
 
 export class PhoneScreenControllerBase {
   constructor(protected readonly service: PhoneScreenService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PhoneScreen })
-  async create(
+  async createPhoneScreen(
     @common.Body() data: PhoneScreenCreateInput
   ): Promise<PhoneScreen> {
-    return await this.service.create({
+    return await this.service.createPhoneScreen({
       data: data,
       select: {
         applicationId: true,
-        id: true,
-        languageScreen: true,
         reviewerId: true,
         technicalScreen: true,
+        languageScreen: true,
+        id: true,
       },
     });
   }
@@ -46,16 +45,16 @@ export class PhoneScreenControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PhoneScreen] })
   @ApiNestedQuery(PhoneScreenFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PhoneScreen[]> {
+  async phoneScreens(@common.Req() request: Request): Promise<PhoneScreen[]> {
     const args = plainToClass(PhoneScreenFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.phoneScreens({
       ...args,
       select: {
         applicationId: true,
-        id: true,
-        languageScreen: true,
         reviewerId: true,
         technicalScreen: true,
+        languageScreen: true,
+        id: true,
       },
     });
   }
@@ -63,17 +62,17 @@ export class PhoneScreenControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PhoneScreen })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async phoneScreen(
     @common.Param() params: PhoneScreenWhereUniqueInput
   ): Promise<PhoneScreen | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.phoneScreen({
       where: params,
       select: {
         applicationId: true,
-        id: true,
-        languageScreen: true,
         reviewerId: true,
         technicalScreen: true,
+        languageScreen: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -87,20 +86,20 @@ export class PhoneScreenControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PhoneScreen })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePhoneScreen(
     @common.Param() params: PhoneScreenWhereUniqueInput,
     @common.Body() data: PhoneScreenUpdateInput
   ): Promise<PhoneScreen | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePhoneScreen({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          id: true,
-          languageScreen: true,
           reviewerId: true,
           technicalScreen: true,
+          languageScreen: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -116,18 +115,18 @@ export class PhoneScreenControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PhoneScreen })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePhoneScreen(
     @common.Param() params: PhoneScreenWhereUniqueInput
   ): Promise<PhoneScreen | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePhoneScreen({
         where: params,
         select: {
           applicationId: true,
-          id: true,
-          languageScreen: true,
           reviewerId: true,
           technicalScreen: true,
+          languageScreen: true,
+          id: true,
         },
       });
     } catch (error) {

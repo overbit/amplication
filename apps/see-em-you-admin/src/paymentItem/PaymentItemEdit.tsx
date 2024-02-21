@@ -13,9 +13,9 @@ export const PaymentItemEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Payment Item Id" source="paymentItemId" />
         <NumberInput step={1} label="Payment Id" source="paymentId" />
         <NumberInput label="Payment Item Amount" source="paymentItemAmount" />
-        <NumberInput step={1} label="Payment Item Id" source="paymentItemId" />
         <ReferenceInput
           source="programs.id"
           reference="ProgramModel"

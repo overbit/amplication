@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateVoucherApplicationErrorArgs } from "./CreateVoucherApplicationErrorArgs";
-import { UpdateVoucherApplicationErrorArgs } from "./UpdateVoucherApplicationErrorArgs";
-import { DeleteVoucherApplicationErrorArgs } from "./DeleteVoucherApplicationErrorArgs";
+import { VoucherApplicationError } from "./VoucherApplicationError";
 import { VoucherApplicationErrorCountArgs } from "./VoucherApplicationErrorCountArgs";
 import { VoucherApplicationErrorFindManyArgs } from "./VoucherApplicationErrorFindManyArgs";
 import { VoucherApplicationErrorFindUniqueArgs } from "./VoucherApplicationErrorFindUniqueArgs";
-import { VoucherApplicationError } from "./VoucherApplicationError";
+import { CreateVoucherApplicationErrorArgs } from "./CreateVoucherApplicationErrorArgs";
+import { UpdateVoucherApplicationErrorArgs } from "./UpdateVoucherApplicationErrorArgs";
+import { DeleteVoucherApplicationErrorArgs } from "./DeleteVoucherApplicationErrorArgs";
 import { VoucherApplicationErrorService } from "../voucherApplicationError.service";
 @graphql.Resolver(() => VoucherApplicationError)
 export class VoucherApplicationErrorResolverBase {
@@ -38,14 +38,14 @@ export class VoucherApplicationErrorResolverBase {
   async voucherApplicationErrors(
     @graphql.Args() args: VoucherApplicationErrorFindManyArgs
   ): Promise<VoucherApplicationError[]> {
-    return this.service.findMany(args);
+    return this.service.voucherApplicationErrors(args);
   }
 
   @graphql.Query(() => VoucherApplicationError, { nullable: true })
   async voucherApplicationError(
     @graphql.Args() args: VoucherApplicationErrorFindUniqueArgs
   ): Promise<VoucherApplicationError | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.voucherApplicationError(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class VoucherApplicationErrorResolverBase {
   async createVoucherApplicationError(
     @graphql.Args() args: CreateVoucherApplicationErrorArgs
   ): Promise<VoucherApplicationError> {
-    return await this.service.create({
+    return await this.service.createVoucherApplicationError({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class VoucherApplicationErrorResolverBase {
     @graphql.Args() args: UpdateVoucherApplicationErrorArgs
   ): Promise<VoucherApplicationError | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVoucherApplicationError({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class VoucherApplicationErrorResolverBase {
     @graphql.Args() args: DeleteVoucherApplicationErrorArgs
   ): Promise<VoucherApplicationError | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteVoucherApplicationError(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -18,35 +18,12 @@ import { Type } from "class-transformer";
 @InputType()
 class MseCodilityCreateInput {
   @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  academicDegree?: string | null;
-
-  @ApiProperty({
     required: true,
-    type: () => ApplicationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  closeDate?: string | null;
+  @Field(() => String)
+  testSessionId!: string;
 
   @ApiProperty({
     required: true,
@@ -54,7 +31,23 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  createDate!: string;
+  test!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  lastName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  nick!: string;
 
   @ApiProperty({
     required: true,
@@ -73,7 +66,92 @@ class MseCodilityCreateInput {
   @Field(() => String, {
     nullable: true,
   })
+  phone?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  lastSchoolAttended?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   fieldOfStudy?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  academicDegree?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  programmingExperience?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  profileUrl?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  createDate!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  startDate?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  closeDate?: string | null;
 
   @ApiProperty({
     required: true,
@@ -89,18 +167,7 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  lastName!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  lastSchoolAttended?: string | null;
+  totalScore!: string;
 
   @ApiProperty({
     required: true,
@@ -116,7 +183,7 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  nick!: string;
+  percentTotalScore!: string;
 
   @ApiProperty({
     required: true,
@@ -140,40 +207,7 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  percentTotalScore!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  phone?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  profileUrl?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  programmingExperience?: string | null;
+  timeUsed!: string;
 
   @ApiProperty({
     required: false,
@@ -185,25 +219,6 @@ class MseCodilityCreateInput {
     nullable: true,
   })
   similarityCheck?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  startDate?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  task1Correctness!: string;
 
   @ApiProperty({
     required: true,
@@ -219,14 +234,6 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  task1Performance!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
   task1Score!: string;
 
   @ApiProperty({
@@ -235,7 +242,15 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  task2Correctness!: string;
+  task1Correctness!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  task1Performance!: string;
 
   @ApiProperty({
     required: true,
@@ -251,14 +266,6 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  task2Performance!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
   task2Score!: string;
 
   @ApiProperty({
@@ -267,7 +274,15 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  task3Correctness!: string;
+  task2Correctness!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  task2Performance!: string;
 
   @ApiProperty({
     required: true,
@@ -283,14 +298,6 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  task3Performance!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
   task3Score!: string;
 
   @ApiProperty({
@@ -299,7 +306,15 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  task4Correctness!: string;
+  task3Correctness!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  task3Performance!: string;
 
   @ApiProperty({
     required: true,
@@ -315,14 +330,6 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  task4Performance!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
   task4Score!: string;
 
   @ApiProperty({
@@ -331,7 +338,7 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  test!: string;
+  task4Correctness!: string;
 
   @ApiProperty({
     required: true,
@@ -339,23 +346,16 @@ class MseCodilityCreateInput {
   })
   @IsString()
   @Field(() => String)
-  testSessionId!: string;
+  task4Performance!: string;
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: () => ApplicationWhereUniqueInput,
   })
-  @IsString()
-  @Field(() => String)
-  timeUsed!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  totalScore!: string;
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { MseCodilityCreateInput as MseCodilityCreateInput };

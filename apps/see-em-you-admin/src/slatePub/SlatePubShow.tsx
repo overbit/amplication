@@ -5,6 +5,10 @@ export const SlatePubShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Prefix" source="prefix" />
+        <TextField label="First" source="first" />
+        <TextField label="Middle" source="middle" />
+        <TextField label="Last" source="last" />
         <TextField label="Authors Pub1" source="authorsPub1" />
         <TextField label="Authors Pub2" source="authorsPub2" />
         <TextField label="Authors Pub3" source="authorsPub3" />
@@ -23,11 +27,7 @@ export const SlatePubShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Destination Pub4" source="destinationPub4" />
         <TextField label="Destination Pub5" source="destinationPub5" />
         <TextField label="Destination Pub6" source="destinationPub6" />
-        <TextField label="First" source="first" />
         <TextField label="Has Publications" source="hasPublications" />
-        <TextField label="Id" source="id" />
-        <TextField label="Last" source="last" />
-        <TextField label="Middle" source="middle" />
         <TextField
           label="Other Type Of Publication1"
           source="otherTypeOfPublication1"
@@ -52,7 +52,6 @@ export const SlatePubShow = (props: ShowProps): React.ReactElement => {
           label="Other Type Of Publication6"
           source="otherTypeOfPublication6"
         />
-        <TextField label="Prefix" source="prefix" />
         <TextField
           label="Status Of Publication1"
           source="statusOfPublication1"
@@ -95,6 +94,7 @@ export const SlatePubShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Url Pub4" source="urlPub4" />
         <TextField label="Url Pub5" source="urlPub5" />
         <TextField label="Url Pub6" source="urlPub6" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

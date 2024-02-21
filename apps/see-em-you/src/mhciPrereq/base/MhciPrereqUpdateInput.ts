@@ -11,17 +11,78 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsOptional, IsEnum, ValidateNested } from "class-validator";
+import { EnumMhciPrereqPrereqType } from "./EnumMhciPrereqPrereqType";
+import { EnumMhciPrereqStudentAssessment } from "./EnumMhciPrereqStudentAssessment";
+import { EnumMhciPrereqStatus2 } from "./EnumMhciPrereqStatus2";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsOptional, IsInt, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
 import { MhciPrereqsConversationCommentUpdateManyWithoutMhciPrereqsInput } from "./MhciPrereqsConversationCommentUpdateManyWithoutMhciPrereqsInput";
 import { MhciPrereqsStatusWhereUniqueInput } from "../../mhciPrereqsStatus/base/MhciPrereqsStatusWhereUniqueInput";
-import { EnumMhciPrereqPrereqType } from "./EnumMhciPrereqPrereqType";
-import { EnumMhciPrereqStatus2 } from "./EnumMhciPrereqStatus2";
-import { EnumMhciPrereqStudentAssessment } from "./EnumMhciPrereqStudentAssessment";
 
 @InputType()
 class MhciPrereqUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  studentLuUsersUsertypesId?: number;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumMhciPrereqPrereqType,
+  })
+  @IsEnum(EnumMhciPrereqPrereqType)
+  @IsOptional()
+  @Field(() => EnumMhciPrereqPrereqType, {
+    nullable: true,
+  })
+  prereq_type?: "design" | "programming" | "statistics";
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  periodId?: number;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumMhciPrereqStudentAssessment,
+  })
+  @IsEnum(EnumMhciPrereqStudentAssessment)
+  @IsOptional()
+  @Field(() => EnumMhciPrereqStudentAssessment, {
+    nullable: true,
+  })
+  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumMhciPrereqStatus2,
+  })
+  @IsEnum(EnumMhciPrereqStatus2)
+  @IsOptional()
+  @Field(() => EnumMhciPrereqStatus2, {
+    nullable: true,
+  })
+  status2?:
+    | "Student_Saved"
+    | "Not_Submitted"
+    | "Student_Submitted"
+    | "Student_Edited"
+    | "Reviewer_Responded"
+    | null;
+
   @ApiProperty({
     required: false,
     type: () => ApplicationWhereUniqueInput,
@@ -60,67 +121,6 @@ class MhciPrereqUpdateInput {
     nullable: true,
   })
   mhciPrereqsStatus?: MhciPrereqsStatusWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  periodId?: number;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumMhciPrereqPrereqType,
-  })
-  @IsEnum(EnumMhciPrereqPrereqType)
-  @IsOptional()
-  @Field(() => EnumMhciPrereqPrereqType, {
-    nullable: true,
-  })
-  prereq_type?: "design" | "programming" | "statistics";
-
-  @ApiProperty({
-    required: false,
-    enum: EnumMhciPrereqStatus2,
-  })
-  @IsEnum(EnumMhciPrereqStatus2)
-  @IsOptional()
-  @Field(() => EnumMhciPrereqStatus2, {
-    nullable: true,
-  })
-  status2?:
-    | "Student_Saved"
-    | "Not_Submitted"
-    | "Student_Submitted"
-    | "Student_Edited"
-    | "Reviewer_Responded"
-    | null;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumMhciPrereqStudentAssessment,
-  })
-  @IsEnum(EnumMhciPrereqStudentAssessment)
-  @IsOptional()
-  @Field(() => EnumMhciPrereqStudentAssessment, {
-    nullable: true,
-  })
-  student_assessment?: "fulfilledTrue" | "fulfilledFalse" | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  studentLuUsersUsertypesId?: number;
 }
 
 export { MhciPrereqUpdateInput as MhciPrereqUpdateInput };

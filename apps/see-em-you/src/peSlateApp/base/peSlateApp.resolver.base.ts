@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePeSlateAppArgs } from "./CreatePeSlateAppArgs";
-import { UpdatePeSlateAppArgs } from "./UpdatePeSlateAppArgs";
-import { DeletePeSlateAppArgs } from "./DeletePeSlateAppArgs";
+import { PeSlateApp } from "./PeSlateApp";
 import { PeSlateAppCountArgs } from "./PeSlateAppCountArgs";
 import { PeSlateAppFindManyArgs } from "./PeSlateAppFindManyArgs";
 import { PeSlateAppFindUniqueArgs } from "./PeSlateAppFindUniqueArgs";
-import { PeSlateApp } from "./PeSlateApp";
+import { CreatePeSlateAppArgs } from "./CreatePeSlateAppArgs";
+import { UpdatePeSlateAppArgs } from "./UpdatePeSlateAppArgs";
+import { DeletePeSlateAppArgs } from "./DeletePeSlateAppArgs";
 import { PeSlateAppService } from "../peSlateApp.service";
 @graphql.Resolver(() => PeSlateApp)
 export class PeSlateAppResolverBase {
@@ -38,14 +38,14 @@ export class PeSlateAppResolverBase {
   async peSlateApps(
     @graphql.Args() args: PeSlateAppFindManyArgs
   ): Promise<PeSlateApp[]> {
-    return this.service.findMany(args);
+    return this.service.peSlateApps(args);
   }
 
   @graphql.Query(() => PeSlateApp, { nullable: true })
   async peSlateApp(
     @graphql.Args() args: PeSlateAppFindUniqueArgs
   ): Promise<PeSlateApp | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.peSlateApp(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PeSlateAppResolverBase {
   async createPeSlateApp(
     @graphql.Args() args: CreatePeSlateAppArgs
   ): Promise<PeSlateApp> {
-    return await this.service.create({
+    return await this.service.createPeSlateApp({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PeSlateAppResolverBase {
     @graphql.Args() args: UpdatePeSlateAppArgs
   ): Promise<PeSlateApp | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeSlateApp({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PeSlateAppResolverBase {
     @graphql.Args() args: DeletePeSlateAppArgs
   ): Promise<PeSlateApp | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePeSlateApp(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

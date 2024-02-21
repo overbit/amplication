@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Attendance, Application } from "@prisma/client";
+import {
+  Prisma,
+  Attendance as PrismaAttendance,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class AttendanceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class AttendanceServiceBase {
     return this.prisma.attendance.count(args);
   }
 
-  async findMany<T extends Prisma.AttendanceFindManyArgs>(
+  async attendances<T extends Prisma.AttendanceFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceFindManyArgs>
-  ): Promise<Attendance[]> {
+  ): Promise<PrismaAttendance[]> {
     return this.prisma.attendance.findMany(args);
   }
-  async findOne<T extends Prisma.AttendanceFindUniqueArgs>(
+  async attendance<T extends Prisma.AttendanceFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceFindUniqueArgs>
-  ): Promise<Attendance | null> {
+  ): Promise<PrismaAttendance | null> {
     return this.prisma.attendance.findUnique(args);
   }
-  async create<T extends Prisma.AttendanceCreateArgs>(
+  async createAttendance<T extends Prisma.AttendanceCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceCreateArgs>
-  ): Promise<Attendance> {
+  ): Promise<PrismaAttendance> {
     return this.prisma.attendance.create<T>(args);
   }
-  async update<T extends Prisma.AttendanceUpdateArgs>(
+  async updateAttendance<T extends Prisma.AttendanceUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceUpdateArgs>
-  ): Promise<Attendance> {
+  ): Promise<PrismaAttendance> {
     return this.prisma.attendance.update<T>(args);
   }
-  async delete<T extends Prisma.AttendanceDeleteArgs>(
+  async deleteAttendance<T extends Prisma.AttendanceDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.AttendanceDeleteArgs>
-  ): Promise<Attendance> {
+  ): Promise<PrismaAttendance> {
     return this.prisma.attendance.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.attendance
       .findUnique({
         where: { id: parentId },

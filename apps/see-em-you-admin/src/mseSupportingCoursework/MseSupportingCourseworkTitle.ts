@@ -1,9 +1,9 @@
 import { MseSupportingCoursework as TMseSupportingCoursework } from "../api/mseSupportingCoursework/MseSupportingCoursework";
 
-export const MSESUPPORTINGCOURSEWORK_TITLE_FIELD = "algCourseName";
+export const MSESUPPORTINGCOURSEWORK_TITLE_FIELD = "dmCourseName";
 
 export const MseSupportingCourseworkTitle = (
   record: TMseSupportingCoursework
 ): string => {
-  return record.algCourseName?.toString() || String(record.id);
+  return record.dmCourseName?.toString() || String(record.id);
 };

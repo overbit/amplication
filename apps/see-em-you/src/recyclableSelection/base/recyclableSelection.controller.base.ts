@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RecyclableSelectionService } from "../recyclableSelection.service";
 import { RecyclableSelectionCreateInput } from "./RecyclableSelectionCreateInput";
-import { RecyclableSelectionWhereInput } from "./RecyclableSelectionWhereInput";
-import { RecyclableSelectionWhereUniqueInput } from "./RecyclableSelectionWhereUniqueInput";
-import { RecyclableSelectionFindManyArgs } from "./RecyclableSelectionFindManyArgs";
-import { RecyclableSelectionUpdateInput } from "./RecyclableSelectionUpdateInput";
 import { RecyclableSelection } from "./RecyclableSelection";
+import { RecyclableSelectionFindManyArgs } from "./RecyclableSelectionFindManyArgs";
+import { RecyclableSelectionWhereUniqueInput } from "./RecyclableSelectionWhereUniqueInput";
+import { RecyclableSelectionUpdateInput } from "./RecyclableSelectionUpdateInput";
 
 export class RecyclableSelectionControllerBase {
   constructor(protected readonly service: RecyclableSelectionService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: RecyclableSelection })
-  async create(
+  async createRecyclableSelection(
     @common.Body() data: RecyclableSelectionCreateInput
   ): Promise<RecyclableSelection> {
-    return await this.service.create({
+    return await this.service.createRecyclableSelection({
       data: data,
       select: {
-        applicationId: true,
-        departmentId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
         usersId: true,
+        luUsersUsertypesId: true,
+        departmentId: true,
+        periodId: true,
+        applicationId: true,
+        id: true,
       },
     });
   }
@@ -47,19 +46,19 @@ export class RecyclableSelectionControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [RecyclableSelection] })
   @ApiNestedQuery(RecyclableSelectionFindManyArgs)
-  async findMany(
+  async recyclableSelections(
     @common.Req() request: Request
   ): Promise<RecyclableSelection[]> {
     const args = plainToClass(RecyclableSelectionFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.recyclableSelections({
       ...args,
       select: {
-        applicationId: true,
-        departmentId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
         usersId: true,
+        luUsersUsertypesId: true,
+        departmentId: true,
+        periodId: true,
+        applicationId: true,
+        id: true,
       },
     });
   }
@@ -67,18 +66,18 @@ export class RecyclableSelectionControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: RecyclableSelection })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async recyclableSelection(
     @common.Param() params: RecyclableSelectionWhereUniqueInput
   ): Promise<RecyclableSelection | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.recyclableSelection({
       where: params,
       select: {
-        applicationId: true,
-        departmentId: true,
-        id: true,
-        luUsersUsertypesId: true,
-        periodId: true,
         usersId: true,
+        luUsersUsertypesId: true,
+        departmentId: true,
+        periodId: true,
+        applicationId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -92,21 +91,21 @@ export class RecyclableSelectionControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: RecyclableSelection })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateRecyclableSelection(
     @common.Param() params: RecyclableSelectionWhereUniqueInput,
     @common.Body() data: RecyclableSelectionUpdateInput
   ): Promise<RecyclableSelection | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecyclableSelection({
         where: params,
         data: data,
         select: {
-          applicationId: true,
-          departmentId: true,
-          id: true,
-          luUsersUsertypesId: true,
-          periodId: true,
           usersId: true,
+          luUsersUsertypesId: true,
+          departmentId: true,
+          periodId: true,
+          applicationId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -122,19 +121,19 @@ export class RecyclableSelectionControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: RecyclableSelection })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteRecyclableSelection(
     @common.Param() params: RecyclableSelectionWhereUniqueInput
   ): Promise<RecyclableSelection | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteRecyclableSelection({
         where: params,
         select: {
-          applicationId: true,
-          departmentId: true,
-          id: true,
-          luUsersUsertypesId: true,
-          periodId: true,
           usersId: true,
+          luUsersUsertypesId: true,
+          departmentId: true,
+          periodId: true,
+          applicationId: true,
+          id: true,
         },
       });
     } catch (error) {

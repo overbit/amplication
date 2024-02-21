@@ -24,6 +24,28 @@ class UsHsStatusUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
+  appId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  usHSGrad?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
   anyUsHs?: number | null;
 
   @ApiProperty({
@@ -35,7 +57,29 @@ class UsHsStatusUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  appId?: number;
+  pell?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  ugFedWorkStudy?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  permZipGrad?: number | null;
 
   @ApiProperty({
     required: false,
@@ -58,50 +102,6 @@ class UsHsStatusUpdateInput {
     nullable: true,
   })
   firstGenGrad?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  pell?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  permZipGrad?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  ugFedWorkStudy?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usHSGrad?: number | null;
 }
 
 export { UsHsStatusUpdateInput as UsHsStatusUpdateInput };

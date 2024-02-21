@@ -12,10 +12,10 @@ export const AssistantshipList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Application Id" source="applicationId" />
-        <TextField label="Granted" source="granted" />
         <TextField label="Id" source="id" />
+        <TextField label="Application Id" source="applicationId" />
         <TextField label="Requested" source="requested" />
+        <TextField label="Granted" source="granted" />
       </Datagrid>
     </List>
   );

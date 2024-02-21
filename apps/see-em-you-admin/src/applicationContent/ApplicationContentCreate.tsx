@@ -3,9 +3,9 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  BooleanInput,
-  NumberInput,
   TextInput,
+  NumberInput,
+  BooleanInput,
 } from "react-admin";
 
 export const ApplicationContentCreate = (
@@ -14,10 +14,10 @@ export const ApplicationContentCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <BooleanInput label="Desired" source="desired" />
-        <NumberInput step={1} label="Program Id" source="programId" />
-        <BooleanInput label="Required" source="required" />
         <TextInput label="Section Identifier" source="sectionIdentifier" />
+        <NumberInput step={1} label="Program Id" source="programId" />
+        <BooleanInput label="Desired" source="desired" />
+        <BooleanInput label="Required" source="required" />
       </SimpleForm>
     </Create>
   );

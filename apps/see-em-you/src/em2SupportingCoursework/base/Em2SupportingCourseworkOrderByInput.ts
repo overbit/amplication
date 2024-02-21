@@ -39,17 +39,6 @@ class Em2SupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  dataStructuresNumber?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   dataStructuresTitle?: SortOrder;
 
   @ApiProperty({
@@ -61,7 +50,7 @@ class Em2SupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  dataStructuresNumber?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +61,7 @@ class Em2SupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  makerkitsDescription?: SortOrder;
+  statisticsTitle?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +72,7 @@ class Em2SupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  makerkitsDescription2?: SortOrder;
+  statisticsNumber?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -127,7 +116,7 @@ class Em2SupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  statisticsNumber?: SortOrder;
+  makerkitsDescription?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -138,7 +127,18 @@ class Em2SupportingCourseworkOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  statisticsTitle?: SortOrder;
+  makerkitsDescription2?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { Em2SupportingCourseworkOrderByInput as Em2SupportingCourseworkOrderByInput };

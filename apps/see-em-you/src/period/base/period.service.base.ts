@@ -10,12 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  Period,
-  AaDepartment,
-  Cohort,
-  PeriodApplication,
+  Period as PrismaPeriod,
+  AaDepartment as PrismaAaDepartment,
+  Cohort as PrismaCohort,
+  PeriodApplication as PrismaPeriodApplication,
 } from "@prisma/client";
 
 export class PeriodServiceBase {
@@ -27,36 +28,36 @@ export class PeriodServiceBase {
     return this.prisma.period.count(args);
   }
 
-  async findMany<T extends Prisma.PeriodFindManyArgs>(
+  async periods<T extends Prisma.PeriodFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodFindManyArgs>
-  ): Promise<Period[]> {
+  ): Promise<PrismaPeriod[]> {
     return this.prisma.period.findMany(args);
   }
-  async findOne<T extends Prisma.PeriodFindUniqueArgs>(
+  async period<T extends Prisma.PeriodFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodFindUniqueArgs>
-  ): Promise<Period | null> {
+  ): Promise<PrismaPeriod | null> {
     return this.prisma.period.findUnique(args);
   }
-  async create<T extends Prisma.PeriodCreateArgs>(
+  async createPeriod<T extends Prisma.PeriodCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodCreateArgs>
-  ): Promise<Period> {
+  ): Promise<PrismaPeriod> {
     return this.prisma.period.create<T>(args);
   }
-  async update<T extends Prisma.PeriodUpdateArgs>(
+  async updatePeriod<T extends Prisma.PeriodUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodUpdateArgs>
-  ): Promise<Period> {
+  ): Promise<PrismaPeriod> {
     return this.prisma.period.update<T>(args);
   }
-  async delete<T extends Prisma.PeriodDeleteArgs>(
+  async deletePeriod<T extends Prisma.PeriodDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodDeleteArgs>
-  ): Promise<Period> {
+  ): Promise<PrismaPeriod> {
     return this.prisma.period.delete(args);
   }
 
   async findAaDepartment(
     parentId: number,
     args: Prisma.AaDepartmentFindManyArgs
-  ): Promise<AaDepartment[]> {
+  ): Promise<PrismaAaDepartment[]> {
     return this.prisma.period
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -67,7 +68,7 @@ export class PeriodServiceBase {
   async findCohort(
     parentId: number,
     args: Prisma.CohortFindManyArgs
-  ): Promise<Cohort[]> {
+  ): Promise<PrismaCohort[]> {
     return this.prisma.period
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -78,7 +79,7 @@ export class PeriodServiceBase {
   async findPeriodApplication(
     parentId: number,
     args: Prisma.PeriodApplicationFindManyArgs
-  ): Promise<PeriodApplication[]> {
+  ): Promise<PrismaPeriodApplication[]> {
     return this.prisma.period
       .findUniqueOrThrow({
         where: { id: parentId },

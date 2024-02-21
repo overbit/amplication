@@ -1,7 +1,7 @@
 import { Application } from "../application/Application";
 
 export type LuApplicationCohort = {
-  application?: Application;
   cohortId: number;
+  application?: Application;
   id: number;
 };

@@ -18,34 +18,33 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { HighschoolService } from "../highschool.service";
 import { HighschoolCreateInput } from "./HighschoolCreateInput";
-import { HighschoolWhereInput } from "./HighschoolWhereInput";
-import { HighschoolWhereUniqueInput } from "./HighschoolWhereUniqueInput";
-import { HighschoolFindManyArgs } from "./HighschoolFindManyArgs";
-import { HighschoolUpdateInput } from "./HighschoolUpdateInput";
 import { Highschool } from "./Highschool";
+import { HighschoolFindManyArgs } from "./HighschoolFindManyArgs";
+import { HighschoolWhereUniqueInput } from "./HighschoolWhereUniqueInput";
+import { HighschoolUpdateInput } from "./HighschoolUpdateInput";
 
 export class HighschoolControllerBase {
   constructor(protected readonly service: HighschoolService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Highschool })
-  async create(
+  async createHighschool(
     @common.Body() data: HighschoolCreateInput
   ): Promise<Highschool> {
-    return await this.service.create({
+    return await this.service.createHighschool({
       data: data,
       select: {
         appId: true,
-        created: true,
-        graduated: true,
-        hsCeeb: true,
-        hsDuration: true,
-        hsGradYear: true,
         hsName: true,
+        hsCeeb: true,
         hsNces: true,
         hsState: true,
         hsZip: true,
-        id: true,
+        hsGradYear: true,
+        hsDuration: true,
+        graduated: true,
+        created: true,
         modified: true,
+        id: true,
       },
     });
   }
@@ -53,23 +52,23 @@ export class HighschoolControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Highschool] })
   @ApiNestedQuery(HighschoolFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Highschool[]> {
+  async highschools(@common.Req() request: Request): Promise<Highschool[]> {
     const args = plainToClass(HighschoolFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.highschools({
       ...args,
       select: {
         appId: true,
-        created: true,
-        graduated: true,
-        hsCeeb: true,
-        hsDuration: true,
-        hsGradYear: true,
         hsName: true,
+        hsCeeb: true,
         hsNces: true,
         hsState: true,
         hsZip: true,
-        id: true,
+        hsGradYear: true,
+        hsDuration: true,
+        graduated: true,
+        created: true,
         modified: true,
+        id: true,
       },
     });
   }
@@ -77,24 +76,24 @@ export class HighschoolControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Highschool })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async highschool(
     @common.Param() params: HighschoolWhereUniqueInput
   ): Promise<Highschool | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.highschool({
       where: params,
       select: {
         appId: true,
-        created: true,
-        graduated: true,
-        hsCeeb: true,
-        hsDuration: true,
-        hsGradYear: true,
         hsName: true,
+        hsCeeb: true,
         hsNces: true,
         hsState: true,
         hsZip: true,
-        id: true,
+        hsGradYear: true,
+        hsDuration: true,
+        graduated: true,
+        created: true,
         modified: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -108,27 +107,27 @@ export class HighschoolControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Highschool })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateHighschool(
     @common.Param() params: HighschoolWhereUniqueInput,
     @common.Body() data: HighschoolUpdateInput
   ): Promise<Highschool | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateHighschool({
         where: params,
         data: data,
         select: {
           appId: true,
-          created: true,
-          graduated: true,
-          hsCeeb: true,
-          hsDuration: true,
-          hsGradYear: true,
           hsName: true,
+          hsCeeb: true,
           hsNces: true,
           hsState: true,
           hsZip: true,
-          id: true,
+          hsGradYear: true,
+          hsDuration: true,
+          graduated: true,
+          created: true,
           modified: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -144,25 +143,25 @@ export class HighschoolControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Highschool })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteHighschool(
     @common.Param() params: HighschoolWhereUniqueInput
   ): Promise<Highschool | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteHighschool({
         where: params,
         select: {
           appId: true,
-          created: true,
-          graduated: true,
-          hsCeeb: true,
-          hsDuration: true,
-          hsGradYear: true,
           hsName: true,
+          hsCeeb: true,
           hsNces: true,
           hsState: true,
           hsZip: true,
-          id: true,
+          hsGradYear: true,
+          hsDuration: true,
+          graduated: true,
+          created: true,
           modified: true,
+          id: true,
         },
       });
     } catch (error) {

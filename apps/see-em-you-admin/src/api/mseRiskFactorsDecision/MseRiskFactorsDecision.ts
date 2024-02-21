@@ -1,10 +1,10 @@
 export type MseRiskFactorsDecision = {
-  academic: number;
-  applicationId: number;
   experience: number;
-  id: string;
+  applicationId: number;
+  programId: number;
   language: number;
+  academic: number;
   other: number;
   otherText: string | null;
-  programId: number;
+  id: string;
 };

@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PeriodApplicationService } from "../periodApplication.service";
 import { PeriodApplicationCreateInput } from "./PeriodApplicationCreateInput";
-import { PeriodApplicationWhereInput } from "./PeriodApplicationWhereInput";
-import { PeriodApplicationWhereUniqueInput } from "./PeriodApplicationWhereUniqueInput";
-import { PeriodApplicationFindManyArgs } from "./PeriodApplicationFindManyArgs";
-import { PeriodApplicationUpdateInput } from "./PeriodApplicationUpdateInput";
 import { PeriodApplication } from "./PeriodApplication";
+import { PeriodApplicationFindManyArgs } from "./PeriodApplicationFindManyArgs";
+import { PeriodApplicationWhereUniqueInput } from "./PeriodApplicationWhereUniqueInput";
+import { PeriodApplicationUpdateInput } from "./PeriodApplicationUpdateInput";
 
 export class PeriodApplicationControllerBase {
   constructor(protected readonly service: PeriodApplicationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PeriodApplication })
-  async create(
+  async createPeriodApplication(
     @common.Body() data: PeriodApplicationCreateInput
   ): Promise<PeriodApplication> {
-    return await this.service.create({
+    return await this.service.createPeriodApplication({
       data: {
         ...data,
 
@@ -50,13 +49,13 @@ export class PeriodApplicationControllerBase {
           },
         },
 
-        id: true,
-
         period: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -64,9 +63,11 @@ export class PeriodApplicationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PeriodApplication] })
   @ApiNestedQuery(PeriodApplicationFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PeriodApplication[]> {
+  async periodApplications(
+    @common.Req() request: Request
+  ): Promise<PeriodApplication[]> {
     const args = plainToClass(PeriodApplicationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.periodApplications({
       ...args,
       select: {
         application: {
@@ -75,13 +76,13 @@ export class PeriodApplicationControllerBase {
           },
         },
 
-        id: true,
-
         period: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
   }
@@ -89,10 +90,10 @@ export class PeriodApplicationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PeriodApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async periodApplication(
     @common.Param() params: PeriodApplicationWhereUniqueInput
   ): Promise<PeriodApplication | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.periodApplication({
       where: params,
       select: {
         application: {
@@ -101,13 +102,13 @@ export class PeriodApplicationControllerBase {
           },
         },
 
-        id: true,
-
         period: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (result === null) {
@@ -121,12 +122,12 @@ export class PeriodApplicationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PeriodApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePeriodApplication(
     @common.Param() params: PeriodApplicationWhereUniqueInput,
     @common.Body() data: PeriodApplicationUpdateInput
   ): Promise<PeriodApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriodApplication({
         where: params,
         data: {
           ...data,
@@ -146,13 +147,13 @@ export class PeriodApplicationControllerBase {
             },
           },
 
-          id: true,
-
           period: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {
@@ -168,11 +169,11 @@ export class PeriodApplicationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PeriodApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePeriodApplication(
     @common.Param() params: PeriodApplicationWhereUniqueInput
   ): Promise<PeriodApplication | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePeriodApplication({
         where: params,
         select: {
           application: {
@@ -181,13 +182,13 @@ export class PeriodApplicationControllerBase {
             },
           },
 
-          id: true,
-
           period: {
             select: {
               id: true,
             },
           },
+
+          id: true,
         },
       });
     } catch (error) {

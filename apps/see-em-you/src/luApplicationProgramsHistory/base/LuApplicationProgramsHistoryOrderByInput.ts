@@ -28,7 +28,29 @@ class LuApplicationProgramsHistoryOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  lapId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   applicationId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  programId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,17 +72,6 @@ class LuApplicationProgramsHistoryOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  createdDate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   deletedBy?: SortOrder;
 
   @ApiProperty({
@@ -72,29 +83,18 @@ class LuApplicationProgramsHistoryOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  createdDate?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  lapId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  programId?: SortOrder;
 }
 
 export { LuApplicationProgramsHistoryOrderByInput as LuApplicationProgramsHistoryOrderByInput };

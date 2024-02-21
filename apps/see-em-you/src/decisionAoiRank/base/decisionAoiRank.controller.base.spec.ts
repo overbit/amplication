@@ -18,54 +18,54 @@ import { DecisionAoiRankService } from "../decisionAoiRank.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  decision: "exampleDecision",
   departmentId: 42,
-  id: "exampleId",
-  interestId: 42,
-  luUsersUsertypesId: 42,
   periodId: 42,
-  ranking: "exampleRanking",
+  interestId: 42,
+  decision: "exampleDecision",
   timestamp: new Date(),
+  luUsersUsertypesId: 42,
+  ranking: "exampleRanking",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  decision: "exampleDecision",
   departmentId: 42,
-  id: "exampleId",
-  interestId: 42,
-  luUsersUsertypesId: 42,
   periodId: 42,
-  ranking: "exampleRanking",
+  interestId: 42,
+  decision: "exampleDecision",
   timestamp: new Date(),
+  luUsersUsertypesId: 42,
+  ranking: "exampleRanking",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    decision: "exampleDecision",
     departmentId: 42,
-    id: "exampleId",
-    interestId: 42,
-    luUsersUsertypesId: 42,
     periodId: 42,
-    ranking: "exampleRanking",
+    interestId: 42,
+    decision: "exampleDecision",
     timestamp: new Date(),
+    luUsersUsertypesId: 42,
+    ranking: "exampleRanking",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  decision: "exampleDecision",
   departmentId: 42,
-  id: "exampleId",
-  interestId: 42,
-  luUsersUsertypesId: 42,
   periodId: 42,
-  ranking: "exampleRanking",
+  interestId: 42,
+  decision: "exampleDecision",
   timestamp: new Date(),
+  luUsersUsertypesId: 42,
+  ranking: "exampleRanking",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createDecisionAoiRank() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  decisionAoiRanks: () => FIND_MANY_RESULT,
+  decisionAoiRank: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

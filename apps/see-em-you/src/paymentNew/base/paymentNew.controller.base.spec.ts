@@ -19,49 +19,49 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   applicationId: 42,
-  id: 42,
-  lastModTime: new Date(),
-  lastModUserId: 42,
+  paymentType: 42,
   paymentAmount: 42.424242424,
   paymentIntentDate: new Date(),
-  paymentType: 42,
+  lastModTime: new Date(),
+  lastModUserId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
   applicationId: 42,
-  id: 42,
-  lastModTime: new Date(),
-  lastModUserId: 42,
+  paymentType: 42,
   paymentAmount: 42.424242424,
   paymentIntentDate: new Date(),
-  paymentType: 42,
+  lastModTime: new Date(),
+  lastModUserId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     applicationId: 42,
-    id: 42,
-    lastModTime: new Date(),
-    lastModUserId: 42,
+    paymentType: 42,
     paymentAmount: 42.424242424,
     paymentIntentDate: new Date(),
-    paymentType: 42,
+    lastModTime: new Date(),
+    lastModUserId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   applicationId: 42,
-  id: 42,
-  lastModTime: new Date(),
-  lastModUserId: 42,
+  paymentType: 42,
   paymentAmount: 42.424242424,
   paymentIntentDate: new Date(),
-  paymentType: 42,
+  lastModTime: new Date(),
+  lastModUserId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createPaymentNew() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  paymentNews: () => FIND_MANY_RESULT,
+  paymentNew: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -138,8 +138,8 @@ describe("PaymentNew", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        lastModTime: CREATE_RESULT.lastModTime.toISOString(),
         paymentIntentDate: CREATE_RESULT.paymentIntentDate.toISOString(),
+        lastModTime: CREATE_RESULT.lastModTime.toISOString(),
       });
   });
 
@@ -150,9 +150,9 @@ describe("PaymentNew", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          lastModTime: FIND_MANY_RESULT[0].lastModTime.toISOString(),
           paymentIntentDate:
             FIND_MANY_RESULT[0].paymentIntentDate.toISOString(),
+          lastModTime: FIND_MANY_RESULT[0].lastModTime.toISOString(),
         },
       ]);
   });
@@ -174,8 +174,8 @@ describe("PaymentNew", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        lastModTime: FIND_ONE_RESULT.lastModTime.toISOString(),
         paymentIntentDate: FIND_ONE_RESULT.paymentIntentDate.toISOString(),
+        lastModTime: FIND_ONE_RESULT.lastModTime.toISOString(),
       });
   });
 
@@ -187,8 +187,8 @@ describe("PaymentNew", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        lastModTime: CREATE_RESULT.lastModTime.toISOString(),
         paymentIntentDate: CREATE_RESULT.paymentIntentDate.toISOString(),
+        lastModTime: CREATE_RESULT.lastModTime.toISOString(),
       })
       .then(function () {
         agent

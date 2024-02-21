@@ -7,9 +7,9 @@ export const LuReviewInterestCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Code" source="code" />
-        <NumberInput step={1} label="Program Id" source="programId" />
         <NumberInput step={1} label="Review Id" source="reviewId" />
+        <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Code" source="code" />
       </SimpleForm>
     </Create>
   );

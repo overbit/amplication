@@ -35,7 +35,7 @@ class FailedMerge {
   @Field(() => String, {
     nullable: true,
   })
-  file!: string | null;
+  guid!: string | null;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class FailedMerge {
   @Field(() => String, {
     nullable: true,
   })
-  guid!: string | null;
+  file!: string | null;
 
   @ApiProperty({
     required: true,

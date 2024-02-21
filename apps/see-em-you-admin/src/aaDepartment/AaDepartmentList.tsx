@@ -7,8 +7,8 @@ import {
   TextField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
-import { DEPARTMENT_TITLE_FIELD } from "../department/DepartmentTitle";
 import { PERIOD_TITLE_FIELD } from "../period/PeriodTitle";
+import { DEPARTMENT_TITLE_FIELD } from "../department/DepartmentTitle";
 
 export const AaDepartmentList = (props: ListProps): React.ReactElement => {
   return (
@@ -20,6 +20,9 @@ export const AaDepartmentList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <ReferenceField label="Period" source="period.id" reference="Period">
+          <TextField source={PERIOD_TITLE_FIELD} />
+        </ReferenceField>
         <ReferenceField
           label="Department"
           source="department.id"
@@ -28,9 +31,6 @@ export const AaDepartmentList = (props: ListProps): React.ReactElement => {
           <TextField source={DEPARTMENT_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Id" source="id" />
-        <ReferenceField label="Period" source="period.id" reference="Period">
-          <TextField source={PERIOD_TITLE_FIELD} />
-        </ReferenceField>
       </Datagrid>
     </List>
   );

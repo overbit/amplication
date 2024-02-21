@@ -28,17 +28,6 @@ class MhciPrereqsProgrammingTestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   downloadTimestamp?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,7 @@ class MhciPrereqsProgrammingTestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  uploadDatafileinfoId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +50,7 @@ class MhciPrereqsProgrammingTestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  student_lu_users_usertypes_id?: SortOrder;
+  applicationId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +72,18 @@ class MhciPrereqsProgrammingTestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  uploadDatafileinfoId?: SortOrder;
+  student_lu_users_usertypes_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MhciPrereqsProgrammingTestOrderByInput as MhciPrereqsProgrammingTestOrderByInput };

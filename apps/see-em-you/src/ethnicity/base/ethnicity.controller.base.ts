@@ -18,23 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { EthnicityService } from "../ethnicity.service";
 import { EthnicityCreateInput } from "./EthnicityCreateInput";
-import { EthnicityWhereInput } from "./EthnicityWhereInput";
-import { EthnicityWhereUniqueInput } from "./EthnicityWhereUniqueInput";
-import { EthnicityFindManyArgs } from "./EthnicityFindManyArgs";
-import { EthnicityUpdateInput } from "./EthnicityUpdateInput";
 import { Ethnicity } from "./Ethnicity";
+import { EthnicityFindManyArgs } from "./EthnicityFindManyArgs";
+import { EthnicityWhereUniqueInput } from "./EthnicityWhereUniqueInput";
+import { EthnicityUpdateInput } from "./EthnicityUpdateInput";
 
 export class EthnicityControllerBase {
   constructor(protected readonly service: EthnicityService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Ethnicity })
-  async create(@common.Body() data: EthnicityCreateInput): Promise<Ethnicity> {
-    return await this.service.create({
+  async createEthnicity(
+    @common.Body() data: EthnicityCreateInput
+  ): Promise<Ethnicity> {
+    return await this.service.createEthnicity({
       data: data,
       select: {
-        id: true,
         name: true,
         sortorder: true,
+        id: true,
       },
     });
   }
@@ -42,14 +43,14 @@ export class EthnicityControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Ethnicity] })
   @ApiNestedQuery(EthnicityFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Ethnicity[]> {
+  async ethnicities(@common.Req() request: Request): Promise<Ethnicity[]> {
     const args = plainToClass(EthnicityFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ethnicities({
       ...args,
       select: {
-        id: true,
         name: true,
         sortorder: true,
+        id: true,
       },
     });
   }
@@ -57,15 +58,15 @@ export class EthnicityControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Ethnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ethnicity(
     @common.Param() params: EthnicityWhereUniqueInput
   ): Promise<Ethnicity | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ethnicity({
       where: params,
       select: {
-        id: true,
         name: true,
         sortorder: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -79,18 +80,18 @@ export class EthnicityControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Ethnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateEthnicity(
     @common.Param() params: EthnicityWhereUniqueInput,
     @common.Body() data: EthnicityUpdateInput
   ): Promise<Ethnicity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEthnicity({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
           sortorder: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -106,16 +107,16 @@ export class EthnicityControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Ethnicity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteEthnicity(
     @common.Param() params: EthnicityWhereUniqueInput
   ): Promise<Ethnicity | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteEthnicity({
         where: params,
         select: {
-          id: true,
           name: true,
           sortorder: true,
+          id: true,
         },
       });
     } catch (error) {

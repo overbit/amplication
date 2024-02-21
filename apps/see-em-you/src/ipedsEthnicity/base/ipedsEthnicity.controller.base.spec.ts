@@ -18,38 +18,38 @@ import { IpedsEthnicityService } from "../ipedsEthnicity.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  ethnicityId: 42,
-  id: 42,
   ipedsEthnicity: "exampleIpedsEthnicity",
   sortOrder: 42,
+  ethnicityId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  ethnicityId: 42,
-  id: 42,
   ipedsEthnicity: "exampleIpedsEthnicity",
   sortOrder: 42,
+  ethnicityId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    ethnicityId: 42,
-    id: 42,
     ipedsEthnicity: "exampleIpedsEthnicity",
     sortOrder: 42,
+    ethnicityId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  ethnicityId: 42,
-  id: 42,
   ipedsEthnicity: "exampleIpedsEthnicity",
   sortOrder: 42,
+  ethnicityId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createIpedsEthnicity() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ipedsEthnicities: () => FIND_MANY_RESULT,
+  ipedsEthnicity: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -28,7 +28,7 @@ class SlateLangCodeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  language?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class SlateLangCodeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  language?: SortOrder;
+  id?: SortOrder;
 }
 
 export { SlateLangCodeOrderByInput as SlateLangCodeOrderByInput };

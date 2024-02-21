@@ -6,22 +6,22 @@ import {
   ReferenceInput,
   SelectInput,
 } from "react-admin";
-import { DepartmentTitle } from "../department/DepartmentTitle";
 import { PeriodTitle } from "../period/PeriodTitle";
+import { DepartmentTitle } from "../department/DepartmentTitle";
 
 export const AaDepartmentCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <ReferenceInput source="period.id" reference="Period" label="Period">
+          <SelectInput optionText={PeriodTitle} />
+        </ReferenceInput>
         <ReferenceInput
           source="department.id"
           reference="Department"
           label="Department"
         >
           <SelectInput optionText={DepartmentTitle} />
-        </ReferenceInput>
-        <ReferenceInput source="period.id" reference="Period" label="Period">
-          <SelectInput optionText={PeriodTitle} />
         </ReferenceInput>
       </SimpleForm>
     </Create>

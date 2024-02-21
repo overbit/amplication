@@ -3,9 +3,9 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
-  TextField,
   BooleanField,
+  TextField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
@@ -20,6 +20,11 @@ export const RissFundingList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <BooleanField label="External Funding" source="externalFunding" />
+        <TextField label="External Source" source="externalSource" />
+        <TextField label="External Amount" source="externalAmount" />
+        <BooleanField label="Reu Scholarship" source="reuScholarship" />
+        <BooleanField label="Direct Funding" source="directFunding" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -27,12 +32,7 @@ export const RissFundingList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <BooleanField label="Direct Funding" source="directFunding" />
-        <TextField label="External Amount" source="externalAmount" />
-        <BooleanField label="External Funding" source="externalFunding" />
-        <TextField label="External Source" source="externalSource" />
         <TextField label="Id" source="id" />
-        <BooleanField label="Reu Scholarship" source="reuScholarship" />
       </Datagrid>
     </List>
   );

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateStateArgs } from "./CreateStateArgs";
-import { UpdateStateArgs } from "./UpdateStateArgs";
-import { DeleteStateArgs } from "./DeleteStateArgs";
+import { State } from "./State";
 import { StateCountArgs } from "./StateCountArgs";
 import { StateFindManyArgs } from "./StateFindManyArgs";
 import { StateFindUniqueArgs } from "./StateFindUniqueArgs";
-import { State } from "./State";
+import { CreateStateArgs } from "./CreateStateArgs";
+import { UpdateStateArgs } from "./UpdateStateArgs";
+import { DeleteStateArgs } from "./DeleteStateArgs";
 import { StateService } from "../state.service";
 @graphql.Resolver(() => State)
 export class StateResolverBase {
@@ -36,14 +36,14 @@ export class StateResolverBase {
 
   @graphql.Query(() => [State])
   async states(@graphql.Args() args: StateFindManyArgs): Promise<State[]> {
-    return this.service.findMany(args);
+    return this.service.states(args);
   }
 
   @graphql.Query(() => State, { nullable: true })
   async state(
     @graphql.Args() args: StateFindUniqueArgs
   ): Promise<State | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.state(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class StateResolverBase {
 
   @graphql.Mutation(() => State)
   async createState(@graphql.Args() args: CreateStateArgs): Promise<State> {
-    return await this.service.create({
+    return await this.service.createState({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class StateResolverBase {
     @graphql.Args() args: UpdateStateArgs
   ): Promise<State | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateState({
         ...args,
         data: args.data,
       });
@@ -82,7 +82,7 @@ export class StateResolverBase {
     @graphql.Args() args: DeleteStateArgs
   ): Promise<State | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteState(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

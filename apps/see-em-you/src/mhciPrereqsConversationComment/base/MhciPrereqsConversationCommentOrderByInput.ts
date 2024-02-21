@@ -50,29 +50,7 @@ class MhciPrereqsConversationCommentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  lu_users_usertypes_id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  prereq_id?: SortOrder;
+  timestamp?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,7 +83,29 @@ class MhciPrereqsConversationCommentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  timestamp?: SortOrder;
+  prereq_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  lu_users_usertypes_id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { MhciPrereqsConversationCommentOrderByInput as MhciPrereqsConversationCommentOrderByInput };

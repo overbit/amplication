@@ -11,17 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { AcoPalWhereUniqueInput } from "../../acoPal/base/AcoPalWhereUniqueInput";
 import {
-  ValidateNested,
+  IsInt,
   IsOptional,
   IsString,
-  IsBoolean,
-  IsInt,
   IsDate,
+  IsBoolean,
   IsNumber,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { Decimal } from "decimal.js";
+import { AcoPalWhereUniqueInput } from "../../acoPal/base/AcoPalWhereUniqueInput";
 import { ApplicationAdminNoteUpdateManyWithoutApplicationsInput } from "./ApplicationAdminNoteUpdateManyWithoutApplicationsInput";
 import { AttendanceUpdateManyWithoutApplicationsInput } from "./AttendanceUpdateManyWithoutApplicationsInput";
 import { CashnetPaymentUpdateManyWithoutApplicationsInput } from "./CashnetPaymentUpdateManyWithoutApplicationsInput";
@@ -43,7 +44,6 @@ import { MlSupportingCourseworkUpdateManyWithoutApplicationsInput } from "./MlSu
 import { MseAqaUpdateManyWithoutApplicationsInput } from "./MseAqaUpdateManyWithoutApplicationsInput";
 import { MseCodilityWhereUniqueInput } from "../../mseCodility/base/MseCodilityWhereUniqueInput";
 import { PaymentUpdateManyWithoutApplicationsInput } from "./PaymentUpdateManyWithoutApplicationsInput";
-import { Decimal } from "decimal.js";
 import { PeriodApplicationUpdateManyWithoutApplicationsInput } from "./PeriodApplicationUpdateManyWithoutApplicationsInput";
 import { PromotionHistoryUpdateManyWithoutApplicationsInput } from "./PromotionHistoryUpdateManyWithoutApplicationsInput";
 import { PublicationUpdateManyWithoutApplicationsInput } from "./PublicationUpdateManyWithoutApplicationsInput";
@@ -62,27 +62,245 @@ import { TagMemberUpdateManyWithoutApplicationsInput } from "./TagMemberUpdateMa
 class ApplicationUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => AcoPalWhereUniqueInput,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => AcoPalWhereUniqueInput)
+  @IsInt()
   @IsOptional()
-  @Field(() => AcoPalWhereUniqueInput, {
+  @Field(() => Number, {
     nullable: true,
   })
-  acoPal?: AcoPalWhereUniqueInput | null;
+  userId?: number;
 
   @ApiProperty({
     required: false,
-    type: () => ApplicationAdminNoteUpdateManyWithoutApplicationsInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationAdminNoteUpdateManyWithoutApplicationsInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ApplicationAdminNoteUpdateManyWithoutApplicationsInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  applicationAdminNote?: ApplicationAdminNoteUpdateManyWithoutApplicationsInput;
+  name?: string;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  submittedDate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  submitted?: boolean;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  createdDate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  paid?: boolean;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  paymentdate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  paymentamount?: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  paymenttype?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  waive?: boolean;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  waivedate?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  complete?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  statementofpurpose?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  notificationsent?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  studentCommit?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  cups?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  womenfellowship?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  pier?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  cnbc?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  portfoliosubmitted?: boolean | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  portfolioLink?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  portfolioPassword?: string | null;
 
   @ApiProperty({
     required: false,
@@ -119,18 +337,6 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => AttendanceUpdateManyWithoutApplicationsInput,
-  })
-  @ValidateNested()
-  @Type(() => AttendanceUpdateManyWithoutApplicationsInput)
-  @IsOptional()
-  @Field(() => AttendanceUpdateManyWithoutApplicationsInput, {
-    nullable: true,
-  })
-  attendance?: AttendanceUpdateManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
     type: Boolean,
   })
   @IsBoolean()
@@ -142,48 +348,36 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => CashnetPaymentUpdateManyWithoutApplicationsInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => CashnetPaymentUpdateManyWithoutApplicationsInput)
+  @IsString()
   @IsOptional()
-  @Field(() => CashnetPaymentUpdateManyWithoutApplicationsInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  cashnetPayment?: CashnetPaymentUpdateManyWithoutApplicationsInput;
+  referralToProgram?: string | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  cnbc?: number | null;
+  recruitingEvent?: string | null;
 
   @ApiProperty({
     required: false,
-    type: Boolean,
+    type: String,
   })
-  @IsBoolean()
+  @IsString()
   @IsOptional()
-  @Field(() => Boolean, {
+  @Field(() => String, {
     nullable: true,
   })
-  complete?: boolean;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  createdDate?: Date | null;
+  otherInst?: string | null;
 
   @ApiProperty({
     required: false,
@@ -209,6 +403,17 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  recordsPermission?: string | null;
+
+  @ApiProperty({
+    required: false,
     type: Boolean,
   })
   @IsBoolean()
@@ -216,7 +421,18 @@ class ApplicationUpdateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
-  cups?: boolean;
+  mastersReviewWaiver?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  sentToProgram?: string;
 
   @ApiProperty({
     required: false,
@@ -228,6 +444,164 @@ class ApplicationUpdateInput {
     nullable: true,
   })
   curEnrolled?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  honors?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  round2?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  round3?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  rejectionSent?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  waitlistSent?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  previousCoursework?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  hide?: boolean;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  waiveHigherFee?: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  invitationEmailSent?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  waiveToefl?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => AcoPalWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => AcoPalWhereUniqueInput)
+  @IsOptional()
+  @Field(() => AcoPalWhereUniqueInput, {
+    nullable: true,
+  })
+  acoPal?: AcoPalWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ApplicationAdminNoteUpdateManyWithoutApplicationsInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationAdminNoteUpdateManyWithoutApplicationsInput)
+  @IsOptional()
+  @Field(() => ApplicationAdminNoteUpdateManyWithoutApplicationsInput, {
+    nullable: true,
+  })
+  applicationAdminNote?: ApplicationAdminNoteUpdateManyWithoutApplicationsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => AttendanceUpdateManyWithoutApplicationsInput,
+  })
+  @ValidateNested()
+  @Type(() => AttendanceUpdateManyWithoutApplicationsInput)
+  @IsOptional()
+  @Field(() => AttendanceUpdateManyWithoutApplicationsInput, {
+    nullable: true,
+  })
+  attendance?: AttendanceUpdateManyWithoutApplicationsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => CashnetPaymentUpdateManyWithoutApplicationsInput,
+  })
+  @ValidateNested()
+  @Type(() => CashnetPaymentUpdateManyWithoutApplicationsInput)
+  @IsOptional()
+  @Field(() => CashnetPaymentUpdateManyWithoutApplicationsInput, {
+    nullable: true,
+  })
+  cashnetPayment?: CashnetPaymentUpdateManyWithoutApplicationsInput;
 
   @ApiProperty({
     required: false,
@@ -279,28 +653,6 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  hide?: boolean;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  honors?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: () => IeltsscoreUpdateManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -310,17 +662,6 @@ class ApplicationUpdateInput {
     nullable: true,
   })
   ieltsscore?: IeltsscoreUpdateManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  invitationEmailSent?: string | null;
 
   @ApiProperty({
     required: false,
@@ -396,17 +737,6 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  mastersReviewWaiver?: boolean;
-
-  @ApiProperty({
-    required: false,
     type: () => MhciPrereqUpdateManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -479,50 +809,6 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  name?: string;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  notificationsent?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  otherInst?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  paid?: boolean;
-
-  @ApiProperty({
-    required: false,
     type: () => PaymentUpdateManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -535,39 +821,6 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  paymentamount?: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  paymentdate?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  paymenttype?: number | null;
-
-  @ApiProperty({
-    required: false,
     type: () => PeriodApplicationUpdateManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -577,61 +830,6 @@ class ApplicationUpdateInput {
     nullable: true,
   })
   periodApplication?: PeriodApplicationUpdateManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  pier?: boolean;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  portfolioLink?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  portfolioPassword?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  portfoliosubmitted?: boolean | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  previousCoursework?: number | null;
 
   @ApiProperty({
     required: false,
@@ -671,39 +869,6 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  recordsPermission?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  recruitingEvent?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  referralToProgram?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: () => RegistrationFeePaymentUpdateManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -725,17 +890,6 @@ class ApplicationUpdateInput {
     nullable: true,
   })
   registrationFeeStatus?: RegistrationFeeStatusUpdateManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  rejectionSent?: string | null;
 
   @ApiProperty({
     required: false,
@@ -775,39 +929,6 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  round2?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  round3?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  sentToProgram?: string;
-
-  @ApiProperty({
-    required: false,
     type: () => SpecialConsiderationUpdateManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -817,28 +938,6 @@ class ApplicationUpdateInput {
     nullable: true,
   })
   specialConsideration?: SpecialConsiderationUpdateManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  statementofpurpose?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  studentCommit?: boolean;
 
   @ApiProperty({
     required: false,
@@ -866,28 +965,6 @@ class ApplicationUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  submitted?: boolean;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  submittedDate?: Date | null;
-
-  @ApiProperty({
-    required: false,
     type: () => TagMemberUpdateManyWithoutApplicationsInput,
   })
   @ValidateNested()
@@ -897,83 +974,6 @@ class ApplicationUpdateInput {
     nullable: true,
   })
   tagMembers?: TagMemberUpdateManyWithoutApplicationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  userId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  waitlistSent?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  waive?: boolean;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  waivedate?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  waiveHigherFee?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  waiveToefl?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  womenfellowship?: boolean;
 }
 
 export { ApplicationUpdateInput as ApplicationUpdateInput };

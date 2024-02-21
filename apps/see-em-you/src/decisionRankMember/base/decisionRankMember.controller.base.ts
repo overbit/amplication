@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DecisionRankMemberService } from "../decisionRankMember.service";
 import { DecisionRankMemberCreateInput } from "./DecisionRankMemberCreateInput";
-import { DecisionRankMemberWhereInput } from "./DecisionRankMemberWhereInput";
-import { DecisionRankMemberWhereUniqueInput } from "./DecisionRankMemberWhereUniqueInput";
-import { DecisionRankMemberFindManyArgs } from "./DecisionRankMemberFindManyArgs";
-import { DecisionRankMemberUpdateInput } from "./DecisionRankMemberUpdateInput";
 import { DecisionRankMember } from "./DecisionRankMember";
+import { DecisionRankMemberFindManyArgs } from "./DecisionRankMemberFindManyArgs";
+import { DecisionRankMemberWhereUniqueInput } from "./DecisionRankMemberWhereUniqueInput";
+import { DecisionRankMemberUpdateInput } from "./DecisionRankMemberUpdateInput";
 
 export class DecisionRankMemberControllerBase {
   constructor(protected readonly service: DecisionRankMemberService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DecisionRankMember })
-  async create(
+  async createDecisionRankMember(
     @common.Body() data: DecisionRankMemberCreateInput
   ): Promise<DecisionRankMember> {
-    return await this.service.create({
+    return await this.service.createDecisionRankMember({
       data: data,
       select: {
-        applicationId: true,
-        decision: true,
         departmentId: true,
+        periodId: true,
+        decision: true,
+        applicationId: true,
         drank: true,
         id: true,
-        periodId: true,
       },
     });
   }
@@ -47,19 +46,19 @@ export class DecisionRankMemberControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DecisionRankMember] })
   @ApiNestedQuery(DecisionRankMemberFindManyArgs)
-  async findMany(
+  async decisionRankMembers(
     @common.Req() request: Request
   ): Promise<DecisionRankMember[]> {
     const args = plainToClass(DecisionRankMemberFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.decisionRankMembers({
       ...args,
       select: {
-        applicationId: true,
-        decision: true,
         departmentId: true,
+        periodId: true,
+        decision: true,
+        applicationId: true,
         drank: true,
         id: true,
-        periodId: true,
       },
     });
   }
@@ -67,18 +66,18 @@ export class DecisionRankMemberControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DecisionRankMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async decisionRankMember(
     @common.Param() params: DecisionRankMemberWhereUniqueInput
   ): Promise<DecisionRankMember | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.decisionRankMember({
       where: params,
       select: {
-        applicationId: true,
-        decision: true,
         departmentId: true,
+        periodId: true,
+        decision: true,
+        applicationId: true,
         drank: true,
         id: true,
-        periodId: true,
       },
     });
     if (result === null) {
@@ -92,21 +91,21 @@ export class DecisionRankMemberControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DecisionRankMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDecisionRankMember(
     @common.Param() params: DecisionRankMemberWhereUniqueInput,
     @common.Body() data: DecisionRankMemberUpdateInput
   ): Promise<DecisionRankMember | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDecisionRankMember({
         where: params,
         data: data,
         select: {
-          applicationId: true,
-          decision: true,
           departmentId: true,
+          periodId: true,
+          decision: true,
+          applicationId: true,
           drank: true,
           id: true,
-          periodId: true,
         },
       });
     } catch (error) {
@@ -122,19 +121,19 @@ export class DecisionRankMemberControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DecisionRankMember })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDecisionRankMember(
     @common.Param() params: DecisionRankMemberWhereUniqueInput
   ): Promise<DecisionRankMember | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDecisionRankMember({
         where: params,
         select: {
-          applicationId: true,
-          decision: true,
           departmentId: true,
+          periodId: true,
+          decision: true,
+          applicationId: true,
           drank: true,
           id: true,
-          periodId: true,
         },
       });
     } catch (error) {

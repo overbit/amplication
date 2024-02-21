@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateSuppinfoArgs } from "./CreateSlateSuppinfoArgs";
-import { UpdateSlateSuppinfoArgs } from "./UpdateSlateSuppinfoArgs";
-import { DeleteSlateSuppinfoArgs } from "./DeleteSlateSuppinfoArgs";
+import { SlateSuppinfo } from "./SlateSuppinfo";
 import { SlateSuppinfoCountArgs } from "./SlateSuppinfoCountArgs";
 import { SlateSuppinfoFindManyArgs } from "./SlateSuppinfoFindManyArgs";
 import { SlateSuppinfoFindUniqueArgs } from "./SlateSuppinfoFindUniqueArgs";
-import { SlateSuppinfo } from "./SlateSuppinfo";
+import { CreateSlateSuppinfoArgs } from "./CreateSlateSuppinfoArgs";
+import { UpdateSlateSuppinfoArgs } from "./UpdateSlateSuppinfoArgs";
+import { DeleteSlateSuppinfoArgs } from "./DeleteSlateSuppinfoArgs";
 import { SlateSuppinfoService } from "../slateSuppinfo.service";
 @graphql.Resolver(() => SlateSuppinfo)
 export class SlateSuppinfoResolverBase {
@@ -38,14 +38,14 @@ export class SlateSuppinfoResolverBase {
   async slateSuppinfos(
     @graphql.Args() args: SlateSuppinfoFindManyArgs
   ): Promise<SlateSuppinfo[]> {
-    return this.service.findMany(args);
+    return this.service.slateSuppinfos(args);
   }
 
   @graphql.Query(() => SlateSuppinfo, { nullable: true })
   async slateSuppinfo(
     @graphql.Args() args: SlateSuppinfoFindUniqueArgs
   ): Promise<SlateSuppinfo | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateSuppinfo(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateSuppinfoResolverBase {
   async createSlateSuppinfo(
     @graphql.Args() args: CreateSlateSuppinfoArgs
   ): Promise<SlateSuppinfo> {
-    return await this.service.create({
+    return await this.service.createSlateSuppinfo({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateSuppinfoResolverBase {
     @graphql.Args() args: UpdateSlateSuppinfoArgs
   ): Promise<SlateSuppinfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateSuppinfo({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateSuppinfoResolverBase {
     @graphql.Args() args: DeleteSlateSuppinfoArgs
   ): Promise<SlateSuppinfo | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateSuppinfo(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

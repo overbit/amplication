@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuApplicationGroupArgs } from "./CreateLuApplicationGroupArgs";
-import { UpdateLuApplicationGroupArgs } from "./UpdateLuApplicationGroupArgs";
-import { DeleteLuApplicationGroupArgs } from "./DeleteLuApplicationGroupArgs";
+import { LuApplicationGroup } from "./LuApplicationGroup";
 import { LuApplicationGroupCountArgs } from "./LuApplicationGroupCountArgs";
 import { LuApplicationGroupFindManyArgs } from "./LuApplicationGroupFindManyArgs";
 import { LuApplicationGroupFindUniqueArgs } from "./LuApplicationGroupFindUniqueArgs";
-import { LuApplicationGroup } from "./LuApplicationGroup";
+import { CreateLuApplicationGroupArgs } from "./CreateLuApplicationGroupArgs";
+import { UpdateLuApplicationGroupArgs } from "./UpdateLuApplicationGroupArgs";
+import { DeleteLuApplicationGroupArgs } from "./DeleteLuApplicationGroupArgs";
 import { Application } from "../../application/base/Application";
 import { LuApplicationGroupService } from "../luApplicationGroup.service";
 @graphql.Resolver(() => LuApplicationGroup)
@@ -39,14 +39,14 @@ export class LuApplicationGroupResolverBase {
   async luApplicationGroups(
     @graphql.Args() args: LuApplicationGroupFindManyArgs
   ): Promise<LuApplicationGroup[]> {
-    return this.service.findMany(args);
+    return this.service.luApplicationGroups(args);
   }
 
   @graphql.Query(() => LuApplicationGroup, { nullable: true })
   async luApplicationGroup(
     @graphql.Args() args: LuApplicationGroupFindUniqueArgs
   ): Promise<LuApplicationGroup | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luApplicationGroup(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class LuApplicationGroupResolverBase {
   async createLuApplicationGroup(
     @graphql.Args() args: CreateLuApplicationGroupArgs
   ): Promise<LuApplicationGroup> {
-    return await this.service.create({
+    return await this.service.createLuApplicationGroup({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class LuApplicationGroupResolverBase {
     @graphql.Args() args: UpdateLuApplicationGroupArgs
   ): Promise<LuApplicationGroup | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationGroup({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class LuApplicationGroupResolverBase {
     @graphql.Args() args: DeleteLuApplicationGroupArgs
   ): Promise<LuApplicationGroup | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuApplicationGroup(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class LuApplicationGroupResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: LuApplicationGroup
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

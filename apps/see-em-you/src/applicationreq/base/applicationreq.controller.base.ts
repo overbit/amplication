@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationreqService } from "../applicationreq.service";
 import { ApplicationreqCreateInput } from "./ApplicationreqCreateInput";
-import { ApplicationreqWhereInput } from "./ApplicationreqWhereInput";
-import { ApplicationreqWhereUniqueInput } from "./ApplicationreqWhereUniqueInput";
-import { ApplicationreqFindManyArgs } from "./ApplicationreqFindManyArgs";
-import { ApplicationreqUpdateInput } from "./ApplicationreqUpdateInput";
 import { Applicationreq } from "./Applicationreq";
+import { ApplicationreqFindManyArgs } from "./ApplicationreqFindManyArgs";
+import { ApplicationreqWhereUniqueInput } from "./ApplicationreqWhereUniqueInput";
+import { ApplicationreqUpdateInput } from "./ApplicationreqUpdateInput";
 import { ProgramsApplicationreqFindManyArgs } from "../../programsApplicationreq/base/ProgramsApplicationreqFindManyArgs";
 import { ProgramsApplicationreq } from "../../programsApplicationreq/base/ProgramsApplicationreq";
 import { ProgramsApplicationreqWhereUniqueInput } from "../../programsApplicationreq/base/ProgramsApplicationreqWhereUniqueInput";
@@ -31,17 +30,17 @@ export class ApplicationreqControllerBase {
   constructor(protected readonly service: ApplicationreqService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Applicationreq })
-  async create(
+  async createApplicationreq(
     @common.Body() data: ApplicationreqCreateInput
   ): Promise<Applicationreq> {
-    return await this.service.create({
+    return await this.service.createApplicationreq({
       data: data,
       select: {
-        id: true,
-        linkname: true,
         name: true,
         short: true,
+        linkname: true,
         sortorder: true,
+        id: true,
       },
     });
   }
@@ -49,16 +48,18 @@ export class ApplicationreqControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Applicationreq] })
   @ApiNestedQuery(ApplicationreqFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Applicationreq[]> {
+  async applicationreqs(
+    @common.Req() request: Request
+  ): Promise<Applicationreq[]> {
     const args = plainToClass(ApplicationreqFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.applicationreqs({
       ...args,
       select: {
-        id: true,
-        linkname: true,
         name: true,
         short: true,
+        linkname: true,
         sortorder: true,
+        id: true,
       },
     });
   }
@@ -66,17 +67,17 @@ export class ApplicationreqControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Applicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationreq(
     @common.Param() params: ApplicationreqWhereUniqueInput
   ): Promise<Applicationreq | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationreq({
       where: params,
       select: {
-        id: true,
-        linkname: true,
         name: true,
         short: true,
+        linkname: true,
         sortorder: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -90,20 +91,20 @@ export class ApplicationreqControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Applicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationreq(
     @common.Param() params: ApplicationreqWhereUniqueInput,
     @common.Body() data: ApplicationreqUpdateInput
   ): Promise<Applicationreq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationreq({
         where: params,
         data: data,
         select: {
-          id: true,
-          linkname: true,
           name: true,
           short: true,
+          linkname: true,
           sortorder: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -119,18 +120,18 @@ export class ApplicationreqControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Applicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationreq(
     @common.Param() params: ApplicationreqWhereUniqueInput
   ): Promise<Applicationreq | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationreq({
         where: params,
         select: {
-          id: true,
-          linkname: true,
           name: true,
           short: true,
+          linkname: true,
           sortorder: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -145,7 +146,7 @@ export class ApplicationreqControllerBase {
 
   @common.Get("/:id/programsApplicationreqs")
   @ApiNestedQuery(ProgramsApplicationreqFindManyArgs)
-  async findManyProgramsApplicationreqs(
+  async findProgramsApplicationreqs(
     @common.Req() request: Request,
     @common.Param() params: ApplicationreqWhereUniqueInput
   ): Promise<ProgramsApplicationreq[]> {
@@ -156,6 +157,12 @@ export class ApplicationreqControllerBase {
     const results = await this.service.findProgramsApplicationreqs(params.id, {
       ...query,
       select: {
+        programs: {
+          select: {
+            id: true,
+          },
+        },
+
         applicationreqs: {
           select: {
             id: true,
@@ -163,12 +170,6 @@ export class ApplicationreqControllerBase {
         },
 
         id: true,
-
-        programs: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {
@@ -189,7 +190,7 @@ export class ApplicationreqControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplicationreq({
       where: params,
       data,
       select: { id: true },
@@ -206,7 +207,7 @@ export class ApplicationreqControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplicationreq({
       where: params,
       data,
       select: { id: true },
@@ -223,7 +224,7 @@ export class ApplicationreqControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updateApplicationreq({
       where: params,
       data,
       select: { id: true },

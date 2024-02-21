@@ -18,31 +18,30 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { UsHsStatusService } from "../usHsStatus.service";
 import { UsHsStatusCreateInput } from "./UsHsStatusCreateInput";
-import { UsHsStatusWhereInput } from "./UsHsStatusWhereInput";
-import { UsHsStatusWhereUniqueInput } from "./UsHsStatusWhereUniqueInput";
-import { UsHsStatusFindManyArgs } from "./UsHsStatusFindManyArgs";
-import { UsHsStatusUpdateInput } from "./UsHsStatusUpdateInput";
 import { UsHsStatus } from "./UsHsStatus";
+import { UsHsStatusFindManyArgs } from "./UsHsStatusFindManyArgs";
+import { UsHsStatusWhereUniqueInput } from "./UsHsStatusWhereUniqueInput";
+import { UsHsStatusUpdateInput } from "./UsHsStatusUpdateInput";
 
 export class UsHsStatusControllerBase {
   constructor(protected readonly service: UsHsStatusService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: UsHsStatus })
-  async create(
+  async createUsHsStatus(
     @common.Body() data: UsHsStatusCreateInput
   ): Promise<UsHsStatus> {
-    return await this.service.create({
+    return await this.service.createUsHsStatus({
       data: data,
       select: {
-        anyUsHs: true,
         appId: true,
+        usHSGrad: true,
+        anyUsHs: true,
+        pell: true,
+        ugFedWorkStudy: true,
+        permZipGrad: true,
         firstGen: true,
         firstGenGrad: true,
         id: true,
-        pell: true,
-        permZipGrad: true,
-        ugFedWorkStudy: true,
-        usHSGrad: true,
       },
     });
   }
@@ -50,20 +49,20 @@ export class UsHsStatusControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [UsHsStatus] })
   @ApiNestedQuery(UsHsStatusFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<UsHsStatus[]> {
+  async usHsStatuses(@common.Req() request: Request): Promise<UsHsStatus[]> {
     const args = plainToClass(UsHsStatusFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.usHsStatuses({
       ...args,
       select: {
-        anyUsHs: true,
         appId: true,
+        usHSGrad: true,
+        anyUsHs: true,
+        pell: true,
+        ugFedWorkStudy: true,
+        permZipGrad: true,
         firstGen: true,
         firstGenGrad: true,
         id: true,
-        pell: true,
-        permZipGrad: true,
-        ugFedWorkStudy: true,
-        usHSGrad: true,
       },
     });
   }
@@ -71,21 +70,21 @@ export class UsHsStatusControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: UsHsStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async usHsStatus(
     @common.Param() params: UsHsStatusWhereUniqueInput
   ): Promise<UsHsStatus | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.usHsStatus({
       where: params,
       select: {
-        anyUsHs: true,
         appId: true,
+        usHSGrad: true,
+        anyUsHs: true,
+        pell: true,
+        ugFedWorkStudy: true,
+        permZipGrad: true,
         firstGen: true,
         firstGenGrad: true,
         id: true,
-        pell: true,
-        permZipGrad: true,
-        ugFedWorkStudy: true,
-        usHSGrad: true,
       },
     });
     if (result === null) {
@@ -99,24 +98,24 @@ export class UsHsStatusControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: UsHsStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateUsHsStatus(
     @common.Param() params: UsHsStatusWhereUniqueInput,
     @common.Body() data: UsHsStatusUpdateInput
   ): Promise<UsHsStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsHsStatus({
         where: params,
         data: data,
         select: {
-          anyUsHs: true,
           appId: true,
+          usHSGrad: true,
+          anyUsHs: true,
+          pell: true,
+          ugFedWorkStudy: true,
+          permZipGrad: true,
           firstGen: true,
           firstGenGrad: true,
           id: true,
-          pell: true,
-          permZipGrad: true,
-          ugFedWorkStudy: true,
-          usHSGrad: true,
         },
       });
     } catch (error) {
@@ -132,22 +131,22 @@ export class UsHsStatusControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: UsHsStatus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteUsHsStatus(
     @common.Param() params: UsHsStatusWhereUniqueInput
   ): Promise<UsHsStatus | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteUsHsStatus({
         where: params,
         select: {
-          anyUsHs: true,
           appId: true,
+          usHSGrad: true,
+          anyUsHs: true,
+          pell: true,
+          ugFedWorkStudy: true,
+          permZipGrad: true,
           firstGen: true,
           firstGenGrad: true,
           id: true,
-          pell: true,
-          permZipGrad: true,
-          ugFedWorkStudy: true,
-          usHSGrad: true,
         },
       });
     } catch (error) {

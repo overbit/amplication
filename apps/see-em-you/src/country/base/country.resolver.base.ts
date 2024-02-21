@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCountryArgs } from "./CreateCountryArgs";
-import { UpdateCountryArgs } from "./UpdateCountryArgs";
-import { DeleteCountryArgs } from "./DeleteCountryArgs";
+import { Country } from "./Country";
 import { CountryCountArgs } from "./CountryCountArgs";
 import { CountryFindManyArgs } from "./CountryFindManyArgs";
 import { CountryFindUniqueArgs } from "./CountryFindUniqueArgs";
-import { Country } from "./Country";
+import { CreateCountryArgs } from "./CreateCountryArgs";
+import { UpdateCountryArgs } from "./UpdateCountryArgs";
+import { DeleteCountryArgs } from "./DeleteCountryArgs";
 import { CountryService } from "../country.service";
 @graphql.Resolver(() => Country)
 export class CountryResolverBase {
@@ -38,14 +38,14 @@ export class CountryResolverBase {
   async countries(
     @graphql.Args() args: CountryFindManyArgs
   ): Promise<Country[]> {
-    return this.service.findMany(args);
+    return this.service.countries(args);
   }
 
   @graphql.Query(() => Country, { nullable: true })
   async country(
     @graphql.Args() args: CountryFindUniqueArgs
   ): Promise<Country | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.country(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class CountryResolverBase {
   async createCountry(
     @graphql.Args() args: CreateCountryArgs
   ): Promise<Country> {
-    return await this.service.create({
+    return await this.service.createCountry({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class CountryResolverBase {
     @graphql.Args() args: UpdateCountryArgs
   ): Promise<Country | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCountry({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class CountryResolverBase {
     @graphql.Args() args: DeleteCountryArgs
   ): Promise<Country | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCountry(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

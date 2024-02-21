@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateAdmissionArgs } from "./CreateAdmissionArgs";
-import { UpdateAdmissionArgs } from "./UpdateAdmissionArgs";
-import { DeleteAdmissionArgs } from "./DeleteAdmissionArgs";
+import { Admission } from "./Admission";
 import { AdmissionCountArgs } from "./AdmissionCountArgs";
 import { AdmissionFindManyArgs } from "./AdmissionFindManyArgs";
 import { AdmissionFindUniqueArgs } from "./AdmissionFindUniqueArgs";
-import { Admission } from "./Admission";
+import { CreateAdmissionArgs } from "./CreateAdmissionArgs";
+import { UpdateAdmissionArgs } from "./UpdateAdmissionArgs";
+import { DeleteAdmissionArgs } from "./DeleteAdmissionArgs";
 import { AdmissionService } from "../admission.service";
 @graphql.Resolver(() => Admission)
 export class AdmissionResolverBase {
@@ -38,14 +38,14 @@ export class AdmissionResolverBase {
   async admissions(
     @graphql.Args() args: AdmissionFindManyArgs
   ): Promise<Admission[]> {
-    return this.service.findMany(args);
+    return this.service.admissions(args);
   }
 
   @graphql.Query(() => Admission, { nullable: true })
   async admission(
     @graphql.Args() args: AdmissionFindUniqueArgs
   ): Promise<Admission | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.admission(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class AdmissionResolverBase {
   async createAdmission(
     @graphql.Args() args: CreateAdmissionArgs
   ): Promise<Admission> {
-    return await this.service.create({
+    return await this.service.createAdmission({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class AdmissionResolverBase {
     @graphql.Args() args: UpdateAdmissionArgs
   ): Promise<Admission | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateAdmission({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class AdmissionResolverBase {
     @graphql.Args() args: DeleteAdmissionArgs
   ): Promise<Admission | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteAdmission(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

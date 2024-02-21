@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApplicationContentService } from "../applicationContent.service";
 import { ApplicationContentCreateInput } from "./ApplicationContentCreateInput";
-import { ApplicationContentWhereInput } from "./ApplicationContentWhereInput";
-import { ApplicationContentWhereUniqueInput } from "./ApplicationContentWhereUniqueInput";
-import { ApplicationContentFindManyArgs } from "./ApplicationContentFindManyArgs";
-import { ApplicationContentUpdateInput } from "./ApplicationContentUpdateInput";
 import { ApplicationContent } from "./ApplicationContent";
+import { ApplicationContentFindManyArgs } from "./ApplicationContentFindManyArgs";
+import { ApplicationContentWhereUniqueInput } from "./ApplicationContentWhereUniqueInput";
+import { ApplicationContentUpdateInput } from "./ApplicationContentUpdateInput";
 
 export class ApplicationContentControllerBase {
   constructor(protected readonly service: ApplicationContentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ApplicationContent })
-  async create(
+  async createApplicationContent(
     @common.Body() data: ApplicationContentCreateInput
   ): Promise<ApplicationContent> {
-    return await this.service.create({
+    return await this.service.createApplicationContent({
       data: data,
       select: {
-        desired: true,
         id: true,
-        programId: true,
-        required: true,
         sectionIdentifier: true,
+        programId: true,
+        desired: true,
+        required: true,
       },
     });
   }
@@ -46,18 +45,18 @@ export class ApplicationContentControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ApplicationContent] })
   @ApiNestedQuery(ApplicationContentFindManyArgs)
-  async findMany(
+  async applicationContents(
     @common.Req() request: Request
   ): Promise<ApplicationContent[]> {
     const args = plainToClass(ApplicationContentFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.applicationContents({
       ...args,
       select: {
-        desired: true,
         id: true,
-        programId: true,
-        required: true,
         sectionIdentifier: true,
+        programId: true,
+        desired: true,
+        required: true,
       },
     });
   }
@@ -65,17 +64,17 @@ export class ApplicationContentControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ApplicationContent })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async applicationContent(
     @common.Param() params: ApplicationContentWhereUniqueInput
   ): Promise<ApplicationContent | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.applicationContent({
       where: params,
       select: {
-        desired: true,
         id: true,
-        programId: true,
-        required: true,
         sectionIdentifier: true,
+        programId: true,
+        desired: true,
+        required: true,
       },
     });
     if (result === null) {
@@ -89,20 +88,20 @@ export class ApplicationContentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ApplicationContent })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateApplicationContent(
     @common.Param() params: ApplicationContentWhereUniqueInput,
     @common.Body() data: ApplicationContentUpdateInput
   ): Promise<ApplicationContent | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationContent({
         where: params,
         data: data,
         select: {
-          desired: true,
           id: true,
-          programId: true,
-          required: true,
           sectionIdentifier: true,
+          programId: true,
+          desired: true,
+          required: true,
         },
       });
     } catch (error) {
@@ -118,18 +117,18 @@ export class ApplicationContentControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ApplicationContent })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteApplicationContent(
     @common.Param() params: ApplicationContentWhereUniqueInput
   ): Promise<ApplicationContent | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteApplicationContent({
         where: params,
         select: {
-          desired: true,
           id: true,
-          programId: true,
-          required: true,
           sectionIdentifier: true,
+          programId: true,
+          desired: true,
+          required: true,
         },
       });
     } catch (error) {

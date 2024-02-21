@@ -8,8 +8,8 @@ export const MseBridgeCourseDecisionEdit = (
     <Edit {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Course Id" source="courseId" />
         <NumberInput step={1} label="Program Id" source="programId" />
+        <NumberInput step={1} label="Course Id" source="courseId" />
       </SimpleForm>
     </Edit>
   );

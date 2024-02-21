@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ApplicationMergeFile } from "@prisma/client";
+import {
+  Prisma,
+  ApplicationMergeFile as PrismaApplicationMergeFile,
+} from "@prisma/client";
 
 export class ApplicationMergeFileServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class ApplicationMergeFileServiceBase {
     return this.prisma.applicationMergeFile.count(args);
   }
 
-  async findMany<T extends Prisma.ApplicationMergeFileFindManyArgs>(
+  async applicationMergeFiles<
+    T extends Prisma.ApplicationMergeFileFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationMergeFileFindManyArgs>
-  ): Promise<ApplicationMergeFile[]> {
+  ): Promise<PrismaApplicationMergeFile[]> {
     return this.prisma.applicationMergeFile.findMany(args);
   }
-  async findOne<T extends Prisma.ApplicationMergeFileFindUniqueArgs>(
+  async applicationMergeFile<
+    T extends Prisma.ApplicationMergeFileFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationMergeFileFindUniqueArgs>
-  ): Promise<ApplicationMergeFile | null> {
+  ): Promise<PrismaApplicationMergeFile | null> {
     return this.prisma.applicationMergeFile.findUnique(args);
   }
-  async create<T extends Prisma.ApplicationMergeFileCreateArgs>(
+  async createApplicationMergeFile<
+    T extends Prisma.ApplicationMergeFileCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationMergeFileCreateArgs>
-  ): Promise<ApplicationMergeFile> {
+  ): Promise<PrismaApplicationMergeFile> {
     return this.prisma.applicationMergeFile.create<T>(args);
   }
-  async update<T extends Prisma.ApplicationMergeFileUpdateArgs>(
+  async updateApplicationMergeFile<
+    T extends Prisma.ApplicationMergeFileUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationMergeFileUpdateArgs>
-  ): Promise<ApplicationMergeFile> {
+  ): Promise<PrismaApplicationMergeFile> {
     return this.prisma.applicationMergeFile.update<T>(args);
   }
-  async delete<T extends Prisma.ApplicationMergeFileDeleteArgs>(
+  async deleteApplicationMergeFile<
+    T extends Prisma.ApplicationMergeFileDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.ApplicationMergeFileDeleteArgs>
-  ): Promise<ApplicationMergeFile> {
+  ): Promise<PrismaApplicationMergeFile> {
     return this.prisma.applicationMergeFile.delete(args);
   }
 }

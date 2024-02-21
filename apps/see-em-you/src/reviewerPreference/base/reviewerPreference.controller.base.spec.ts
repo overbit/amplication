@@ -18,30 +18,30 @@ import { ReviewerPreferenceService } from "../reviewerPreference.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
   viewMode: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
   viewMode: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
     viewMode: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
   viewMode: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createReviewerPreference() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  reviewerPreferences: () => FIND_MANY_RESULT,
+  reviewerPreference: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

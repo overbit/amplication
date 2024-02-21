@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateIpedsEthnicityArgs } from "./CreateIpedsEthnicityArgs";
-import { UpdateIpedsEthnicityArgs } from "./UpdateIpedsEthnicityArgs";
-import { DeleteIpedsEthnicityArgs } from "./DeleteIpedsEthnicityArgs";
+import { IpedsEthnicity } from "./IpedsEthnicity";
 import { IpedsEthnicityCountArgs } from "./IpedsEthnicityCountArgs";
 import { IpedsEthnicityFindManyArgs } from "./IpedsEthnicityFindManyArgs";
 import { IpedsEthnicityFindUniqueArgs } from "./IpedsEthnicityFindUniqueArgs";
-import { IpedsEthnicity } from "./IpedsEthnicity";
+import { CreateIpedsEthnicityArgs } from "./CreateIpedsEthnicityArgs";
+import { UpdateIpedsEthnicityArgs } from "./UpdateIpedsEthnicityArgs";
+import { DeleteIpedsEthnicityArgs } from "./DeleteIpedsEthnicityArgs";
 import { IpedsEthnicityService } from "../ipedsEthnicity.service";
 @graphql.Resolver(() => IpedsEthnicity)
 export class IpedsEthnicityResolverBase {
@@ -38,14 +38,14 @@ export class IpedsEthnicityResolverBase {
   async ipedsEthnicities(
     @graphql.Args() args: IpedsEthnicityFindManyArgs
   ): Promise<IpedsEthnicity[]> {
-    return this.service.findMany(args);
+    return this.service.ipedsEthnicities(args);
   }
 
   @graphql.Query(() => IpedsEthnicity, { nullable: true })
   async ipedsEthnicity(
     @graphql.Args() args: IpedsEthnicityFindUniqueArgs
   ): Promise<IpedsEthnicity | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.ipedsEthnicity(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class IpedsEthnicityResolverBase {
   async createIpedsEthnicity(
     @graphql.Args() args: CreateIpedsEthnicityArgs
   ): Promise<IpedsEthnicity> {
-    return await this.service.create({
+    return await this.service.createIpedsEthnicity({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class IpedsEthnicityResolverBase {
     @graphql.Args() args: UpdateIpedsEthnicityArgs
   ): Promise<IpedsEthnicity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIpedsEthnicity({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class IpedsEthnicityResolverBase {
     @graphql.Args() args: DeleteIpedsEthnicityArgs
   ): Promise<IpedsEthnicity | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteIpedsEthnicity(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

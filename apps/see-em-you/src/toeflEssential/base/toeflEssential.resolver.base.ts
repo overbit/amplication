@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateToeflEssentialArgs } from "./CreateToeflEssentialArgs";
-import { UpdateToeflEssentialArgs } from "./UpdateToeflEssentialArgs";
-import { DeleteToeflEssentialArgs } from "./DeleteToeflEssentialArgs";
+import { ToeflEssential } from "./ToeflEssential";
 import { ToeflEssentialCountArgs } from "./ToeflEssentialCountArgs";
 import { ToeflEssentialFindManyArgs } from "./ToeflEssentialFindManyArgs";
 import { ToeflEssentialFindUniqueArgs } from "./ToeflEssentialFindUniqueArgs";
-import { ToeflEssential } from "./ToeflEssential";
+import { CreateToeflEssentialArgs } from "./CreateToeflEssentialArgs";
+import { UpdateToeflEssentialArgs } from "./UpdateToeflEssentialArgs";
+import { DeleteToeflEssentialArgs } from "./DeleteToeflEssentialArgs";
 import { ToeflEssentialService } from "../toeflEssential.service";
 @graphql.Resolver(() => ToeflEssential)
 export class ToeflEssentialResolverBase {
@@ -38,14 +38,14 @@ export class ToeflEssentialResolverBase {
   async toeflEssentials(
     @graphql.Args() args: ToeflEssentialFindManyArgs
   ): Promise<ToeflEssential[]> {
-    return this.service.findMany(args);
+    return this.service.toeflEssentials(args);
   }
 
   @graphql.Query(() => ToeflEssential, { nullable: true })
   async toeflEssential(
     @graphql.Args() args: ToeflEssentialFindUniqueArgs
   ): Promise<ToeflEssential | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.toeflEssential(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ToeflEssentialResolverBase {
   async createToeflEssential(
     @graphql.Args() args: CreateToeflEssentialArgs
   ): Promise<ToeflEssential> {
-    return await this.service.create({
+    return await this.service.createToeflEssential({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ToeflEssentialResolverBase {
     @graphql.Args() args: UpdateToeflEssentialArgs
   ): Promise<ToeflEssential | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateToeflEssential({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ToeflEssentialResolverBase {
     @graphql.Args() args: DeleteToeflEssentialArgs
   ): Promise<ToeflEssential | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteToeflEssential(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

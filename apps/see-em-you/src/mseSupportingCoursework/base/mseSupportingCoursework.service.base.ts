@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseSupportingCoursework } from "@prisma/client";
+import {
+  Prisma,
+  MseSupportingCoursework as PrismaMseSupportingCoursework,
+} from "@prisma/client";
 
 export class MseSupportingCourseworkServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class MseSupportingCourseworkServiceBase {
     return this.prisma.mseSupportingCoursework.count(args);
   }
 
-  async findMany<T extends Prisma.MseSupportingCourseworkFindManyArgs>(
+  async mseSupportingCourseworks<
+    T extends Prisma.MseSupportingCourseworkFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseSupportingCourseworkFindManyArgs>
-  ): Promise<MseSupportingCoursework[]> {
+  ): Promise<PrismaMseSupportingCoursework[]> {
     return this.prisma.mseSupportingCoursework.findMany(args);
   }
-  async findOne<T extends Prisma.MseSupportingCourseworkFindUniqueArgs>(
+  async mseSupportingCoursework<
+    T extends Prisma.MseSupportingCourseworkFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseSupportingCourseworkFindUniqueArgs>
-  ): Promise<MseSupportingCoursework | null> {
+  ): Promise<PrismaMseSupportingCoursework | null> {
     return this.prisma.mseSupportingCoursework.findUnique(args);
   }
-  async create<T extends Prisma.MseSupportingCourseworkCreateArgs>(
+  async createMseSupportingCoursework<
+    T extends Prisma.MseSupportingCourseworkCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseSupportingCourseworkCreateArgs>
-  ): Promise<MseSupportingCoursework> {
+  ): Promise<PrismaMseSupportingCoursework> {
     return this.prisma.mseSupportingCoursework.create<T>(args);
   }
-  async update<T extends Prisma.MseSupportingCourseworkUpdateArgs>(
+  async updateMseSupportingCoursework<
+    T extends Prisma.MseSupportingCourseworkUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseSupportingCourseworkUpdateArgs>
-  ): Promise<MseSupportingCoursework> {
+  ): Promise<PrismaMseSupportingCoursework> {
     return this.prisma.mseSupportingCoursework.update<T>(args);
   }
-  async delete<T extends Prisma.MseSupportingCourseworkDeleteArgs>(
+  async deleteMseSupportingCoursework<
+    T extends Prisma.MseSupportingCourseworkDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MseSupportingCourseworkDeleteArgs>
-  ): Promise<MseSupportingCoursework> {
+  ): Promise<PrismaMseSupportingCoursework> {
     return this.prisma.mseSupportingCoursework.delete(args);
   }
 }

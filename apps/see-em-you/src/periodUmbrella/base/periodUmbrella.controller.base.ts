@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PeriodUmbrellaService } from "../periodUmbrella.service";
 import { PeriodUmbrellaCreateInput } from "./PeriodUmbrellaCreateInput";
-import { PeriodUmbrellaWhereInput } from "./PeriodUmbrellaWhereInput";
-import { PeriodUmbrellaWhereUniqueInput } from "./PeriodUmbrellaWhereUniqueInput";
-import { PeriodUmbrellaFindManyArgs } from "./PeriodUmbrellaFindManyArgs";
-import { PeriodUmbrellaUpdateInput } from "./PeriodUmbrellaUpdateInput";
 import { PeriodUmbrella } from "./PeriodUmbrella";
+import { PeriodUmbrellaFindManyArgs } from "./PeriodUmbrellaFindManyArgs";
+import { PeriodUmbrellaWhereUniqueInput } from "./PeriodUmbrellaWhereUniqueInput";
+import { PeriodUmbrellaUpdateInput } from "./PeriodUmbrellaUpdateInput";
 
 export class PeriodUmbrellaControllerBase {
   constructor(protected readonly service: PeriodUmbrellaService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PeriodUmbrella })
-  async create(
+  async createPeriodUmbrella(
     @common.Body() data: PeriodUmbrellaCreateInput
   ): Promise<PeriodUmbrella> {
-    return await this.service.create({
+    return await this.service.createPeriodUmbrella({
       data: data,
       select: {
         admissionTerm: true,
         admissionYear: true,
         higherFeeDate: true,
-        id: true,
-        lastPaymentDate: true,
         umbrellaName: true,
+        lastPaymentDate: true,
+        id: true,
       },
     });
   }
@@ -47,17 +46,19 @@ export class PeriodUmbrellaControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PeriodUmbrella] })
   @ApiNestedQuery(PeriodUmbrellaFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PeriodUmbrella[]> {
+  async periodUmbrellas(
+    @common.Req() request: Request
+  ): Promise<PeriodUmbrella[]> {
     const args = plainToClass(PeriodUmbrellaFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.periodUmbrellas({
       ...args,
       select: {
         admissionTerm: true,
         admissionYear: true,
         higherFeeDate: true,
-        id: true,
-        lastPaymentDate: true,
         umbrellaName: true,
+        lastPaymentDate: true,
+        id: true,
       },
     });
   }
@@ -65,18 +66,18 @@ export class PeriodUmbrellaControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PeriodUmbrella })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async periodUmbrella(
     @common.Param() params: PeriodUmbrellaWhereUniqueInput
   ): Promise<PeriodUmbrella | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.periodUmbrella({
       where: params,
       select: {
         admissionTerm: true,
         admissionYear: true,
         higherFeeDate: true,
-        id: true,
-        lastPaymentDate: true,
         umbrellaName: true,
+        lastPaymentDate: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -90,21 +91,21 @@ export class PeriodUmbrellaControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PeriodUmbrella })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePeriodUmbrella(
     @common.Param() params: PeriodUmbrellaWhereUniqueInput,
     @common.Body() data: PeriodUmbrellaUpdateInput
   ): Promise<PeriodUmbrella | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriodUmbrella({
         where: params,
         data: data,
         select: {
           admissionTerm: true,
           admissionYear: true,
           higherFeeDate: true,
-          id: true,
-          lastPaymentDate: true,
           umbrellaName: true,
+          lastPaymentDate: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -120,19 +121,19 @@ export class PeriodUmbrellaControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PeriodUmbrella })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePeriodUmbrella(
     @common.Param() params: PeriodUmbrellaWhereUniqueInput
   ): Promise<PeriodUmbrella | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePeriodUmbrella({
         where: params,
         select: {
           admissionTerm: true,
           admissionYear: true,
           higherFeeDate: true,
-          id: true,
-          lastPaymentDate: true,
           umbrellaName: true,
+          lastPaymentDate: true,
+          id: true,
         },
       });
     } catch (error) {

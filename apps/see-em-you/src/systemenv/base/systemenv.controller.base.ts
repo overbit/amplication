@@ -18,27 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SystemenvService } from "../systemenv.service";
 import { SystemenvCreateInput } from "./SystemenvCreateInput";
-import { SystemenvWhereInput } from "./SystemenvWhereInput";
-import { SystemenvWhereUniqueInput } from "./SystemenvWhereUniqueInput";
-import { SystemenvFindManyArgs } from "./SystemenvFindManyArgs";
-import { SystemenvUpdateInput } from "./SystemenvUpdateInput";
 import { Systemenv } from "./Systemenv";
+import { SystemenvFindManyArgs } from "./SystemenvFindManyArgs";
+import { SystemenvWhereUniqueInput } from "./SystemenvWhereUniqueInput";
+import { SystemenvUpdateInput } from "./SystemenvUpdateInput";
 
 export class SystemenvControllerBase {
   constructor(protected readonly service: SystemenvService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Systemenv })
-  async create(@common.Body() data: SystemenvCreateInput): Promise<Systemenv> {
-    return await this.service.create({
+  async createSystemenv(
+    @common.Body() data: SystemenvCreateInput
+  ): Promise<Systemenv> {
+    return await this.service.createSystemenv({
       data: data,
       select: {
-        appbaseprice: true,
-        coorduserId: true,
         domainId: true,
+        coorduserId: true,
         expdate: true,
         expdate2: true,
-        id: true,
+        appbaseprice: true,
         sysemail: true,
+        id: true,
       },
     });
   }
@@ -46,18 +47,18 @@ export class SystemenvControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Systemenv] })
   @ApiNestedQuery(SystemenvFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Systemenv[]> {
+  async systemenvs(@common.Req() request: Request): Promise<Systemenv[]> {
     const args = plainToClass(SystemenvFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.systemenvs({
       ...args,
       select: {
-        appbaseprice: true,
-        coorduserId: true,
         domainId: true,
+        coorduserId: true,
         expdate: true,
         expdate2: true,
-        id: true,
+        appbaseprice: true,
         sysemail: true,
+        id: true,
       },
     });
   }
@@ -65,19 +66,19 @@ export class SystemenvControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Systemenv })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async systemenv(
     @common.Param() params: SystemenvWhereUniqueInput
   ): Promise<Systemenv | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.systemenv({
       where: params,
       select: {
-        appbaseprice: true,
-        coorduserId: true,
         domainId: true,
+        coorduserId: true,
         expdate: true,
         expdate2: true,
-        id: true,
+        appbaseprice: true,
         sysemail: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -91,22 +92,22 @@ export class SystemenvControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Systemenv })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSystemenv(
     @common.Param() params: SystemenvWhereUniqueInput,
     @common.Body() data: SystemenvUpdateInput
   ): Promise<Systemenv | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSystemenv({
         where: params,
         data: data,
         select: {
-          appbaseprice: true,
-          coorduserId: true,
           domainId: true,
+          coorduserId: true,
           expdate: true,
           expdate2: true,
-          id: true,
+          appbaseprice: true,
           sysemail: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -122,20 +123,20 @@ export class SystemenvControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Systemenv })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSystemenv(
     @common.Param() params: SystemenvWhereUniqueInput
   ): Promise<Systemenv | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSystemenv({
         where: params,
         select: {
-          appbaseprice: true,
-          coorduserId: true,
           domainId: true,
+          coorduserId: true,
           expdate: true,
           expdate2: true,
-          id: true,
+          appbaseprice: true,
           sysemail: true,
+          id: true,
         },
       });
     } catch (error) {

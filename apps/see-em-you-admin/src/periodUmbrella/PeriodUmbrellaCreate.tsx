@@ -17,8 +17,8 @@ export const PeriodUmbrellaCreate = (
         <TextInput label="Admission Term" source="admissionTerm" />
         <NumberInput step={1} label="Admission Year" source="admissionYear" />
         <DateTimeInput label="Higher Fee Date" source="higherFeeDate" />
-        <DateTimeInput label="Last Payment Date" source="lastPaymentDate" />
         <TextInput label="Umbrella Name" source="umbrellaName" />
+        <DateTimeInput label="Last Payment Date" source="lastPaymentDate" />
       </SimpleForm>
     </Create>
   );

@@ -11,19 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt, IsDate } from "class-validator";
+import { IsInt, IsString, IsDate } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class ApplicationMergeFile {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  guid!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -34,11 +26,11 @@ class ApplicationMergeFile {
 
   @ApiProperty({
     required: true,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  mergeDate!: Date;
+  @IsString()
+  @Field(() => String)
+  guid!: string;
 
   @ApiProperty({
     required: true,
@@ -47,6 +39,14 @@ class ApplicationMergeFile {
   @IsString()
   @Field(() => String)
   mergeFile!: string;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  mergeDate!: Date;
 }
 
 export { ApplicationMergeFile as ApplicationMergeFile };

@@ -16,6 +16,14 @@ import { IsString, IsOptional, IsInt } from "class-validator";
 @InputType()
 class GpascaleCreateInput {
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -25,14 +33,6 @@ class GpascaleCreateInput {
     nullable: true,
   })
   formula?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
 
   @ApiProperty({
     required: true,

@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DuolingoDataCopy } from "@prisma/client";
+import {
+  Prisma,
+  DuolingoDataCopy as PrismaDuolingoDataCopy,
+} from "@prisma/client";
 
 export class DuolingoDataCopyServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class DuolingoDataCopyServiceBase {
     return this.prisma.duolingoDataCopy.count(args);
   }
 
-  async findMany<T extends Prisma.DuolingoDataCopyFindManyArgs>(
+  async duolingoDataCopies<T extends Prisma.DuolingoDataCopyFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDataCopyFindManyArgs>
-  ): Promise<DuolingoDataCopy[]> {
+  ): Promise<PrismaDuolingoDataCopy[]> {
     return this.prisma.duolingoDataCopy.findMany(args);
   }
-  async findOne<T extends Prisma.DuolingoDataCopyFindUniqueArgs>(
+  async duolingoDataCopy<T extends Prisma.DuolingoDataCopyFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDataCopyFindUniqueArgs>
-  ): Promise<DuolingoDataCopy | null> {
+  ): Promise<PrismaDuolingoDataCopy | null> {
     return this.prisma.duolingoDataCopy.findUnique(args);
   }
-  async create<T extends Prisma.DuolingoDataCopyCreateArgs>(
+  async createDuolingoDataCopy<T extends Prisma.DuolingoDataCopyCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDataCopyCreateArgs>
-  ): Promise<DuolingoDataCopy> {
+  ): Promise<PrismaDuolingoDataCopy> {
     return this.prisma.duolingoDataCopy.create<T>(args);
   }
-  async update<T extends Prisma.DuolingoDataCopyUpdateArgs>(
+  async updateDuolingoDataCopy<T extends Prisma.DuolingoDataCopyUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDataCopyUpdateArgs>
-  ): Promise<DuolingoDataCopy> {
+  ): Promise<PrismaDuolingoDataCopy> {
     return this.prisma.duolingoDataCopy.update<T>(args);
   }
-  async delete<T extends Prisma.DuolingoDataCopyDeleteArgs>(
+  async deleteDuolingoDataCopy<T extends Prisma.DuolingoDataCopyDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DuolingoDataCopyDeleteArgs>
-  ): Promise<DuolingoDataCopy> {
+  ): Promise<PrismaDuolingoDataCopy> {
     return this.prisma.duolingoDataCopy.delete(args);
   }
 }

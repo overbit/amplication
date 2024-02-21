@@ -4,8 +4,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
   ReferenceManyField,
   Datagrid,
   BooleanField,
@@ -19,6 +19,17 @@ export const MhciPrereqsCourseShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Course Type" source="course_type" />
+        <TextField label="Student Course Name" source="studentCourseName" />
+        <TextField label="Student Course Time" source="studentCourseTime" />
+        <TextField
+          label="Student Course Institution"
+          source="studentCourseInstitution"
+        />
+        <TextField label="Student Course Grade" source="studentCourseGrade" />
+        <TextField label="Submitted To Reviewer" source="submittedToReviewer" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Program Id" source="programId" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -26,8 +37,6 @@ export const MhciPrereqsCourseShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Course Type" source="course_type" />
-        <TextField label="Id" source="id" />
         <ReferenceField
           label="Lu Users Usertypes"
           source="luusersusertype.id"
@@ -35,16 +44,7 @@ export const MhciPrereqsCourseShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Period Id" source="periodId" />
-        <TextField label="Program Id" source="programId" />
-        <TextField label="Student Course Grade" source="studentCourseGrade" />
-        <TextField
-          label="Student Course Institution"
-          source="studentCourseInstitution"
-        />
-        <TextField label="Student Course Name" source="studentCourseName" />
-        <TextField label="Student Course Time" source="studentCourseTime" />
-        <TextField label="Submitted To Reviewer" source="submittedToReviewer" />
+        <TextField label="Id" source="id" />
         <ReferenceManyField
           reference="MhciPrereqsCourseDatafile"
           target="prereq_courses_id"
@@ -52,7 +52,12 @@ export const MhciPrereqsCourseShow = (props: ShowProps): React.ReactElement => {
         >
           <Datagrid rowClick="show">
             <TextField label="Datafileinfo Id" source="datafileinfoId" />
-            <TextField label="Id" source="id" />
+            <TextField label="Note" source="note" />
+            <BooleanField
+              label="Submitted To Reviewer"
+              source="submittedToReviewer"
+            />
+            <BooleanField label="New File Uploaded" source="newFileUploaded" />
             <ReferenceField
               label="Mhci Prereqs Courses"
               source="mhciprereqscourse.id"
@@ -60,12 +65,7 @@ export const MhciPrereqsCourseShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={MHCIPREREQSCOURSE_TITLE_FIELD} />
             </ReferenceField>
-            <BooleanField label="New File Uploaded" source="newFileUploaded" />
-            <TextField label="Note" source="note" />
-            <BooleanField
-              label="Submitted To Reviewer"
-              source="submittedToReviewer"
-            />
+            <TextField label="Id" source="id" />
           </Datagrid>
         </ReferenceManyField>
       </SimpleShowLayout>

@@ -10,7 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PaymentItem, ProgramModel } from "@prisma/client";
+
+import {
+  Prisma,
+  PaymentItem as PrismaPaymentItem,
+  ProgramModel as PrismaProgramModel,
+} from "@prisma/client";
 
 export class PaymentItemServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +26,33 @@ export class PaymentItemServiceBase {
     return this.prisma.paymentItem.count(args);
   }
 
-  async findMany<T extends Prisma.PaymentItemFindManyArgs>(
+  async paymentItems<T extends Prisma.PaymentItemFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentItemFindManyArgs>
-  ): Promise<PaymentItem[]> {
+  ): Promise<PrismaPaymentItem[]> {
     return this.prisma.paymentItem.findMany(args);
   }
-  async findOne<T extends Prisma.PaymentItemFindUniqueArgs>(
+  async paymentItem<T extends Prisma.PaymentItemFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentItemFindUniqueArgs>
-  ): Promise<PaymentItem | null> {
+  ): Promise<PrismaPaymentItem | null> {
     return this.prisma.paymentItem.findUnique(args);
   }
-  async create<T extends Prisma.PaymentItemCreateArgs>(
+  async createPaymentItem<T extends Prisma.PaymentItemCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentItemCreateArgs>
-  ): Promise<PaymentItem> {
+  ): Promise<PrismaPaymentItem> {
     return this.prisma.paymentItem.create<T>(args);
   }
-  async update<T extends Prisma.PaymentItemUpdateArgs>(
+  async updatePaymentItem<T extends Prisma.PaymentItemUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentItemUpdateArgs>
-  ): Promise<PaymentItem> {
+  ): Promise<PrismaPaymentItem> {
     return this.prisma.paymentItem.update<T>(args);
   }
-  async delete<T extends Prisma.PaymentItemDeleteArgs>(
+  async deletePaymentItem<T extends Prisma.PaymentItemDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PaymentItemDeleteArgs>
-  ): Promise<PaymentItem> {
+  ): Promise<PrismaPaymentItem> {
     return this.prisma.paymentItem.delete(args);
   }
 
-  async getPrograms(parentId: number): Promise<ProgramModel | null> {
+  async getPrograms(parentId: number): Promise<PrismaProgramModel | null> {
     return this.prisma.paymentItem
       .findUnique({
         where: { id: parentId },

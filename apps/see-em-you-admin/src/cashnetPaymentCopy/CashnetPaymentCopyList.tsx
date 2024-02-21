@@ -14,16 +14,16 @@ export const CashnetPaymentCopyList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Amount" source="amount" />
         <TextField label="App Id" source="appId" />
-        <TextField label="Applicant Email" source="applicantEmail" />
+        <TextField label="Transaction Id" source="transactionId" />
         <TextField label="Applicant Name" source="applicantName" />
-        <TextField label="Id" source="id" />
+        <TextField label="Applicant Email" source="applicantEmail" />
         <TextField label="Merchant" source="merchant" />
         <TextField label="Status" source="status" />
-        <TextField label="Transaction Id" source="transactionId" />
         <DateField source="transactionTime" label="Transaction Time" />
         <TextField label="Transaction Type" source="transactionType" />
+        <TextField label="Amount" source="amount" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

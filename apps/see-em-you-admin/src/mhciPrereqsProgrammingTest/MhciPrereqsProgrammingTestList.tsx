@@ -21,9 +21,13 @@ export const MhciPrereqsProgrammingTestList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Application Id" source="applicationId" />
         <TextField label="Download Timestamp" source="downloadTimestamp" />
-        <TextField label="Id" source="id" />
+        <TextField
+          label="Upload Datafileinfo Id"
+          source="uploadDatafileinfoId"
+        />
+        <TextField label="Application Id" source="applicationId" />
+        <TextField label="Period Id" source="periodId" />
         <ReferenceField
           label="Lu Users Usertypes"
           source="luusersusertype.id"
@@ -31,11 +35,7 @@ export const MhciPrereqsProgrammingTestList = (
         >
           <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Period Id" source="periodId" />
-        <TextField
-          label="Upload Datafileinfo Id"
-          source="uploadDatafileinfoId"
-        />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

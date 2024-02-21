@@ -11,45 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
 import {
-  ValidateNested,
   IsBoolean,
   IsString,
   IsOptional,
+  ValidateNested,
   IsInt,
 } from "class-validator";
+import { Application } from "../../application/base/Application";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class RissFunding {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  directFunding!: boolean;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  externalAmount!: string | null;
-
   @ApiProperty({
     required: true,
     type: Boolean,
@@ -70,12 +43,15 @@ class RissFunding {
   externalSource!: string | null;
 
   @ApiProperty({
-    required: true,
-    type: Number,
+    required: false,
+    type: String,
   })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  externalAmount!: string | null;
 
   @ApiProperty({
     required: true,
@@ -84,6 +60,30 @@ class RissFunding {
   @IsBoolean()
   @Field(() => Boolean)
   reuScholarship!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  directFunding!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { RissFunding as RissFunding };

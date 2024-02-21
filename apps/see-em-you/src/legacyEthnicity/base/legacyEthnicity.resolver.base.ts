@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLegacyEthnicityArgs } from "./CreateLegacyEthnicityArgs";
-import { UpdateLegacyEthnicityArgs } from "./UpdateLegacyEthnicityArgs";
-import { DeleteLegacyEthnicityArgs } from "./DeleteLegacyEthnicityArgs";
+import { LegacyEthnicity } from "./LegacyEthnicity";
 import { LegacyEthnicityCountArgs } from "./LegacyEthnicityCountArgs";
 import { LegacyEthnicityFindManyArgs } from "./LegacyEthnicityFindManyArgs";
 import { LegacyEthnicityFindUniqueArgs } from "./LegacyEthnicityFindUniqueArgs";
-import { LegacyEthnicity } from "./LegacyEthnicity";
+import { CreateLegacyEthnicityArgs } from "./CreateLegacyEthnicityArgs";
+import { UpdateLegacyEthnicityArgs } from "./UpdateLegacyEthnicityArgs";
+import { DeleteLegacyEthnicityArgs } from "./DeleteLegacyEthnicityArgs";
 import { LegacyEthnicityService } from "../legacyEthnicity.service";
 @graphql.Resolver(() => LegacyEthnicity)
 export class LegacyEthnicityResolverBase {
@@ -38,14 +38,14 @@ export class LegacyEthnicityResolverBase {
   async legacyEthnicities(
     @graphql.Args() args: LegacyEthnicityFindManyArgs
   ): Promise<LegacyEthnicity[]> {
-    return this.service.findMany(args);
+    return this.service.legacyEthnicities(args);
   }
 
   @graphql.Query(() => LegacyEthnicity, { nullable: true })
   async legacyEthnicity(
     @graphql.Args() args: LegacyEthnicityFindUniqueArgs
   ): Promise<LegacyEthnicity | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.legacyEthnicity(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LegacyEthnicityResolverBase {
   async createLegacyEthnicity(
     @graphql.Args() args: CreateLegacyEthnicityArgs
   ): Promise<LegacyEthnicity> {
-    return await this.service.create({
+    return await this.service.createLegacyEthnicity({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LegacyEthnicityResolverBase {
     @graphql.Args() args: UpdateLegacyEthnicityArgs
   ): Promise<LegacyEthnicity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLegacyEthnicity({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LegacyEthnicityResolverBase {
     @graphql.Args() args: DeleteLegacyEthnicityArgs
   ): Promise<LegacyEthnicity | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLegacyEthnicity(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

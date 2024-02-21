@@ -12,9 +12,9 @@ export const VoucherProgramList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
-        <TextField label="Program Id" source="programId" />
         <TextField label="Voucher Id" source="voucherId" />
+        <TextField label="Program Id" source="programId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

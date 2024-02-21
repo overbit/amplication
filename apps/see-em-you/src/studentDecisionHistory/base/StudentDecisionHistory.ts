@@ -11,26 +11,28 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Application } from "../../application/base/Application";
 import {
-  ValidateNested,
+  IsInt,
   IsOptional,
   IsString,
-  IsInt,
   IsDate,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { Application } from "../../application/base/Application";
 
 @ObjectType()
 class StudentDecisionHistory {
   @ApiProperty({
     required: false,
-    type: () => Application,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => Application)
+  @IsInt()
   @IsOptional()
-  application?: Application | null;
+  @Field(() => Number, {
+    nullable: true,
+  })
+  programId!: number | null;
 
   @ApiProperty({
     required: false,
@@ -67,14 +69,6 @@ class StudentDecisionHistory {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
   })
   @IsDate()
   @Type(() => Date)
@@ -83,14 +77,20 @@ class StudentDecisionHistory {
 
   @ApiProperty({
     required: false,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  @IsOptional()
+  application?: Application | null;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  programId!: number | null;
+  @Field(() => Number)
+  id!: number;
 }
 
 export { StudentDecisionHistory as StudentDecisionHistory };

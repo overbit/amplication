@@ -11,18 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt } from "class-validator";
+import { IsInt, IsString } from "class-validator";
 
 @InputType()
 class UsersRemoteAuthStringCreateInput {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  remoteAuthString!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -30,6 +22,14 @@ class UsersRemoteAuthStringCreateInput {
   @IsInt()
   @Field(() => Number)
   usersId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  remoteAuthString!: string;
 }
 
 export { UsersRemoteAuthStringCreateInput as UsersRemoteAuthStringCreateInput };

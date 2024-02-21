@@ -24,7 +24,7 @@ class LuDomainDepartmentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  departmentId?: number;
+  domainId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class LuDomainDepartmentUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  domainId?: number;
+  departmentId?: number;
 
   @ApiProperty({
     required: false,

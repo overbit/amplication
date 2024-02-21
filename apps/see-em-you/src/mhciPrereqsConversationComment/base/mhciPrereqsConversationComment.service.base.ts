@@ -10,11 +10,12 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
-  MhciPrereqsConversationComment,
-  LuUsersUsertype,
-  MhciPrereq,
+  MhciPrereqsConversationComment as PrismaMhciPrereqsConversationComment,
+  MhciPrereq as PrismaMhciPrereq,
+  LuUsersUsertype as PrismaLuUsersUsertype,
 } from "@prisma/client";
 
 export class MhciPrereqsConversationCommentServiceBase {
@@ -26,60 +27,72 @@ export class MhciPrereqsConversationCommentServiceBase {
     return this.prisma.mhciPrereqsConversationComment.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsConversationCommentFindManyArgs>(
+  async mhciPrereqsConversationComments<
+    T extends Prisma.MhciPrereqsConversationCommentFindManyArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsConversationCommentFindManyArgs
     >
-  ): Promise<MhciPrereqsConversationComment[]> {
+  ): Promise<PrismaMhciPrereqsConversationComment[]> {
     return this.prisma.mhciPrereqsConversationComment.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsConversationCommentFindUniqueArgs>(
+  async mhciPrereqsConversationComment<
+    T extends Prisma.MhciPrereqsConversationCommentFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsConversationCommentFindUniqueArgs
     >
-  ): Promise<MhciPrereqsConversationComment | null> {
+  ): Promise<PrismaMhciPrereqsConversationComment | null> {
     return this.prisma.mhciPrereqsConversationComment.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsConversationCommentCreateArgs>(
+  async createMhciPrereqsConversationComment<
+    T extends Prisma.MhciPrereqsConversationCommentCreateArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsConversationCommentCreateArgs
     >
-  ): Promise<MhciPrereqsConversationComment> {
+  ): Promise<PrismaMhciPrereqsConversationComment> {
     return this.prisma.mhciPrereqsConversationComment.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsConversationCommentUpdateArgs>(
+  async updateMhciPrereqsConversationComment<
+    T extends Prisma.MhciPrereqsConversationCommentUpdateArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsConversationCommentUpdateArgs
     >
-  ): Promise<MhciPrereqsConversationComment> {
+  ): Promise<PrismaMhciPrereqsConversationComment> {
     return this.prisma.mhciPrereqsConversationComment.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsConversationCommentDeleteArgs>(
+  async deleteMhciPrereqsConversationComment<
+    T extends Prisma.MhciPrereqsConversationCommentDeleteArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.MhciPrereqsConversationCommentDeleteArgs
     >
-  ): Promise<MhciPrereqsConversationComment> {
+  ): Promise<PrismaMhciPrereqsConversationComment> {
     return this.prisma.mhciPrereqsConversationComment.delete(args);
   }
 
-  async getLuUsersUsertypes(parentId: number): Promise<LuUsersUsertype | null> {
-    return this.prisma.mhciPrereqsConversationComment
-      .findUnique({
-        where: { id: parentId },
-      })
-      .luUsersUsertypes();
-  }
-
-  async getMhciPrereqs(parentId: number): Promise<MhciPrereq | null> {
+  async getMhciPrereqs(parentId: number): Promise<PrismaMhciPrereq | null> {
     return this.prisma.mhciPrereqsConversationComment
       .findUnique({
         where: { id: parentId },
       })
       .mhciPrereqs();
+  }
+
+  async getLuUsersUsertypes(
+    parentId: number
+  ): Promise<PrismaLuUsersUsertype | null> {
+    return this.prisma.mhciPrereqsConversationComment
+      .findUnique({
+        where: { id: parentId },
+      })
+      .luUsersUsertypes();
   }
 }

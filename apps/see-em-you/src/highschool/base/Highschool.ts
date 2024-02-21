@@ -11,10 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsDate, IsOptional, IsNumber, IsString } from "class-validator";
-import { Type } from "class-transformer";
-import { Decimal } from "decimal.js";
+import { IsInt, IsString, IsOptional, IsNumber, IsDate } from "class-validator";
 import { GraphQLBigInt } from "../../util/GraphQLBigInt";
+import { Decimal } from "decimal.js";
+import { Type } from "class-transformer";
 
 @ObjectType()
 class Highschool {
@@ -27,23 +27,15 @@ class Highschool {
   appId!: number;
 
   @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  created!: Date;
-
-  @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  graduated!: number | null;
+  hsName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -55,39 +47,6 @@ class Highschool {
     nullable: true,
   })
   hsCeeb!: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  hsDuration!: Decimal | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  hsGradYear!: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  hsName!: string | null;
 
   @ApiProperty({
     required: false,
@@ -123,12 +82,45 @@ class Highschool {
   hsZip!: string | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  hsGradYear!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  hsDuration!: Decimal | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  graduated!: number | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  created!: Date;
 
   @ApiProperty({
     required: true,
@@ -137,6 +129,14 @@ class Highschool {
   @Type(() => Date)
   @Field(() => Date)
   modified!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Highschool as Highschool };

@@ -39,6 +39,17 @@ class BlacklistReviewerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  reviewerId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   deny?: SortOrder;
 
   @ApiProperty({
@@ -51,17 +62,6 @@ class BlacklistReviewerOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  reviewerId?: SortOrder;
 }
 
 export { BlacklistReviewerOrderByInput as BlacklistReviewerOrderByInput };

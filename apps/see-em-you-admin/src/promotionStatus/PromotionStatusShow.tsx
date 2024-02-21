@@ -13,9 +13,9 @@ export const PromotionStatusShow = (props: ShowProps): React.ReactElement => {
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
         <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
         <TextField label="Round" source="round" />
         <DateField source="statusTime" label="Status Time" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

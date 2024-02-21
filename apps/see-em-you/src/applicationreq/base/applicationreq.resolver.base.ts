@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateApplicationreqArgs } from "./CreateApplicationreqArgs";
-import { UpdateApplicationreqArgs } from "./UpdateApplicationreqArgs";
-import { DeleteApplicationreqArgs } from "./DeleteApplicationreqArgs";
+import { Applicationreq } from "./Applicationreq";
 import { ApplicationreqCountArgs } from "./ApplicationreqCountArgs";
 import { ApplicationreqFindManyArgs } from "./ApplicationreqFindManyArgs";
 import { ApplicationreqFindUniqueArgs } from "./ApplicationreqFindUniqueArgs";
-import { Applicationreq } from "./Applicationreq";
+import { CreateApplicationreqArgs } from "./CreateApplicationreqArgs";
+import { UpdateApplicationreqArgs } from "./UpdateApplicationreqArgs";
+import { DeleteApplicationreqArgs } from "./DeleteApplicationreqArgs";
 import { ProgramsApplicationreqFindManyArgs } from "../../programsApplicationreq/base/ProgramsApplicationreqFindManyArgs";
 import { ProgramsApplicationreq } from "../../programsApplicationreq/base/ProgramsApplicationreq";
 import { ApplicationreqService } from "../applicationreq.service";
@@ -40,14 +40,14 @@ export class ApplicationreqResolverBase {
   async applicationreqs(
     @graphql.Args() args: ApplicationreqFindManyArgs
   ): Promise<Applicationreq[]> {
-    return this.service.findMany(args);
+    return this.service.applicationreqs(args);
   }
 
   @graphql.Query(() => Applicationreq, { nullable: true })
   async applicationreq(
     @graphql.Args() args: ApplicationreqFindUniqueArgs
   ): Promise<Applicationreq | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.applicationreq(args);
     if (result === null) {
       return null;
     }
@@ -58,7 +58,7 @@ export class ApplicationreqResolverBase {
   async createApplicationreq(
     @graphql.Args() args: CreateApplicationreqArgs
   ): Promise<Applicationreq> {
-    return await this.service.create({
+    return await this.service.createApplicationreq({
       ...args,
       data: args.data,
     });
@@ -69,7 +69,7 @@ export class ApplicationreqResolverBase {
     @graphql.Args() args: UpdateApplicationreqArgs
   ): Promise<Applicationreq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateApplicationreq({
         ...args,
         data: args.data,
       });
@@ -88,7 +88,7 @@ export class ApplicationreqResolverBase {
     @graphql.Args() args: DeleteApplicationreqArgs
   ): Promise<Applicationreq | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteApplicationreq(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -102,7 +102,7 @@ export class ApplicationreqResolverBase {
   @graphql.ResolveField(() => [ProgramsApplicationreq], {
     name: "programsApplicationreqs",
   })
-  async resolveFieldProgramsApplicationreqs(
+  async findProgramsApplicationreqs(
     @graphql.Parent() parent: Applicationreq,
     @graphql.Args() args: ProgramsApplicationreqFindManyArgs
   ): Promise<ProgramsApplicationreq[]> {

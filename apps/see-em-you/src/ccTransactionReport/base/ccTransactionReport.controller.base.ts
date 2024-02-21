@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CcTransactionReportService } from "../ccTransactionReport.service";
 import { CcTransactionReportCreateInput } from "./CcTransactionReportCreateInput";
-import { CcTransactionReportWhereInput } from "./CcTransactionReportWhereInput";
-import { CcTransactionReportWhereUniqueInput } from "./CcTransactionReportWhereUniqueInput";
-import { CcTransactionReportFindManyArgs } from "./CcTransactionReportFindManyArgs";
-import { CcTransactionReportUpdateInput } from "./CcTransactionReportUpdateInput";
 import { CcTransactionReport } from "./CcTransactionReport";
+import { CcTransactionReportFindManyArgs } from "./CcTransactionReportFindManyArgs";
+import { CcTransactionReportWhereUniqueInput } from "./CcTransactionReportWhereUniqueInput";
+import { CcTransactionReportUpdateInput } from "./CcTransactionReportUpdateInput";
 
 export class CcTransactionReportControllerBase {
   constructor(protected readonly service: CcTransactionReportService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CcTransactionReport })
-  async create(
+  async createCcTransactionReport(
     @common.Body() data: CcTransactionReportCreateInput
   ): Promise<CcTransactionReport> {
-    return await this.service.create({
+    return await this.service.createCcTransactionReport({
       data: data,
       select: {
-        id: true,
-        lastModDate: true,
         size: true,
+        lastModDate: true,
         statusTime: true,
+        id: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class CcTransactionReportControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CcTransactionReport] })
   @ApiNestedQuery(CcTransactionReportFindManyArgs)
-  async findMany(
+  async ccTransactionReports(
     @common.Req() request: Request
   ): Promise<CcTransactionReport[]> {
     const args = plainToClass(CcTransactionReportFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ccTransactionReports({
       ...args,
       select: {
-        id: true,
-        lastModDate: true,
         size: true,
+        lastModDate: true,
         statusTime: true,
+        id: true,
       },
     });
   }
@@ -63,16 +62,16 @@ export class CcTransactionReportControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionReport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ccTransactionReport(
     @common.Param() params: CcTransactionReportWhereUniqueInput
   ): Promise<CcTransactionReport | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ccTransactionReport({
       where: params,
       select: {
-        id: true,
-        lastModDate: true,
         size: true,
+        lastModDate: true,
         statusTime: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -86,19 +85,19 @@ export class CcTransactionReportControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionReport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCcTransactionReport(
     @common.Param() params: CcTransactionReportWhereUniqueInput,
     @common.Body() data: CcTransactionReportUpdateInput
   ): Promise<CcTransactionReport | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcTransactionReport({
         where: params,
         data: data,
         select: {
-          id: true,
-          lastModDate: true,
           size: true,
+          lastModDate: true,
           statusTime: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -114,17 +113,17 @@ export class CcTransactionReportControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CcTransactionReport })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCcTransactionReport(
     @common.Param() params: CcTransactionReportWhereUniqueInput
   ): Promise<CcTransactionReport | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCcTransactionReport({
         where: params,
         select: {
-          id: true,
-          lastModDate: true,
           size: true,
+          lastModDate: true,
           statusTime: true,
+          id: true,
         },
       });
     } catch (error) {

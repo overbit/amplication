@@ -18,22 +18,21 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SchoolService } from "../school.service";
 import { SchoolCreateInput } from "./SchoolCreateInput";
-import { SchoolWhereInput } from "./SchoolWhereInput";
-import { SchoolWhereUniqueInput } from "./SchoolWhereUniqueInput";
-import { SchoolFindManyArgs } from "./SchoolFindManyArgs";
-import { SchoolUpdateInput } from "./SchoolUpdateInput";
 import { School } from "./School";
+import { SchoolFindManyArgs } from "./SchoolFindManyArgs";
+import { SchoolWhereUniqueInput } from "./SchoolWhereUniqueInput";
+import { SchoolUpdateInput } from "./SchoolUpdateInput";
 
 export class SchoolControllerBase {
   constructor(protected readonly service: SchoolService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: School })
-  async create(@common.Body() data: SchoolCreateInput): Promise<School> {
-    return await this.service.create({
+  async createSchool(@common.Body() data: SchoolCreateInput): Promise<School> {
+    return await this.service.createSchool({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -41,13 +40,13 @@ export class SchoolControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [School] })
   @ApiNestedQuery(SchoolFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<School[]> {
+  async schools(@common.Req() request: Request): Promise<School[]> {
     const args = plainToClass(SchoolFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.schools({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -55,14 +54,14 @@ export class SchoolControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: School })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async school(
     @common.Param() params: SchoolWhereUniqueInput
   ): Promise<School | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.school({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -76,17 +75,17 @@ export class SchoolControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: School })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSchool(
     @common.Param() params: SchoolWhereUniqueInput,
     @common.Body() data: SchoolUpdateInput
   ): Promise<School | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSchool({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -102,15 +101,15 @@ export class SchoolControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: School })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSchool(
     @common.Param() params: SchoolWhereUniqueInput
   ): Promise<School | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSchool({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {

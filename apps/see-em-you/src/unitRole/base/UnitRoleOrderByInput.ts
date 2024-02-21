@@ -28,7 +28,18 @@ class UnitRoleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  unitId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  usersId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,18 +72,7 @@ class UnitRoleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  unitId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  usersId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { UnitRoleOrderByInput as UnitRoleOrderByInput };

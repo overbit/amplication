@@ -28,6 +28,17 @@ class TagMemberOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  tagInstanceId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   appId?: SortOrder;
 
   @ApiProperty({
@@ -40,17 +51,6 @@ class TagMemberOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  tagInstanceId?: SortOrder;
 }
 
 export { TagMemberOrderByInput as TagMemberOrderByInput };

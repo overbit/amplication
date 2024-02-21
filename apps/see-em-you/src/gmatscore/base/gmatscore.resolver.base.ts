@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGmatscoreArgs } from "./CreateGmatscoreArgs";
-import { UpdateGmatscoreArgs } from "./UpdateGmatscoreArgs";
-import { DeleteGmatscoreArgs } from "./DeleteGmatscoreArgs";
+import { Gmatscore } from "./Gmatscore";
 import { GmatscoreCountArgs } from "./GmatscoreCountArgs";
 import { GmatscoreFindManyArgs } from "./GmatscoreFindManyArgs";
 import { GmatscoreFindUniqueArgs } from "./GmatscoreFindUniqueArgs";
-import { Gmatscore } from "./Gmatscore";
+import { CreateGmatscoreArgs } from "./CreateGmatscoreArgs";
+import { UpdateGmatscoreArgs } from "./UpdateGmatscoreArgs";
+import { DeleteGmatscoreArgs } from "./DeleteGmatscoreArgs";
 import { Application } from "../../application/base/Application";
 import { GmatscoreService } from "../gmatscore.service";
 @graphql.Resolver(() => Gmatscore)
@@ -39,14 +39,14 @@ export class GmatscoreResolverBase {
   async gmatscores(
     @graphql.Args() args: GmatscoreFindManyArgs
   ): Promise<Gmatscore[]> {
-    return this.service.findMany(args);
+    return this.service.gmatscores(args);
   }
 
   @graphql.Query(() => Gmatscore, { nullable: true })
   async gmatscore(
     @graphql.Args() args: GmatscoreFindUniqueArgs
   ): Promise<Gmatscore | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.gmatscore(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class GmatscoreResolverBase {
   async createGmatscore(
     @graphql.Args() args: CreateGmatscoreArgs
   ): Promise<Gmatscore> {
-    return await this.service.create({
+    return await this.service.createGmatscore({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class GmatscoreResolverBase {
     @graphql.Args() args: UpdateGmatscoreArgs
   ): Promise<Gmatscore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGmatscore({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class GmatscoreResolverBase {
     @graphql.Args() args: DeleteGmatscoreArgs
   ): Promise<Gmatscore | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGmatscore(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class GmatscoreResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: Gmatscore
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

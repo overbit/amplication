@@ -1,7 +1,7 @@
 export type ApplicationContent = {
-  desired: boolean | null;
   id: bigint;
-  programId: number | null;
-  required: boolean | null;
   sectionIdentifier: string | null;
+  programId: number | null;
+  desired: boolean | null;
+  required: boolean | null;
 };

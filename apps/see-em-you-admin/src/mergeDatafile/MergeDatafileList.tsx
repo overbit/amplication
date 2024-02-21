@@ -3,8 +3,8 @@ import {
   List,
   Datagrid,
   ListProps,
-  BooleanField,
   TextField,
+  BooleanField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 
@@ -18,16 +18,16 @@ export const MergeDatafileList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Merge Id" source="mergeId" />
+        <TextField label="Datafileinfo Id" source="datafileinfoId" />
         <BooleanField label="Converted" source="converted" />
         <TextField label="Convert Error" source="convertError" />
         <TextField label="Convert Message" source="convertMessage" />
-        <TextField label="Datafileinfo Id" source="datafileinfoId" />
-        <TextField label="Id" source="id" />
+        <TextField label="Merge Filename" source="mergeFilename" />
         <BooleanField label="Merged" source="merged" />
         <TextField label="Merge Error" source="mergeError" />
-        <TextField label="Merge Filename" source="mergeFilename" />
-        <TextField label="Merge Id" source="mergeId" />
         <TextField label="Merge Message" source="mergeMessage" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

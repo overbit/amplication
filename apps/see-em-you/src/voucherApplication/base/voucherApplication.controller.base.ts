@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { VoucherApplicationService } from "../voucherApplication.service";
 import { VoucherApplicationCreateInput } from "./VoucherApplicationCreateInput";
-import { VoucherApplicationWhereInput } from "./VoucherApplicationWhereInput";
-import { VoucherApplicationWhereUniqueInput } from "./VoucherApplicationWhereUniqueInput";
-import { VoucherApplicationFindManyArgs } from "./VoucherApplicationFindManyArgs";
-import { VoucherApplicationUpdateInput } from "./VoucherApplicationUpdateInput";
 import { VoucherApplication } from "./VoucherApplication";
+import { VoucherApplicationFindManyArgs } from "./VoucherApplicationFindManyArgs";
+import { VoucherApplicationWhereUniqueInput } from "./VoucherApplicationWhereUniqueInput";
+import { VoucherApplicationUpdateInput } from "./VoucherApplicationUpdateInput";
 
 export class VoucherApplicationControllerBase {
   constructor(protected readonly service: VoucherApplicationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: VoucherApplication })
-  async create(
+  async createVoucherApplication(
     @common.Body() data: VoucherApplicationCreateInput
   ): Promise<VoucherApplication> {
-    return await this.service.create({
+    return await this.service.createVoucherApplication({
       data: data,
       select: {
-        appId: true,
-        dateUsed: true,
-        id: true,
         voucherId: true,
+        dateUsed: true,
+        appId: true,
+        id: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class VoucherApplicationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [VoucherApplication] })
   @ApiNestedQuery(VoucherApplicationFindManyArgs)
-  async findMany(
+  async voucherApplications(
     @common.Req() request: Request
   ): Promise<VoucherApplication[]> {
     const args = plainToClass(VoucherApplicationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.voucherApplications({
       ...args,
       select: {
-        appId: true,
-        dateUsed: true,
-        id: true,
         voucherId: true,
+        dateUsed: true,
+        appId: true,
+        id: true,
       },
     });
   }
@@ -63,16 +62,16 @@ export class VoucherApplicationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: VoucherApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async voucherApplication(
     @common.Param() params: VoucherApplicationWhereUniqueInput
   ): Promise<VoucherApplication | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.voucherApplication({
       where: params,
       select: {
-        appId: true,
-        dateUsed: true,
-        id: true,
         voucherId: true,
+        dateUsed: true,
+        appId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -86,19 +85,19 @@ export class VoucherApplicationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: VoucherApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateVoucherApplication(
     @common.Param() params: VoucherApplicationWhereUniqueInput,
     @common.Body() data: VoucherApplicationUpdateInput
   ): Promise<VoucherApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVoucherApplication({
         where: params,
         data: data,
         select: {
-          appId: true,
-          dateUsed: true,
-          id: true,
           voucherId: true,
+          dateUsed: true,
+          appId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -114,17 +113,17 @@ export class VoucherApplicationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: VoucherApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteVoucherApplication(
     @common.Param() params: VoucherApplicationWhereUniqueInput
   ): Promise<VoucherApplication | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteVoucherApplication({
         where: params,
         select: {
-          appId: true,
-          dateUsed: true,
-          id: true,
           voucherId: true,
+          dateUsed: true,
+          appId: true,
+          id: true,
         },
       });
     } catch (error) {

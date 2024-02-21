@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Reclog } from "@prisma/client";
+import { Prisma, Reclog as PrismaReclog } from "@prisma/client";
 
 export class ReclogServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class ReclogServiceBase {
     return this.prisma.reclog.count(args);
   }
 
-  async findMany<T extends Prisma.ReclogFindManyArgs>(
+  async reclogs<T extends Prisma.ReclogFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReclogFindManyArgs>
-  ): Promise<Reclog[]> {
+  ): Promise<PrismaReclog[]> {
     return this.prisma.reclog.findMany(args);
   }
-  async findOne<T extends Prisma.ReclogFindUniqueArgs>(
+  async reclog<T extends Prisma.ReclogFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReclogFindUniqueArgs>
-  ): Promise<Reclog | null> {
+  ): Promise<PrismaReclog | null> {
     return this.prisma.reclog.findUnique(args);
   }
-  async create<T extends Prisma.ReclogCreateArgs>(
+  async createReclog<T extends Prisma.ReclogCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReclogCreateArgs>
-  ): Promise<Reclog> {
+  ): Promise<PrismaReclog> {
     return this.prisma.reclog.create<T>(args);
   }
-  async update<T extends Prisma.ReclogUpdateArgs>(
+  async updateReclog<T extends Prisma.ReclogUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReclogUpdateArgs>
-  ): Promise<Reclog> {
+  ): Promise<PrismaReclog> {
     return this.prisma.reclog.update<T>(args);
   }
-  async delete<T extends Prisma.ReclogDeleteArgs>(
+  async deleteReclog<T extends Prisma.ReclogDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.ReclogDeleteArgs>
-  ): Promise<Reclog> {
+  ): Promise<PrismaReclog> {
     return this.prisma.reclog.delete(args);
   }
 }

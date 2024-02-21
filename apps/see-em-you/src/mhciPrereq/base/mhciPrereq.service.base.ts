@@ -13,10 +13,10 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  MhciPrereq,
-  MhciPrereqsConversationComment,
-  Application,
-  MhciPrereqsStatus,
+  MhciPrereq as PrismaMhciPrereq,
+  MhciPrereqsConversationComment as PrismaMhciPrereqsConversationComment,
+  Application as PrismaApplication,
+  MhciPrereqsStatus as PrismaMhciPrereqsStatus,
 } from "@prisma/client";
 
 export class MhciPrereqServiceBase {
@@ -28,36 +28,36 @@ export class MhciPrereqServiceBase {
     return this.prisma.mhciPrereq.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqFindManyArgs>(
+  async mhciPrereqs<T extends Prisma.MhciPrereqFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqFindManyArgs>
-  ): Promise<MhciPrereq[]> {
+  ): Promise<PrismaMhciPrereq[]> {
     return this.prisma.mhciPrereq.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqFindUniqueArgs>(
+  async mhciPrereq<T extends Prisma.MhciPrereqFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqFindUniqueArgs>
-  ): Promise<MhciPrereq | null> {
+  ): Promise<PrismaMhciPrereq | null> {
     return this.prisma.mhciPrereq.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqCreateArgs>(
+  async createMhciPrereq<T extends Prisma.MhciPrereqCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqCreateArgs>
-  ): Promise<MhciPrereq> {
+  ): Promise<PrismaMhciPrereq> {
     return this.prisma.mhciPrereq.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqUpdateArgs>(
+  async updateMhciPrereq<T extends Prisma.MhciPrereqUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqUpdateArgs>
-  ): Promise<MhciPrereq> {
+  ): Promise<PrismaMhciPrereq> {
     return this.prisma.mhciPrereq.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqDeleteArgs>(
+  async deleteMhciPrereq<T extends Prisma.MhciPrereqDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqDeleteArgs>
-  ): Promise<MhciPrereq> {
+  ): Promise<PrismaMhciPrereq> {
     return this.prisma.mhciPrereq.delete(args);
   }
 
   async findMhciPrereqsConversationComments(
     parentId: number,
     args: Prisma.MhciPrereqsConversationCommentFindManyArgs
-  ): Promise<MhciPrereqsConversationComment[]> {
+  ): Promise<PrismaMhciPrereqsConversationComment[]> {
     return this.prisma.mhciPrereq
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -65,7 +65,7 @@ export class MhciPrereqServiceBase {
       .mhciPrereqsConversationComments(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.mhciPrereq
       .findUnique({
         where: { id: parentId },
@@ -75,7 +75,7 @@ export class MhciPrereqServiceBase {
 
   async getMhciPrereqsStatus(
     parentId: number
-  ): Promise<MhciPrereqsStatus | null> {
+  ): Promise<PrismaMhciPrereqsStatus | null> {
     return this.prisma.mhciPrereq
       .findUnique({
         where: { id: parentId },

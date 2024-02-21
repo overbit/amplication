@@ -1,15 +1,15 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type IeltsscoreOrderByInput = {
-  application_id?: SortOrder;
-  datafileId?: SortOrder;
-  id?: SortOrder;
-  listeningscore?: SortOrder;
-  overallscore?: SortOrder;
-  readingscore?: SortOrder;
-  scorereceived?: SortOrder;
-  speakingscore?: SortOrder;
   testdate?: SortOrder;
-  testEmail?: SortOrder;
+  listeningscore?: SortOrder;
+  readingscore?: SortOrder;
   writingscore?: SortOrder;
+  speakingscore?: SortOrder;
+  overallscore?: SortOrder;
+  scorereceived?: SortOrder;
+  datafileId?: SortOrder;
+  testEmail?: SortOrder;
+  application_id?: SortOrder;
+  id?: SortOrder;
 };

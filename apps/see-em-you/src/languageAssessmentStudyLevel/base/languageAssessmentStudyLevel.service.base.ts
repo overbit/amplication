@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LanguageAssessmentStudyLevel } from "@prisma/client";
+import {
+  Prisma,
+  LanguageAssessmentStudyLevel as PrismaLanguageAssessmentStudyLevel,
+} from "@prisma/client";
 
 export class LanguageAssessmentStudyLevelServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,35 +24,45 @@ export class LanguageAssessmentStudyLevelServiceBase {
     return this.prisma.languageAssessmentStudyLevel.count(args);
   }
 
-  async findMany<T extends Prisma.LanguageAssessmentStudyLevelFindManyArgs>(
+  async languageAssessmentStudyLevels<
+    T extends Prisma.LanguageAssessmentStudyLevelFindManyArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.LanguageAssessmentStudyLevelFindManyArgs
     >
-  ): Promise<LanguageAssessmentStudyLevel[]> {
+  ): Promise<PrismaLanguageAssessmentStudyLevel[]> {
     return this.prisma.languageAssessmentStudyLevel.findMany(args);
   }
-  async findOne<T extends Prisma.LanguageAssessmentStudyLevelFindUniqueArgs>(
+  async languageAssessmentStudyLevel<
+    T extends Prisma.LanguageAssessmentStudyLevelFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<
       T,
       Prisma.LanguageAssessmentStudyLevelFindUniqueArgs
     >
-  ): Promise<LanguageAssessmentStudyLevel | null> {
+  ): Promise<PrismaLanguageAssessmentStudyLevel | null> {
     return this.prisma.languageAssessmentStudyLevel.findUnique(args);
   }
-  async create<T extends Prisma.LanguageAssessmentStudyLevelCreateArgs>(
+  async createLanguageAssessmentStudyLevel<
+    T extends Prisma.LanguageAssessmentStudyLevelCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LanguageAssessmentStudyLevelCreateArgs>
-  ): Promise<LanguageAssessmentStudyLevel> {
+  ): Promise<PrismaLanguageAssessmentStudyLevel> {
     return this.prisma.languageAssessmentStudyLevel.create<T>(args);
   }
-  async update<T extends Prisma.LanguageAssessmentStudyLevelUpdateArgs>(
+  async updateLanguageAssessmentStudyLevel<
+    T extends Prisma.LanguageAssessmentStudyLevelUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LanguageAssessmentStudyLevelUpdateArgs>
-  ): Promise<LanguageAssessmentStudyLevel> {
+  ): Promise<PrismaLanguageAssessmentStudyLevel> {
     return this.prisma.languageAssessmentStudyLevel.update<T>(args);
   }
-  async delete<T extends Prisma.LanguageAssessmentStudyLevelDeleteArgs>(
+  async deleteLanguageAssessmentStudyLevel<
+    T extends Prisma.LanguageAssessmentStudyLevelDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LanguageAssessmentStudyLevelDeleteArgs>
-  ): Promise<LanguageAssessmentStudyLevel> {
+  ): Promise<PrismaLanguageAssessmentStudyLevel> {
     return this.prisma.languageAssessmentStudyLevel.delete(args);
   }
 }

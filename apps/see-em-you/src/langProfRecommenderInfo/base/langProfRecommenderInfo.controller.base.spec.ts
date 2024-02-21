@@ -18,46 +18,46 @@ import { LangProfRecommenderInfoService } from "../langProfRecommenderInfo.servi
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  affiliation: "exampleAffiliation",
-  id: 42,
-  languageSpecialization: "exampleLanguageSpecialization",
-  phone: "examplePhone",
   recUserId: 42,
   title: "exampleTitle",
+  affiliation: "exampleAffiliation",
+  phone: "examplePhone",
+  languageSpecialization: "exampleLanguageSpecialization",
+  id: 42,
 };
 const CREATE_RESULT = {
-  affiliation: "exampleAffiliation",
-  id: 42,
-  languageSpecialization: "exampleLanguageSpecialization",
-  phone: "examplePhone",
   recUserId: 42,
   title: "exampleTitle",
+  affiliation: "exampleAffiliation",
+  phone: "examplePhone",
+  languageSpecialization: "exampleLanguageSpecialization",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    affiliation: "exampleAffiliation",
-    id: 42,
-    languageSpecialization: "exampleLanguageSpecialization",
-    phone: "examplePhone",
     recUserId: 42,
     title: "exampleTitle",
+    affiliation: "exampleAffiliation",
+    phone: "examplePhone",
+    languageSpecialization: "exampleLanguageSpecialization",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  affiliation: "exampleAffiliation",
-  id: 42,
-  languageSpecialization: "exampleLanguageSpecialization",
-  phone: "examplePhone",
   recUserId: 42,
   title: "exampleTitle",
+  affiliation: "exampleAffiliation",
+  phone: "examplePhone",
+  languageSpecialization: "exampleLanguageSpecialization",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createLangProfRecommenderInfo() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  langProfRecommenderInfos: () => FIND_MANY_RESULT,
+  langProfRecommenderInfo: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

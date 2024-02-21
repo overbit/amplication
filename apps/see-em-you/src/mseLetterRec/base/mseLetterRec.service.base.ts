@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseLetterRec } from "@prisma/client";
+import { Prisma, MseLetterRec as PrismaMseLetterRec } from "@prisma/client";
 
 export class MseLetterRecServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class MseLetterRecServiceBase {
     return this.prisma.mseLetterRec.count(args);
   }
 
-  async findMany<T extends Prisma.MseLetterRecFindManyArgs>(
+  async mseLetterRecs<T extends Prisma.MseLetterRecFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecFindManyArgs>
-  ): Promise<MseLetterRec[]> {
+  ): Promise<PrismaMseLetterRec[]> {
     return this.prisma.mseLetterRec.findMany(args);
   }
-  async findOne<T extends Prisma.MseLetterRecFindUniqueArgs>(
+  async mseLetterRec<T extends Prisma.MseLetterRecFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecFindUniqueArgs>
-  ): Promise<MseLetterRec | null> {
+  ): Promise<PrismaMseLetterRec | null> {
     return this.prisma.mseLetterRec.findUnique(args);
   }
-  async create<T extends Prisma.MseLetterRecCreateArgs>(
+  async createMseLetterRec<T extends Prisma.MseLetterRecCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecCreateArgs>
-  ): Promise<MseLetterRec> {
+  ): Promise<PrismaMseLetterRec> {
     return this.prisma.mseLetterRec.create<T>(args);
   }
-  async update<T extends Prisma.MseLetterRecUpdateArgs>(
+  async updateMseLetterRec<T extends Prisma.MseLetterRecUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecUpdateArgs>
-  ): Promise<MseLetterRec> {
+  ): Promise<PrismaMseLetterRec> {
     return this.prisma.mseLetterRec.update<T>(args);
   }
-  async delete<T extends Prisma.MseLetterRecDeleteArgs>(
+  async deleteMseLetterRec<T extends Prisma.MseLetterRecDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseLetterRecDeleteArgs>
-  ): Promise<MseLetterRec> {
+  ): Promise<PrismaMseLetterRec> {
     return this.prisma.mseLetterRec.delete(args);
   }
 }

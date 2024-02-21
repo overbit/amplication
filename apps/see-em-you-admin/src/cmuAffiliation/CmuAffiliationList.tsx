@@ -13,11 +13,11 @@ export const CmuAffiliationList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Cmu Employee" source="cmuEmployee" />
         <TextField
           label="Cmu Student Or Alumnus"
           source="cmuStudentOrAlumnus"
         />
+        <TextField label="Cmu Employee" source="cmuEmployee" />
         <TextField label="Id" source="id" />
       </Datagrid>
     </List>

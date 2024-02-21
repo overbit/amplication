@@ -18,66 +18,66 @@ import { ExperienceService } from "../experience.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  address: "exampleAddress",
-  company: "exampleCompany",
   datafileId: 42,
-  endDate: "exampleEndDate",
   experiencetype: 42,
-  id: 42,
-  jobDescription: "exampleJobDescription",
-  jobTitle: "exampleJobTitle",
   orderEntered: 42,
+  company: "exampleCompany",
   startDate: new Date(),
+  endDate: "exampleEndDate",
   yearsExp: "exampleYearsExp",
+  address: "exampleAddress",
+  jobTitle: "exampleJobTitle",
+  jobDescription: "exampleJobDescription",
+  id: 42,
 };
 const CREATE_RESULT = {
-  address: "exampleAddress",
-  company: "exampleCompany",
   datafileId: 42,
-  endDate: "exampleEndDate",
   experiencetype: 42,
-  id: 42,
-  jobDescription: "exampleJobDescription",
-  jobTitle: "exampleJobTitle",
   orderEntered: 42,
+  company: "exampleCompany",
   startDate: new Date(),
+  endDate: "exampleEndDate",
   yearsExp: "exampleYearsExp",
+  address: "exampleAddress",
+  jobTitle: "exampleJobTitle",
+  jobDescription: "exampleJobDescription",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    address: "exampleAddress",
-    company: "exampleCompany",
     datafileId: 42,
-    endDate: "exampleEndDate",
     experiencetype: 42,
-    id: 42,
-    jobDescription: "exampleJobDescription",
-    jobTitle: "exampleJobTitle",
     orderEntered: 42,
+    company: "exampleCompany",
     startDate: new Date(),
+    endDate: "exampleEndDate",
     yearsExp: "exampleYearsExp",
+    address: "exampleAddress",
+    jobTitle: "exampleJobTitle",
+    jobDescription: "exampleJobDescription",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  address: "exampleAddress",
-  company: "exampleCompany",
   datafileId: 42,
-  endDate: "exampleEndDate",
   experiencetype: 42,
-  id: 42,
-  jobDescription: "exampleJobDescription",
-  jobTitle: "exampleJobTitle",
   orderEntered: 42,
+  company: "exampleCompany",
   startDate: new Date(),
+  endDate: "exampleEndDate",
   yearsExp: "exampleYearsExp",
+  address: "exampleAddress",
+  jobTitle: "exampleJobTitle",
+  jobDescription: "exampleJobDescription",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createExperience() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  experiences: () => FIND_MANY_RESULT,
+  experience: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

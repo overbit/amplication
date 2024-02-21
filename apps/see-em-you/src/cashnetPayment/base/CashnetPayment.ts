@@ -12,36 +12,25 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
+  IsInt,
+  IsString,
+  IsDate,
   IsNumber,
   IsOptional,
-  IsString,
   ValidateNested,
-  IsInt,
-  IsDate,
 } from "class-validator";
-import { Application } from "../../application/base/Application";
 import { Type } from "class-transformer";
+import { Application } from "../../application/base/Application";
 
 @ObjectType()
 class CashnetPayment {
   @ApiProperty({
-    required: false,
+    required: true,
     type: Number,
   })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  amount!: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  applicantEmail!: string;
+  @IsInt()
+  @Field(() => Number)
+  transactionId!: number;
 
   @ApiProperty({
     required: true,
@@ -53,19 +42,11 @@ class CashnetPayment {
 
   @ApiProperty({
     required: true,
-    type: () => Application,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @IsString()
+  @Field(() => String)
+  applicantEmail!: string;
 
   @ApiProperty({
     required: true,
@@ -85,14 +66,6 @@ class CashnetPayment {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  transactionId!: number;
-
-  @ApiProperty({
-    required: true,
   })
   @IsDate()
   @Type(() => Date)
@@ -106,6 +79,33 @@ class CashnetPayment {
   @IsString()
   @Field(() => String)
   transactionType!: string;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  amount!: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { CashnetPayment as CashnetPayment };

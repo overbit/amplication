@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciSlateGreArgs } from "./CreateMhciSlateGreArgs";
-import { UpdateMhciSlateGreArgs } from "./UpdateMhciSlateGreArgs";
-import { DeleteMhciSlateGreArgs } from "./DeleteMhciSlateGreArgs";
+import { MhciSlateGre } from "./MhciSlateGre";
 import { MhciSlateGreCountArgs } from "./MhciSlateGreCountArgs";
 import { MhciSlateGreFindManyArgs } from "./MhciSlateGreFindManyArgs";
 import { MhciSlateGreFindUniqueArgs } from "./MhciSlateGreFindUniqueArgs";
-import { MhciSlateGre } from "./MhciSlateGre";
+import { CreateMhciSlateGreArgs } from "./CreateMhciSlateGreArgs";
+import { UpdateMhciSlateGreArgs } from "./UpdateMhciSlateGreArgs";
+import { DeleteMhciSlateGreArgs } from "./DeleteMhciSlateGreArgs";
 import { MhciSlateGreService } from "../mhciSlateGre.service";
 @graphql.Resolver(() => MhciSlateGre)
 export class MhciSlateGreResolverBase {
@@ -38,14 +38,14 @@ export class MhciSlateGreResolverBase {
   async mhciSlateGres(
     @graphql.Args() args: MhciSlateGreFindManyArgs
   ): Promise<MhciSlateGre[]> {
-    return this.service.findMany(args);
+    return this.service.mhciSlateGres(args);
   }
 
   @graphql.Query(() => MhciSlateGre, { nullable: true })
   async mhciSlateGre(
     @graphql.Args() args: MhciSlateGreFindUniqueArgs
   ): Promise<MhciSlateGre | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciSlateGre(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class MhciSlateGreResolverBase {
   async createMhciSlateGre(
     @graphql.Args() args: CreateMhciSlateGreArgs
   ): Promise<MhciSlateGre> {
-    return await this.service.create({
+    return await this.service.createMhciSlateGre({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class MhciSlateGreResolverBase {
     @graphql.Args() args: UpdateMhciSlateGreArgs
   ): Promise<MhciSlateGre | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciSlateGre({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class MhciSlateGreResolverBase {
     @graphql.Args() args: DeleteMhciSlateGreArgs
   ): Promise<MhciSlateGre | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciSlateGre(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

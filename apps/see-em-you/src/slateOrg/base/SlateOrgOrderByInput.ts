@@ -28,40 +28,7 @@ class SlateOrgOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  category?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  city?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  country?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
+  status?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +50,7 @@ class SlateOrgOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  numActiveApplicationsWithSchoolKeyInDatabase?: SortOrder;
+  sharedName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -94,7 +61,7 @@ class SlateOrgOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  numRecordsWithSchoolKeyInDatabase?: SortOrder;
+  street?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,18 +72,7 @@ class SlateOrgOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  orgType?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  postal?: SortOrder;
+  city?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -138,7 +94,7 @@ class SlateOrgOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  sharedName?: SortOrder;
+  postal?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -149,7 +105,7 @@ class SlateOrgOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  status?: SortOrder;
+  country?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -160,7 +116,51 @@ class SlateOrgOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  street?: SortOrder;
+  category?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  orgType?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  numRecordsWithSchoolKeyInDatabase?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  numActiveApplicationsWithSchoolKeyInDatabase?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { SlateOrgOrderByInput as SlateOrgOrderByInput };

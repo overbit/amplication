@@ -11,12 +11,23 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsOptional, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsOptional, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class TagMemberCreateInput {
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  tagInstanceId?: number | null;
+
   @ApiProperty({
     required: false,
     type: () => ApplicationWhereUniqueInput,
@@ -28,17 +39,6 @@ class TagMemberCreateInput {
     nullable: true,
   })
   application?: ApplicationWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  tagInstanceId?: number | null;
 }
 
 export { TagMemberCreateInput as TagMemberCreateInput };

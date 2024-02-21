@@ -7,9 +7,9 @@ export const ProgramGroupProgramShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
         <TextField label="Program Group Id" source="programGroupId" />
         <TextField label="Unit Id" source="unitId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

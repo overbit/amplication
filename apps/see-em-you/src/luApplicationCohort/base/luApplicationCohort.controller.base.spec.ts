@@ -37,11 +37,11 @@ const FIND_ONE_RESULT = {
 };
 
 const service = {
-  create() {
+  createLuApplicationCohort() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  luApplicationCohorts: () => FIND_MANY_RESULT,
+  luApplicationCohort: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

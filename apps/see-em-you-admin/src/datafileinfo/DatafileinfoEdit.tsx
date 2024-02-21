@@ -4,21 +4,21 @@ import {
   SimpleForm,
   EditProps,
   TextInput,
-  DateTimeInput,
   NumberInput,
+  DateTimeInput,
 } from "react-admin";
 
 export const DatafileinfoEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Extension" source="extension" />
-        <DateTimeInput label="Moddate" source="moddate" />
-        <NumberInput step={1} label="Section" source="section" />
-        <NumberInput step={1} label="Size" source="size" />
         <TextInput label="Type Field" source="typeField" />
-        <TextInput label="Userdata" source="userdata" />
+        <TextInput label="Extension" source="extension" />
+        <NumberInput step={1} label="Size" source="size" />
         <NumberInput step={1} label="User Id" source="userId" />
+        <NumberInput step={1} label="Section" source="section" />
+        <DateTimeInput label="Moddate" source="moddate" />
+        <TextInput label="Userdata" source="userdata" />
       </SimpleForm>
     </Edit>
   );

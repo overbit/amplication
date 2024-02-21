@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DepartmentEnableRecyclingService } from "../departmentEnableRecycling.service";
 import { DepartmentEnableRecyclingCreateInput } from "./DepartmentEnableRecyclingCreateInput";
-import { DepartmentEnableRecyclingWhereInput } from "./DepartmentEnableRecyclingWhereInput";
-import { DepartmentEnableRecyclingWhereUniqueInput } from "./DepartmentEnableRecyclingWhereUniqueInput";
-import { DepartmentEnableRecyclingFindManyArgs } from "./DepartmentEnableRecyclingFindManyArgs";
-import { DepartmentEnableRecyclingUpdateInput } from "./DepartmentEnableRecyclingUpdateInput";
 import { DepartmentEnableRecycling } from "./DepartmentEnableRecycling";
+import { DepartmentEnableRecyclingFindManyArgs } from "./DepartmentEnableRecyclingFindManyArgs";
+import { DepartmentEnableRecyclingWhereUniqueInput } from "./DepartmentEnableRecyclingWhereUniqueInput";
+import { DepartmentEnableRecyclingUpdateInput } from "./DepartmentEnableRecyclingUpdateInput";
 
 export class DepartmentEnableRecyclingControllerBase {
   constructor(protected readonly service: DepartmentEnableRecyclingService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DepartmentEnableRecycling })
-  async create(
+  async createDepartmentEnableRecycling(
     @common.Body() data: DepartmentEnableRecyclingCreateInput
   ): Promise<DepartmentEnableRecycling> {
-    return await this.service.create({
+    return await this.service.createDepartmentEnableRecycling({
       data: data,
       select: {
         departmentId: true,
-        enableRecycling: true,
-        id: true,
         periodId: true,
+        enableRecycling: true,
         usersId: true,
+        id: true,
       },
     });
   }
@@ -46,21 +45,21 @@ export class DepartmentEnableRecyclingControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DepartmentEnableRecycling] })
   @ApiNestedQuery(DepartmentEnableRecyclingFindManyArgs)
-  async findMany(
+  async departmentEnableRecyclings(
     @common.Req() request: Request
   ): Promise<DepartmentEnableRecycling[]> {
     const args = plainToClass(
       DepartmentEnableRecyclingFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.departmentEnableRecyclings({
       ...args,
       select: {
         departmentId: true,
-        enableRecycling: true,
-        id: true,
         periodId: true,
+        enableRecycling: true,
         usersId: true,
+        id: true,
       },
     });
   }
@@ -68,17 +67,17 @@ export class DepartmentEnableRecyclingControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DepartmentEnableRecycling })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async departmentEnableRecycling(
     @common.Param() params: DepartmentEnableRecyclingWhereUniqueInput
   ): Promise<DepartmentEnableRecycling | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.departmentEnableRecycling({
       where: params,
       select: {
         departmentId: true,
-        enableRecycling: true,
-        id: true,
         periodId: true,
+        enableRecycling: true,
         usersId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -92,20 +91,20 @@ export class DepartmentEnableRecyclingControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DepartmentEnableRecycling })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDepartmentEnableRecycling(
     @common.Param() params: DepartmentEnableRecyclingWhereUniqueInput,
     @common.Body() data: DepartmentEnableRecyclingUpdateInput
   ): Promise<DepartmentEnableRecycling | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDepartmentEnableRecycling({
         where: params,
         data: data,
         select: {
           departmentId: true,
-          enableRecycling: true,
-          id: true,
           periodId: true,
+          enableRecycling: true,
           usersId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -121,18 +120,18 @@ export class DepartmentEnableRecyclingControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DepartmentEnableRecycling })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDepartmentEnableRecycling(
     @common.Param() params: DepartmentEnableRecyclingWhereUniqueInput
   ): Promise<DepartmentEnableRecycling | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDepartmentEnableRecycling({
         where: params,
         select: {
           departmentId: true,
-          enableRecycling: true,
-          id: true,
           periodId: true,
+          enableRecycling: true,
           usersId: true,
+          id: true,
         },
       });
     } catch (error) {

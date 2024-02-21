@@ -1,12 +1,12 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type IniSopOrderByInput = {
-  additionalInfo?: SortOrder;
   applicationId?: SortOrder;
-  background?: SortOrder;
-  id?: SortOrder;
-  leadershipExperience?: SortOrder;
   objective?: SortOrder;
+  background?: SortOrder;
   researchExperience?: SortOrder;
+  leadershipExperience?: SortOrder;
   sfsInterest?: SortOrder;
+  additionalInfo?: SortOrder;
+  id?: SortOrder;
 };

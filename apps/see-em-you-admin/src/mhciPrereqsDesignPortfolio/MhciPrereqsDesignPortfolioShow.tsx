@@ -14,9 +14,11 @@ export const MhciPrereqsDesignPortfolioShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Application Id" source="applicationId" />
+        <TextField label="Url" source="url" />
         <TextField label="Description" source="description" />
-        <TextField label="Id" source="id" />
+        <TextField label="Application Id" source="applicationId" />
+        <TextField label="Program Id" source="programId" />
+        <TextField label="Period Id" source="periodId" />
         <ReferenceField
           label="Lu Users Usertypes"
           source="luusersusertype.id"
@@ -24,9 +26,7 @@ export const MhciPrereqsDesignPortfolioShow = (
         >
           <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Period Id" source="periodId" />
-        <TextField label="Program Id" source="programId" />
-        <TextField label="Url" source="url" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

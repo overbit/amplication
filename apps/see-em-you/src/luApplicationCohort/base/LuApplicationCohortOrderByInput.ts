@@ -28,7 +28,7 @@ class LuApplicationCohortOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationId?: SortOrder;
+  cohortId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class LuApplicationCohortOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  cohortId?: SortOrder;
+  applicationId?: SortOrder;
 
   @ApiProperty({
     required: false,

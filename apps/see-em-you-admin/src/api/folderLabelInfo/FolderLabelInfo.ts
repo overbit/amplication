@@ -1,7 +1,7 @@
 export type FolderLabelInfo = {
-  id: number;
+  periodId: number;
+  lastRanTime: Date | null;
   lastLabelColumn: number | null;
   lastLabelRow: number | null;
-  lastRanTime: Date | null;
-  periodId: number;
+  id: number;
 };

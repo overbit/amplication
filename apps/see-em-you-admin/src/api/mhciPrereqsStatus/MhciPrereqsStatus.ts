@@ -1,10 +1,6 @@
 import { MhciPrereq } from "../mhciPrereq/MhciPrereq";
 
 export type MhciPrereqsStatus = {
-  id: number;
-  mhciPrereqs?: MhciPrereq;
-  programId: number | null;
-  reviewerExplanation: string | null;
   reviewerLuUsersUsertypesId: number | null;
   reviewer_status?:
     | "Not_Submitted"
@@ -13,6 +9,7 @@ export type MhciPrereqsStatus = {
     | "Approved_plan_"
     | "Fulfilled__undergraduate_degree"
     | "Fulfilled_";
+  reviewerExplanation: string | null;
   reviewerTimestamp: Date | null;
   status3?:
     | "Saved_Not_Submitted"
@@ -20,4 +17,7 @@ export type MhciPrereqsStatus = {
     | "Student_Edited"
     | "Reviewer_Responded"
     | null;
+  programId: number | null;
+  mhciPrereqs?: MhciPrereq;
+  id: number;
 };

@@ -1,14 +1,14 @@
 import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 
 export type RecommendUpdateInput = {
-  application?: ApplicationWhereUniqueInput;
-  buckleyatupload?: number | null;
-  cmuAffiliation?: number | null;
+  recUserId?: number;
+  recommendtype?: number;
   content?: string | null;
   datafileId?: number | null;
-  lastReminderSent?: Date | null;
-  recommendtype?: number;
-  recUserId?: number;
-  reminderSentCount?: number;
   submitted?: boolean;
+  reminderSentCount?: number;
+  lastReminderSent?: Date | null;
+  cmuAffiliation?: number | null;
+  buckleyatupload?: number | null;
+  application?: ApplicationWhereUniqueInput;
 };

@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PublicationService } from "../publication.service";
 import { PublicationCreateInput } from "./PublicationCreateInput";
-import { PublicationWhereInput } from "./PublicationWhereInput";
-import { PublicationWhereUniqueInput } from "./PublicationWhereUniqueInput";
-import { PublicationFindManyArgs } from "./PublicationFindManyArgs";
-import { PublicationUpdateInput } from "./PublicationUpdateInput";
 import { Publication } from "./Publication";
+import { PublicationFindManyArgs } from "./PublicationFindManyArgs";
+import { PublicationWhereUniqueInput } from "./PublicationWhereUniqueInput";
+import { PublicationUpdateInput } from "./PublicationUpdateInput";
 
 export class PublicationControllerBase {
   constructor(protected readonly service: PublicationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Publication })
-  async create(
+  async createPublication(
     @common.Body() data: PublicationCreateInput
   ): Promise<Publication> {
-    return await this.service.create({
+    return await this.service.createPublication({
       data: {
         ...data,
 
@@ -40,22 +39,23 @@ export class PublicationControllerBase {
         },
       },
       select: {
+        title: true,
+        author: true,
+        forum: true,
+        citation: true,
+        url: true,
+        status: true,
+        typeField: true,
+        typeOther: true,
+        datafileId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        author: true,
-        citation: true,
-        datafileId: true,
-        forum: true,
         id: true,
-        status: true,
-        title: true,
-        typeField: true,
-        typeOther: true,
-        url: true,
       },
     });
   }
@@ -63,27 +63,28 @@ export class PublicationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Publication] })
   @ApiNestedQuery(PublicationFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Publication[]> {
+  async publications(@common.Req() request: Request): Promise<Publication[]> {
     const args = plainToClass(PublicationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.publications({
       ...args,
       select: {
+        title: true,
+        author: true,
+        forum: true,
+        citation: true,
+        url: true,
+        status: true,
+        typeField: true,
+        typeOther: true,
+        datafileId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        author: true,
-        citation: true,
-        datafileId: true,
-        forum: true,
         id: true,
-        status: true,
-        title: true,
-        typeField: true,
-        typeOther: true,
-        url: true,
       },
     });
   }
@@ -91,28 +92,29 @@ export class PublicationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Publication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async publication(
     @common.Param() params: PublicationWhereUniqueInput
   ): Promise<Publication | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.publication({
       where: params,
       select: {
+        title: true,
+        author: true,
+        forum: true,
+        citation: true,
+        url: true,
+        status: true,
+        typeField: true,
+        typeOther: true,
+        datafileId: true,
+
         application: {
           select: {
             id: true,
           },
         },
 
-        author: true,
-        citation: true,
-        datafileId: true,
-        forum: true,
         id: true,
-        status: true,
-        title: true,
-        typeField: true,
-        typeOther: true,
-        url: true,
       },
     });
     if (result === null) {
@@ -126,12 +128,12 @@ export class PublicationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Publication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePublication(
     @common.Param() params: PublicationWhereUniqueInput,
     @common.Body() data: PublicationUpdateInput
   ): Promise<Publication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePublication({
         where: params,
         data: {
           ...data,
@@ -141,22 +143,23 @@ export class PublicationControllerBase {
           },
         },
         select: {
+          title: true,
+          author: true,
+          forum: true,
+          citation: true,
+          url: true,
+          status: true,
+          typeField: true,
+          typeOther: true,
+          datafileId: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          author: true,
-          citation: true,
-          datafileId: true,
-          forum: true,
           id: true,
-          status: true,
-          title: true,
-          typeField: true,
-          typeOther: true,
-          url: true,
         },
       });
     } catch (error) {
@@ -172,29 +175,30 @@ export class PublicationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Publication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePublication(
     @common.Param() params: PublicationWhereUniqueInput
   ): Promise<Publication | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePublication({
         where: params,
         select: {
+          title: true,
+          author: true,
+          forum: true,
+          citation: true,
+          url: true,
+          status: true,
+          typeField: true,
+          typeOther: true,
+          datafileId: true,
+
           application: {
             select: {
               id: true,
             },
           },
 
-          author: true,
-          citation: true,
-          datafileId: true,
-          forum: true,
           id: true,
-          status: true,
-          title: true,
-          typeField: true,
-          typeOther: true,
-          url: true,
         },
       });
     } catch (error) {

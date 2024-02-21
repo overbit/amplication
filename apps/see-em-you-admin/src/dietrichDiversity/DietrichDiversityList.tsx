@@ -14,8 +14,8 @@ export const DietrichDiversityList = (props: ListProps): React.ReactElement => {
       <Datagrid rowClick="show">
         <TextField label="Application Id" source="applicationId" />
         <TextField label="Background" source="background" />
-        <TextField label="Id" source="id" />
         <TextField label="Life Experience" source="lifeExperience" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

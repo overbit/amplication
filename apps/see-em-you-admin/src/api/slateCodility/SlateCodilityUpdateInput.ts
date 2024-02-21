@@ -1,4 +1,8 @@
 export type SlateCodilityUpdateInput = {
+  prefix?: string | null;
+  first?: string | null;
+  middle?: string | null;
+  last?: string | null;
   codilityCloseDate?: string | null;
   codilityCreateDate?: string | null;
   codilityIpAddresses?: string | null;
@@ -35,8 +39,4 @@ export type SlateCodilityUpdateInput = {
   codilityTask4Score?: string | null;
   codilityTestName?: string | null;
   codilityTestSession?: string | null;
-  first?: string | null;
-  last?: string | null;
-  middle?: string | null;
-  prefix?: string | null;
 };

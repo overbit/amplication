@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CcAuthNotificationService } from "../ccAuthNotification.service";
 import { CcAuthNotificationCreateInput } from "./CcAuthNotificationCreateInput";
-import { CcAuthNotificationWhereInput } from "./CcAuthNotificationWhereInput";
-import { CcAuthNotificationWhereUniqueInput } from "./CcAuthNotificationWhereUniqueInput";
-import { CcAuthNotificationFindManyArgs } from "./CcAuthNotificationFindManyArgs";
-import { CcAuthNotificationUpdateInput } from "./CcAuthNotificationUpdateInput";
 import { CcAuthNotification } from "./CcAuthNotification";
+import { CcAuthNotificationFindManyArgs } from "./CcAuthNotificationFindManyArgs";
+import { CcAuthNotificationWhereUniqueInput } from "./CcAuthNotificationWhereUniqueInput";
+import { CcAuthNotificationUpdateInput } from "./CcAuthNotificationUpdateInput";
 
 export class CcAuthNotificationControllerBase {
   constructor(protected readonly service: CcAuthNotificationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CcAuthNotification })
-  async create(
+  async createCcAuthNotification(
     @common.Body() data: CcAuthNotificationCreateInput
   ): Promise<CcAuthNotification> {
-    return await this.service.create({
+    return await this.service.createCcAuthNotification({
       data: data,
       select: {
+        paymentId: true,
         authNotificationTime: true,
         id: true,
-        paymentId: true,
       },
     });
   }
@@ -44,16 +43,16 @@ export class CcAuthNotificationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CcAuthNotification] })
   @ApiNestedQuery(CcAuthNotificationFindManyArgs)
-  async findMany(
+  async ccAuthNotifications(
     @common.Req() request: Request
   ): Promise<CcAuthNotification[]> {
     const args = plainToClass(CcAuthNotificationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ccAuthNotifications({
       ...args,
       select: {
+        paymentId: true,
         authNotificationTime: true,
         id: true,
-        paymentId: true,
       },
     });
   }
@@ -61,15 +60,15 @@ export class CcAuthNotificationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CcAuthNotification })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ccAuthNotification(
     @common.Param() params: CcAuthNotificationWhereUniqueInput
   ): Promise<CcAuthNotification | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ccAuthNotification({
       where: params,
       select: {
+        paymentId: true,
         authNotificationTime: true,
         id: true,
-        paymentId: true,
       },
     });
     if (result === null) {
@@ -83,18 +82,18 @@ export class CcAuthNotificationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CcAuthNotification })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCcAuthNotification(
     @common.Param() params: CcAuthNotificationWhereUniqueInput,
     @common.Body() data: CcAuthNotificationUpdateInput
   ): Promise<CcAuthNotification | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCcAuthNotification({
         where: params,
         data: data,
         select: {
+          paymentId: true,
           authNotificationTime: true,
           id: true,
-          paymentId: true,
         },
       });
     } catch (error) {
@@ -110,16 +109,16 @@ export class CcAuthNotificationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CcAuthNotification })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCcAuthNotification(
     @common.Param() params: CcAuthNotificationWhereUniqueInput
   ): Promise<CcAuthNotification | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCcAuthNotification({
         where: params,
         select: {
+          paymentId: true,
           authNotificationTime: true,
           id: true,
-          paymentId: true,
         },
       });
     } catch (error) {

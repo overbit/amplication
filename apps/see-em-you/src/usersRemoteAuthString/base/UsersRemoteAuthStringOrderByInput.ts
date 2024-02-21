@@ -28,7 +28,7 @@ class UsersRemoteAuthStringOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  usersId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +50,7 @@ class UsersRemoteAuthStringOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usersId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { UsersRemoteAuthStringOrderByInput as UsersRemoteAuthStringOrderByInput };

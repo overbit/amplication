@@ -18,23 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IpedsRaceService } from "../ipedsRace.service";
 import { IpedsRaceCreateInput } from "./IpedsRaceCreateInput";
-import { IpedsRaceWhereInput } from "./IpedsRaceWhereInput";
-import { IpedsRaceWhereUniqueInput } from "./IpedsRaceWhereUniqueInput";
-import { IpedsRaceFindManyArgs } from "./IpedsRaceFindManyArgs";
-import { IpedsRaceUpdateInput } from "./IpedsRaceUpdateInput";
 import { IpedsRace } from "./IpedsRace";
+import { IpedsRaceFindManyArgs } from "./IpedsRaceFindManyArgs";
+import { IpedsRaceWhereUniqueInput } from "./IpedsRaceWhereUniqueInput";
+import { IpedsRaceUpdateInput } from "./IpedsRaceUpdateInput";
 
 export class IpedsRaceControllerBase {
   constructor(protected readonly service: IpedsRaceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IpedsRace })
-  async create(@common.Body() data: IpedsRaceCreateInput): Promise<IpedsRace> {
-    return await this.service.create({
+  async createIpedsRace(
+    @common.Body() data: IpedsRaceCreateInput
+  ): Promise<IpedsRace> {
+    return await this.service.createIpedsRace({
       data: data,
       select: {
-        id: true,
         ipedsRace: true,
         sortOrder: true,
+        id: true,
       },
     });
   }
@@ -42,14 +43,14 @@ export class IpedsRaceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [IpedsRace] })
   @ApiNestedQuery(IpedsRaceFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<IpedsRace[]> {
+  async ipedsRaces(@common.Req() request: Request): Promise<IpedsRace[]> {
     const args = plainToClass(IpedsRaceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.ipedsRaces({
       ...args,
       select: {
-        id: true,
         ipedsRace: true,
         sortOrder: true,
+        id: true,
       },
     });
   }
@@ -57,15 +58,15 @@ export class IpedsRaceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IpedsRace })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async ipedsRace(
     @common.Param() params: IpedsRaceWhereUniqueInput
   ): Promise<IpedsRace | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.ipedsRace({
       where: params,
       select: {
-        id: true,
         ipedsRace: true,
         sortOrder: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -79,18 +80,18 @@ export class IpedsRaceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IpedsRace })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIpedsRace(
     @common.Param() params: IpedsRaceWhereUniqueInput,
     @common.Body() data: IpedsRaceUpdateInput
   ): Promise<IpedsRace | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIpedsRace({
         where: params,
         data: data,
         select: {
-          id: true,
           ipedsRace: true,
           sortOrder: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -106,16 +107,16 @@ export class IpedsRaceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IpedsRace })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIpedsRace(
     @common.Param() params: IpedsRaceWhereUniqueInput
   ): Promise<IpedsRace | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIpedsRace({
         where: params,
         select: {
-          id: true,
           ipedsRace: true,
           sortOrder: true,
+          id: true,
         },
       });
     } catch (error) {

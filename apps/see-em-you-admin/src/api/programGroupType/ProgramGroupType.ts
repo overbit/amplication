@@ -1,5 +1,5 @@
 export type ProgramGroupType = {
-  id: number;
-  programGroupTypeDescription: string | null;
   programGroupTypeName: string | null;
+  programGroupTypeDescription: string | null;
+  id: number;
 };

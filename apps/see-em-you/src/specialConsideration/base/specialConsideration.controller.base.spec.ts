@@ -18,34 +18,34 @@ import { SpecialConsiderationService } from "../specialConsideration.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
   reviewerId: 42,
   specialConsideration: 42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
   reviewerId: 42,
   specialConsideration: 42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
     reviewerId: 42,
     specialConsideration: 42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
   reviewerId: 42,
   specialConsideration: 42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createSpecialConsideration() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  specialConsiderations: () => FIND_MANY_RESULT,
+  specialConsideration: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

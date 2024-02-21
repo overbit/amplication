@@ -18,34 +18,34 @@ import { SlateEmail2AwUserService } from "../slateEmail2AwUser.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  slateEmail: "exampleSlateEmail",
   awLuuUserId: 42,
   id: 42,
-  slateEmail: "exampleSlateEmail",
 };
 const CREATE_RESULT = {
+  slateEmail: "exampleSlateEmail",
   awLuuUserId: 42,
   id: 42,
-  slateEmail: "exampleSlateEmail",
 };
 const FIND_MANY_RESULT = [
   {
+    slateEmail: "exampleSlateEmail",
     awLuuUserId: 42,
     id: 42,
-    slateEmail: "exampleSlateEmail",
   },
 ];
 const FIND_ONE_RESULT = {
+  slateEmail: "exampleSlateEmail",
   awLuuUserId: 42,
   id: 42,
-  slateEmail: "exampleSlateEmail",
 };
 
 const service = {
-  create() {
+  createSlateEmail2AwUser() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  slateEmail2AwUsers: () => FIND_MANY_RESULT,
+  slateEmail2AwUser: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

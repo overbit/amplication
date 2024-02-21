@@ -18,24 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { InstituteService } from "../institute.service";
 import { InstituteCreateInput } from "./InstituteCreateInput";
-import { InstituteWhereInput } from "./InstituteWhereInput";
-import { InstituteWhereUniqueInput } from "./InstituteWhereUniqueInput";
-import { InstituteFindManyArgs } from "./InstituteFindManyArgs";
-import { InstituteUpdateInput } from "./InstituteUpdateInput";
 import { Institute } from "./Institute";
+import { InstituteFindManyArgs } from "./InstituteFindManyArgs";
+import { InstituteWhereUniqueInput } from "./InstituteWhereUniqueInput";
+import { InstituteUpdateInput } from "./InstituteUpdateInput";
 
 export class InstituteControllerBase {
   constructor(protected readonly service: InstituteService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Institute })
-  async create(@common.Body() data: InstituteCreateInput): Promise<Institute> {
-    return await this.service.create({
+  async createInstitute(
+    @common.Body() data: InstituteCreateInput
+  ): Promise<Institute> {
+    return await this.service.createInstitute({
       data: data,
       select: {
-        hide: true,
-        id: true,
         name: true,
         usersId: true,
+        hide: true,
+        id: true,
       },
     });
   }
@@ -43,15 +44,15 @@ export class InstituteControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Institute] })
   @ApiNestedQuery(InstituteFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Institute[]> {
+  async institutes(@common.Req() request: Request): Promise<Institute[]> {
     const args = plainToClass(InstituteFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.institutes({
       ...args,
       select: {
-        hide: true,
-        id: true,
         name: true,
         usersId: true,
+        hide: true,
+        id: true,
       },
     });
   }
@@ -59,16 +60,16 @@ export class InstituteControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Institute })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async institute(
     @common.Param() params: InstituteWhereUniqueInput
   ): Promise<Institute | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.institute({
       where: params,
       select: {
-        hide: true,
-        id: true,
         name: true,
         usersId: true,
+        hide: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -82,19 +83,19 @@ export class InstituteControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Institute })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateInstitute(
     @common.Param() params: InstituteWhereUniqueInput,
     @common.Body() data: InstituteUpdateInput
   ): Promise<Institute | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateInstitute({
         where: params,
         data: data,
         select: {
-          hide: true,
-          id: true,
           name: true,
           usersId: true,
+          hide: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -110,17 +111,17 @@ export class InstituteControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Institute })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteInstitute(
     @common.Param() params: InstituteWhereUniqueInput
   ): Promise<Institute | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteInstitute({
         where: params,
         select: {
-          hide: true,
-          id: true,
           name: true,
           usersId: true,
+          hide: true,
+          id: true,
         },
       });
     } catch (error) {

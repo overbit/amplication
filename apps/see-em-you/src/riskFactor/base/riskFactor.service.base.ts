@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, RiskFactor } from "@prisma/client";
+import { Prisma, RiskFactor as PrismaRiskFactor } from "@prisma/client";
 
 export class RiskFactorServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class RiskFactorServiceBase {
     return this.prisma.riskFactor.count(args);
   }
 
-  async findMany<T extends Prisma.RiskFactorFindManyArgs>(
+  async riskFactors<T extends Prisma.RiskFactorFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RiskFactorFindManyArgs>
-  ): Promise<RiskFactor[]> {
+  ): Promise<PrismaRiskFactor[]> {
     return this.prisma.riskFactor.findMany(args);
   }
-  async findOne<T extends Prisma.RiskFactorFindUniqueArgs>(
+  async riskFactor<T extends Prisma.RiskFactorFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RiskFactorFindUniqueArgs>
-  ): Promise<RiskFactor | null> {
+  ): Promise<PrismaRiskFactor | null> {
     return this.prisma.riskFactor.findUnique(args);
   }
-  async create<T extends Prisma.RiskFactorCreateArgs>(
+  async createRiskFactor<T extends Prisma.RiskFactorCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RiskFactorCreateArgs>
-  ): Promise<RiskFactor> {
+  ): Promise<PrismaRiskFactor> {
     return this.prisma.riskFactor.create<T>(args);
   }
-  async update<T extends Prisma.RiskFactorUpdateArgs>(
+  async updateRiskFactor<T extends Prisma.RiskFactorUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RiskFactorUpdateArgs>
-  ): Promise<RiskFactor> {
+  ): Promise<PrismaRiskFactor> {
     return this.prisma.riskFactor.update<T>(args);
   }
-  async delete<T extends Prisma.RiskFactorDeleteArgs>(
+  async deleteRiskFactor<T extends Prisma.RiskFactorDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RiskFactorDeleteArgs>
-  ): Promise<RiskFactor> {
+  ): Promise<PrismaRiskFactor> {
     return this.prisma.riskFactor.delete(args);
   }
 }

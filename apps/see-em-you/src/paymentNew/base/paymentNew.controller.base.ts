@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PaymentNewService } from "../paymentNew.service";
 import { PaymentNewCreateInput } from "./PaymentNewCreateInput";
-import { PaymentNewWhereInput } from "./PaymentNewWhereInput";
-import { PaymentNewWhereUniqueInput } from "./PaymentNewWhereUniqueInput";
-import { PaymentNewFindManyArgs } from "./PaymentNewFindManyArgs";
-import { PaymentNewUpdateInput } from "./PaymentNewUpdateInput";
 import { PaymentNew } from "./PaymentNew";
+import { PaymentNewFindManyArgs } from "./PaymentNewFindManyArgs";
+import { PaymentNewWhereUniqueInput } from "./PaymentNewWhereUniqueInput";
+import { PaymentNewUpdateInput } from "./PaymentNewUpdateInput";
 
 export class PaymentNewControllerBase {
   constructor(protected readonly service: PaymentNewService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PaymentNew })
-  async create(
+  async createPaymentNew(
     @common.Body() data: PaymentNewCreateInput
   ): Promise<PaymentNew> {
-    return await this.service.create({
+    return await this.service.createPaymentNew({
       data: data,
       select: {
         applicationId: true,
-        id: true,
-        lastModTime: true,
-        lastModUserId: true,
+        paymentType: true,
         paymentAmount: true,
         paymentIntentDate: true,
         payment_status: true,
-        paymentType: true,
+        lastModTime: true,
+        lastModUserId: true,
+        id: true,
       },
     });
   }
@@ -49,19 +48,19 @@ export class PaymentNewControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PaymentNew] })
   @ApiNestedQuery(PaymentNewFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PaymentNew[]> {
+  async paymentNews(@common.Req() request: Request): Promise<PaymentNew[]> {
     const args = plainToClass(PaymentNewFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.paymentNews({
       ...args,
       select: {
         applicationId: true,
-        id: true,
-        lastModTime: true,
-        lastModUserId: true,
+        paymentType: true,
         paymentAmount: true,
         paymentIntentDate: true,
         payment_status: true,
-        paymentType: true,
+        lastModTime: true,
+        lastModUserId: true,
+        id: true,
       },
     });
   }
@@ -69,20 +68,20 @@ export class PaymentNewControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PaymentNew })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async paymentNew(
     @common.Param() params: PaymentNewWhereUniqueInput
   ): Promise<PaymentNew | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.paymentNew({
       where: params,
       select: {
         applicationId: true,
-        id: true,
-        lastModTime: true,
-        lastModUserId: true,
+        paymentType: true,
         paymentAmount: true,
         paymentIntentDate: true,
         payment_status: true,
-        paymentType: true,
+        lastModTime: true,
+        lastModUserId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -96,23 +95,23 @@ export class PaymentNewControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PaymentNew })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePaymentNew(
     @common.Param() params: PaymentNewWhereUniqueInput,
     @common.Body() data: PaymentNewUpdateInput
   ): Promise<PaymentNew | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePaymentNew({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          id: true,
-          lastModTime: true,
-          lastModUserId: true,
+          paymentType: true,
           paymentAmount: true,
           paymentIntentDate: true,
           payment_status: true,
-          paymentType: true,
+          lastModTime: true,
+          lastModUserId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -128,21 +127,21 @@ export class PaymentNewControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PaymentNew })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePaymentNew(
     @common.Param() params: PaymentNewWhereUniqueInput
   ): Promise<PaymentNew | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePaymentNew({
         where: params,
         select: {
           applicationId: true,
-          id: true,
-          lastModTime: true,
-          lastModUserId: true,
+          paymentType: true,
           paymentAmount: true,
           paymentIntentDate: true,
           payment_status: true,
-          paymentType: true,
+          lastModTime: true,
+          lastModUserId: true,
+          id: true,
         },
       });
     } catch (error) {

@@ -18,20 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlatePubService } from "../slatePub.service";
 import { SlatePubCreateInput } from "./SlatePubCreateInput";
-import { SlatePubWhereInput } from "./SlatePubWhereInput";
-import { SlatePubWhereUniqueInput } from "./SlatePubWhereUniqueInput";
-import { SlatePubFindManyArgs } from "./SlatePubFindManyArgs";
-import { SlatePubUpdateInput } from "./SlatePubUpdateInput";
 import { SlatePub } from "./SlatePub";
+import { SlatePubFindManyArgs } from "./SlatePubFindManyArgs";
+import { SlatePubWhereUniqueInput } from "./SlatePubWhereUniqueInput";
+import { SlatePubUpdateInput } from "./SlatePubUpdateInput";
 
 export class SlatePubControllerBase {
   constructor(protected readonly service: SlatePubService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlatePub })
-  async create(@common.Body() data: SlatePubCreateInput): Promise<SlatePub> {
-    return await this.service.create({
+  async createSlatePub(
+    @common.Body() data: SlatePubCreateInput
+  ): Promise<SlatePub> {
+    return await this.service.createSlatePub({
       data: data,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -50,18 +55,13 @@ export class SlatePubControllerBase {
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -86,6 +86,7 @@ export class SlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
   }
@@ -93,11 +94,15 @@ export class SlatePubControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlatePub] })
   @ApiNestedQuery(SlatePubFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlatePub[]> {
+  async slatePubs(@common.Req() request: Request): Promise<SlatePub[]> {
     const args = plainToClass(SlatePubFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slatePubs({
       ...args,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -116,18 +121,13 @@ export class SlatePubControllerBase {
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -152,6 +152,7 @@ export class SlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
   }
@@ -159,12 +160,16 @@ export class SlatePubControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slatePub(
     @common.Param() params: SlatePubWhereUniqueInput
   ): Promise<SlatePub | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slatePub({
       where: params,
       select: {
+        prefix: true,
+        first: true,
+        middle: true,
+        last: true,
         authorsPub1: true,
         authorsPub2: true,
         authorsPub3: true,
@@ -183,18 +188,13 @@ export class SlatePubControllerBase {
         destinationPub4: true,
         destinationPub5: true,
         destinationPub6: true,
-        first: true,
         hasPublications: true,
-        id: true,
-        last: true,
-        middle: true,
         otherTypeOfPublication1: true,
         otherTypeOfPublication2: true,
         otherTypeOfPublication3: true,
         otherTypeOfPublication4: true,
         otherTypeOfPublication5: true,
         otherTypeOfPublication6: true,
-        prefix: true,
         statusOfPublication1: true,
         statusOfPublication2: true,
         statusOfPublication3: true,
@@ -219,6 +219,7 @@ export class SlatePubControllerBase {
         urlPub4: true,
         urlPub5: true,
         urlPub6: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -232,15 +233,19 @@ export class SlatePubControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlatePub(
     @common.Param() params: SlatePubWhereUniqueInput,
     @common.Body() data: SlatePubUpdateInput
   ): Promise<SlatePub | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlatePub({
         where: params,
         data: data,
         select: {
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           authorsPub1: true,
           authorsPub2: true,
           authorsPub3: true,
@@ -259,18 +264,13 @@ export class SlatePubControllerBase {
           destinationPub4: true,
           destinationPub5: true,
           destinationPub6: true,
-          first: true,
           hasPublications: true,
-          id: true,
-          last: true,
-          middle: true,
           otherTypeOfPublication1: true,
           otherTypeOfPublication2: true,
           otherTypeOfPublication3: true,
           otherTypeOfPublication4: true,
           otherTypeOfPublication5: true,
           otherTypeOfPublication6: true,
-          prefix: true,
           statusOfPublication1: true,
           statusOfPublication2: true,
           statusOfPublication3: true,
@@ -295,6 +295,7 @@ export class SlatePubControllerBase {
           urlPub4: true,
           urlPub5: true,
           urlPub6: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -310,13 +311,17 @@ export class SlatePubControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlatePub })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlatePub(
     @common.Param() params: SlatePubWhereUniqueInput
   ): Promise<SlatePub | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlatePub({
         where: params,
         select: {
+          prefix: true,
+          first: true,
+          middle: true,
+          last: true,
           authorsPub1: true,
           authorsPub2: true,
           authorsPub3: true,
@@ -335,18 +340,13 @@ export class SlatePubControllerBase {
           destinationPub4: true,
           destinationPub5: true,
           destinationPub6: true,
-          first: true,
           hasPublications: true,
-          id: true,
-          last: true,
-          middle: true,
           otherTypeOfPublication1: true,
           otherTypeOfPublication2: true,
           otherTypeOfPublication3: true,
           otherTypeOfPublication4: true,
           otherTypeOfPublication5: true,
           otherTypeOfPublication6: true,
-          prefix: true,
           statusOfPublication1: true,
           statusOfPublication2: true,
           statusOfPublication3: true,
@@ -371,6 +371,7 @@ export class SlatePubControllerBase {
           urlPub4: true,
           urlPub5: true,
           urlPub6: true,
+          id: true,
         },
       });
     } catch (error) {

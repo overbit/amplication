@@ -12,11 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
+  IsString,
   IsNumber,
   IsOptional,
-  ValidateNested,
-  IsString,
   IsInt,
+  ValidateNested,
 } from "class-validator";
 import { Decimal } from "decimal.js";
 import { DegreeWhereUniqueInput } from "../../degree/base/DegreeWhereUniqueInput";
@@ -31,11 +31,19 @@ import { ProgramsApplicationreqCreateNestedManyWithoutProgramModelsInput } from 
 class ProgramModelCreateInput {
   @ApiProperty({
     required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  linkword!: string;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsNumber()
   @Field(() => Float)
-  baseprice!: Decimal;
+  programprice!: Decimal;
 
   @ApiProperty({
     required: false,
@@ -46,16 +54,7 @@ class ProgramModelCreateInput {
   @Field(() => Float, {
     nullable: true,
   })
-  basepriceLate?: Decimal | null;
-
-  @ApiProperty({
-    required: true,
-    type: () => DegreeWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => DegreeWhereUniqueInput)
-  @Field(() => DegreeWhereUniqueInput)
-  degree!: DegreeWhereUniqueInput;
+  programpriceLate?: Decimal | null;
 
   @ApiProperty({
     required: false,
@@ -77,7 +76,76 @@ class ProgramModelCreateInput {
   @Field(() => String, {
     nullable: true,
   })
+  url?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  oraclestring?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  registrationoraclestring?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsNumber()
+  @Field(() => Float)
+  baseprice!: Decimal;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Float, {
+    nullable: true,
+  })
+  basepriceLate?: Decimal | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  prank!: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   enabled?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => DegreeWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => DegreeWhereUniqueInput)
+  @Field(() => DegreeWhereUniqueInput)
+  degree!: DegreeWhereUniqueInput;
 
   @ApiProperty({
     required: true,
@@ -87,14 +155,6 @@ class ProgramModelCreateInput {
   @Type(() => FieldsofstudyWhereUniqueInput)
   @Field(() => FieldsofstudyWhereUniqueInput)
   fieldsofstudy!: FieldsofstudyWhereUniqueInput;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  linkword!: string;
 
   @ApiProperty({
     required: false,
@@ -122,17 +182,6 @@ class ProgramModelCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  oraclestring?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: () => PaymentItemCreateNestedManyWithoutProgramModelsInput,
   })
   @ValidateNested()
@@ -142,33 +191,6 @@ class ProgramModelCreateInput {
     nullable: true,
   })
   paymentItem?: PaymentItemCreateNestedManyWithoutProgramModelsInput;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  prank!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsNumber()
-  @Field(() => Float)
-  programprice!: Decimal;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Float, {
-    nullable: true,
-  })
-  programpriceLate?: Decimal | null;
 
   @ApiProperty({
     required: false,
@@ -184,28 +206,6 @@ class ProgramModelCreateInput {
     }
   )
   programsApplicationreqs?: ProgramsApplicationreqCreateNestedManyWithoutProgramModelsInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  registrationoraclestring?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  url?: string | null;
 }
 
 export { ProgramModelCreateInput as ProgramModelCreateInput };

@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MergeApplicationService } from "../mergeApplication.service";
 import { MergeApplicationCreateInput } from "./MergeApplicationCreateInput";
-import { MergeApplicationWhereInput } from "./MergeApplicationWhereInput";
-import { MergeApplicationWhereUniqueInput } from "./MergeApplicationWhereUniqueInput";
-import { MergeApplicationFindManyArgs } from "./MergeApplicationFindManyArgs";
-import { MergeApplicationUpdateInput } from "./MergeApplicationUpdateInput";
 import { MergeApplication } from "./MergeApplication";
+import { MergeApplicationFindManyArgs } from "./MergeApplicationFindManyArgs";
+import { MergeApplicationWhereUniqueInput } from "./MergeApplicationWhereUniqueInput";
+import { MergeApplicationUpdateInput } from "./MergeApplicationUpdateInput";
 
 export class MergeApplicationControllerBase {
   constructor(protected readonly service: MergeApplicationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MergeApplication })
-  async create(
+  async createMergeApplication(
     @common.Body() data: MergeApplicationCreateInput
   ): Promise<MergeApplication> {
-    return await this.service.create({
+    return await this.service.createMergeApplication({
       data: data,
       select: {
-        baseConvertError: true,
-        baseConvertMessage: true,
         baseWriteError: true,
         baseWriteMessage: true,
-        id: true,
+        baseConvertError: true,
+        baseConvertMessage: true,
         searchTextWriteError: true,
         searchTextWriteMessage: true,
+        id: true,
       },
     });
   }
@@ -48,18 +47,20 @@ export class MergeApplicationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MergeApplication] })
   @ApiNestedQuery(MergeApplicationFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MergeApplication[]> {
+  async mergeApplications(
+    @common.Req() request: Request
+  ): Promise<MergeApplication[]> {
     const args = plainToClass(MergeApplicationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mergeApplications({
       ...args,
       select: {
-        baseConvertError: true,
-        baseConvertMessage: true,
         baseWriteError: true,
         baseWriteMessage: true,
-        id: true,
+        baseConvertError: true,
+        baseConvertMessage: true,
         searchTextWriteError: true,
         searchTextWriteMessage: true,
+        id: true,
       },
     });
   }
@@ -67,19 +68,19 @@ export class MergeApplicationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MergeApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mergeApplication(
     @common.Param() params: MergeApplicationWhereUniqueInput
   ): Promise<MergeApplication | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mergeApplication({
       where: params,
       select: {
-        baseConvertError: true,
-        baseConvertMessage: true,
         baseWriteError: true,
         baseWriteMessage: true,
-        id: true,
+        baseConvertError: true,
+        baseConvertMessage: true,
         searchTextWriteError: true,
         searchTextWriteMessage: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -93,22 +94,22 @@ export class MergeApplicationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MergeApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMergeApplication(
     @common.Param() params: MergeApplicationWhereUniqueInput,
     @common.Body() data: MergeApplicationUpdateInput
   ): Promise<MergeApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMergeApplication({
         where: params,
         data: data,
         select: {
-          baseConvertError: true,
-          baseConvertMessage: true,
           baseWriteError: true,
           baseWriteMessage: true,
-          id: true,
+          baseConvertError: true,
+          baseConvertMessage: true,
           searchTextWriteError: true,
           searchTextWriteMessage: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -124,20 +125,20 @@ export class MergeApplicationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MergeApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMergeApplication(
     @common.Param() params: MergeApplicationWhereUniqueInput
   ): Promise<MergeApplication | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMergeApplication({
         where: params,
         select: {
-          baseConvertError: true,
-          baseConvertMessage: true,
           baseWriteError: true,
           baseWriteMessage: true,
-          id: true,
+          baseConvertError: true,
+          baseConvertMessage: true,
           searchTextWriteError: true,
           searchTextWriteMessage: true,
+          id: true,
         },
       });
     } catch (error) {

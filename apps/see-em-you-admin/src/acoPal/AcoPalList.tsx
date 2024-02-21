@@ -21,6 +21,7 @@ export const AcoPalList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <BooleanField label="Aco" source="aco" />
+        <BooleanField label="Pal" source="pal" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -29,7 +30,6 @@ export const AcoPalList = (props: ListProps): React.ReactElement => {
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Id" source="id" />
-        <BooleanField label="Pal" source="pal" />
       </Datagrid>
     </List>
   );

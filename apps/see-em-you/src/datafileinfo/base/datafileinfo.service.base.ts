@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Datafileinfo } from "@prisma/client";
+import { Prisma, Datafileinfo as PrismaDatafileinfo } from "@prisma/client";
 
 export class DatafileinfoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DatafileinfoServiceBase {
     return this.prisma.datafileinfo.count(args);
   }
 
-  async findMany<T extends Prisma.DatafileinfoFindManyArgs>(
+  async datafileinfos<T extends Prisma.DatafileinfoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileinfoFindManyArgs>
-  ): Promise<Datafileinfo[]> {
+  ): Promise<PrismaDatafileinfo[]> {
     return this.prisma.datafileinfo.findMany(args);
   }
-  async findOne<T extends Prisma.DatafileinfoFindUniqueArgs>(
+  async datafileinfo<T extends Prisma.DatafileinfoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileinfoFindUniqueArgs>
-  ): Promise<Datafileinfo | null> {
+  ): Promise<PrismaDatafileinfo | null> {
     return this.prisma.datafileinfo.findUnique(args);
   }
-  async create<T extends Prisma.DatafileinfoCreateArgs>(
+  async createDatafileinfo<T extends Prisma.DatafileinfoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileinfoCreateArgs>
-  ): Promise<Datafileinfo> {
+  ): Promise<PrismaDatafileinfo> {
     return this.prisma.datafileinfo.create<T>(args);
   }
-  async update<T extends Prisma.DatafileinfoUpdateArgs>(
+  async updateDatafileinfo<T extends Prisma.DatafileinfoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileinfoUpdateArgs>
-  ): Promise<Datafileinfo> {
+  ): Promise<PrismaDatafileinfo> {
     return this.prisma.datafileinfo.update<T>(args);
   }
-  async delete<T extends Prisma.DatafileinfoDeleteArgs>(
+  async deleteDatafileinfo<T extends Prisma.DatafileinfoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DatafileinfoDeleteArgs>
-  ): Promise<Datafileinfo> {
+  ): Promise<PrismaDatafileinfo> {
     return this.prisma.datafileinfo.delete(args);
   }
 }

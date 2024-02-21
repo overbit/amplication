@@ -18,46 +18,46 @@ import { VoucherService } from "../voucher.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  code: "exampleCode",
   active: "true",
   allowMultiple: "true",
-  code: "exampleCode",
-  id: 42,
   prettyCode: "examplePrettyCode",
   prog: "exampleProg",
+  id: 42,
 };
 const CREATE_RESULT = {
+  code: "exampleCode",
   active: "true",
   allowMultiple: "true",
-  code: "exampleCode",
-  id: 42,
   prettyCode: "examplePrettyCode",
   prog: "exampleProg",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    code: "exampleCode",
     active: "true",
     allowMultiple: "true",
-    code: "exampleCode",
-    id: 42,
     prettyCode: "examplePrettyCode",
     prog: "exampleProg",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  code: "exampleCode",
   active: "true",
   allowMultiple: "true",
-  code: "exampleCode",
-  id: 42,
   prettyCode: "examplePrettyCode",
   prog: "exampleProg",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createVoucher() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  vouchers: () => FIND_MANY_RESULT,
+  voucher: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

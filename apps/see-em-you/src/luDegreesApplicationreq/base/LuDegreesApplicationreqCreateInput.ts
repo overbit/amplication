@@ -21,7 +21,7 @@ class LuDegreesApplicationreqCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  appreqId!: number;
+  degreeId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,7 +29,7 @@ class LuDegreesApplicationreqCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  degreeId!: number;
+  appreqId!: number;
 }
 
 export { LuDegreesApplicationreqCreateInput as LuDegreesApplicationreqCreateInput };

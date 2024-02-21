@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PeSlateApp } from "@prisma/client";
+import { Prisma, PeSlateApp as PrismaPeSlateApp } from "@prisma/client";
 
 export class PeSlateAppServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class PeSlateAppServiceBase {
     return this.prisma.peSlateApp.count(args);
   }
 
-  async findMany<T extends Prisma.PeSlateAppFindManyArgs>(
+  async peSlateApps<T extends Prisma.PeSlateAppFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeSlateAppFindManyArgs>
-  ): Promise<PeSlateApp[]> {
+  ): Promise<PrismaPeSlateApp[]> {
     return this.prisma.peSlateApp.findMany(args);
   }
-  async findOne<T extends Prisma.PeSlateAppFindUniqueArgs>(
+  async peSlateApp<T extends Prisma.PeSlateAppFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeSlateAppFindUniqueArgs>
-  ): Promise<PeSlateApp | null> {
+  ): Promise<PrismaPeSlateApp | null> {
     return this.prisma.peSlateApp.findUnique(args);
   }
-  async create<T extends Prisma.PeSlateAppCreateArgs>(
+  async createPeSlateApp<T extends Prisma.PeSlateAppCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeSlateAppCreateArgs>
-  ): Promise<PeSlateApp> {
+  ): Promise<PrismaPeSlateApp> {
     return this.prisma.peSlateApp.create<T>(args);
   }
-  async update<T extends Prisma.PeSlateAppUpdateArgs>(
+  async updatePeSlateApp<T extends Prisma.PeSlateAppUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeSlateAppUpdateArgs>
-  ): Promise<PeSlateApp> {
+  ): Promise<PrismaPeSlateApp> {
     return this.prisma.peSlateApp.update<T>(args);
   }
-  async delete<T extends Prisma.PeSlateAppDeleteArgs>(
+  async deletePeSlateApp<T extends Prisma.PeSlateAppDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeSlateAppDeleteArgs>
-  ): Promise<PeSlateApp> {
+  ): Promise<PrismaPeSlateApp> {
     return this.prisma.peSlateApp.delete(args);
   }
 }

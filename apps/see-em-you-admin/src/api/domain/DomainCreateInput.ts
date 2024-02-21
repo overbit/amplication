@@ -1,10 +1,10 @@
 import { DomainUnitCreateNestedManyWithoutDomainsInput } from "./DomainUnitCreateNestedManyWithoutDomainsInput";
 
 export type DomainCreateInput = {
+  name: string;
+  description?: string | null;
+  path: string;
   active: boolean;
   banner: string;
-  description?: string | null;
   domainUnit?: DomainUnitCreateNestedManyWithoutDomainsInput;
-  name: string;
-  path: string;
 };

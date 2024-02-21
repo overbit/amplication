@@ -12,18 +12,18 @@ export const ProgramGroupList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Period Id" source="periodId" />
-        <TextField
-          label="Program Group Description"
-          source="programGroupDescription"
-        />
+        <TextField label="Unit Id" source="unitId" />
         <TextField label="Program Group Name" source="programGroupName" />
         <TextField
           label="Program Group Name Short"
           source="programGroupNameShort"
         />
-        <TextField label="Unit Id" source="unitId" />
+        <TextField
+          label="Program Group Description"
+          source="programGroupDescription"
+        />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

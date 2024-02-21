@@ -1,9 +1,9 @@
 export type DatafileinfoUpdateInput = {
-  extension?: string | null;
-  moddate?: Date;
-  section?: number;
-  size?: number;
   typeField?: string;
-  userdata?: string | null;
+  extension?: string | null;
+  size?: number;
   userId?: number;
+  section?: number;
+  moddate?: Date;
+  userdata?: string | null;
 };

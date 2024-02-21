@@ -5,8 +5,8 @@ export const UsertypeEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Description" source="description" />
         <TextInput label="Name" source="name" />
+        <TextInput label="Description" source="description" />
       </SimpleForm>
     </Edit>
   );

@@ -6,11 +6,11 @@ export const ReviewIniAdminShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Comments" source="comments" />
-        <TextField label="Department Id" source="departmentId" />
-        <TextField label="Id" source="id" />
         <TextField label="Reviewer Id" source="reviewerId" />
+        <TextField label="Department Id" source="departmentId" />
         <TextField label="Round" source="round" />
+        <TextField label="Comments" source="comments" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

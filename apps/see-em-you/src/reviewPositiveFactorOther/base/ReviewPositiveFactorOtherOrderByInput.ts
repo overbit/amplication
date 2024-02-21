@@ -28,7 +28,7 @@ class ReviewPositiveFactorOtherOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  positiveFactorOther?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class ReviewPositiveFactorOtherOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  positiveFactorOther?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ReviewPositiveFactorOtherOrderByInput as ReviewPositiveFactorOtherOrderByInput };

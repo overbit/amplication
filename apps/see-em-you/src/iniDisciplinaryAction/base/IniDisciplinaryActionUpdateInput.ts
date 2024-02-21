@@ -35,28 +35,6 @@ class IniDisciplinaryActionUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  retraction?: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  retractionDescription?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   sanction?: number;
 
   @ApiProperty({
@@ -69,6 +47,28 @@ class IniDisciplinaryActionUpdateInput {
     nullable: true,
   })
   sanctionDescription?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  retraction?: number;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  retractionDescription?: string | null;
 }
 
 export { IniDisciplinaryActionUpdateInput as IniDisciplinaryActionUpdateInput };

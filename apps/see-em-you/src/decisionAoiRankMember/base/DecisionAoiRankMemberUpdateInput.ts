@@ -24,7 +24,7 @@ class DecisionAoiRankMemberUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  applicationId?: number;
+  departmentId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,18 @@ class DecisionAoiRankMemberUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  arank?: number;
+  periodId?: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  interestId?: number;
 
   @ApiProperty({
     required: false,
@@ -57,7 +68,7 @@ class DecisionAoiRankMemberUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  departmentId?: number;
+  applicationId?: number;
 
   @ApiProperty({
     required: false,
@@ -68,18 +79,7 @@ class DecisionAoiRankMemberUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  interestId?: number;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  periodId?: number;
+  arank?: number;
 }
 
 export { DecisionAoiRankMemberUpdateInput as DecisionAoiRankMemberUpdateInput };

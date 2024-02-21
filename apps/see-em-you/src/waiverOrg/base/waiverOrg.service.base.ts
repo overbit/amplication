@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, WaiverOrg } from "@prisma/client";
+import { Prisma, WaiverOrg as PrismaWaiverOrg } from "@prisma/client";
 
 export class WaiverOrgServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class WaiverOrgServiceBase {
     return this.prisma.waiverOrg.count(args);
   }
 
-  async findMany<T extends Prisma.WaiverOrgFindManyArgs>(
+  async waiverOrgs<T extends Prisma.WaiverOrgFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverOrgFindManyArgs>
-  ): Promise<WaiverOrg[]> {
+  ): Promise<PrismaWaiverOrg[]> {
     return this.prisma.waiverOrg.findMany(args);
   }
-  async findOne<T extends Prisma.WaiverOrgFindUniqueArgs>(
+  async waiverOrg<T extends Prisma.WaiverOrgFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverOrgFindUniqueArgs>
-  ): Promise<WaiverOrg | null> {
+  ): Promise<PrismaWaiverOrg | null> {
     return this.prisma.waiverOrg.findUnique(args);
   }
-  async create<T extends Prisma.WaiverOrgCreateArgs>(
+  async createWaiverOrg<T extends Prisma.WaiverOrgCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverOrgCreateArgs>
-  ): Promise<WaiverOrg> {
+  ): Promise<PrismaWaiverOrg> {
     return this.prisma.waiverOrg.create<T>(args);
   }
-  async update<T extends Prisma.WaiverOrgUpdateArgs>(
+  async updateWaiverOrg<T extends Prisma.WaiverOrgUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverOrgUpdateArgs>
-  ): Promise<WaiverOrg> {
+  ): Promise<PrismaWaiverOrg> {
     return this.prisma.waiverOrg.update<T>(args);
   }
-  async delete<T extends Prisma.WaiverOrgDeleteArgs>(
+  async deleteWaiverOrg<T extends Prisma.WaiverOrgDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.WaiverOrgDeleteArgs>
-  ): Promise<WaiverOrg> {
+  ): Promise<PrismaWaiverOrg> {
     return this.prisma.waiverOrg.delete(args);
   }
 }

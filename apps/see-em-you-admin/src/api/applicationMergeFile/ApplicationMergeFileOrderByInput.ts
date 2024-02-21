@@ -1,8 +1,8 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type ApplicationMergeFileOrderByInput = {
-  guid?: SortOrder;
   id?: SortOrder;
-  mergeDate?: SortOrder;
+  guid?: SortOrder;
   mergeFile?: SortOrder;
+  mergeDate?: SortOrder;
 };

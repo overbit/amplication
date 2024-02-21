@@ -18,27 +18,26 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { WaiverApplicationService } from "../waiverApplication.service";
 import { WaiverApplicationCreateInput } from "./WaiverApplicationCreateInput";
-import { WaiverApplicationWhereInput } from "./WaiverApplicationWhereInput";
-import { WaiverApplicationWhereUniqueInput } from "./WaiverApplicationWhereUniqueInput";
-import { WaiverApplicationFindManyArgs } from "./WaiverApplicationFindManyArgs";
-import { WaiverApplicationUpdateInput } from "./WaiverApplicationUpdateInput";
 import { WaiverApplication } from "./WaiverApplication";
+import { WaiverApplicationFindManyArgs } from "./WaiverApplicationFindManyArgs";
+import { WaiverApplicationWhereUniqueInput } from "./WaiverApplicationWhereUniqueInput";
+import { WaiverApplicationUpdateInput } from "./WaiverApplicationUpdateInput";
 
 export class WaiverApplicationControllerBase {
   constructor(protected readonly service: WaiverApplicationService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: WaiverApplication })
-  async create(
+  async createWaiverApplication(
     @common.Body() data: WaiverApplicationCreateInput
   ): Promise<WaiverApplication> {
-    return await this.service.create({
+    return await this.service.createWaiverApplication({
       data: data,
       select: {
-        applicationId: true,
-        createDate: true,
-        datafileId: true,
         id: true,
+        applicationId: true,
         orgId: true,
+        datafileId: true,
+        createDate: true,
         updateDate: true,
       },
     });
@@ -47,16 +46,18 @@ export class WaiverApplicationControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [WaiverApplication] })
   @ApiNestedQuery(WaiverApplicationFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<WaiverApplication[]> {
+  async waiverApplications(
+    @common.Req() request: Request
+  ): Promise<WaiverApplication[]> {
     const args = plainToClass(WaiverApplicationFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.waiverApplications({
       ...args,
       select: {
-        applicationId: true,
-        createDate: true,
-        datafileId: true,
         id: true,
+        applicationId: true,
         orgId: true,
+        datafileId: true,
+        createDate: true,
         updateDate: true,
       },
     });
@@ -65,17 +66,17 @@ export class WaiverApplicationControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: WaiverApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async waiverApplication(
     @common.Param() params: WaiverApplicationWhereUniqueInput
   ): Promise<WaiverApplication | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.waiverApplication({
       where: params,
       select: {
-        applicationId: true,
-        createDate: true,
-        datafileId: true,
         id: true,
+        applicationId: true,
         orgId: true,
+        datafileId: true,
+        createDate: true,
         updateDate: true,
       },
     });
@@ -90,20 +91,20 @@ export class WaiverApplicationControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: WaiverApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateWaiverApplication(
     @common.Param() params: WaiverApplicationWhereUniqueInput,
     @common.Body() data: WaiverApplicationUpdateInput
   ): Promise<WaiverApplication | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateWaiverApplication({
         where: params,
         data: data,
         select: {
-          applicationId: true,
-          createDate: true,
-          datafileId: true,
           id: true,
+          applicationId: true,
           orgId: true,
+          datafileId: true,
+          createDate: true,
           updateDate: true,
         },
       });
@@ -120,18 +121,18 @@ export class WaiverApplicationControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: WaiverApplication })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteWaiverApplication(
     @common.Param() params: WaiverApplicationWhereUniqueInput
   ): Promise<WaiverApplication | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteWaiverApplication({
         where: params,
         select: {
-          applicationId: true,
-          createDate: true,
-          datafileId: true,
           id: true,
+          applicationId: true,
           orgId: true,
+          datafileId: true,
+          createDate: true,
           updateDate: true,
         },
       });

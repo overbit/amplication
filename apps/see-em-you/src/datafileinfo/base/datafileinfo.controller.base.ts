@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DatafileinfoService } from "../datafileinfo.service";
 import { DatafileinfoCreateInput } from "./DatafileinfoCreateInput";
-import { DatafileinfoWhereInput } from "./DatafileinfoWhereInput";
-import { DatafileinfoWhereUniqueInput } from "./DatafileinfoWhereUniqueInput";
-import { DatafileinfoFindManyArgs } from "./DatafileinfoFindManyArgs";
-import { DatafileinfoUpdateInput } from "./DatafileinfoUpdateInput";
 import { Datafileinfo } from "./Datafileinfo";
+import { DatafileinfoFindManyArgs } from "./DatafileinfoFindManyArgs";
+import { DatafileinfoWhereUniqueInput } from "./DatafileinfoWhereUniqueInput";
+import { DatafileinfoUpdateInput } from "./DatafileinfoUpdateInput";
 
 export class DatafileinfoControllerBase {
   constructor(protected readonly service: DatafileinfoService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Datafileinfo })
-  async create(
+  async createDatafileinfo(
     @common.Body() data: DatafileinfoCreateInput
   ): Promise<Datafileinfo> {
-    return await this.service.create({
+    return await this.service.createDatafileinfo({
       data: data,
       select: {
-        extension: true,
-        id: true,
-        moddate: true,
-        section: true,
-        size: true,
         typeField: true,
-        userdata: true,
+        extension: true,
+        size: true,
         userId: true,
+        section: true,
+        moddate: true,
+        userdata: true,
+        id: true,
       },
     });
   }
@@ -49,19 +48,19 @@ export class DatafileinfoControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Datafileinfo] })
   @ApiNestedQuery(DatafileinfoFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Datafileinfo[]> {
+  async datafileinfos(@common.Req() request: Request): Promise<Datafileinfo[]> {
     const args = plainToClass(DatafileinfoFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.datafileinfos({
       ...args,
       select: {
-        extension: true,
-        id: true,
-        moddate: true,
-        section: true,
-        size: true,
         typeField: true,
-        userdata: true,
+        extension: true,
+        size: true,
         userId: true,
+        section: true,
+        moddate: true,
+        userdata: true,
+        id: true,
       },
     });
   }
@@ -69,20 +68,20 @@ export class DatafileinfoControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Datafileinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async datafileinfo(
     @common.Param() params: DatafileinfoWhereUniqueInput
   ): Promise<Datafileinfo | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.datafileinfo({
       where: params,
       select: {
-        extension: true,
-        id: true,
-        moddate: true,
-        section: true,
-        size: true,
         typeField: true,
-        userdata: true,
+        extension: true,
+        size: true,
         userId: true,
+        section: true,
+        moddate: true,
+        userdata: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -96,23 +95,23 @@ export class DatafileinfoControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Datafileinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDatafileinfo(
     @common.Param() params: DatafileinfoWhereUniqueInput,
     @common.Body() data: DatafileinfoUpdateInput
   ): Promise<Datafileinfo | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDatafileinfo({
         where: params,
         data: data,
         select: {
-          extension: true,
-          id: true,
-          moddate: true,
-          section: true,
-          size: true,
           typeField: true,
-          userdata: true,
+          extension: true,
+          size: true,
           userId: true,
+          section: true,
+          moddate: true,
+          userdata: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -128,21 +127,21 @@ export class DatafileinfoControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Datafileinfo })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDatafileinfo(
     @common.Param() params: DatafileinfoWhereUniqueInput
   ): Promise<Datafileinfo | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDatafileinfo({
         where: params,
         select: {
-          extension: true,
-          id: true,
-          moddate: true,
-          section: true,
-          size: true,
           typeField: true,
-          userdata: true,
+          extension: true,
+          size: true,
           userId: true,
+          section: true,
+          moddate: true,
+          userdata: true,
+          id: true,
         },
       });
     } catch (error) {

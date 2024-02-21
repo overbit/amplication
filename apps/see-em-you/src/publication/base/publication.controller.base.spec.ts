@@ -18,62 +18,62 @@ import { PublicationService } from "../publication.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  author: "exampleAuthor",
-  citation: "exampleCitation",
-  datafileId: 42,
-  forum: "exampleForum",
-  id: 42,
-  status: "exampleStatus",
   title: "exampleTitle",
+  author: "exampleAuthor",
+  forum: "exampleForum",
+  citation: "exampleCitation",
+  url: "exampleUrl",
+  status: "exampleStatus",
   typeField: "exampleTypeField",
   typeOther: "exampleTypeOther",
-  url: "exampleUrl",
+  datafileId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  author: "exampleAuthor",
-  citation: "exampleCitation",
-  datafileId: 42,
-  forum: "exampleForum",
-  id: 42,
-  status: "exampleStatus",
   title: "exampleTitle",
+  author: "exampleAuthor",
+  forum: "exampleForum",
+  citation: "exampleCitation",
+  url: "exampleUrl",
+  status: "exampleStatus",
   typeField: "exampleTypeField",
   typeOther: "exampleTypeOther",
-  url: "exampleUrl",
+  datafileId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    author: "exampleAuthor",
-    citation: "exampleCitation",
-    datafileId: 42,
-    forum: "exampleForum",
-    id: 42,
-    status: "exampleStatus",
     title: "exampleTitle",
+    author: "exampleAuthor",
+    forum: "exampleForum",
+    citation: "exampleCitation",
+    url: "exampleUrl",
+    status: "exampleStatus",
     typeField: "exampleTypeField",
     typeOther: "exampleTypeOther",
-    url: "exampleUrl",
+    datafileId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  author: "exampleAuthor",
-  citation: "exampleCitation",
-  datafileId: 42,
-  forum: "exampleForum",
-  id: 42,
-  status: "exampleStatus",
   title: "exampleTitle",
+  author: "exampleAuthor",
+  forum: "exampleForum",
+  citation: "exampleCitation",
+  url: "exampleUrl",
+  status: "exampleStatus",
   typeField: "exampleTypeField",
   typeOther: "exampleTypeOther",
-  url: "exampleUrl",
+  datafileId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createPublication() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  publications: () => FIND_MANY_RESULT,
+  publication: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

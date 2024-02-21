@@ -7,8 +7,8 @@ export const LuDomainDepartmentCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Department Id" source="departmentId" />
         <NumberInput step={1} label="Domain Id" source="domainId" />
+        <NumberInput step={1} label="Department Id" source="departmentId" />
         <NumberInput step={1} label="Drank" source="drank" />
       </SimpleForm>
     </Create>

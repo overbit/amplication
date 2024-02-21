@@ -18,36 +18,35 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CashnetDirectService } from "../cashnetDirect.service";
 import { CashnetDirectCreateInput } from "./CashnetDirectCreateInput";
-import { CashnetDirectWhereInput } from "./CashnetDirectWhereInput";
-import { CashnetDirectWhereUniqueInput } from "./CashnetDirectWhereUniqueInput";
-import { CashnetDirectFindManyArgs } from "./CashnetDirectFindManyArgs";
-import { CashnetDirectUpdateInput } from "./CashnetDirectUpdateInput";
 import { CashnetDirect } from "./CashnetDirect";
+import { CashnetDirectFindManyArgs } from "./CashnetDirectFindManyArgs";
+import { CashnetDirectWhereUniqueInput } from "./CashnetDirectWhereUniqueInput";
+import { CashnetDirectUpdateInput } from "./CashnetDirectUpdateInput";
 
 export class CashnetDirectControllerBase {
   constructor(protected readonly service: CashnetDirectService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CashnetDirect })
-  async create(
+  async createCashnetDirect(
     @common.Body() data: CashnetDirectCreateInput
   ): Promise<CashnetDirect> {
-    return await this.service.create({
+    return await this.service.createCashnetDirect({
       data: data,
       select: {
-        amount: true,
+        batch: true,
+        station: true,
+        txNumber: true,
+        transType: true,
+        status: true,
+        custCode: true,
+        name: true,
         appEmail: true,
         appId: true,
-        batch: true,
-        created: true,
-        custCode: true,
         dept: true,
-        id: true,
-        name: true,
         paymentType: true,
-        station: true,
-        status: true,
-        transType: true,
-        txNumber: true,
+        amount: true,
+        created: true,
+        id: true,
       },
     });
   }
@@ -55,25 +54,27 @@ export class CashnetDirectControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CashnetDirect] })
   @ApiNestedQuery(CashnetDirectFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<CashnetDirect[]> {
+  async cashnetDirects(
+    @common.Req() request: Request
+  ): Promise<CashnetDirect[]> {
     const args = plainToClass(CashnetDirectFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.cashnetDirects({
       ...args,
       select: {
-        amount: true,
+        batch: true,
+        station: true,
+        txNumber: true,
+        transType: true,
+        status: true,
+        custCode: true,
+        name: true,
         appEmail: true,
         appId: true,
-        batch: true,
-        created: true,
-        custCode: true,
         dept: true,
-        id: true,
-        name: true,
         paymentType: true,
-        station: true,
-        status: true,
-        transType: true,
-        txNumber: true,
+        amount: true,
+        created: true,
+        id: true,
       },
     });
   }
@@ -81,26 +82,26 @@ export class CashnetDirectControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CashnetDirect })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async cashnetDirect(
     @common.Param() params: CashnetDirectWhereUniqueInput
   ): Promise<CashnetDirect | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.cashnetDirect({
       where: params,
       select: {
-        amount: true,
+        batch: true,
+        station: true,
+        txNumber: true,
+        transType: true,
+        status: true,
+        custCode: true,
+        name: true,
         appEmail: true,
         appId: true,
-        batch: true,
-        created: true,
-        custCode: true,
         dept: true,
-        id: true,
-        name: true,
         paymentType: true,
-        station: true,
-        status: true,
-        transType: true,
-        txNumber: true,
+        amount: true,
+        created: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -114,29 +115,29 @@ export class CashnetDirectControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CashnetDirect })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCashnetDirect(
     @common.Param() params: CashnetDirectWhereUniqueInput,
     @common.Body() data: CashnetDirectUpdateInput
   ): Promise<CashnetDirect | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCashnetDirect({
         where: params,
         data: data,
         select: {
-          amount: true,
+          batch: true,
+          station: true,
+          txNumber: true,
+          transType: true,
+          status: true,
+          custCode: true,
+          name: true,
           appEmail: true,
           appId: true,
-          batch: true,
-          created: true,
-          custCode: true,
           dept: true,
-          id: true,
-          name: true,
           paymentType: true,
-          station: true,
-          status: true,
-          transType: true,
-          txNumber: true,
+          amount: true,
+          created: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -152,27 +153,27 @@ export class CashnetDirectControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CashnetDirect })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCashnetDirect(
     @common.Param() params: CashnetDirectWhereUniqueInput
   ): Promise<CashnetDirect | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCashnetDirect({
         where: params,
         select: {
-          amount: true,
+          batch: true,
+          station: true,
+          txNumber: true,
+          transType: true,
+          status: true,
+          custCode: true,
+          name: true,
           appEmail: true,
           appId: true,
-          batch: true,
-          created: true,
-          custCode: true,
           dept: true,
-          id: true,
-          name: true,
           paymentType: true,
-          station: true,
-          status: true,
-          transType: true,
-          txNumber: true,
+          amount: true,
+          created: true,
+          id: true,
         },
       });
     } catch (error) {

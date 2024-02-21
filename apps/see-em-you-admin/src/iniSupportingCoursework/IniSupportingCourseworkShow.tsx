@@ -8,15 +8,16 @@ export const IniSupportingCourseworkShow = (
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Application Id" source="applicationId" />
+        <TextField label="Data Structures Title" source="dataStructuresTitle" />
         <TextField
           label="Data Structures Number"
           source="dataStructuresNumber"
         />
-        <TextField label="Data Structures Title" source="dataStructuresTitle" />
-        <TextField label="Id" source="id" />
-        <TextField label="Msit Experience" source="msitExperience" />
-        <TextField label="Probability Number" source="probabilityNumber" />
         <TextField label="Probability Title" source="probabilityTitle" />
+        <TextField label="Probability Number" source="probabilityNumber" />
+        <TextField label="Statistics Title" source="statisticsTitle" />
+        <TextField label="Statistics Number" source="statisticsNumber" />
+        <TextField label="Msit Experience" source="msitExperience" />
         <TextField
           label="Programming Description"
           source="programmingDescription"
@@ -25,8 +26,7 @@ export const IniSupportingCourseworkShow = (
           label="Programming Description2"
           source="programmingDescription2"
         />
-        <TextField label="Statistics Number" source="statisticsNumber" />
-        <TextField label="Statistics Title" source="statisticsTitle" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

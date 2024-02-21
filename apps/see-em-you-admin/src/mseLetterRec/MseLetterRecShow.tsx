@@ -5,13 +5,13 @@ export const MseLetterRecShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Algortihms" source="algortihms" />
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Data Structures" source="dataStructures" />
-        <TextField label="Discrete" source="discrete" />
-        <TextField label="Id" source="id" />
-        <TextField label="Java" source="java" />
         <TextField label="Reviewer Id" source="reviewerId" />
+        <TextField label="Java" source="java" />
+        <TextField label="Discrete" source="discrete" />
+        <TextField label="Algortihms" source="algortihms" />
+        <TextField label="Data Structures" source="dataStructures" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

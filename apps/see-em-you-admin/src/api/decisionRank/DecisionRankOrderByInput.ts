@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type DecisionRankOrderByInput = {
-  decision?: SortOrder;
   departmentId?: SortOrder;
-  id?: SortOrder;
-  luUsersUsertypesId?: SortOrder;
   periodId?: SortOrder;
-  ranking?: SortOrder;
+  decision?: SortOrder;
   timestamp?: SortOrder;
+  luUsersUsertypesId?: SortOrder;
+  ranking?: SortOrder;
+  id?: SortOrder;
 };

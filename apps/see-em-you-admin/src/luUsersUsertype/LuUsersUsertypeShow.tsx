@@ -11,18 +11,21 @@ import {
   DateField,
 } from "react-admin";
 
-import { LUUSERSUSERTYPE_TITLE_FIELD } from "./LuUsersUsertypeTitle";
 import { MHCIPREREQ_TITLE_FIELD } from "../mhciPrereq/MhciPrereqTitle";
+import { LUUSERSUSERTYPE_TITLE_FIELD } from "./LuUsersUsertypeTitle";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
-import { MHCIPREREQSPROGRAMMINGSAMPLE_TITLE_FIELD } from "../mhciPrereqsProgrammingSample/MhciPrereqsProgrammingSampleTitle";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
+import { MHCIPREREQSPROGRAMMINGSAMPLE_TITLE_FIELD } from "../mhciPrereqsProgrammingSample/MhciPrereqsProgrammingSampleTitle";
 
 export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Usertype Id" source="usertypeId" />
         <TextField label="Domain" source="domain" />
-        <TextField label="Id" source="id" />
+        <ReferenceField label="Users" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
         <ReferenceField
           label="Mhci Prereqs Programming Samples"
           source="mhciprereqsprogrammingsample.id"
@@ -30,10 +33,7 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={MHCIPREREQSPROGRAMMINGSAMPLE_TITLE_FIELD} />
         </ReferenceField>
-        <ReferenceField label="Users" source="user.id" reference="User">
-          <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
-        <TextField label="Usertype Id" source="usertypeId" />
+        <TextField label="Id" source="id" />
         <ReferenceManyField
           reference="MhciPrereqsConversationComment"
           target="lu_users_usertypes_id"
@@ -42,14 +42,9 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
           <Datagrid rowClick="show">
             <TextField label="Application Id" source="applicationId" />
             <TextField label="Comment" source="comment" />
-            <TextField label="Id" source="id" />
-            <ReferenceField
-              label="Lu Users Usertypes"
-              source="luusersusertype.id"
-              reference="LuUsersUsertype"
-            >
-              <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
-            </ReferenceField>
+            <DateField source="timestamp" label="Timestamp" />
+            <TextField label="Period Id" source="periodId" />
+            <TextField label="Program Id" source="programId" />
             <ReferenceField
               label="Mhci Prereqs"
               source="mhciprereq.id"
@@ -57,9 +52,14 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={MHCIPREREQ_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Period Id" source="periodId" />
-            <TextField label="Program Id" source="programId" />
-            <DateField source="timestamp" label="Timestamp" />
+            <ReferenceField
+              label="Lu Users Usertypes"
+              source="luusersusertype.id"
+              reference="LuUsersUsertype"
+            >
+              <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
+            </ReferenceField>
+            <TextField label="Id" source="id" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -68,6 +68,23 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
           label="MhciPrereqsCourses"
         >
           <Datagrid rowClick="show">
+            <TextField label="Course Type" source="course_type" />
+            <TextField label="Student Course Name" source="studentCourseName" />
+            <TextField label="Student Course Time" source="studentCourseTime" />
+            <TextField
+              label="Student Course Institution"
+              source="studentCourseInstitution"
+            />
+            <TextField
+              label="Student Course Grade"
+              source="studentCourseGrade"
+            />
+            <TextField
+              label="Submitted To Reviewer"
+              source="submittedToReviewer"
+            />
+            <TextField label="Period Id" source="periodId" />
+            <TextField label="Program Id" source="programId" />
             <ReferenceField
               label="Application"
               source="application.id"
@@ -75,8 +92,6 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={APPLICATION_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Course Type" source="course_type" />
-            <TextField label="Id" source="id" />
             <ReferenceField
               label="Lu Users Usertypes"
               source="luusersusertype.id"
@@ -84,22 +99,7 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Period Id" source="periodId" />
-            <TextField label="Program Id" source="programId" />
-            <TextField
-              label="Student Course Grade"
-              source="studentCourseGrade"
-            />
-            <TextField
-              label="Student Course Institution"
-              source="studentCourseInstitution"
-            />
-            <TextField label="Student Course Name" source="studentCourseName" />
-            <TextField label="Student Course Time" source="studentCourseTime" />
-            <TextField
-              label="Submitted To Reviewer"
-              source="submittedToReviewer"
-            />
+            <TextField label="Id" source="id" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -108,9 +108,11 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
           label="MhciPrereqsDesignPortfolios"
         >
           <Datagrid rowClick="show">
-            <TextField label="Application Id" source="applicationId" />
+            <TextField label="Url" source="url" />
             <TextField label="Description" source="description" />
-            <TextField label="Id" source="id" />
+            <TextField label="Application Id" source="applicationId" />
+            <TextField label="Program Id" source="programId" />
+            <TextField label="Period Id" source="periodId" />
             <ReferenceField
               label="Lu Users Usertypes"
               source="luusersusertype.id"
@@ -118,9 +120,7 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Period Id" source="periodId" />
-            <TextField label="Program Id" source="programId" />
-            <TextField label="Url" source="url" />
+            <TextField label="Id" source="id" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -129,9 +129,13 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
           label="MhciPrereqsProgrammingTests"
         >
           <Datagrid rowClick="show">
-            <TextField label="Application Id" source="applicationId" />
             <TextField label="Download Timestamp" source="downloadTimestamp" />
-            <TextField label="Id" source="id" />
+            <TextField
+              label="Upload Datafileinfo Id"
+              source="uploadDatafileinfoId"
+            />
+            <TextField label="Application Id" source="applicationId" />
+            <TextField label="Period Id" source="periodId" />
             <ReferenceField
               label="Lu Users Usertypes"
               source="luusersusertype.id"
@@ -139,11 +143,7 @@ export const LuUsersUsertypeShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Period Id" source="periodId" />
-            <TextField
-              label="Upload Datafileinfo Id"
-              source="uploadDatafileinfoId"
-            />
+            <TextField label="Id" source="id" />
           </Datagrid>
         </ReferenceManyField>
       </SimpleShowLayout>

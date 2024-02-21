@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DepartmentUnit } from "@prisma/client";
+import { Prisma, DepartmentUnit as PrismaDepartmentUnit } from "@prisma/client";
 
 export class DepartmentUnitServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DepartmentUnitServiceBase {
     return this.prisma.departmentUnit.count(args);
   }
 
-  async findMany<T extends Prisma.DepartmentUnitFindManyArgs>(
+  async departmentUnits<T extends Prisma.DepartmentUnitFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DepartmentUnitFindManyArgs>
-  ): Promise<DepartmentUnit[]> {
+  ): Promise<PrismaDepartmentUnit[]> {
     return this.prisma.departmentUnit.findMany(args);
   }
-  async findOne<T extends Prisma.DepartmentUnitFindUniqueArgs>(
+  async departmentUnit<T extends Prisma.DepartmentUnitFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DepartmentUnitFindUniqueArgs>
-  ): Promise<DepartmentUnit | null> {
+  ): Promise<PrismaDepartmentUnit | null> {
     return this.prisma.departmentUnit.findUnique(args);
   }
-  async create<T extends Prisma.DepartmentUnitCreateArgs>(
+  async createDepartmentUnit<T extends Prisma.DepartmentUnitCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DepartmentUnitCreateArgs>
-  ): Promise<DepartmentUnit> {
+  ): Promise<PrismaDepartmentUnit> {
     return this.prisma.departmentUnit.create<T>(args);
   }
-  async update<T extends Prisma.DepartmentUnitUpdateArgs>(
+  async updateDepartmentUnit<T extends Prisma.DepartmentUnitUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DepartmentUnitUpdateArgs>
-  ): Promise<DepartmentUnit> {
+  ): Promise<PrismaDepartmentUnit> {
     return this.prisma.departmentUnit.update<T>(args);
   }
-  async delete<T extends Prisma.DepartmentUnitDeleteArgs>(
+  async deleteDepartmentUnit<T extends Prisma.DepartmentUnitDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DepartmentUnitDeleteArgs>
-  ): Promise<DepartmentUnit> {
+  ): Promise<PrismaDepartmentUnit> {
     return this.prisma.departmentUnit.delete(args);
   }
 }

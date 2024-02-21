@@ -12,9 +12,9 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsOptional, IsString, ValidateNested } from "class-validator";
-import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
-import { Type } from "class-transformer";
 import { MhciPrereqWhereUniqueInput } from "../../mhciPrereq/base/MhciPrereqWhereUniqueInput";
+import { Type } from "class-transformer";
+import { LuUsersUsertypeWhereUniqueInput } from "../../luUsersUsertype/base/LuUsersUsertypeWhereUniqueInput";
 
 @InputType()
 class MhciPrereqsConversationCommentUpdateInput {
@@ -42,30 +42,6 @@ class MhciPrereqsConversationCommentUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => LuUsersUsertypeWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => LuUsersUsertypeWhereUniqueInput)
-  @IsOptional()
-  @Field(() => LuUsersUsertypeWhereUniqueInput, {
-    nullable: true,
-  })
-  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => MhciPrereqWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => MhciPrereqWhereUniqueInput)
-  @IsOptional()
-  @Field(() => MhciPrereqWhereUniqueInput, {
-    nullable: true,
-  })
-  mhciPrereqs?: MhciPrereqWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -85,6 +61,30 @@ class MhciPrereqsConversationCommentUpdateInput {
     nullable: true,
   })
   programId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => MhciPrereqWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => MhciPrereqWhereUniqueInput)
+  @IsOptional()
+  @Field(() => MhciPrereqWhereUniqueInput, {
+    nullable: true,
+  })
+  mhciPrereqs?: MhciPrereqWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => LuUsersUsertypeWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => LuUsersUsertypeWhereUniqueInput)
+  @IsOptional()
+  @Field(() => LuUsersUsertypeWhereUniqueInput, {
+    nullable: true,
+  })
+  luUsersUsertypes?: LuUsersUsertypeWhereUniqueInput;
 }
 
 export { MhciPrereqsConversationCommentUpdateInput as MhciPrereqsConversationCommentUpdateInput };

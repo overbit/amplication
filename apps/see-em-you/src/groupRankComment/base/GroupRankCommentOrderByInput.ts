@@ -28,17 +28,6 @@ class GroupRankCommentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  comment?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   groupId?: SortOrder;
 
   @ApiProperty({
@@ -50,18 +39,7 @@ class GroupRankCommentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  luUsersUsertypesId?: SortOrder;
+  round?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -83,7 +61,29 @@ class GroupRankCommentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  round?: SortOrder;
+  luUsersUsertypesId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  comment?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { GroupRankCommentOrderByInput as GroupRankCommentOrderByInput };

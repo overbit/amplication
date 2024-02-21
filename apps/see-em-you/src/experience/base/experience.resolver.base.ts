@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateExperienceArgs } from "./CreateExperienceArgs";
-import { UpdateExperienceArgs } from "./UpdateExperienceArgs";
-import { DeleteExperienceArgs } from "./DeleteExperienceArgs";
+import { Experience } from "./Experience";
 import { ExperienceCountArgs } from "./ExperienceCountArgs";
 import { ExperienceFindManyArgs } from "./ExperienceFindManyArgs";
 import { ExperienceFindUniqueArgs } from "./ExperienceFindUniqueArgs";
-import { Experience } from "./Experience";
+import { CreateExperienceArgs } from "./CreateExperienceArgs";
+import { UpdateExperienceArgs } from "./UpdateExperienceArgs";
+import { DeleteExperienceArgs } from "./DeleteExperienceArgs";
 import { Application } from "../../application/base/Application";
 import { ExperienceService } from "../experience.service";
 @graphql.Resolver(() => Experience)
@@ -39,14 +39,14 @@ export class ExperienceResolverBase {
   async experiences(
     @graphql.Args() args: ExperienceFindManyArgs
   ): Promise<Experience[]> {
-    return this.service.findMany(args);
+    return this.service.experiences(args);
   }
 
   @graphql.Query(() => Experience, { nullable: true })
   async experience(
     @graphql.Args() args: ExperienceFindUniqueArgs
   ): Promise<Experience | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.experience(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class ExperienceResolverBase {
   async createExperience(
     @graphql.Args() args: CreateExperienceArgs
   ): Promise<Experience> {
-    return await this.service.create({
+    return await this.service.createExperience({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class ExperienceResolverBase {
     @graphql.Args() args: UpdateExperienceArgs
   ): Promise<Experience | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateExperience({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class ExperienceResolverBase {
     @graphql.Args() args: DeleteExperienceArgs
   ): Promise<Experience | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteExperience(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class ExperienceResolverBase {
     nullable: true,
     name: "application",
   })
-  async resolveFieldApplication(
+  async getApplication(
     @graphql.Parent() parent: Experience
   ): Promise<Application | null> {
     const result = await this.service.getApplication(parent.id);

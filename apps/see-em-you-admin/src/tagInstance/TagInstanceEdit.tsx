@@ -11,8 +11,9 @@ export const TagInstanceEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput step={1} label="Department" source="department" />
+        <NumberInput step={1} label="Tag Id" source="tagId" />
         <NumberInput step={1} label="Owner" source="owner" />
+        <NumberInput step={1} label="Department" source="department" />
         <NumberInput step={1} label="Period" source="period" />
         <SelectInput
           source="status"
@@ -25,7 +26,6 @@ export const TagInstanceEdit = (props: EditProps): React.ReactElement => {
           allowEmpty
           optionValue="value"
         />
-        <NumberInput step={1} label="Tag Id" source="tagId" />
       </SimpleForm>
     </Edit>
   );

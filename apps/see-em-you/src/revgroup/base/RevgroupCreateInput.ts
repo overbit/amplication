@@ -11,10 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString } from "class-validator";
+import { IsString, IsInt } from "class-validator";
 
 @InputType()
 class RevgroupCreateInput {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
   @ApiProperty({
     required: true,
     type: Number,
@@ -30,14 +38,6 @@ class RevgroupCreateInput {
   @IsInt()
   @Field(() => Number)
   groupType!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
 }
 
 export { RevgroupCreateInput as RevgroupCreateInput };

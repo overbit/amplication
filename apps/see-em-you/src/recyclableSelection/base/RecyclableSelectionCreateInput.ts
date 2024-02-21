@@ -21,15 +21,7 @@ class RecyclableSelectionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  applicationId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  departmentId!: number;
+  usersId!: number;
 
   @ApiProperty({
     required: true,
@@ -45,6 +37,14 @@ class RecyclableSelectionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
+  departmentId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
   periodId!: number;
 
   @ApiProperty({
@@ -53,7 +53,7 @@ class RecyclableSelectionCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  usersId!: number;
+  applicationId!: number;
 }
 
 export { RecyclableSelectionCreateInput as RecyclableSelectionCreateInput };

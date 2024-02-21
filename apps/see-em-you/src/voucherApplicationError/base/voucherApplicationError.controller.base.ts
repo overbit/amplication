@@ -18,28 +18,27 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { VoucherApplicationErrorService } from "../voucherApplicationError.service";
 import { VoucherApplicationErrorCreateInput } from "./VoucherApplicationErrorCreateInput";
-import { VoucherApplicationErrorWhereInput } from "./VoucherApplicationErrorWhereInput";
-import { VoucherApplicationErrorWhereUniqueInput } from "./VoucherApplicationErrorWhereUniqueInput";
-import { VoucherApplicationErrorFindManyArgs } from "./VoucherApplicationErrorFindManyArgs";
-import { VoucherApplicationErrorUpdateInput } from "./VoucherApplicationErrorUpdateInput";
 import { VoucherApplicationError } from "./VoucherApplicationError";
+import { VoucherApplicationErrorFindManyArgs } from "./VoucherApplicationErrorFindManyArgs";
+import { VoucherApplicationErrorWhereUniqueInput } from "./VoucherApplicationErrorWhereUniqueInput";
+import { VoucherApplicationErrorUpdateInput } from "./VoucherApplicationErrorUpdateInput";
 
 export class VoucherApplicationErrorControllerBase {
   constructor(protected readonly service: VoucherApplicationErrorService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: VoucherApplicationError })
-  async create(
+  async createVoucherApplicationError(
     @common.Body() data: VoucherApplicationErrorCreateInput
   ): Promise<VoucherApplicationError> {
-    return await this.service.create({
+    return await this.service.createVoucherApplicationError({
       data: data,
       select: {
-        allowMultiple: true,
         appId: true,
         code: true,
-        errMsg: true,
-        id: true,
         vaId: true,
+        errMsg: true,
+        allowMultiple: true,
+        id: true,
       },
     });
   }
@@ -47,22 +46,22 @@ export class VoucherApplicationErrorControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [VoucherApplicationError] })
   @ApiNestedQuery(VoucherApplicationErrorFindManyArgs)
-  async findMany(
+  async voucherApplicationErrors(
     @common.Req() request: Request
   ): Promise<VoucherApplicationError[]> {
     const args = plainToClass(
       VoucherApplicationErrorFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.voucherApplicationErrors({
       ...args,
       select: {
-        allowMultiple: true,
         appId: true,
         code: true,
-        errMsg: true,
-        id: true,
         vaId: true,
+        errMsg: true,
+        allowMultiple: true,
+        id: true,
       },
     });
   }
@@ -70,18 +69,18 @@ export class VoucherApplicationErrorControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: VoucherApplicationError })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async voucherApplicationError(
     @common.Param() params: VoucherApplicationErrorWhereUniqueInput
   ): Promise<VoucherApplicationError | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.voucherApplicationError({
       where: params,
       select: {
-        allowMultiple: true,
         appId: true,
         code: true,
-        errMsg: true,
-        id: true,
         vaId: true,
+        errMsg: true,
+        allowMultiple: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -95,21 +94,21 @@ export class VoucherApplicationErrorControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: VoucherApplicationError })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateVoucherApplicationError(
     @common.Param() params: VoucherApplicationErrorWhereUniqueInput,
     @common.Body() data: VoucherApplicationErrorUpdateInput
   ): Promise<VoucherApplicationError | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVoucherApplicationError({
         where: params,
         data: data,
         select: {
-          allowMultiple: true,
           appId: true,
           code: true,
-          errMsg: true,
-          id: true,
           vaId: true,
+          errMsg: true,
+          allowMultiple: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -125,19 +124,19 @@ export class VoucherApplicationErrorControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: VoucherApplicationError })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteVoucherApplicationError(
     @common.Param() params: VoucherApplicationErrorWhereUniqueInput
   ): Promise<VoucherApplicationError | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteVoucherApplicationError({
         where: params,
         select: {
-          allowMultiple: true,
           appId: true,
           code: true,
-          errMsg: true,
-          id: true,
           vaId: true,
+          errMsg: true,
+          allowMultiple: true,
+          id: true,
         },
       });
     } catch (error) {

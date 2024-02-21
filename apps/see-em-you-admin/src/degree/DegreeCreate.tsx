@@ -16,6 +16,7 @@ export const DegreeCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <TextInput label="Name" source="name" />
+        <TextInput label="Short" source="short" />
         <ReferenceArrayInput
           source="programs"
           reference="ProgramModel"
@@ -24,7 +25,6 @@ export const DegreeCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={ProgramModelTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Short" source="short" />
       </SimpleForm>
     </Create>
   );

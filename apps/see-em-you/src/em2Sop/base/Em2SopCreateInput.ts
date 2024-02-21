@@ -11,21 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsInt, IsString, IsOptional } from "class-validator";
 
 @InputType()
 class Em2SopCreateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  additionalInfo?: string | null;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -40,7 +29,7 @@ class Em2SopCreateInput {
   })
   @IsString()
   @Field(() => String)
-  background!: string;
+  objective!: string;
 
   @ApiProperty({
     required: true,
@@ -48,7 +37,7 @@ class Em2SopCreateInput {
   })
   @IsString()
   @Field(() => String)
-  objective!: string;
+  background!: string;
 
   @ApiProperty({
     required: true,
@@ -68,6 +57,17 @@ class Em2SopCreateInput {
     nullable: true,
   })
   taInterest?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  additionalInfo?: string | null;
 }
 
 export { Em2SopCreateInput as Em2SopCreateInput };

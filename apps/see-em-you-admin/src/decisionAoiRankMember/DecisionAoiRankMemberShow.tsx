@@ -7,13 +7,13 @@ export const DecisionAoiRankMemberShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Department Id" source="departmentId" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Interest Id" source="interestId" />
+        <TextField label="Decision" source="decision" />
         <TextField label="Application Id" source="applicationId" />
         <TextField label="Arank" source="arank" />
-        <TextField label="Decision" source="decision" />
-        <TextField label="Department Id" source="departmentId" />
         <TextField label="Id" source="id" />
-        <TextField label="Interest Id" source="interestId" />
-        <TextField label="Period Id" source="periodId" />
       </SimpleShowLayout>
     </Show>
   );

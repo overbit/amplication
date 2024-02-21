@@ -30,6 +30,17 @@ class AcoPalUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  pal?: boolean | null;
+
+  @ApiProperty({
+    required: false,
     type: () => ApplicationWhereUniqueInput,
   })
   @ValidateNested()
@@ -39,17 +50,6 @@ class AcoPalUpdateInput {
     nullable: true,
   })
   application?: ApplicationWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  pal?: boolean | null;
 }
 
 export { AcoPalUpdateInput as AcoPalUpdateInput };

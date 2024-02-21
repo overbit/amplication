@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateCmuAffiliationArgs } from "./CreateCmuAffiliationArgs";
-import { UpdateCmuAffiliationArgs } from "./UpdateCmuAffiliationArgs";
-import { DeleteCmuAffiliationArgs } from "./DeleteCmuAffiliationArgs";
+import { CmuAffiliation } from "./CmuAffiliation";
 import { CmuAffiliationCountArgs } from "./CmuAffiliationCountArgs";
 import { CmuAffiliationFindManyArgs } from "./CmuAffiliationFindManyArgs";
 import { CmuAffiliationFindUniqueArgs } from "./CmuAffiliationFindUniqueArgs";
-import { CmuAffiliation } from "./CmuAffiliation";
+import { CreateCmuAffiliationArgs } from "./CreateCmuAffiliationArgs";
+import { UpdateCmuAffiliationArgs } from "./UpdateCmuAffiliationArgs";
+import { DeleteCmuAffiliationArgs } from "./DeleteCmuAffiliationArgs";
 import { CmuAffiliationService } from "../cmuAffiliation.service";
 @graphql.Resolver(() => CmuAffiliation)
 export class CmuAffiliationResolverBase {
@@ -38,14 +38,14 @@ export class CmuAffiliationResolverBase {
   async cmuAffiliations(
     @graphql.Args() args: CmuAffiliationFindManyArgs
   ): Promise<CmuAffiliation[]> {
-    return this.service.findMany(args);
+    return this.service.cmuAffiliations(args);
   }
 
   @graphql.Query(() => CmuAffiliation, { nullable: true })
   async cmuAffiliation(
     @graphql.Args() args: CmuAffiliationFindUniqueArgs
   ): Promise<CmuAffiliation | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.cmuAffiliation(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class CmuAffiliationResolverBase {
   async createCmuAffiliation(
     @graphql.Args() args: CreateCmuAffiliationArgs
   ): Promise<CmuAffiliation> {
-    return await this.service.create({
+    return await this.service.createCmuAffiliation({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class CmuAffiliationResolverBase {
     @graphql.Args() args: UpdateCmuAffiliationArgs
   ): Promise<CmuAffiliation | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCmuAffiliation({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class CmuAffiliationResolverBase {
     @graphql.Args() args: DeleteCmuAffiliationArgs
   ): Promise<CmuAffiliation | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteCmuAffiliation(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

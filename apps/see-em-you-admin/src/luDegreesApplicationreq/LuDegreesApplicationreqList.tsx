@@ -14,8 +14,8 @@ export const LuDegreesApplicationreqList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Appreq Id" source="appreqId" />
         <TextField label="Degree Id" source="degreeId" />
+        <TextField label="Appreq Id" source="appreqId" />
         <TextField label="Id" source="id" />
       </Datagrid>
     </List>

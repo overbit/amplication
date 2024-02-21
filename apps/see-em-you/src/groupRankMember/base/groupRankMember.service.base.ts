@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, GroupRankMember } from "@prisma/client";
+import {
+  Prisma,
+  GroupRankMember as PrismaGroupRankMember,
+} from "@prisma/client";
 
 export class GroupRankMemberServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class GroupRankMemberServiceBase {
     return this.prisma.groupRankMember.count(args);
   }
 
-  async findMany<T extends Prisma.GroupRankMemberFindManyArgs>(
+  async groupRankMembers<T extends Prisma.GroupRankMemberFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankMemberFindManyArgs>
-  ): Promise<GroupRankMember[]> {
+  ): Promise<PrismaGroupRankMember[]> {
     return this.prisma.groupRankMember.findMany(args);
   }
-  async findOne<T extends Prisma.GroupRankMemberFindUniqueArgs>(
+  async groupRankMember<T extends Prisma.GroupRankMemberFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankMemberFindUniqueArgs>
-  ): Promise<GroupRankMember | null> {
+  ): Promise<PrismaGroupRankMember | null> {
     return this.prisma.groupRankMember.findUnique(args);
   }
-  async create<T extends Prisma.GroupRankMemberCreateArgs>(
+  async createGroupRankMember<T extends Prisma.GroupRankMemberCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankMemberCreateArgs>
-  ): Promise<GroupRankMember> {
+  ): Promise<PrismaGroupRankMember> {
     return this.prisma.groupRankMember.create<T>(args);
   }
-  async update<T extends Prisma.GroupRankMemberUpdateArgs>(
+  async updateGroupRankMember<T extends Prisma.GroupRankMemberUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankMemberUpdateArgs>
-  ): Promise<GroupRankMember> {
+  ): Promise<PrismaGroupRankMember> {
     return this.prisma.groupRankMember.update<T>(args);
   }
-  async delete<T extends Prisma.GroupRankMemberDeleteArgs>(
+  async deleteGroupRankMember<T extends Prisma.GroupRankMemberDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.GroupRankMemberDeleteArgs>
-  ): Promise<GroupRankMember> {
+  ): Promise<PrismaGroupRankMember> {
     return this.prisma.groupRankMember.delete(args);
   }
 }

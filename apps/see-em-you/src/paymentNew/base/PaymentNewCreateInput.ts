@@ -32,7 +32,7 @@ class PaymentNewCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  lastModUserId!: number;
+  paymentType!: number;
 
   @ApiProperty({
     required: true,
@@ -64,7 +64,7 @@ class PaymentNewCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  paymentType!: number;
+  lastModUserId!: number;
 }
 
 export { PaymentNewCreateInput as PaymentNewCreateInput };

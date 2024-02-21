@@ -1,12 +1,12 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MseRiskFactorsDecisionOrderByInput = {
-  academic?: SortOrder;
-  applicationId?: SortOrder;
   experience?: SortOrder;
-  id?: SortOrder;
+  applicationId?: SortOrder;
+  programId?: SortOrder;
   language?: SortOrder;
+  academic?: SortOrder;
   other?: SortOrder;
   otherText?: SortOrder;
-  programId?: SortOrder;
+  id?: SortOrder;
 };

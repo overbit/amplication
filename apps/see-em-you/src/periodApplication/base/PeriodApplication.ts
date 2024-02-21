@@ -28,19 +28,19 @@ class PeriodApplication {
 
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
     type: () => Period,
   })
   @ValidateNested()
   @Type(() => Period)
   period?: Period;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { PeriodApplication as PeriodApplication };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateProgramGroupRoleArgs } from "./CreateProgramGroupRoleArgs";
-import { UpdateProgramGroupRoleArgs } from "./UpdateProgramGroupRoleArgs";
-import { DeleteProgramGroupRoleArgs } from "./DeleteProgramGroupRoleArgs";
+import { ProgramGroupRole } from "./ProgramGroupRole";
 import { ProgramGroupRoleCountArgs } from "./ProgramGroupRoleCountArgs";
 import { ProgramGroupRoleFindManyArgs } from "./ProgramGroupRoleFindManyArgs";
 import { ProgramGroupRoleFindUniqueArgs } from "./ProgramGroupRoleFindUniqueArgs";
-import { ProgramGroupRole } from "./ProgramGroupRole";
+import { CreateProgramGroupRoleArgs } from "./CreateProgramGroupRoleArgs";
+import { UpdateProgramGroupRoleArgs } from "./UpdateProgramGroupRoleArgs";
+import { DeleteProgramGroupRoleArgs } from "./DeleteProgramGroupRoleArgs";
 import { ProgramGroupRoleService } from "../programGroupRole.service";
 @graphql.Resolver(() => ProgramGroupRole)
 export class ProgramGroupRoleResolverBase {
@@ -38,14 +38,14 @@ export class ProgramGroupRoleResolverBase {
   async programGroupRoles(
     @graphql.Args() args: ProgramGroupRoleFindManyArgs
   ): Promise<ProgramGroupRole[]> {
-    return this.service.findMany(args);
+    return this.service.programGroupRoles(args);
   }
 
   @graphql.Query(() => ProgramGroupRole, { nullable: true })
   async programGroupRole(
     @graphql.Args() args: ProgramGroupRoleFindUniqueArgs
   ): Promise<ProgramGroupRole | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.programGroupRole(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ProgramGroupRoleResolverBase {
   async createProgramGroupRole(
     @graphql.Args() args: CreateProgramGroupRoleArgs
   ): Promise<ProgramGroupRole> {
-    return await this.service.create({
+    return await this.service.createProgramGroupRole({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ProgramGroupRoleResolverBase {
     @graphql.Args() args: UpdateProgramGroupRoleArgs
   ): Promise<ProgramGroupRole | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramGroupRole({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ProgramGroupRoleResolverBase {
     @graphql.Args() args: DeleteProgramGroupRoleArgs
   ): Promise<ProgramGroupRole | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteProgramGroupRole(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

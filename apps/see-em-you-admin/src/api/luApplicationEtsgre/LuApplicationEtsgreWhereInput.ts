@@ -1,1 +1,5 @@
-export type LuApplicationEtsgreWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type LuApplicationEtsgreWhereInput = {
+  id?: IntFilter;
+};

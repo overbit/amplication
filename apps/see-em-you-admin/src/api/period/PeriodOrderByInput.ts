@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type PeriodOrderByInput = {
-  description?: SortOrder;
-  endDate?: SortOrder;
-  id?: SortOrder;
-  parentPeriodId?: SortOrder;
-  periodTypeId?: SortOrder;
-  startDate?: SortOrder;
   unitId?: SortOrder;
+  periodTypeId?: SortOrder;
+  description?: SortOrder;
+  startDate?: SortOrder;
+  endDate?: SortOrder;
+  parentPeriodId?: SortOrder;
+  id?: SortOrder;
 };

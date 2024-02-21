@@ -28,7 +28,7 @@ class ReviewIniExperienceScaleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  value?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class ReviewIniExperienceScaleOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  value?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ReviewIniExperienceScaleOrderByInput as ReviewIniExperienceScaleOrderByInput };

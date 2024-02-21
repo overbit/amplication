@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MhciPrereqsReviewer } from "@prisma/client";
+import {
+  Prisma,
+  MhciPrereqsReviewer as PrismaMhciPrereqsReviewer,
+} from "@prisma/client";
 
 export class MhciPrereqsReviewerServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,35 @@ export class MhciPrereqsReviewerServiceBase {
     return this.prisma.mhciPrereqsReviewer.count(args);
   }
 
-  async findMany<T extends Prisma.MhciPrereqsReviewerFindManyArgs>(
+  async mhciPrereqsReviewers<T extends Prisma.MhciPrereqsReviewerFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReviewerFindManyArgs>
-  ): Promise<MhciPrereqsReviewer[]> {
+  ): Promise<PrismaMhciPrereqsReviewer[]> {
     return this.prisma.mhciPrereqsReviewer.findMany(args);
   }
-  async findOne<T extends Prisma.MhciPrereqsReviewerFindUniqueArgs>(
+  async mhciPrereqsReviewer<T extends Prisma.MhciPrereqsReviewerFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReviewerFindUniqueArgs>
-  ): Promise<MhciPrereqsReviewer | null> {
+  ): Promise<PrismaMhciPrereqsReviewer | null> {
     return this.prisma.mhciPrereqsReviewer.findUnique(args);
   }
-  async create<T extends Prisma.MhciPrereqsReviewerCreateArgs>(
+  async createMhciPrereqsReviewer<
+    T extends Prisma.MhciPrereqsReviewerCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReviewerCreateArgs>
-  ): Promise<MhciPrereqsReviewer> {
+  ): Promise<PrismaMhciPrereqsReviewer> {
     return this.prisma.mhciPrereqsReviewer.create<T>(args);
   }
-  async update<T extends Prisma.MhciPrereqsReviewerUpdateArgs>(
+  async updateMhciPrereqsReviewer<
+    T extends Prisma.MhciPrereqsReviewerUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReviewerUpdateArgs>
-  ): Promise<MhciPrereqsReviewer> {
+  ): Promise<PrismaMhciPrereqsReviewer> {
     return this.prisma.mhciPrereqsReviewer.update<T>(args);
   }
-  async delete<T extends Prisma.MhciPrereqsReviewerDeleteArgs>(
+  async deleteMhciPrereqsReviewer<
+    T extends Prisma.MhciPrereqsReviewerDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.MhciPrereqsReviewerDeleteArgs>
-  ): Promise<MhciPrereqsReviewer> {
+  ): Promise<PrismaMhciPrereqsReviewer> {
     return this.prisma.mhciPrereqsReviewer.delete(args);
   }
 }

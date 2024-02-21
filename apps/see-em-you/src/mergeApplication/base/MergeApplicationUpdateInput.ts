@@ -24,28 +24,6 @@ class MergeApplicationUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  baseConvertError?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  baseConvertMessage?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   baseWriteError?: number | null;
 
   @ApiProperty({
@@ -58,6 +36,28 @@ class MergeApplicationUpdateInput {
     nullable: true,
   })
   baseWriteMessage?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  baseConvertError?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  baseConvertMessage?: string | null;
 
   @ApiProperty({
     required: false,

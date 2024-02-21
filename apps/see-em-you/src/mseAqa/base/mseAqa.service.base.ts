@@ -10,7 +10,11 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MseAqa, Application } from "@prisma/client";
+import {
+  Prisma,
+  MseAqa as PrismaMseAqa,
+  Application as PrismaApplication,
+} from "@prisma/client";
 
 export class MseAqaServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,33 +25,33 @@ export class MseAqaServiceBase {
     return this.prisma.mseAqa.count(args);
   }
 
-  async findMany<T extends Prisma.MseAqaFindManyArgs>(
+  async mseAqas<T extends Prisma.MseAqaFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseAqaFindManyArgs>
-  ): Promise<MseAqa[]> {
+  ): Promise<PrismaMseAqa[]> {
     return this.prisma.mseAqa.findMany(args);
   }
-  async findOne<T extends Prisma.MseAqaFindUniqueArgs>(
+  async mseAqa<T extends Prisma.MseAqaFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseAqaFindUniqueArgs>
-  ): Promise<MseAqa | null> {
+  ): Promise<PrismaMseAqa | null> {
     return this.prisma.mseAqa.findUnique(args);
   }
-  async create<T extends Prisma.MseAqaCreateArgs>(
+  async createMseAqa<T extends Prisma.MseAqaCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseAqaCreateArgs>
-  ): Promise<MseAqa> {
+  ): Promise<PrismaMseAqa> {
     return this.prisma.mseAqa.create<T>(args);
   }
-  async update<T extends Prisma.MseAqaUpdateArgs>(
+  async updateMseAqa<T extends Prisma.MseAqaUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseAqaUpdateArgs>
-  ): Promise<MseAqa> {
+  ): Promise<PrismaMseAqa> {
     return this.prisma.mseAqa.update<T>(args);
   }
-  async delete<T extends Prisma.MseAqaDeleteArgs>(
+  async deleteMseAqa<T extends Prisma.MseAqaDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MseAqaDeleteArgs>
-  ): Promise<MseAqa> {
+  ): Promise<PrismaMseAqa> {
     return this.prisma.mseAqa.delete(args);
   }
 
-  async getApplication(parentId: number): Promise<Application | null> {
+  async getApplication(parentId: number): Promise<PrismaApplication | null> {
     return this.prisma.mseAqa
       .findUnique({
         where: { id: parentId },

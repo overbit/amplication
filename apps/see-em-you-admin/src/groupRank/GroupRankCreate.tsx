@@ -3,24 +3,24 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
   NumberInput,
+  TextInput,
 } from "react-admin";
 
 export const GroupRankCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="Comment" source="comment" />
         <NumberInput step={1} label="Group Id" source="groupId" />
+        <NumberInput step={1} label="Round" source="round" />
+        <NumberInput step={1} label="Period Id" source="periodId" />
         <NumberInput
           step={1}
           label="Lu Users Usertypes Id"
           source="luUsersUsertypesId"
         />
-        <NumberInput step={1} label="Period Id" source="periodId" />
+        <TextInput label="Comment" source="comment" />
         <TextInput label="Ranking" source="ranking" />
-        <NumberInput step={1} label="Round" source="round" />
       </SimpleForm>
     </Create>
   );

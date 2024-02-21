@@ -24,7 +24,7 @@ class LuDegreesApplicationreqUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  appreqId?: number;
+  degreeId?: number;
 
   @ApiProperty({
     required: false,
@@ -35,7 +35,7 @@ class LuDegreesApplicationreqUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  degreeId?: number;
+  appreqId?: number;
 }
 
 export { LuDegreesApplicationreqUpdateInput as LuDegreesApplicationreqUpdateInput };

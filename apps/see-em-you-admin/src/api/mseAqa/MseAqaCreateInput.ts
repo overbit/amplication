@@ -1,18 +1,18 @@
 import { ApplicationWhereUniqueInput } from "../application/ApplicationWhereUniqueInput";
 
 export type MseAqaCreateInput = {
-  application: ApplicationWhereUniqueInput;
-  englishComments?: string | null;
-  englishRating?: number | null;
-  experienceComments?: string | null;
-  experienceRating?: number | null;
-  foundationalComments?: string | null;
-  foundationalRating?: number | null;
-  maturityComments?: string | null;
-  maturityRating?: number | null;
-  programmingComments?: string | null;
-  programmingRating?: number | null;
   reviewerId: number;
+  englishComments?: string | null;
+  programmingComments?: string | null;
+  foundationalComments?: string | null;
+  maturityComments?: string | null;
   understandingComments?: string | null;
+  experienceComments?: string | null;
+  englishRating?: number | null;
+  programmingRating?: number | null;
+  foundationalRating?: number | null;
+  maturityRating?: number | null;
   understandingRating?: number | null;
+  experienceRating?: number | null;
+  application: ApplicationWhereUniqueInput;
 };

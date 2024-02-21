@@ -3,8 +3,8 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
   TextField,
+  ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { APPLICATION_TITLE_FIELD } from "../application/ApplicationTitle";
@@ -20,6 +20,17 @@ export const MhciPrereqsCourseList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Course Type" source="course_type" />
+        <TextField label="Student Course Name" source="studentCourseName" />
+        <TextField label="Student Course Time" source="studentCourseTime" />
+        <TextField
+          label="Student Course Institution"
+          source="studentCourseInstitution"
+        />
+        <TextField label="Student Course Grade" source="studentCourseGrade" />
+        <TextField label="Submitted To Reviewer" source="submittedToReviewer" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Program Id" source="programId" />
         <ReferenceField
           label="Application"
           source="application.id"
@@ -27,8 +38,6 @@ export const MhciPrereqsCourseList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={APPLICATION_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Course Type" source="course_type" />
-        <TextField label="Id" source="id" />
         <ReferenceField
           label="Lu Users Usertypes"
           source="luusersusertype.id"
@@ -36,16 +45,7 @@ export const MhciPrereqsCourseList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={LUUSERSUSERTYPE_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="Period Id" source="periodId" />
-        <TextField label="Program Id" source="programId" />
-        <TextField label="Student Course Grade" source="studentCourseGrade" />
-        <TextField
-          label="Student Course Institution"
-          source="studentCourseInstitution"
-        />
-        <TextField label="Student Course Name" source="studentCourseName" />
-        <TextField label="Student Course Time" source="studentCourseTime" />
-        <TextField label="Submitted To Reviewer" source="submittedToReviewer" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

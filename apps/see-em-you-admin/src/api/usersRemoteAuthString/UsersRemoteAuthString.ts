@@ -1,5 +1,5 @@
 export type UsersRemoteAuthString = {
-  id: string;
-  remoteAuthString: string;
   usersId: number;
+  remoteAuthString: string;
+  id: string;
 };

@@ -16,28 +16,6 @@ import { IsString, IsOptional } from "class-validator";
 @InputType()
 class VisatypeCreateInput {
   @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  addedFor?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description?: string | null;
-
-  @ApiProperty({
     required: true,
     type: String,
   })
@@ -52,6 +30,28 @@ class VisatypeCreateInput {
   @IsString()
   @Field(() => String)
   short!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  description?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  addedFor?: string | null;
 }
 
 export { VisatypeCreateInput as VisatypeCreateInput };

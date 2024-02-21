@@ -25,22 +25,6 @@ class PhoneScreen {
 
   @ApiProperty({
     required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  languageScreen!: number;
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
@@ -54,6 +38,22 @@ class PhoneScreen {
   @IsInt()
   @Field(() => Number)
   technicalScreen!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  languageScreen!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { PhoneScreen as PhoneScreen };

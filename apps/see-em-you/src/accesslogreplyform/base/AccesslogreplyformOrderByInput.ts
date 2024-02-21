@@ -28,7 +28,29 @@ class AccesslogreplyformOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  activity?: SortOrder;
+  usersId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  luUsersUsertypesId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  usertypeId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,28 +83,6 @@ class AccesslogreplyformOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  luUsersUsertypesId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   timestamp?: SortOrder;
 
   @ApiProperty({
@@ -94,7 +94,7 @@ class AccesslogreplyformOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usersId?: SortOrder;
+  activity?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -105,7 +105,7 @@ class AccesslogreplyformOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usertypeId?: SortOrder;
+  id?: SortOrder;
 }
 
 export { AccesslogreplyformOrderByInput as AccesslogreplyformOrderByInput };

@@ -18,74 +18,74 @@ import { CcTransactionSummaryService } from "../ccTransactionSummary.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  authAmount: 42.42,
+  ccId: 42,
+  date: new Date(),
+  time: new Date(),
+  reportDate: new Date(),
+  paymentId: 42,
   authCode: "exampleAuthCode",
   authMessage: "exampleAuthMessage",
-  ccId: 42,
-  creditAmount: 42.42,
-  date: new Date(),
-  id: "exampleId",
-  paymentId: 42,
-  reportDate: new Date(),
-  settleAmount: 42.42,
   settleCode: "exampleSettleCode",
   settleMessage: "exampleSettleMessage",
-  time: new Date(),
+  authAmount: 42.42,
+  settleAmount: 42.42,
+  creditAmount: 42.42,
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  authAmount: 42.42,
+  ccId: 42,
+  date: new Date(),
+  time: new Date(),
+  reportDate: new Date(),
+  paymentId: 42,
   authCode: "exampleAuthCode",
   authMessage: "exampleAuthMessage",
-  ccId: 42,
-  creditAmount: 42.42,
-  date: new Date(),
-  id: "exampleId",
-  paymentId: 42,
-  reportDate: new Date(),
-  settleAmount: 42.42,
   settleCode: "exampleSettleCode",
   settleMessage: "exampleSettleMessage",
-  time: new Date(),
+  authAmount: 42.42,
+  settleAmount: 42.42,
+  creditAmount: 42.42,
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    authAmount: 42.42,
+    ccId: 42,
+    date: new Date(),
+    time: new Date(),
+    reportDate: new Date(),
+    paymentId: 42,
     authCode: "exampleAuthCode",
     authMessage: "exampleAuthMessage",
-    ccId: 42,
-    creditAmount: 42.42,
-    date: new Date(),
-    id: "exampleId",
-    paymentId: 42,
-    reportDate: new Date(),
-    settleAmount: 42.42,
     settleCode: "exampleSettleCode",
     settleMessage: "exampleSettleMessage",
-    time: new Date(),
+    authAmount: 42.42,
+    settleAmount: 42.42,
+    creditAmount: 42.42,
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  authAmount: 42.42,
+  ccId: 42,
+  date: new Date(),
+  time: new Date(),
+  reportDate: new Date(),
+  paymentId: 42,
   authCode: "exampleAuthCode",
   authMessage: "exampleAuthMessage",
-  ccId: 42,
-  creditAmount: 42.42,
-  date: new Date(),
-  id: "exampleId",
-  paymentId: 42,
-  reportDate: new Date(),
-  settleAmount: 42.42,
   settleCode: "exampleSettleCode",
   settleMessage: "exampleSettleMessage",
-  time: new Date(),
+  authAmount: 42.42,
+  settleAmount: 42.42,
+  creditAmount: 42.42,
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createCcTransactionSummary() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ccTransactionSummaries: () => FIND_MANY_RESULT,
+  ccTransactionSummary: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;
@@ -163,8 +163,8 @@ describe("CcTransactionSummary", () => {
       .expect({
         ...CREATE_RESULT,
         date: CREATE_RESULT.date.toISOString(),
-        reportDate: CREATE_RESULT.reportDate.toISOString(),
         time: CREATE_RESULT.time.toISOString(),
+        reportDate: CREATE_RESULT.reportDate.toISOString(),
       });
   });
 
@@ -176,8 +176,8 @@ describe("CcTransactionSummary", () => {
         {
           ...FIND_MANY_RESULT[0],
           date: FIND_MANY_RESULT[0].date.toISOString(),
-          reportDate: FIND_MANY_RESULT[0].reportDate.toISOString(),
           time: FIND_MANY_RESULT[0].time.toISOString(),
+          reportDate: FIND_MANY_RESULT[0].reportDate.toISOString(),
         },
       ]);
   });
@@ -200,8 +200,8 @@ describe("CcTransactionSummary", () => {
       .expect({
         ...FIND_ONE_RESULT,
         date: FIND_ONE_RESULT.date.toISOString(),
-        reportDate: FIND_ONE_RESULT.reportDate.toISOString(),
         time: FIND_ONE_RESULT.time.toISOString(),
+        reportDate: FIND_ONE_RESULT.reportDate.toISOString(),
       });
   });
 
@@ -214,8 +214,8 @@ describe("CcTransactionSummary", () => {
       .expect({
         ...CREATE_RESULT,
         date: CREATE_RESULT.date.toISOString(),
-        reportDate: CREATE_RESULT.reportDate.toISOString(),
         time: CREATE_RESULT.time.toISOString(),
+        reportDate: CREATE_RESULT.reportDate.toISOString(),
       })
       .then(function () {
         agent

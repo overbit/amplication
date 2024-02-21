@@ -11,20 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, ValidateNested, IsInt } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsOptional, IsString, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class RissMcnair {
   @ApiProperty({
     required: false,
-    type: () => Application,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Application)
+  @IsString()
   @IsOptional()
-  application?: Application | null;
+  @Field(() => String, {
+    nullable: true,
+  })
+  site!: string | null;
 
   @ApiProperty({
     required: false,
@@ -38,23 +40,21 @@ class RissMcnair {
   contact!: string | null;
 
   @ApiProperty({
+    required: false,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  @IsOptional()
+  application?: Application | null;
+
+  @ApiProperty({
     required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  site!: string | null;
 }
 
 export { RissMcnair as RissMcnair };

@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { IniYearsExperienceService } from "../iniYearsExperience.service";
 import { IniYearsExperienceCreateInput } from "./IniYearsExperienceCreateInput";
-import { IniYearsExperienceWhereInput } from "./IniYearsExperienceWhereInput";
-import { IniYearsExperienceWhereUniqueInput } from "./IniYearsExperienceWhereUniqueInput";
-import { IniYearsExperienceFindManyArgs } from "./IniYearsExperienceFindManyArgs";
-import { IniYearsExperienceUpdateInput } from "./IniYearsExperienceUpdateInput";
 import { IniYearsExperience } from "./IniYearsExperience";
+import { IniYearsExperienceFindManyArgs } from "./IniYearsExperienceFindManyArgs";
+import { IniYearsExperienceWhereUniqueInput } from "./IniYearsExperienceWhereUniqueInput";
+import { IniYearsExperienceUpdateInput } from "./IniYearsExperienceUpdateInput";
 
 export class IniYearsExperienceControllerBase {
   constructor(protected readonly service: IniYearsExperienceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IniYearsExperience })
-  async create(
+  async createIniYearsExperience(
     @common.Body() data: IniYearsExperienceCreateInput
   ): Promise<IniYearsExperience> {
-    return await this.service.create({
+    return await this.service.createIniYearsExperience({
       data: data,
       select: {
         applicationId: true,
         fullTimeProfessional: true,
-        id: true,
         relevantIndustry: true,
+        id: true,
       },
     });
   }
@@ -45,17 +44,17 @@ export class IniYearsExperienceControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [IniYearsExperience] })
   @ApiNestedQuery(IniYearsExperienceFindManyArgs)
-  async findMany(
+  async iniYearsExperiences(
     @common.Req() request: Request
   ): Promise<IniYearsExperience[]> {
     const args = plainToClass(IniYearsExperienceFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.iniYearsExperiences({
       ...args,
       select: {
         applicationId: true,
         fullTimeProfessional: true,
-        id: true,
         relevantIndustry: true,
+        id: true,
       },
     });
   }
@@ -63,16 +62,16 @@ export class IniYearsExperienceControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IniYearsExperience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async iniYearsExperience(
     @common.Param() params: IniYearsExperienceWhereUniqueInput
   ): Promise<IniYearsExperience | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.iniYearsExperience({
       where: params,
       select: {
         applicationId: true,
         fullTimeProfessional: true,
-        id: true,
         relevantIndustry: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -86,19 +85,19 @@ export class IniYearsExperienceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IniYearsExperience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateIniYearsExperience(
     @common.Param() params: IniYearsExperienceWhereUniqueInput,
     @common.Body() data: IniYearsExperienceUpdateInput
   ): Promise<IniYearsExperience | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateIniYearsExperience({
         where: params,
         data: data,
         select: {
           applicationId: true,
           fullTimeProfessional: true,
-          id: true,
           relevantIndustry: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -114,17 +113,17 @@ export class IniYearsExperienceControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IniYearsExperience })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteIniYearsExperience(
     @common.Param() params: IniYearsExperienceWhereUniqueInput
   ): Promise<IniYearsExperience | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteIniYearsExperience({
         where: params,
         select: {
           applicationId: true,
           fullTimeProfessional: true,
-          id: true,
           relevantIndustry: true,
+          id: true,
         },
       });
     } catch (error) {

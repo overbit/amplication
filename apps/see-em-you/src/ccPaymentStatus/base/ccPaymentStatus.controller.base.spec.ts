@@ -18,42 +18,42 @@ import { CcPaymentStatusService } from "../ccPaymentStatus.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  statusDate: new Date(),
   authTotal: 42.42,
+  settleTotal: 42.42,
   creditTotal: 42.42,
   id: 42,
-  settleTotal: 42.42,
-  statusDate: new Date(),
 };
 const CREATE_RESULT = {
+  statusDate: new Date(),
   authTotal: 42.42,
+  settleTotal: 42.42,
   creditTotal: 42.42,
   id: 42,
-  settleTotal: 42.42,
-  statusDate: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
+    statusDate: new Date(),
     authTotal: 42.42,
+    settleTotal: 42.42,
     creditTotal: 42.42,
     id: 42,
-    settleTotal: 42.42,
-    statusDate: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
+  statusDate: new Date(),
   authTotal: 42.42,
+  settleTotal: 42.42,
   creditTotal: 42.42,
   id: 42,
-  settleTotal: 42.42,
-  statusDate: new Date(),
 };
 
 const service = {
-  create() {
+  createCcPaymentStatus() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  ccPaymentStatuses: () => FIND_MANY_RESULT,
+  ccPaymentStatus: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

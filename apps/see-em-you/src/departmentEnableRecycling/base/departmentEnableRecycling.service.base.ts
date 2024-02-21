@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DepartmentEnableRecycling } from "@prisma/client";
+import {
+  Prisma,
+  DepartmentEnableRecycling as PrismaDepartmentEnableRecycling,
+} from "@prisma/client";
 
 export class DepartmentEnableRecyclingServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class DepartmentEnableRecyclingServiceBase {
     return this.prisma.departmentEnableRecycling.count(args);
   }
 
-  async findMany<T extends Prisma.DepartmentEnableRecyclingFindManyArgs>(
+  async departmentEnableRecyclings<
+    T extends Prisma.DepartmentEnableRecyclingFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentEnableRecyclingFindManyArgs>
-  ): Promise<DepartmentEnableRecycling[]> {
+  ): Promise<PrismaDepartmentEnableRecycling[]> {
     return this.prisma.departmentEnableRecycling.findMany(args);
   }
-  async findOne<T extends Prisma.DepartmentEnableRecyclingFindUniqueArgs>(
+  async departmentEnableRecycling<
+    T extends Prisma.DepartmentEnableRecyclingFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentEnableRecyclingFindUniqueArgs>
-  ): Promise<DepartmentEnableRecycling | null> {
+  ): Promise<PrismaDepartmentEnableRecycling | null> {
     return this.prisma.departmentEnableRecycling.findUnique(args);
   }
-  async create<T extends Prisma.DepartmentEnableRecyclingCreateArgs>(
+  async createDepartmentEnableRecycling<
+    T extends Prisma.DepartmentEnableRecyclingCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentEnableRecyclingCreateArgs>
-  ): Promise<DepartmentEnableRecycling> {
+  ): Promise<PrismaDepartmentEnableRecycling> {
     return this.prisma.departmentEnableRecycling.create<T>(args);
   }
-  async update<T extends Prisma.DepartmentEnableRecyclingUpdateArgs>(
+  async updateDepartmentEnableRecycling<
+    T extends Prisma.DepartmentEnableRecyclingUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentEnableRecyclingUpdateArgs>
-  ): Promise<DepartmentEnableRecycling> {
+  ): Promise<PrismaDepartmentEnableRecycling> {
     return this.prisma.departmentEnableRecycling.update<T>(args);
   }
-  async delete<T extends Prisma.DepartmentEnableRecyclingDeleteArgs>(
+  async deleteDepartmentEnableRecycling<
+    T extends Prisma.DepartmentEnableRecyclingDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.DepartmentEnableRecyclingDeleteArgs>
-  ): Promise<DepartmentEnableRecycling> {
+  ): Promise<PrismaDepartmentEnableRecycling> {
     return this.prisma.departmentEnableRecycling.delete(args);
   }
 }

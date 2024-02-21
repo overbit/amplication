@@ -28,73 +28,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationStatus?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  appSubmittedDate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  birthdate?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  citizenshipStatus?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  decisionConfirmedExportCode?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  email?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  emailAddress?: SortOrder;
+  prefix?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -116,40 +50,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  hispanic?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  ipedsClassification?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  language?: SortOrder;
+  middle?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -171,7 +72,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressCity?: SortOrder;
+  suffix?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -182,7 +83,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressCountryFipsCode?: SortOrder;
+  email?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -193,7 +94,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressCountryIso2Code?: SortOrder;
+  appSubmittedDate?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -204,7 +105,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressCountryIso3Code?: SortOrder;
+  applicationStatus?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -215,7 +116,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressCountryName?: SortOrder;
+  roundExportCode?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -226,7 +127,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressCountrySisExport?: SortOrder;
+  decisionConfirmedExportCode?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -237,7 +138,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressGeomarket?: SortOrder;
+  birthdate?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -248,7 +149,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressPostalCode?: SortOrder;
+  sex?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -259,7 +160,95 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mailingAddressRegion?: SortOrder;
+  ipedsClassification?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  hispanic?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  race?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  citizenshipStatus?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  primaryCitizenship?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  secondaryCitizenship?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  emailAddress?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  phoneNumber?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mobilePhoneNumber?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -303,6 +292,61 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  mailingAddressCity?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mailingAddressRegion?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mailingAddressPostalCode?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mailingAddressCountryName?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mailingAddressGeomarket?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   mailingAddressValidFromDate?: SortOrder;
 
   @ApiProperty({
@@ -325,7 +369,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  middle?: SortOrder;
+  mailingAddressCountryFipsCode?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -336,7 +380,62 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  mobilePhoneNumber?: SortOrder;
+  mailingAddressCountryIso2Code?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mailingAddressCountryIso3Code?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mailingAddressCountrySisExport?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  permanentAddressStreet1?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  permanentAddressStreet2?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  permanentAddressStreet3?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -358,7 +457,40 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  permanentAddressRegion?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  permanentAddressPostalCode?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   permanentAddressCountry?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  permanentAddressGeomarket?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -413,62 +545,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  permanentAddressGeomarket?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  permanentAddressPostalCode?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  permanentAddressRegion?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  permanentAddressStreet1?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  permanentAddressStreet2?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  permanentAddressStreet3?: SortOrder;
+  language?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -480,50 +557,6 @@ class PeSlateAppOrderByInput {
     nullable: true,
   })
   personalWebSite?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  phoneNumber?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  prefix?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  primaryCitizenship?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  race?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -567,40 +600,7 @@ class PeSlateAppOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  roundExportCode?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  secondaryCitizenship?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  sex?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  suffix?: SortOrder;
+  id?: SortOrder;
 }
 
 export { PeSlateAppOrderByInput as PeSlateAppOrderByInput };

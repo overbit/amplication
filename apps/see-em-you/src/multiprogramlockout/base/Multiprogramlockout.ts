@@ -21,14 +21,6 @@ class Multiprogramlockout {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
   programId1!: number;
 
   @ApiProperty({
@@ -38,6 +30,14 @@ class Multiprogramlockout {
   @IsInt()
   @Field(() => Number)
   programId2!: number;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Multiprogramlockout as Multiprogramlockout };

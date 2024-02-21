@@ -18,33 +18,34 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateOrgService } from "../slateOrg.service";
 import { SlateOrgCreateInput } from "./SlateOrgCreateInput";
-import { SlateOrgWhereInput } from "./SlateOrgWhereInput";
-import { SlateOrgWhereUniqueInput } from "./SlateOrgWhereUniqueInput";
-import { SlateOrgFindManyArgs } from "./SlateOrgFindManyArgs";
-import { SlateOrgUpdateInput } from "./SlateOrgUpdateInput";
 import { SlateOrg } from "./SlateOrg";
+import { SlateOrgFindManyArgs } from "./SlateOrgFindManyArgs";
+import { SlateOrgWhereUniqueInput } from "./SlateOrgWhereUniqueInput";
+import { SlateOrgUpdateInput } from "./SlateOrgUpdateInput";
 
 export class SlateOrgControllerBase {
   constructor(protected readonly service: SlateOrgService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateOrg })
-  async create(@common.Body() data: SlateOrgCreateInput): Promise<SlateOrg> {
-    return await this.service.create({
+  async createSlateOrg(
+    @common.Body() data: SlateOrgCreateInput
+  ): Promise<SlateOrg> {
+    return await this.service.createSlateOrg({
       data: data,
       select: {
-        category: true,
-        city: true,
-        country: true,
-        id: true,
-        localName: true,
-        numActiveApplicationsWithSchoolKeyInDatabase: true,
-        numRecordsWithSchoolKeyInDatabase: true,
-        orgType: true,
-        postal: true,
-        region: true,
-        sharedName: true,
         status: true,
+        localName: true,
+        sharedName: true,
         street: true,
+        city: true,
+        region: true,
+        postal: true,
+        country: true,
+        category: true,
+        orgType: true,
+        numRecordsWithSchoolKeyInDatabase: true,
+        numActiveApplicationsWithSchoolKeyInDatabase: true,
+        id: true,
       },
     });
   }
@@ -52,24 +53,24 @@ export class SlateOrgControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateOrg] })
   @ApiNestedQuery(SlateOrgFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateOrg[]> {
+  async slateOrgs(@common.Req() request: Request): Promise<SlateOrg[]> {
     const args = plainToClass(SlateOrgFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateOrgs({
       ...args,
       select: {
-        category: true,
-        city: true,
-        country: true,
-        id: true,
-        localName: true,
-        numActiveApplicationsWithSchoolKeyInDatabase: true,
-        numRecordsWithSchoolKeyInDatabase: true,
-        orgType: true,
-        postal: true,
-        region: true,
-        sharedName: true,
         status: true,
+        localName: true,
+        sharedName: true,
         street: true,
+        city: true,
+        region: true,
+        postal: true,
+        country: true,
+        category: true,
+        orgType: true,
+        numRecordsWithSchoolKeyInDatabase: true,
+        numActiveApplicationsWithSchoolKeyInDatabase: true,
+        id: true,
       },
     });
   }
@@ -77,25 +78,25 @@ export class SlateOrgControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateOrg })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateOrg(
     @common.Param() params: SlateOrgWhereUniqueInput
   ): Promise<SlateOrg | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateOrg({
       where: params,
       select: {
-        category: true,
-        city: true,
-        country: true,
-        id: true,
-        localName: true,
-        numActiveApplicationsWithSchoolKeyInDatabase: true,
-        numRecordsWithSchoolKeyInDatabase: true,
-        orgType: true,
-        postal: true,
-        region: true,
-        sharedName: true,
         status: true,
+        localName: true,
+        sharedName: true,
         street: true,
+        city: true,
+        region: true,
+        postal: true,
+        country: true,
+        category: true,
+        orgType: true,
+        numRecordsWithSchoolKeyInDatabase: true,
+        numActiveApplicationsWithSchoolKeyInDatabase: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -109,28 +110,28 @@ export class SlateOrgControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateOrg })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateOrg(
     @common.Param() params: SlateOrgWhereUniqueInput,
     @common.Body() data: SlateOrgUpdateInput
   ): Promise<SlateOrg | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateOrg({
         where: params,
         data: data,
         select: {
-          category: true,
-          city: true,
-          country: true,
-          id: true,
-          localName: true,
-          numActiveApplicationsWithSchoolKeyInDatabase: true,
-          numRecordsWithSchoolKeyInDatabase: true,
-          orgType: true,
-          postal: true,
-          region: true,
-          sharedName: true,
           status: true,
+          localName: true,
+          sharedName: true,
           street: true,
+          city: true,
+          region: true,
+          postal: true,
+          country: true,
+          category: true,
+          orgType: true,
+          numRecordsWithSchoolKeyInDatabase: true,
+          numActiveApplicationsWithSchoolKeyInDatabase: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -146,26 +147,26 @@ export class SlateOrgControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateOrg })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateOrg(
     @common.Param() params: SlateOrgWhereUniqueInput
   ): Promise<SlateOrg | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateOrg({
         where: params,
         select: {
-          category: true,
-          city: true,
-          country: true,
-          id: true,
-          localName: true,
-          numActiveApplicationsWithSchoolKeyInDatabase: true,
-          numRecordsWithSchoolKeyInDatabase: true,
-          orgType: true,
-          postal: true,
-          region: true,
-          sharedName: true,
           status: true,
+          localName: true,
+          sharedName: true,
           street: true,
+          city: true,
+          region: true,
+          postal: true,
+          country: true,
+          category: true,
+          orgType: true,
+          numRecordsWithSchoolKeyInDatabase: true,
+          numActiveApplicationsWithSchoolKeyInDatabase: true,
+          id: true,
         },
       });
     } catch (error) {

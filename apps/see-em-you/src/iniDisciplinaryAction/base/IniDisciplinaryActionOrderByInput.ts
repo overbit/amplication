@@ -39,7 +39,18 @@ class IniDisciplinaryActionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  sanction?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  sanctionDescription?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,18 +83,7 @@ class IniDisciplinaryActionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  sanction?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  sanctionDescription?: SortOrder;
+  id?: SortOrder;
 }
 
 export { IniDisciplinaryActionOrderByInput as IniDisciplinaryActionOrderByInput };

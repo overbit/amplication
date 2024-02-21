@@ -1,10 +1,10 @@
 export type Datafileinfo = {
-  extension: string | null;
-  id: number;
-  moddate: Date;
-  section: number;
-  size: number;
   typeField: string;
-  userdata: string | null;
+  extension: string | null;
+  size: number;
   userId: number;
+  section: number;
+  moddate: Date;
+  userdata: string | null;
+  id: number;
 };

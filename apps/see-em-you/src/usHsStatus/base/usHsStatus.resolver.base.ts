@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUsHsStatusArgs } from "./CreateUsHsStatusArgs";
-import { UpdateUsHsStatusArgs } from "./UpdateUsHsStatusArgs";
-import { DeleteUsHsStatusArgs } from "./DeleteUsHsStatusArgs";
+import { UsHsStatus } from "./UsHsStatus";
 import { UsHsStatusCountArgs } from "./UsHsStatusCountArgs";
 import { UsHsStatusFindManyArgs } from "./UsHsStatusFindManyArgs";
 import { UsHsStatusFindUniqueArgs } from "./UsHsStatusFindUniqueArgs";
-import { UsHsStatus } from "./UsHsStatus";
+import { CreateUsHsStatusArgs } from "./CreateUsHsStatusArgs";
+import { UpdateUsHsStatusArgs } from "./UpdateUsHsStatusArgs";
+import { DeleteUsHsStatusArgs } from "./DeleteUsHsStatusArgs";
 import { UsHsStatusService } from "../usHsStatus.service";
 @graphql.Resolver(() => UsHsStatus)
 export class UsHsStatusResolverBase {
@@ -38,14 +38,14 @@ export class UsHsStatusResolverBase {
   async usHsStatuses(
     @graphql.Args() args: UsHsStatusFindManyArgs
   ): Promise<UsHsStatus[]> {
-    return this.service.findMany(args);
+    return this.service.usHsStatuses(args);
   }
 
   @graphql.Query(() => UsHsStatus, { nullable: true })
   async usHsStatus(
     @graphql.Args() args: UsHsStatusFindUniqueArgs
   ): Promise<UsHsStatus | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.usHsStatus(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class UsHsStatusResolverBase {
   async createUsHsStatus(
     @graphql.Args() args: CreateUsHsStatusArgs
   ): Promise<UsHsStatus> {
-    return await this.service.create({
+    return await this.service.createUsHsStatus({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class UsHsStatusResolverBase {
     @graphql.Args() args: UpdateUsHsStatusArgs
   ): Promise<UsHsStatus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsHsStatus({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class UsHsStatusResolverBase {
     @graphql.Args() args: DeleteUsHsStatusArgs
   ): Promise<UsHsStatus | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUsHsStatus(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

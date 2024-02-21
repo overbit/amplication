@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateEtsGreArgs } from "./CreateEtsGreArgs";
-import { UpdateEtsGreArgs } from "./UpdateEtsGreArgs";
-import { DeleteEtsGreArgs } from "./DeleteEtsGreArgs";
+import { EtsGre } from "./EtsGre";
 import { EtsGreCountArgs } from "./EtsGreCountArgs";
 import { EtsGreFindManyArgs } from "./EtsGreFindManyArgs";
 import { EtsGreFindUniqueArgs } from "./EtsGreFindUniqueArgs";
-import { EtsGre } from "./EtsGre";
+import { CreateEtsGreArgs } from "./CreateEtsGreArgs";
+import { UpdateEtsGreArgs } from "./UpdateEtsGreArgs";
+import { DeleteEtsGreArgs } from "./DeleteEtsGreArgs";
 import { EtsGreService } from "../etsGre.service";
 @graphql.Resolver(() => EtsGre)
 export class EtsGreResolverBase {
@@ -36,14 +36,14 @@ export class EtsGreResolverBase {
 
   @graphql.Query(() => [EtsGre])
   async etsGres(@graphql.Args() args: EtsGreFindManyArgs): Promise<EtsGre[]> {
-    return this.service.findMany(args);
+    return this.service.etsGres(args);
   }
 
   @graphql.Query(() => EtsGre, { nullable: true })
   async etsGre(
     @graphql.Args() args: EtsGreFindUniqueArgs
   ): Promise<EtsGre | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.etsGre(args);
     if (result === null) {
       return null;
     }
@@ -52,7 +52,7 @@ export class EtsGreResolverBase {
 
   @graphql.Mutation(() => EtsGre)
   async createEtsGre(@graphql.Args() args: CreateEtsGreArgs): Promise<EtsGre> {
-    return await this.service.create({
+    return await this.service.createEtsGre({
       ...args,
       data: args.data,
     });
@@ -63,7 +63,7 @@ export class EtsGreResolverBase {
     @graphql.Args() args: UpdateEtsGreArgs
   ): Promise<EtsGre | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEtsGre({
         ...args,
         data: args.data,
       });
@@ -82,7 +82,7 @@ export class EtsGreResolverBase {
     @graphql.Args() args: DeleteEtsGreArgs
   ): Promise<EtsGre | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteEtsGre(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

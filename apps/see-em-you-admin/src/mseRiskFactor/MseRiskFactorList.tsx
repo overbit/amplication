@@ -12,14 +12,14 @@ export const MseRiskFactorList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Academic" source="academic" />
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Experience" source="experience" />
-        <TextField label="Id" source="id" />
+        <TextField label="Reviewer Id" source="reviewerId" />
         <TextField label="Language" source="language" />
+        <TextField label="Experience" source="experience" />
+        <TextField label="Academic" source="academic" />
         <TextField label="Other" source="other" />
         <TextField label="Other Text" source="otherText" />
-        <TextField label="Reviewer Id" source="reviewerId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

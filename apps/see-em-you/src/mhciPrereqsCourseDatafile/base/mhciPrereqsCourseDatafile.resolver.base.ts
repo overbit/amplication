@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateMhciPrereqsCourseDatafileArgs } from "./CreateMhciPrereqsCourseDatafileArgs";
-import { UpdateMhciPrereqsCourseDatafileArgs } from "./UpdateMhciPrereqsCourseDatafileArgs";
-import { DeleteMhciPrereqsCourseDatafileArgs } from "./DeleteMhciPrereqsCourseDatafileArgs";
+import { MhciPrereqsCourseDatafile } from "./MhciPrereqsCourseDatafile";
 import { MhciPrereqsCourseDatafileCountArgs } from "./MhciPrereqsCourseDatafileCountArgs";
 import { MhciPrereqsCourseDatafileFindManyArgs } from "./MhciPrereqsCourseDatafileFindManyArgs";
 import { MhciPrereqsCourseDatafileFindUniqueArgs } from "./MhciPrereqsCourseDatafileFindUniqueArgs";
-import { MhciPrereqsCourseDatafile } from "./MhciPrereqsCourseDatafile";
+import { CreateMhciPrereqsCourseDatafileArgs } from "./CreateMhciPrereqsCourseDatafileArgs";
+import { UpdateMhciPrereqsCourseDatafileArgs } from "./UpdateMhciPrereqsCourseDatafileArgs";
+import { DeleteMhciPrereqsCourseDatafileArgs } from "./DeleteMhciPrereqsCourseDatafileArgs";
 import { MhciPrereqsCourse } from "../../mhciPrereqsCourse/base/MhciPrereqsCourse";
 import { MhciPrereqsCourseDatafileService } from "../mhciPrereqsCourseDatafile.service";
 @graphql.Resolver(() => MhciPrereqsCourseDatafile)
@@ -39,14 +39,14 @@ export class MhciPrereqsCourseDatafileResolverBase {
   async mhciPrereqsCourseDatafiles(
     @graphql.Args() args: MhciPrereqsCourseDatafileFindManyArgs
   ): Promise<MhciPrereqsCourseDatafile[]> {
-    return this.service.findMany(args);
+    return this.service.mhciPrereqsCourseDatafiles(args);
   }
 
   @graphql.Query(() => MhciPrereqsCourseDatafile, { nullable: true })
   async mhciPrereqsCourseDatafile(
     @graphql.Args() args: MhciPrereqsCourseDatafileFindUniqueArgs
   ): Promise<MhciPrereqsCourseDatafile | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.mhciPrereqsCourseDatafile(args);
     if (result === null) {
       return null;
     }
@@ -57,7 +57,7 @@ export class MhciPrereqsCourseDatafileResolverBase {
   async createMhciPrereqsCourseDatafile(
     @graphql.Args() args: CreateMhciPrereqsCourseDatafileArgs
   ): Promise<MhciPrereqsCourseDatafile> {
-    return await this.service.create({
+    return await this.service.createMhciPrereqsCourseDatafile({
       ...args,
       data: {
         ...args.data,
@@ -74,7 +74,7 @@ export class MhciPrereqsCourseDatafileResolverBase {
     @graphql.Args() args: UpdateMhciPrereqsCourseDatafileArgs
   ): Promise<MhciPrereqsCourseDatafile | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMhciPrereqsCourseDatafile({
         ...args,
         data: {
           ...args.data,
@@ -99,7 +99,7 @@ export class MhciPrereqsCourseDatafileResolverBase {
     @graphql.Args() args: DeleteMhciPrereqsCourseDatafileArgs
   ): Promise<MhciPrereqsCourseDatafile | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteMhciPrereqsCourseDatafile(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(
@@ -114,7 +114,7 @@ export class MhciPrereqsCourseDatafileResolverBase {
     nullable: true,
     name: "mhciPrereqsCourses",
   })
-  async resolveFieldMhciPrereqsCourses(
+  async getMhciPrereqsCourses(
     @graphql.Parent() parent: MhciPrereqsCourseDatafile
   ): Promise<MhciPrereqsCourse | null> {
     const result = await this.service.getMhciPrereqsCourses(parent.id);

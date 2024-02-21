@@ -1,1 +1,5 @@
-export type LanguageAssessmentRatingWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type LanguageAssessmentRatingWhereInput = {
+  id?: IntFilter;
+};

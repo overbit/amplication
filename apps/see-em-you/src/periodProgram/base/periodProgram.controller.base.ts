@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PeriodProgramService } from "../periodProgram.service";
 import { PeriodProgramCreateInput } from "./PeriodProgramCreateInput";
-import { PeriodProgramWhereInput } from "./PeriodProgramWhereInput";
-import { PeriodProgramWhereUniqueInput } from "./PeriodProgramWhereUniqueInput";
-import { PeriodProgramFindManyArgs } from "./PeriodProgramFindManyArgs";
-import { PeriodProgramUpdateInput } from "./PeriodProgramUpdateInput";
 import { PeriodProgram } from "./PeriodProgram";
+import { PeriodProgramFindManyArgs } from "./PeriodProgramFindManyArgs";
+import { PeriodProgramWhereUniqueInput } from "./PeriodProgramWhereUniqueInput";
+import { PeriodProgramUpdateInput } from "./PeriodProgramUpdateInput";
 
 export class PeriodProgramControllerBase {
   constructor(protected readonly service: PeriodProgramService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: PeriodProgram })
-  async create(
+  async createPeriodProgram(
     @common.Body() data: PeriodProgramCreateInput
   ): Promise<PeriodProgram> {
-    return await this.service.create({
+    return await this.service.createPeriodProgram({
       data: data,
       select: {
-        id: true,
         periodId: true,
         unitId: true,
+        id: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class PeriodProgramControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [PeriodProgram] })
   @ApiNestedQuery(PeriodProgramFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<PeriodProgram[]> {
+  async periodPrograms(
+    @common.Req() request: Request
+  ): Promise<PeriodProgram[]> {
     const args = plainToClass(PeriodProgramFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.periodPrograms({
       ...args,
       select: {
-        id: true,
         periodId: true,
         unitId: true,
+        id: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class PeriodProgramControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: PeriodProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async periodProgram(
     @common.Param() params: PeriodProgramWhereUniqueInput
   ): Promise<PeriodProgram | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.periodProgram({
       where: params,
       select: {
-        id: true,
         periodId: true,
         unitId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class PeriodProgramControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: PeriodProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePeriodProgram(
     @common.Param() params: PeriodProgramWhereUniqueInput,
     @common.Body() data: PeriodProgramUpdateInput
   ): Promise<PeriodProgram | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriodProgram({
         where: params,
         data: data,
         select: {
-          id: true,
           periodId: true,
           unitId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class PeriodProgramControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: PeriodProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePeriodProgram(
     @common.Param() params: PeriodProgramWhereUniqueInput
   ): Promise<PeriodProgram | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePeriodProgram({
         where: params,
         select: {
-          id: true,
           periodId: true,
           unitId: true,
+          id: true,
         },
       });
     } catch (error) {

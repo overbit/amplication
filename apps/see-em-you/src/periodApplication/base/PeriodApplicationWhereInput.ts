@@ -15,6 +15,7 @@ import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationW
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { PeriodWhereUniqueInput } from "../../period/base/PeriodWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class PeriodApplicationWhereInput {
@@ -41,6 +42,17 @@ class PeriodApplicationWhereInput {
     nullable: true,
   })
   period?: PeriodWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { PeriodApplicationWhereInput as PeriodApplicationWhereInput };

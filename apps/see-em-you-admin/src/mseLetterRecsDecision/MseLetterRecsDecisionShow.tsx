@@ -7,13 +7,13 @@ export const MseLetterRecsDecisionShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Algorithms" source="algorithms" />
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Data Structures" source="dataStructures" />
-        <TextField label="Discrete" source="discrete" />
-        <TextField label="Id" source="id" />
-        <TextField label="Java" source="java" />
         <TextField label="Program Id" source="programId" />
+        <TextField label="Java" source="java" />
+        <TextField label="Discrete" source="discrete" />
+        <TextField label="Algorithms" source="algorithms" />
+        <TextField label="Data Structures" source="dataStructures" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

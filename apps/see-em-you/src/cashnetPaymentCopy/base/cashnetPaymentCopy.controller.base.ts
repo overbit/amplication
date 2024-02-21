@@ -18,32 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CashnetPaymentCopyService } from "../cashnetPaymentCopy.service";
 import { CashnetPaymentCopyCreateInput } from "./CashnetPaymentCopyCreateInput";
-import { CashnetPaymentCopyWhereInput } from "./CashnetPaymentCopyWhereInput";
-import { CashnetPaymentCopyWhereUniqueInput } from "./CashnetPaymentCopyWhereUniqueInput";
-import { CashnetPaymentCopyFindManyArgs } from "./CashnetPaymentCopyFindManyArgs";
-import { CashnetPaymentCopyUpdateInput } from "./CashnetPaymentCopyUpdateInput";
 import { CashnetPaymentCopy } from "./CashnetPaymentCopy";
+import { CashnetPaymentCopyFindManyArgs } from "./CashnetPaymentCopyFindManyArgs";
+import { CashnetPaymentCopyWhereUniqueInput } from "./CashnetPaymentCopyWhereUniqueInput";
+import { CashnetPaymentCopyUpdateInput } from "./CashnetPaymentCopyUpdateInput";
 
 export class CashnetPaymentCopyControllerBase {
   constructor(protected readonly service: CashnetPaymentCopyService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: CashnetPaymentCopy })
-  async create(
+  async createCashnetPaymentCopy(
     @common.Body() data: CashnetPaymentCopyCreateInput
   ): Promise<CashnetPaymentCopy> {
-    return await this.service.create({
+    return await this.service.createCashnetPaymentCopy({
       data: data,
       select: {
-        amount: true,
         appId: true,
-        applicantEmail: true,
+        transactionId: true,
         applicantName: true,
-        id: true,
+        applicantEmail: true,
         merchant: true,
         status: true,
-        transactionId: true,
         transactionTime: true,
         transactionType: true,
+        amount: true,
+        id: true,
       },
     });
   }
@@ -51,23 +50,23 @@ export class CashnetPaymentCopyControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [CashnetPaymentCopy] })
   @ApiNestedQuery(CashnetPaymentCopyFindManyArgs)
-  async findMany(
+  async cashnetPaymentCopies(
     @common.Req() request: Request
   ): Promise<CashnetPaymentCopy[]> {
     const args = plainToClass(CashnetPaymentCopyFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.cashnetPaymentCopies({
       ...args,
       select: {
-        amount: true,
         appId: true,
-        applicantEmail: true,
+        transactionId: true,
         applicantName: true,
-        id: true,
+        applicantEmail: true,
         merchant: true,
         status: true,
-        transactionId: true,
         transactionTime: true,
         transactionType: true,
+        amount: true,
+        id: true,
       },
     });
   }
@@ -75,22 +74,22 @@ export class CashnetPaymentCopyControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: CashnetPaymentCopy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async cashnetPaymentCopy(
     @common.Param() params: CashnetPaymentCopyWhereUniqueInput
   ): Promise<CashnetPaymentCopy | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.cashnetPaymentCopy({
       where: params,
       select: {
-        amount: true,
         appId: true,
-        applicantEmail: true,
+        transactionId: true,
         applicantName: true,
-        id: true,
+        applicantEmail: true,
         merchant: true,
         status: true,
-        transactionId: true,
         transactionTime: true,
         transactionType: true,
+        amount: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -104,25 +103,25 @@ export class CashnetPaymentCopyControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: CashnetPaymentCopy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCashnetPaymentCopy(
     @common.Param() params: CashnetPaymentCopyWhereUniqueInput,
     @common.Body() data: CashnetPaymentCopyUpdateInput
   ): Promise<CashnetPaymentCopy | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCashnetPaymentCopy({
         where: params,
         data: data,
         select: {
-          amount: true,
           appId: true,
-          applicantEmail: true,
+          transactionId: true,
           applicantName: true,
-          id: true,
+          applicantEmail: true,
           merchant: true,
           status: true,
-          transactionId: true,
           transactionTime: true,
           transactionType: true,
+          amount: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -138,23 +137,23 @@ export class CashnetPaymentCopyControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: CashnetPaymentCopy })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCashnetPaymentCopy(
     @common.Param() params: CashnetPaymentCopyWhereUniqueInput
   ): Promise<CashnetPaymentCopy | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCashnetPaymentCopy({
         where: params,
         select: {
-          amount: true,
           appId: true,
-          applicantEmail: true,
+          transactionId: true,
           applicantName: true,
-          id: true,
+          applicantEmail: true,
           merchant: true,
           status: true,
-          transactionId: true,
           transactionTime: true,
           transactionType: true,
+          amount: true,
+          id: true,
         },
       });
     } catch (error) {

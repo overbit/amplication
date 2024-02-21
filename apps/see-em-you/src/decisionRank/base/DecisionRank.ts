@@ -11,19 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt, IsOptional, IsDate } from "class-validator";
+import { IsInt, IsString, IsDate, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class DecisionRank {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  decision!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -34,11 +26,27 @@ class DecisionRank {
 
   @ApiProperty({
     required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  periodId!: number;
+
+  @ApiProperty({
+    required: true,
     type: String,
   })
   @IsString()
   @Field(() => String)
-  id!: string;
+  decision!: string;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  timestamp!: Date;
 
   @ApiProperty({
     required: true,
@@ -47,14 +55,6 @@ class DecisionRank {
   @IsInt()
   @Field(() => Number)
   luUsersUsertypesId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  periodId!: number;
 
   @ApiProperty({
     required: false,
@@ -69,11 +69,11 @@ class DecisionRank {
 
   @ApiProperty({
     required: true,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  timestamp!: Date;
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { DecisionRank as DecisionRank };

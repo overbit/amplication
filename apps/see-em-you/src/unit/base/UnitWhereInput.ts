@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { DomainUnitListRelationFilter } from "../../domainUnit/base/DomainUnitListRelationFilter";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { IntFilter } from "../../util/IntFilter";
 
 @InputType()
 class UnitWhereInput {
@@ -28,6 +29,17 @@ class UnitWhereInput {
     nullable: true,
   })
   domainUnit?: DomainUnitListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntFilter,
+  })
+  @Type(() => IntFilter)
+  @IsOptional()
+  @Field(() => IntFilter, {
+    nullable: true,
+  })
+  id?: IntFilter;
 }
 
 export { UnitWhereInput as UnitWhereInput };

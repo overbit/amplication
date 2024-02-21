@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, ValidateNested, IsOptional } from "class-validator";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { ProgramsApplicationreq } from "../../programsApplicationreq/base/ProgramsApplicationreq";
 import { Type } from "class-transformer";
 
@@ -19,36 +19,11 @@ import { Type } from "class-transformer";
 class Applicationreq {
   @ApiProperty({
     required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  linkname!: string;
-
-  @ApiProperty({
-    required: true,
     type: String,
   })
   @IsString()
   @Field(() => String)
   name!: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => [ProgramsApplicationreq],
-  })
-  @ValidateNested()
-  @Type(() => ProgramsApplicationreq)
-  @IsOptional()
-  programsApplicationreqs?: Array<ProgramsApplicationreq>;
 
   @ApiProperty({
     required: false,
@@ -63,11 +38,36 @@ class Applicationreq {
 
   @ApiProperty({
     required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  linkname!: string;
+
+  @ApiProperty({
+    required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
   sortorder!: number;
+
+  @ApiProperty({
+    required: false,
+    type: () => [ProgramsApplicationreq],
+  })
+  @ValidateNested()
+  @Type(() => ProgramsApplicationreq)
+  @IsOptional()
+  programsApplicationreqs?: Array<ProgramsApplicationreq>;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Applicationreq as Applicationreq };

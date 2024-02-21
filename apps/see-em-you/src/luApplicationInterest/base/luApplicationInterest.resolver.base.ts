@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateLuApplicationInterestArgs } from "./CreateLuApplicationInterestArgs";
-import { UpdateLuApplicationInterestArgs } from "./UpdateLuApplicationInterestArgs";
-import { DeleteLuApplicationInterestArgs } from "./DeleteLuApplicationInterestArgs";
+import { LuApplicationInterest } from "./LuApplicationInterest";
 import { LuApplicationInterestCountArgs } from "./LuApplicationInterestCountArgs";
 import { LuApplicationInterestFindManyArgs } from "./LuApplicationInterestFindManyArgs";
 import { LuApplicationInterestFindUniqueArgs } from "./LuApplicationInterestFindUniqueArgs";
-import { LuApplicationInterest } from "./LuApplicationInterest";
+import { CreateLuApplicationInterestArgs } from "./CreateLuApplicationInterestArgs";
+import { UpdateLuApplicationInterestArgs } from "./UpdateLuApplicationInterestArgs";
+import { DeleteLuApplicationInterestArgs } from "./DeleteLuApplicationInterestArgs";
 import { LuApplicationInterestService } from "../luApplicationInterest.service";
 @graphql.Resolver(() => LuApplicationInterest)
 export class LuApplicationInterestResolverBase {
@@ -38,14 +38,14 @@ export class LuApplicationInterestResolverBase {
   async luApplicationInterests(
     @graphql.Args() args: LuApplicationInterestFindManyArgs
   ): Promise<LuApplicationInterest[]> {
-    return this.service.findMany(args);
+    return this.service.luApplicationInterests(args);
   }
 
   @graphql.Query(() => LuApplicationInterest, { nullable: true })
   async luApplicationInterest(
     @graphql.Args() args: LuApplicationInterestFindUniqueArgs
   ): Promise<LuApplicationInterest | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.luApplicationInterest(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class LuApplicationInterestResolverBase {
   async createLuApplicationInterest(
     @graphql.Args() args: CreateLuApplicationInterestArgs
   ): Promise<LuApplicationInterest> {
-    return await this.service.create({
+    return await this.service.createLuApplicationInterest({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class LuApplicationInterestResolverBase {
     @graphql.Args() args: UpdateLuApplicationInterestArgs
   ): Promise<LuApplicationInterest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateLuApplicationInterest({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class LuApplicationInterestResolverBase {
     @graphql.Args() args: DeleteLuApplicationInterestArgs
   ): Promise<LuApplicationInterest | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteLuApplicationInterest(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

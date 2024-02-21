@@ -11,34 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt } from "class-validator";
+import { IsInt, IsString } from "class-validator";
 
 @InputType()
 class MseSupportingCourseworkCreateInput {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  algCourseGrade!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  algCourseName!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  algCourseNum!: string;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -46,22 +22,6 @@ class MseSupportingCourseworkCreateInput {
   @IsInt()
   @Field(() => Number)
   appId!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  dmCourseGrade!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  dmCourseName!: string;
 
   @ApiProperty({
     required: true,
@@ -77,7 +37,7 @@ class MseSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  dsCourseGrade!: string;
+  dmCourseName!: string;
 
   @ApiProperty({
     required: true,
@@ -85,7 +45,7 @@ class MseSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  dsCourseName!: string;
+  dmCourseGrade!: string;
 
   @ApiProperty({
     required: true,
@@ -101,7 +61,7 @@ class MseSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  prog1CourseGrade!: string;
+  dsCourseName!: string;
 
   @ApiProperty({
     required: true,
@@ -109,7 +69,31 @@ class MseSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  prog1CourseName!: string;
+  dsCourseGrade!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  algCourseNum!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  algCourseName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  algCourseGrade!: string;
 
   @ApiProperty({
     required: true,
@@ -125,7 +109,23 @@ class MseSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  prog2CourseGrade!: string;
+  prog1CourseName!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  prog1CourseGrade!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  prog2CourseNum!: string;
 
   @ApiProperty({
     required: true,
@@ -141,7 +141,7 @@ class MseSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  prog2CourseNum!: string;
+  prog2CourseGrade!: string;
 }
 
 export { MseSupportingCourseworkCreateInput as MseSupportingCourseworkCreateInput };

@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateUsersOrigArgs } from "./CreateUsersOrigArgs";
-import { UpdateUsersOrigArgs } from "./UpdateUsersOrigArgs";
-import { DeleteUsersOrigArgs } from "./DeleteUsersOrigArgs";
+import { UsersOrig } from "./UsersOrig";
 import { UsersOrigCountArgs } from "./UsersOrigCountArgs";
 import { UsersOrigFindManyArgs } from "./UsersOrigFindManyArgs";
 import { UsersOrigFindUniqueArgs } from "./UsersOrigFindUniqueArgs";
-import { UsersOrig } from "./UsersOrig";
+import { CreateUsersOrigArgs } from "./CreateUsersOrigArgs";
+import { UpdateUsersOrigArgs } from "./UpdateUsersOrigArgs";
+import { DeleteUsersOrigArgs } from "./DeleteUsersOrigArgs";
 import { UsersOrigService } from "../usersOrig.service";
 @graphql.Resolver(() => UsersOrig)
 export class UsersOrigResolverBase {
@@ -38,14 +38,14 @@ export class UsersOrigResolverBase {
   async usersOrigs(
     @graphql.Args() args: UsersOrigFindManyArgs
   ): Promise<UsersOrig[]> {
-    return this.service.findMany(args);
+    return this.service.usersOrigs(args);
   }
 
   @graphql.Query(() => UsersOrig, { nullable: true })
   async usersOrig(
     @graphql.Args() args: UsersOrigFindUniqueArgs
   ): Promise<UsersOrig | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.usersOrig(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class UsersOrigResolverBase {
   async createUsersOrig(
     @graphql.Args() args: CreateUsersOrigArgs
   ): Promise<UsersOrig> {
-    return await this.service.create({
+    return await this.service.createUsersOrig({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class UsersOrigResolverBase {
     @graphql.Args() args: UpdateUsersOrigArgs
   ): Promise<UsersOrig | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateUsersOrig({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class UsersOrigResolverBase {
     @graphql.Args() args: DeleteUsersOrigArgs
   ): Promise<UsersOrig | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteUsersOrig(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

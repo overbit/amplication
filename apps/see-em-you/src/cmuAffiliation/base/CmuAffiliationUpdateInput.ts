@@ -35,7 +35,7 @@ class CmuAffiliationUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  cmuEmployee?: number;
+  cmuStudentOrAlumnus?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class CmuAffiliationUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  cmuStudentOrAlumnus?: number;
+  cmuEmployee?: number;
 }
 
 export { CmuAffiliationUpdateInput as CmuAffiliationUpdateInput };

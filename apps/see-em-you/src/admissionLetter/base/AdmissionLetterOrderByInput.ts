@@ -50,7 +50,7 @@ class AdmissionLetterOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  sections?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class AdmissionLetterOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  sections?: SortOrder;
+  id?: SortOrder;
 }
 
 export { AdmissionLetterOrderByInput as AdmissionLetterOrderByInput };

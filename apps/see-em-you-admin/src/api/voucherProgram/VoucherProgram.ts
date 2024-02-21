@@ -1,5 +1,5 @@
 export type VoucherProgram = {
-  id: number;
-  programId: number;
   voucherId: number;
+  programId: number;
+  id: number;
 };

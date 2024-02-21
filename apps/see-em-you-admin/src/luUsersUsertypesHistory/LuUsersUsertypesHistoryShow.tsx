@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  DateField,
   TextField,
+  DateField,
 } from "react-admin";
 
 export const LuUsersUsertypesHistoryShow = (
@@ -13,11 +13,11 @@ export const LuUsersUsertypesHistoryShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <DateField source="deleteTimestamp" label="Delete Timestamp" />
-        <TextField label="Delete Users Id" source="deleteUsersId" />
-        <TextField label="Id" source="id" />
         <TextField label="User Id" source="userId" />
         <TextField label="Usertype Id" source="usertypeId" />
+        <TextField label="Delete Users Id" source="deleteUsersId" />
+        <DateField source="deleteTimestamp" label="Delete Timestamp" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

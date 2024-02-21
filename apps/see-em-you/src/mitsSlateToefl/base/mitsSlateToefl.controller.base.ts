@@ -18,32 +18,31 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MitsSlateToeflService } from "../mitsSlateToefl.service";
 import { MitsSlateToeflCreateInput } from "./MitsSlateToeflCreateInput";
-import { MitsSlateToeflWhereInput } from "./MitsSlateToeflWhereInput";
-import { MitsSlateToeflWhereUniqueInput } from "./MitsSlateToeflWhereUniqueInput";
-import { MitsSlateToeflFindManyArgs } from "./MitsSlateToeflFindManyArgs";
-import { MitsSlateToeflUpdateInput } from "./MitsSlateToeflUpdateInput";
 import { MitsSlateToefl } from "./MitsSlateToefl";
+import { MitsSlateToeflFindManyArgs } from "./MitsSlateToeflFindManyArgs";
+import { MitsSlateToeflWhereUniqueInput } from "./MitsSlateToeflWhereUniqueInput";
+import { MitsSlateToeflUpdateInput } from "./MitsSlateToeflUpdateInput";
 
 export class MitsSlateToeflControllerBase {
   constructor(protected readonly service: MitsSlateToeflService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MitsSlateToefl })
-  async create(
+  async createMitsSlateToefl(
     @common.Body() data: MitsSlateToeflCreateInput
   ): Promise<MitsSlateToefl> {
-    return await this.service.create({
+    return await this.service.createMitsSlateToefl({
       data: data,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
   }
@@ -51,21 +50,23 @@ export class MitsSlateToeflControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MitsSlateToefl] })
   @ApiNestedQuery(MitsSlateToeflFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<MitsSlateToefl[]> {
+  async mitsSlateToefls(
+    @common.Req() request: Request
+  ): Promise<MitsSlateToefl[]> {
     const args = plainToClass(MitsSlateToeflFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.mitsSlateToefls({
       ...args,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
   }
@@ -73,22 +74,22 @@ export class MitsSlateToeflControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mitsSlateToefl(
     @common.Param() params: MitsSlateToeflWhereUniqueInput
   ): Promise<MitsSlateToefl | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mitsSlateToefl({
       where: params,
       select: {
-        first: true,
-        id: true,
-        last: true,
-        middle: true,
         prefix: true,
+        first: true,
+        middle: true,
+        last: true,
+        toeflTotal: true,
         toeflListening: true,
         toeflReading: true,
-        toeflSpeaking: true,
         toeflStructureWrittenExpression: true,
-        toeflTotal: true,
+        toeflSpeaking: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -102,25 +103,25 @@ export class MitsSlateToeflControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMitsSlateToefl(
     @common.Param() params: MitsSlateToeflWhereUniqueInput,
     @common.Body() data: MitsSlateToeflUpdateInput
   ): Promise<MitsSlateToefl | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMitsSlateToefl({
         where: params,
         data: data,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          toeflTotal: true,
           toeflListening: true,
           toeflReading: true,
-          toeflSpeaking: true,
           toeflStructureWrittenExpression: true,
-          toeflTotal: true,
+          toeflSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -136,23 +137,23 @@ export class MitsSlateToeflControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MitsSlateToefl })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMitsSlateToefl(
     @common.Param() params: MitsSlateToeflWhereUniqueInput
   ): Promise<MitsSlateToefl | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMitsSlateToefl({
         where: params,
         select: {
-          first: true,
-          id: true,
-          last: true,
-          middle: true,
           prefix: true,
+          first: true,
+          middle: true,
+          last: true,
+          toeflTotal: true,
           toeflListening: true,
           toeflReading: true,
-          toeflSpeaking: true,
           toeflStructureWrittenExpression: true,
-          toeflTotal: true,
+          toeflSpeaking: true,
+          id: true,
         },
       });
     } catch (error) {

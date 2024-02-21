@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateProgramsMseReviewedService } from "../slateProgramsMseReviewed.service";
 import { SlateProgramsMseReviewedCreateInput } from "./SlateProgramsMseReviewedCreateInput";
-import { SlateProgramsMseReviewedWhereInput } from "./SlateProgramsMseReviewedWhereInput";
-import { SlateProgramsMseReviewedWhereUniqueInput } from "./SlateProgramsMseReviewedWhereUniqueInput";
-import { SlateProgramsMseReviewedFindManyArgs } from "./SlateProgramsMseReviewedFindManyArgs";
-import { SlateProgramsMseReviewedUpdateInput } from "./SlateProgramsMseReviewedUpdateInput";
 import { SlateProgramsMseReviewed } from "./SlateProgramsMseReviewed";
+import { SlateProgramsMseReviewedFindManyArgs } from "./SlateProgramsMseReviewedFindManyArgs";
+import { SlateProgramsMseReviewedWhereUniqueInput } from "./SlateProgramsMseReviewedWhereUniqueInput";
+import { SlateProgramsMseReviewedUpdateInput } from "./SlateProgramsMseReviewedUpdateInput";
 
 export class SlateProgramsMseReviewedControllerBase {
   constructor(protected readonly service: SlateProgramsMseReviewedService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateProgramsMseReviewed })
-  async create(
+  async createSlateProgramsMseReviewed(
     @common.Body() data: SlateProgramsMseReviewedCreateInput
   ): Promise<SlateProgramsMseReviewed> {
-    return await this.service.create({
+    return await this.service.createSlateProgramsMseReviewed({
       data: data,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        last: true,
         middle: true,
+        last: true,
         mseProgram1: true,
         mseProgram2: true,
         mseProgram3: true,
-        prefix: true,
+        id: true,
       },
     });
   }
@@ -49,24 +48,24 @@ export class SlateProgramsMseReviewedControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateProgramsMseReviewed] })
   @ApiNestedQuery(SlateProgramsMseReviewedFindManyArgs)
-  async findMany(
+  async slateProgramsMseRevieweds(
     @common.Req() request: Request
   ): Promise<SlateProgramsMseReviewed[]> {
     const args = plainToClass(
       SlateProgramsMseReviewedFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.slateProgramsMseRevieweds({
       ...args,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        last: true,
         middle: true,
+        last: true,
         mseProgram1: true,
         mseProgram2: true,
         mseProgram3: true,
-        prefix: true,
+        id: true,
       },
     });
   }
@@ -74,20 +73,20 @@ export class SlateProgramsMseReviewedControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateProgramsMseReviewed })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateProgramsMseReviewed(
     @common.Param() params: SlateProgramsMseReviewedWhereUniqueInput
   ): Promise<SlateProgramsMseReviewed | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateProgramsMseReviewed({
       where: params,
       select: {
+        prefix: true,
         first: true,
-        id: true,
-        last: true,
         middle: true,
+        last: true,
         mseProgram1: true,
         mseProgram2: true,
         mseProgram3: true,
-        prefix: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -101,23 +100,23 @@ export class SlateProgramsMseReviewedControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateProgramsMseReviewed })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateProgramsMseReviewed(
     @common.Param() params: SlateProgramsMseReviewedWhereUniqueInput,
     @common.Body() data: SlateProgramsMseReviewedUpdateInput
   ): Promise<SlateProgramsMseReviewed | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateProgramsMseReviewed({
         where: params,
         data: data,
         select: {
+          prefix: true,
           first: true,
-          id: true,
-          last: true,
           middle: true,
+          last: true,
           mseProgram1: true,
           mseProgram2: true,
           mseProgram3: true,
-          prefix: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -133,21 +132,21 @@ export class SlateProgramsMseReviewedControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateProgramsMseReviewed })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateProgramsMseReviewed(
     @common.Param() params: SlateProgramsMseReviewedWhereUniqueInput
   ): Promise<SlateProgramsMseReviewed | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateProgramsMseReviewed({
         where: params,
         select: {
+          prefix: true,
           first: true,
-          id: true,
-          last: true,
           middle: true,
+          last: true,
           mseProgram1: true,
           mseProgram2: true,
           mseProgram3: true,
-          prefix: true,
+          id: true,
         },
       });
     } catch (error) {

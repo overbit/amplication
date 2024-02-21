@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, RejectionWaiver } from "@prisma/client";
+import {
+  Prisma,
+  RejectionWaiver as PrismaRejectionWaiver,
+} from "@prisma/client";
 
 export class RejectionWaiverServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class RejectionWaiverServiceBase {
     return this.prisma.rejectionWaiver.count(args);
   }
 
-  async findMany<T extends Prisma.RejectionWaiverFindManyArgs>(
+  async rejectionWaivers<T extends Prisma.RejectionWaiverFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.RejectionWaiverFindManyArgs>
-  ): Promise<RejectionWaiver[]> {
+  ): Promise<PrismaRejectionWaiver[]> {
     return this.prisma.rejectionWaiver.findMany(args);
   }
-  async findOne<T extends Prisma.RejectionWaiverFindUniqueArgs>(
+  async rejectionWaiver<T extends Prisma.RejectionWaiverFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.RejectionWaiverFindUniqueArgs>
-  ): Promise<RejectionWaiver | null> {
+  ): Promise<PrismaRejectionWaiver | null> {
     return this.prisma.rejectionWaiver.findUnique(args);
   }
-  async create<T extends Prisma.RejectionWaiverCreateArgs>(
+  async createRejectionWaiver<T extends Prisma.RejectionWaiverCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RejectionWaiverCreateArgs>
-  ): Promise<RejectionWaiver> {
+  ): Promise<PrismaRejectionWaiver> {
     return this.prisma.rejectionWaiver.create<T>(args);
   }
-  async update<T extends Prisma.RejectionWaiverUpdateArgs>(
+  async updateRejectionWaiver<T extends Prisma.RejectionWaiverUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.RejectionWaiverUpdateArgs>
-  ): Promise<RejectionWaiver> {
+  ): Promise<PrismaRejectionWaiver> {
     return this.prisma.rejectionWaiver.update<T>(args);
   }
-  async delete<T extends Prisma.RejectionWaiverDeleteArgs>(
+  async deleteRejectionWaiver<T extends Prisma.RejectionWaiverDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.RejectionWaiverDeleteArgs>
-  ): Promise<RejectionWaiver> {
+  ): Promise<PrismaRejectionWaiver> {
     return this.prisma.rejectionWaiver.delete(args);
   }
 }

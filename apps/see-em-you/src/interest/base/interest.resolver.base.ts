@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateInterestArgs } from "./CreateInterestArgs";
-import { UpdateInterestArgs } from "./UpdateInterestArgs";
-import { DeleteInterestArgs } from "./DeleteInterestArgs";
+import { Interest } from "./Interest";
 import { InterestCountArgs } from "./InterestCountArgs";
 import { InterestFindManyArgs } from "./InterestFindManyArgs";
 import { InterestFindUniqueArgs } from "./InterestFindUniqueArgs";
-import { Interest } from "./Interest";
+import { CreateInterestArgs } from "./CreateInterestArgs";
+import { UpdateInterestArgs } from "./UpdateInterestArgs";
+import { DeleteInterestArgs } from "./DeleteInterestArgs";
 import { InterestService } from "../interest.service";
 @graphql.Resolver(() => Interest)
 export class InterestResolverBase {
@@ -38,14 +38,14 @@ export class InterestResolverBase {
   async interests(
     @graphql.Args() args: InterestFindManyArgs
   ): Promise<Interest[]> {
-    return this.service.findMany(args);
+    return this.service.interests(args);
   }
 
   @graphql.Query(() => Interest, { nullable: true })
   async interest(
     @graphql.Args() args: InterestFindUniqueArgs
   ): Promise<Interest | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.interest(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class InterestResolverBase {
   async createInterest(
     @graphql.Args() args: CreateInterestArgs
   ): Promise<Interest> {
-    return await this.service.create({
+    return await this.service.createInterest({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class InterestResolverBase {
     @graphql.Args() args: UpdateInterestArgs
   ): Promise<Interest | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateInterest({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class InterestResolverBase {
     @graphql.Args() args: DeleteInterestArgs
   ): Promise<Interest | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteInterest(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

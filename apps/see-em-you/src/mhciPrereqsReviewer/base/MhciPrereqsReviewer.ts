@@ -11,10 +11,34 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsInt, IsString } from "class-validator";
+import { IsInt, IsString, IsBoolean } from "class-validator";
 
 @ObjectType()
 class MhciPrereqsReviewer {
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  reviewerLuuId!: number;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  prereqType!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  placeoutPeriodId!: string;
+
   @ApiProperty({
     required: true,
     type: Boolean,
@@ -30,30 +54,6 @@ class MhciPrereqsReviewer {
   @IsInt()
   @Field(() => Number)
   id!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  placeoutPeriodId!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  prereqType!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  reviewerLuuId!: number;
 }
 
 export { MhciPrereqsReviewer as MhciPrereqsReviewer };

@@ -1,4 +1,4 @@
 export type DisabilityType = {
-  id: number;
   value: string;
+  id: number;
 };

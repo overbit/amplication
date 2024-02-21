@@ -6,8 +6,8 @@ export const AssistantshipCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Application Id" source="applicationId" />
-        <NumberInput step={1} label="Granted" source="granted" />
         <NumberInput step={1} label="Requested" source="requested" />
+        <NumberInput step={1} label="Granted" source="granted" />
       </SimpleForm>
     </Create>
   );

@@ -1,16 +1,16 @@
 export type Accesslog = {
-  activity: string | null;
+  id: number;
+  usersId: number | null;
+  luUsersUsertypesId: number | null;
+  usertypeId: number | null;
   applicationId: number | null;
   client: string | null;
-  domain: number | null;
   eventtime: Date;
-  id: number;
-  lastsrv: string | null;
-  luUsersUsertypesId: number | null;
-  ra: string | null;
+  activity: string | null;
+  domain: number | null;
   referer: string | null;
-  sa: string | null;
-  usersId: number | null;
-  usertypeId: number | null;
   xforward: string | null;
+  sa: string | null;
+  ra: string | null;
+  lastsrv: string | null;
 };

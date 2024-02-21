@@ -35,7 +35,7 @@ class MseBridgeCourseUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  courseId?: number;
+  reviewerId?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class MseBridgeCourseUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  reviewerId?: number;
+  courseId?: number;
 }
 
 export { MseBridgeCourseUpdateInput as MseBridgeCourseUpdateInput };

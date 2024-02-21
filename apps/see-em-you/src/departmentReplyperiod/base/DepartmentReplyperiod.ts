@@ -36,15 +36,7 @@ class DepartmentReplyperiod {
   @Field(() => Date, {
     nullable: true,
   })
-  end!: Date | null;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  start!: Date | null;
 
   @ApiProperty({
     required: false,
@@ -55,7 +47,15 @@ class DepartmentReplyperiod {
   @Field(() => Date, {
     nullable: true,
   })
-  start!: Date | null;
+  end!: Date | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { DepartmentReplyperiod as DepartmentReplyperiod };

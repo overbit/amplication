@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateAppSchoolArgs } from "./CreateSlateAppSchoolArgs";
-import { UpdateSlateAppSchoolArgs } from "./UpdateSlateAppSchoolArgs";
-import { DeleteSlateAppSchoolArgs } from "./DeleteSlateAppSchoolArgs";
+import { SlateAppSchool } from "./SlateAppSchool";
 import { SlateAppSchoolCountArgs } from "./SlateAppSchoolCountArgs";
 import { SlateAppSchoolFindManyArgs } from "./SlateAppSchoolFindManyArgs";
 import { SlateAppSchoolFindUniqueArgs } from "./SlateAppSchoolFindUniqueArgs";
-import { SlateAppSchool } from "./SlateAppSchool";
+import { CreateSlateAppSchoolArgs } from "./CreateSlateAppSchoolArgs";
+import { UpdateSlateAppSchoolArgs } from "./UpdateSlateAppSchoolArgs";
+import { DeleteSlateAppSchoolArgs } from "./DeleteSlateAppSchoolArgs";
 import { SlateAppSchoolService } from "../slateAppSchool.service";
 @graphql.Resolver(() => SlateAppSchool)
 export class SlateAppSchoolResolverBase {
@@ -38,14 +38,14 @@ export class SlateAppSchoolResolverBase {
   async slateAppSchools(
     @graphql.Args() args: SlateAppSchoolFindManyArgs
   ): Promise<SlateAppSchool[]> {
-    return this.service.findMany(args);
+    return this.service.slateAppSchools(args);
   }
 
   @graphql.Query(() => SlateAppSchool, { nullable: true })
   async slateAppSchool(
     @graphql.Args() args: SlateAppSchoolFindUniqueArgs
   ): Promise<SlateAppSchool | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateAppSchool(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateAppSchoolResolverBase {
   async createSlateAppSchool(
     @graphql.Args() args: CreateSlateAppSchoolArgs
   ): Promise<SlateAppSchool> {
-    return await this.service.create({
+    return await this.service.createSlateAppSchool({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateAppSchoolResolverBase {
     @graphql.Args() args: UpdateSlateAppSchoolArgs
   ): Promise<SlateAppSchool | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateAppSchool({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateAppSchoolResolverBase {
     @graphql.Args() args: DeleteSlateAppSchoolArgs
   ): Promise<SlateAppSchool | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateAppSchool(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

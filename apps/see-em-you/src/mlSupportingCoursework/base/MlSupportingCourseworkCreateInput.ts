@@ -11,20 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, ValidateNested } from "class-validator";
 import { ApplicationWhereUniqueInput } from "../../application/base/ApplicationWhereUniqueInput";
-import { ValidateNested, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class MlSupportingCourseworkCreateInput {
   @ApiProperty({
     required: true,
-    type: () => ApplicationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ApplicationWhereUniqueInput)
-  @Field(() => ApplicationWhereUniqueInput)
-  application!: ApplicationWhereUniqueInput;
+  @IsString()
+  @Field(() => String)
+  introCourseNum!: string;
 
   @ApiProperty({
     required: true,
@@ -32,7 +31,15 @@ class MlSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  introCourse2Grade!: string;
+  introCourseSemester!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  introCourseGrade!: string;
 
   @ApiProperty({
     required: true,
@@ -56,31 +63,7 @@ class MlSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  introCourseGrade!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  introCourseNum!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  introCourseSemester!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  ml1CourseGrade!: string;
+  introCourse2Grade!: string;
 
   @ApiProperty({
     required: true,
@@ -104,7 +87,7 @@ class MlSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  ml2CourseGrade!: string;
+  ml1CourseGrade!: string;
 
   @ApiProperty({
     required: true,
@@ -121,6 +104,23 @@ class MlSupportingCourseworkCreateInput {
   @IsString()
   @Field(() => String)
   ml2CourseSemester!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  ml2CourseGrade!: string;
+
+  @ApiProperty({
+    required: true,
+    type: () => ApplicationWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApplicationWhereUniqueInput)
+  @Field(() => ApplicationWhereUniqueInput)
+  application!: ApplicationWhereUniqueInput;
 }
 
 export { MlSupportingCourseworkCreateInput as MlSupportingCourseworkCreateInput };

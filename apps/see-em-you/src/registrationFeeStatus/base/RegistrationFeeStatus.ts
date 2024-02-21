@@ -11,29 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field, Float } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, ValidateNested, IsInt, IsBoolean } from "class-validator";
+import { IsInt, IsNumber, IsBoolean, ValidateNested } from "class-validator";
 import { Decimal } from "decimal.js";
 import { Application } from "../../application/base/Application";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class RegistrationFeeStatus {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsNumber()
-  @Field(() => Float)
-  amount!: Decimal;
-
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -46,9 +30,9 @@ class RegistrationFeeStatus {
     required: true,
     type: Number,
   })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
+  @IsNumber()
+  @Field(() => Float)
+  amount!: Decimal;
 
   @ApiProperty({
     required: true,
@@ -65,6 +49,22 @@ class RegistrationFeeStatus {
   @IsBoolean()
   @Field(() => Boolean)
   waived!: boolean;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { RegistrationFeeStatus as RegistrationFeeStatus };

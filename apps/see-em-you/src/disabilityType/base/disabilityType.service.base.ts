@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, DisabilityType } from "@prisma/client";
+import { Prisma, DisabilityType as PrismaDisabilityType } from "@prisma/client";
 
 export class DisabilityTypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class DisabilityTypeServiceBase {
     return this.prisma.disabilityType.count(args);
   }
 
-  async findMany<T extends Prisma.DisabilityTypeFindManyArgs>(
+  async disabilityTypes<T extends Prisma.DisabilityTypeFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityTypeFindManyArgs>
-  ): Promise<DisabilityType[]> {
+  ): Promise<PrismaDisabilityType[]> {
     return this.prisma.disabilityType.findMany(args);
   }
-  async findOne<T extends Prisma.DisabilityTypeFindUniqueArgs>(
+  async disabilityType<T extends Prisma.DisabilityTypeFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityTypeFindUniqueArgs>
-  ): Promise<DisabilityType | null> {
+  ): Promise<PrismaDisabilityType | null> {
     return this.prisma.disabilityType.findUnique(args);
   }
-  async create<T extends Prisma.DisabilityTypeCreateArgs>(
+  async createDisabilityType<T extends Prisma.DisabilityTypeCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityTypeCreateArgs>
-  ): Promise<DisabilityType> {
+  ): Promise<PrismaDisabilityType> {
     return this.prisma.disabilityType.create<T>(args);
   }
-  async update<T extends Prisma.DisabilityTypeUpdateArgs>(
+  async updateDisabilityType<T extends Prisma.DisabilityTypeUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityTypeUpdateArgs>
-  ): Promise<DisabilityType> {
+  ): Promise<PrismaDisabilityType> {
     return this.prisma.disabilityType.update<T>(args);
   }
-  async delete<T extends Prisma.DisabilityTypeDeleteArgs>(
+  async deleteDisabilityType<T extends Prisma.DisabilityTypeDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.DisabilityTypeDeleteArgs>
-  ): Promise<DisabilityType> {
+  ): Promise<PrismaDisabilityType> {
     return this.prisma.disabilityType.delete(args);
   }
 }

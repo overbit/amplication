@@ -1,1 +1,5 @@
-export type Em2SupportingCourseworkWhereInput = {};
+import { IntFilter } from "../../util/IntFilter";
+
+export type Em2SupportingCourseworkWhereInput = {
+  id?: IntFilter;
+};

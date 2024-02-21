@@ -16,17 +16,6 @@ import { IsInt, IsOptional } from "class-validator";
 @InputType()
 class LuUsersUsertypesHistoryCreateInput {
   @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  deleteUsersId?: number | null;
-
-  @ApiProperty({
     required: true,
     type: Number,
   })
@@ -41,6 +30,17 @@ class LuUsersUsertypesHistoryCreateInput {
   @IsInt()
   @Field(() => Number)
   usertypeId!: number;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  deleteUsersId?: number | null;
 }
 
 export { LuUsersUsertypesHistoryCreateInput as LuUsersUsertypesHistoryCreateInput };

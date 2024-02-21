@@ -18,30 +18,29 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MseRiskFactorsDecisionService } from "../mseRiskFactorsDecision.service";
 import { MseRiskFactorsDecisionCreateInput } from "./MseRiskFactorsDecisionCreateInput";
-import { MseRiskFactorsDecisionWhereInput } from "./MseRiskFactorsDecisionWhereInput";
-import { MseRiskFactorsDecisionWhereUniqueInput } from "./MseRiskFactorsDecisionWhereUniqueInput";
-import { MseRiskFactorsDecisionFindManyArgs } from "./MseRiskFactorsDecisionFindManyArgs";
-import { MseRiskFactorsDecisionUpdateInput } from "./MseRiskFactorsDecisionUpdateInput";
 import { MseRiskFactorsDecision } from "./MseRiskFactorsDecision";
+import { MseRiskFactorsDecisionFindManyArgs } from "./MseRiskFactorsDecisionFindManyArgs";
+import { MseRiskFactorsDecisionWhereUniqueInput } from "./MseRiskFactorsDecisionWhereUniqueInput";
+import { MseRiskFactorsDecisionUpdateInput } from "./MseRiskFactorsDecisionUpdateInput";
 
 export class MseRiskFactorsDecisionControllerBase {
   constructor(protected readonly service: MseRiskFactorsDecisionService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MseRiskFactorsDecision })
-  async create(
+  async createMseRiskFactorsDecision(
     @common.Body() data: MseRiskFactorsDecisionCreateInput
   ): Promise<MseRiskFactorsDecision> {
-    return await this.service.create({
+    return await this.service.createMseRiskFactorsDecision({
       data: data,
       select: {
-        academic: true,
-        applicationId: true,
         experience: true,
-        id: true,
+        applicationId: true,
+        programId: true,
         language: true,
+        academic: true,
         other: true,
         otherText: true,
-        programId: true,
+        id: true,
       },
     });
   }
@@ -49,24 +48,24 @@ export class MseRiskFactorsDecisionControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MseRiskFactorsDecision] })
   @ApiNestedQuery(MseRiskFactorsDecisionFindManyArgs)
-  async findMany(
+  async mseRiskFactorsDecisions(
     @common.Req() request: Request
   ): Promise<MseRiskFactorsDecision[]> {
     const args = plainToClass(
       MseRiskFactorsDecisionFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.mseRiskFactorsDecisions({
       ...args,
       select: {
-        academic: true,
-        applicationId: true,
         experience: true,
-        id: true,
+        applicationId: true,
+        programId: true,
         language: true,
+        academic: true,
         other: true,
         otherText: true,
-        programId: true,
+        id: true,
       },
     });
   }
@@ -74,20 +73,20 @@ export class MseRiskFactorsDecisionControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MseRiskFactorsDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mseRiskFactorsDecision(
     @common.Param() params: MseRiskFactorsDecisionWhereUniqueInput
   ): Promise<MseRiskFactorsDecision | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mseRiskFactorsDecision({
       where: params,
       select: {
-        academic: true,
-        applicationId: true,
         experience: true,
-        id: true,
+        applicationId: true,
+        programId: true,
         language: true,
+        academic: true,
         other: true,
         otherText: true,
-        programId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -101,23 +100,23 @@ export class MseRiskFactorsDecisionControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MseRiskFactorsDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMseRiskFactorsDecision(
     @common.Param() params: MseRiskFactorsDecisionWhereUniqueInput,
     @common.Body() data: MseRiskFactorsDecisionUpdateInput
   ): Promise<MseRiskFactorsDecision | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMseRiskFactorsDecision({
         where: params,
         data: data,
         select: {
-          academic: true,
-          applicationId: true,
           experience: true,
-          id: true,
+          applicationId: true,
+          programId: true,
           language: true,
+          academic: true,
           other: true,
           otherText: true,
-          programId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -133,21 +132,21 @@ export class MseRiskFactorsDecisionControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MseRiskFactorsDecision })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMseRiskFactorsDecision(
     @common.Param() params: MseRiskFactorsDecisionWhereUniqueInput
   ): Promise<MseRiskFactorsDecision | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMseRiskFactorsDecision({
         where: params,
         select: {
-          academic: true,
-          applicationId: true,
           experience: true,
-          id: true,
+          applicationId: true,
+          programId: true,
           language: true,
+          academic: true,
           other: true,
           otherText: true,
-          programId: true,
+          id: true,
         },
       });
     } catch (error) {

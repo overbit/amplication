@@ -14,8 +14,8 @@ export const LanguageAssessmentStudyLevelList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Value" source="value" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

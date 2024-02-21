@@ -1,21 +1,21 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MseSupportingCourseworkOrderByInput = {
-  algCourseGrade?: SortOrder;
-  algCourseName?: SortOrder;
-  algCourseNum?: SortOrder;
   appId?: SortOrder;
-  dmCourseGrade?: SortOrder;
-  dmCourseName?: SortOrder;
   dmCourseNum?: SortOrder;
-  dsCourseGrade?: SortOrder;
-  dsCourseName?: SortOrder;
+  dmCourseName?: SortOrder;
+  dmCourseGrade?: SortOrder;
   dsCourseNum?: SortOrder;
-  id?: SortOrder;
-  prog1CourseGrade?: SortOrder;
-  prog1CourseName?: SortOrder;
+  dsCourseName?: SortOrder;
+  dsCourseGrade?: SortOrder;
+  algCourseNum?: SortOrder;
+  algCourseName?: SortOrder;
+  algCourseGrade?: SortOrder;
   prog1CourseNum?: SortOrder;
-  prog2CourseGrade?: SortOrder;
-  prog2CourseName?: SortOrder;
+  prog1CourseName?: SortOrder;
+  prog1CourseGrade?: SortOrder;
   prog2CourseNum?: SortOrder;
+  prog2CourseName?: SortOrder;
+  prog2CourseGrade?: SortOrder;
+  id?: SortOrder;
 };

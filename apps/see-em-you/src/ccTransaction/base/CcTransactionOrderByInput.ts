@@ -39,7 +39,18 @@ class CcTransactionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  cardholderNameFirst?: SortOrder;
+  paymentId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  storeNumber?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,29 +72,18 @@ class CcTransactionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  cardholderNameFirst?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  paymentId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  storeNumber?: SortOrder;
 }
 
 export { CcTransactionOrderByInput as CcTransactionOrderByInput };

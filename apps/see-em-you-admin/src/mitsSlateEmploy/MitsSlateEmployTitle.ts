@@ -1,7 +1,7 @@
 import { MitsSlateEmploy as TMitsSlateEmploy } from "../api/mitsSlateEmploy/MitsSlateEmploy";
 
-export const MITSSLATEEMPLOY_TITLE_FIELD = "first";
+export const MITSSLATEEMPLOY_TITLE_FIELD = "prefix";
 
 export const MitsSlateEmployTitle = (record: TMitsSlateEmploy): string => {
-  return record.first?.toString() || String(record.id);
+  return record.prefix?.toString() || String(record.id);
 };

@@ -1,8 +1,8 @@
 export type ScsUserCreateInput = {
-  andrewId?: string | null;
+  usersId: number;
   cmuGuid?: string | null;
   csId?: string | null;
+  andrewId?: string | null;
   eceId?: string | null;
   qatarId?: string | null;
-  usersId: number;
 };

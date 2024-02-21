@@ -3,9 +3,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  TextInput,
   ReferenceInput,
   SelectInput,
-  TextInput,
 } from "react-admin";
 import { ApplicationTitle } from "../application/ApplicationTitle";
 
@@ -15,6 +15,8 @@ export const LuApplicationStartSemesterEdit = (
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="Semester" source="semester" />
+        <TextInput label="Year" source="year" />
         <ReferenceInput
           source="application.id"
           reference="Application"
@@ -22,8 +24,6 @@ export const LuApplicationStartSemesterEdit = (
         >
           <SelectInput optionText={ApplicationTitle} />
         </ReferenceInput>
-        <TextInput label="Semester" source="semester" />
-        <TextInput label="Year" source="year" />
       </SimpleForm>
     </Edit>
   );

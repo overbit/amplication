@@ -18,33 +18,32 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { Em2SupportingCourseworkService } from "../em2SupportingCoursework.service";
 import { Em2SupportingCourseworkCreateInput } from "./Em2SupportingCourseworkCreateInput";
-import { Em2SupportingCourseworkWhereInput } from "./Em2SupportingCourseworkWhereInput";
-import { Em2SupportingCourseworkWhereUniqueInput } from "./Em2SupportingCourseworkWhereUniqueInput";
-import { Em2SupportingCourseworkFindManyArgs } from "./Em2SupportingCourseworkFindManyArgs";
-import { Em2SupportingCourseworkUpdateInput } from "./Em2SupportingCourseworkUpdateInput";
 import { Em2SupportingCoursework } from "./Em2SupportingCoursework";
+import { Em2SupportingCourseworkFindManyArgs } from "./Em2SupportingCourseworkFindManyArgs";
+import { Em2SupportingCourseworkWhereUniqueInput } from "./Em2SupportingCourseworkWhereUniqueInput";
+import { Em2SupportingCourseworkUpdateInput } from "./Em2SupportingCourseworkUpdateInput";
 
 export class Em2SupportingCourseworkControllerBase {
   constructor(protected readonly service: Em2SupportingCourseworkService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Em2SupportingCoursework })
-  async create(
+  async createEm2SupportingCoursework(
     @common.Body() data: Em2SupportingCourseworkCreateInput
   ): Promise<Em2SupportingCoursework> {
-    return await this.service.create({
+    return await this.service.createEm2SupportingCoursework({
       data: data,
       select: {
         applicationId: true,
-        dataStructuresNumber: true,
         dataStructuresTitle: true,
-        id: true,
-        makerkitsDescription: true,
-        makerkitsDescription2: true,
+        dataStructuresNumber: true,
+        statisticsTitle: true,
+        statisticsNumber: true,
         msitExperience: true,
         programmingDescription: true,
         programmingDescription2: true,
-        statisticsNumber: true,
-        statisticsTitle: true,
+        makerkitsDescription: true,
+        makerkitsDescription2: true,
+        id: true,
       },
     });
   }
@@ -52,27 +51,27 @@ export class Em2SupportingCourseworkControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Em2SupportingCoursework] })
   @ApiNestedQuery(Em2SupportingCourseworkFindManyArgs)
-  async findMany(
+  async em2SupportingCourseworks(
     @common.Req() request: Request
   ): Promise<Em2SupportingCoursework[]> {
     const args = plainToClass(
       Em2SupportingCourseworkFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.em2SupportingCourseworks({
       ...args,
       select: {
         applicationId: true,
-        dataStructuresNumber: true,
         dataStructuresTitle: true,
-        id: true,
-        makerkitsDescription: true,
-        makerkitsDescription2: true,
+        dataStructuresNumber: true,
+        statisticsTitle: true,
+        statisticsNumber: true,
         msitExperience: true,
         programmingDescription: true,
         programmingDescription2: true,
-        statisticsNumber: true,
-        statisticsTitle: true,
+        makerkitsDescription: true,
+        makerkitsDescription2: true,
+        id: true,
       },
     });
   }
@@ -80,23 +79,23 @@ export class Em2SupportingCourseworkControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Em2SupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async em2SupportingCoursework(
     @common.Param() params: Em2SupportingCourseworkWhereUniqueInput
   ): Promise<Em2SupportingCoursework | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.em2SupportingCoursework({
       where: params,
       select: {
         applicationId: true,
-        dataStructuresNumber: true,
         dataStructuresTitle: true,
-        id: true,
-        makerkitsDescription: true,
-        makerkitsDescription2: true,
+        dataStructuresNumber: true,
+        statisticsTitle: true,
+        statisticsNumber: true,
         msitExperience: true,
         programmingDescription: true,
         programmingDescription2: true,
-        statisticsNumber: true,
-        statisticsTitle: true,
+        makerkitsDescription: true,
+        makerkitsDescription2: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -110,26 +109,26 @@ export class Em2SupportingCourseworkControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Em2SupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateEm2SupportingCoursework(
     @common.Param() params: Em2SupportingCourseworkWhereUniqueInput,
     @common.Body() data: Em2SupportingCourseworkUpdateInput
   ): Promise<Em2SupportingCoursework | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateEm2SupportingCoursework({
         where: params,
         data: data,
         select: {
           applicationId: true,
-          dataStructuresNumber: true,
           dataStructuresTitle: true,
-          id: true,
-          makerkitsDescription: true,
-          makerkitsDescription2: true,
+          dataStructuresNumber: true,
+          statisticsTitle: true,
+          statisticsNumber: true,
           msitExperience: true,
           programmingDescription: true,
           programmingDescription2: true,
-          statisticsNumber: true,
-          statisticsTitle: true,
+          makerkitsDescription: true,
+          makerkitsDescription2: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -145,24 +144,24 @@ export class Em2SupportingCourseworkControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Em2SupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteEm2SupportingCoursework(
     @common.Param() params: Em2SupportingCourseworkWhereUniqueInput
   ): Promise<Em2SupportingCoursework | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteEm2SupportingCoursework({
         where: params,
         select: {
           applicationId: true,
-          dataStructuresNumber: true,
           dataStructuresTitle: true,
-          id: true,
-          makerkitsDescription: true,
-          makerkitsDescription2: true,
+          dataStructuresNumber: true,
+          statisticsTitle: true,
+          statisticsNumber: true,
           msitExperience: true,
           programmingDescription: true,
           programmingDescription2: true,
-          statisticsNumber: true,
-          statisticsTitle: true,
+          makerkitsDescription: true,
+          makerkitsDescription2: true,
+          id: true,
         },
       });
     } catch (error) {

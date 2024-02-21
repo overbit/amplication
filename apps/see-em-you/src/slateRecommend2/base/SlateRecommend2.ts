@@ -24,15 +24,7 @@ class SlateRecommend2 {
   @Field(() => String, {
     nullable: true,
   })
-  first!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  prefix!: string | null;
 
   @ApiProperty({
     required: false,
@@ -43,7 +35,7 @@ class SlateRecommend2 {
   @Field(() => String, {
     nullable: true,
   })
-  last!: string | null;
+  first!: string | null;
 
   @ApiProperty({
     required: false,
@@ -65,7 +57,7 @@ class SlateRecommend2 {
   @Field(() => String, {
     nullable: true,
   })
-  prefix!: string | null;
+  last!: string | null;
 
   @ApiProperty({
     required: false,
@@ -76,62 +68,7 @@ class SlateRecommend2 {
   @Field(() => String, {
     nullable: true,
   })
-  reference2Email!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference2First!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference2Industry!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference2Last!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference2Organization!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  reference2Phone!: string | null;
+  reference2Type!: string | null;
 
   @ApiProperty({
     required: false,
@@ -153,6 +90,50 @@ class SlateRecommend2 {
   @Field(() => String, {
     nullable: true,
   })
+  reference2First!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reference2Last!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reference2Industry!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reference2Organization!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   reference2Title!: string | null;
 
   @ApiProperty({
@@ -164,7 +145,18 @@ class SlateRecommend2 {
   @Field(() => String, {
     nullable: true,
   })
-  reference2Type!: string | null;
+  reference2Email!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  reference2Phone!: string | null;
 
   @ApiProperty({
     required: false,
@@ -473,6 +465,14 @@ class SlateRecommend2 {
     nullable: true,
   })
   referenceNum2RecommenderScore8!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { SlateRecommend2 as SlateRecommend2 };

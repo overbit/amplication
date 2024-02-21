@@ -1,9 +1,9 @@
 export type Em2Sop = {
-  additionalInfo: string | null;
   applicationId: number;
-  background: string;
-  id: number;
   objective: string;
+  background: string;
   researchExperience: string;
   taInterest: string | null;
+  additionalInfo: string | null;
+  id: number;
 };

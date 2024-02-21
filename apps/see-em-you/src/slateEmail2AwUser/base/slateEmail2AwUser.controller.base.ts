@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateEmail2AwUserService } from "../slateEmail2AwUser.service";
 import { SlateEmail2AwUserCreateInput } from "./SlateEmail2AwUserCreateInput";
-import { SlateEmail2AwUserWhereInput } from "./SlateEmail2AwUserWhereInput";
-import { SlateEmail2AwUserWhereUniqueInput } from "./SlateEmail2AwUserWhereUniqueInput";
-import { SlateEmail2AwUserFindManyArgs } from "./SlateEmail2AwUserFindManyArgs";
-import { SlateEmail2AwUserUpdateInput } from "./SlateEmail2AwUserUpdateInput";
 import { SlateEmail2AwUser } from "./SlateEmail2AwUser";
+import { SlateEmail2AwUserFindManyArgs } from "./SlateEmail2AwUserFindManyArgs";
+import { SlateEmail2AwUserWhereUniqueInput } from "./SlateEmail2AwUserWhereUniqueInput";
+import { SlateEmail2AwUserUpdateInput } from "./SlateEmail2AwUserUpdateInput";
 
 export class SlateEmail2AwUserControllerBase {
   constructor(protected readonly service: SlateEmail2AwUserService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateEmail2AwUser })
-  async create(
+  async createSlateEmail2AwUser(
     @common.Body() data: SlateEmail2AwUserCreateInput
   ): Promise<SlateEmail2AwUser> {
-    return await this.service.create({
+    return await this.service.createSlateEmail2AwUser({
       data: data,
       select: {
+        slateEmail: true,
         awLuuUserId: true,
         id: true,
-        slateEmail: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class SlateEmail2AwUserControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateEmail2AwUser] })
   @ApiNestedQuery(SlateEmail2AwUserFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateEmail2AwUser[]> {
+  async slateEmail2AwUsers(
+    @common.Req() request: Request
+  ): Promise<SlateEmail2AwUser[]> {
     const args = plainToClass(SlateEmail2AwUserFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateEmail2AwUsers({
       ...args,
       select: {
+        slateEmail: true,
         awLuuUserId: true,
         id: true,
-        slateEmail: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class SlateEmail2AwUserControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateEmail2AwUser })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateEmail2AwUser(
     @common.Param() params: SlateEmail2AwUserWhereUniqueInput
   ): Promise<SlateEmail2AwUser | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateEmail2AwUser({
       where: params,
       select: {
+        slateEmail: true,
         awLuuUserId: true,
         id: true,
-        slateEmail: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class SlateEmail2AwUserControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateEmail2AwUser })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateEmail2AwUser(
     @common.Param() params: SlateEmail2AwUserWhereUniqueInput,
     @common.Body() data: SlateEmail2AwUserUpdateInput
   ): Promise<SlateEmail2AwUser | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateEmail2AwUser({
         where: params,
         data: data,
         select: {
+          slateEmail: true,
           awLuuUserId: true,
           id: true,
-          slateEmail: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class SlateEmail2AwUserControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateEmail2AwUser })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateEmail2AwUser(
     @common.Param() params: SlateEmail2AwUserWhereUniqueInput
   ): Promise<SlateEmail2AwUser | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateEmail2AwUser({
         where: params,
         select: {
+          slateEmail: true,
           awLuuUserId: true,
           id: true,
-          slateEmail: true,
         },
       });
     } catch (error) {

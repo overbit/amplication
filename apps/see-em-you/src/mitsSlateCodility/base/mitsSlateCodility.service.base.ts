@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateCodility } from "@prisma/client";
+import {
+  Prisma,
+  MitsSlateCodility as PrismaMitsSlateCodility,
+} from "@prisma/client";
 
 export class MitsSlateCodilityServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class MitsSlateCodilityServiceBase {
     return this.prisma.mitsSlateCodility.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateCodilityFindManyArgs>(
+  async mitsSlateCodilities<T extends Prisma.MitsSlateCodilityFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateCodilityFindManyArgs>
-  ): Promise<MitsSlateCodility[]> {
+  ): Promise<PrismaMitsSlateCodility[]> {
     return this.prisma.mitsSlateCodility.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateCodilityFindUniqueArgs>(
+  async mitsSlateCodility<T extends Prisma.MitsSlateCodilityFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateCodilityFindUniqueArgs>
-  ): Promise<MitsSlateCodility | null> {
+  ): Promise<PrismaMitsSlateCodility | null> {
     return this.prisma.mitsSlateCodility.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateCodilityCreateArgs>(
+  async createMitsSlateCodility<T extends Prisma.MitsSlateCodilityCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateCodilityCreateArgs>
-  ): Promise<MitsSlateCodility> {
+  ): Promise<PrismaMitsSlateCodility> {
     return this.prisma.mitsSlateCodility.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateCodilityUpdateArgs>(
+  async updateMitsSlateCodility<T extends Prisma.MitsSlateCodilityUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateCodilityUpdateArgs>
-  ): Promise<MitsSlateCodility> {
+  ): Promise<PrismaMitsSlateCodility> {
     return this.prisma.mitsSlateCodility.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateCodilityDeleteArgs>(
+  async deleteMitsSlateCodility<T extends Prisma.MitsSlateCodilityDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateCodilityDeleteArgs>
-  ): Promise<MitsSlateCodility> {
+  ): Promise<PrismaMitsSlateCodility> {
     return this.prisma.mitsSlateCodility.delete(args);
   }
 }

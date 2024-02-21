@@ -18,11 +18,10 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { PeriodService } from "../period.service";
 import { PeriodCreateInput } from "./PeriodCreateInput";
-import { PeriodWhereInput } from "./PeriodWhereInput";
-import { PeriodWhereUniqueInput } from "./PeriodWhereUniqueInput";
-import { PeriodFindManyArgs } from "./PeriodFindManyArgs";
-import { PeriodUpdateInput } from "./PeriodUpdateInput";
 import { Period } from "./Period";
+import { PeriodFindManyArgs } from "./PeriodFindManyArgs";
+import { PeriodWhereUniqueInput } from "./PeriodWhereUniqueInput";
+import { PeriodUpdateInput } from "./PeriodUpdateInput";
 import { AaDepartmentFindManyArgs } from "../../aaDepartment/base/AaDepartmentFindManyArgs";
 import { AaDepartment } from "../../aaDepartment/base/AaDepartment";
 import { AaDepartmentWhereUniqueInput } from "../../aaDepartment/base/AaDepartmentWhereUniqueInput";
@@ -37,17 +36,17 @@ export class PeriodControllerBase {
   constructor(protected readonly service: PeriodService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Period })
-  async create(@common.Body() data: PeriodCreateInput): Promise<Period> {
-    return await this.service.create({
+  async createPeriod(@common.Body() data: PeriodCreateInput): Promise<Period> {
+    return await this.service.createPeriod({
       data: data,
       select: {
-        description: true,
-        endDate: true,
-        id: true,
-        parentPeriodId: true,
-        periodTypeId: true,
-        startDate: true,
         unitId: true,
+        periodTypeId: true,
+        description: true,
+        startDate: true,
+        endDate: true,
+        parentPeriodId: true,
+        id: true,
       },
     });
   }
@@ -55,18 +54,18 @@ export class PeriodControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Period] })
   @ApiNestedQuery(PeriodFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Period[]> {
+  async periods(@common.Req() request: Request): Promise<Period[]> {
     const args = plainToClass(PeriodFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.periods({
       ...args,
       select: {
-        description: true,
-        endDate: true,
-        id: true,
-        parentPeriodId: true,
-        periodTypeId: true,
-        startDate: true,
         unitId: true,
+        periodTypeId: true,
+        description: true,
+        startDate: true,
+        endDate: true,
+        parentPeriodId: true,
+        id: true,
       },
     });
   }
@@ -74,19 +73,19 @@ export class PeriodControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Period })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async period(
     @common.Param() params: PeriodWhereUniqueInput
   ): Promise<Period | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.period({
       where: params,
       select: {
-        description: true,
-        endDate: true,
-        id: true,
-        parentPeriodId: true,
-        periodTypeId: true,
-        startDate: true,
         unitId: true,
+        periodTypeId: true,
+        description: true,
+        startDate: true,
+        endDate: true,
+        parentPeriodId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -100,22 +99,22 @@ export class PeriodControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Period })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updatePeriod(
     @common.Param() params: PeriodWhereUniqueInput,
     @common.Body() data: PeriodUpdateInput
   ): Promise<Period | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriod({
         where: params,
         data: data,
         select: {
-          description: true,
-          endDate: true,
-          id: true,
-          parentPeriodId: true,
-          periodTypeId: true,
-          startDate: true,
           unitId: true,
+          periodTypeId: true,
+          description: true,
+          startDate: true,
+          endDate: true,
+          parentPeriodId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -131,20 +130,20 @@ export class PeriodControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Period })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deletePeriod(
     @common.Param() params: PeriodWhereUniqueInput
   ): Promise<Period | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deletePeriod({
         where: params,
         select: {
-          description: true,
-          endDate: true,
-          id: true,
-          parentPeriodId: true,
-          periodTypeId: true,
-          startDate: true,
           unitId: true,
+          periodTypeId: true,
+          description: true,
+          startDate: true,
+          endDate: true,
+          parentPeriodId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -159,7 +158,7 @@ export class PeriodControllerBase {
 
   @common.Get("/:id/aaDepartment")
   @ApiNestedQuery(AaDepartmentFindManyArgs)
-  async findManyAaDepartment(
+  async findAaDepartment(
     @common.Req() request: Request,
     @common.Param() params: PeriodWhereUniqueInput
   ): Promise<AaDepartment[]> {
@@ -167,6 +166,12 @@ export class PeriodControllerBase {
     const results = await this.service.findAaDepartment(params.id, {
       ...query,
       select: {
+        period: {
+          select: {
+            id: true,
+          },
+        },
+
         department: {
           select: {
             id: true,
@@ -174,12 +179,6 @@ export class PeriodControllerBase {
         },
 
         id: true,
-
-        period: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {
@@ -200,7 +199,7 @@ export class PeriodControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },
@@ -217,7 +216,7 @@ export class PeriodControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },
@@ -234,7 +233,7 @@ export class PeriodControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },
@@ -243,7 +242,7 @@ export class PeriodControllerBase {
 
   @common.Get("/:id/cohort")
   @ApiNestedQuery(CohortFindManyArgs)
-  async findManyCohort(
+  async findCohort(
     @common.Req() request: Request,
     @common.Param() params: PeriodWhereUniqueInput
   ): Promise<Cohort[]> {
@@ -251,9 +250,9 @@ export class PeriodControllerBase {
     const results = await this.service.findCohort(params.id, {
       ...query,
       select: {
-        closed: true,
         cohortId: true,
-        id: true,
+        startDate: true,
+        closed: true,
 
         period: {
           select: {
@@ -261,7 +260,7 @@ export class PeriodControllerBase {
           },
         },
 
-        startDate: true,
+        id: true,
       },
     });
     if (results === null) {
@@ -282,7 +281,7 @@ export class PeriodControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },
@@ -299,7 +298,7 @@ export class PeriodControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },
@@ -316,7 +315,7 @@ export class PeriodControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },
@@ -325,7 +324,7 @@ export class PeriodControllerBase {
 
   @common.Get("/:id/periodApplication")
   @ApiNestedQuery(PeriodApplicationFindManyArgs)
-  async findManyPeriodApplication(
+  async findPeriodApplication(
     @common.Req() request: Request,
     @common.Param() params: PeriodWhereUniqueInput
   ): Promise<PeriodApplication[]> {
@@ -339,13 +338,13 @@ export class PeriodControllerBase {
           },
         },
 
-        id: true,
-
         period: {
           select: {
             id: true,
           },
         },
+
+        id: true,
       },
     });
     if (results === null) {
@@ -366,7 +365,7 @@ export class PeriodControllerBase {
         connect: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },
@@ -383,7 +382,7 @@ export class PeriodControllerBase {
         set: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },
@@ -400,7 +399,7 @@ export class PeriodControllerBase {
         disconnect: body,
       },
     };
-    await this.service.update({
+    await this.service.updatePeriod({
       where: params,
       data,
       select: { id: true },

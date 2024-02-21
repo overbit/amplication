@@ -18,18 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { GmatscoreService } from "../gmatscore.service";
 import { GmatscoreCreateInput } from "./GmatscoreCreateInput";
-import { GmatscoreWhereInput } from "./GmatscoreWhereInput";
-import { GmatscoreWhereUniqueInput } from "./GmatscoreWhereUniqueInput";
-import { GmatscoreFindManyArgs } from "./GmatscoreFindManyArgs";
-import { GmatscoreUpdateInput } from "./GmatscoreUpdateInput";
 import { Gmatscore } from "./Gmatscore";
+import { GmatscoreFindManyArgs } from "./GmatscoreFindManyArgs";
+import { GmatscoreWhereUniqueInput } from "./GmatscoreWhereUniqueInput";
+import { GmatscoreUpdateInput } from "./GmatscoreUpdateInput";
 
 export class GmatscoreControllerBase {
   constructor(protected readonly service: GmatscoreService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Gmatscore })
-  async create(@common.Body() data: GmatscoreCreateInput): Promise<Gmatscore> {
-    return await this.service.create({
+  async createGmatscore(
+    @common.Body() data: GmatscoreCreateInput
+  ): Promise<Gmatscore> {
+    return await this.service.createGmatscore({
       data: {
         ...data,
 
@@ -38,8 +39,17 @@ export class GmatscoreControllerBase {
         },
       },
       select: {
-        analyticalwritingpercentile: true,
+        scorereceived: true,
+        testdate: true,
+        verbalscore: true,
+        verbalpercentile: true,
+        quantitativescore: true,
+        quantitativepercentile: true,
+        totalscore: true,
+        totalpercentile: true,
         analyticalwritingscore: true,
+        analyticalwritingpercentile: true,
+        datafileId: true,
 
         application: {
           select: {
@@ -47,16 +57,7 @@ export class GmatscoreControllerBase {
           },
         },
 
-        datafileId: true,
         id: true,
-        quantitativepercentile: true,
-        quantitativescore: true,
-        scorereceived: true,
-        testdate: true,
-        totalpercentile: true,
-        totalscore: true,
-        verbalpercentile: true,
-        verbalscore: true,
       },
     });
   }
@@ -64,13 +65,22 @@ export class GmatscoreControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Gmatscore] })
   @ApiNestedQuery(GmatscoreFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Gmatscore[]> {
+  async gmatscores(@common.Req() request: Request): Promise<Gmatscore[]> {
     const args = plainToClass(GmatscoreFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.gmatscores({
       ...args,
       select: {
-        analyticalwritingpercentile: true,
+        scorereceived: true,
+        testdate: true,
+        verbalscore: true,
+        verbalpercentile: true,
+        quantitativescore: true,
+        quantitativepercentile: true,
+        totalscore: true,
+        totalpercentile: true,
         analyticalwritingscore: true,
+        analyticalwritingpercentile: true,
+        datafileId: true,
 
         application: {
           select: {
@@ -78,16 +88,7 @@ export class GmatscoreControllerBase {
           },
         },
 
-        datafileId: true,
         id: true,
-        quantitativepercentile: true,
-        quantitativescore: true,
-        scorereceived: true,
-        testdate: true,
-        totalpercentile: true,
-        totalscore: true,
-        verbalpercentile: true,
-        verbalscore: true,
       },
     });
   }
@@ -95,14 +96,23 @@ export class GmatscoreControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Gmatscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async gmatscore(
     @common.Param() params: GmatscoreWhereUniqueInput
   ): Promise<Gmatscore | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.gmatscore({
       where: params,
       select: {
-        analyticalwritingpercentile: true,
+        scorereceived: true,
+        testdate: true,
+        verbalscore: true,
+        verbalpercentile: true,
+        quantitativescore: true,
+        quantitativepercentile: true,
+        totalscore: true,
+        totalpercentile: true,
         analyticalwritingscore: true,
+        analyticalwritingpercentile: true,
+        datafileId: true,
 
         application: {
           select: {
@@ -110,16 +120,7 @@ export class GmatscoreControllerBase {
           },
         },
 
-        datafileId: true,
         id: true,
-        quantitativepercentile: true,
-        quantitativescore: true,
-        scorereceived: true,
-        testdate: true,
-        totalpercentile: true,
-        totalscore: true,
-        verbalpercentile: true,
-        verbalscore: true,
       },
     });
     if (result === null) {
@@ -133,12 +134,12 @@ export class GmatscoreControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Gmatscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateGmatscore(
     @common.Param() params: GmatscoreWhereUniqueInput,
     @common.Body() data: GmatscoreUpdateInput
   ): Promise<Gmatscore | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGmatscore({
         where: params,
         data: {
           ...data,
@@ -148,8 +149,17 @@ export class GmatscoreControllerBase {
           },
         },
         select: {
-          analyticalwritingpercentile: true,
+          scorereceived: true,
+          testdate: true,
+          verbalscore: true,
+          verbalpercentile: true,
+          quantitativescore: true,
+          quantitativepercentile: true,
+          totalscore: true,
+          totalpercentile: true,
           analyticalwritingscore: true,
+          analyticalwritingpercentile: true,
+          datafileId: true,
 
           application: {
             select: {
@@ -157,16 +167,7 @@ export class GmatscoreControllerBase {
             },
           },
 
-          datafileId: true,
           id: true,
-          quantitativepercentile: true,
-          quantitativescore: true,
-          scorereceived: true,
-          testdate: true,
-          totalpercentile: true,
-          totalscore: true,
-          verbalpercentile: true,
-          verbalscore: true,
         },
       });
     } catch (error) {
@@ -182,15 +183,24 @@ export class GmatscoreControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Gmatscore })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteGmatscore(
     @common.Param() params: GmatscoreWhereUniqueInput
   ): Promise<Gmatscore | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteGmatscore({
         where: params,
         select: {
-          analyticalwritingpercentile: true,
+          scorereceived: true,
+          testdate: true,
+          verbalscore: true,
+          verbalpercentile: true,
+          quantitativescore: true,
+          quantitativepercentile: true,
+          totalscore: true,
+          totalpercentile: true,
           analyticalwritingscore: true,
+          analyticalwritingpercentile: true,
+          datafileId: true,
 
           application: {
             select: {
@@ -198,16 +208,7 @@ export class GmatscoreControllerBase {
             },
           },
 
-          datafileId: true,
           id: true,
-          quantitativepercentile: true,
-          quantitativescore: true,
-          scorereceived: true,
-          testdate: true,
-          totalpercentile: true,
-          totalscore: true,
-          verbalpercentile: true,
-          verbalscore: true,
         },
       });
     } catch (error) {

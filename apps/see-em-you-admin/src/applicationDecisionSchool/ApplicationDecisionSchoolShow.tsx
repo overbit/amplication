@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  BooleanField,
   TextField,
+  BooleanField,
 } from "react-admin";
 
 export const ApplicationDecisionSchoolShow = (
@@ -13,12 +13,12 @@ export const ApplicationDecisionSchoolShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <BooleanField label="Accepted" source="accepted" />
         <TextField label="Application Id" source="applicationId" />
-        <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
-        <TextField label="Period Id" source="periodId" />
         <TextField label="Program Id" source="programId" />
+        <TextField label="Period Id" source="periodId" />
+        <TextField label="Name" source="name" />
+        <BooleanField label="Accepted" source="accepted" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

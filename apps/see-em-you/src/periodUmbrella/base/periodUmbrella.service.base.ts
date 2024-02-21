@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, PeriodUmbrella } from "@prisma/client";
+import { Prisma, PeriodUmbrella as PrismaPeriodUmbrella } from "@prisma/client";
 
 export class PeriodUmbrellaServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class PeriodUmbrellaServiceBase {
     return this.prisma.periodUmbrella.count(args);
   }
 
-  async findMany<T extends Prisma.PeriodUmbrellaFindManyArgs>(
+  async periodUmbrellas<T extends Prisma.PeriodUmbrellaFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodUmbrellaFindManyArgs>
-  ): Promise<PeriodUmbrella[]> {
+  ): Promise<PrismaPeriodUmbrella[]> {
     return this.prisma.periodUmbrella.findMany(args);
   }
-  async findOne<T extends Prisma.PeriodUmbrellaFindUniqueArgs>(
+  async periodUmbrella<T extends Prisma.PeriodUmbrellaFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodUmbrellaFindUniqueArgs>
-  ): Promise<PeriodUmbrella | null> {
+  ): Promise<PrismaPeriodUmbrella | null> {
     return this.prisma.periodUmbrella.findUnique(args);
   }
-  async create<T extends Prisma.PeriodUmbrellaCreateArgs>(
+  async createPeriodUmbrella<T extends Prisma.PeriodUmbrellaCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodUmbrellaCreateArgs>
-  ): Promise<PeriodUmbrella> {
+  ): Promise<PrismaPeriodUmbrella> {
     return this.prisma.periodUmbrella.create<T>(args);
   }
-  async update<T extends Prisma.PeriodUmbrellaUpdateArgs>(
+  async updatePeriodUmbrella<T extends Prisma.PeriodUmbrellaUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodUmbrellaUpdateArgs>
-  ): Promise<PeriodUmbrella> {
+  ): Promise<PrismaPeriodUmbrella> {
     return this.prisma.periodUmbrella.update<T>(args);
   }
-  async delete<T extends Prisma.PeriodUmbrellaDeleteArgs>(
+  async deletePeriodUmbrella<T extends Prisma.PeriodUmbrellaDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.PeriodUmbrellaDeleteArgs>
-  ): Promise<PeriodUmbrella> {
+  ): Promise<PrismaPeriodUmbrella> {
     return this.prisma.periodUmbrella.delete(args);
   }
 }

@@ -12,9 +12,9 @@ export const ScsUserWebisoList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Id" source="id" />
         <TextField label="Scs User Id" source="scsUserId" />
         <TextField label="Webiso" source="webiso" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

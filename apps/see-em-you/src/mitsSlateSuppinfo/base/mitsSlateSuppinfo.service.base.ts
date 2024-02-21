@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, MitsSlateSuppinfo } from "@prisma/client";
+import {
+  Prisma,
+  MitsSlateSuppinfo as PrismaMitsSlateSuppinfo,
+} from "@prisma/client";
 
 export class MitsSlateSuppinfoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,29 @@ export class MitsSlateSuppinfoServiceBase {
     return this.prisma.mitsSlateSuppinfo.count(args);
   }
 
-  async findMany<T extends Prisma.MitsSlateSuppinfoFindManyArgs>(
+  async mitsSlateSuppinfos<T extends Prisma.MitsSlateSuppinfoFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateSuppinfoFindManyArgs>
-  ): Promise<MitsSlateSuppinfo[]> {
+  ): Promise<PrismaMitsSlateSuppinfo[]> {
     return this.prisma.mitsSlateSuppinfo.findMany(args);
   }
-  async findOne<T extends Prisma.MitsSlateSuppinfoFindUniqueArgs>(
+  async mitsSlateSuppinfo<T extends Prisma.MitsSlateSuppinfoFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateSuppinfoFindUniqueArgs>
-  ): Promise<MitsSlateSuppinfo | null> {
+  ): Promise<PrismaMitsSlateSuppinfo | null> {
     return this.prisma.mitsSlateSuppinfo.findUnique(args);
   }
-  async create<T extends Prisma.MitsSlateSuppinfoCreateArgs>(
+  async createMitsSlateSuppinfo<T extends Prisma.MitsSlateSuppinfoCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateSuppinfoCreateArgs>
-  ): Promise<MitsSlateSuppinfo> {
+  ): Promise<PrismaMitsSlateSuppinfo> {
     return this.prisma.mitsSlateSuppinfo.create<T>(args);
   }
-  async update<T extends Prisma.MitsSlateSuppinfoUpdateArgs>(
+  async updateMitsSlateSuppinfo<T extends Prisma.MitsSlateSuppinfoUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateSuppinfoUpdateArgs>
-  ): Promise<MitsSlateSuppinfo> {
+  ): Promise<PrismaMitsSlateSuppinfo> {
     return this.prisma.mitsSlateSuppinfo.update<T>(args);
   }
-  async delete<T extends Prisma.MitsSlateSuppinfoDeleteArgs>(
+  async deleteMitsSlateSuppinfo<T extends Prisma.MitsSlateSuppinfoDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.MitsSlateSuppinfoDeleteArgs>
-  ): Promise<MitsSlateSuppinfo> {
+  ): Promise<PrismaMitsSlateSuppinfo> {
     return this.prisma.mitsSlateSuppinfo.delete(args);
   }
 }

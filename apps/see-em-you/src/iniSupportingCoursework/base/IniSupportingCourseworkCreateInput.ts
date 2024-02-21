@@ -29,6 +29,14 @@ class IniSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
+  dataStructuresTitle!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   dataStructuresNumber!: string;
 
   @ApiProperty({
@@ -37,18 +45,7 @@ class IniSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  dataStructuresTitle!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  msitExperience?: string | null;
+  probabilityTitle!: string;
 
   @ApiProperty({
     required: true,
@@ -64,7 +61,26 @@ class IniSupportingCourseworkCreateInput {
   })
   @IsString()
   @Field(() => String)
-  probabilityTitle!: string;
+  statisticsTitle!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  statisticsNumber!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  msitExperience?: string | null;
 
   @ApiProperty({
     required: true,
@@ -84,22 +100,6 @@ class IniSupportingCourseworkCreateInput {
     nullable: true,
   })
   programmingDescription2?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  statisticsNumber!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  statisticsTitle!: string;
 }
 
 export { IniSupportingCourseworkCreateInput as IniSupportingCourseworkCreateInput };

@@ -18,32 +18,37 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ProgramsApplicationreqService } from "../programsApplicationreq.service";
 import { ProgramsApplicationreqCreateInput } from "./ProgramsApplicationreqCreateInput";
-import { ProgramsApplicationreqWhereInput } from "./ProgramsApplicationreqWhereInput";
-import { ProgramsApplicationreqWhereUniqueInput } from "./ProgramsApplicationreqWhereUniqueInput";
-import { ProgramsApplicationreqFindManyArgs } from "./ProgramsApplicationreqFindManyArgs";
-import { ProgramsApplicationreqUpdateInput } from "./ProgramsApplicationreqUpdateInput";
 import { ProgramsApplicationreq } from "./ProgramsApplicationreq";
+import { ProgramsApplicationreqFindManyArgs } from "./ProgramsApplicationreqFindManyArgs";
+import { ProgramsApplicationreqWhereUniqueInput } from "./ProgramsApplicationreqWhereUniqueInput";
+import { ProgramsApplicationreqUpdateInput } from "./ProgramsApplicationreqUpdateInput";
 
 export class ProgramsApplicationreqControllerBase {
   constructor(protected readonly service: ProgramsApplicationreqService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ProgramsApplicationreq })
-  async create(
+  async createProgramsApplicationreq(
     @common.Body() data: ProgramsApplicationreqCreateInput
   ): Promise<ProgramsApplicationreq> {
-    return await this.service.create({
+    return await this.service.createProgramsApplicationreq({
       data: {
         ...data,
-
-        applicationreqs: {
-          connect: data.applicationreqs,
-        },
 
         programs: {
           connect: data.programs,
         },
+
+        applicationreqs: {
+          connect: data.applicationreqs,
+        },
       },
       select: {
+        programs: {
+          select: {
+            id: true,
+          },
+        },
+
         applicationreqs: {
           select: {
             id: true,
@@ -51,12 +56,6 @@ export class ProgramsApplicationreqControllerBase {
         },
 
         id: true,
-
-        programs: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -64,16 +63,22 @@ export class ProgramsApplicationreqControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [ProgramsApplicationreq] })
   @ApiNestedQuery(ProgramsApplicationreqFindManyArgs)
-  async findMany(
+  async programsApplicationreqs(
     @common.Req() request: Request
   ): Promise<ProgramsApplicationreq[]> {
     const args = plainToClass(
       ProgramsApplicationreqFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.programsApplicationreqs({
       ...args,
       select: {
+        programs: {
+          select: {
+            id: true,
+          },
+        },
+
         applicationreqs: {
           select: {
             id: true,
@@ -81,12 +86,6 @@ export class ProgramsApplicationreqControllerBase {
         },
 
         id: true,
-
-        programs: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -94,12 +93,18 @@ export class ProgramsApplicationreqControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ProgramsApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async programsApplicationreq(
     @common.Param() params: ProgramsApplicationreqWhereUniqueInput
   ): Promise<ProgramsApplicationreq | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.programsApplicationreq({
       where: params,
       select: {
+        programs: {
+          select: {
+            id: true,
+          },
+        },
+
         applicationreqs: {
           select: {
             id: true,
@@ -107,12 +112,6 @@ export class ProgramsApplicationreqControllerBase {
         },
 
         id: true,
-
-        programs: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (result === null) {
@@ -126,25 +125,31 @@ export class ProgramsApplicationreqControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ProgramsApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateProgramsApplicationreq(
     @common.Param() params: ProgramsApplicationreqWhereUniqueInput,
     @common.Body() data: ProgramsApplicationreqUpdateInput
   ): Promise<ProgramsApplicationreq | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateProgramsApplicationreq({
         where: params,
         data: {
           ...data,
 
-          applicationreqs: {
-            connect: data.applicationreqs,
-          },
-
           programs: {
             connect: data.programs,
           },
+
+          applicationreqs: {
+            connect: data.applicationreqs,
+          },
         },
         select: {
+          programs: {
+            select: {
+              id: true,
+            },
+          },
+
           applicationreqs: {
             select: {
               id: true,
@@ -152,12 +157,6 @@ export class ProgramsApplicationreqControllerBase {
           },
 
           id: true,
-
-          programs: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -173,13 +172,19 @@ export class ProgramsApplicationreqControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ProgramsApplicationreq })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteProgramsApplicationreq(
     @common.Param() params: ProgramsApplicationreqWhereUniqueInput
   ): Promise<ProgramsApplicationreq | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteProgramsApplicationreq({
         where: params,
         select: {
+          programs: {
+            select: {
+              id: true,
+            },
+          },
+
           applicationreqs: {
             select: {
               id: true,
@@ -187,12 +192,6 @@ export class ProgramsApplicationreqControllerBase {
           },
 
           id: true,
-
-          programs: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {

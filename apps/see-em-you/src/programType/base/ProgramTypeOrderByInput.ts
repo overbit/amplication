@@ -28,7 +28,7 @@ class ProgramTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  programType?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -39,7 +39,7 @@ class ProgramTypeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  programType?: SortOrder;
+  id?: SortOrder;
 }
 
 export { ProgramTypeOrderByInput as ProgramTypeOrderByInput };

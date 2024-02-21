@@ -4,10 +4,10 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  TextInput,
   NumberInput,
   ReferenceInput,
   SelectInput,
-  TextInput,
   ReferenceArrayInput,
   SelectArrayInput,
 } from "react-admin";
@@ -23,13 +23,23 @@ export const ProgramModelEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="Linkword" source="linkword" />
+        <NumberInput label="Programprice" source="programprice" />
+        <NumberInput label="Programprice Late" source="programpriceLate" />
+        <TextInput label="Description" source="description" />
+        <TextInput label="Url" source="url" />
+        <TextInput label="Oraclestring" source="oraclestring" />
+        <TextInput
+          label="Registrationoraclestring"
+          source="registrationoraclestring"
+        />
         <NumberInput label="Baseprice" source="baseprice" />
         <NumberInput label="Baseprice Late" source="basepriceLate" />
+        <NumberInput step={1} label="Prank" source="prank" />
+        <TextInput label="Enabled" source="enabled" />
         <ReferenceInput source="degree.id" reference="Degree" label="Degree">
           <SelectInput optionText={DegreeTitle} />
         </ReferenceInput>
-        <TextInput label="Description" source="description" />
-        <TextInput label="Enabled" source="enabled" />
         <ReferenceInput
           source="fieldsofstudy.id"
           reference="Fieldsofstudy"
@@ -37,7 +47,6 @@ export const ProgramModelEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectInput optionText={FieldsofstudyTitle} />
         </ReferenceInput>
-        <TextInput label="Linkword" source="linkword" />
         <ReferenceArrayInput
           source="luApplicationPrograms"
           reference="LuApplicationProgram"
@@ -54,7 +63,6 @@ export const ProgramModelEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={MlAreaTitle} />
         </ReferenceArrayInput>
-        <TextInput label="Oraclestring" source="oraclestring" />
         <ReferenceArrayInput
           source="paymentItem"
           reference="PaymentItem"
@@ -63,9 +71,6 @@ export const ProgramModelEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={PaymentItemTitle} />
         </ReferenceArrayInput>
-        <NumberInput step={1} label="Prank" source="prank" />
-        <NumberInput label="Programprice" source="programprice" />
-        <NumberInput label="Programprice Late" source="programpriceLate" />
         <ReferenceArrayInput
           source="programsApplicationreqs"
           reference="ProgramsApplicationreq"
@@ -74,11 +79,6 @@ export const ProgramModelEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={ProgramsApplicationreqTitle} />
         </ReferenceArrayInput>
-        <TextInput
-          label="Registrationoraclestring"
-          source="registrationoraclestring"
-        />
-        <TextInput label="Url" source="url" />
       </SimpleForm>
     </Edit>
   );

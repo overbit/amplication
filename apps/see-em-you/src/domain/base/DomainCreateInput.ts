@@ -12,9 +12,9 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsBoolean,
   IsString,
   IsOptional,
+  IsBoolean,
   ValidateNested,
 } from "class-validator";
 import { DomainUnitCreateNestedManyWithoutDomainsInput } from "./DomainUnitCreateNestedManyWithoutDomainsInput";
@@ -22,6 +22,33 @@ import { Type } from "class-transformer";
 
 @InputType()
 class DomainCreateInput {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  description?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  path!: string;
+
   @ApiProperty({
     required: true,
     type: Boolean,
@@ -40,17 +67,6 @@ class DomainCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description?: string | null;
-
-  @ApiProperty({
-    required: false,
     type: () => DomainUnitCreateNestedManyWithoutDomainsInput,
   })
   @ValidateNested()
@@ -60,22 +76,6 @@ class DomainCreateInput {
     nullable: true,
   })
   domainUnit?: DomainUnitCreateNestedManyWithoutDomainsInput;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  name!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  path!: string;
 }
 
 export { DomainCreateInput as DomainCreateInput };

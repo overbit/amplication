@@ -35,7 +35,7 @@ class LuApplicationInterestUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  choice?: number | null;
+  interestId?: number;
 
   @ApiProperty({
     required: false,
@@ -46,7 +46,7 @@ class LuApplicationInterestUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  interestId?: number;
+  choice?: number | null;
 }
 
 export { LuApplicationInterestUpdateInput as LuApplicationInterestUpdateInput };

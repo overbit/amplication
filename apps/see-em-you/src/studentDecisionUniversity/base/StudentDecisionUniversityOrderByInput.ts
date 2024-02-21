@@ -28,17 +28,6 @@ class StudentDecisionUniversityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  accepted?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   applicationId?: SortOrder;
 
   @ApiProperty({
@@ -50,7 +39,7 @@ class StudentDecisionUniversityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  programId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -72,7 +61,18 @@ class StudentDecisionUniversityOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  programId?: SortOrder;
+  accepted?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  id?: SortOrder;
 }
 
 export { StudentDecisionUniversityOrderByInput as StudentDecisionUniversityOrderByInput };

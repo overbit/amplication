@@ -29,14 +29,14 @@ class ToeflItpPlusUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
   })
-  @IsInt()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => Date, {
     nullable: true,
   })
-  datafileId?: number | null;
+  testdate?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -58,17 +58,6 @@ class ToeflItpPlusUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  overallscore?: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
   readingscore?: number | null;
 
   @ApiProperty({
@@ -80,29 +69,18 @@ class ToeflItpPlusUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  scorereceived?: number | null;
+  writingscore?: number | null;
 
   @ApiProperty({
     required: false,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsInt()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => Number, {
     nullable: true,
   })
-  testdate?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  testEmail?: string | null;
+  overallscore?: number | null;
 
   @ApiProperty({
     required: false,
@@ -124,7 +102,29 @@ class ToeflItpPlusUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  writingscore?: number | null;
+  scorereceived?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  datafileId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  testEmail?: string | null;
 }
 
 export { ToeflItpPlusUpdateInput as ToeflItpPlusUpdateInput };

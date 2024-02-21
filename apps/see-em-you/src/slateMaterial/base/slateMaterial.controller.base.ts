@@ -18,29 +18,28 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SlateMaterialService } from "../slateMaterial.service";
 import { SlateMaterialCreateInput } from "./SlateMaterialCreateInput";
-import { SlateMaterialWhereInput } from "./SlateMaterialWhereInput";
-import { SlateMaterialWhereUniqueInput } from "./SlateMaterialWhereUniqueInput";
-import { SlateMaterialFindManyArgs } from "./SlateMaterialFindManyArgs";
-import { SlateMaterialUpdateInput } from "./SlateMaterialUpdateInput";
 import { SlateMaterial } from "./SlateMaterial";
+import { SlateMaterialFindManyArgs } from "./SlateMaterialFindManyArgs";
+import { SlateMaterialWhereUniqueInput } from "./SlateMaterialWhereUniqueInput";
+import { SlateMaterialUpdateInput } from "./SlateMaterialUpdateInput";
 
 export class SlateMaterialControllerBase {
   constructor(protected readonly service: SlateMaterialService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SlateMaterial })
-  async create(
+  async createSlateMaterial(
     @common.Body() data: SlateMaterialCreateInput
   ): Promise<SlateMaterial> {
-    return await this.service.create({
+    return await this.service.createSlateMaterial({
       data: data,
       select: {
         applicationSlateGuid: true,
-        email: true,
-        fileName: true,
-        id: true,
         materialExport1: true,
+        fileName: true,
         materialName: true,
         name: true,
+        email: true,
+        id: true,
       },
     });
   }
@@ -48,18 +47,20 @@ export class SlateMaterialControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SlateMaterial] })
   @ApiNestedQuery(SlateMaterialFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SlateMaterial[]> {
+  async slateMaterials(
+    @common.Req() request: Request
+  ): Promise<SlateMaterial[]> {
     const args = plainToClass(SlateMaterialFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.slateMaterials({
       ...args,
       select: {
         applicationSlateGuid: true,
-        email: true,
-        fileName: true,
-        id: true,
         materialExport1: true,
+        fileName: true,
         materialName: true,
         name: true,
+        email: true,
+        id: true,
       },
     });
   }
@@ -67,19 +68,19 @@ export class SlateMaterialControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SlateMaterial })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async slateMaterial(
     @common.Param() params: SlateMaterialWhereUniqueInput
   ): Promise<SlateMaterial | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.slateMaterial({
       where: params,
       select: {
         applicationSlateGuid: true,
-        email: true,
-        fileName: true,
-        id: true,
         materialExport1: true,
+        fileName: true,
         materialName: true,
         name: true,
+        email: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -93,22 +94,22 @@ export class SlateMaterialControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SlateMaterial })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSlateMaterial(
     @common.Param() params: SlateMaterialWhereUniqueInput,
     @common.Body() data: SlateMaterialUpdateInput
   ): Promise<SlateMaterial | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateMaterial({
         where: params,
         data: data,
         select: {
           applicationSlateGuid: true,
-          email: true,
-          fileName: true,
-          id: true,
           materialExport1: true,
+          fileName: true,
           materialName: true,
           name: true,
+          email: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -124,20 +125,20 @@ export class SlateMaterialControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SlateMaterial })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSlateMaterial(
     @common.Param() params: SlateMaterialWhereUniqueInput
   ): Promise<SlateMaterial | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSlateMaterial({
         where: params,
         select: {
           applicationSlateGuid: true,
-          email: true,
-          fileName: true,
-          id: true,
           materialExport1: true,
+          fileName: true,
           materialName: true,
           name: true,
+          email: true,
+          id: true,
         },
       });
     } catch (error) {

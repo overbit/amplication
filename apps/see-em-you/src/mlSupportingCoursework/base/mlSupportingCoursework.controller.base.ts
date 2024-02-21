@@ -18,20 +18,19 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MlSupportingCourseworkService } from "../mlSupportingCoursework.service";
 import { MlSupportingCourseworkCreateInput } from "./MlSupportingCourseworkCreateInput";
-import { MlSupportingCourseworkWhereInput } from "./MlSupportingCourseworkWhereInput";
-import { MlSupportingCourseworkWhereUniqueInput } from "./MlSupportingCourseworkWhereUniqueInput";
-import { MlSupportingCourseworkFindManyArgs } from "./MlSupportingCourseworkFindManyArgs";
-import { MlSupportingCourseworkUpdateInput } from "./MlSupportingCourseworkUpdateInput";
 import { MlSupportingCoursework } from "./MlSupportingCoursework";
+import { MlSupportingCourseworkFindManyArgs } from "./MlSupportingCourseworkFindManyArgs";
+import { MlSupportingCourseworkWhereUniqueInput } from "./MlSupportingCourseworkWhereUniqueInput";
+import { MlSupportingCourseworkUpdateInput } from "./MlSupportingCourseworkUpdateInput";
 
 export class MlSupportingCourseworkControllerBase {
   constructor(protected readonly service: MlSupportingCourseworkService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MlSupportingCoursework })
-  async create(
+  async createMlSupportingCoursework(
     @common.Body() data: MlSupportingCourseworkCreateInput
   ): Promise<MlSupportingCoursework> {
-    return await this.service.create({
+    return await this.service.createMlSupportingCoursework({
       data: {
         ...data,
 
@@ -40,6 +39,19 @@ export class MlSupportingCourseworkControllerBase {
         },
       },
       select: {
+        introCourseNum: true,
+        introCourseSemester: true,
+        introCourseGrade: true,
+        introCourse2Num: true,
+        introCourse2Semester: true,
+        introCourse2Grade: true,
+        ml1CourseNum: true,
+        ml1CourseSemester: true,
+        ml1CourseGrade: true,
+        ml2CourseNum: true,
+        ml2CourseSemester: true,
+        ml2CourseGrade: true,
+
         application: {
           select: {
             id: true,
@@ -47,18 +59,6 @@ export class MlSupportingCourseworkControllerBase {
         },
 
         id: true,
-        introCourse2Grade: true,
-        introCourse2Num: true,
-        introCourse2Semester: true,
-        introCourseGrade: true,
-        introCourseNum: true,
-        introCourseSemester: true,
-        ml1CourseGrade: true,
-        ml1CourseNum: true,
-        ml1CourseSemester: true,
-        ml2CourseGrade: true,
-        ml2CourseNum: true,
-        ml2CourseSemester: true,
       },
     });
   }
@@ -66,16 +66,29 @@ export class MlSupportingCourseworkControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [MlSupportingCoursework] })
   @ApiNestedQuery(MlSupportingCourseworkFindManyArgs)
-  async findMany(
+  async mlSupportingCourseworks(
     @common.Req() request: Request
   ): Promise<MlSupportingCoursework[]> {
     const args = plainToClass(
       MlSupportingCourseworkFindManyArgs,
       request.query
     );
-    return this.service.findMany({
+    return this.service.mlSupportingCourseworks({
       ...args,
       select: {
+        introCourseNum: true,
+        introCourseSemester: true,
+        introCourseGrade: true,
+        introCourse2Num: true,
+        introCourse2Semester: true,
+        introCourse2Grade: true,
+        ml1CourseNum: true,
+        ml1CourseSemester: true,
+        ml1CourseGrade: true,
+        ml2CourseNum: true,
+        ml2CourseSemester: true,
+        ml2CourseGrade: true,
+
         application: {
           select: {
             id: true,
@@ -83,18 +96,6 @@ export class MlSupportingCourseworkControllerBase {
         },
 
         id: true,
-        introCourse2Grade: true,
-        introCourse2Num: true,
-        introCourse2Semester: true,
-        introCourseGrade: true,
-        introCourseNum: true,
-        introCourseSemester: true,
-        ml1CourseGrade: true,
-        ml1CourseNum: true,
-        ml1CourseSemester: true,
-        ml2CourseGrade: true,
-        ml2CourseNum: true,
-        ml2CourseSemester: true,
       },
     });
   }
@@ -102,12 +103,25 @@ export class MlSupportingCourseworkControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: MlSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async mlSupportingCoursework(
     @common.Param() params: MlSupportingCourseworkWhereUniqueInput
   ): Promise<MlSupportingCoursework | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.mlSupportingCoursework({
       where: params,
       select: {
+        introCourseNum: true,
+        introCourseSemester: true,
+        introCourseGrade: true,
+        introCourse2Num: true,
+        introCourse2Semester: true,
+        introCourse2Grade: true,
+        ml1CourseNum: true,
+        ml1CourseSemester: true,
+        ml1CourseGrade: true,
+        ml2CourseNum: true,
+        ml2CourseSemester: true,
+        ml2CourseGrade: true,
+
         application: {
           select: {
             id: true,
@@ -115,18 +129,6 @@ export class MlSupportingCourseworkControllerBase {
         },
 
         id: true,
-        introCourse2Grade: true,
-        introCourse2Num: true,
-        introCourse2Semester: true,
-        introCourseGrade: true,
-        introCourseNum: true,
-        introCourseSemester: true,
-        ml1CourseGrade: true,
-        ml1CourseNum: true,
-        ml1CourseSemester: true,
-        ml2CourseGrade: true,
-        ml2CourseNum: true,
-        ml2CourseSemester: true,
       },
     });
     if (result === null) {
@@ -140,12 +142,12 @@ export class MlSupportingCourseworkControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MlSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMlSupportingCoursework(
     @common.Param() params: MlSupportingCourseworkWhereUniqueInput,
     @common.Body() data: MlSupportingCourseworkUpdateInput
   ): Promise<MlSupportingCoursework | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMlSupportingCoursework({
         where: params,
         data: {
           ...data,
@@ -155,6 +157,19 @@ export class MlSupportingCourseworkControllerBase {
           },
         },
         select: {
+          introCourseNum: true,
+          introCourseSemester: true,
+          introCourseGrade: true,
+          introCourse2Num: true,
+          introCourse2Semester: true,
+          introCourse2Grade: true,
+          ml1CourseNum: true,
+          ml1CourseSemester: true,
+          ml1CourseGrade: true,
+          ml2CourseNum: true,
+          ml2CourseSemester: true,
+          ml2CourseGrade: true,
+
           application: {
             select: {
               id: true,
@@ -162,18 +177,6 @@ export class MlSupportingCourseworkControllerBase {
           },
 
           id: true,
-          introCourse2Grade: true,
-          introCourse2Num: true,
-          introCourse2Semester: true,
-          introCourseGrade: true,
-          introCourseNum: true,
-          introCourseSemester: true,
-          ml1CourseGrade: true,
-          ml1CourseNum: true,
-          ml1CourseSemester: true,
-          ml2CourseGrade: true,
-          ml2CourseNum: true,
-          ml2CourseSemester: true,
         },
       });
     } catch (error) {
@@ -189,13 +192,26 @@ export class MlSupportingCourseworkControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: MlSupportingCoursework })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMlSupportingCoursework(
     @common.Param() params: MlSupportingCourseworkWhereUniqueInput
   ): Promise<MlSupportingCoursework | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMlSupportingCoursework({
         where: params,
         select: {
+          introCourseNum: true,
+          introCourseSemester: true,
+          introCourseGrade: true,
+          introCourse2Num: true,
+          introCourse2Semester: true,
+          introCourse2Grade: true,
+          ml1CourseNum: true,
+          ml1CourseSemester: true,
+          ml1CourseGrade: true,
+          ml2CourseNum: true,
+          ml2CourseSemester: true,
+          ml2CourseGrade: true,
+
           application: {
             select: {
               id: true,
@@ -203,18 +219,6 @@ export class MlSupportingCourseworkControllerBase {
           },
 
           id: true,
-          introCourse2Grade: true,
-          introCourse2Num: true,
-          introCourse2Semester: true,
-          introCourseGrade: true,
-          introCourseNum: true,
-          introCourseSemester: true,
-          ml1CourseGrade: true,
-          ml1CourseNum: true,
-          ml1CourseSemester: true,
-          ml2CourseGrade: true,
-          ml2CourseNum: true,
-          ml2CourseSemester: true,
         },
       });
     } catch (error) {

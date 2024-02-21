@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateReviewPositiveFactorOtherArgs } from "./CreateReviewPositiveFactorOtherArgs";
-import { UpdateReviewPositiveFactorOtherArgs } from "./UpdateReviewPositiveFactorOtherArgs";
-import { DeleteReviewPositiveFactorOtherArgs } from "./DeleteReviewPositiveFactorOtherArgs";
+import { ReviewPositiveFactorOther } from "./ReviewPositiveFactorOther";
 import { ReviewPositiveFactorOtherCountArgs } from "./ReviewPositiveFactorOtherCountArgs";
 import { ReviewPositiveFactorOtherFindManyArgs } from "./ReviewPositiveFactorOtherFindManyArgs";
 import { ReviewPositiveFactorOtherFindUniqueArgs } from "./ReviewPositiveFactorOtherFindUniqueArgs";
-import { ReviewPositiveFactorOther } from "./ReviewPositiveFactorOther";
+import { CreateReviewPositiveFactorOtherArgs } from "./CreateReviewPositiveFactorOtherArgs";
+import { UpdateReviewPositiveFactorOtherArgs } from "./UpdateReviewPositiveFactorOtherArgs";
+import { DeleteReviewPositiveFactorOtherArgs } from "./DeleteReviewPositiveFactorOtherArgs";
 import { ReviewPositiveFactorOtherService } from "../reviewPositiveFactorOther.service";
 @graphql.Resolver(() => ReviewPositiveFactorOther)
 export class ReviewPositiveFactorOtherResolverBase {
@@ -38,14 +38,14 @@ export class ReviewPositiveFactorOtherResolverBase {
   async reviewPositiveFactorOthers(
     @graphql.Args() args: ReviewPositiveFactorOtherFindManyArgs
   ): Promise<ReviewPositiveFactorOther[]> {
-    return this.service.findMany(args);
+    return this.service.reviewPositiveFactorOthers(args);
   }
 
   @graphql.Query(() => ReviewPositiveFactorOther, { nullable: true })
   async reviewPositiveFactorOther(
     @graphql.Args() args: ReviewPositiveFactorOtherFindUniqueArgs
   ): Promise<ReviewPositiveFactorOther | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.reviewPositiveFactorOther(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class ReviewPositiveFactorOtherResolverBase {
   async createReviewPositiveFactorOther(
     @graphql.Args() args: CreateReviewPositiveFactorOtherArgs
   ): Promise<ReviewPositiveFactorOther> {
-    return await this.service.create({
+    return await this.service.createReviewPositiveFactorOther({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class ReviewPositiveFactorOtherResolverBase {
     @graphql.Args() args: UpdateReviewPositiveFactorOtherArgs
   ): Promise<ReviewPositiveFactorOther | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateReviewPositiveFactorOther({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class ReviewPositiveFactorOtherResolverBase {
     @graphql.Args() args: DeleteReviewPositiveFactorOtherArgs
   ): Promise<ReviewPositiveFactorOther | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteReviewPositiveFactorOther(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

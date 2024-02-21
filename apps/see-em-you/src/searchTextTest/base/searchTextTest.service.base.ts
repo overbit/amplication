@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, SearchTextTest } from "@prisma/client";
+import { Prisma, SearchTextTest as PrismaSearchTextTest } from "@prisma/client";
 
 export class SearchTextTestServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +21,29 @@ export class SearchTextTestServiceBase {
     return this.prisma.searchTextTest.count(args);
   }
 
-  async findMany<T extends Prisma.SearchTextTestFindManyArgs>(
+  async searchTextTests<T extends Prisma.SearchTextTestFindManyArgs>(
     args: Prisma.SelectSubset<T, Prisma.SearchTextTestFindManyArgs>
-  ): Promise<SearchTextTest[]> {
+  ): Promise<PrismaSearchTextTest[]> {
     return this.prisma.searchTextTest.findMany(args);
   }
-  async findOne<T extends Prisma.SearchTextTestFindUniqueArgs>(
+  async searchTextTest<T extends Prisma.SearchTextTestFindUniqueArgs>(
     args: Prisma.SelectSubset<T, Prisma.SearchTextTestFindUniqueArgs>
-  ): Promise<SearchTextTest | null> {
+  ): Promise<PrismaSearchTextTest | null> {
     return this.prisma.searchTextTest.findUnique(args);
   }
-  async create<T extends Prisma.SearchTextTestCreateArgs>(
+  async createSearchTextTest<T extends Prisma.SearchTextTestCreateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SearchTextTestCreateArgs>
-  ): Promise<SearchTextTest> {
+  ): Promise<PrismaSearchTextTest> {
     return this.prisma.searchTextTest.create<T>(args);
   }
-  async update<T extends Prisma.SearchTextTestUpdateArgs>(
+  async updateSearchTextTest<T extends Prisma.SearchTextTestUpdateArgs>(
     args: Prisma.SelectSubset<T, Prisma.SearchTextTestUpdateArgs>
-  ): Promise<SearchTextTest> {
+  ): Promise<PrismaSearchTextTest> {
     return this.prisma.searchTextTest.update<T>(args);
   }
-  async delete<T extends Prisma.SearchTextTestDeleteArgs>(
+  async deleteSearchTextTest<T extends Prisma.SearchTextTestDeleteArgs>(
     args: Prisma.SelectSubset<T, Prisma.SearchTextTestDeleteArgs>
-  ): Promise<SearchTextTest> {
+  ): Promise<PrismaSearchTextTest> {
     return this.prisma.searchTextTest.delete(args);
   }
 }

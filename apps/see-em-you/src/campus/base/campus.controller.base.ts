@@ -18,22 +18,21 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { CampusService } from "../campus.service";
 import { CampusCreateInput } from "./CampusCreateInput";
-import { CampusWhereInput } from "./CampusWhereInput";
-import { CampusWhereUniqueInput } from "./CampusWhereUniqueInput";
-import { CampusFindManyArgs } from "./CampusFindManyArgs";
-import { CampusUpdateInput } from "./CampusUpdateInput";
 import { Campus } from "./Campus";
+import { CampusFindManyArgs } from "./CampusFindManyArgs";
+import { CampusWhereUniqueInput } from "./CampusWhereUniqueInput";
+import { CampusUpdateInput } from "./CampusUpdateInput";
 
 export class CampusControllerBase {
   constructor(protected readonly service: CampusService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Campus })
-  async create(@common.Body() data: CampusCreateInput): Promise<Campus> {
-    return await this.service.create({
+  async createCampus(@common.Body() data: CampusCreateInput): Promise<Campus> {
+    return await this.service.createCampus({
       data: data,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -41,13 +40,13 @@ export class CampusControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Campus] })
   @ApiNestedQuery(CampusFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<Campus[]> {
+  async campuses(@common.Req() request: Request): Promise<Campus[]> {
     const args = plainToClass(CampusFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.campuses({
       ...args,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
   }
@@ -55,14 +54,14 @@ export class CampusControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Campus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async campus(
     @common.Param() params: CampusWhereUniqueInput
   ): Promise<Campus | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.campus({
       where: params,
       select: {
-        id: true,
         name: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -76,17 +75,17 @@ export class CampusControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Campus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateCampus(
     @common.Param() params: CampusWhereUniqueInput,
     @common.Body() data: CampusUpdateInput
   ): Promise<Campus | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateCampus({
         where: params,
         data: data,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -102,15 +101,15 @@ export class CampusControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Campus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteCampus(
     @common.Param() params: CampusWhereUniqueInput
   ): Promise<Campus | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteCampus({
         where: params,
         select: {
-          id: true,
           name: true,
+          id: true,
         },
       });
     } catch (error) {

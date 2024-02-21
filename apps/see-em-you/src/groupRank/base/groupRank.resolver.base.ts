@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateGroupRankArgs } from "./CreateGroupRankArgs";
-import { UpdateGroupRankArgs } from "./UpdateGroupRankArgs";
-import { DeleteGroupRankArgs } from "./DeleteGroupRankArgs";
+import { GroupRank } from "./GroupRank";
 import { GroupRankCountArgs } from "./GroupRankCountArgs";
 import { GroupRankFindManyArgs } from "./GroupRankFindManyArgs";
 import { GroupRankFindUniqueArgs } from "./GroupRankFindUniqueArgs";
-import { GroupRank } from "./GroupRank";
+import { CreateGroupRankArgs } from "./CreateGroupRankArgs";
+import { UpdateGroupRankArgs } from "./UpdateGroupRankArgs";
+import { DeleteGroupRankArgs } from "./DeleteGroupRankArgs";
 import { GroupRankService } from "../groupRank.service";
 @graphql.Resolver(() => GroupRank)
 export class GroupRankResolverBase {
@@ -38,14 +38,14 @@ export class GroupRankResolverBase {
   async groupRanks(
     @graphql.Args() args: GroupRankFindManyArgs
   ): Promise<GroupRank[]> {
-    return this.service.findMany(args);
+    return this.service.groupRanks(args);
   }
 
   @graphql.Query(() => GroupRank, { nullable: true })
   async groupRank(
     @graphql.Args() args: GroupRankFindUniqueArgs
   ): Promise<GroupRank | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.groupRank(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class GroupRankResolverBase {
   async createGroupRank(
     @graphql.Args() args: CreateGroupRankArgs
   ): Promise<GroupRank> {
-    return await this.service.create({
+    return await this.service.createGroupRank({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class GroupRankResolverBase {
     @graphql.Args() args: UpdateGroupRankArgs
   ): Promise<GroupRank | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateGroupRank({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class GroupRankResolverBase {
     @graphql.Args() args: DeleteGroupRankArgs
   ): Promise<GroupRank | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteGroupRank(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

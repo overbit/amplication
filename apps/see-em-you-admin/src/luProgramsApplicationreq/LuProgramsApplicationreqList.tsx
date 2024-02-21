@@ -14,10 +14,10 @@ export const LuProgramsApplicationreqList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Appreq Id" source="appreqId" />
         <TextField label="Degree Id" source="degreeId" />
-        <TextField label="Id" source="id" />
+        <TextField label="Appreq Id" source="appreqId" />
         <TextField label="Program Id" source="programId" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

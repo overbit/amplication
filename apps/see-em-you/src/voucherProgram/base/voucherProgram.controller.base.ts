@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { VoucherProgramService } from "../voucherProgram.service";
 import { VoucherProgramCreateInput } from "./VoucherProgramCreateInput";
-import { VoucherProgramWhereInput } from "./VoucherProgramWhereInput";
-import { VoucherProgramWhereUniqueInput } from "./VoucherProgramWhereUniqueInput";
-import { VoucherProgramFindManyArgs } from "./VoucherProgramFindManyArgs";
-import { VoucherProgramUpdateInput } from "./VoucherProgramUpdateInput";
 import { VoucherProgram } from "./VoucherProgram";
+import { VoucherProgramFindManyArgs } from "./VoucherProgramFindManyArgs";
+import { VoucherProgramWhereUniqueInput } from "./VoucherProgramWhereUniqueInput";
+import { VoucherProgramUpdateInput } from "./VoucherProgramUpdateInput";
 
 export class VoucherProgramControllerBase {
   constructor(protected readonly service: VoucherProgramService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: VoucherProgram })
-  async create(
+  async createVoucherProgram(
     @common.Body() data: VoucherProgramCreateInput
   ): Promise<VoucherProgram> {
-    return await this.service.create({
+    return await this.service.createVoucherProgram({
       data: data,
       select: {
-        id: true,
-        programId: true,
         voucherId: true,
+        programId: true,
+        id: true,
       },
     });
   }
@@ -44,14 +43,16 @@ export class VoucherProgramControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [VoucherProgram] })
   @ApiNestedQuery(VoucherProgramFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<VoucherProgram[]> {
+  async voucherPrograms(
+    @common.Req() request: Request
+  ): Promise<VoucherProgram[]> {
     const args = plainToClass(VoucherProgramFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.voucherPrograms({
       ...args,
       select: {
-        id: true,
-        programId: true,
         voucherId: true,
+        programId: true,
+        id: true,
       },
     });
   }
@@ -59,15 +60,15 @@ export class VoucherProgramControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: VoucherProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async voucherProgram(
     @common.Param() params: VoucherProgramWhereUniqueInput
   ): Promise<VoucherProgram | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.voucherProgram({
       where: params,
       select: {
-        id: true,
-        programId: true,
         voucherId: true,
+        programId: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -81,18 +82,18 @@ export class VoucherProgramControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: VoucherProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateVoucherProgram(
     @common.Param() params: VoucherProgramWhereUniqueInput,
     @common.Body() data: VoucherProgramUpdateInput
   ): Promise<VoucherProgram | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateVoucherProgram({
         where: params,
         data: data,
         select: {
-          id: true,
-          programId: true,
           voucherId: true,
+          programId: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -108,16 +109,16 @@ export class VoucherProgramControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: VoucherProgram })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteVoucherProgram(
     @common.Param() params: VoucherProgramWhereUniqueInput
   ): Promise<VoucherProgram | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteVoucherProgram({
         where: params,
         select: {
-          id: true,
-          programId: true,
           voucherId: true,
+          programId: true,
+          id: true,
         },
       });
     } catch (error) {

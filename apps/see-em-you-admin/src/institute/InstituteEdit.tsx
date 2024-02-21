@@ -3,18 +3,18 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  BooleanInput,
   TextInput,
   NumberInput,
+  BooleanInput,
 } from "react-admin";
 
 export const InstituteEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <BooleanInput label="Hide" source="hide" />
         <TextInput label="Name" source="name" />
         <NumberInput step={1} label="Users Id" source="usersId" />
+        <BooleanInput label="Hide" source="hide" />
       </SimpleForm>
     </Edit>
   );

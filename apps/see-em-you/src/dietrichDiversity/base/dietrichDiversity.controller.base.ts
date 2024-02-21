@@ -18,26 +18,25 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DietrichDiversityService } from "../dietrichDiversity.service";
 import { DietrichDiversityCreateInput } from "./DietrichDiversityCreateInput";
-import { DietrichDiversityWhereInput } from "./DietrichDiversityWhereInput";
-import { DietrichDiversityWhereUniqueInput } from "./DietrichDiversityWhereUniqueInput";
-import { DietrichDiversityFindManyArgs } from "./DietrichDiversityFindManyArgs";
-import { DietrichDiversityUpdateInput } from "./DietrichDiversityUpdateInput";
 import { DietrichDiversity } from "./DietrichDiversity";
+import { DietrichDiversityFindManyArgs } from "./DietrichDiversityFindManyArgs";
+import { DietrichDiversityWhereUniqueInput } from "./DietrichDiversityWhereUniqueInput";
+import { DietrichDiversityUpdateInput } from "./DietrichDiversityUpdateInput";
 
 export class DietrichDiversityControllerBase {
   constructor(protected readonly service: DietrichDiversityService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DietrichDiversity })
-  async create(
+  async createDietrichDiversity(
     @common.Body() data: DietrichDiversityCreateInput
   ): Promise<DietrichDiversity> {
-    return await this.service.create({
+    return await this.service.createDietrichDiversity({
       data: data,
       select: {
         applicationId: true,
         background: true,
-        id: true,
         lifeExperience: true,
+        id: true,
       },
     });
   }
@@ -45,15 +44,17 @@ export class DietrichDiversityControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [DietrichDiversity] })
   @ApiNestedQuery(DietrichDiversityFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<DietrichDiversity[]> {
+  async dietrichDiversities(
+    @common.Req() request: Request
+  ): Promise<DietrichDiversity[]> {
     const args = plainToClass(DietrichDiversityFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.dietrichDiversities({
       ...args,
       select: {
         applicationId: true,
         background: true,
-        id: true,
         lifeExperience: true,
+        id: true,
       },
     });
   }
@@ -61,16 +62,16 @@ export class DietrichDiversityControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DietrichDiversity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async dietrichDiversity(
     @common.Param() params: DietrichDiversityWhereUniqueInput
   ): Promise<DietrichDiversity | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.dietrichDiversity({
       where: params,
       select: {
         applicationId: true,
         background: true,
-        id: true,
         lifeExperience: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -84,19 +85,19 @@ export class DietrichDiversityControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DietrichDiversity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateDietrichDiversity(
     @common.Param() params: DietrichDiversityWhereUniqueInput,
     @common.Body() data: DietrichDiversityUpdateInput
   ): Promise<DietrichDiversity | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateDietrichDiversity({
         where: params,
         data: data,
         select: {
           applicationId: true,
           background: true,
-          id: true,
           lifeExperience: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -112,17 +113,17 @@ export class DietrichDiversityControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DietrichDiversity })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteDietrichDiversity(
     @common.Param() params: DietrichDiversityWhereUniqueInput
   ): Promise<DietrichDiversity | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteDietrichDiversity({
         where: params,
         select: {
           applicationId: true,
           background: true,
-          id: true,
           lifeExperience: true,
+          id: true,
         },
       });
     } catch (error) {

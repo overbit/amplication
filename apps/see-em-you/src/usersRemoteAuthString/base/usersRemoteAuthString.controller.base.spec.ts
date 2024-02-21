@@ -18,34 +18,34 @@ import { UsersRemoteAuthStringService } from "../usersRemoteAuthString.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
-  remoteAuthString: "exampleRemoteAuthString",
   usersId: 42,
+  remoteAuthString: "exampleRemoteAuthString",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
-  remoteAuthString: "exampleRemoteAuthString",
   usersId: 42,
+  remoteAuthString: "exampleRemoteAuthString",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
-    remoteAuthString: "exampleRemoteAuthString",
     usersId: 42,
+    remoteAuthString: "exampleRemoteAuthString",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
-  remoteAuthString: "exampleRemoteAuthString",
   usersId: 42,
+  remoteAuthString: "exampleRemoteAuthString",
+  id: "exampleId",
 };
 
 const service = {
-  create() {
+  createUsersRemoteAuthString() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  usersRemoteAuthStrings: () => FIND_MANY_RESULT,
+  usersRemoteAuthString: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

@@ -9,23 +9,22 @@ export const SlateRecommendShow = (props: ShowProps): React.ReactElement => {
           label="Application Slate Guid"
           source="applicationSlateGuid"
         />
-        <TextField label="First" source="first" />
-        <TextField label="Id" source="id" />
-        <TextField label="Last" source="last" />
-        <TextField label="Middle" source="middle" />
         <TextField label="Prefix" source="prefix" />
-        <TextField label="Reference1 Email" source="reference1Email" />
+        <TextField label="First" source="first" />
+        <TextField label="Middle" source="middle" />
+        <TextField label="Last" source="last" />
+        <TextField label="Reference1 Type" source="reference1Type" />
+        <TextField label="Reference1 Submitted" source="reference1Submitted" />
         <TextField label="Reference1 First" source="reference1First" />
-        <TextField label="Reference1 Industry" source="reference1Industry" />
         <TextField label="Reference1 Last" source="reference1Last" />
+        <TextField label="Reference1 Industry" source="reference1Industry" />
         <TextField
           label="Reference1 Organization"
           source="reference1Organization"
         />
-        <TextField label="Reference1 Phone" source="reference1Phone" />
-        <TextField label="Reference1 Submitted" source="reference1Submitted" />
         <TextField label="Reference1 Title" source="reference1Title" />
-        <TextField label="Reference1 Type" source="reference1Type" />
+        <TextField label="Reference1 Email" source="reference1Email" />
+        <TextField label="Reference1 Phone" source="reference1Phone" />
         <TextField
           label="Reference Num1 Isrms Recommender Score1"
           source="referenceNum1IsrmsRecommenderScore1"
@@ -138,6 +137,7 @@ export const SlateRecommendShow = (props: ShowProps): React.ReactElement => {
           label="Reference Num1 Recommender Score8"
           source="referenceNum1RecommenderScore8"
         />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

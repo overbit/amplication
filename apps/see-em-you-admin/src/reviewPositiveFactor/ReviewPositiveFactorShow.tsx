@@ -7,9 +7,9 @@ export const ReviewPositiveFactorShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="Id" source="id" />
-        <TextField label="Positive Factor Id" source="positiveFactorId" />
         <TextField label="Review Id" source="reviewId" />
+        <TextField label="Positive Factor Id" source="positiveFactorId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

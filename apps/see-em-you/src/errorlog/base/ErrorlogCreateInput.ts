@@ -24,15 +24,7 @@ class ErrorlogCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  applicationId?: number | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  client!: string;
+  usersId?: number | null;
 
   @ApiProperty({
     required: false,
@@ -46,25 +38,6 @@ class ErrorlogCreateInput {
   luUsersUsertypesId?: number | null;
 
   @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  message!: string;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  usersId?: number | null;
-
-  @ApiProperty({
     required: false,
     type: Number,
   })
@@ -74,6 +47,33 @@ class ErrorlogCreateInput {
     nullable: true,
   })
   usertypeId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  applicationId?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  client!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  message!: string;
 }
 
 export { ErrorlogCreateInput as ErrorlogCreateInput };

@@ -18,54 +18,54 @@ import { MhciPrereqsCourseService } from "../mhciPrereqsCourse.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: 42,
-  periodId: 42,
-  programId: 42,
-  studentCourseGrade: "exampleStudentCourseGrade",
-  studentCourseInstitution: "exampleStudentCourseInstitution",
   studentCourseName: "exampleStudentCourseName",
   studentCourseTime: "exampleStudentCourseTime",
+  studentCourseInstitution: "exampleStudentCourseInstitution",
+  studentCourseGrade: "exampleStudentCourseGrade",
   submittedToReviewer: 42,
+  periodId: 42,
+  programId: 42,
+  id: 42,
 };
 const CREATE_RESULT = {
-  id: 42,
-  periodId: 42,
-  programId: 42,
-  studentCourseGrade: "exampleStudentCourseGrade",
-  studentCourseInstitution: "exampleStudentCourseInstitution",
   studentCourseName: "exampleStudentCourseName",
   studentCourseTime: "exampleStudentCourseTime",
+  studentCourseInstitution: "exampleStudentCourseInstitution",
+  studentCourseGrade: "exampleStudentCourseGrade",
   submittedToReviewer: 42,
+  periodId: 42,
+  programId: 42,
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
-    id: 42,
-    periodId: 42,
-    programId: 42,
-    studentCourseGrade: "exampleStudentCourseGrade",
-    studentCourseInstitution: "exampleStudentCourseInstitution",
     studentCourseName: "exampleStudentCourseName",
     studentCourseTime: "exampleStudentCourseTime",
+    studentCourseInstitution: "exampleStudentCourseInstitution",
+    studentCourseGrade: "exampleStudentCourseGrade",
     submittedToReviewer: 42,
+    periodId: 42,
+    programId: 42,
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
-  id: 42,
-  periodId: 42,
-  programId: 42,
-  studentCourseGrade: "exampleStudentCourseGrade",
-  studentCourseInstitution: "exampleStudentCourseInstitution",
   studentCourseName: "exampleStudentCourseName",
   studentCourseTime: "exampleStudentCourseTime",
+  studentCourseInstitution: "exampleStudentCourseInstitution",
+  studentCourseGrade: "exampleStudentCourseGrade",
   submittedToReviewer: 42,
+  periodId: 42,
+  programId: 42,
+  id: 42,
 };
 
 const service = {
-  create() {
+  createMhciPrereqsCourse() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  mhciPrereqsCourses: () => FIND_MANY_RESULT,
+  mhciPrereqsCourse: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

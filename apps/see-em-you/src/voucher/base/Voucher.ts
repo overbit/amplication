@@ -11,10 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsString, IsInt, IsOptional } from "class-validator";
+import { IsString, IsBoolean, IsOptional, IsInt } from "class-validator";
 
 @ObjectType()
 class Voucher {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  code!: string;
+
   @ApiProperty({
     required: true,
     type: Boolean,
@@ -30,22 +38,6 @@ class Voucher {
   @IsBoolean()
   @Field(() => Boolean)
   allowMultiple!: boolean;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  code!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
 
   @ApiProperty({
     required: false,
@@ -68,6 +60,14 @@ class Voucher {
     nullable: true,
   })
   prog!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Voucher as Voucher };

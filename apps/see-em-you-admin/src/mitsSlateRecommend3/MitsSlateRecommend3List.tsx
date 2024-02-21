@@ -14,23 +14,22 @@ export const MitsSlateRecommend3List = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="First" source="first" />
-        <TextField label="Id" source="id" />
-        <TextField label="Last" source="last" />
-        <TextField label="Middle" source="middle" />
         <TextField label="Prefix" source="prefix" />
-        <TextField label="Reference3 Email" source="reference3Email" />
+        <TextField label="First" source="first" />
+        <TextField label="Middle" source="middle" />
+        <TextField label="Last" source="last" />
+        <TextField label="Reference3 Type" source="reference3Type" />
+        <TextField label="Reference3 Submitted" source="reference3Submitted" />
         <TextField label="Reference3 First" source="reference3First" />
-        <TextField label="Reference3 Industry" source="reference3Industry" />
         <TextField label="Reference3 Last" source="reference3Last" />
+        <TextField label="Reference3 Industry" source="reference3Industry" />
         <TextField
           label="Reference3 Organization"
           source="reference3Organization"
         />
-        <TextField label="Reference3 Phone" source="reference3Phone" />
-        <TextField label="Reference3 Submitted" source="reference3Submitted" />
         <TextField label="Reference3 Title" source="reference3Title" />
-        <TextField label="Reference3 Type" source="reference3Type" />
+        <TextField label="Reference3 Email" source="reference3Email" />
+        <TextField label="Reference3 Phone" source="reference3Phone" />
         <TextField
           label="Reference Num3 Isrms Recommender Score1"
           source="referenceNum3IsrmsRecommenderScore1"
@@ -143,6 +142,7 @@ export const MitsSlateRecommend3List = (
           label="Reference Num3 Recommender Score8"
           source="referenceNum3RecommenderScore8"
         />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

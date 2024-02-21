@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { SelfGenderService } from "../selfGender.service";
 import { SelfGenderCreateInput } from "./SelfGenderCreateInput";
-import { SelfGenderWhereInput } from "./SelfGenderWhereInput";
-import { SelfGenderWhereUniqueInput } from "./SelfGenderWhereUniqueInput";
-import { SelfGenderFindManyArgs } from "./SelfGenderFindManyArgs";
-import { SelfGenderUpdateInput } from "./SelfGenderUpdateInput";
 import { SelfGender } from "./SelfGender";
+import { SelfGenderFindManyArgs } from "./SelfGenderFindManyArgs";
+import { SelfGenderWhereUniqueInput } from "./SelfGenderWhereUniqueInput";
+import { SelfGenderUpdateInput } from "./SelfGenderUpdateInput";
 
 export class SelfGenderControllerBase {
   constructor(protected readonly service: SelfGenderService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: SelfGender })
-  async create(
+  async createSelfGender(
     @common.Body() data: SelfGenderCreateInput
   ): Promise<SelfGender> {
-    return await this.service.create({
+    return await this.service.createSelfGender({
       data: data,
       select: {
+        userId: true,
         genderIndex: true,
         id: true,
-        userId: true,
       },
     });
   }
@@ -44,14 +43,14 @@ export class SelfGenderControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [SelfGender] })
   @ApiNestedQuery(SelfGenderFindManyArgs)
-  async findMany(@common.Req() request: Request): Promise<SelfGender[]> {
+  async selfGenders(@common.Req() request: Request): Promise<SelfGender[]> {
     const args = plainToClass(SelfGenderFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.selfGenders({
       ...args,
       select: {
+        userId: true,
         genderIndex: true,
         id: true,
-        userId: true,
       },
     });
   }
@@ -59,15 +58,15 @@ export class SelfGenderControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: SelfGender })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async selfGender(
     @common.Param() params: SelfGenderWhereUniqueInput
   ): Promise<SelfGender | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.selfGender({
       where: params,
       select: {
+        userId: true,
         genderIndex: true,
         id: true,
-        userId: true,
       },
     });
     if (result === null) {
@@ -81,18 +80,18 @@ export class SelfGenderControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: SelfGender })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateSelfGender(
     @common.Param() params: SelfGenderWhereUniqueInput,
     @common.Body() data: SelfGenderUpdateInput
   ): Promise<SelfGender | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSelfGender({
         where: params,
         data: data,
         select: {
+          userId: true,
           genderIndex: true,
           id: true,
-          userId: true,
         },
       });
     } catch (error) {
@@ -108,16 +107,16 @@ export class SelfGenderControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: SelfGender })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteSelfGender(
     @common.Param() params: SelfGenderWhereUniqueInput
   ): Promise<SelfGender | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteSelfGender({
         where: params,
         select: {
+          userId: true,
           genderIndex: true,
           id: true,
-          userId: true,
         },
       });
     } catch (error) {

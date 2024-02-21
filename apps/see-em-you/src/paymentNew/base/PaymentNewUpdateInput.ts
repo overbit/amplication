@@ -38,7 +38,7 @@ class PaymentNewUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  lastModUserId?: number;
+  paymentType?: number;
 
   @ApiProperty({
     required: false,
@@ -82,7 +82,7 @@ class PaymentNewUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  paymentType?: number;
+  lastModUserId?: number;
 }
 
 export { PaymentNewUpdateInput as PaymentNewUpdateInput };

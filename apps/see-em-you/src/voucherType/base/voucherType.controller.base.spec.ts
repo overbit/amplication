@@ -19,33 +19,33 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   description: "exampleDescription",
-  id: 42,
   prefix: "examplePrefix",
+  id: 42,
 };
 const CREATE_RESULT = {
   description: "exampleDescription",
-  id: 42,
   prefix: "examplePrefix",
+  id: 42,
 };
 const FIND_MANY_RESULT = [
   {
     description: "exampleDescription",
-    id: 42,
     prefix: "examplePrefix",
+    id: 42,
   },
 ];
 const FIND_ONE_RESULT = {
   description: "exampleDescription",
-  id: 42,
   prefix: "examplePrefix",
+  id: 42,
 };
 
 const service = {
-  create() {
+  createVoucherType() {
     return CREATE_RESULT;
   },
-  findMany: () => FIND_MANY_RESULT,
-  findOne: ({ where }: { where: { id: string } }) => {
+  voucherTypes: () => FIND_MANY_RESULT,
+  voucherType: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
         return FIND_ONE_RESULT;

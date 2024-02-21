@@ -7,10 +7,10 @@ export const VoucherApplicationShow = (
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="App Id" source="appId" />
-        <TextField label="Date Used" source="dateUsed" />
-        <TextField label="Id" source="id" />
         <TextField label="Voucher Id" source="voucherId" />
+        <TextField label="Date Used" source="dateUsed" />
+        <TextField label="App Id" source="appId" />
+        <TextField label="Id" source="id" />
       </SimpleShowLayout>
     </Show>
   );

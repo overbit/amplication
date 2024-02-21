@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateRecommendformArgs } from "./CreateRecommendformArgs";
-import { UpdateRecommendformArgs } from "./UpdateRecommendformArgs";
-import { DeleteRecommendformArgs } from "./DeleteRecommendformArgs";
+import { Recommendform } from "./Recommendform";
 import { RecommendformCountArgs } from "./RecommendformCountArgs";
 import { RecommendformFindManyArgs } from "./RecommendformFindManyArgs";
 import { RecommendformFindUniqueArgs } from "./RecommendformFindUniqueArgs";
-import { Recommendform } from "./Recommendform";
+import { CreateRecommendformArgs } from "./CreateRecommendformArgs";
+import { UpdateRecommendformArgs } from "./UpdateRecommendformArgs";
+import { DeleteRecommendformArgs } from "./DeleteRecommendformArgs";
 import { RecommendformService } from "../recommendform.service";
 @graphql.Resolver(() => Recommendform)
 export class RecommendformResolverBase {
@@ -38,14 +38,14 @@ export class RecommendformResolverBase {
   async recommendforms(
     @graphql.Args() args: RecommendformFindManyArgs
   ): Promise<Recommendform[]> {
-    return this.service.findMany(args);
+    return this.service.recommendforms(args);
   }
 
   @graphql.Query(() => Recommendform, { nullable: true })
   async recommendform(
     @graphql.Args() args: RecommendformFindUniqueArgs
   ): Promise<Recommendform | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.recommendform(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class RecommendformResolverBase {
   async createRecommendform(
     @graphql.Args() args: CreateRecommendformArgs
   ): Promise<Recommendform> {
-    return await this.service.create({
+    return await this.service.createRecommendform({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class RecommendformResolverBase {
     @graphql.Args() args: UpdateRecommendformArgs
   ): Promise<Recommendform | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateRecommendform({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class RecommendformResolverBase {
     @graphql.Args() args: DeleteRecommendformArgs
   ): Promise<Recommendform | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteRecommendform(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

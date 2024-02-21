@@ -11,20 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, ValidateNested, IsOptional } from "class-validator";
+import { IsString, ValidateNested, IsOptional, IsInt } from "class-validator";
 import { ProgramModel } from "../../programModel/base/ProgramModel";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class Fieldsofstudy {
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsInt()
-  @Field(() => Number)
-  id!: number;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -41,6 +33,14 @@ class Fieldsofstudy {
   @Type(() => ProgramModel)
   @IsOptional()
   programs?: Array<ProgramModel>;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsInt()
+  @Field(() => Number)
+  id!: number;
 }
 
 export { Fieldsofstudy as Fieldsofstudy };

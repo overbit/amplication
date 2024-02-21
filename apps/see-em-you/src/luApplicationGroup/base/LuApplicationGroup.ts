@@ -11,20 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, ValidateNested } from "class-validator";
 import { Application } from "../../application/base/Application";
-import { ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class LuApplicationGroup {
-  @ApiProperty({
-    required: true,
-    type: () => Application,
-  })
-  @ValidateNested()
-  @Type(() => Application)
-  application?: Application;
-
   @ApiProperty({
     required: true,
     type: Number,
@@ -39,7 +31,15 @@ class LuApplicationGroup {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  round!: number;
+
+  @ApiProperty({
+    required: true,
+    type: () => Application,
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  application?: Application;
 
   @ApiProperty({
     required: true,
@@ -47,7 +47,7 @@ class LuApplicationGroup {
   })
   @IsInt()
   @Field(() => Number)
-  round!: number;
+  id!: number;
 }
 
 export { LuApplicationGroup as LuApplicationGroup };

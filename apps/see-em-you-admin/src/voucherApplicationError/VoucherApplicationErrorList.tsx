@@ -14,12 +14,12 @@ export const VoucherApplicationErrorList = (
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="Allow Multiple" source="allowMultiple" />
         <TextField label="App Id" source="appId" />
         <TextField label="Code" source="code" />
-        <TextField label="Err Msg" source="errMsg" />
-        <TextField label="Id" source="id" />
         <TextField label="Va Id" source="vaId" />
+        <TextField label="Err Msg" source="errMsg" />
+        <TextField label="Allow Multiple" source="allowMultiple" />
+        <TextField label="Id" source="id" />
       </Datagrid>
     </List>
   );

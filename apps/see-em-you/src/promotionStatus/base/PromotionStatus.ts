@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, IsDate } from "class-validator";
+import { IsInt, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -34,14 +34,6 @@ class PromotionStatus {
 
   @ApiProperty({
     required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
     type: Number,
   })
   @IsInt()
@@ -55,6 +47,14 @@ class PromotionStatus {
   @Type(() => Date)
   @Field(() => Date)
   statusTime!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
 }
 
 export { PromotionStatus as PromotionStatus };

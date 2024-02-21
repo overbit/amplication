@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateSlateAwAppIdArgs } from "./CreateSlateAwAppIdArgs";
-import { UpdateSlateAwAppIdArgs } from "./UpdateSlateAwAppIdArgs";
-import { DeleteSlateAwAppIdArgs } from "./DeleteSlateAwAppIdArgs";
+import { SlateAwAppId } from "./SlateAwAppId";
 import { SlateAwAppIdCountArgs } from "./SlateAwAppIdCountArgs";
 import { SlateAwAppIdFindManyArgs } from "./SlateAwAppIdFindManyArgs";
 import { SlateAwAppIdFindUniqueArgs } from "./SlateAwAppIdFindUniqueArgs";
-import { SlateAwAppId } from "./SlateAwAppId";
+import { CreateSlateAwAppIdArgs } from "./CreateSlateAwAppIdArgs";
+import { UpdateSlateAwAppIdArgs } from "./UpdateSlateAwAppIdArgs";
+import { DeleteSlateAwAppIdArgs } from "./DeleteSlateAwAppIdArgs";
 import { SlateAwAppIdService } from "../slateAwAppId.service";
 @graphql.Resolver(() => SlateAwAppId)
 export class SlateAwAppIdResolverBase {
@@ -38,14 +38,14 @@ export class SlateAwAppIdResolverBase {
   async slateAwAppIds(
     @graphql.Args() args: SlateAwAppIdFindManyArgs
   ): Promise<SlateAwAppId[]> {
-    return this.service.findMany(args);
+    return this.service.slateAwAppIds(args);
   }
 
   @graphql.Query(() => SlateAwAppId, { nullable: true })
   async slateAwAppId(
     @graphql.Args() args: SlateAwAppIdFindUniqueArgs
   ): Promise<SlateAwAppId | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.slateAwAppId(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class SlateAwAppIdResolverBase {
   async createSlateAwAppId(
     @graphql.Args() args: CreateSlateAwAppIdArgs
   ): Promise<SlateAwAppId> {
-    return await this.service.create({
+    return await this.service.createSlateAwAppId({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class SlateAwAppIdResolverBase {
     @graphql.Args() args: UpdateSlateAwAppIdArgs
   ): Promise<SlateAwAppId | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateSlateAwAppId({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class SlateAwAppIdResolverBase {
     @graphql.Args() args: DeleteSlateAwAppIdArgs
   ): Promise<SlateAwAppId | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteSlateAwAppId(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

@@ -28,28 +28,6 @@ class CcTransactionUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  cardholderNameFirst?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  cardholderNameLast?: string;
-
-  @ApiProperty({
-    required: false,
     type: Number,
   })
   @IsInt()
@@ -69,6 +47,28 @@ class CcTransactionUpdateInput {
     nullable: true,
   })
   storeNumber?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  cardholderNameLast?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  cardholderNameFirst?: string;
 }
 
 export { CcTransactionUpdateInput as CcTransactionUpdateInput };

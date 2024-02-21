@@ -29,7 +29,7 @@ class AssistantshipCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  granted!: number;
+  requested!: number;
 
   @ApiProperty({
     required: true,
@@ -37,7 +37,7 @@ class AssistantshipCreateInput {
   })
   @IsInt()
   @Field(() => Number)
-  requested!: number;
+  granted!: number;
 }
 
 export { AssistantshipCreateInput as AssistantshipCreateInput };

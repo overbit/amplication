@@ -1,14 +1,14 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MergeDatafileOrderByInput = {
+  mergeId?: SortOrder;
+  datafileinfoId?: SortOrder;
   converted?: SortOrder;
   convertError?: SortOrder;
   convertMessage?: SortOrder;
-  datafileinfoId?: SortOrder;
-  id?: SortOrder;
+  mergeFilename?: SortOrder;
   merged?: SortOrder;
   mergeError?: SortOrder;
-  mergeFilename?: SortOrder;
-  mergeId?: SortOrder;
   mergeMessage?: SortOrder;
+  id?: SortOrder;
 };

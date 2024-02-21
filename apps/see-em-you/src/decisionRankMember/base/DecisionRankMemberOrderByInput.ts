@@ -28,7 +28,18 @@ class DecisionRankMemberOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  applicationId?: SortOrder;
+  departmentId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  periodId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -50,7 +61,7 @@ class DecisionRankMemberOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  departmentId?: SortOrder;
+  applicationId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -73,17 +84,6 @@ class DecisionRankMemberOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  periodId?: SortOrder;
 }
 
 export { DecisionRankMemberOrderByInput as DecisionRankMemberOrderByInput };

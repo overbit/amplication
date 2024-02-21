@@ -10,7 +10,10 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, LuApplicationInterest } from "@prisma/client";
+import {
+  Prisma,
+  LuApplicationInterest as PrismaLuApplicationInterest,
+} from "@prisma/client";
 
 export class LuApplicationInterestServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -21,29 +24,39 @@ export class LuApplicationInterestServiceBase {
     return this.prisma.luApplicationInterest.count(args);
   }
 
-  async findMany<T extends Prisma.LuApplicationInterestFindManyArgs>(
+  async luApplicationInterests<
+    T extends Prisma.LuApplicationInterestFindManyArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationInterestFindManyArgs>
-  ): Promise<LuApplicationInterest[]> {
+  ): Promise<PrismaLuApplicationInterest[]> {
     return this.prisma.luApplicationInterest.findMany(args);
   }
-  async findOne<T extends Prisma.LuApplicationInterestFindUniqueArgs>(
+  async luApplicationInterest<
+    T extends Prisma.LuApplicationInterestFindUniqueArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationInterestFindUniqueArgs>
-  ): Promise<LuApplicationInterest | null> {
+  ): Promise<PrismaLuApplicationInterest | null> {
     return this.prisma.luApplicationInterest.findUnique(args);
   }
-  async create<T extends Prisma.LuApplicationInterestCreateArgs>(
+  async createLuApplicationInterest<
+    T extends Prisma.LuApplicationInterestCreateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationInterestCreateArgs>
-  ): Promise<LuApplicationInterest> {
+  ): Promise<PrismaLuApplicationInterest> {
     return this.prisma.luApplicationInterest.create<T>(args);
   }
-  async update<T extends Prisma.LuApplicationInterestUpdateArgs>(
+  async updateLuApplicationInterest<
+    T extends Prisma.LuApplicationInterestUpdateArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationInterestUpdateArgs>
-  ): Promise<LuApplicationInterest> {
+  ): Promise<PrismaLuApplicationInterest> {
     return this.prisma.luApplicationInterest.update<T>(args);
   }
-  async delete<T extends Prisma.LuApplicationInterestDeleteArgs>(
+  async deleteLuApplicationInterest<
+    T extends Prisma.LuApplicationInterestDeleteArgs
+  >(
     args: Prisma.SelectSubset<T, Prisma.LuApplicationInterestDeleteArgs>
-  ): Promise<LuApplicationInterest> {
+  ): Promise<PrismaLuApplicationInterest> {
     return this.prisma.luApplicationInterest.delete(args);
   }
 }

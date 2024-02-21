@@ -13,13 +13,13 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreatePeriodUmbrellaArgs } from "./CreatePeriodUmbrellaArgs";
-import { UpdatePeriodUmbrellaArgs } from "./UpdatePeriodUmbrellaArgs";
-import { DeletePeriodUmbrellaArgs } from "./DeletePeriodUmbrellaArgs";
+import { PeriodUmbrella } from "./PeriodUmbrella";
 import { PeriodUmbrellaCountArgs } from "./PeriodUmbrellaCountArgs";
 import { PeriodUmbrellaFindManyArgs } from "./PeriodUmbrellaFindManyArgs";
 import { PeriodUmbrellaFindUniqueArgs } from "./PeriodUmbrellaFindUniqueArgs";
-import { PeriodUmbrella } from "./PeriodUmbrella";
+import { CreatePeriodUmbrellaArgs } from "./CreatePeriodUmbrellaArgs";
+import { UpdatePeriodUmbrellaArgs } from "./UpdatePeriodUmbrellaArgs";
+import { DeletePeriodUmbrellaArgs } from "./DeletePeriodUmbrellaArgs";
 import { PeriodUmbrellaService } from "../periodUmbrella.service";
 @graphql.Resolver(() => PeriodUmbrella)
 export class PeriodUmbrellaResolverBase {
@@ -38,14 +38,14 @@ export class PeriodUmbrellaResolverBase {
   async periodUmbrellas(
     @graphql.Args() args: PeriodUmbrellaFindManyArgs
   ): Promise<PeriodUmbrella[]> {
-    return this.service.findMany(args);
+    return this.service.periodUmbrellas(args);
   }
 
   @graphql.Query(() => PeriodUmbrella, { nullable: true })
   async periodUmbrella(
     @graphql.Args() args: PeriodUmbrellaFindUniqueArgs
   ): Promise<PeriodUmbrella | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.periodUmbrella(args);
     if (result === null) {
       return null;
     }
@@ -56,7 +56,7 @@ export class PeriodUmbrellaResolverBase {
   async createPeriodUmbrella(
     @graphql.Args() args: CreatePeriodUmbrellaArgs
   ): Promise<PeriodUmbrella> {
-    return await this.service.create({
+    return await this.service.createPeriodUmbrella({
       ...args,
       data: args.data,
     });
@@ -67,7 +67,7 @@ export class PeriodUmbrellaResolverBase {
     @graphql.Args() args: UpdatePeriodUmbrellaArgs
   ): Promise<PeriodUmbrella | null> {
     try {
-      return await this.service.update({
+      return await this.service.updatePeriodUmbrella({
         ...args,
         data: args.data,
       });
@@ -86,7 +86,7 @@ export class PeriodUmbrellaResolverBase {
     @graphql.Args() args: DeletePeriodUmbrellaArgs
   ): Promise<PeriodUmbrella | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deletePeriodUmbrella(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

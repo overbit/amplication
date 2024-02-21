@@ -18,25 +18,24 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { MultiprogramlockoutService } from "../multiprogramlockout.service";
 import { MultiprogramlockoutCreateInput } from "./MultiprogramlockoutCreateInput";
-import { MultiprogramlockoutWhereInput } from "./MultiprogramlockoutWhereInput";
-import { MultiprogramlockoutWhereUniqueInput } from "./MultiprogramlockoutWhereUniqueInput";
-import { MultiprogramlockoutFindManyArgs } from "./MultiprogramlockoutFindManyArgs";
-import { MultiprogramlockoutUpdateInput } from "./MultiprogramlockoutUpdateInput";
 import { Multiprogramlockout } from "./Multiprogramlockout";
+import { MultiprogramlockoutFindManyArgs } from "./MultiprogramlockoutFindManyArgs";
+import { MultiprogramlockoutWhereUniqueInput } from "./MultiprogramlockoutWhereUniqueInput";
+import { MultiprogramlockoutUpdateInput } from "./MultiprogramlockoutUpdateInput";
 
 export class MultiprogramlockoutControllerBase {
   constructor(protected readonly service: MultiprogramlockoutService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Multiprogramlockout })
-  async create(
+  async createMultiprogramlockout(
     @common.Body() data: MultiprogramlockoutCreateInput
   ): Promise<Multiprogramlockout> {
-    return await this.service.create({
+    return await this.service.createMultiprogramlockout({
       data: data,
       select: {
-        id: true,
         programId1: true,
         programId2: true,
+        id: true,
       },
     });
   }
@@ -44,16 +43,16 @@ export class MultiprogramlockoutControllerBase {
   @common.Get()
   @swagger.ApiOkResponse({ type: [Multiprogramlockout] })
   @ApiNestedQuery(MultiprogramlockoutFindManyArgs)
-  async findMany(
+  async multiprogramlockouts(
     @common.Req() request: Request
   ): Promise<Multiprogramlockout[]> {
     const args = plainToClass(MultiprogramlockoutFindManyArgs, request.query);
-    return this.service.findMany({
+    return this.service.multiprogramlockouts({
       ...args,
       select: {
-        id: true,
         programId1: true,
         programId2: true,
+        id: true,
       },
     });
   }
@@ -61,15 +60,15 @@ export class MultiprogramlockoutControllerBase {
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Multiprogramlockout })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async findOne(
+  async multiprogramlockout(
     @common.Param() params: MultiprogramlockoutWhereUniqueInput
   ): Promise<Multiprogramlockout | null> {
-    const result = await this.service.findOne({
+    const result = await this.service.multiprogramlockout({
       where: params,
       select: {
-        id: true,
         programId1: true,
         programId2: true,
+        id: true,
       },
     });
     if (result === null) {
@@ -83,18 +82,18 @@ export class MultiprogramlockoutControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Multiprogramlockout })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async update(
+  async updateMultiprogramlockout(
     @common.Param() params: MultiprogramlockoutWhereUniqueInput,
     @common.Body() data: MultiprogramlockoutUpdateInput
   ): Promise<Multiprogramlockout | null> {
     try {
-      return await this.service.update({
+      return await this.service.updateMultiprogramlockout({
         where: params,
         data: data,
         select: {
-          id: true,
           programId1: true,
           programId2: true,
+          id: true,
         },
       });
     } catch (error) {
@@ -110,16 +109,16 @@ export class MultiprogramlockoutControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Multiprogramlockout })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async delete(
+  async deleteMultiprogramlockout(
     @common.Param() params: MultiprogramlockoutWhereUniqueInput
   ): Promise<Multiprogramlockout | null> {
     try {
-      return await this.service.delete({
+      return await this.service.deleteMultiprogramlockout({
         where: params,
         select: {
-          id: true,
           programId1: true,
           programId2: true,
+          id: true,
         },
       });
     } catch (error) {

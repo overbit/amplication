@@ -13,11 +13,11 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { DeleteTesttableforBansheeArgs } from "./DeleteTesttableforBansheeArgs";
+import { TesttableforBanshee } from "./TesttableforBanshee";
 import { TesttableforBansheeCountArgs } from "./TesttableforBansheeCountArgs";
 import { TesttableforBansheeFindManyArgs } from "./TesttableforBansheeFindManyArgs";
 import { TesttableforBansheeFindUniqueArgs } from "./TesttableforBansheeFindUniqueArgs";
-import { TesttableforBanshee } from "./TesttableforBanshee";
+import { DeleteTesttableforBansheeArgs } from "./DeleteTesttableforBansheeArgs";
 import { TesttableforBansheeService } from "../testtableforBanshee.service";
 @graphql.Resolver(() => TesttableforBanshee)
 export class TesttableforBansheeResolverBase {
@@ -36,14 +36,14 @@ export class TesttableforBansheeResolverBase {
   async testtableforBanshees(
     @graphql.Args() args: TesttableforBansheeFindManyArgs
   ): Promise<TesttableforBanshee[]> {
-    return this.service.findMany(args);
+    return this.service.testtableforBanshees(args);
   }
 
   @graphql.Query(() => TesttableforBanshee, { nullable: true })
   async testtableforBanshee(
     @graphql.Args() args: TesttableforBansheeFindUniqueArgs
   ): Promise<TesttableforBanshee | null> {
-    const result = await this.service.findOne(args);
+    const result = await this.service.testtableforBanshee(args);
     if (result === null) {
       return null;
     }
@@ -55,7 +55,7 @@ export class TesttableforBansheeResolverBase {
     @graphql.Args() args: DeleteTesttableforBansheeArgs
   ): Promise<TesttableforBanshee | null> {
     try {
-      return await this.service.delete(args);
+      return await this.service.deleteTesttableforBanshee(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
         throw new GraphQLError(

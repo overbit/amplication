@@ -21,7 +21,7 @@ class ProgramGroup {
   })
   @IsInt()
   @Field(() => Number)
-  id!: number;
+  periodId!: number;
 
   @ApiProperty({
     required: true,
@@ -29,18 +29,7 @@ class ProgramGroup {
   })
   @IsInt()
   @Field(() => Number)
-  periodId!: number;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  programGroupDescription!: string | null;
+  unitId!: number;
 
   @ApiProperty({
     required: true,
@@ -59,12 +48,23 @@ class ProgramGroup {
   programGroupNameShort!: string;
 
   @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  programGroupDescription!: string | null;
+
+  @ApiProperty({
     required: true,
     type: Number,
   })
   @IsInt()
   @Field(() => Number)
-  unitId!: number;
+  id!: number;
 }
 
 export { ProgramGroup as ProgramGroup };
